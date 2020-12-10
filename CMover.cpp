@@ -17,15 +17,25 @@ CVector CMover::getPosition()
 	return Position;
 }
 
+double CMover::getSize()
+{
+	return Size;
+}
+
 void CMover::ApplyForce(CVector F)
 {
 	Acceleration += (F / Mass);
 }
 
-CVector CMover::getFrictionForce(double FloorFrictionCF)
+void CMover::ApplyFrictionForce(double FloorFrictionCF)
 {
 	auto NormA = Velocity.getNorm();
-	return -NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity;
+	ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity);
+}
+
+void CMover::ApplyAirForce(CVector F)
+{
+	ApplyForce(F * AirResCF);
 }
 
 void CMover::Move()
@@ -113,20 +123,24 @@ void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 		Position.y = WallPosition.y + WallSize.y / 2 + Size;
 		Velocity.y *= -ReflectCF * WallReflectionCF;
 		if(Acceleration.y < 0)Acceleration.y = 0;
+		ifonWall();
 	}
 	if (D) {
 		Position.y = WallPosition.y - WallSize.y / 2 - Size;
 		Velocity.y *= -ReflectCF * WallReflectionCF;
 		if (Acceleration.y > 0)Acceleration.y = 0;
+		ifonWall();
 	}
 	if (R) {
 		Position.x = WallPosition.x - WallSize.x / 2 - Size;
 		Velocity.x *= -ReflectCF * WallReflectionCF;
 		if (Acceleration.x > 0)Acceleration.x = 0;
+		ifonWall();
 	}
 	if (L) {
 		Position.x = WallPosition.x + WallSize.x / 2 + Size;
 		Velocity.x *= -ReflectCF * WallReflectionCF;
 		if (Acceleration.x < 0)Acceleration.x = 0;
+		ifonWall();
 	}
 }

@@ -30,8 +30,10 @@ public:
 	virtual ~CMover() {};
 	void setMediator(std::shared_ptr<CGameMediator>);
 	CVector getPosition();
+	double getSize();
 	void ApplyForce(CVector F);	//óÕÇÇ©ÇØÇÈ
-	CVector getFrictionForce(double FloorFrictionForce);
+	void ApplyFrictionForce(double FloorFrictionForce);
+	void ApplyAirForce(CVector F);
 	void Move();
 
 	virtual int Update() = 0;		//0:ê∂ë∂Å@1:ëºéE 2:é©éE
@@ -39,6 +41,7 @@ public:
 	virtual void Dead() = 0;		//éÄñS(ëºéE)
 	virtual void Disappear() = 0;	//è¡ñ≈(é©éE)
 
-	void onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//ï«ÇÃè„Ç…èÊÇ¡ÇΩÇ©îªíË
+	void onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//ï«ÇÃè„Ç…èÊÇ¡ÇΩÇ©îªíËÇµÅAîΩéÀÇ∑ÇÈ
+	virtual void ifonWall() {};
 };
 

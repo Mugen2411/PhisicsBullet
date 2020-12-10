@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed) 
-	:CMover(position,	24.0, CVector(0, 0),50, 60, 10, 5, 0.0, 0)
+	:CMover(position,	24.0, CVector(0, 0),10, 1, 10, 20, 0.0, 0)
 	,input(CControllerFactory::getIns().getController()), Accel(accel), MaxSpeed(maxSpeed) {
 }
 

@@ -6,6 +6,8 @@ public:
 	static double perFrame;
 	static double zero_border;
 
+	static double PI;
+
 	static int ScreenW;
 	static int ScreenH;
 };

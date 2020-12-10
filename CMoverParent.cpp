@@ -31,7 +31,7 @@ void CMoverParent::Update()
 		itr++;
 	}
 
-	if (cnt % 10 == 0) {
+	if (cnt % 60 == 0) {
 		CVector p = CVector(rand()%(640-64*2)+64, rand()%(480-64*2)+64);
 		for (int i = 0; i < 128; i++) {
 			CVector v = CVector(cos(3.14 / 64 * i) * 3.0, sin(3.14 / 64 * i) * 3.0);

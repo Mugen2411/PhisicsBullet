@@ -11,6 +11,6 @@ public:
     void Dead();
     void Disappear();
 
-    void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
+    void ifonWall();
 };
 

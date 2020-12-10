@@ -1,8 +1,7 @@
 #include "CMover_TestBullet.h"
 #include <DxLib.h>
-
 CMover_TestBullet::CMover_TestBullet(CVector position, CVector velocity)
-	:CMover(position, 8, velocity, 0.03, 0, 0.7, 3, 0.8, 0.8)
+	:CMover(position, 8, velocity, 0.5, 0, 0.7, 0.1, 0.7, 0.8)
 {
 }
 
@@ -25,3 +24,10 @@ void CMover_TestBullet::Dead()
 void CMover_TestBullet::Disappear()
 {
 }
+
+void CMover_TestBullet::ifonWall()
+{
+	//Status = 2;
+}
+
+

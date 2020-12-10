@@ -8,7 +8,7 @@ CField_Wall::CField_Wall(CFieldParent* f, CVector position, double frictionCF, d
 
 void CField_Wall::setFrictionForce(CMover* m)
 {
-	m->ApplyForce(m->getFrictionForce(FrictionCF));
+	m->ApplyFrictionForce(FrictionCF);
 	m->onWall(Position, Size, ReflectCF);
 }
 

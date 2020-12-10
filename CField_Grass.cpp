@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CField_Grass::CField_Grass(CFieldParent* f, CVector position)
-	:CField(f,position,CVector(32.0,32.0),1.5,0, 1.0)
+	:CField(f,position,CVector(32.0,32.0),0.8,0, 1.0)
 {
 }
 

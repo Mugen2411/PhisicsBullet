@@ -7,7 +7,7 @@ CField::CField(CFieldParent* f, CVector position, CVector size, double frictionC
 
 void CField::setFrictionForce(CMover* m)
 {
-	m->ApplyForce(m->getFrictionForce(FrictionCF));
+	m->ApplyFrictionForce(FrictionCF);
 }
 
 void CField::Update()

@@ -9,6 +9,8 @@ protected:
 	};
 
 	int pushedFrame[10];
+	int mx, my;
+	int clickedFrame[3][2];
 
 	struct ConfigData {
 		int Up;
@@ -36,6 +38,13 @@ public:
 	int Slow();
 	int Start();
 	int Select();
+
+	int LClick(bool isPush);
+	int RClick(bool isPush);
+	int CClick(bool isPush);
+
+	int MouseX();
+	int MouseY();
 
 	CVector getVector();
 

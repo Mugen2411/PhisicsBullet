@@ -1,6 +1,6 @@
 #include "CSTGInputManager.h"
 
-CSTGInputManager::CSTGInputManager() :pushedFrame{ 0,0,0,0,0,0,0,0,0 }, ConfDat{0,0,0,0,0,0,0,0,0}
+CSTGInputManager::CSTGInputManager() :pushedFrame{ 0,0,0,0,0,0,0,0,0 }, ConfDat{ 0,0,0,0,0,0,0,0,0 }, clickedFrame{ {0,0},{0,0},{0,0} }
 {
 }
 
@@ -52,6 +52,31 @@ int CSTGInputManager::Start()
 int CSTGInputManager::Select()
 {
     return pushedFrame[SK_SELECT];
+}
+
+int CSTGInputManager::LClick(bool isPush)
+{
+    return clickedFrame[0][isPush];
+}
+
+int CSTGInputManager::RClick(bool isPush)
+{
+    return clickedFrame[1][isPush];
+}
+
+int CSTGInputManager::CClick(bool isPush)
+{
+    return clickedFrame[2][isPush];
+}
+
+int CSTGInputManager::MouseX()
+{
+    return mx;
+}
+
+int CSTGInputManager::MouseY()
+{
+    return my;
 }
 
 CVector CSTGInputManager::getVector()

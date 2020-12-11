@@ -16,6 +16,42 @@
     <Filter Include="ヘッダー ファイル\DesignPattern">
       <UniqueIdentifier>{ae27d88b-f609-4fe7-a01a-9e06cf474110}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Field">
+      <UniqueIdentifier>{e30f0ca3-2ca9-422e-83b3-905cc915208d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover">
+      <UniqueIdentifier>{d5b19c30-e882-47cc-9191-2ca2500c5e94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Power">
+      <UniqueIdentifier>{e03ef257-306f-49a7-931c-c246ef574067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Input">
+      <UniqueIdentifier>{3ff040bc-4d33-49fb-9b10-a62845cadd77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{dba31da9-d798-4b84-85bf-2b3baea3841e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Calculate">
+      <UniqueIdentifier>{486618f1-10b7-493d-af5d-63f7deec2898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Field">
+      <UniqueIdentifier>{0d5ed387-fb44-4f96-8f56-5432c3ab4ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover">
+      <UniqueIdentifier>{a6d9a631-b5fd-48eb-8018-7aef4f72dd7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Power">
+      <UniqueIdentifier>{683de466-763f-482c-a7ff-a1d737567c0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Input">
+      <UniqueIdentifier>{93d0fc5a-81e0-4504-9956-b1be87a5cf14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{5f62341f-209d-4630-aa7b-d58c13cb77fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Calculate">
+      <UniqueIdentifier>{0e6b163f-4db8-41e5-a9d2-c48353ccca57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,31 +60,10 @@
     <ClCompile Include="CObjectNode.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CVector.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CMover.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Constant.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CGameMediator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CControllerFactory.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CKeyInputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CMenuSelecter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CSTGInputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
@@ -57,75 +72,78 @@
     <ClCompile Include="Clooper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CMoverParent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CField.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CFieldParent.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
     <ClCompile Include="CField_Grass.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
     <ClCompile Include="CField_IceFloor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CMover_Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CMover_TestBullet.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
     <ClCompile Include="CField_Wall.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
-    <ClCompile Include="CPowerParent.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="CFieldParent.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Player.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_TestBullet.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="CMoverParent.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
     </ClCompile>
     <ClCompile Include="CPower.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Power</Filter>
     </ClCompile>
     <ClCompile Include="CPower_Line.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="CPowerParent.cpp">
+      <Filter>ソース ファイル\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyInputManager.cpp">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CControllerFactory.cpp">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CSTGInputManager.cpp">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Abstract.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CVector.cpp">
+      <Filter>ソース ファイル\Calculate</Filter>
+    </ClCompile>
+    <ClCompile Include="Constant.cpp">
+      <Filter>ソース ファイル\Calculate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CVector.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Constant.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CGameMediator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CControllerFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CKeyInputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CMenuSelecter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CSTGInputManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Fps.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="include_InputManagers.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
@@ -134,44 +152,74 @@
     <ClInclude Include="Clooper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CMoverParent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CField.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CFieldParent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CMediator.h">
       <Filter>ヘッダー ファイル\DesignPattern</Filter>
     </ClInclude>
     <ClInclude Include="CParts.h">
       <Filter>ヘッダー ファイル\DesignPattern</Filter>
     </ClInclude>
+    <ClInclude Include="CField.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
     <ClInclude Include="CField_Grass.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
     <ClInclude Include="CField_IceFloor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover_Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover_TestBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
     <ClInclude Include="CField_Wall.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
-    <ClInclude Include="CPowerParent.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="CFieldParent.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Player.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_TestBullet.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="CMoverParent.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
     <ClInclude Include="CPower.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Power</Filter>
     </ClInclude>
     <ClInclude Include="CPower_Line.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Power</Filter>
+    </ClInclude>
+    <ClInclude Include="CPowerParent.h">
+      <Filter>ヘッダー ファイル\Power</Filter>
+    </ClInclude>
+    <ClInclude Include="CSTGInputManager.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include_InputManagers.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyInputManager.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="CControllerFactory.h">
+      <Filter>ヘッダー ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Abstract.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>ヘッダー ファイル\Calculate</Filter>
+    </ClInclude>
+    <ClInclude Include="CVector.h">
+      <Filter>ヘッダー ファイル\Calculate</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

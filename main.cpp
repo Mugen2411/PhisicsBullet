@@ -7,10 +7,10 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (DxLib_Init() != 0)return -1;
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 	SetDrawScreen(DX_SCREEN_BACK);
-	SetAlwaysRunFlag(TRUE);
-	SetWaitVSyncFlag(FALSE);
+	//SetAlwaysRunFlag(TRUE);
+	//SetWaitVSyncFlag(FALSE);
 	CGame g = CGame();
-	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0) {
+	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0 && !CheckHitKey(KEY_INPUT_TAB)) {
 		g.Run();
 		ScreenFlip();
 	}

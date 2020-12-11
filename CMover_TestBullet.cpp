@@ -1,5 +1,6 @@
 #include "CMover_TestBullet.h"
 #include <DxLib.h>
+
 CMover_TestBullet::CMover_TestBullet(CVector position, CVector velocity)
 	:CMover(position, 8, velocity, 0.5, 0, 0.7, 0.1, 0.7, 0.8)
 {

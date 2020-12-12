@@ -2,14 +2,16 @@
 #include "CMoverParent.h"
 #include "CFieldParent.h"
 #include "CPowerParent.h"
-#include "CControllerFactory.h"
 #include "CMover.h"
 
-CGameMediator::CGameMediator()
+CGameMediator::CGameMediator():isPause(false)
 {
 	CreateParts();
-	CControllerFactory::getIns();
+	input = CControllerFactory::getIns().getController();
+}
 
+void CGameMediator::ChangeScene(int Scene, bool isStackClear)
+{
 }
 
 void CGameMediator::CreateParts()
@@ -27,9 +29,19 @@ void CGameMediator::ApplyForceToMover(CMover* m)
 
 void CGameMediator::Update()
 {
-	powerParent->Update();
-	moverParent->Update();
-	fieldParent->Update();
+	if (isPause) {
+		if (input->A() == 1) {
+			isPause = false;
+			pauseGuage = 0;
+		}
+	} else {
+		pauseGuage++;
+		powerParent->Update();
+		moverParent->Update();
+		fieldParent->Update();
+		if (pauseGuage == 120)isPause = true;
+	}
+	input->update();
 }
 
 void CGameMediator::Render() const

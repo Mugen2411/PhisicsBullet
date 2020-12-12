@@ -37,8 +37,8 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	int y = p.y / 32;
 	fieldlist.at(y).at(x)->setFrictionForce(m);
 
-	for (int ay = std::max(0, y - 3); ay < std::min((int)fieldlist.size(), (int)y + 3); ay++) {
-		for (int ax = std::max(0, x - 3); ax < std::min((int)fieldlist[y].size(), (int)x + 3); ax++) {
+	for (int ay = max(0, y - 3); ay < min((int)fieldlist.size(), (int)y + 3); ay++) {
+		for (int ax = max(0, x - 3); ax < min((int)fieldlist[y].size(), (int)x + 3); ax++) {
 			fieldlist.at(ay).at(ax)->Hit(m);
 		}
 	}

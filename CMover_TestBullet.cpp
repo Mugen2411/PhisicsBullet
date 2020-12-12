@@ -8,7 +8,7 @@ CMover_TestBullet::CMover_TestBullet(CVector position, CVector velocity)
 
 int CMover_TestBullet::Update()
 {
-	if (Velocity.getLength2() < 0.05)Status = 2;
+	if (Velocity.getLength2() < 0.01)Status = 2;
 	if (Position.x<0 || Position.x>=Constant::ScreenW || Position.y<0 || Position.y>=Constant::ScreenH)Status = 2;
 	return Status;
 }

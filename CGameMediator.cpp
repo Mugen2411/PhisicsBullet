@@ -39,7 +39,7 @@ void CGameMediator::Update()
 		powerParent->Update();
 		moverParent->Update();
 		fieldParent->Update();
-		if (pauseGuage == 120)isPause = true;
+		//if (pauseGuage == 120)isPause = true;
 	}
 	input->update();
 }

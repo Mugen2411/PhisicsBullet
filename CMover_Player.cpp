@@ -29,7 +29,9 @@ int CMover_Player::Update()
 {
 	input->update();
 	Walk();
-	printfDx(L"V:%lf,%lf\nA:%lf,%lf", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
+#ifdef _DEBUG
+	printfDx(L"V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
+#endif
 	return 0;
 }
 

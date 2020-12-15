@@ -4,6 +4,7 @@
 #include "CField_IceFloor.h"
 #include "CField_Wall.h"
 #include <math.h>
+#include <algorithm>
 
 CFieldParent::CFieldParent(CGameMediator* m)
 {
@@ -23,11 +24,11 @@ CFieldParent::CFieldParent(CGameMediator* m)
 
 void CFieldParent::Update()
 {
-	for (auto y = fieldlist.begin(); y != fieldlist.end(); y++) {
-		for (auto x = y->begin(); x != y->end(); x++) {
-			(*x)->Update();
-		}
-	}
+	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::vector<std::shared_ptr<CField>> y) {
+		std::for_each(y.begin(), y.end(), [](std::shared_ptr<CField> x) {
+			x->Update();
+			});
+		});
 }
 
 void CFieldParent::ApplyForceToMover(CMover* m)
@@ -46,9 +47,9 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 
 void CFieldParent::Render() const
 {
-	for (auto y = fieldlist.begin(); y != fieldlist.end(); y++) {
-		for (auto x = y->begin(); x != y->end(); x++) {
-			(*x)->Render();
-		}
-	}
+	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::vector<std::shared_ptr<CField>> y) {
+		std::for_each(y.begin(), y.end(), [](std::shared_ptr<CField> x) {
+			x->Render();
+			});
+		});
 }

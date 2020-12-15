@@ -1,6 +1,7 @@
 #include "CMoverParent.h"
 #include "CMover_Player.h"
 #include "CMover_TestBullet.h"
+#include <algorithm>
 
 CMoverParent::CMoverParent(CGameMediator* m) :med((CGameMediator*)m), moverList(), cnt(0)
 {
@@ -43,7 +44,10 @@ void CMoverParent::Update()
 
 void CMoverParent::Render()
 {
-	for (auto itr = moverList.begin(); itr != moverList.end(); itr++) {
-		(*itr)->Render();
-	}
+	std::for_each(moverList.begin(), moverList.end(), [](std::shared_ptr<CMover> itr) {
+		itr->Render();
+		});
+#ifdef _DEBUG
+	printfDx(L"Objects: %d\n", moverList.size());
+#endif
 }

@@ -38,6 +38,7 @@ int CMover_Player::Update()
 void CMover_Player::Render() const
 {
 	DrawCircleAA(Position.x, Position.y, Size, 32, 0xFF0000);
+	DrawCircleAA(input->MouseX(), input->MouseY(), 16, 16, 0x00FFFF, 0, 2);
 }
 
 void CMover_Player::Dead()

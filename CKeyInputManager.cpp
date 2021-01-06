@@ -12,23 +12,16 @@ int CKeyInputManager::update()
 		else pushedFrame[i] = 0;
 	}
 
-	GetMousePoint(&mx, &my);
-	if (mx < 16) {
-		mx = 16;
-		SetMousePoint(mx, my);
-	}
-	if (mx > Constant::ScreenW-16) {
-		mx = Constant::ScreenW-16;
-		SetMousePoint(mx, my);
-	}
-	if (my < 16) {
-		my = 16;
-		SetMousePoint(mx, my);
-	}
-	if (my > Constant::ScreenH-16) {
-		my = Constant::ScreenH-16;
-		SetMousePoint(mx, my);
-	}
+	int nx, ny;
+	GetMousePoint(&nx, &ny);
+	mx += nx - (Constant::ScreenW / 2);
+	my += ny - (Constant::ScreenH / 2);
+	if (mx < 0)mx = 0;
+	if (mx > Constant::ScreenW)mx = Constant::ScreenW;
+	if (my < 0)my = 0;
+	if (my > Constant::ScreenH)my = Constant::ScreenH;
+	SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
+	
 	int mi = GetMouseInput();
 	if (mi & MOUSE_INPUT_LEFT) {
 		clickedFrame[0][1]++;
@@ -60,5 +53,6 @@ int CKeyInputManager::update()
 
 void CKeyInputManager::load()
 {
+	SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
 	//SetMouseDispFlag(FALSE);
 }

@@ -1,6 +1,8 @@
 #include "CSTGInputManager.h"
 
-CSTGInputManager::CSTGInputManager() :pushedFrame{ 0,0,0,0,0,0,0,0,0 }, ConfDat{ 0,0,0,0,0,0,0,0,0 }, clickedFrame{ {0,0},{0,0},{0,0} }
+CSTGInputManager::CSTGInputManager() :pushedFrame{ 0,0,0,0,0,0,0,0,0 },
+    ConfDat{ 0,0,0,0,0,0,0,0,0 }, clickedFrame{ {0,0},{0,0},{0,0} },
+    mx(320), my(240)
 {
 }
 

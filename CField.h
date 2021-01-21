@@ -2,7 +2,10 @@
 #include "CFieldParent.h"
 #include "CMover.h"
 #include "CVector.h"
+#include "CImage.h"
+#include "CImageManager.h"
 #include <memory>
+#include <string>
 
 class CField
 {
@@ -13,8 +16,12 @@ protected:
 	double FrictionCF;
 	double Temperature;
 	double ReflectCF;
+
+	std::string GID;
+
 public:
-	CField(CFieldParent* f, CVector position, CVector size, double frictionCF, double temperature, double reflectCF);
+
+	CField(CFieldParent* f, const char* gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF);
 	virtual ~CField() {};
 	virtual void setFrictionForce(CMover*);
 

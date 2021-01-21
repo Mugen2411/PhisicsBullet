@@ -1,7 +1,7 @@
 #include "CField.h"
 
-CField::CField(CFieldParent* f, CVector position, CVector size, double frictionCF, double temperature, double reflectCF)
-	:parent(f), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF)
+CField::CField(CFieldParent* f, const char* gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF)
+	:parent(f), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF), GID(gid)
 {
 }
 

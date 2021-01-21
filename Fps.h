@@ -30,7 +30,7 @@ public:
 	}
 
 	void Draw() {
-		DrawFormatString(0, 480-16, GetColor(255, 255, 255), L"%.1f", mFps);
+		DrawFormatString(0, 480-16, GetColor(255, 255, 255), "%.1f", mFps);
 	}
 
 	void Wait() {

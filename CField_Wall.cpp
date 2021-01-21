@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CField_Wall::CField_Wall(CFieldParent* f, CVector position, double frictionCF, double temperature)
-	:CField(f, position, CVector(32,32), frictionCF, temperature, 0.9)
+	:CField(f, "field_wall", position, CVector(32,32), frictionCF, temperature, 0.9)
 {
 }
 

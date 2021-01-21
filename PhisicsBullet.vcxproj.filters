@@ -132,6 +132,12 @@
     <ClCompile Include="Constant.cpp">
       <Filter>ソース ファイル\Calculate</Filter>
     </ClCompile>
+    <ClCompile Include="CImage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -220,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="CVector.h">
       <Filter>ヘッダー ファイル\Calculate</Filter>
+    </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageManager.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

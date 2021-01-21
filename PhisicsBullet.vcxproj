@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -158,6 +158,8 @@
     <ClCompile Include="CField_IceFloor.cpp" />
     <ClCompile Include="CField_Wall.cpp" />
     <ClCompile Include="CGameMediator.cpp" />
+    <ClCompile Include="CImage.cpp" />
+    <ClCompile Include="CImageManager.cpp" />
     <ClCompile Include="CKeyInputManager.cpp" />
     <ClCompile Include="Clooper.cpp" />
     <ClCompile Include="CMenuSelecter.cpp" />
@@ -186,6 +188,8 @@
     <ClInclude Include="CField_IceFloor.h" />
     <ClInclude Include="CField_Wall.h" />
     <ClInclude Include="CGameMediator.h" />
+    <ClInclude Include="CImage.h" />
+    <ClInclude Include="CImageManager.h" />
     <ClInclude Include="CKeyInputManager.h" />
     <ClInclude Include="Clooper.h" />
     <ClInclude Include="CMediator.h" />

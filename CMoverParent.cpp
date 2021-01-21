@@ -48,6 +48,6 @@ void CMoverParent::Render()
 		itr->Render();
 		});
 #ifdef _DEBUG
-	printfDx(L"Objects: %d\n", moverList.size());
+	printfDx("Objects: %d\n", moverList.size());
 #endif
 }

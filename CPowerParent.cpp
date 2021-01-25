@@ -4,9 +4,9 @@
 
 CPowerParent::CPowerParent(CGameMediator* m) : med(m)
 {
-	for (int i = 0; i < 6; i++) {
-		powerList.push_back(std::make_shared<CPower_Line>(this, CVector(320, 240), CVector(Constant::PI / 12 + Constant::PI * i / 3, 160), 64, 3.0));
-	}
+	//for (int i = 0; i < 6; i++) {
+	//	powerList.push_back(std::make_shared<CPower_Line>(this, CVector(320, 240), CVector(Constant::PI / 12 + Constant::PI * i / 3, 160), 64, 3.0));
+	//}
 }
 
 void CPowerParent::Add(std::shared_ptr<CPower> p)

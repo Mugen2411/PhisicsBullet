@@ -5,7 +5,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
 	SetWindowSizeExtendRate(2.0);
 	if (DxLib_Init() != 0)return -1;
-	SetDrawMode(DX_DRAWMODE_NEAREST);
+	SetDrawMode(DX_DRAWMODE_BILINEAR);
 	SetDrawScreen(DX_SCREEN_BACK);
 	//SetAlwaysRunFlag(TRUE);
 	//SetWaitVSyncFlag(FALSE);

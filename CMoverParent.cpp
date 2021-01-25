@@ -34,8 +34,8 @@ void CMoverParent::Update()
 
 	if (cnt % 60 == 0) {
 		CVector p = CVector(rand()%(640-64*2)+64, rand()%(480-64*2)+64);
-		for (int i = 0; i < 128; i++) {
-			CVector v = CVector(cos(3.14 / 64 * i) * 3.0, sin(3.14 / 64 * i) * 3.0);
+		for (int i = 0; i < 32; i++) {
+			CVector v = CVector(cos(3.14 / 16 * i) * 3.0, sin(3.14 / 16 * i) * 3.0);
 			moverList.push_back(std::make_shared<CMover_TestBullet>(p, v));
 		}
 	}

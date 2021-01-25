@@ -58,17 +58,22 @@ double CVector::cross(const CVector v)const
 	return v.x * y - v.y * x;
 }
 
-double CVector::getLength2()
+double CVector::getLength2()const
 {
 	return x * x + y * y;
 }
 
-double CVector::getLength()
+double CVector::getLength()const
 {
 	return sqrt(getLength2());
 }
 
-CVector CVector::getNorm()
+double CVector::getAngle()const
+{
+	return atan2(y, x);
+}
+
+CVector CVector::getNorm()const
 {
 	double l = sqrt(getLength2());
 	if (l == 0.0)return CVector(0.0, 0.0);

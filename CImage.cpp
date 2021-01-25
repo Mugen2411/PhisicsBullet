@@ -1,4 +1,5 @@
 #include "CImage.h"
+#include <algorithm>
 #include <DxLib.h>
 
 CImage::CImage(const char* path)
@@ -17,6 +18,7 @@ CImage::CImage(const char* path, int AllNum, int Xnum, int Ynum, int w, int h)
 
 CImage::~CImage()
 {
+	std::for_each(GHandle.begin(), GHandle.end(), [](int v) { DeleteGraph(v); });
 }
 
 void CImage::Draw(int x1, int y1, int num)

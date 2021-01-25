@@ -19,9 +19,10 @@ public:
 
 	double dot(CVector const v)const;
 	double cross(CVector const v)const;
-	double getLength2();
-	double getLength();
-	CVector getNorm();
+	double getLength2()const;
+	double getLength()const;
+	double getAngle()const;
+	CVector getNorm()const;
 
 	void zero();
 };

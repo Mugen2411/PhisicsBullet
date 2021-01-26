@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "SceneManager.h"
+#include "Scene_Abstract.h"
 #include "CControllerFactory.h"
 
 class CMoverParent;
@@ -10,7 +10,7 @@ class CPowerParent;
 
 class CMover;
 
-class CGameMediator : public SceneManager
+class CGameMediator: public Scene_Abstract
 {
 protected:
 	std::shared_ptr<CSTGInputManager> input;
@@ -24,9 +24,7 @@ protected:
 	int pauseGuage;
 
 public:
-	CGameMediator();
-
-	void ChangeScene(int Scene, bool isStackClear);
+	CGameMediator(SceneManager *ScnMng);
 	
 	void ApplyForceToMover(CMover*);
 	void Update();

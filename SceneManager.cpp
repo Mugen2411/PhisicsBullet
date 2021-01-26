@@ -13,10 +13,10 @@ SceneManager::~SceneManager()
 
 void SceneManager::update()
 {
-	if (!_scene.empty())_scene.top()->update();
+	if (!_scene.empty())_scene.top()->Update();
 }
 
 void SceneManager::render()
 {
-	if (!_scene.empty())_scene.top()->render();
+	if (!_scene.empty())_scene.top()->Render();
 }

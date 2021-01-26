@@ -9,6 +9,6 @@ protected:
 public:
 	Scene_Abstract(SceneManager *scn_mng);
 	virtual ~Scene_Abstract();
-	virtual void update() = 0;
-	virtual void render() const = 0;
+	virtual void Update() = 0;
+	virtual void Render() const = 0;
 };

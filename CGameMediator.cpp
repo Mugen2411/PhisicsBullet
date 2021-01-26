@@ -4,14 +4,10 @@
 #include "CPowerParent.h"
 #include "CMover.h"
 
-CGameMediator::CGameMediator():isPause(false)
+CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPause(false)
 {
 	CreateParts();
 	input = CControllerFactory::getIns().getController();
-}
-
-void CGameMediator::ChangeScene(int Scene, bool isStackClear)
-{
 }
 
 void CGameMediator::CreateParts()

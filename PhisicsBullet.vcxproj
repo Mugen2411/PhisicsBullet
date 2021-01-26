@@ -162,6 +162,7 @@
     <ClCompile Include="CImageManager.cpp" />
     <ClCompile Include="CKeyInputManager.cpp" />
     <ClCompile Include="Clooper.cpp" />
+    <ClCompile Include="CMapEditor.cpp" />
     <ClCompile Include="CMenuSelecter.cpp" />
     <ClCompile Include="CMover.cpp" />
     <ClCompile Include="CMoverParent.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="CImageManager.h" />
     <ClInclude Include="CKeyInputManager.h" />
     <ClInclude Include="Clooper.h" />
+    <ClInclude Include="CMapEditor.h" />
     <ClInclude Include="CMediator.h" />
     <ClInclude Include="CMenuSelecter.h" />
     <ClInclude Include="CMover.h" />

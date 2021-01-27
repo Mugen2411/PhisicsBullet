@@ -1,15 +1,15 @@
 #pragma once
 #include "CParts.h"
 #include "CMover.h"
+#include "CFieldHolder.h"
 #include <memory>
 #include <vector>
-#include <algorithm>
 
 class CField;
 
 class CFieldParent
 {
-	std::vector<std::vector<std::shared_ptr<CField>>> fieldlist;
+	std::shared_ptr<CFieldHolder> fieldHolder;
 	
 public:
 	CFieldParent(CGameMediator*);

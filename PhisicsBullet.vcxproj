@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="CControllerFactory.cpp" />
     <ClCompile Include="CField.cpp" />
+    <ClCompile Include="CFieldHolder.cpp" />
     <ClCompile Include="CFieldParent.cpp" />
     <ClCompile Include="CField_Grass.cpp" />
     <ClCompile Include="CField_IceFloor.cpp" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="CControllerFactory.h" />
     <ClInclude Include="CField.h" />
+    <ClInclude Include="CFieldHolder.h" />
     <ClInclude Include="CFieldParent.h" />
     <ClInclude Include="CField_Grass.h" />
     <ClInclude Include="CField_IceFloor.h" />

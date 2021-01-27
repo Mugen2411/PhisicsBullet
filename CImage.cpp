@@ -33,7 +33,13 @@ void CImage::Draw(float x1, float y1, int num)
 	DrawGraphF(x1, y1, GHandle[num], TRUE);
 }
 
-void CImage::DrawRota(float x1, float y1, float angle, float extend, int num)
+void CImage::DrawRota(int x1, int y1, float angle, float extend, int num)
+{
+	if (num > GHandle.size())return;
+	DrawRotaGraph(x1, y1, extend, angle, GHandle[num], TRUE);
+}
+
+void CImage::DrawRotaF(float x1, float y1, float angle, float extend, int num)
 {
 	if (num > GHandle.size())return;
 	DrawRotaGraphF(x1, y1, extend, angle, GHandle[num], TRUE);

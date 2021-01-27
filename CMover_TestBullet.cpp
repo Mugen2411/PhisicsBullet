@@ -19,7 +19,7 @@ int CMover_TestBullet::Update()
 
 void CMover_TestBullet::Render() const
 {
-	CImageManager::getIns().find("bullet_arrow")->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0);
+	CImageManager::getIns().find("bullet_arrow")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0);
 	//DrawCircleAA(Position.x, Position.y, Size, 12, 0xFFFFFF);
 }
 

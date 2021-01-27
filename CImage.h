@@ -12,6 +12,7 @@ public:
 	
 	void Draw(int x1, int y1, int num = 0);
 	void Draw(float x1, float y1, int num = 0);
-	void DrawRota(float x1, float y1, float angle, float extend, int num = 0);
+	void DrawRota(int x1, int y1, float angle, float extend, int num = 0);
+	void DrawRotaF(float x1, float y1, float angle, float extend, int num = 0);
 };
 

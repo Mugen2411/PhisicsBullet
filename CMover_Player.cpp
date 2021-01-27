@@ -52,7 +52,6 @@ int CMover_Player::Update()
 void CMover_Player::Render() const
 {
 	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, Direction*4+std::round(animCount));
-	//DrawCircleAA(Position.x, Position.y, Size, 32, 0xFF0000);
 	DrawCircleAA(input->MouseX(), input->MouseY(), 16, 16, 0x00FFFF, 0, 2);
 }
 

@@ -6,7 +6,7 @@ CMover_TestBullet::CMover_TestBullet(CVector position, CVector velocity)
 	:CMover(position, 16, velocity, 0.5, 0, 0.7, 0.2, 0.92, 0)
 {
 	if (CImageManager::getIns().find("bullet_arrow") == nullptr) {
-		CImageManager::getIns().set("bullet_arrow", std::make_shared<CImage>("media/graphic/character/arrow/arrow.png"));
+		CImageManager::getIns().set("bullet_arrow", std::make_shared<CImage>("media/graphic/character/noa/arrow.png"));
 	}
 }
 

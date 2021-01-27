@@ -90,3 +90,32 @@ CVector CSTGInputManager::getVector()
     if (pushedFrame[SK_LEFT] != 0)tmp -= CVector(1.0, 0.0);
     return tmp.getNorm();
 }
+
+int CSTGInputManager::getDirection()
+{
+    if (pushedFrame[SK_UP] > 0) {
+        if (pushedFrame[SK_RIGHT] > pushedFrame[SK_UP])return SK_RIGHT;
+        else return SK_UP;
+        if (pushedFrame[SK_LEFT] > pushedFrame[SK_UP])return SK_LEFT;
+        else return SK_UP;
+    }
+    if (pushedFrame[SK_DOWN] > 0) {
+        if (pushedFrame[SK_RIGHT] > pushedFrame[SK_DOWN])return SK_RIGHT;
+        else return SK_DOWN;
+        if (pushedFrame[SK_LEFT] > pushedFrame[SK_DOWN])return SK_LEFT;
+        else return SK_DOWN;
+    }
+    if (pushedFrame[SK_RIGHT] > 0) {
+        if (pushedFrame[SK_UP] > pushedFrame[SK_RIGHT])return SK_UP;
+        else return SK_RIGHT;
+        if (pushedFrame[SK_DOWN] > pushedFrame[SK_RIGHT])return SK_DOWN;
+        else return SK_RIGHT;
+    }
+    if (pushedFrame[SK_LEFT] > 0) {
+        if (pushedFrame[SK_UP] > pushedFrame[SK_LEFT])return SK_UP;
+        else return SK_LEFT;
+        if (pushedFrame[SK_DOWN] > pushedFrame[SK_LEFT])return SK_DOWN;
+        else return SK_LEFT;
+    }
+    return NO_CONFIG;
+}

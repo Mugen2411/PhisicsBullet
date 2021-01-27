@@ -47,6 +47,7 @@ public:
 	int MouseY();
 
 	CVector getVector();
+	int getDirection();
 
 	virtual int update() = 0;
 	virtual void load() = 0;

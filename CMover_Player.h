@@ -9,6 +9,9 @@ protected:
     std::shared_ptr<CSTGInputManager> input;
     double Accel;
     double MaxSpeed;
+
+    int Direction;
+    double animCount;
 public:
     CMover_Player(CVector position, double accel, double maxSpeed);
     ~CMover_Player() {};

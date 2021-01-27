@@ -14,14 +14,14 @@ int CKeyInputManager::update()
 
 	int nx, ny;
 	GetMousePoint(&nx, &ny);
-	mx += nx - (Constant::ScreenW / 2);
-	my += ny - (Constant::ScreenH / 2);
+	mx += (nx - (Constant::ScreenW / 2)) / 2;
+	my += (ny - (Constant::ScreenH / 2)) / 2;
 	if (mx < 0)mx = 0;
 	if (mx > Constant::ScreenW)mx = Constant::ScreenW;
 	if (my < 0)my = 0;
 	if (my > Constant::ScreenH)my = Constant::ScreenH;
 	SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
-	
+
 	int mi = GetMouseInput();
 	if (mi & MOUSE_INPUT_LEFT) {
 		clickedFrame[0][1]++;

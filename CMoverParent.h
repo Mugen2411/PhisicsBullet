@@ -9,10 +9,12 @@ class CGameMediator;
 class CMoverParent
 {
 	int cnt;
-	CGameMediator* med;
+	std::shared_ptr<CGameMediator> med;
 	std::vector<std::shared_ptr<CMover>> moverList;
+	std::vector<std::shared_ptr<CMover>> reserveList;
 public:
-	CMoverParent(CGameMediator*);
+	CMoverParent(std::shared_ptr<CGameMediator>);
+	void RegisterMover(std::shared_ptr<CMover>);
 	void Update();
 	void Render();
 };

@@ -9,6 +9,10 @@ CVector::CVector(double x, double y) :x(x), y(y)
 {
 }
 
+CVector::CVector(double angle): x(cos(angle)), y(sin(angle))
+{
+}
+
 CVector CVector::operator+(const CVector v)const
 {
 	return CVector(this->x + v.x, this->y + v.y);

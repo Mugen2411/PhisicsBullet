@@ -1,6 +1,6 @@
 #include "Clooper.h"
 
-CGame::CGame():gameM(this),fps()
+CGame::CGame():fps()
 {
 	ChangeScene(SCENE_MAIN, true);
 }
@@ -8,8 +8,8 @@ CGame::CGame():gameM(this),fps()
 void CGame::Run()
 {
 	_scene.top()->Update();
-	_scene.top()->Render();
 	fps.Update();
+	_scene.top()->Render();
 	fps.Draw();
 	fps.Wait();
 }
@@ -23,7 +23,9 @@ void CGame::ChangeScene(int Scene, bool isStackClear)
 	}
 	switch (Scene) {
 	case SCENE_MAIN:
-		_scene.push(std::make_shared<CGameMediator>(this));
+		auto s = std::make_shared<CGameMediator>(this);
+		s->CreateParts();
+		_scene.push(s);
 		break;
 	}
 }

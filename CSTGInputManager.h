@@ -49,6 +49,8 @@ public:
 	CVector getVector();
 	int getDirection();
 
+	double getMouseAngle(CVector p);
+
 	virtual int update() = 0;
 	virtual void load() = 0;
 };

@@ -6,6 +6,7 @@ class CVector
 public:
 	CVector();
 	CVector(double, double);
+	CVector(double);
 
 	double x, y;
 

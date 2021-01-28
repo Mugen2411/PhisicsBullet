@@ -2,14 +2,11 @@
 #include "CPower.h"
 #include "CPower_Line.h"
 
-CPowerParent::CPowerParent(CGameMediator* m) : med(m)
+CPowerParent::CPowerParent(std::shared_ptr<CGameMediator> m) : med(m)
 {
-	//for (int i = 0; i < 6; i++) {
-	//	powerList.push_back(std::make_shared<CPower_Line>(this, CVector(320, 240), CVector(Constant::PI / 12 + Constant::PI * i / 3, 160), 64, 3.0));
-	//}
 }
 
-void CPowerParent::Add(std::shared_ptr<CPower> p)
+void CPowerParent::Add(const std::shared_ptr<CPower>& p)
 {
 	powerList.push_back(p);
 }

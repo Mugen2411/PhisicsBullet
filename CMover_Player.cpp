@@ -1,4 +1,5 @@
 #include "CMover_Player.h"
+#include "CMover_TestBullet.h"
 #include "CImageManager.h"
 #include <cmath>
 #include <DxLib.h>
@@ -32,6 +33,13 @@ void CMover_Player::Walk()
 	}
 }
 
+void CMover_Player::Shot(int frameLClick, int frameLPull)
+{
+	if (frameLClick == 1) {
+		med->RegisterMover(std::make_shared<CMover_TestBullet>(Position, CVector(input->getMouseAngle(Position)) * 6));
+	}
+}
+
 int CMover_Player::Update()
 {
 	if (input->update() > 0) {
@@ -43,7 +51,7 @@ int CMover_Player::Update()
 		animCount = 0.0;
 	}
 	Walk();
-
+	Shot(input->LClick(true), input->LClick(false));
 	
 #ifdef _DEBUG
 	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);

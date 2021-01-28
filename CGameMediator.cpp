@@ -2,19 +2,26 @@
 #include "CMoverParent.h"
 #include "CFieldParent.h"
 #include "CPowerParent.h"
+#include "CMover_Player.h"
 #include "CMover.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPause(false)
 {
-	CreateParts();
 	input = CControllerFactory::getIns().getController();
 }
 
 void CGameMediator::CreateParts()
 {
-	moverParent = std::make_shared<CMoverParent>(this);
-	fieldParent = std::make_shared<CFieldParent>(this);
-	powerParent = std::make_shared<CPowerParent>(this);
+	moverParent = std::make_shared<CMoverParent>(shared_from_this());
+	RegisterMover(std::make_shared<CMover_Player>(CVector(320, 320), 16.0, 3.0));
+	fieldParent = std::make_shared<CFieldParent>(shared_from_this());
+	powerParent = std::make_shared<CPowerParent>(shared_from_this());
+}
+
+void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)
+{
+	m->setMediator(shared_from_this());
+	moverParent->RegisterMover(m);
 }
 
 void CGameMediator::ApplyForceToMover(CMover* m)

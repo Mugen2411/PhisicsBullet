@@ -31,14 +31,6 @@ void CMoverParent::Update()
 		}
 		itr++;
 	}
-
-	if (cnt % 180 == 0) {
-		CVector p = CVector(rand()%(640-64*2)+64, rand()%(480-64*2)+64);
-		for (int i = 0; i < 16; i++) {
-			CVector v = CVector(cos(3.14 / 8 * i) * 3.0, sin(3.14 / 8 * i) * 3.0);
-			moverList.push_back(std::make_shared<CMover_TestBullet>(p, v));
-		}
-	}
 	cnt++;
 }
 

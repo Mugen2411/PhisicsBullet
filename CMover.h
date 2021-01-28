@@ -22,10 +22,15 @@ protected:
 
 	double Size;			//•¨‘Ì‚Ì‘å‚«‚³(”¼Œa)
 
+	int Category;			//MOVER_ID‚É‚æ‚Á‚ÄƒJƒeƒSƒŠ•ª‚¯
 	int Status;				//0:¶‘¶@1:‘¼E 2:©E
+
+	enum MOVER_ID {
+		MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET
+	};
 	
 public:
-	CMover(CVector position, double size, CVector velocity,
+	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
 		double mass, double sfrictionCF, double frictionCF, double airresCF, double reflectCF, double temperature);
 	virtual ~CMover() {};
 	void setMediator(std::shared_ptr<CGameMediator>);

@@ -4,7 +4,7 @@
 #include <DxLib.h>
 
 CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed)
-	:CMover(position,	24.0, CVector(0, 0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
+	:CMover(MV_PLAYER, position,	24.0, CVector(0, 0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Accel(accel), MaxSpeed(maxSpeed), Direction(1) {
 
@@ -43,6 +43,8 @@ int CMover_Player::Update()
 		animCount = 0.0;
 	}
 	Walk();
+
+	
 #ifdef _DEBUG
 	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
 #endif

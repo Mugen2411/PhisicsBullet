@@ -9,10 +9,11 @@ class CField;
 
 class CFieldParent
 {
+	std::shared_ptr<CGameMediator> med;
 	std::shared_ptr<CFieldHolder> fieldHolder;
 	
 public:
-	CFieldParent(CGameMediator*);
+	CFieldParent(std::shared_ptr<CGameMediator>);
 	void Update();
 	void ApplyForceToMover(CMover* m);
 	void Render()const;

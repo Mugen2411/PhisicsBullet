@@ -3,11 +3,11 @@
 #include "Scene_Abstract.h"
 #include "SceneManager.h"
 #include "Fps.h"
+#include <memory>
 
 class CGame: public SceneManager
 {
 	Fps fps;
-	CGameMediator gameM;
 public:
 	CGame();
 

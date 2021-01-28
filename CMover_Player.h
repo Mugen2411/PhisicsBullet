@@ -15,7 +15,8 @@ protected:
 public:
     CMover_Player(CVector position, double accel, double maxSpeed);
     ~CMover_Player() {};
-    void Walk();
+    virtual void Walk();
+    virtual void Shot(int frameLClick, int frameLPull);
     int Update();
     void Render()const;
     void Dead();

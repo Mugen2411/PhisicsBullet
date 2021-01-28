@@ -3,7 +3,7 @@
 CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass, double sfrictionCF, double frictionCF, double airresCF, double reflectCF, double temperature)
 	:med(nullptr), Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
 	Mass(mass), SFrictionCF(sfrictionCF), FrictionCF(frictionCF), AirResCF(airresCF),
-	ReflectCF(reflectCF), Temperature(temperature), Status(0)
+	ReflectCF(reflectCF), Temperature(temperature), Status(0), Category(ID)
 {
 }
 

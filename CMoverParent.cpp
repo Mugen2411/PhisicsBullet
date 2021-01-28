@@ -2,10 +2,15 @@
 #include "CMover_Player.h"
 #include "CMover_TestBullet.h"
 #include <algorithm>
+#include <iterator>
 
-CMoverParent::CMoverParent(CGameMediator* m) :med((CGameMediator*)m), moverList(), cnt(0)
+CMoverParent::CMoverParent(std::shared_ptr<CGameMediator> m) :med(m), moverList(), reserveList(), cnt(0)
 {
-	moverList.push_back(std::make_shared<CMover_Player>(CVector(320, 320), 15.0, 3.0));
+}
+
+void CMoverParent::RegisterMover(std::shared_ptr<CMover> m)
+{
+	reserveList.push_back(m);
 }
 
 void CMoverParent::Update()
@@ -30,6 +35,10 @@ void CMoverParent::Update()
 			break;
 		}
 		itr++;
+	}
+	if (reserveList.size() > 0) {
+		std::copy(reserveList.begin(), reserveList.end(), std::back_inserter(moverList));
+		reserveList.clear();
 	}
 	cnt++;
 }

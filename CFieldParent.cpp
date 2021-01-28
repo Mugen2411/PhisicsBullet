@@ -6,7 +6,7 @@
 #include <math.h>
 #include <algorithm>
 
-CFieldParent::CFieldParent(CGameMediator* m) :fieldHolder(std::make_shared<CFieldHolder>(20,15))
+CFieldParent::CFieldParent(std::shared_ptr<CGameMediator> m) :fieldHolder(std::make_shared<CFieldHolder>(20,15))
 {
 	for (int y = 0; y < 15; y++) {
 		for (int x = 0; x < 20; x++) {

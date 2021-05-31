@@ -7,6 +7,7 @@ public:
 	CVector();
 	CVector(double, double);
 	CVector(double);
+	CVector(int, int);
 
 	double x, y;
 

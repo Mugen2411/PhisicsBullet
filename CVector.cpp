@@ -13,6 +13,10 @@ CVector::CVector(double angle): x(cos(angle)), y(sin(angle))
 {
 }
 
+CVector::CVector(int x, int y): x(x*32+16), y(y*32+16)
+{
+}
+
 CVector CVector::operator+(const CVector v)const
 {
 	return CVector(this->x + v.x, this->y + v.y);

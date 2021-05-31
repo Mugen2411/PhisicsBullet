@@ -8,7 +8,7 @@ CFieldHolder::CFieldHolder(unsigned int w, unsigned int h) :width(w), height(h)
 	fieldlist.resize(h * w);
 	for (int y = 0; y < h; y++) {
 		for (int x = 0; x < w; x++) {
-			this->write(CFF.create(x, y, "Field_Grass", std::vector<double>(0.0)), x, y);
+			this->write(CFF.create(x, y, "Field_IceFloor", std::vector<double>(1, 0.0)), x, y);
 		}
 	}
 }

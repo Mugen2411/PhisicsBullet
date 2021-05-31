@@ -8,15 +8,16 @@ class CField;
 class CFieldHolder
 {
 protected:
-	std::vector<std::vector<std::shared_ptr<CField>>> fieldlist;
+	std::vector<std::shared_ptr<CField>> fieldlist;
+	unsigned int width, height;
 
 public:
-	CFieldHolder(int w, int h);
+	CFieldHolder(unsigned int w, unsigned int h);
 
-	std::shared_ptr<CField> getField(int x, int y);
-	void write(std::shared_ptr<CField> f, int x, int y);
-	int getWidth();
-	int getHeight();
+	std::shared_ptr<CField> getField(unsigned int x, unsigned int y);
+	void write(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
+	unsigned int getWidth();
+	unsigned int getHeight();
 	void Update();
 	void Render()const;
 };

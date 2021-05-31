@@ -12,7 +12,6 @@ class CField
 protected:
 	CVector Position;
 	CVector Size;
-	CFieldParent* parent;
 	double FrictionCF;
 	double Temperature;
 	double ReflectCF;
@@ -21,7 +20,7 @@ protected:
 
 public:
 
-	CField(CFieldParent* f, const char* gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF);
+	CField(const char* gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF);
 	virtual ~CField() {};
 	virtual void setFrictionForce(CMover*);
 

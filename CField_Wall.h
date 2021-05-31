@@ -4,7 +4,7 @@ class CField_Wall :
     public CField
 {
 public:
-    CField_Wall(CFieldParent* f, CVector size, double frictionCF, double temperature);
+    CField_Wall(CVector size, double frictionCF, double temperature);
 
     void setFrictionForce(CMover*)override;
     void Update();

@@ -90,9 +90,6 @@
     <ClCompile Include="CMover_Player.cpp">
       <Filter>ソース ファイル\Mover</Filter>
     </ClCompile>
-    <ClCompile Include="CMover_TestBullet.cpp">
-      <Filter>ソース ファイル\Mover</Filter>
-    </ClCompile>
     <ClCompile Include="CMoverParent.cpp">
       <Filter>ソース ファイル\Mover</Filter>
     </ClCompile>
@@ -144,6 +141,12 @@
     <ClCompile Include="CFieldHolder.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_BulletBase.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="CFieldFactory.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -186,9 +189,6 @@
       <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
     <ClInclude Include="CMover_Player.h">
-      <Filter>ヘッダー ファイル\Mover</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover_TestBullet.h">
       <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
     <ClInclude Include="CMoverParent.h">
@@ -243,6 +243,12 @@
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CFieldHolder.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_BulletBase.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="CFieldFactory.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>

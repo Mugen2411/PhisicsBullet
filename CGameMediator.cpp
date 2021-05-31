@@ -13,8 +13,7 @@ CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPau
 void CGameMediator::CreateParts()
 {
 	moverParent = std::make_shared<CMoverParent>(shared_from_this());
-	RegisterMover(std::make_shared<CMover_Player>(CVector(320, 320), 16.0, 3.0));
-	fieldParent = std::make_shared<CFieldParent>(shared_from_this());
+	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), 20, 15);
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 }
 

@@ -1,51 +1,48 @@
 #include "CFieldHolder.h"
-#include "CField_Grass.h"
-#include "CField_IceFloor.h"
-#include "CField_Wall.h"
 #include "CField.h"
+#include "CFieldFactory.h"
 
-CFieldHolder::CFieldHolder(int w, int h)
+CFieldHolder::CFieldHolder(unsigned int w, unsigned int h) :width(w), height(h)
 {
-	fieldlist.resize(h);
-	for (int i = 0; i < h; i++) {
-		fieldlist[i].resize(w);
+	CFieldFactory CFF = CFieldFactory();
+	fieldlist.resize(h * w);
+	for (int y = 0; y < h; y++) {
+		for (int x = 0; x < w; x++) {
+			this->write(CFF.create(x, y, "Field_Grass", std::vector<double>(0.0)), x, y);
+		}
 	}
 }
 
-std::shared_ptr<CField> CFieldHolder::getField(int x, int y)
+std::shared_ptr<CField> CFieldHolder::getField(unsigned int x, unsigned int y)
 {
-	return fieldlist[y][x];
+	return fieldlist[width * y + x];
 }
 
-void CFieldHolder::write(std::shared_ptr<CField> f, int x, int y)
+void CFieldHolder::write(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
 {
-	fieldlist[y][x] = f;
+	fieldlist[width * y + x] = f;
 }
 
-int CFieldHolder::getHeight()
+unsigned int CFieldHolder::getHeight()
 {
-	return fieldlist.size();
+	return height;
 }
 
-int CFieldHolder::getWidth()
+unsigned int CFieldHolder::getWidth()
 {
-	return fieldlist[0].size();
+	return width;
 }
 
 void CFieldHolder::Update()
 {
-	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::vector<std::shared_ptr<CField>> y) {
-		std::for_each(y.begin(), y.end(), [](std::shared_ptr<CField> x) {
-			x->Update();
-			});
-		});
+	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::shared_ptr<CField> i) {
+		i->Update();
+	});
 }
 
 void CFieldHolder::Render() const
 {
-	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::vector<std::shared_ptr<CField>> y) {
-		std::for_each(y.begin(), y.end(), [](std::shared_ptr<CField> x) {
-			x->Render();
-			});
-		});
+	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::shared_ptr<CField> i) {
+		i->Render();
+	});
 }

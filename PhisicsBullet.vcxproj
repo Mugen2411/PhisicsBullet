@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="CControllerFactory.cpp" />
     <ClCompile Include="CField.cpp" />
+    <ClCompile Include="CFieldFactory.cpp" />
     <ClCompile Include="CFieldHolder.cpp" />
     <ClCompile Include="CFieldParent.cpp" />
     <ClCompile Include="CField_Grass.cpp" />
@@ -168,7 +169,7 @@
     <ClCompile Include="CMover.cpp" />
     <ClCompile Include="CMoverParent.cpp" />
     <ClCompile Include="CMover_Player.cpp" />
-    <ClCompile Include="CMover_TestBullet.cpp" />
+    <ClCompile Include="CMover_BulletBase.cpp" />
     <ClCompile Include="CObjectNode.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="CPower.cpp" />
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="CControllerFactory.h" />
     <ClInclude Include="CField.h" />
+    <ClInclude Include="CFieldFactory.h" />
     <ClInclude Include="CFieldHolder.h" />
     <ClInclude Include="CFieldParent.h" />
     <ClInclude Include="CField_Grass.h" />
@@ -201,7 +203,7 @@
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
     <ClInclude Include="CMover_Player.h" />
-    <ClInclude Include="CMover_TestBullet.h" />
+    <ClInclude Include="CMover_BulletBase.h" />
     <ClInclude Include="CObjectNode.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CParts.h" />

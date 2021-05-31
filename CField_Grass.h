@@ -5,7 +5,7 @@ class CField_Grass :
     public CField
 {
 public:
-    CField_Grass(CFieldParent* f, CVector position);
+    CField_Grass(const char* gid, CVector position);
     void Update();
     void Render()const;
 };

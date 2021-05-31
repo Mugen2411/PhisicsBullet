@@ -1,8 +1,8 @@
 #include "CField_Wall.h"
 #include <DxLib.h>
 
-CField_Wall::CField_Wall(CFieldParent* f, CVector position, double frictionCF, double temperature)
-	:CField(f, "field_wall", position, CVector(32,32), frictionCF, temperature, 0.9)
+CField_Wall::CField_Wall(CVector position, double frictionCF, double temperature)
+	:CField("field_wall", position, CVector(32,32), frictionCF, temperature, 0.9)
 {
 	if (CImageManager::getIns().find("field_grass") == nullptr) {
 		CImageManager::getIns().set("field_grass", std::make_shared<CImage>("media/graphic/mapchip/grass.png", 4, 4, 1, 32, 32));

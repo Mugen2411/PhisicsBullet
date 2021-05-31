@@ -1,5 +1,5 @@
 #include "CMover_Player.h"
-#include "CMover_TestBullet.h"
+#include "CMover_BulletBase.h"
 #include "CImageManager.h"
 #include <cmath>
 #include <DxLib.h>
@@ -30,13 +30,6 @@ void CMover_Player::Walk()
 	}else {
 		if (Velocity.y < 0)Acceleration.y += v.y;
 		else if (Velocity.y < MaxSpeed)Acceleration.y += v.y;
-	}
-}
-
-void CMover_Player::Shot(int frameLClick, int frameLPull)
-{
-	if (frameLClick == 1) {
-		med->RegisterMover(std::make_shared<CMover_TestBullet>(Position, CVector(input->getMouseAngle(Position)) * 6));
 	}
 }
 

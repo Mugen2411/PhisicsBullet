@@ -1,8 +1,8 @@
 #include "CField_IceFloor.h"
 #include <DxLib.h>
 
-CField_IceFloor::CField_IceFloor(CFieldParent* f, CVector position)
-	:CField(f, "field_icefloor", position, CVector(32.0, 32.0), 0.3, 0, 1.0)
+CField_IceFloor::CField_IceFloor(CVector position)
+	:CField("field_icefloor", position, CVector(32.0, 32.0), 0.3, 0, 1.0)
 {
 	if (CImageManager::getIns().find("field_icefloor") == nullptr) {
 		CImageManager::getIns().set("field_icefloor", std::make_shared<CImage>("media/graphic/mapchip/ice.png", 2, 2, 1, 32, 32));

@@ -5,7 +5,7 @@ class CField_IceFloor :
     public CField
 {
 public:
-    CField_IceFloor(CFieldParent* f, CVector position);
+    CField_IceFloor(CVector position);
     void Update();
     void Render()const;
 };

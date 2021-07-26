@@ -6,11 +6,15 @@
 #include <math.h>
 #include <algorithm>
 
-CFieldParent::CFieldParent(std::shared_ptr<CGameMediator> m, int fieldWidth, int fieldHeight)
-	:floorHolder(std::make_shared<CFieldHolder>(fieldWidth, fieldHeight)),
-	wallHolder(std::make_shared<CFieldHolder>(fieldWidth, fieldHeight))
+CFieldParent::CFieldParent(std::shared_ptr<CGameMediator> m, std::string filename)
+	:floorHolder(std::make_shared<CFieldHolder>(filename))
 {
 
+}
+
+CFieldParent::~CFieldParent()
+{
+	OutputDebugString("CFieldParent‚ÍÁ‚¦‚Ä‚é");
 }
 
 void CFieldParent::Update()

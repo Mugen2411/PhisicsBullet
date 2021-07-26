@@ -10,6 +10,7 @@ class CGame: public SceneManager
 	Fps fps;
 public:
 	CGame();
+	virtual ~CGame();
 
 	enum SCENE_ID {
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE

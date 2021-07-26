@@ -16,7 +16,6 @@ public:
     CMover_Player(CVector position, double accel, double maxSpeed);
     ~CMover_Player() {};
     virtual void Walk();
-    virtual void Shot(int frameLClick, int frameLPull) = 0;
     int Update();
     void Render()const;
     void Dead();

@@ -17,7 +17,7 @@ void CMoverParent::Update()
 	int r = 0;
 	for (auto itr = moverList.begin(); itr != moverList.end();) {
 		r = (*itr)->Update();
-		med->ApplyForceToMover(itr->get());
+		med.lock()->ApplyForceToMover(itr->get());
 		(*itr)->Move();
 		switch (r) {
 		case 0:

@@ -4,11 +4,9 @@ class CField_Wall :
     public CField
 {
 public:
-    CField_Wall(CVector size, double frictionCF, double temperature);
+    CField_Wall(std::string GID, CVector position, double ReflectionCF);
 
     void setFrictionForce(CMover*)override;
-    void Update();
-    void Render()const;
 
     void Hit(CMover*)override;
 };

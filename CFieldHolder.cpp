@@ -2,15 +2,15 @@
 #include "CField.h"
 #include "CFieldFactory.h"
 
-CFieldHolder::CFieldHolder(unsigned int w, unsigned int h) :width(w), height(h)
+CFieldHolder::CFieldHolder(std::string filepath) :filePath(filepath)
 {
-	CFieldFactory CFF = CFieldFactory();
-	fieldlist.resize(h * w);
-	for (int y = 0; y < h; y++) {
-		for (int x = 0; x < w; x++) {
-			this->write(CFF.create(x, y, "Field_IceFloor", std::vector<double>(1, 0.0)), x, y);
-		}
-	}
+	if (Load() == 0)return;
+	else OutputDebugString("Stage Load Error");
+}
+
+CFieldHolder::~CFieldHolder()
+{
+	Save();
 }
 
 std::shared_ptr<CField> CFieldHolder::getField(unsigned int x, unsigned int y)
@@ -45,4 +45,30 @@ void CFieldHolder::Render() const
 	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::shared_ptr<CField> i) {
 		i->Render();
 	});
+}
+
+void CFieldHolder::Save()
+{
+	std::ofstream fout;
+	fout.open(filePath);
+	fout << width << "\n" << height << "\n";
+	std::for_each(fieldlist.begin(), fieldlist.end(), [&](std::shared_ptr<CField> i) {
+		i->Save(fout);
+	});
+}
+
+int CFieldHolder::Load() {
+	std::ifstream fin(filePath);
+	if (!fin)return 1;
+	fin >> width;
+	fin >> height;
+	fieldlist.resize(height * width);
+	CFieldFactory CFF;
+	std::string buf;
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			fin >> buf;
+			this->write(CFF.create(x, y, buf), x, y);
+		}
+	}
 }

@@ -7,7 +7,7 @@
 class CMover
 {
 protected:
-	std::shared_ptr<CGameMediator> med;
+	std::weak_ptr<CGameMediator> med;
 
 	CVector Position;		//ç¿ïW
 	CVector Velocity;		//ë¨ìx

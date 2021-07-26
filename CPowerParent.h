@@ -9,7 +9,7 @@ class CPower;
 class CPowerParent
 {
 protected:
-	std::shared_ptr<CGameMediator> med;
+	std::weak_ptr<CGameMediator> med;
 	std::vector<std::shared_ptr<CPower>> powerList;
 public:
 	CPowerParent(std::shared_ptr<CGameMediator>);

@@ -151,7 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
+    <ClCompile Include="CEffect.cpp" />
+    <ClCompile Include="CEffectParent.cpp" />
+    <ClCompile Include="CEffect_DamageNumber.cpp" />
     <ClCompile Include="CField.cpp" />
     <ClCompile Include="CFieldFactory.cpp" />
     <ClCompile Include="CFieldHolder.cpp" />
@@ -159,6 +163,7 @@
     <ClCompile Include="CField_Grass.cpp" />
     <ClCompile Include="CField_IceFloor.cpp" />
     <ClCompile Include="CField_Wall.cpp" />
+    <ClCompile Include="CField_Wall_Tree.cpp" />
     <ClCompile Include="CGameMediator.cpp" />
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CImageManager.cpp" />
@@ -170,6 +175,7 @@
     <ClCompile Include="CMoverParent.cpp" />
     <ClCompile Include="CMover_Player.cpp" />
     <ClCompile Include="CMover_BulletBase.cpp" />
+    <ClCompile Include="CNumberDrawer.cpp" />
     <ClCompile Include="CObjectNode.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="CPower.cpp" />
@@ -184,7 +190,11 @@
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CControllerFactory.h" />
+    <ClInclude Include="CEffect.h" />
+    <ClInclude Include="CEffectParent.h" />
+    <ClInclude Include="CEffect_DamageNumber.h" />
     <ClInclude Include="CField.h" />
     <ClInclude Include="CFieldFactory.h" />
     <ClInclude Include="CFieldHolder.h" />
@@ -192,6 +202,7 @@
     <ClInclude Include="CField_Grass.h" />
     <ClInclude Include="CField_IceFloor.h" />
     <ClInclude Include="CField_Wall.h" />
+    <ClInclude Include="CField_Wall_Tree.h" />
     <ClInclude Include="CGameMediator.h" />
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CImageManager.h" />
@@ -204,6 +215,7 @@
     <ClInclude Include="CMoverParent.h" />
     <ClInclude Include="CMover_Player.h" />
     <ClInclude Include="CMover_BulletBase.h" />
+    <ClInclude Include="CNumberDrawer.h" />
     <ClInclude Include="CObjectNode.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CParts.h" />

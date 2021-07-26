@@ -52,15 +52,24 @@
     <Filter Include="ソース ファイル\Calculate">
       <UniqueIdentifier>{0e6b163f-4db8-41e5-a9d2-c48353ccca57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Attribute">
+      <UniqueIdentifier>{9dc545b6-490e-44b0-b1aa-03b7e0d79d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Attribute">
+      <UniqueIdentifier>{34e3fe84-fb88-4337-8ef4-94a6b0fbb891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{091429ce-5268-4063-b3db-c9c7722d5778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{e38bb079-f406-419b-910b-074cbd0b5b7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CObjectNode.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CGameMediator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CMenuSelecter.cpp">
@@ -147,12 +156,30 @@
     <ClCompile Include="CFieldFactory.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
+    <ClCompile Include="CAttribute.cpp">
+      <Filter>ソース ファイル\Attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="CNumberDrawer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameMediator.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect_DamageNumber.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffectParent.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CField_Wall_Tree.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CGameMediator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CMenuSelecter.h">
@@ -249,6 +276,27 @@
       <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
     <ClInclude Include="CFieldFactory.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CAttribute.h">
+      <Filter>ヘッダー ファイル\Attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="CNumberDrawer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameMediator.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect_DamageNumber.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffectParent.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_Tree.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>

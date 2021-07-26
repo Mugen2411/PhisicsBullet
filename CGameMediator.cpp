@@ -2,6 +2,7 @@
 #include "CMoverParent.h"
 #include "CFieldParent.h"
 #include "CPowerParent.h"
+#include "CEffectParent.h"
 #include "CMover_Player.h"
 #include "CMover.h"
 
@@ -10,11 +11,17 @@ CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPau
 	input = CControllerFactory::getIns().getController();
 }
 
+CGameMediator::~CGameMediator()
+{
+	OutputDebugString("CGameMediatorÇÕè¡Ç¶ÇƒÇÈ");
+}
+
 void CGameMediator::CreateParts()
 {
 	moverParent = std::make_shared<CMoverParent>(shared_from_this());
-	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), 20, 15);
+	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), "media/map/0.map");
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
+	RegisterMover(std::make_shared<CMover_Player>(CVector(8, 8), 24.0, 4.0));
 }
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)
@@ -41,6 +48,7 @@ void CGameMediator::Update()
 		powerParent->Update();
 		moverParent->Update();
 		fieldParent->Update();
+		CEffectParent::Update();
 		//if (pauseGuage == 120)isPause = true;
 	}
 	input->update();
@@ -51,4 +59,5 @@ void CGameMediator::Render() const
 	fieldParent->Render();
 	moverParent->Render();
 	powerParent->Render();
+	CEffectParent::Render();
 }

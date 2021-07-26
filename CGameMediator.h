@@ -23,6 +23,7 @@ protected:
 
 public:
 	CGameMediator(SceneManager *ScnMng);
+	virtual ~CGameMediator();
 	
 	virtual void CreateParts();
 

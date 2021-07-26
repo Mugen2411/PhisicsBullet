@@ -83,12 +83,12 @@ int CSTGInputManager::MouseY()
 
 CVector CSTGInputManager::getVector()
 {
-    CVector tmp(0,0);
+    CVector tmp(0.0,0.0);
     if (pushedFrame[SK_UP] != 0)tmp -= CVector(0.0, 1.0);
     if (pushedFrame[SK_DOWN] != 0)tmp += CVector(0.0, 1.0);
     if (pushedFrame[SK_RIGHT] != 0)tmp += CVector(1.0, 0.0);
     if (pushedFrame[SK_LEFT] != 0)tmp -= CVector(1.0, 0.0);
-    return tmp.getNorm();
+     return tmp.getNorm();
 }
 
 int CSTGInputManager::getDirection()

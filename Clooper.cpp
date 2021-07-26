@@ -5,6 +5,13 @@ CGame::CGame():fps()
 	ChangeScene(SCENE_MAIN, true);
 }
 
+CGame::~CGame()
+{
+	while (!_scene.empty()) {
+		_scene.pop();
+	}
+}
+
 void CGame::Run()
 {
 	_scene.top()->Update();

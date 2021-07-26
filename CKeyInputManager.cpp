@@ -53,6 +53,6 @@ int CKeyInputManager::update()
 
 void CKeyInputManager::load()
 {
-	SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
+	if(GetActiveFlag())SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
 	SetMouseDispFlag(FALSE);
 }

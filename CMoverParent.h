@@ -9,7 +9,7 @@ class CGameMediator;
 class CMoverParent
 {
 	int cnt;
-	std::shared_ptr<CGameMediator> med;
+	std::weak_ptr<CGameMediator> med;
 	std::vector<std::shared_ptr<CMover>> moverList;
 	std::vector<std::shared_ptr<CMover>> reserveList;
 public:

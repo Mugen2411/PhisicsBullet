@@ -20,4 +20,5 @@ public:
 std::shared_ptr<CImage> LG_grass();
 std::shared_ptr<CImage> LG_icefloor();
 std::shared_ptr<CImage> LG_player_komuk();
+std::shared_ptr<CImage> LG_aim();
 

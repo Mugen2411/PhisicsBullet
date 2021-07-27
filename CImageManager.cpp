@@ -5,6 +5,7 @@ CImageManager::CImageManager()
     loaderList["Field_Grass"] = LG_grass;
     loaderList["Field_IceFloor"] = LG_icefloor;
     loaderList["player_komuk"] = LG_player_komuk;
+    loaderList["aim"] = LG_aim;
 }
 
 void CImageManager::set(std::string key, std::shared_ptr<CImage> img)
@@ -35,4 +36,9 @@ std::shared_ptr<CImage> LG_icefloor()
 std::shared_ptr<CImage> LG_player_komuk()
 {
     return std::make_shared<CImage>("media/graphic/character/komuk/komuk.png", 16, 4, 4, 32, 32);
+}
+
+std::shared_ptr<CImage> LG_aim()
+{
+    return std::make_shared<CImage>("media/graphic/system/game/aim.png", 2,2,1,32,32);
 }

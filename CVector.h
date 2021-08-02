@@ -1,5 +1,7 @@
 #pragma once
-#include <math.h>
+#include <cmath>
+
+const double PI = 3.141592653589;
 
 class CVector
 {
@@ -24,6 +26,7 @@ public:
 	double getLength2()const;
 	double getLength()const;
 	double getAngle()const;
+	int getDirection();
 	CVector getNorm()const;
 
 	void zero();

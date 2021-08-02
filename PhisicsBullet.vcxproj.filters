@@ -64,6 +64,12 @@
     <Filter Include="ヘッダー ファイル\Effect">
       <UniqueIdentifier>{e38bb079-f406-419b-910b-074cbd0b5b7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Enemy">
+      <UniqueIdentifier>{4f4cd9d2-2d1c-47b9-811e-1e3f2f7aa2ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Enemy">
+      <UniqueIdentifier>{4fd23be8-b32b-4fd4-99c5-bc38a72c2caa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,6 +182,12 @@
     </ClCompile>
     <ClCompile Include="CField_Wall_Tree.cpp">
       <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Enemy.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Enemy_Bud.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="CField_Wall_Tree.h">
       <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy_Bud.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ protected:
     double Accel;
     double MaxSpeed;
 
+    int State;
     int Direction;
     double animCount;
 public:

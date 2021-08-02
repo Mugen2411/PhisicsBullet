@@ -13,7 +13,7 @@ CVector::CVector(double angle): x(cos(angle)), y(sin(angle))
 {
 }
 
-CVector::CVector(int x, int y): x(x*32+16), y(y*32+16)
+CVector::CVector(int x, int y): x(x), y(y)
 {
 }
 
@@ -79,6 +79,16 @@ double CVector::getLength()const
 double CVector::getAngle()const
 {
 	return atan2(y, x);
+}
+
+int CVector::getDirection()
+{
+	double angle = getAngle();
+	angle = std::fmod(angle + PI*2, PI * 2);
+	if (PI / 4.0 * 5.0 < angle && angle <= PI / 4.0 * 7.0)return 2;
+	if (PI / 4.0 * 3.0 < angle && angle <= PI / 4.0 * 5.0)return 1;
+	if (PI / 4.0 < angle && angle <= PI / 4.0 * 3.0)return 0;
+	return 3;
 }
 
 CVector CVector::getNorm()const

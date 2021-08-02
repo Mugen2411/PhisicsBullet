@@ -16,9 +16,11 @@ public:
     std::shared_ptr<CImage> find(std::string key);
 };
 
-//以下ローダー関数リスト
+//以下ローダー関数リスト(LGはLoadGraphicの略)
 std::shared_ptr<CImage> LG_grass();
 std::shared_ptr<CImage> LG_icefloor();
 std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
+std::shared_ptr<CImage> LG_enemy_bud();
+std::shared_ptr<CImage> LG_enemy_bud_intro();
 

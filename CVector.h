@@ -10,8 +10,10 @@ public:
 	CVector(double, double);
 	CVector(double);
 	CVector(int, int);
+	CVector(bool);
 
 	double x, y;
+	bool is_valid = true;	//true:—LŒø, false:–³Œø
 
 	CVector operator +(CVector const v)const;
 	CVector operator -(CVector const v)const;
@@ -20,6 +22,7 @@ public:
 	CVector operator -()const;
 	CVector operator *(double const v)const;
 	CVector operator /(double const v)const;
+	bool operator !()const;
 
 	double dot(CVector const v)const;
 	double cross(CVector const v)const;

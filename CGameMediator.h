@@ -29,6 +29,7 @@ public:
 
 	void RegisterMover(std::shared_ptr<CMover>);
 	void ApplyForceToMover(CMover*);
+	CVector GetPlayerPosition();
 	void Update();
 	void Render()const;
 };

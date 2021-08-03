@@ -17,6 +17,10 @@ CVector::CVector(int x, int y): x(x), y(y)
 {
 }
 
+CVector::CVector(bool v) {
+	is_valid = false;
+}
+
 CVector CVector::operator+(const CVector v)const
 {
 	return CVector(this->x + v.x, this->y + v.y);
@@ -54,6 +58,11 @@ CVector CVector::operator*(double const v)const
 CVector CVector::operator/(double const v)const
 {
 	return CVector(this->x / v, this->y / v);
+}
+
+bool CVector::operator!() const
+{
+	return !is_valid;
 }
 
 double CVector::dot(const CVector v)const

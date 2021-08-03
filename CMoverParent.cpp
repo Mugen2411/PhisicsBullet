@@ -12,6 +12,19 @@ void CMoverParent::RegisterMover(std::shared_ptr<CMover> m)
 	reserveList.push_back(m);
 }
 
+std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num)
+{
+	int i = 0;
+	for(std::shared_ptr<CMover> v : moverList)
+	{
+		if (v->Category == ID) {
+			if (i == num)return v;
+			i++;
+		}
+	}
+	return std::weak_ptr<CMover>();
+}
+
 void CMoverParent::Update()
 {	
 	int r = 0;

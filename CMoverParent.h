@@ -15,6 +15,7 @@ class CMoverParent
 public:
 	CMoverParent(std::shared_ptr<CGameMediator>);
 	void RegisterMover(std::shared_ptr<CMover>);
+	std::weak_ptr<CMover> getMover(int ID, int num);
 	void Update();
 	void Render();
 };

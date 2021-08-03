@@ -40,6 +40,13 @@ void CGameMediator::ApplyForceToMover(CMover* m)
 	fieldParent->ApplyForceToMover(m);
 }
 
+CVector CGameMediator::GetPlayerPosition()
+{
+	std::weak_ptr<CMover> p = moverParent->getMover(CMover::MOVER_ID::MV_PLAYER, 0);
+	if (!p.lock())return CVector(false);
+	return CVector(p.lock()->getPosition());
+}
+
 void CGameMediator::Update()
 {
 	if (isPause) {

@@ -6,6 +6,11 @@
 
 class CMover
 {
+	friend CMoverParent;
+public:
+	enum MOVER_ID {
+		MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET
+	};
 protected:
 	std::weak_ptr<CGameMediator> med;
 
@@ -24,10 +29,6 @@ protected:
 
 	int Category;			//MOVER_IDÇ…ÇÊÇ¡ÇƒÉJÉeÉSÉäï™ÇØ
 	int Status;				//0:ê∂ë∂Å@1:ëºéE 2:é©éE
-
-	enum MOVER_ID {
-		MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET
-	};
 	
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,

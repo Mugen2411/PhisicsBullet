@@ -14,7 +14,8 @@ int CMover_Enemy_Bud::Update()
 	case 1:
 		cnt++;
 		if (cnt == 90) {
-			med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(Position, Velocity.getAngle()));
+			CVector ppos = med.lock()->GetPlayerPosition();
+			if(!!ppos)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(Position, (ppos-Position).getAngle()));
 			cnt = 0;
 			testDest.x = GetRand(640);
 			testDest.y = GetRand(480);

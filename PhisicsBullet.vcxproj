@@ -173,6 +173,7 @@
     <ClCompile Include="CMenuSelecter.cpp" />
     <ClCompile Include="CMover.cpp" />
     <ClCompile Include="CMoverParent.cpp" />
+    <ClCompile Include="CMover_Bullet_Corn.cpp" />
     <ClCompile Include="CMover_Enemy.cpp" />
     <ClCompile Include="CMover_Enemy_Bud.cpp" />
     <ClCompile Include="CMover_Player.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="CMenuSelecter.h" />
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
+    <ClInclude Include="CMover_Bullet_Corn.h" />
     <ClInclude Include="CMover_Enemy.h" />
     <ClInclude Include="CMover_Enemy_Bud.h" />
     <ClInclude Include="CMover_Player.h" />

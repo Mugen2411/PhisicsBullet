@@ -70,6 +70,12 @@
     <Filter Include="ヘッダー ファイル\Mover\Enemy">
       <UniqueIdentifier>{4fd23be8-b32b-4fd4-99c5-bc38a72c2caa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Bullet">
+      <UniqueIdentifier>{2e8b7a92-fcb8-4928-8fdb-cec817580aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Bullet">
+      <UniqueIdentifier>{1bc5023a-8ce7-4f88-9c2b-e2807a009a48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -156,9 +162,6 @@
     <ClCompile Include="CFieldHolder.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
-    <ClCompile Include="CMover_BulletBase.cpp">
-      <Filter>ソース ファイル\Mover</Filter>
-    </ClCompile>
     <ClCompile Include="CFieldFactory.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
@@ -188,6 +191,12 @@
     </ClCompile>
     <ClCompile Include="CMover_Enemy_Bud.cpp">
       <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_BulletBase.cpp">
+      <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Bullet_Corn.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +293,6 @@
     <ClInclude Include="CFieldHolder.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
-    <ClInclude Include="CMover_BulletBase.h">
-      <Filter>ヘッダー ファイル\Mover</Filter>
-    </ClInclude>
     <ClInclude Include="CFieldFactory.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
@@ -316,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="CMover_Enemy_Bud.h">
       <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_BulletBase.h">
+      <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Bullet_Corn.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

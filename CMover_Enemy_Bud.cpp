@@ -1,5 +1,6 @@
 #include "CMover_Enemy_Bud.h"
 #include "CImageManager.h"
+#include "CMover_Bullet_Corn.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level):
 	CMover_EnemyBase(Level, position, 18.0, 2.0),testDest(0.0, 0.0)
@@ -12,7 +13,8 @@ int CMover_Enemy_Bud::Update()
 	case 0:
 	case 1:
 		cnt++;
-		if (cnt == 120) {
+		if (cnt == 90) {
+			med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(Position, Velocity.getAngle()));
 			cnt = 0;
 			testDest.x = GetRand(640);
 			testDest.y = GetRand(480);
@@ -40,8 +42,10 @@ int CMover_Enemy_Bud::Update()
 
 void CMover_Enemy_Bud::Render() const
 {
+#ifdef _DEBUG
 	printfDx("state:%d\n", state);
 	DrawCircle(testDest.x, testDest.y, 8, 0xFFFF00);
+#endif
 	if (state < 0) {
 		CImageManager::getIns().find("enemy_bud_intro")->DrawRota(Position.x, Position.y, 0.0, 1.0, (int)(animCount));
 		return;

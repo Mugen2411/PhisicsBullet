@@ -21,6 +21,8 @@ std::shared_ptr<CImage> LG_grass();
 std::shared_ptr<CImage> LG_icefloor();
 std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
+
 std::shared_ptr<CImage> LG_enemy_bud();
 std::shared_ptr<CImage> LG_enemy_bud_intro();
+std::shared_ptr<CImage> LG_bullet_bud_corn();
 

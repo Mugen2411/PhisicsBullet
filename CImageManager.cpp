@@ -8,6 +8,7 @@ CImageManager::CImageManager()
     loaderList["aim"] = LG_aim;
     loaderList["enemy_bud"] = LG_enemy_bud;
     loaderList["enemy_bud_intro"] = LG_enemy_bud_intro;
+    loaderList["bullet_bud_corn"] = LG_bullet_bud_corn;
 }
 
 void CImageManager::set(std::string key, std::shared_ptr<CImage> img)
@@ -53,4 +54,9 @@ std::shared_ptr<CImage> LG_enemy_bud()
 std::shared_ptr<CImage> LG_enemy_bud_intro()
 {
     return std::make_shared<CImage>("media/graphic/enemy/bud/intro.png", 4, 4, 1, 32, 32);
+}
+
+std::shared_ptr<CImage> LG_bullet_bud_corn()
+{
+    return std::make_shared<CImage>("media/graphic/enemy/bud/corn.png");
 }

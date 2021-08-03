@@ -1,17 +1,17 @@
 #pragma once
 #include "CMover.h"
+#include "CImageManager.h"
+
 class CMover_BulletBase :
     public CMover
 {
 public:
-    CMover_BulletBase(CVector position, CVector velocity);
+    CMover_BulletBase(CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
 
     virtual int Update() = 0;
     virtual void Render()const = 0;
 
     virtual void Dead() = 0;            //ëºéE
     virtual void Disappear() = 0;       //é©éE
-
-    virtual void ifonWall() = 0;        //ï«Ç…èÊÇ¡ÇƒÇ¢ÇΩÇÁÇ«Ç§Ç∑ÇÈÇ©
 };
 

@@ -1,6 +1,11 @@
 #include "CImage.h"
 #include <algorithm>
 #include <DxLib.h>
+#include "CDrawGraphReserve.h"
+#include "CDrawGraphFReserve.h"
+#include "CDrawRotaGraphReserve.h"
+#include "CDrawRotaGraphFReserve.h"
+#include "CRenderReserveList.h"
 
 CImage::CImage(const char* path)
 {
@@ -21,26 +26,26 @@ CImage::~CImage()
 	std::for_each(GHandle.begin(), GHandle.end(), [](int v) { DeleteGraph(v); });
 }
 
-void CImage::Draw(int x1, int y1, int num)
+void CImage::Draw(int x1, int y1, double priority, int num)
 {
 	if (num > GHandle.size())return;
-	DrawGraph(x1, y1, GHandle[num], TRUE);
+	CRenderReserveList::Add(new CDrawGraphReserve(GHandle[num] , x1, y1, priority));
 }
 
-void CImage::Draw(float x1, float y1, int num)
+void CImage::Draw(float x1, float y1, double priority, int num)
 {
 	if (num > GHandle.size())return;
-	DrawGraphF(x1, y1, GHandle[num], TRUE);
+	CRenderReserveList::Add(new CDrawGraphFReserve(GHandle[num], x1, y1, priority));
 }
 
-void CImage::DrawRota(int x1, int y1, float angle, float extend, int num)
+void CImage::DrawRota(int x1, int y1, float angle, float extend, double priority, int num)
 {
 	if (num > GHandle.size())return;
-	DrawRotaGraph(x1, y1, extend, angle, GHandle[num], TRUE);
+	CRenderReserveList::Add(new CDrawRotaGraphReserve(GHandle[num], priority, x1, y1, angle, extend));
 }
 
-void CImage::DrawRotaF(float x1, float y1, float angle, float extend, int num)
+void CImage::DrawRotaF(float x1, float y1, float angle, float extend, double priority, int num)
 {
 	if (num > GHandle.size())return;
-	DrawRotaGraphF(x1, y1, extend, angle, GHandle[num], TRUE);
+	CRenderReserveList::Add(new CDrawRotaGraphFReserve(GHandle[num], priority, x1, y1, angle, extend));
 }

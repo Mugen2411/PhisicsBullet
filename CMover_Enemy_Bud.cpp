@@ -48,10 +48,10 @@ void CMover_Enemy_Bud::Render() const
 	DrawCircle(testDest.x, testDest.y, 8, 0xFFFF00);
 #endif
 	if (state < 0) {
-		CImageManager::getIns().find("enemy_bud_intro")->DrawRota(Position.x, Position.y, 0.0, 1.0, (int)(animCount));
+		CImageManager::getIns().find("enemy_bud_intro")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, (int)(animCount));
 		return;
 	}
-	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, Direction * 4 + (int)(animCount));
+	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
 }
 
 void CMover_Enemy_Bud::Dead()

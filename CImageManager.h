@@ -14,6 +14,8 @@ public:
     CImageManager();
     void set(std::string key, std::shared_ptr<CImage> img);
     std::shared_ptr<CImage> find(std::string key);
+
+    void Render();
 };
 
 //以下ローダー関数リスト(LGはLoadGraphicの略)

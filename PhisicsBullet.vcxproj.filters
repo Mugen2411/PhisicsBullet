@@ -76,6 +76,12 @@
     <Filter Include="ヘッダー ファイル\Mover\Bullet">
       <UniqueIdentifier>{1bc5023a-8ce7-4f88-9c2b-e2807a009a48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Image">
+      <UniqueIdentifier>{9114ac48-3420-4fd6-8806-5a42ffdd1888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Image">
+      <UniqueIdentifier>{fdafaef7-0f54-411b-a20b-a7017f682a20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -147,12 +153,6 @@
     <ClCompile Include="Constant.cpp">
       <Filter>ソース ファイル\Calculate</Filter>
     </ClCompile>
-    <ClCompile Include="CImage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CImageManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CMapEditor.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
@@ -167,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="CAttribute.cpp">
       <Filter>ソース ファイル\Attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="CNumberDrawer.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CGameMediator.cpp">
       <Filter>ソース ファイル\Scene</Filter>
@@ -197,6 +194,33 @@
     </ClCompile>
     <ClCompile Include="CMover_Bullet_Corn.cpp">
       <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawGraphFReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawGraphReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CImage.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageManager.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CNumberDrawer.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawRotaGraphReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawRotaGraphFReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderReserveList.cpp">
+      <Filter>ソース ファイル\Image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,12 +302,6 @@
     <ClInclude Include="CVector.h">
       <Filter>ヘッダー ファイル\Calculate</Filter>
     </ClInclude>
-    <ClInclude Include="CImage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CImageManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Clooper.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
@@ -298,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="CAttribute.h">
       <Filter>ヘッダー ファイル\Attribute</Filter>
-    </ClInclude>
-    <ClInclude Include="CNumberDrawer.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CGameMediator.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
@@ -328,6 +343,33 @@
     </ClInclude>
     <ClInclude Include="CMover_Bullet_Corn.h">
       <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageManager.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawGraphReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CNumberDrawer.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawGraphFReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawRotaGraphFReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawRotaGraphReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderReserveList.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

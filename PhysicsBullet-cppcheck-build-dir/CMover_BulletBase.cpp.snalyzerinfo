@@ -2,6 +2,7 @@ CKeyInputManager call:[load] noreturn:[load]
 CMover
 ifonWall
 CMover_BulletBase
+Dispatch call:[Hit] noreturn:[Hit]
 Singleton < CControllerFactory >
 getIns
 operator=

@@ -14,6 +14,7 @@ CreateParts call:[CVector,GetRand,RegisterMover,shared_from_this] noreturn:[Regi
 RegisterMover call:[RegisterMover,setMediator,shared_from_this] noreturn:[RegisterMover]
 ApplyForceToMover call:[ApplyForceToMover] noreturn:[ApplyForceToMover]
 GetPlayerPosition call:[CVector,getMover,getPosition,lock] noreturn:[CVector]
+GetNearestMover call:[getLength2,getMover,getPosition,lock]
 Update call:[A,Update,update] noreturn:[Update,update]
 Render call:[Render] noreturn:[Render]
 Singleton < CControllerFactory >

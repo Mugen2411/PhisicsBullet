@@ -5,6 +5,7 @@ class CNumberDrawer :
 {
 public:
     CNumberDrawer();
-    const void Draw(int x, int y, int num, int type);
+    void Draw(int x, int y, double num, int type)const;
+    void Draw(int x, int y, int num, int type)const;
 };
 

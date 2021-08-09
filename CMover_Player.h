@@ -1,6 +1,7 @@
 #pragma once
 #include "CMover.h"
 #include "CControllerFactory.h"
+#include "CStatus.h"
 
 class CMover_Player :
     public CMover
@@ -13,6 +14,7 @@ protected:
     int State;
     int Direction;
     double animCount;
+    CStatus baseParams;
 public:
     CMover_Player(CVector position, double accel, double maxSpeed);
     ~CMover_Player() {};

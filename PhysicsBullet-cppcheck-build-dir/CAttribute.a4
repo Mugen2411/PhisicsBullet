@@ -1,56 +1,40 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="1285539247">
+<analyzerinfo checksum="1268853539">
         <error id="redundantAssignment" severity="style" msg="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." cwe="563" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="9" column="11" info="ret.Aqua is overwritten"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="8" column="11" info="ret.Aqua is assigned"/>
             <symbol>ret.Aqua</symbol>
         </error>
         <error id="redundantAssignment" severity="style" msg="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." cwe="563" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="20" column="11" info="ret.Aqua is overwritten"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="19" column="11" info="ret.Aqua is assigned"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="28" column="11" info="ret.Aqua is overwritten"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="27" column="11" info="ret.Aqua is assigned"/>
             <symbol>ret.Aqua</symbol>
         </error>
         <error id="redundantAssignment" severity="style" msg="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;ret.Aqua&apos; is reassigned a value before the old one has been used." cwe="563" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="31" column="11" info="ret.Aqua is overwritten"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="30" column="11" info="ret.Aqua is assigned"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="39" column="11" info="ret.Aqua is overwritten"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="38" column="11" info="ret.Aqua is assigned"/>
             <symbol>ret.Aqua</symbol>
         </error>
         <error id="passedByValue" severity="performance" msg="Function parameter &apos;a&apos; should be passed by const reference." verbose="Parameter &apos;a&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="36" column="45"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="44" column="45"/>
             <symbol>a</symbol>
         </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="11" column="9"/>
-            <symbol>ret.Thunder</symbol>
-        </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="11" column="9"/>
-            <symbol>ret.Ice</symbol>
-        </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="22" column="9"/>
-            <symbol>ret.Thunder</symbol>
-        </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="22" column="9"/>
-            <symbol>ret.Ice</symbol>
-        </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="33" column="9"/>
-            <symbol>ret.Thunder</symbol>
-        </error>
-        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CAttribute.cpp" line="33" column="9"/>
-            <symbol>ret.Ice</symbol>
-        </error>
   <FileInfo check="Class">
-<class name="CAttribute" file="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.h" line="2" col="1" hash="3296274025516478458"/>
+<class name="CAttribute" file="C:/Users/shoji/source/repos/PhisicsBullet/CAttribute.h" line="2" col="1" hash="11225082842686482892"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functioncall functionName="Aqua"/>
+    <functioncall functionName="CAttribute"/>
     <functioncall functionName="Fire"/>
+    <functioncall functionName="Flower"/>
     <functioncall functionName="Ice"/>
     <functioncall functionName="None"/>
     <functioncall functionName="Thunder"/>
+    <functioncall functionName="aqua"/>
+    <functioncall functionName="fire"/>
+    <functioncall functionName="flower"/>
+    <functioncall functionName="ice"/>
+    <functioncall functionName="none"/>
+    <functioncall functionName="thunder"/>
   </FileInfo>
 </analyzerinfo>

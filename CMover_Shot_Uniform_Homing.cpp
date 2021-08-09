@@ -1,8 +1,8 @@
 #include "CMover_Shot_Uniform_Homing.h"
 #include "CImageManager.h"
 
-CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(CVector position, float angle)
-:CMover_ShotBase(CAttribute(0.5,0,0,0,0,0), position, 16, CVector(angle)*1.0, 4, 0.2, 12, 0.0), cnt(0), pow(1.0){
+CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(CStatus baseparams, CVector position, float angle)
+:CMover_ShotBase(baseparams, CAttribute(0.5,0,0,0,0,0), position, 16, CVector(angle)*1.0, 4, 0.2, 12, 0.0), cnt(0), pow(1.0){
 }
 
 int CMover_Shot_Uniform_Homing::Update()
@@ -14,11 +14,14 @@ int CMover_Shot_Uniform_Homing::Update()
 	}
 
 	pow += 1.0;
+	baseParams.ATK *= 0.992;
 	if (!target.lock()) {
 		target = med.lock()->GetNearestMover(CMover::MOVER_ID::MV_ENEMY, Position);
 		return Status;
 	}
-	ApplyForce((target.lock()->getPosition() - (Position+Velocity)).getNorm()*pow);
+	auto diff = (target.lock()->getPosition() - (Position + Velocity)).getNorm();
+	if (diff.dot(Velocity) > 6.0)return Status;
+	ApplyForce(diff*pow);
 	return Status;
 }
 

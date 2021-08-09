@@ -1,19 +1,20 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="3281062009">
+<analyzerinfo checksum="1948170572">
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CImageManager.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CImage.h" line="9" column="2"/>
             <symbol>CImage</symbol>
         </error>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="set" lineNumber="14"/>
-    <functiondecl functionName="find" lineNumber="19"/>
-    <functiondecl functionName="LG_grass" lineNumber="29"/>
-    <functiondecl functionName="LG_icefloor" lineNumber="34"/>
-    <functiondecl functionName="LG_player_komuk" lineNumber="39"/>
-    <functiondecl functionName="LG_aim" lineNumber="44"/>
-    <functiondecl functionName="LG_enemy_bud" lineNumber="49"/>
-    <functiondecl functionName="LG_enemy_bud_intro" lineNumber="54"/>
-    <functiondecl functionName="LG_bullet_bud_corn" lineNumber="59"/>
+    <functiondecl functionName="set" lineNumber="17"/>
+    <functiondecl functionName="find" lineNumber="22"/>
+    <functiondecl functionName="LG_grass" lineNumber="32"/>
+    <functiondecl functionName="LG_icefloor" lineNumber="37"/>
+    <functiondecl functionName="LG_player_komuk" lineNumber="42"/>
+    <functiondecl functionName="LG_aim" lineNumber="47"/>
+    <functiondecl functionName="LG_enemy_bud" lineNumber="52"/>
+    <functiondecl functionName="LG_enemy_bud_intro" lineNumber="57"/>
+    <functiondecl functionName="LG_bullet_bud_corn" lineNumber="62"/>
+    <functiondecl functionName="LG_shot_uniform_homing" lineNumber="67"/>
     <functioncall functionName="CImage"/>
     <functioncall functionName="CImageManager"/>
     <functioncall functionName="LG_aim"/>
@@ -23,6 +24,7 @@
     <functioncall functionName="LG_grass"/>
     <functioncall functionName="LG_icefloor"/>
     <functioncall functionName="LG_player_komuk"/>
+    <functioncall functionName="LG_shot_uniform_homing"/>
     <functioncall functionName="Singleton &lt; CImageManager &gt;"/>
     <functioncall functionName="default"/>
     <functioncall functionName="end"/>

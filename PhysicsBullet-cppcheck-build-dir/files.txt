@@ -122,6 +122,14 @@ CMover_BulletBase.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMove
 CMover_BulletBase.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMover_BulletBase.cpp
 CMover_BulletBase.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_BulletBase.cpp
 CMover_BulletBase.a4:Release|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_BulletBase.cpp
+CMover_ShotBase.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMover_ShotBase.cpp
+CMover_ShotBase.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMover_ShotBase.cpp
+CMover_ShotBase.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_ShotBase.cpp
+CMover_ShotBase.a4:Release|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_ShotBase.cpp
+CMover_Shot_Uniform_Homing.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMover_Shot_Uniform_Homing.cpp
+CMover_Shot_Uniform_Homing.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CMover_Shot_Uniform_Homing.cpp
+CMover_Shot_Uniform_Homing.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_Shot_Uniform_Homing.cpp
+CMover_Shot_Uniform_Homing.a4:Release|x64:C:/Users/shoji/source/repos/PhisicsBullet/CMover_Shot_Uniform_Homing.cpp
 CNumberDrawer.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.cpp
 CNumberDrawer.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.cpp
 CNumberDrawer.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.cpp
@@ -150,6 +158,10 @@ CRenderReserveList.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CRen
 CRenderReserveList.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CRenderReserveList.cpp
 CRenderReserveList.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CRenderReserveList.cpp
 CRenderReserveList.a4:Release|x64:C:/Users/shoji/source/repos/PhisicsBullet/CRenderReserveList.cpp
+CStatus.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CStatus.cpp
+CStatus.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CStatus.cpp
+CStatus.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CStatus.cpp
+CStatus.a4:Release|x64:C:/Users/shoji/source/repos/PhisicsBullet/CStatus.cpp
 CSTGInputManager.a1:Debug|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CSTGInputManager.cpp
 CSTGInputManager.a2:Release|Win32:C:/Users/shoji/source/repos/PhisicsBullet/CSTGInputManager.cpp
 CSTGInputManager.a3:Debug|x64:C:/Users/shoji/source/repos/PhisicsBullet/CSTGInputManager.cpp

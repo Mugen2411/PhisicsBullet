@@ -2,14 +2,16 @@
 #include "CMover.h"
 #include "CMover_Enemy.h"
 #include "CAttribute.h"
+#include "CStatus.h"
 
 class CMover_ShotBase :
     public CMover
 {
 protected:
     CAttribute ATK;
+    CStatus baseParams;
 public:
-    CMover_ShotBase(CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
+    CMover_ShotBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
 
     virtual int Update() = 0;
     virtual void Render()const = 0;

@@ -4,6 +4,7 @@ ifonWall
 CMover_EnemyBase
 CMover_EnemyBase
 Walk call:[dot,getAngle,getDirection,getNorm]
+Dispatch call:[Hit] noreturn:[Hit]
 Singleton < CControllerFactory >
 getIns
 operator=

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="3713342854">
+<analyzerinfo checksum="168495834">
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;CParts&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CParts&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CParts.h" line="8" column="2"/>
             <symbol>CParts</symbol>
@@ -31,37 +31,42 @@
             <symbol>load</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="33" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="12" column="15" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="35" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="13" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Player.h" line="20" column="9" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="45" column="14" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="51" column="14" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Player.h" line="21" column="10" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="46" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="52" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Player.h" line="22" column="10" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="47" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="57" column="15" info="Virtual function in base class"/>
             <symbol>Dead</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Player.h" line="23" column="10" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="48" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="58" column="15" info="Virtual function in base class"/>
             <symbol>Disappear</symbol>
         </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Player.h" line="26" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="50" column="15" info="Virtual function in base class"/>
+            <symbol>Dispatch</symbol>
+        </error>
         <error id="variableScope" severity="style" msg="The scope of the variable &apos;r&apos; can be reduced." verbose="The scope of the variable &apos;r&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMoverParent.cpp" line="30" column="6"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMoverParent.cpp" line="31" column="6"/>
             <symbol>r</symbol>
         </error>
         <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
@@ -89,26 +94,29 @@
             <symbol>v</symbol>
         </error>
         <error id="unreadVariable" severity="style" msg="Variable &apos;r&apos; is assigned a value that is never used." verbose="Variable &apos;r&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMoverParent.cpp" line="30" column="8"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMoverParent.cpp" line="31" column="8"/>
             <symbol>r</symbol>
         </error>
   <FileInfo check="Class">
 <class name="CParts" file="C:/Users/shoji/source/repos/PhisicsBullet/CParts.h" line="4" col="1" hash="6985084797275944416"/>
 <class name="Constant" file="C:/Users/shoji/source/repos/PhisicsBullet/Constant.h" line="2" col="1" hash="16261729683979875821"/>
 <class name="CSTGInputManager::ConfigData" file="C:/Users/shoji/source/repos/PhisicsBullet/CSTGInputManager.h" line="15" col="2" hash="10039580688335671190"/>
-<class name="CMoverParent" file="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.h" line="9" col="1" hash="1626838695127556296"/>
+<class name="CMoverParent" file="C:/Users/shoji/source/repos/PhisicsBullet/CMoverParent.h" line="9" col="1" hash="15074280507773984630"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="RegisterMover" lineNumber="10"/>
     <functiondecl functionName="getMover" lineNumber="15"/>
     <functiondecl functionName="Update" lineNumber="28"/>
-    <functiondecl functionName="Render" lineNumber="58"/>
+    <functiondecl functionName="Render" lineNumber="59"/>
+    <functiondecl functionName="Hit" lineNumber="69"/>
     <functioncall functionName="ApplyForceToMover"/>
     <functioncall functionName="CMoverParent"/>
     <functioncall functionName="CSTGInputManager"/>
     <functioncall functionName="CVector"/>
     <functioncall functionName="Dead"/>
     <functioncall functionName="Disappear"/>
+    <functioncall functionName="Dispatch"/>
+    <functioncall functionName="Hit"/>
     <functioncall functionName="KEY_INPUT_A"/>
     <functioncall functionName="KEY_INPUT_C"/>
     <functioncall functionName="KEY_INPUT_D"/>
@@ -125,6 +133,7 @@
     <functioncall functionName="MV_SHOT"/>
     <functioncall functionName="Move"/>
     <functioncall functionName="PartsChanged"/>
+    <functioncall functionName="Position"/>
     <functioncall functionName="Render"/>
     <functioncall functionName="SK_A"/>
     <functioncall functionName="SK_B"/>
@@ -154,9 +163,12 @@
     <functioncall functionName="for"/>
     <functioncall functionName="for_each"/>
     <functioncall functionName="get"/>
+    <functioncall functionName="getLength2"/>
+    <functioncall functionName="getSize"/>
     <functioncall functionName="if"/>
     <functioncall functionName="int"/>
     <functioncall functionName="itr"/>
+    <functioncall functionName="j"/>
     <functioncall functionName="load"/>
     <functioncall functionName="lock"/>
     <functioncall functionName="m"/>

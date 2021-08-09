@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="1001933350">
+<analyzerinfo checksum="364261385">
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="11" column="2"/>
             <symbol>CVector</symbol>
@@ -27,34 +27,39 @@
             <symbol>load</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="33" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="12" column="15" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="35" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="13" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_BulletBase.h" line="11" column="17" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="45" column="14" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="51" column="14" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_BulletBase.h" line="12" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="46" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="52" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_BulletBase.h" line="14" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="47" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="57" column="15" info="Virtual function in base class"/>
             <symbol>Dead</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_BulletBase.h" line="15" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="48" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="58" column="15" info="Virtual function in base class"/>
             <symbol>Disappear</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_BulletBase.h" line="17" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="50" column="15" info="Virtual function in base class"/>
+            <symbol>Dispatch</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Bullet_Corn.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Bullet_Corn.h" line="8" column="9" info="Function in derived class"/>

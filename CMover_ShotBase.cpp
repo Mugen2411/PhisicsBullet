@@ -1,8 +1,10 @@
 #include "CMover_ShotBase.h"
+#include "CEffectParent.h"
+#include "CEffect_DamageNumber.h"
 
-CMover_ShotBase::CMover_ShotBase(CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
+CMover_ShotBase::CMover_ShotBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
 	:CMover(MV_SHOT, position, size, velocity, mass, 0, frictionCF, airresCF, reflectCF, 0)
-	,ATK(atk)
+	,ATK(atk), baseParams(baseparams)
 {
 }
 
@@ -13,5 +15,7 @@ void CMover_ShotBase::Dispatch(std::shared_ptr<CMover> m)
 
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
+	double Damage = (ATK * baseParams.ATK).Sum();
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, 0));
 	Status = 1;
 }

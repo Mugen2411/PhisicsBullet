@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="1569116058">
+<analyzerinfo checksum="2681981870">
         <error id="noExplicitConstructor" severity="style" msg="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CImage.h" line="9" column="2"/>
             <symbol>CImage</symbol>

@@ -10,8 +10,9 @@ CMover_Player
 CMoverParent
 RegisterMover call:[push_back] noreturn:[push_back]
 getMover
-Update call:[ApplyForceToMover,Dead,Disappear,Move,Update,back_inserter,begin,clear,copy,end,erase,get,lock,size] noreturn:[clear]
+Update call:[ApplyForceToMover,Dead,Disappear,Hit,Move,Update,back_inserter,begin,clear,copy,end,erase,get,lock,size] noreturn:[clear]
 Render call:[Render,begin,end,for_each] noreturn:[Render,for_each]
+Hit call:[Dispatch,getLength2,getSize] noreturn:[Dispatch]
 Singleton < CControllerFactory >
 getIns
 operator=

@@ -7,7 +7,7 @@
 CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed)
 	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Accel(accel), MaxSpeed(maxSpeed), Direction(1), State(0) {
+	, Accel(accel), MaxSpeed(maxSpeed), Direction(1), State(0) ,baseParams(0){
 }
 
 void CMover_Player::Walk()
@@ -39,8 +39,8 @@ int CMover_Player::Update()
 	else {
 		animCount = 0.0;
 	}
-	if (input->LClick(true) % 5 == 1) {
-		med.lock()->RegisterMover(std::make_shared<CMover_Shot_Uniform_Homing>(Position, input->getMouseAngle(Position)));
+	if (input->LClick(true) % 20 == 1) {
+		med.lock()->RegisterMover(std::make_shared<CMover_Shot_Uniform_Homing>(baseParams, Position, input->getMouseAngle(Position)));
 	}
 	Walk();
 	

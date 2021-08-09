@@ -5,10 +5,15 @@ CMover
 setMediator
 getPosition
 getSize
+getCategory
 ApplyForce
 ApplyFrictionForce call:[ApplyForce,getNorm] noreturn:[ApplyForce]
 ApplyAirForce call:[ApplyForce] noreturn:[ApplyForce]
 Move call:[zero] noreturn:[zero]
+Hit
+Hit
+Hit
+Hit
 onWall call:[ifonWall] noreturn:[ifonWall]
 Singleton < CControllerFactory >
 getIns

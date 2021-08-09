@@ -2,12 +2,14 @@ CKeyInputManager call:[load] noreturn:[load]
 CMover
 ifonWall
 CMover_Player
+CMover_EnemyBase
 CMover_Player
 Walk call:[getVector]
-Update call:[Walk,getDirection,update]
+Update call:[LClick,RegisterMover,Walk,getDirection,getMouseAngle,lock,update] noreturn:[RegisterMover]
 Render call:[DrawRota,MouseX,MouseY,find,getIns,round] noreturn:[DrawRota]
 Dead
 Disappear
+Dispatch call:[Hit] noreturn:[Hit]
 Singleton < CControllerFactory >
 getIns
 operator=

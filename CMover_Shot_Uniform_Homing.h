@@ -9,7 +9,7 @@ protected:
     int cnt;
     double pow;
 public:
-    CMover_Shot_Uniform_Homing(CVector position, float angle);
+    CMover_Shot_Uniform_Homing(CStatus baseparam, CVector position, float angle);
 
     int Update();
     void Render()const;

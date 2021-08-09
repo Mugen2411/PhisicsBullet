@@ -1,0 +1,5 @@
+CStatus call:[Update] noreturn:[Update]
+CStatus
+Update call:[pow]
+Test call:[test]
+operator- call:[CStatus] noreturn:[CStatus]

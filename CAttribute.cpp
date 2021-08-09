@@ -1,4 +1,5 @@
 #include "CAttribute.h"
+#include <cmath>
 
 CAttribute CAttribute::operator*(double a)
 {
@@ -44,4 +45,9 @@ CAttribute CAttribute::operator+(CAttribute a)
 CAttribute CAttribute::operator-(CAttribute a)
 {
 	return *this+(a*-1.0);
+}
+
+double CAttribute::Sum()
+{
+	return None+Fire+Aqua+Thunder+Flower+Ice;
 }

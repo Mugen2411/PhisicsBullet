@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="3921699044">
+<analyzerinfo checksum="1794342531">
         <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;CMover_EnemyBase::MaxHP&apos; is not initialized in the constructor." verbose="Member variable &apos;CMover_EnemyBase::MaxHP&apos; is not initialized in the constructor." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.cpp" line="3" column="19"/>
             <symbol>CMover_EnemyBase::MaxHP</symbol>
@@ -39,34 +39,39 @@
             <symbol>load</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="33" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="12" column="15" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="35" column="7" info="Function in derived class"/>
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="13" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.h" line="25" column="17" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="45" column="14" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="51" column="14" info="Virtual function in base class"/>
             <symbol>Update</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.h" line="26" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="46" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="52" column="15" info="Virtual function in base class"/>
             <symbol>Render</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dead&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.h" line="27" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="47" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="57" column="15" info="Virtual function in base class"/>
             <symbol>Dead</symbol>
         </error>
         <error id="missingOverride" severity="style" msg="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Disappear&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.h" line="28" column="18" info="Function in derived class"/>
-            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="48" column="15" info="Virtual function in base class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="58" column="15" info="Virtual function in base class"/>
             <symbol>Disappear</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Dispatch&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover_Enemy.h" line="31" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.h" line="50" column="15" info="Virtual function in base class"/>
+            <symbol>Dispatch</symbol>
         </error>
         <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover_Enemy.cpp">
             <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="18" column="35"/>
@@ -106,12 +111,14 @@
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="Walk" lineNumber="9"/>
+    <functiondecl functionName="Dispatch" lineNumber="18"/>
     <functioncall functionName="Accel"/>
     <functioncall functionName="CMover"/>
     <functioncall functionName="CMover_EnemyBase"/>
     <functioncall functionName="CSTGInputManager"/>
     <functioncall functionName="CVector"/>
     <functioncall functionName="Direction"/>
+    <functioncall functionName="Hit"/>
     <functioncall functionName="KEY_INPUT_A"/>
     <functioncall functionName="KEY_INPUT_C"/>
     <functioncall functionName="KEY_INPUT_D"/>
@@ -156,6 +163,7 @@
     <functioncall functionName="maxSpeed"/>
     <functioncall functionName="position"/>
     <functioncall functionName="return"/>
+    <functioncall functionName="this"/>
     <functioncall functionName="true"/>
   </FileInfo>
 </analyzerinfo>

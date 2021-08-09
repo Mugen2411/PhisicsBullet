@@ -1,7 +1,7 @@
 #include "CEffect_DamageNumber.h"
 #include <DxLib.h>
 
-CEffect_DamageNumber::CEffect_DamageNumber(CVector position, int num, int type)
+CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num, int type)
 	:CEffect(position), num(num), type(type), cnt(0)
 {
 }

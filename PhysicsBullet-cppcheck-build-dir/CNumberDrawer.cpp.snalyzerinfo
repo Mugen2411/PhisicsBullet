@@ -1,0 +1,10 @@
+CNumberDrawer call:[getIns,set] noreturn:[set]
+Draw call:[DrawRota,ceil,find,getIns,log10]
+Singleton < CNumberDrawer >
+getIns
+operator=
+Singleton < CNumberDrawer >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

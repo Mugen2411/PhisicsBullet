@@ -1,0 +1,9 @@
+KeyManager call:[memset,sizeof] noreturn:[memset]
+KeyManager
+update call:[GetHitKeyStateAll]
+get
+Get
+Singleton < KeyManager >
+getIns
+operator=
+Singleton < KeyManager >

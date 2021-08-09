@@ -1,0 +1,7 @@
+CEffect_DamageNumber
+Update
+Render call:[Draw,getIns] noreturn:[Draw]
+Singleton < CNumberDrawer >
+getIns
+operator=
+Singleton < CNumberDrawer >

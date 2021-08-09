@@ -1,0 +1,16 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover
+setMediator
+getPosition
+getSize
+ApplyForce
+ApplyFrictionForce call:[ApplyForce,getNorm] noreturn:[ApplyForce]
+ApplyAirForce call:[ApplyForce] noreturn:[ApplyForce]
+Move call:[zero] noreturn:[zero]
+onWall call:[ifonWall] noreturn:[ifonWall]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

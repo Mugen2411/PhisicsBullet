@@ -1,0 +1,12 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CPower_Line call:[cos,sin] noreturn:[sin]
+isHit call:[atan2,cross,dist,dot,getLength,getLength2]
+ApplyForceToMover call:[ApplyAirForce,getLength,getPosition,getSize,isHit] noreturn:[ApplyAirForce]
+Update
+Render call:[DrawCircleAA,DrawLineAA,cos,sin] noreturn:[DrawLineAA]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

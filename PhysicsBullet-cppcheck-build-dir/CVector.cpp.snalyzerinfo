@@ -1,0 +1,21 @@
+CVector
+CVector
+CVector
+CVector
+CVector
+operator+ call:[CVector] noreturn:[CVector]
+operator- call:[CVector] noreturn:[CVector]
+operator+=
+operator-=
+operator- call:[CVector] noreturn:[CVector]
+operator* call:[CVector] noreturn:[CVector]
+operator/ call:[CVector] noreturn:[CVector]
+operator!
+dot
+cross
+getLength2
+getLength call:[getLength2,sqrt] noreturn:[sqrt]
+getAngle call:[atan2] noreturn:[atan2]
+getDirection global:[PI] call:[fmod,getAngle]
+getNorm call:[CVector,getLength2,sqrt] noreturn:[CVector]
+zero call:[getLength2]

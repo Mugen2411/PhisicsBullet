@@ -1,0 +1,3 @@
+IRenderReserve
+Add call:[push_back] noreturn:[push_back]
+Render call:[Render,begin,delete,erase,size,sort] noreturn:[Render,erase]

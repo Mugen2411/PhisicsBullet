@@ -9,6 +9,9 @@ public:
 	double Flower;
 	double Ice;
 
+	CAttribute();
+	CAttribute(double none, double fire, double aqua, double thunder, double flower, double ice);
+
 	CAttribute operator *(CAttribute a);
 	CAttribute operator *(double a);
 	CAttribute operator +(CAttribute a);

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3304090321">
+  <FileInfo check="CheckUnusedFunctions">
+    <functioncall functionName="Singleton"/>
+    <functioncall functionName="default"/>
+  </FileInfo>
+</analyzerinfo>

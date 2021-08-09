@@ -13,5 +13,7 @@ public:
 
     virtual void Dead() = 0;            //‘¼ŽE
     virtual void Disappear() = 0;       //Ž©ŽE
+
+    void Dispatch(std::shared_ptr<CMover>);
 };
 

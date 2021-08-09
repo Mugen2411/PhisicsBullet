@@ -1,0 +1,23 @@
+CMediator
+CMediator
+CParts
+CParts
+Changed call:[PartsChanged] noreturn:[PartsChanged]
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CField
+Hit
+CField
+setFrictionForce call:[ApplyFrictionForce] noreturn:[ApplyFrictionForce]
+Update
+Render
+Save
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

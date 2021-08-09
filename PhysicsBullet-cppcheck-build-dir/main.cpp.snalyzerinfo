@@ -1,0 +1,11 @@
+CKeyInputManager call:[load] noreturn:[load]
+Fps
+Update call:[GetNowCount] noreturn:[GetNowCount]
+Draw call:[DrawFormatString,GetColor] noreturn:[DrawFormatString]
+Wait call:[GetNowCount,Sleep] noreturn:[Sleep]
+IRenderReserve
+WinMain call:[CGame,ChangeWindowMode,CheckHitKey,ClearDrawScreen,DrawExtendGraph,DxLib_End,DxLib_Init,MakeScreen,ProcessMessage,Render,Run,ScreenFlip,SetDrawMode,SetDrawScreen,SetGraphMode,clsDx] noreturn:[ScreenFlip]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

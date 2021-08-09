@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="706819137">
+  <FileInfo check="Class">
+<class name="CMenuSelecter" file="C:/Users/shoji/source/repos/PhisicsBullet/CMenuSelecter.h" line="4" col="1" hash="1435659072513427676"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="prev" lineNumber="3"/>
+    <functiondecl functionName="next" lineNumber="9"/>
+    <functiondecl functionName="get" lineNumber="15"/>
+    <functioncall functionName="const"/>
+    <functioncall functionName="context_max"/>
+    <functioncall functionName="current"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="m_cur"/>
+    <functioncall functionName="m_max"/>
+  </FileInfo>
+</analyzerinfo>

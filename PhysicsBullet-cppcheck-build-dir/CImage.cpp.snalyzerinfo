@@ -1,0 +1,8 @@
+IRenderReserve
+CImage call:[LoadGraph,at,resize] noreturn:[LoadGraph]
+CImage call:[LoadDivGraph,data,resize] noreturn:[LoadDivGraph]
+CImage call:[DeleteGraph,begin,end,for_each] noreturn:[DeleteGraph,for_each]
+Draw call:[Add,CDrawGraphReserve,size] noreturn:[Add]
+Draw call:[Add,CDrawGraphFReserve,size] noreturn:[Add]
+DrawRota call:[Add,CDrawRotaGraphReserve,size] noreturn:[Add]
+DrawRotaF call:[Add,CDrawRotaGraphFReserve,size] noreturn:[Add]

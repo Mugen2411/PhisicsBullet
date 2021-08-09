@@ -182,6 +182,8 @@
     <ClCompile Include="CMover_Enemy_Bud.cpp" />
     <ClCompile Include="CMover_Player.cpp" />
     <ClCompile Include="CMover_BulletBase.cpp" />
+    <ClCompile Include="CMover_ShotBase.cpp" />
+    <ClCompile Include="CMover_Shot_Uniform_Homing.cpp" />
     <ClCompile Include="CNumberDrawer.cpp" />
     <ClCompile Include="CObjectNode.cpp" />
     <ClCompile Include="Constant.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="CPowerParent.cpp" />
     <ClCompile Include="CPower_Line.cpp" />
     <ClCompile Include="CRenderReserveList.cpp" />
+    <ClCompile Include="CStatus.cpp" />
     <ClCompile Include="CSTGInputManager.cpp" />
     <ClCompile Include="CVector.cpp" />
     <ClCompile Include="IRenderReserve.cpp" />
@@ -231,6 +234,8 @@
     <ClInclude Include="CMover_Enemy_Bud.h" />
     <ClInclude Include="CMover_Player.h" />
     <ClInclude Include="CMover_BulletBase.h" />
+    <ClInclude Include="CMover_ShotBase.h" />
+    <ClInclude Include="CMover_Shot_Uniform_Homing.h" />
     <ClInclude Include="CNumberDrawer.h" />
     <ClInclude Include="CObjectNode.h" />
     <ClInclude Include="Constant.h" />
@@ -239,6 +244,7 @@
     <ClInclude Include="CPowerParent.h" />
     <ClInclude Include="CPower_Line.h" />
     <ClInclude Include="CRenderReserveList.h" />
+    <ClInclude Include="CStatus.h" />
     <ClInclude Include="CSTGInputManager.h" />
     <ClInclude Include="CVector.h" />
     <ClInclude Include="Fps.h" />

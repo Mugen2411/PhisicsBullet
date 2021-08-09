@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3322062014">
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="update" lineNumber="14"/>
+    <functiondecl functionName="render" lineNumber="19"/>
+    <functioncall functionName="Render"/>
+    <functioncall functionName="SceneManager"/>
+    <functioncall functionName="Update"/>
+    <functioncall functionName="empty"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="top"/>
+  </FileInfo>
+</analyzerinfo>

@@ -27,6 +27,7 @@ std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num)
 
 void CMoverParent::Update()
 {	
+	Hit();
 	int r = 0;
 	for (auto itr = moverList.begin(); itr != moverList.end();) {
 		r = (*itr)->Update();
@@ -63,4 +64,16 @@ void CMoverParent::Render()
 #ifdef _DEBUG
 	printfDx("Objects: %d\n", moverList.size());
 #endif
+}
+
+void CMoverParent::Hit()
+{
+	for (std::shared_ptr<CMover> i : moverList) {
+		for (std::shared_ptr<CMover> j : moverList) {
+			if (i == j)continue;
+			if ((i->Position - j->Position).getLength2() < (i->getSize() + j->getSize())* (i->getSize() + j->getSize())) {
+				i->Dispatch(j);
+			}
+		}
+	}
 }

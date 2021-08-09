@@ -47,6 +47,25 @@ CVector CGameMediator::GetPlayerPosition()
 	return CVector(p.lock()->getPosition());
 }
 
+std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p)
+{
+	int i = 0;
+	auto cur = moverParent->getMover(ID, i);
+	if (!cur.lock())return std::weak_ptr<CMover>();
+	double dist = (p - cur.lock()->getPosition()).getLength2();
+	i++;
+	while (1) {
+		auto next = moverParent->getMover(ID, i);
+		if (!next.lock())break;
+		if (dist > (p - next.lock()->getPosition()).getLength2()) {
+			dist = (p - next.lock()->getPosition()).getLength2();
+			cur = next;
+		}
+		i++;
+	}
+	return cur;
+}
+
 void CGameMediator::Update()
 {
 	if (isPause) {

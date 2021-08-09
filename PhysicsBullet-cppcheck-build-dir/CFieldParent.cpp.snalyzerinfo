@@ -1,0 +1,23 @@
+CMediator
+CMediator
+CParts
+CParts
+Changed call:[PartsChanged] noreturn:[PartsChanged]
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CField
+Hit
+CFieldParent
+CFieldParent call:[OutputDebugString] noreturn:[OutputDebugString]
+Update call:[Update] noreturn:[Update]
+ApplyForceToMover call:[Hit,getField,getHeight,getPosition,getWidth,max,min,setFrictionForce] noreturn:[Hit]
+Render call:[Render] noreturn:[Render]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

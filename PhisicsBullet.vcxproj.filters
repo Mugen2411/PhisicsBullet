@@ -52,12 +52,6 @@
     <Filter Include="ソース ファイル\Calculate">
       <UniqueIdentifier>{0e6b163f-4db8-41e5-a9d2-c48353ccca57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Attribute">
-      <UniqueIdentifier>{9dc545b6-490e-44b0-b1aa-03b7e0d79d91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Attribute">
-      <UniqueIdentifier>{34e3fe84-fb88-4337-8ef4-94a6b0fbb891}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Effect">
       <UniqueIdentifier>{091429ce-5268-4063-b3db-c9c7722d5778}</UniqueIdentifier>
     </Filter>
@@ -81,6 +75,18 @@
     </Filter>
     <Filter Include="ソース ファイル\Image">
       <UniqueIdentifier>{fdafaef7-0f54-411b-a20b-a7017f682a20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot">
+      <UniqueIdentifier>{893b3a3e-9de1-41fe-ba48-b467176d3640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot">
+      <UniqueIdentifier>{4f90a9ce-0755-4999-be64-0e0d7e3c26ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Status">
+      <UniqueIdentifier>{9dc545b6-490e-44b0-b1aa-03b7e0d79d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Status">
+      <UniqueIdentifier>{34e3fe84-fb88-4337-8ef4-94a6b0fbb891}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +172,7 @@
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
     <ClCompile Include="CAttribute.cpp">
-      <Filter>ソース ファイル\Attribute</Filter>
+      <Filter>ソース ファイル\Status</Filter>
     </ClCompile>
     <ClCompile Include="CGameMediator.cpp">
       <Filter>ソース ファイル\Scene</Filter>
@@ -221,6 +227,15 @@
     </ClCompile>
     <ClCompile Include="CRenderReserveList.cpp">
       <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_ShotBase.cpp">
+      <Filter>ソース ファイル\Mover\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Uniform_Homing.cpp">
+      <Filter>ソース ファイル\Mover\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="CStatus.cpp">
+      <Filter>ソース ファイル\Status</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +330,7 @@
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
     <ClInclude Include="CAttribute.h">
-      <Filter>ヘッダー ファイル\Attribute</Filter>
+      <Filter>ヘッダー ファイル\Status</Filter>
     </ClInclude>
     <ClInclude Include="CGameMediator.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
@@ -370,6 +385,15 @@
     </ClInclude>
     <ClInclude Include="CRenderReserveList.h">
       <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_ShotBase.h">
+      <Filter>ヘッダー ファイル\Mover\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Uniform_Homing.h">
+      <Filter>ヘッダー ファイル\Mover\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="CStatus.h">
+      <Filter>ヘッダー ファイル\Status</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

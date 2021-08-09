@@ -1,0 +1,3 @@
+CKeyInputManager call:[load] noreturn:[load]
+update call:[CheckHitKey,GetMouseInput,GetMousePoint,SetMousePoint]
+load call:[GetActiveFlag,SetMouseDispFlag,SetMousePoint] noreturn:[SetMouseDispFlag,SetMousePoint]

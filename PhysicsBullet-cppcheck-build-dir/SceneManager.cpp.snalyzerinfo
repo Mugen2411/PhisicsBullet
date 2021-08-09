@@ -1,0 +1,4 @@
+SceneManager
+SceneManager
+update call:[Update,empty,top] noreturn:[Update]
+render call:[Render,empty,top] noreturn:[Render]

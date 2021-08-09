@@ -1,0 +1,12 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CPowerParent
+Add call:[push_back] noreturn:[push_back]
+ApplyForceToMover call:[ApplyForceToMover,begin,end] noreturn:[ApplyForceToMover]
+Update call:[Update,begin,end,erase]
+Render call:[Render,begin,end] noreturn:[Render]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

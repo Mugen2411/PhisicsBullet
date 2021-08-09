@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1618556226">
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="11" column="2"/>
+            <symbol>CVector</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="13" column="2"/>
+            <symbol>CVector</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CGameMediator&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CGameMediator&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="25" column="2"/>
+            <symbol>CGameMediator</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CKeyInputManager.h" line="20" column="9" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CSTGInputManager.h" line="54" column="14" info="Virtual function in base class"/>
+            <symbol>update</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;load&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CKeyInputManager.h" line="21" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CSTGInputManager.h" line="55" column="15" info="Virtual function in base class"/>
+            <symbol>load</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Update&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="33" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Update</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CGameMediator.h" line="34" column="7" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\Scene_Abstract.h" line="13" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="18" column="35"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="19" column="35"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="20" column="36"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="21" column="36"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="27" column="27"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="28" column="29"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;position&apos; should be passed by const reference." verbose="Parameter &apos;position&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.cpp" line="3" column="37"/>
+            <symbol>position</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;velocity&apos; should be passed by const reference." verbose="Parameter &apos;velocity&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.cpp" line="3" column="68"/>
+            <symbol>velocity</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;F&apos; should be passed by const reference." verbose="Parameter &apos;F&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.cpp" line="25" column="33"/>
+            <symbol>F</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;F&apos; should be passed by const reference." verbose="Parameter &apos;F&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CMover.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CMover.cpp" line="36" column="36"/>
+            <symbol>F</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="Constant" file="C:/Users/shoji/source/repos/PhisicsBullet/Constant.h" line="2" col="1" hash="16261729683979875821"/>
+<class name="CSTGInputManager::ConfigData" file="C:/Users/shoji/source/repos/PhisicsBullet/CSTGInputManager.h" line="15" col="2" hash="10039580688335671190"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="setMediator" lineNumber="10"/>
+    <functiondecl functionName="getPosition" lineNumber="15"/>
+    <functiondecl functionName="getSize" lineNumber="20"/>
+    <functiondecl functionName="ApplyForce" lineNumber="25"/>
+    <functiondecl functionName="ApplyFrictionForce" lineNumber="30"/>
+    <functiondecl functionName="ApplyAirForce" lineNumber="36"/>
+    <functiondecl functionName="Move" lineNumber="41"/>
+    <functiondecl functionName="onWall" lineNumber="50"/>
+    <functioncall functionName="Acceleration"/>
+    <functioncall functionName="AirResCF"/>
+    <functioncall functionName="ApplyForce"/>
+    <functioncall functionName="CMover"/>
+    <functioncall functionName="CSTGInputManager"/>
+    <functioncall functionName="CVector"/>
+    <functioncall functionName="Category"/>
+    <functioncall functionName="D"/>
+    <functioncall functionName="FrictionCF"/>
+    <functioncall functionName="ID"/>
+    <functioncall functionName="KEY_INPUT_A"/>
+    <functioncall functionName="KEY_INPUT_C"/>
+    <functioncall functionName="KEY_INPUT_D"/>
+    <functioncall functionName="KEY_INPUT_ESCAPE"/>
+    <functioncall functionName="KEY_INPUT_LCONTROL"/>
+    <functioncall functionName="KEY_INPUT_LSHIFT"/>
+    <functioncall functionName="KEY_INPUT_S"/>
+    <functioncall functionName="KEY_INPUT_W"/>
+    <functioncall functionName="KEY_INPUT_X"/>
+    <functioncall functionName="KEY_INPUT_Z"/>
+    <functioncall functionName="L"/>
+    <functioncall functionName="MV_BULLET"/>
+    <functioncall functionName="MV_ENEMY"/>
+    <functioncall functionName="MV_PLAYER"/>
+    <functioncall functionName="MV_SHOT"/>
+    <functioncall functionName="Mass"/>
+    <functioncall functionName="Position"/>
+    <functioncall functionName="R"/>
+    <functioncall functionName="ReflectCF"/>
+    <functioncall functionName="SFrictionCF"/>
+    <functioncall functionName="SK_A"/>
+    <functioncall functionName="SK_B"/>
+    <functioncall functionName="SK_C"/>
+    <functioncall functionName="SK_DOWN"/>
+    <functioncall functionName="SK_LEFT"/>
+    <functioncall functionName="SK_RIGHT"/>
+    <functioncall functionName="SK_SELECT"/>
+    <functioncall functionName="SK_SLOW"/>
+    <functioncall functionName="SK_START"/>
+    <functioncall functionName="SK_UP"/>
+    <functioncall functionName="Singleton &lt; CControllerFactory &gt;"/>
+    <functioncall functionName="Size"/>
+    <functioncall functionName="Status"/>
+    <functioncall functionName="Temperature"/>
+    <functioncall functionName="U"/>
+    <functioncall functionName="Velocity"/>
+    <functioncall functionName="_max"/>
+    <functioncall functionName="_may"/>
+    <functioncall functionName="_nax"/>
+    <functioncall functionName="_nay"/>
+    <functioncall functionName="airresCF"/>
+    <functioncall functionName="bool"/>
+    <functioncall functionName="const"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="double"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="frictionCF"/>
+    <functioncall functionName="getNorm"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="ifonWall"/>
+    <functioncall functionName="int"/>
+    <functioncall functionName="load"/>
+    <functioncall functionName="m"/>
+    <functioncall functionName="mass"/>
+    <functioncall functionName="max"/>
+    <functioncall functionName="may"/>
+    <functioncall functionName="position"/>
+    <functioncall functionName="reflectCF"/>
+    <functioncall functionName="sfrictionCF"/>
+    <functioncall functionName="temperature"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="velocity"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+    <functioncall functionName="zero"/>
+  </FileInfo>
+</analyzerinfo>

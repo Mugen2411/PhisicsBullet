@@ -30,6 +30,7 @@ public:
 	void RegisterMover(std::shared_ptr<CMover>);
 	void ApplyForceToMover(CMover*);
 	CVector GetPlayerPosition();
+	std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
 	void Update();
 	void Render()const;
 };

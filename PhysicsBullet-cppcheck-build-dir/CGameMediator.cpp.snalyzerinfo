@@ -1,0 +1,22 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMediator
+CMediator
+CParts
+CParts
+Changed call:[PartsChanged] noreturn:[PartsChanged]
+CMover
+ifonWall
+CMover_Player
+CMover_EnemyBase
+CGameMediator call:[getController,getIns] noreturn:[getController]
+CGameMediator call:[OutputDebugString] noreturn:[OutputDebugString]
+CreateParts call:[CVector,GetRand,RegisterMover,shared_from_this] noreturn:[RegisterMover]
+RegisterMover call:[RegisterMover,setMediator,shared_from_this] noreturn:[RegisterMover]
+ApplyForceToMover call:[ApplyForceToMover] noreturn:[ApplyForceToMover]
+GetPlayerPosition call:[CVector,getMover,getPosition,lock] noreturn:[CVector]
+Update call:[A,Update,update] noreturn:[Update,update]
+Render call:[Render] noreturn:[Render]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

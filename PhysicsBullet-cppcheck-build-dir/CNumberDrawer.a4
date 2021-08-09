@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1569116058">
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CImage.h" line="9" column="2"/>
+            <symbol>CImage</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CNumberDrawer" file="C:/Users/shoji/source/repos/PhisicsBullet/CNumberDrawer.h" line="3" col="1" hash="537669799754406856"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="Draw" lineNumber="10"/>
+    <functioncall functionName="CImage"/>
+    <functioncall functionName="CNumberDrawer"/>
+    <functioncall functionName="DrawRota"/>
+    <functioncall functionName="Singleton &lt; CImageManager &gt;"/>
+    <functioncall functionName="Singleton &lt; CNumberDrawer &gt;"/>
+    <functioncall functionName="ceil"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="find"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getIns"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="log10"/>
+    <functioncall functionName="make_shared"/>
+    <functioncall functionName="num"/>
+    <functioncall functionName="return"/>
+    <functioncall functionName="set"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+  </FileInfo>
+</analyzerinfo>

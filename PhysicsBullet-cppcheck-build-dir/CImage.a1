@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1856458204">
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CImage&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CImage.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CImage.h" line="9" column="2"/>
+            <symbol>CImage</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CImage.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CDrawGraphReserve.h" line="10" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\IRenderReserve.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CImage.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CDrawGraphFReserve.h" line="10" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\IRenderReserve.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CImage.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CDrawRotaGraphReserve.h" line="11" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\IRenderReserve.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CImage.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CDrawRotaGraphFReserve.h" line="11" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\IRenderReserve.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CImage" file="C:/Users/shoji/source/repos/PhisicsBullet/CImage.h" line="4" col="1" hash="5033182288524932999"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="Draw" lineNumber="29"/>
+    <functiondecl functionName="Draw" lineNumber="35"/>
+    <functiondecl functionName="DrawRota" lineNumber="41"/>
+    <functiondecl functionName="DrawRotaF" lineNumber="47"/>
+    <functioncall functionName="Add"/>
+    <functioncall functionName="AllNum"/>
+    <functioncall functionName="CDrawGraphFReserve"/>
+    <functioncall functionName="CDrawGraphReserve"/>
+    <functioncall functionName="CDrawRotaGraphFReserve"/>
+    <functioncall functionName="CDrawRotaGraphReserve"/>
+    <functioncall functionName="CImage"/>
+    <functioncall functionName="DeleteGraph"/>
+    <functioncall functionName="LoadDivGraph"/>
+    <functioncall functionName="LoadGraph"/>
+    <functioncall functionName="Xnum"/>
+    <functioncall functionName="Ynum"/>
+    <functioncall functionName="angle"/>
+    <functioncall functionName="at"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="const"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="end"/>
+    <functioncall functionName="extend"/>
+    <functioncall functionName="for_each"/>
+    <functioncall functionName="h"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="num"/>
+    <functioncall functionName="path"/>
+    <functioncall functionName="priority"/>
+    <functioncall functionName="resize"/>
+    <functioncall functionName="return"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="v"/>
+    <functioncall functionName="w"/>
+    <functioncall functionName="x1"/>
+    <functioncall functionName="y1"/>
+  </FileInfo>
+</analyzerinfo>

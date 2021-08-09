@@ -22,5 +22,7 @@ public:
     void Dead();
     void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
+
+    void Dispatch(std::shared_ptr<CMover>);
 };
 

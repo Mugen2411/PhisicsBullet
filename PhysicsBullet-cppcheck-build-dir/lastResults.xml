@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.5"/>
+    <errors>
+        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="9" info="ret.Aqua is overwritten"/>
+            <location file="CAttribute.cpp" line="8" info="ret.Aqua is assigned"/>
+        </error>
+        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="20" info="ret.Aqua is overwritten"/>
+            <location file="CAttribute.cpp" line="19" info="ret.Aqua is assigned"/>
+        </error>
+        <error id="redundantAssignment" severity="style" msg="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." verbose="Variable &amp;#039;ret.Aqua&amp;#039; is reassigned a value before the old one has been used." cwe="563" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="31" info="ret.Aqua is overwritten"/>
+            <location file="CAttribute.cpp" line="30" info="ret.Aqua is assigned"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;a&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;a&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="36"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="11"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="11"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="22"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="22"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Thunder" verbose="Uninitialized struct member: ret.Thunder" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="33"/>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: ret.Ice" verbose="Uninitialized struct member: ret.Ice" cwe="457" file0="CAttribute.cpp" sinceDate="2021/08/06">
+            <location file="CAttribute.cpp" line="33"/>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &amp;#039;current&amp;#039; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&amp;#039;t explicitly write them to the initialization list. You could avoid assigning &amp;#039;current&amp;#039; a value by passing the value to the constructor in the initialization list." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CControllerFactory.cpp" line="5"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CVector&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CVector&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="11"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CVector&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CVector&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="13"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="18"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="19"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="20"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="21"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="27"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CVector.h" line="28"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CKeyInputManager.h" line="20" info="Function in derived class"/>
+            <location file="CSTGInputManager.h" line="54" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;load&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;load&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CControllerFactory.cpp" sinceDate="2021/08/06">
+            <location file="CKeyInputManager.h" line="21" info="Function in derived class"/>
+            <location file="CSTGInputManager.h" line="55" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CDrawGraphFReserve.cpp" sinceDate="2021/08/06">
+            <location file="CDrawGraphFReserve.h" line="10" info="Function in derived class"/>
+            <location file="IRenderReserve.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CDrawGraphReserve.cpp" sinceDate="2021/08/06">
+            <location file="CDrawGraphReserve.h" line="10" info="Function in derived class"/>
+            <location file="IRenderReserve.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CDrawRotaGraphFReserve.cpp" sinceDate="2021/08/06">
+            <location file="CDrawRotaGraphFReserve.h" line="11" info="Function in derived class"/>
+            <location file="IRenderReserve.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CDrawRotaGraphReserve.cpp" sinceDate="2021/08/06">
+            <location file="CDrawRotaGraphReserve.h" line="11" info="Function in derived class"/>
+            <location file="IRenderReserve.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;pos&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;pos&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CEffect.cpp" sinceDate="2021/08/06">
+            <location file="CEffect.cpp" line="3"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CEffect_DamageNumber.cpp" sinceDate="2021/08/06">
+            <location file="CEffect_DamageNumber.h" line="14" info="Function in derived class"/>
+            <location file="CEffect.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CEffect_DamageNumber.cpp" sinceDate="2021/08/06">
+            <location file="CEffect_DamageNumber.h" line="15" info="Function in derived class"/>
+            <location file="CEffect.h" line="13" info="Virtual function in base class"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CEffect_DamageNumber.cpp" sinceDate="2021/08/06">
+            <location file="CEffect_DamageNumber.cpp" line="4"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CParts&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CParts&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CParts.h" line="8"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CGameMediator&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CGameMediator&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CGameMediator.h" line="25"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CGameMediator.h" line="33" info="Function in derived class"/>
+            <location file="Scene_Abstract.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CGameMediator.h" line="34" info="Function in derived class"/>
+            <location file="Scene_Abstract.h" line="13" info="Virtual function in base class"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CFieldHolder&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CFieldHolder&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CFieldHolder.h" line="18"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CImage&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CImage&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CImage.h" line="9"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;gid&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;gid&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CField.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CField.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;size&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;size&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField.cpp" sinceDate="2021/08/06">
+            <location file="CField.cpp" line="3"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_Grass.h" line="10" info="Function in derived class"/>
+            <location file="CField.h" line="30" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_Grass.h" line="11" info="Function in derived class"/>
+            <location file="CField.h" line="31" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_IceFloor.h" line="9" info="Function in derived class"/>
+            <location file="CField.h" line="30" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_IceFloor.h" line="10" info="Function in derived class"/>
+            <location file="CField.h" line="31" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall_Tree.h" line="9" info="Function in derived class"/>
+            <location file="CField.h" line="30" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CFieldFactory.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall_Tree.h" line="10" info="Function in derived class"/>
+            <location file="CField.h" line="31" info="Virtual function in base class"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;filepath&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;filepath&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CFieldHolder.cpp" sinceDate="2021/08/06">
+            <location file="CFieldHolder.cpp" line="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;filename&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;filename&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CFieldParent.cpp" sinceDate="2021/08/06">
+            <location file="CFieldParent.cpp" line="9"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;gid&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;gid&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Grass.cpp" sinceDate="2021/08/06">
+            <location file="CField_Grass.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Grass.cpp" sinceDate="2021/08/06">
+            <location file="CField_Grass.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;gid&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;gid&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_IceFloor.cpp" sinceDate="2021/08/06">
+            <location file="CField_IceFloor.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_IceFloor.cpp" sinceDate="2021/08/06">
+            <location file="CField_IceFloor.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;GID&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;GID&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Wall.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Wall.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall.cpp" line="4"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;gid&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;gid&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Wall_Tree.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall_Tree.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CField_Wall_Tree.cpp" sinceDate="2021/08/06">
+            <location file="CField_Wall_Tree.cpp" line="3"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CGameMediator::pauseGuage&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CGameMediator::pauseGuage&amp;#039; is not initialized in the constructor." cwe="398" file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CGameMediator.cpp" line="10"/>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &amp;#039;input&amp;#039; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&amp;#039;t explicitly write them to the initialization list. You could avoid assigning &amp;#039;input&amp;#039; a value by passing the value to the constructor in the initialization list." cwe="398" file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CGameMediator.cpp" line="12"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CMoverParent&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CMoverParent&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMoverParent.h" line="16"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CPowerParent&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CPowerParent&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CPowerParent.h" line="15"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Player.h" line="20" info="Function in derived class"/>
+            <location file="CMover.h" line="45" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Player.h" line="21" info="Function in derived class"/>
+            <location file="CMover.h" line="46" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Player.h" line="22" info="Function in derived class"/>
+            <location file="CMover.h" line="47" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Player.h" line="23" info="Function in derived class"/>
+            <location file="CMover.h" line="48" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.h" line="25" info="Function in derived class"/>
+            <location file="CMover.h" line="45" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.h" line="26" info="Function in derived class"/>
+            <location file="CMover.h" line="46" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.h" line="27" info="Function in derived class"/>
+            <location file="CMover.h" line="47" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.h" line="28" info="Function in derived class"/>
+            <location file="CMover.h" line="48" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy_Bud.h" line="10" info="Function in derived class"/>
+            <location file="CMover_Enemy.h" line="25" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy_Bud.h" line="11" info="Function in derived class"/>
+            <location file="CMover_Enemy.h" line="26" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy_Bud.h" line="12" info="Function in derived class"/>
+            <location file="CMover_Enemy.h" line="27" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CGameMediator.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy_Bud.h" line="13" info="Function in derived class"/>
+            <location file="CMover_Enemy.h" line="28" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;ChangeScene&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;ChangeScene&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="Clooper.cpp" sinceDate="2021/08/06">
+            <location file="Clooper.h" line="19" info="Function in derived class"/>
+            <location file="SceneManager.h" line="15" info="Virtual function in base class"/>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &amp;#039;CMapEditor&amp;#039; has a constructor with 1 argument that is not explicit." verbose="Class &amp;#039;CMapEditor&amp;#039; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="CMapEditor.cpp" sinceDate="2021/08/06">
+            <location file="CMapEditor.h" line="13"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;CreateParts&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;CreateParts&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMapEditor.cpp" sinceDate="2021/08/06">
+            <location file="CMapEditor.h" line="11" info="Function in derived class"/>
+            <location file="CMediator.h" line="9" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMapEditor.cpp" sinceDate="2021/08/06">
+            <location file="CMapEditor.h" line="14" info="Function in derived class"/>
+            <location file="Scene_Abstract.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMapEditor.cpp" sinceDate="2021/08/06">
+            <location file="CMapEditor.h" line="15" info="Function in derived class"/>
+            <location file="Scene_Abstract.h" line="13" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;PartsChanged&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;PartsChanged&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMapEditor.cpp" sinceDate="2021/08/06">
+            <location file="CMapEditor.h" line="16" info="Function in derived class"/>
+            <location file="CMediator.h" line="15" info="Virtual function in base class"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover.cpp" sinceDate="2021/08/06">
+            <location file="CMover.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;velocity&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;velocity&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover.cpp" sinceDate="2021/08/06">
+            <location file="CMover.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;F&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;F&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover.cpp" sinceDate="2021/08/06">
+            <location file="CMover.cpp" line="25"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;F&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;F&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover.cpp" sinceDate="2021/08/06">
+            <location file="CMover.cpp" line="36"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;r&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;r&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="CMoverParent.cpp" sinceDate="2021/08/06">
+            <location file="CMoverParent.cpp" line="30"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;r&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;r&amp;#039; is assigned a value that is never used." cwe="563" file0="CMoverParent.cpp" sinceDate="2021/08/06">
+            <location file="CMoverParent.cpp" line="30"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.h" line="11" info="Function in derived class"/>
+            <location file="CMover.h" line="45" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.h" line="12" info="Function in derived class"/>
+            <location file="CMover.h" line="46" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.h" line="14" info="Function in derived class"/>
+            <location file="CMover.h" line="47" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.h" line="15" info="Function in derived class"/>
+            <location file="CMover.h" line="48" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Bullet_Corn.h" line="8" info="Function in derived class"/>
+            <location file="CMover_BulletBase.h" line="11" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Bullet_Corn.h" line="9" info="Function in derived class"/>
+            <location file="CMover_BulletBase.h" line="12" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Dead&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Bullet_Corn.h" line="11" info="Function in derived class"/>
+            <location file="CMover_BulletBase.h" line="14" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Disappear&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Bullet_Corn.h" line="12" info="Function in derived class"/>
+            <location file="CMover_BulletBase.h" line="15" info="Virtual function in base class"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_Bullet_Corn.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Bullet_Corn.cpp" line="3"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CMover_EnemyBase::MaxHP&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CMover_EnemyBase::MaxHP&amp;#039; is not initialized in the constructor." cwe="398" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="3"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CMover_EnemyBase::HP&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CMover_EnemyBase::HP&amp;#039; is not initialized in the constructor." cwe="398" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="3"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CMover_EnemyBase::ATK&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CMover_EnemyBase::ATK&amp;#039; is not initialized in the constructor." cwe="398" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="3"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CMover_EnemyBase::DEF&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CMover_EnemyBase::DEF&amp;#039; is not initialized in the constructor." cwe="398" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="3"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="3"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;angle&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;angle&amp;#039; is assigned a value that is never used." cwe="563" file0="CMover_Enemy.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy.cpp" line="12"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_Enemy_Bud.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Enemy_Bud.cpp" line="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_Player.cpp" sinceDate="2021/08/06">
+            <location file="CMover_Player.cpp" line="7"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_BulletBase.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.cpp" line="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;velocity&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;velocity&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CMover_BulletBase.cpp" sinceDate="2021/08/06">
+            <location file="CMover_BulletBase.cpp" line="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;position&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;position&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CPower.cpp" sinceDate="2021/08/06">
+            <location file="CPower.cpp" line="3"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;ApplyForceToMover&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;ApplyForceToMover&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CPowerParent.cpp" sinceDate="2021/08/06">
+            <location file="CPower_Line.h" line="15" info="Function in derived class"/>
+            <location file="CPower.h" line="14" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Update&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CPowerParent.cpp" sinceDate="2021/08/06">
+            <location file="CPower_Line.h" line="16" info="Function in derived class"/>
+            <location file="CPower.h" line="15" info="Virtual function in base class"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;Render&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." file0="CPowerParent.cpp" sinceDate="2021/08/06">
+            <location file="CPower_Line.h" line="17" info="Function in derived class"/>
+            <location file="CPower.h" line="16" info="Virtual function in base class"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;r&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;r&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" file0="CPowerParent.cpp" sinceDate="2021/08/06">
+            <location file="CPowerParent.cpp" line="23"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;r&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;r&amp;#039; is assigned a value that is never used." cwe="563" file0="CPowerParent.cpp" sinceDate="2021/08/06">
+            <location file="CPowerParent.cpp" line="23"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;mPosition&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;mPosition&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CPower_Line.cpp" sinceDate="2021/08/06">
+            <location file="CPower_Line.cpp" line="20"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CVector::x&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CVector::x&amp;#039; is not initialized in the constructor." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="20"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;CVector::y&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;CVector::y&amp;#039; is not initialized in the constructor." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="20"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="24"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="29"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="34"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="41"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="68"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;v&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;v&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="CVector.cpp" sinceDate="2021/08/06">
+            <location file="CVector.cpp" line="73"/>
+        </error>
+    </errors>
+</results>

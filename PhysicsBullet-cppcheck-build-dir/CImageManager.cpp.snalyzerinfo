@@ -1,0 +1,14 @@
+CImageManager
+set
+find call:[end,find,set]
+LG_grass
+LG_icefloor
+LG_player_komuk
+LG_aim
+LG_enemy_bud
+LG_enemy_bud_intro
+LG_bullet_bud_corn
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

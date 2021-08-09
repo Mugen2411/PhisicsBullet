@@ -1,0 +1,18 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover_Player
+CMover_Player
+Walk call:[getVector]
+Update call:[Walk,getDirection,update]
+Render call:[DrawRota,MouseX,MouseY,find,getIns,round] noreturn:[DrawRota]
+Dead
+Disappear
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

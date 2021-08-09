@@ -1,0 +1,17 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover_EnemyBase
+CMover_Enemy_Bud
+Update call:[GetPlayerPosition,GetRand,RegisterMover,Walk,getAngle,lock] noreturn:[GetRand,RegisterMover]
+Render call:[DrawRota,find,getIns] noreturn:[DrawRota]
+Dead
+Disappear
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

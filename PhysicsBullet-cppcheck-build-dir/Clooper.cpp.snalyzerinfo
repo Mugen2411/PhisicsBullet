@@ -1,0 +1,13 @@
+CKeyInputManager call:[load] noreturn:[load]
+Fps
+Update call:[GetNowCount] noreturn:[GetNowCount]
+Draw call:[DrawFormatString,GetColor] noreturn:[DrawFormatString]
+Wait call:[GetNowCount,Sleep] noreturn:[Sleep]
+CGame call:[ChangeScene] noreturn:[ChangeScene]
+CGame call:[empty,pop] noreturn:[pop]
+Run call:[Draw,Render,Update,Wait,top] noreturn:[Wait]
+ChangeScene call:[CreateParts,empty,pop,push] noreturn:[pop]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

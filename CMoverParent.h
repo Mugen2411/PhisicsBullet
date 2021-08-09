@@ -18,5 +18,7 @@ public:
 	std::weak_ptr<CMover> getMover(int ID, int num);
 	void Update();
 	void Render();
+
+	void Hit();
 };
 

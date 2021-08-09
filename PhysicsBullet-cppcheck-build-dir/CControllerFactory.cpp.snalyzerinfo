@@ -1,0 +1,7 @@
+CKeyInputManager call:[load] noreturn:[load]
+CControllerFactory
+getController
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

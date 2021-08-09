@@ -28,3 +28,5 @@ std::shared_ptr<CImage> LG_enemy_bud();
 std::shared_ptr<CImage> LG_enemy_bud_intro();
 std::shared_ptr<CImage> LG_bullet_bud_corn();
 
+std::shared_ptr<CImage> LG_shot_uniform_homing();
+

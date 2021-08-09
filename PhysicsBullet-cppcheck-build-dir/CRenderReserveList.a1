@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1854213123">
+  <FileInfo check="Class">
+<class name="CRenderReserveList" file="C:/Users/shoji/source/repos/PhisicsBullet/CRenderReserveList.h" line="5" col="1" hash="2221352259533526042"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="Add" lineNumber="5"/>
+    <functiondecl functionName="Render" lineNumber="10"/>
+    <functioncall functionName="Render"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="compRenderReserve"/>
+    <functioncall functionName="delete"/>
+    <functioncall functionName="erase"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="itr"/>
+    <functioncall functionName="list"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="sort"/>
+    <functioncall functionName="v"/>
+    <functioncall functionName="while"/>
+  </FileInfo>
+</analyzerinfo>

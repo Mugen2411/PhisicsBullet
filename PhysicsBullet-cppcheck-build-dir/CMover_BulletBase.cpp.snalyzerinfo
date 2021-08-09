@@ -1,0 +1,12 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover_BulletBase
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

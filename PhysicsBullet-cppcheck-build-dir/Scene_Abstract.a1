@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2443075152">
+  <FileInfo check="CheckUnusedFunctions">
+    <functioncall functionName="Scene_Abstract"/>
+    <functioncall functionName="scn_mng"/>
+  </FileInfo>
+</analyzerinfo>

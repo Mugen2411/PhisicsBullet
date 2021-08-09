@@ -1,0 +1,18 @@
+CMediator
+CMediator
+CParts
+CParts
+Changed call:[PartsChanged] noreturn:[PartsChanged]
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover_Player
+CMoverParent
+RegisterMover call:[push_back] noreturn:[push_back]
+getMover
+Update call:[ApplyForceToMover,Dead,Disappear,Move,Update,back_inserter,begin,clear,copy,end,erase,get,lock,size] noreturn:[clear]
+Render call:[Render,begin,end,for_each] noreturn:[Render,for_each]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3111623668">
+        <error id="missingOverride" severity="style" msg="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;Render&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." file0="C:/Users/shoji/source/repos/PhisicsBullet/CDrawGraphReserve.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CDrawGraphReserve.h" line="10" column="10" info="Function in derived class"/>
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\IRenderReserve.h" line="12" column="15" info="Virtual function in base class"/>
+            <symbol>Render</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CDrawGraphReserve" file="C:/Users/shoji/source/repos/PhisicsBullet/CDrawGraphReserve.h" line="3" col="1" hash="831289821713824339"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="Render" lineNumber="9"/>
+    <functioncall functionName="CDrawGraphReserve"/>
+    <functioncall functionName="DrawGraph"/>
+    <functioncall functionName="GHandle"/>
+    <functioncall functionName="IRenderReserve"/>
+    <functioncall functionName="Priority"/>
+    <functioncall functionName="TRUE"/>
+    <functioncall functionName="const"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+  </FileInfo>
+</analyzerinfo>

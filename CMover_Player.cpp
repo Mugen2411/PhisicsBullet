@@ -1,8 +1,8 @@
 #include "CMover_Player.h"
-#include "CMover_BulletBase.h"
 #include "CImageManager.h"
 #include <cmath>
 #include <DxLib.h>
+#include "CMover_Shot_Uniform_Homing.h"
 
 CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed)
 	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
@@ -39,6 +39,9 @@ int CMover_Player::Update()
 	else {
 		animCount = 0.0;
 	}
+	if (input->LClick(true) % 5 == 1) {
+		med.lock()->RegisterMover(std::make_shared<CMover_Shot_Uniform_Homing>(Position, input->getMouseAngle(Position)));
+	}
 	Walk();
 	
 #ifdef _DEBUG
@@ -60,3 +63,9 @@ void CMover_Player::Dead()
 void CMover_Player::Disappear()
 {
 }
+
+void CMover_Player::Dispatch(std::shared_ptr<CMover> m)
+{
+	m->Hit(this);
+}
+

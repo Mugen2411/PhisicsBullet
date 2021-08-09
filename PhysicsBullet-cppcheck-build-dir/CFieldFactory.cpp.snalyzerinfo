@@ -1,0 +1,19 @@
+CMediator
+CMediator
+CParts
+CParts
+Changed call:[PartsChanged] noreturn:[PartsChanged]
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CField
+Hit
+create call:[CVector]
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

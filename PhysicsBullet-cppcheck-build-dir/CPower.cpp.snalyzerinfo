@@ -1,0 +1,8 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CPower
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >

@@ -22,6 +22,11 @@ double CMover::getSize()
 	return Size;
 }
 
+int CMover::getCategory()
+{
+	return Category;
+}
+
 void CMover::ApplyForce(CVector F)
 {
 	Acceleration += (F / Mass);
@@ -45,6 +50,22 @@ void CMover::Move()
 	Acceleration.x = 0;
 	Acceleration.y = 0;
 	Velocity.zero();
+}
+
+void CMover::Hit(CMover* m)
+{
+}
+
+void CMover::Hit(CMover_ShotBase* m)
+{
+}
+
+void CMover::Hit(CMover_EnemyBase* m)
+{
+}
+
+void CMover::Hit(CMover_BulletBase* m)
+{
 }
 
 void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)

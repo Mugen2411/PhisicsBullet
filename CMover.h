@@ -4,6 +4,10 @@
 #include "CGameMediator.h"
 #include <memory>
 
+class CMover_ShotBase;
+class CMover_EnemyBase;
+class CMover_BulletBase;
+
 class CMover
 {
 	friend CMoverParent;
@@ -37,13 +41,19 @@ public:
 	void setMediator(std::shared_ptr<CGameMediator>);
 	CVector getPosition();
 	double getSize();
+	int getCategory();
 	void ApplyForce(CVector F);	//óÕÇÇ©ÇØÇÈ
 	void ApplyFrictionForce(double FloorFrictionForce);
 	void ApplyAirForce(CVector F);
 	void Move();
 
+	virtual void Dispatch(std::shared_ptr<CMover> m) = 0;
 	virtual int Update() = 0;		//0:ê∂ë∂Å@1:ëºéE 2:é©éE
 	virtual void Render() const = 0;
+	virtual void Hit(CMover*);
+	virtual void Hit(CMover_ShotBase*);
+	virtual void Hit(CMover_BulletBase*);
+	virtual void Hit(CMover_EnemyBase*);
 	virtual void Dead() = 0;		//éÄñS(ëºéE)
 	virtual void Disappear() = 0;	//è¡ñ≈(é©éE)
 

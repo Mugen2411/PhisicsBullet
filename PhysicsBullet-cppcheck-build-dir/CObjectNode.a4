@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1288470984">
+  <FileInfo check="Class">
+<class name="CObjectNode" file="C:/Users/shoji/source/repos/PhisicsBullet/CObjectNode.h" line="5" col="1" hash="665539840204631785"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="add_node" lineNumber="3"/>
+    <functiondecl functionName="getList" lineNumber="8"/>
+    <functioncall functionName="CObjectNode"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="end"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getList"/>
+    <functioncall functionName="insert"/>
+    <functioncall functionName="obj"/>
+    <functioncall functionName="objlist"/>
+    <functioncall functionName="push_back"/>
+  </FileInfo>
+</analyzerinfo>

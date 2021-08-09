@@ -14,3 +14,8 @@ void CMover_EnemyBase::Walk(CVector destination)
 	if (diff.dot(Velocity)> MaxSpeed)return;
 	Acceleration += diff * Accel;
 }
+
+void CMover_EnemyBase::Dispatch(std::shared_ptr<CMover> m)
+{
+	m->Hit(this);
+}

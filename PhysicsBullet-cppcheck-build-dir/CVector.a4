@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3883578982">
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;CVector::x&apos; is not initialized in the constructor." verbose="Member variable &apos;CVector::x&apos; is not initialized in the constructor." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="20" column="10"/>
+            <symbol>CVector::x</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;CVector::y&apos; is not initialized in the constructor." verbose="Member variable &apos;CVector::y&apos; is not initialized in the constructor." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="20" column="10"/>
+            <symbol>CVector::y</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="11" column="2"/>
+            <symbol>CVector</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;CVector&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.h" line="13" column="2"/>
+            <symbol>CVector</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="24" column="42"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="29" column="42"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="34" column="43"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="41" column="43"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="68" column="35"/>
+            <symbol>v</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;v&apos; should be passed by const reference." verbose="Parameter &apos;v&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/shoji/source/repos/PhisicsBullet/CVector.cpp">
+            <location file="C:\Users\shoji\source\repos\PhisicsBullet\CVector.cpp" line="73" column="37"/>
+            <symbol>v</symbol>
+        </error>
+  <FileInfo check="Class">
+<class name="CVector" file="C:/Users/shoji/source/repos/PhisicsBullet/CVector.h" line="6" col="1" hash="13599910830490833323"/>
+<class name="Constant" file="C:/Users/shoji/source/repos/PhisicsBullet/Constant.h" line="2" col="1" hash="16261729683979875821"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="dot" lineNumber="68"/>
+    <functiondecl functionName="cross" lineNumber="73"/>
+    <functiondecl functionName="getLength2" lineNumber="78"/>
+    <functiondecl functionName="getLength" lineNumber="83"/>
+    <functiondecl functionName="getAngle" lineNumber="88"/>
+    <functiondecl functionName="getDirection" lineNumber="93"/>
+    <functiondecl functionName="getNorm" lineNumber="103"/>
+    <functiondecl functionName="zero" lineNumber="110"/>
+    <functioncall functionName="CVector"/>
+    <functioncall functionName="angle"/>
+    <functioncall functionName="atan2"/>
+    <functioncall functionName="bool"/>
+    <functioncall functionName="const"/>
+    <functioncall functionName="cos"/>
+    <functioncall functionName="double"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="fmod"/>
+    <functioncall functionName="getAngle"/>
+    <functioncall functionName="getLength2"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="int"/>
+    <functioncall functionName="is_valid"/>
+    <functioncall functionName="l"/>
+    <functioncall functionName="sin"/>
+    <functioncall functionName="sqrt"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="v"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+  </FileInfo>
+</analyzerinfo>

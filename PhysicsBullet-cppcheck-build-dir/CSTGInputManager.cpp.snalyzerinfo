@@ -1,0 +1,19 @@
+CSTGInputManager
+Up
+Down
+Right
+Left
+A
+B
+C
+Slow
+Start
+Select
+LClick
+RClick
+CClick
+MouseX
+MouseY
+getVector call:[CVector,getNorm,tmp] noreturn:[CVector,getNorm]
+getDirection
+getMouseAngle call:[atan2] noreturn:[atan2]

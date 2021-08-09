@@ -1,0 +1,16 @@
+CKeyInputManager call:[load] noreturn:[load]
+CMover
+ifonWall
+CMover_Bullet_Corn
+Update call:[getLength2]
+Render call:[DrawRota,find,getAngle,getIns] noreturn:[DrawRota]
+Dead
+Disappear
+Singleton < CControllerFactory >
+getIns
+operator=
+Singleton < CControllerFactory >
+Singleton < CImageManager >
+getIns
+operator=
+Singleton < CImageManager >

@@ -1,0 +1,4 @@
+add_node call:[push_back] noreturn:[push_back]
+getList call:[begin,end,getList,insert] noreturn:[insert]
+CObjectNode
+CObjectNode

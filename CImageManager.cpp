@@ -6,9 +6,12 @@ CImageManager::CImageManager()
     loaderList["Field_IceFloor"] = LG_icefloor;
     loaderList["player_komuk"] = LG_player_komuk;
     loaderList["aim"] = LG_aim;
+
     loaderList["enemy_bud"] = LG_enemy_bud;
     loaderList["enemy_bud_intro"] = LG_enemy_bud_intro;
     loaderList["bullet_bud_corn"] = LG_bullet_bud_corn;
+
+    loaderList["shot_uniform_homing"] = LG_shot_uniform_homing;
 }
 
 void CImageManager::set(std::string key, std::shared_ptr<CImage> img)
@@ -59,4 +62,9 @@ std::shared_ptr<CImage> LG_enemy_bud_intro()
 std::shared_ptr<CImage> LG_bullet_bud_corn()
 {
     return std::make_shared<CImage>("media/graphic/enemy/bud/corn.png");
+}
+
+std::shared_ptr<CImage> LG_shot_uniform_homing()
+{
+    return std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png");
 }

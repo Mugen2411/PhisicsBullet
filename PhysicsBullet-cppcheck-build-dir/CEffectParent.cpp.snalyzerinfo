@@ -1,0 +1,3 @@
+RegisterEffect call:[push_back] noreturn:[push_back]
+Update call:[Update,begin,end,erase,remove_if] noreturn:[Update,erase]
+Render call:[Render] noreturn:[Render]

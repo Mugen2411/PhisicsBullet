@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2150150497">
+  <FileInfo check="Class">
+<class name="KeyManager" file="C:/Users/shoji/source/repos/PhisicsBullet/KeyManager.h" line="3" col="1" hash="8124240073098604"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="update" lineNumber="17"/>
+    <functiondecl functionName="get" lineNumber="27"/>
+    <functiondecl functionName="Get" lineNumber="31"/>
+    <functioncall functionName="CANCEL"/>
+    <functioncall functionName="DOWN"/>
+    <functioncall functionName="ENTER"/>
+    <functioncall functionName="GetHitKeyStateAll"/>
+    <functioncall functionName="ID"/>
+    <functioncall functionName="KEY_INPUT_C"/>
+    <functioncall functionName="KEY_INPUT_DOWN"/>
+    <functioncall functionName="KEY_INPUT_LEFT"/>
+    <functioncall functionName="KEY_INPUT_RIGHT"/>
+    <functioncall functionName="KEY_INPUT_UP"/>
+    <functioncall functionName="KEY_INPUT_V"/>
+    <functioncall functionName="KEY_INPUT_X"/>
+    <functioncall functionName="KEY_INPUT_Z"/>
+    <functioncall functionName="KeyManager"/>
+    <functioncall functionName="LEFT"/>
+    <functioncall functionName="OTHER"/>
+    <functioncall functionName="OTHER2"/>
+    <functioncall functionName="RIGHT"/>
+    <functioncall functionName="Singleton &lt; KeyManager &gt;"/>
+    <functioncall functionName="UP"/>
+    <functioncall functionName="buf"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="key"/>
+    <functioncall functionName="memset"/>
+    <functioncall functionName="sizeof"/>
+  </FileInfo>
+</analyzerinfo>

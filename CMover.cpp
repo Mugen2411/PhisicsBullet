@@ -64,6 +64,10 @@ void CMover::Hit(CMover_EnemyBase* m)
 {
 }
 
+void CMover::Hit(CMover_Player*)
+{
+}
+
 void CMover::Hit(CMover_BulletBase* m)
 {
 }

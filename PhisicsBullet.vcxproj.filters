@@ -88,6 +88,12 @@
     <Filter Include="ヘッダー ファイル\Status">
       <UniqueIdentifier>{34e3fe84-fb88-4337-8ef4-94a6b0fbb891}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Costume">
+      <UniqueIdentifier>{29a80957-20e8-4503-b581-5f72ae2c1757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Costume">
+      <UniqueIdentifier>{7bd285f5-8cbb-4de5-82c7-cb967dbd8309}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -237,6 +243,9 @@
     <ClCompile Include="CStatus.cpp">
       <Filter>ソース ファイル\Status</Filter>
     </ClCompile>
+    <ClCompile Include="CCosutumeBase.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -271,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="CFieldParent.h">
       <Filter>ヘッダー ファイル\Field</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover.h">
-      <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
     <ClInclude Include="CMover_Player.h">
       <Filter>ヘッダー ファイル\Mover</Filter>
@@ -394,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="CStatus.h">
       <Filter>ヘッダー ファイル\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="CCosutumeBase.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

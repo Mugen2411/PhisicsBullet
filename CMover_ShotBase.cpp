@@ -15,7 +15,7 @@ void CMover_ShotBase::Dispatch(std::shared_ptr<CMover> m)
 
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
-	double Damage = (ATK * baseParams.ATK).Sum();
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, 0));
+	double Damage = m->Damage(ATK * baseParams.ATK);
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, 0, 1));
 	Status = 1;
 }

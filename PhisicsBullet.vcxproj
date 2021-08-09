@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
+    <ClCompile Include="CCosutumeBase.cpp" />
     <ClCompile Include="CDrawGraphFReserve.cpp" />
     <ClCompile Include="CDrawGraphReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphFReserve.cpp" />
@@ -204,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CControllerFactory.h" />
+    <ClInclude Include="CCosutumeBase.h" />
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />
     <ClInclude Include="CDrawRotaGraphFReserve.h" />

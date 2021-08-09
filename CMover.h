@@ -7,6 +7,7 @@
 class CMover_ShotBase;
 class CMover_EnemyBase;
 class CMover_BulletBase;
+class CMover_Player;
 
 class CMover
 {
@@ -54,6 +55,7 @@ public:
 	virtual void Hit(CMover_ShotBase*);
 	virtual void Hit(CMover_BulletBase*);
 	virtual void Hit(CMover_EnemyBase*);
+	virtual void Hit(CMover_Player*);
 	virtual void Dead() = 0;		//éÄñS(ëºéE)
 	virtual void Disappear() = 0;	//è¡ñ≈(é©éE)
 

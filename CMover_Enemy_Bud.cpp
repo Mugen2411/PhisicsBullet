@@ -3,7 +3,7 @@
 #include "CMover_Bullet_Corn.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level):
-	CMover_EnemyBase(Level, position, 18.0, 2.0),testDest(0.0, 0.0)
+	CMover_EnemyBase(Level, CAttribute(1.0, 0.5, 1.0, 1.0, 1.0, 1.0),position, 18.0, 2.0),testDest(0.0, 0.0)
 {
 }
 
@@ -15,7 +15,7 @@ int CMover_Enemy_Bud::Update()
 		cnt++;
 		if (cnt == 90) {
 			CVector ppos = med.lock()->GetPlayerPosition();
-			if(!!ppos)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(Position, (ppos-Position).getAngle()));
+			if(!!ppos)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos-Position).getAngle()));
 			cnt = 0;
 			testDest.x = GetRand(640);
 			testDest.y = GetRand(480);

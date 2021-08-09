@@ -4,7 +4,7 @@ class CMover_Bullet_Corn :
     public CMover_BulletBase
 {
 public:
-    CMover_Bullet_Corn(CVector position, double angle);
+    CMover_Bullet_Corn(CStatus baseparams, CVector position, double angle);
     int Update();
     void Render()const;
 

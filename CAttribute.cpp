@@ -7,8 +7,21 @@ CAttribute CAttribute::operator*(double a)
 	ret.None = this->None * a;
 	ret.Fire = this->Fire * a;
 	ret.Aqua = this->Aqua * a;
-	ret.Aqua = this->Thunder * a;
-	ret.Flower = this->Ice * a;
+	ret.Thunder = this->Thunder * a;
+	ret.Flower = this->Flower * a;
+	ret.Ice = this->Ice * a;
+	return ret;
+}
+
+CAttribute CAttribute::operator/(double a)
+{
+	CAttribute ret;
+	ret.None = this->None / a;
+	ret.Fire = this->Fire / a;
+	ret.Aqua = this->Aqua / a;
+	ret.Thunder = this->Thunder / a;
+	ret.Flower = this->Flower / a;
+	ret.Ice = this->Ice / a;
 	return ret;
 }
 
@@ -26,8 +39,21 @@ CAttribute CAttribute::operator*(CAttribute a)
 	ret.None = this->None * a.None;
 	ret.Fire = this->Fire * a.Fire;
 	ret.Aqua = this->Aqua * a.Aqua;
-	ret.Aqua = this->Thunder * a.Thunder;
-	ret.Flower = this->Ice * a.Ice;
+	ret.Thunder = this->Thunder * a.Thunder;
+	ret.Flower = this->Flower * a.Flower;
+	ret.Ice = this->Ice * a.Ice;
+	return ret;
+}
+
+CAttribute CAttribute::operator/(CAttribute a)
+{
+	CAttribute ret;
+	ret.None = this->None / a.None;
+	ret.Fire = this->Fire / a.Fire;
+	ret.Aqua = this->Aqua / a.Aqua;
+	ret.Thunder = this->Thunder / a.Thunder;
+	ret.Flower = this->Flower / a.Flower;
+	ret.Ice = this->Ice / a.Ice;
 	return ret;
 }
 
@@ -37,8 +63,9 @@ CAttribute CAttribute::operator+(CAttribute a)
 	ret.None = this->None + a.None;
 	ret.Fire = this->Fire + a.Fire;
 	ret.Aqua = this->Aqua + a.Aqua;
-	ret.Aqua = this->Thunder + a.Thunder;
-	ret.Flower = this->Ice + a.Ice;
+	ret.Thunder = this->Thunder + a.Thunder;
+	ret.Flower = this->Flower + a.Flower;
+	ret.Ice = this->Ice + a.Ice;
 	return ret;
 }
 

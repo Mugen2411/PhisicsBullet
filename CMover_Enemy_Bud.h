@@ -1,5 +1,6 @@
 #pragma once
 #include "CMover_Enemy.h"
+
 class CMover_Enemy_Bud :
     public CMover_EnemyBase
 {

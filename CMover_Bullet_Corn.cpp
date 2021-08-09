@@ -1,7 +1,7 @@
 #include "CMover_Bullet_Corn.h"
 
-CMover_Bullet_Corn::CMover_Bullet_Corn(CVector position, double angle)
-    :CMover_BulletBase(position, 12, CVector(angle)*4.0, 0.5, 5.0, 5.0, 0.1)
+CMover_Bullet_Corn::CMover_Bullet_Corn(CStatus baseparams, CVector position, double angle)
+    :CMover_BulletBase(baseparams, CAttribute(50,0,0,0,50,0),position, 12, CVector(angle)*4.0, 0.5, 5.0, 5.0, 0.1)
 {
 }
 

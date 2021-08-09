@@ -2,6 +2,7 @@
 #include "CMover.h"
 #include "CControllerFactory.h"
 #include "CStatus.h"
+#include "CAttribute.h"
 
 class CMover_Player :
     public CMover
@@ -25,6 +26,7 @@ public:
     void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
 
+    double Damage(CAttribute BulletATK);
     void Dispatch(std::shared_ptr<CMover>);
 };
 

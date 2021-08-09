@@ -1,8 +1,8 @@
 #include "CEffect_DamageNumber.h"
 #include <DxLib.h>
 
-CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num, int type)
-	:CEffect(position), num(num), type(type), cnt(0)
+CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num, int type, int Style)
+	:CEffect(position), num(num), type(type), cnt(0), style(Style)
 {
 }
 
@@ -16,5 +16,5 @@ void CEffect_DamageNumber::Update()
 void CEffect_DamageNumber::Render() const
 {
 	//printfDx("x:%d, y:%d, num:%d, type:%d\n", Position.x, Position.y, num, type);
-	CNumberDrawer::getIns().Draw(Position.x, Position.y, num, type);
+	CNumberDrawer::getIns().Draw(Position.x, Position.y, num, type, style);
 }

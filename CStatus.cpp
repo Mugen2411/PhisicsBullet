@@ -1,8 +1,9 @@
 #include "CStatus.h"
 #include <cmath>
 
-CStatus::CStatus(int Level):Level(Level)
+CStatus::CStatus(int Level)
 {
+	this->Level = Level;
 	Update();
 }
 

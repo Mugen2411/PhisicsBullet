@@ -64,6 +64,12 @@ void CMover_Player::Disappear()
 {
 }
 
+double CMover_Player::Damage(CAttribute BulletATK)
+{
+	double ret = (BulletATK / (baseParams.DEF)).Sum();
+	return ret;
+}
+
 void CMover_Player::Dispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);

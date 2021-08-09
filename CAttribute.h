@@ -14,6 +14,8 @@ public:
 
 	CAttribute operator *(CAttribute a);
 	CAttribute operator *(double a);
+	CAttribute operator /(CAttribute a);
+	CAttribute operator /(double a);
 	CAttribute operator +(CAttribute a);
 	CAttribute operator -(CAttribute a);
 	double Sum();

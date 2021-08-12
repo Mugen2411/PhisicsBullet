@@ -1,4 +1,6 @@
 #pragma once
+#include "Constant.h"
+
 class CAttribute
 {
 public:
@@ -14,10 +16,13 @@ public:
 
 	CAttribute operator *(CAttribute a);
 	CAttribute operator *(double a);
+	CAttribute operator *=(CAttribute a);
 	CAttribute operator /(CAttribute a);
 	CAttribute operator /(double a);
 	CAttribute operator +(CAttribute a);
+	CAttribute operator +=(CAttribute a);
 	CAttribute operator -(CAttribute a);
+	bool isZero();
 	double Sum();
 };
 

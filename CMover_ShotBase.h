@@ -10,6 +10,8 @@ class CMover_ShotBase :
 protected:
     CAttribute ATK;
     CStatus baseParams;
+
+    std::weak_ptr<CMover> target;
 public:
     CMover_ShotBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
 
@@ -19,6 +21,7 @@ public:
     virtual void Dead() = 0;            //‘¼ŽE
     virtual void Disappear() = 0;       //Ž©ŽE
 
+    CVector getHomingAngle(double maxSpeed);
     void Dispatch(std::shared_ptr<CMover>);
     void Hit(CMover_EnemyBase*);
 };

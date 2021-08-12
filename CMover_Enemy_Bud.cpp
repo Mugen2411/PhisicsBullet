@@ -1,9 +1,10 @@
 #include "CMover_Enemy_Bud.h"
 #include "CImageManager.h"
 #include "CMover_Bullet_Corn.h"
+#include "CNumberDrawer.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level):
-	CMover_EnemyBase(Level, CAttribute(1.0, 0.5, 1.0, 1.0, 1.0, 1.0),position, 18.0, 2.0),testDest(0.0, 0.0)
+	CMover_EnemyBase(Level, CAttribute(1.0, 0.5, 1.0, 1.0, 2.0, 1.0), 10,position, 18.0, 2.0),testDest(0.0, 0.0)
 {
 }
 
@@ -38,7 +39,7 @@ int CMover_Enemy_Bud::Update()
 #ifdef _DEBUG
 	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
 #endif
-	return 0;
+	return Status;
 }
 
 void CMover_Enemy_Bud::Render() const
@@ -52,6 +53,8 @@ void CMover_Enemy_Bud::Render() const
 		return;
 	}
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
+	CNumberDrawer::getIns().Draw(Position.x, Position.y + 16, baseParams.HP, 3);
+	CNumberDrawer::getIns().Draw(Position.x, Position.y + 26, baseParams.MaxHP, 3, 1);
 }
 
 void CMover_Enemy_Bud::Dead()

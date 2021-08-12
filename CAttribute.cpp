@@ -13,6 +13,13 @@ CAttribute CAttribute::operator*(double a)
 	return ret;
 }
 
+CAttribute CAttribute::operator*=(CAttribute a)
+{
+	CAttribute ret = *this * a;
+	*this = ret;
+	return ret;
+}
+
 CAttribute CAttribute::operator/(double a)
 {
 	CAttribute ret;
@@ -69,9 +76,21 @@ CAttribute CAttribute::operator+(CAttribute a)
 	return ret;
 }
 
+CAttribute CAttribute::operator+=(CAttribute a)
+{
+	CAttribute ret = *this + a;
+	*this = ret;
+	return ret;
+}
+
 CAttribute CAttribute::operator-(CAttribute a)
 {
 	return *this+(a*-1.0);
+}
+
+bool CAttribute::isZero()
+{
+	return Sum() < Constant::zero_border;
 }
 
 double CAttribute::Sum()

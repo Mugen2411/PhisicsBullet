@@ -17,8 +17,8 @@ public:
     virtual int Update() = 0;
     virtual void Render()const = 0;
 
-    virtual void Dead() = 0;            //‘¼ŽE
-    virtual void Disappear() = 0;       //Ž©ŽE
+    virtual void Dead();            //‘¼ŽE
+    virtual void Disappear();       //Ž©ŽE
 
     void Dispatch(std::shared_ptr<CMover>);
 

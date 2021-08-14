@@ -5,6 +5,7 @@
 #include "CDrawGraphFReserve.h"
 #include "CDrawRotaGraphReserve.h"
 #include "CDrawRotaGraphFReserve.h"
+#include "CDrawRotaGraphFwithBlendReserve.h"
 #include "CRenderReserveList.h"
 
 CImage::CImage(const char* path)
@@ -48,4 +49,10 @@ void CImage::DrawRotaF(float x1, float y1, float angle, float extend, double pri
 {
 	if (num > GHandle.size())return;
 	CRenderReserveList::Add(new CDrawRotaGraphFReserve(GHandle[num], priority, x1, y1, angle, extend));
+}
+
+void CImage::DrawRotaFwithBlend(float x1, float y1, float angle, float extend, int color, int Blendmode, int value, double priority, int num)
+{
+	if (num > GHandle.size())return;
+	CRenderReserveList::Add(new CDrawRotaGraphFwithBlendReserve(GHandle[num], priority, x1, y1, angle, extend, color, Blendmode, value));
 }

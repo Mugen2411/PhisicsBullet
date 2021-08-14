@@ -246,6 +246,12 @@
     <ClCompile Include="CCosutumeBase.cpp">
       <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
+    <ClCompile Include="CEffect_BulletDelete.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawRotaGraphFwithBlendReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -406,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="CMover.h">
       <Filter>ヘッダー ファイル\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect_BulletDelete.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawRotaGraphFwithBlendReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

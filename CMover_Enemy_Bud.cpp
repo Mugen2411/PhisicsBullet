@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level):
-	CMover_EnemyBase(Level, CAttribute(1.0, 0.5, 1.0, 1.0, 2.0, 1.0), 10,position, 18.0, 2.0),testDest(0.0, 0.0)
+	CMover_EnemyBase(Level, CAttribute(1.0, 0.5, 1.0, 1.0, 2.0, 1.0), 10, 0xFFFF00, position, 18.0, 2.0),testDest(0.0, 0.0)
 {
 }
 
@@ -55,12 +55,4 @@ void CMover_Enemy_Bud::Render() const
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
 	CNumberDrawer::getIns().Draw(Position.x, Position.y + 16, baseParams.HP, 3);
 	CNumberDrawer::getIns().Draw(Position.x, Position.y + 26, baseParams.MaxHP, 3, 1);
-}
-
-void CMover_Enemy_Bud::Dead()
-{
-}
-
-void CMover_Enemy_Bud::Disappear()
-{
 }

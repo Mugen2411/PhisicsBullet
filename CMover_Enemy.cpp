@@ -1,9 +1,11 @@
 #include "CMover_Enemy.h"
+#include "CEffectParent.h"
+#include "CEffect_BulletDelete.h"
 
-CMover_EnemyBase::CMover_EnemyBase(int Level, CAttribute attrDEF, int baseMoney, CVector position, double accel, double maxSpeed):
+CMover_EnemyBase::CMover_EnemyBase(int Level, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), 30, 1, 15, 25, 0.0, 0)
 	,Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
-	baseParams(Level), attrDEF(attrDEF), baseMoney(baseMoney)
+	baseParams(Level), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
 {
 }
 
@@ -14,6 +16,15 @@ void CMover_EnemyBase::Walk(CVector destination)
 	Direction = diff.getDirection();
 	if (diff.dot(Velocity)> MaxSpeed)return;
 	Acceleration += diff * Accel;
+}
+
+void CMover_EnemyBase::Dead()
+{
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size+4, Color));
+}
+
+void CMover_EnemyBase::Disappear()
+{
 }
 
 double CMover_EnemyBase::Damage(CAttribute shotATK)

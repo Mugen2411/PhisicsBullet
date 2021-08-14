@@ -12,7 +12,4 @@ public:
 
     int Update();
     void Render()const;
-    
-    void Dead();
-    void Disappear();
 };

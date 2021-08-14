@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <DxLib.h>
 
 class CImageManager :
     public Singleton<CImageManager>
@@ -15,6 +16,14 @@ public:
     void set(std::string key, std::shared_ptr<CImage> img);
     std::shared_ptr<CImage> find(std::string key);
 
+    enum BLENDMODE {
+        BM_NONE = DX_BLENDMODE_NOBLEND,
+        BM_ADD = DX_BLENDMODE_ADD,
+        BM_SUB = DX_BLENDMODE_SUB,
+        BM_ALPHA = DX_BLENDMODE_ALPHA,
+        BM_MUL = DX_BLENDMODE_MUL
+    };
+
     void Render();
 };
 
@@ -23,6 +32,7 @@ std::shared_ptr<CImage> LG_grass();
 std::shared_ptr<CImage> LG_icefloor();
 std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
+std::shared_ptr<CImage> LG_effect_bulletdelete();
 
 std::shared_ptr<CImage> LG_enemy_bud();
 std::shared_ptr<CImage> LG_enemy_bud_intro();

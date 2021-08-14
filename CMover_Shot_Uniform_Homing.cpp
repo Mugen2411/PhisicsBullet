@@ -9,25 +9,17 @@ int CMover_Shot_Uniform_Homing::Update()
 {
 	cnt++;
 	if (cnt > 240) {
-		Status = 2;
+		Status = 1;
 		return Status;
 	}
 
 	pow += 1.0;
 	baseParams.ATK *= 0.992;
-	ApplyForce(getHomingAngle(6.0)*pow);
+	ApplyForce(getHomingAngle(4.0)*pow);
 	return Status;
 }
 
 void CMover_Shot_Uniform_Homing::Render() const
 {
 	CImageManager::getIns().find("shot_uniform_homing")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0, -0.1);
-}
-
-void CMover_Shot_Uniform_Homing::Dead()
-{
-}
-
-void CMover_Shot_Uniform_Homing::Disappear()
-{
 }

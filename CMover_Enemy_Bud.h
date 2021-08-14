@@ -10,7 +10,5 @@ public:
     CMover_Enemy_Bud(CVector position, int Level);
     int Update();
     void Render()const;
-    void Dead();
-    void Disappear();
 };
 

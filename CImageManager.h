@@ -24,7 +24,7 @@ public:
         BM_MUL = DX_BLENDMODE_MUL
     };
 
-    void Render();
+    void Render()const;
 };
 
 //以下ローダー関数リスト(LGはLoadGraphicの略)
@@ -33,6 +33,10 @@ std::shared_ptr<CImage> LG_icefloor();
 std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
 std::shared_ptr<CImage> LG_effect_bulletdelete();
+
+std::shared_ptr<CImage> LG_effect_number1();
+std::shared_ptr<CImage> LG_effect_number2();
+std::shared_ptr<CImage> LG_effect_number3();
 
 std::shared_ptr<CImage> LG_enemy_bud();
 std::shared_ptr<CImage> LG_enemy_bud_intro();

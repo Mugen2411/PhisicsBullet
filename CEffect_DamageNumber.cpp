@@ -1,20 +1,20 @@
 #include "CEffect_DamageNumber.h"
 #include <DxLib.h>
 
-CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num, int type, int Style)
-	:CEffect(position), num(num), type(type), cnt(0), style(Style)
+CEffect_Number::CEffect_Number(CVector position, double num, int type, int Style)
+	:CEffect(position), num(num), type(type), cnt(0), style(Style), dy(4.0)
 {
 }
 
-void CEffect_DamageNumber::Update()
+void CEffect_Number::Update()
 {
-	Position.y -= 1;
 	cnt++;
-	if (cnt > 30)Status = 1;
+	Position.y -= dy;
+	dy *= 0.90;
+	if (cnt > 60)Status = 1;
 }
 
-void CEffect_DamageNumber::Render() const
+void CEffect_Number::Render() const
 {
-	//printfDx("x:%d, y:%d, num:%d, type:%d\n", Position.x, Position.y, num, type);
 	CNumberDrawer::getIns().Draw(Position.x, Position.y, num, type, style);
 }

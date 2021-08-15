@@ -29,6 +29,6 @@ void CMover_BulletBase::Hit(CMover_Player* m)
 {
 	double ret = m->Damage(ATK*baseParams.ATK);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, 0));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_Number>(Position, ret, 0));
 	Status = 1;
 }

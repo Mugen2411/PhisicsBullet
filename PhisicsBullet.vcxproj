@@ -163,6 +163,7 @@
     <ClCompile Include="CEffectParent.cpp" />
     <ClCompile Include="CEffect_BulletDelete.cpp" />
     <ClCompile Include="CEffect_DamageNumber.cpp" />
+    <ClCompile Include="CEffect_MoneyNumber.cpp" />
     <ClCompile Include="CField.cpp" />
     <ClCompile Include="CFieldFactory.cpp" />
     <ClCompile Include="CFieldHolder.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="CEffectParent.h" />
     <ClInclude Include="CEffect_BulletDelete.h" />
     <ClInclude Include="CEffect_DamageNumber.h" />
+    <ClInclude Include="CEffect_MoneyNumber.h" />
     <ClInclude Include="CField.h" />
     <ClInclude Include="CFieldFactory.h" />
     <ClInclude Include="CFieldHolder.h" />

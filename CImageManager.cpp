@@ -6,7 +6,11 @@ CImageManager::CImageManager()
     loaderList["Field_IceFloor"] = LG_icefloor;
     loaderList["player_komuk"] = LG_player_komuk;
     loaderList["aim"] = LG_aim;
+
     loaderList["effect_bulletdelete"] = LG_effect_bulletdelete;
+    loaderList["effect_number1"] = LG_effect_number1;
+    loaderList["effect_number2"] = LG_effect_number2;
+    loaderList["effect_number3"] = LG_effect_number3;
 
     loaderList["enemy_bud"] = LG_enemy_bud;
     loaderList["enemy_bud_intro"] = LG_enemy_bud_intro;
@@ -53,6 +57,21 @@ std::shared_ptr<CImage> LG_aim()
 std::shared_ptr<CImage> LG_effect_bulletdelete()
 {
     return std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
+}
+
+std::shared_ptr<CImage> LG_effect_number1()
+{
+    return std::make_shared<CImage>("media/graphic/system/font/num1.png", 44, 11, 4, 10, 10);
+}
+
+std::shared_ptr<CImage> LG_effect_number2()
+{
+    return std::make_shared<CImage>("media/graphic/system/font/num2.png", 44, 11, 4, 7, 7);
+}
+
+std::shared_ptr<CImage> LG_effect_number3()
+{
+    return std::make_shared<CImage>("media/graphic/system/font/num3.png", 11, 11, 1, 10, 10);
 }
 
 std::shared_ptr<CImage> LG_enemy_bud()

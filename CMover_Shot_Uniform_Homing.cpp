@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(CStatus baseparams, CVector position, double angle)
-:CMover_ShotBase(baseparams, CAttribute(30,0,0,0,0,0), position, 16, CVector(angle)*1.0, 4, 0.2, 12, 0.0), cnt(0), pow(1.0){
+:CMover_ShotBase(baseparams, CAttribute(30,0,0,0,0,0), position, 16, CVector(angle)*1.0, 1, 0.2, 12, 0.0), cnt(0), pow(1.0){
 }
 
 int CMover_Shot_Uniform_Homing::Update()

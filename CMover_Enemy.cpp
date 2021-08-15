@@ -20,7 +20,10 @@ void CMover_EnemyBase::Walk(CVector destination)
 
 void CMover_EnemyBase::Dead()
 {
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size+4, Color));
+	for(int i=0;i<3;i++)CEffectParent::RegisterEffect(
+		std::make_shared<CEffect_BulletDelete>(
+			Position+CVector(GetRand(100)*0.2-10, GetRand(100) * 0.2-10), 
+			Velocity, Size+4-GetRand(8), Color));
 }
 
 void CMover_EnemyBase::Disappear()

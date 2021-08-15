@@ -3,6 +3,7 @@ class Constant
 {
 public:
 	static double Gravity;
+	static double Frame;
 	static double perFrame;
 	static double zero_border;
 

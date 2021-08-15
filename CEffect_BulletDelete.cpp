@@ -14,6 +14,6 @@ void CEffect_BulletDelete::Update()
 
 void CEffect_BulletDelete::Render()const
 {
-	CImageManager::getIns().find("effect_bulletdelete")->DrawRotaFwithBlend(Position.x, Position.y, Velocity.getAngle(), (Size*1.08) / 16.0, Color, CImageManager::BM_NONE, 255, 0.1, cnt / 2.0);
+	CImageManager::getIns().find("effect_bulletdelete")->DrawRotaFwithBlend(Position.x, Position.y, Velocity.getAngle(), (Size*1.08) / 16.0, Color, CImageManager::BM_ADD, 255, 0.1, cnt / 2.0);
 	CImageManager::getIns().find("effect_bulletdelete")->DrawRotaFwithBlend(Position.x, Position.y, Velocity.getAngle(), Size / 16.0, 0xFFFFFF, CImageManager::BM_ADD, 255, 0.1, cnt / 2.0);
 }

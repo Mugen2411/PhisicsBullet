@@ -21,6 +21,8 @@ protected:
 	bool isPause;
 	int pauseGuage;
 
+	int reserveMoney=0;	//‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
+
 public:
 	CGameMediator(SceneManager *ScnMng);
 	virtual ~CGameMediator();
@@ -31,6 +33,8 @@ public:
 	void ApplyForceToMover(CMover*);
 	CVector GetPlayerPosition();
 	std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
+	void getMoney(int value);
+
 	void Update();
 	void Render()const;
 };

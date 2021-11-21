@@ -8,18 +8,18 @@
 #include "CDrawRotaGraphFwithBlendReserve.h"
 #include "CRenderReserveList.h"
 
-CImage::CImage(const char* path)
+CImage::CImage(std::string path)
 {
 	GHandle.resize(1);
 
-	GHandle.at(0) = LoadGraph(path);
+	GHandle.at(0) = LoadGraph(path.c_str());
 }
 
-CImage::CImage(const char* path, int AllNum, int Xnum, int Ynum, int w, int h)
+CImage::CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h)
 {
 	GHandle.resize(AllNum);
 
-	LoadDivGraph(path, AllNum, Xnum, Ynum, w, h, GHandle.data());
+	LoadDivGraph(path.c_str(), AllNum, Xnum, Ynum, w, h, GHandle.data());
 }
 
 CImage::~CImage()

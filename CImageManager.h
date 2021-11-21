@@ -14,6 +14,7 @@ class CImageManager :
 public:
     CImageManager();
     void set(std::string key, std::shared_ptr<CImage> img);
+    void unload();
     std::shared_ptr<CImage> find(std::string key);
 
     enum BLENDMODE {

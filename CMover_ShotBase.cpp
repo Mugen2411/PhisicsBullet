@@ -41,6 +41,6 @@ void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
 	double Damage = m->Damage(ATK * baseParams.ATK);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_Number>(Position, Damage, m->DamageColor(ATK), 1));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, m->DamageColor(ATK), 1));
 	Status = 1;
 }

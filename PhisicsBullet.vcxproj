@@ -128,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AssemblerOutput>AssemblyAndMachineCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,6 +143,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AssemblerOutput>AssemblyAndMachineCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
+    <ClCompile Include="CCostume_Uniform.cpp" />
     <ClCompile Include="CCosutumeBase.cpp" />
     <ClCompile Include="CDrawGraphFReserve.cpp" />
     <ClCompile Include="CDrawGraphReserve.cpp" />
@@ -208,6 +211,7 @@
   <ItemGroup>
     <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CControllerFactory.h" />
+    <ClInclude Include="CCostume_Uniform.h" />
     <ClInclude Include="CCosutumeBase.h" />
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />

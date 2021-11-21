@@ -24,7 +24,7 @@ void CGameMediator::CreateParts()
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32), 24.0, 4.0));
 	for (int i = 0; i < 3; i++) {
-		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 5));
+		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 0));
 	}
 }
 
@@ -66,6 +66,11 @@ std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p)
 	return cur;
 }
 
+void CGameMediator::getMoney(int value)
+{
+	reserveMoney += value;
+}
+
 void CGameMediator::Update()
 {
 	if (isPause) {
@@ -90,4 +95,8 @@ void CGameMediator::Render() const
 	moverParent->Render();
 	powerParent->Render();
 	CEffectParent::Render();
+
+#ifdef _DEBUG
+	printfDx("Money:%d\n", reserveMoney);
+#endif
 }

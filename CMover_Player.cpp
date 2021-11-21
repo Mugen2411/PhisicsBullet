@@ -7,7 +7,7 @@
 CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed)
 	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Accel(accel), MaxSpeed(maxSpeed), Direction(1), State(0) ,baseParams(0){
+	, Accel(accel), MaxSpeed(maxSpeed), Direction(1), State(0) ,baseParams(0), costume(){
 }
 
 void CMover_Player::Walk()

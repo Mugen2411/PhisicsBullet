@@ -3,6 +3,7 @@
 #include "CControllerFactory.h"
 #include "CStatus.h"
 #include "CAttribute.h"
+#include "CCosutumeBase.h"
 
 class CMover_Player :
     public CMover
@@ -16,6 +17,8 @@ protected:
     int Direction;
     double animCount;
     CStatus baseParams;
+
+    std::shared_ptr<CCostumeBase> costume;
 public:
     CMover_Player(CVector position, double accel, double maxSpeed);
     ~CMover_Player() {};

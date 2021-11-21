@@ -24,6 +24,11 @@ void CImageManager::set(std::string key, std::shared_ptr<CImage> img)
     imgList[key] = img;
 }
 
+void CImageManager::unload()
+{
+    imgList.clear();
+}
+
 std::shared_ptr<CImage> CImageManager::find(std::string key)
 {
     auto itr = imgList.find(key);

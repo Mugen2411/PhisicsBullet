@@ -2,7 +2,7 @@
 #include "CEffect.h"
 #include "CNumberDrawer.h"
 
-class CEffect_Number :
+class CEffect_DamageNumber :
     public CEffect
 {
     double dy;
@@ -11,7 +11,7 @@ class CEffect_Number :
     int type = 0;
     int style = 0;
 public:
-    CEffect_Number(CVector position, double num, int type, int Style=0);
+    CEffect_DamageNumber(CVector position, double num, int type, int Style=0);
 
     void Update();
     void Render()const;

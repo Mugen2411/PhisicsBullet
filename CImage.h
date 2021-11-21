@@ -1,13 +1,14 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class CImage
 {
 private:
 	std::vector<int> GHandle;
 public:
-	CImage(const char* path);
-	CImage(const char* path, int AllNum, int Xnum, int Ynum, int w, int h);
+	CImage(std::string path);
+	CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h);
 	~CImage();
 	
 	void Draw(int x1, int y1, double priority = 0.0, int num = 0);

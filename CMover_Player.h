@@ -10,20 +10,20 @@ class CMover_Player :
 {
 protected:
     std::shared_ptr<CSTGInputManager> input;
-    double Accel;
-    double MaxSpeed;
 
     int State;
     int Direction;
+    int Charge;					//åªç›ÇÃó≠Çﬂéûä‘(0ÅÖChargeÅÖMaxCharge)
     double animCount;
     CStatus baseParams;
 
     std::shared_ptr<CCostumeBase> costume;
 public:
-    CMover_Player(CVector position, double accel, double maxSpeed);
+    CMover_Player(CVector position);
     ~CMover_Player() {};
     virtual void Walk();
     int Update();
+    void Shot();
     void Render()const;
     void Dead();
     void Disappear();

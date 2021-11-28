@@ -6,7 +6,7 @@
 #include <DxLib.h>
 
 CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
-	:CMover(MV_BULLET, position, size, velocity, mass, 0, frictionCF, airresCF, reflectCF, 0)
+	:CMover(MV_BULLET, position, size, velocity, mass, frictionCF, airresCF, reflectCF, 0)
 	,baseParams(baseparams), ATK(atk)
 {
 }

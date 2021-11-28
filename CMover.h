@@ -24,7 +24,7 @@ protected:
 	CVector Acceleration;	//‰Á‘¬“x
 
 	double Mass;			//¿—Ê
-	double SFrictionCF;		//Ã~–€CŒW”
+	double nowFricted;		//Œ»İó‚¯‚Ä‚¢‚é–€CŒn”
 	double FrictionCF;		//–€CŒW”
 	double AirResCF;		//‹ó‹C’ïRŒW”(•——Í‚Ìó‚¯‚â‚·‚³)
 	double ReflectCF;		//”½”­ŒW”
@@ -37,7 +37,7 @@ protected:
 	
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
-		double mass, double sfrictionCF, double frictionCF, double airresCF, double reflectCF, double temperature);
+		double mass, double frictionCF, double airresCF, double reflectCF, double temperature);
 	virtual ~CMover() {};
 	void setMediator(std::shared_ptr<CGameMediator>);
 	CVector getPosition();

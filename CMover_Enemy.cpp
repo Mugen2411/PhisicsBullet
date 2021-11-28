@@ -4,7 +4,7 @@
 #include "CEffect_MoneyNumber.h"
 
 CMover_EnemyBase::CMover_EnemyBase(int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
-	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), 30, 1, 15, 25, 0.0, 0)
+	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0)
 	,Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
 	baseParams(Level, atkCF, defCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
 {

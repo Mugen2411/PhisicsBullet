@@ -1,8 +1,8 @@
 #include "CMover.h"
 
-CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass, double sfrictionCF, double frictionCF, double airresCF, double reflectCF, double temperature)
+CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF, double temperature)
 	:Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
-	Mass(mass), SFrictionCF(sfrictionCF), FrictionCF(frictionCF), AirResCF(airresCF),
+	Mass(mass), nowFricted(0.0), FrictionCF(frictionCF), AirResCF(airresCF),
 	ReflectCF(reflectCF), Temperature(temperature), Status(0), Category(ID)
 {
 }
@@ -34,6 +34,7 @@ void CMover::ApplyForce(CVector F)
 
 void CMover::ApplyFrictionForce(double FloorFrictionCF)
 {
+	nowFricted = FloorFrictionCF;
 	auto NormA = Velocity.getNorm();
 	ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity);
 }

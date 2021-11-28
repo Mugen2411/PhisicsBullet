@@ -7,7 +7,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	//SetWindowSizeExtendRate(2.0);
 	SetGraphMode(640 * 2, 480 * 2, 32);
 	if (DxLib_Init() != 0)return -1;
-	//SetAlwaysRunFlag(TRUE);
+	SetAlwaysRunFlag(TRUE);
 	//SetWaitVSyncFlag(FALSE);
 	CGame g = CGame();
 	int offscreen = MakeScreen(640, 480);

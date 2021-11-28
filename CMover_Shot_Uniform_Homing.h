@@ -8,7 +8,7 @@ protected:
     int cnt;
     double pow;
 public:
-    CMover_Shot_Uniform_Homing(CStatus baseparam, CVector position, double angle);
+    CMover_Shot_Uniform_Homing(double baseATK, CVector position, double angle);
 
     int Update();
     void Render()const;

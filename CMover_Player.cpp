@@ -3,29 +3,30 @@
 #include <cmath>
 #include <DxLib.h>
 #include "CMover_Shot_Uniform_Homing.h"
+#include "CCostume_Uniform.h"
 
-CMover_Player::CMover_Player(CVector position, double accel, double maxSpeed)
-	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 1, 15, 25, 0.0, 0), animCount(0.0)
+CMover_Player::CMover_Player(CVector position)
+	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Accel(accel), MaxSpeed(maxSpeed), Direction(1), State(0) ,baseParams(0), costume(){
+	,Direction(1), Charge(0), State(0), baseParams(0), costume(std::make_shared<CCostume_Uniform>()) {
 }
 
 void CMover_Player::Walk()
 {
-	CVector v = input->getVector() * Accel;
+	CVector v = input->getVector() * costume->getAccelaration() * nowFricted;
 	if (v.x < 0) {
 		if (Velocity.x > 0)Acceleration.x += v.x;
-		else if(-Velocity.x < MaxSpeed)Acceleration.x += v.x;
+		else if(-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
 	}else {
 		if (Velocity.x < 0)Acceleration.x += v.x;
-		else if (Velocity.x < MaxSpeed)Acceleration.x += v.x;
+		else if (Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
 	}
 	if (v.y < 0) {
 		if (Velocity.y > 0)Acceleration.y += v.y;
-		else if(-Velocity.y < MaxSpeed)Acceleration.y += v.y;
+		else if(-Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
 	}else {
 		if (Velocity.y < 0)Acceleration.y += v.y;
-		else if (Velocity.y < MaxSpeed)Acceleration.y += v.y;
+		else if (Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
 	}
 }
 
@@ -33,21 +34,36 @@ int CMover_Player::Update()
 {
 	if (input->update() > 0) {
 		Direction = input->getDirection();
-		animCount += 0.1;
+		animCount += costume->getAnimSpeed();
 		if (animCount > 3.0)animCount = 0.0;
 	}
 	else {
 		animCount = 0.0;
 	}
-	if (input->LClick(true) % 20 == 1) {
-		med.lock()->RegisterMover(std::make_shared<CMover_Shot_Uniform_Homing>(baseParams, Position, input->getMouseAngle(Position)));
-	}
+	Shot();
 	Walk();
 	
 #ifdef _DEBUG
 	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
 #endif
 	return 0;
+}
+
+void CMover_Player::Shot()
+{
+	float angle = input->getMouseAngle(Position);
+	int LPushTime = input->LClick(true);
+	if (LPushTime == 0) {
+		Charge++;
+		Charge %= costume->getMaxCharge();
+		return;
+	}
+	if (Charge == costume->getMaxCharge() - 1) {
+		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position, angle));
+		Charge = 0;
+		return;
+	}
+	if (LPushTime % costume->getShotRate() == 1)med.lock()->RegisterMover(costume->WeakShot(baseParams.ATK, Position, angle));
 }
 
 void CMover_Player::Render() const

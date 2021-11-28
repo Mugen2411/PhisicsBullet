@@ -3,9 +3,9 @@
 #include "CEffect_DamageNumber.h"
 #include "CEffect_BulletDelete.h"
 
-CMover_ShotBase::CMover_ShotBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
-	:CMover(MV_SHOT, position, size, velocity, mass, 0, frictionCF, airresCF, reflectCF, 0)
-	,ATK(atk), baseParams(baseparams)
+CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
+	:CMover(MV_SHOT, position, size, velocity, mass, frictionCF, airresCF, reflectCF, 0)
+	,ATK(atk), baseATK(baseATK)
 {
 }
 
@@ -39,7 +39,7 @@ void CMover_ShotBase::Dispatch(std::shared_ptr<CMover> m)
 
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
-	double Damage = m->Damage(ATK * baseParams.ATK);
+	double Damage = m->Damage(ATK * baseATK);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, m->DamageColor(ATK), 1));
 	Status = 1;

@@ -99,9 +99,6 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CObjectNode.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CMenuSelecter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -284,9 +281,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CObjectNode.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CMenuSelecter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

@@ -16,7 +16,7 @@ void CMover_EnemyBase::Walk(CVector destination)
 	double angle = diff.getAngle();
 	Direction = diff.getDirection();
 	if (diff.dot(Velocity)> MaxSpeed)return;
-	Acceleration += diff * Accel;
+	Acceleration += diff * Accel * nowFricted;
 }
 
 void CMover_EnemyBase::Dead()

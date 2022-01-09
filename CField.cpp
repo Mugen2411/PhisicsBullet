@@ -1,7 +1,7 @@
 #include "CField.h"
 
-CField::CField(std::string gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF)
-	:GID(gid), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF)
+CField::CField(std::string gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF, CAttribute damage)
+	:GID(gid), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF), damage(damage)
 {
 }
 

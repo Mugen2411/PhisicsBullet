@@ -2,6 +2,7 @@
 #include "CEffectParent.h"
 #include "CEffect_BulletDelete.h"
 #include "CEffect_MoneyNumber.h"
+#include "CEffect_DamageNumber.h"
 
 CMover_EnemyBase::CMover_EnemyBase(int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0)
@@ -31,16 +32,16 @@ void CMover_EnemyBase::Disappear()
 {
 }
 
-double CMover_EnemyBase::Damage(CAttribute shotATK)
+void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 {
-	if (Status < 0)return 0.0;
+	if (Status < 0)return;
 	double ret = (shotATK / (attrDEF* baseParams.DEF)).Sum();
 	baseParams.HP -= ret;
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, DamageColor(shotATK), style));
 	if (baseParams.HP < 0) {
 		Status = 1;
 		Drop();
 	}
-	return ret;
 }
 
 void CMover_EnemyBase::Drop()
@@ -58,7 +59,7 @@ int CMover_EnemyBase::DamageColor(CAttribute shotATK)
 	return 0;
 }
 
-void CMover_EnemyBase::Dispatch(std::shared_ptr<CMover> m)
+void CMover_EnemyBase::HitDispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);
 }

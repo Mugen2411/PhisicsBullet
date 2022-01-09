@@ -18,6 +18,10 @@ void CMover_ShotBase::Disappear()
 {
 }
 
+void CMover_ShotBase::Damage(CAttribute shotATK, int style)
+{
+}
+
 CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 {
 	if (!target.lock()) {
@@ -32,15 +36,14 @@ CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 	return diff;
 }
 
-void CMover_ShotBase::Dispatch(std::shared_ptr<CMover> m)
+void CMover_ShotBase::HitDispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);
 }
 
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
-	double Damage = m->Damage(ATK * baseATK);
+	m->Damage(ATK * baseATK, 1);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, Damage, m->DamageColor(ATK), 1));
 	Status = 1;
 }

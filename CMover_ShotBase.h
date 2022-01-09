@@ -21,8 +21,10 @@ public:
     virtual void Dead();            //‘¼ŽE
     virtual void Disappear();       //Ž©ŽE
 
+    void Damage(CAttribute shotATK, int style);
+
     CVector getHomingAngle(double maxSpeed);
-    void Dispatch(std::shared_ptr<CMover>);
+    void HitDispatch(std::shared_ptr<CMover>);
     void Hit(CMover_EnemyBase*);
 };
 

@@ -20,15 +20,18 @@ void CMover_BulletBase::Disappear()
 {
 }
 
-void CMover_BulletBase::Dispatch(std::shared_ptr<CMover> m)
+void CMover_BulletBase::Damage(CAttribute shotATK, int style)
+{
+}
+
+void CMover_BulletBase::HitDispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);
 }
 
 void CMover_BulletBase::Hit(CMover_Player* m)
 {
-	double ret = m->Damage(ATK*baseParams.ATK);
+	m->Damage(ATK*baseParams.ATK, 0);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, 0));
 	Status = 1;
 }

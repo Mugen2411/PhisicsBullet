@@ -16,11 +16,11 @@ public:
     double MaxSpeed;
     int baseMoney;
 
-    CStatus baseParams;
-    CAttribute attrDEF;
-
     int Direction;
     double animCount;
+
+    CStatus baseParams;		//基礎ステータス(HP・攻撃力・防御力)
+    CAttribute attrDEF;		//属性耐性(なんかいっぱい)
 
     int Color;
     
@@ -31,9 +31,9 @@ public:
     virtual void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
     
-    double Damage(CAttribute shotATK);
+    void Damage(CAttribute shotATK, int style);
     void Drop();
     int DamageColor(CAttribute shotATK);
-    void Dispatch(std::shared_ptr<CMover>);
+    void HitDispatch(std::shared_ptr<CMover>);
 };
 

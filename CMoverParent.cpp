@@ -72,7 +72,7 @@ void CMoverParent::Hit()
 		for (std::shared_ptr<CMover> j : moverList) {
 			if (i == j)continue;
 			if ((i->Position - j->Position).getLength2() < (i->getSize() + j->getSize())* (i->getSize() + j->getSize())) {
-				i->Dispatch(j);
+				i->HitDispatch(j);
 			}
 		}
 	}

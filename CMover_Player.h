@@ -29,7 +29,8 @@ public:
     void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
 
-    double Damage(CAttribute BulletATK);
-    void Dispatch(std::shared_ptr<CMover>);
+    void Damage(CAttribute BulletATK, int style);
+    void HitDispatch(std::shared_ptr<CMover>);
+    int DamageColor(CAttribute shotATK);
 };
 

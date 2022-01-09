@@ -20,7 +20,9 @@ public:
     virtual void Dead();            //‘¼ŽE
     virtual void Disappear();       //Ž©ŽE
 
-    void Dispatch(std::shared_ptr<CMover>);
+    void Damage(CAttribute shotATK, int style);
+
+    void HitDispatch(std::shared_ptr<CMover>);
 
     void Hit(CMover_Player* m);
 };

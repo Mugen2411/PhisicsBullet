@@ -4,6 +4,8 @@
 #include <DxLib.h>
 #include "CMover_Shot_Uniform_Homing.h"
 #include "CCostume_Uniform.h"
+#include "CEffectParent.h"
+#include "CEffect_DamageNumber.h"
 
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 15, 25, 0.0, 0), animCount(0.0)
@@ -80,14 +82,22 @@ void CMover_Player::Disappear()
 {
 }
 
-double CMover_Player::Damage(CAttribute BulletATK)
+void CMover_Player::Damage(CAttribute BulletATK, int style)
 {
 	double ret = (BulletATK / (baseParams.DEF)).Sum();
-	return ret;
+	baseParams.HP -= ret;
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, DamageColor(BulletATK), style));
 }
 
-void CMover_Player::Dispatch(std::shared_ptr<CMover> m)
+void CMover_Player::HitDispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);
 }
 
+int CMover_Player::DamageColor(CAttribute shotATK)
+{
+	auto real = shotATK * costume->AttributeDEF;
+	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 2;
+	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 1;
+	return 0;
+}

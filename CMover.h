@@ -1,6 +1,8 @@
 #pragma once
 #include "CVector.h"
 #include "Constant.h"
+#include "CStatus.h"
+#include "CAttribute.h"
 #include "CGameMediator.h"
 #include <memory>
 
@@ -48,7 +50,8 @@ public:
 	void ApplyAirForce(CVector F);
 	void Move();
 
-	virtual void Dispatch(std::shared_ptr<CMover> m) = 0;
+	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;
+
 	virtual int Update() = 0;		//0:¶‘¶@1:‘¼E 2:©E
 	virtual void Render() const = 0;
 	virtual void Hit(CMover*);
@@ -58,6 +61,8 @@ public:
 	virtual void Hit(CMover_Player*);
 	virtual void Dead() = 0;		//€–S(‘¼E)
 	virtual void Disappear() = 0;	//Á–Å(©E)
+
+	virtual void Damage(CAttribute shotATK, int style) = 0;		//ƒ_ƒ[ƒW‚ğó‚¯‚éˆ—
 
 	void onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//•Ç‚Ìã‚Éæ‚Á‚½‚©”»’è‚µA”½Ë‚·‚é
 	virtual void ifonWall() {};

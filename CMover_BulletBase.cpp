@@ -24,6 +24,10 @@ void CMover_BulletBase::Damage(CAttribute shotATK, int style)
 {
 }
 
+void CMover_BulletBase::RatioDamage(CAttribute shotATK, int style)
+{
+}
+
 void CMover_BulletBase::HitDispatch(std::shared_ptr<CMover> m)
 {
 	m->Hit(this);

@@ -22,6 +22,10 @@ void CMover_ShotBase::Damage(CAttribute shotATK, int style)
 {
 }
 
+void CMover_ShotBase::RatioDamage(CAttribute shotATK, int style)
+{
+}
+
 CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 {
 	if (!target.lock()) {

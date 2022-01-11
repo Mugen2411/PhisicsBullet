@@ -10,7 +10,7 @@
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	,Direction(1), Charge(0), State(0), baseParams(0), costume(std::make_shared<CCostume_Uniform>()) {
+	,Direction(1), Charge(0), State(0), baseParams(100), costume(std::make_shared<CCostume_Uniform>()) {
 }
 
 void CMover_Player::Walk()
@@ -84,9 +84,18 @@ void CMover_Player::Disappear()
 
 void CMover_Player::Damage(CAttribute BulletATK, int style)
 {
-	double ret = (BulletATK / (baseParams.DEF)).Sum();
+	double ret = ((BulletATK) / (baseParams.DEF)).Sum();
+	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, DamageColor(BulletATK), style));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
+}
+
+void CMover_Player::RatioDamage(CAttribute BulletATK, int style)
+{
+	double ret = ((BulletATK * baseParams.MaxHP) / (costume->AttributeDEF * 100)).Sum();
+	if (ret < Constant::zero_border)return;
+	baseParams.HP -= ret;
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
 }
 
 void CMover_Player::HitDispatch(std::shared_ptr<CMover> m)
@@ -96,7 +105,7 @@ void CMover_Player::HitDispatch(std::shared_ptr<CMover> m)
 
 int CMover_Player::DamageColor(CAttribute shotATK)
 {
-	auto real = shotATK * costume->AttributeDEF;
+	auto real = shotATK / costume->AttributeDEF;
 	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 2;
 	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 1;
 	return 0;

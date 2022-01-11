@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CField_IceFloor::CField_IceFloor(std::string gid, CVector position, double temperature)
-	:CField(gid, position, CVector(32.0, 32.0), 0.3, temperature, 1.0)
+	:CField(gid, position, CVector(32.0, 32.0), 0.3, temperature, 1.0, CAttribute(0,0,0,0,0,2.0))
 {
 }
 

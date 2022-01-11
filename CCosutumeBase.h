@@ -20,7 +20,7 @@ public:
 	CAttribute AttributeDEF;	//‘®«‘Ï«
 	double atkCF, defCF, hpCF;	//Šeí”{—¦
 
-	CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate, double maxSpeed, double accel);
+	CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate, double maxSpeed, double accel, CAttribute attrDEF);
 
 	virtual std::shared_ptr<CMover_ShotBase> ChargeShot(double baseATK, CVector position, float angle) = 0;
 	virtual std::shared_ptr<CMover_ShotBase> WeakShot(double baseATK, CVector position, float angle) = 0;

@@ -1,8 +1,8 @@
 #include "CCosutumeBase.h"
 #include "CImageManager.h"
 
-CCostumeBase::CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate, double maxSpeed, double accel)
-:animSpeed(animSpeed), MaxCharge(MaxCharge), ShotRate(ShotRate), MaxSpeed(maxSpeed), Accelaration(accel){
+CCostumeBase::CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate, double maxSpeed, double accel, CAttribute attrDEF)
+:animSpeed(animSpeed), MaxCharge(MaxCharge), ShotRate(ShotRate), MaxSpeed(maxSpeed), Accelaration(accel), AttributeDEF(attrDEF) {
 	GraphFilePath = filepath;
 	CImageManager::getIns().set("player_komuk", std::make_shared<CImage>(GraphFilePath, 16, 4, 4, 32, 32));
 }

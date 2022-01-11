@@ -10,7 +10,7 @@ void CEffect_DamageNumber::Update()
 {
 	cnt++;
 	Position.y -= dy;
-	dy *= 0.90;
+	dy *= 0.83;
 	if (cnt > 30)Status = 1;
 }
 

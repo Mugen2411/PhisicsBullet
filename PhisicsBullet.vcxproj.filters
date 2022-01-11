@@ -255,6 +255,9 @@
     <ClCompile Include="CCostume_Uniform.cpp">
       <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
+    <ClCompile Include="CDrawModiWithBlend.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="CCostume_Uniform.h">
       <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawModiWithBlend.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

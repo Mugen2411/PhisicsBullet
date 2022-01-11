@@ -8,9 +8,9 @@
 #include "CEffect_DamageNumber.h"
 
 CMover_Player::CMover_Player(CVector position)
-	:CMover(MV_PLAYER, position,	24.0, CVector(0.0, 0.0),30, 15, 25, 0.0, 0), animCount(0.0)
+	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	,Direction(1), Charge(0), State(0), baseParams(100), costume(std::make_shared<CCostume_Uniform>()) {
+	, Direction(1), Charge(0), State(0), baseParams(0), costume(std::make_shared<CCostume_Uniform>()) {
 }
 
 void CMover_Player::Walk()
@@ -18,15 +18,17 @@ void CMover_Player::Walk()
 	CVector v = input->getVector() * costume->getAccelaration() * nowFricted;
 	if (v.x < 0) {
 		if (Velocity.x > 0)Acceleration.x += v.x;
-		else if(-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
-	}else {
+		else if (-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
+	}
+	else {
 		if (Velocity.x < 0)Acceleration.x += v.x;
 		else if (Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
 	}
 	if (v.y < 0) {
 		if (Velocity.y > 0)Acceleration.y += v.y;
-		else if(-Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
-	}else {
+		else if (-Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
+	}
+	else {
 		if (Velocity.y < 0)Acceleration.y += v.y;
 		else if (Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
 	}
@@ -44,7 +46,7 @@ int CMover_Player::Update()
 	}
 	Shot();
 	Walk();
-	
+
 #ifdef _DEBUG
 	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
 #endif
@@ -70,7 +72,11 @@ void CMover_Player::Shot()
 
 void CMover_Player::Render() const
 {
-	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0,Direction*4+std::round(animCount));
+	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
+	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 192, 2.0, 2);
+	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(8, 8, 8 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
+		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
+	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
 	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0);
 }
 

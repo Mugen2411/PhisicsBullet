@@ -6,16 +6,17 @@
 #include "CDrawRotaGraphReserve.h"
 #include "CDrawRotaGraphFReserve.h"
 #include "CDrawRotaGraphFwithBlendReserve.h"
+#include "CDrawModiWithBlend.h"
 #include "CRenderReserveList.h"
 
-CImage::CImage(std::string path)
+CImage::CImage(std::string path):GHandle(0)
 {
 	GHandle.resize(1);
 
-	GHandle.at(0) = LoadGraph(path.c_str());
+	*GHandle.data() = LoadGraph(path.c_str());
 }
 
-CImage::CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h)
+CImage::CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h):GHandle(0)
 {
 	GHandle.resize(AllNum);
 
@@ -55,4 +56,10 @@ void CImage::DrawRotaFwithBlend(float x1, float y1, float angle, float extend, i
 {
 	if (num > GHandle.size())return;
 	CRenderReserveList::Add(new CDrawRotaGraphFwithBlendReserve(GHandle[num], priority, x1, y1, angle, extend, color, Blendmode, value));
+}
+
+void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2, int color, int Blendmode, int value, double priority, int num)
+{
+	if (num > GHandle.size())return;
+	CRenderReserveList::Add(new CDrawExtendiWithBlendReserve(GHandle[num], priority, x1, y1, x2, y2, color, Blendmode, value));
 }

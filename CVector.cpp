@@ -110,7 +110,7 @@ CVector CVector::getNorm()const
 void CVector::zero()
 {
 	if (getLength2() < Constant::zero_border) {
-		x = 0;
-		y = 0;
+		x *= 0.00001;
+		y *= 0.00001;
 	}
 }

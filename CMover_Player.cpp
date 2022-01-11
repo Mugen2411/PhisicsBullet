@@ -71,6 +71,9 @@ void CMover_Player::Shot()
 void CMover_Player::Render() const
 {
 	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0,Direction*4+std::round(animCount));
+	CImageManager::getIns().find("HPGuage")->Draw(16, 16, 2, 2);
+	CImageManager::getIns().find("HPGuage")->Draw(16, 16, 2.1, 1);
+	CImageManager::getIns().find("HPGuage")->Draw(16, 16, 2.2, 0);
 	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0);
 }
 

@@ -63,6 +63,7 @@ std::shared_ptr<CImage> LG_aim()
 std::shared_ptr<CImage> LG_effect_bulletdelete()
 {
     return std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
+
 }
 
 std::shared_ptr<CImage> LG_HPGuage()

@@ -97,6 +97,6 @@ void CGameMediator::Render() const
 	CEffectParent::Render();
 
 #ifdef _DEBUG
-	printfDx("Money:%d\n", reserveMoney);
+	printfDx("Money:%d\nGraphHandle:%d\n", reserveMoney, GetGraphNum());
 #endif
 }

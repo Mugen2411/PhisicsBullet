@@ -36,8 +36,22 @@ void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 {
 	if (Status < 0)return;
 	double ret = (shotATK / (attrDEF* baseParams.DEF)).Sum();
+	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position, ret, DamageColor(shotATK), style));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
+	if (baseParams.HP < 0) {
+		Status = 1;
+		Drop();
+	}
+}
+
+void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
+{
+	if (Status < 0)return;
+	double ret = ((shotATK * baseParams.MaxHP) / (attrDEF * 100)).Sum();
+	if (ret < Constant::zero_border)return;
+	baseParams.HP -= ret;
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
 	if (baseParams.HP < 0) {
 		Status = 1;
 		Drop();
@@ -48,7 +62,7 @@ void CMover_EnemyBase::Drop()
 {
 	int val = std::ceil(baseMoney * (1 + baseParams.Level * 0.01)) + baseParams.Level;
 	med.lock()->getMoney(val);
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position+CVector(0.0, 10.0), val));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
 
 int CMover_EnemyBase::DamageColor(CAttribute shotATK)

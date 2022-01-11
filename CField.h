@@ -12,13 +12,15 @@
 
 class CField
 {
+private:
+	int DamageInterval;
 protected:
 	CVector Position;
 	CVector Size;
 	double FrictionCF;
 	double Temperature;
 	double ReflectCF;
-	CAttribute damage;
+	CAttribute Damage;
 
 	std::string GID;
 

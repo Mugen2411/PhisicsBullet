@@ -30,6 +30,7 @@ public:
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
 
     void Damage(CAttribute BulletATK, int style);
+    void RatioDamage(CAttribute BulletATK, int style);
     void HitDispatch(std::shared_ptr<CMover>);
     int DamageColor(CAttribute shotATK);
 };

@@ -21,6 +21,7 @@ public:
     virtual void Disappear();       //Ž©ŽE
 
     void Damage(CAttribute shotATK, int style);
+    void RatioDamage(CAttribute shotATK, int style);
 
     void HitDispatch(std::shared_ptr<CMover>);
 

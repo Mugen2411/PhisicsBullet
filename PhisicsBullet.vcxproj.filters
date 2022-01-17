@@ -261,6 +261,9 @@
     <ClCompile Include="CDrawModiWithBlend.cpp">
       <Filter>ソース ファイル\Image</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Wall_Log.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -436,6 +439,9 @@
     </ClInclude>
     <ClInclude Include="CDrawModiWithBlend.h">
       <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_Log.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

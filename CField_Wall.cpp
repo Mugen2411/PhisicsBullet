@@ -6,12 +6,6 @@ CField_Wall::CField_Wall(std::string GID, CVector position, double reflectCF)
 {
 }
 
-void CField_Wall::setFrictionForce(CMover* m)
-{
-	m->ApplyFrictionForce(FrictionCF);
-	m->onWall(Position, Size, ReflectCF);
-}
-
 void CField_Wall::Hit(CMover* m)
 {
 	m->onWall(Position, Size, ReflectCF);

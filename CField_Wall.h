@@ -6,8 +6,6 @@ class CField_Wall :
 public:
     CField_Wall(std::string GID, CVector position, double ReflectionCF);
 
-    void setFrictionForce(CMover*)override;
-
     void Hit(CMover*)override;
 };
 

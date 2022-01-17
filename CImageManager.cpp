@@ -2,8 +2,8 @@
 
 CImageManager::CImageManager()
 {
-    loaderList["Field_Grass"] = LG_grass;
-    loaderList["Field_IceFloor"] = LG_icefloor;
+    loaderList["Field_Grass"] = LG_field_grass;
+    loaderList["Field_IceFloor"] = LG_field_icefloor;
     loaderList["player_komuk"] = LG_player_komuk;
     loaderList["aim"] = LG_aim;
     loaderList["HPGuage"] = LG_HPGuage;
@@ -40,12 +40,12 @@ std::shared_ptr<CImage> CImageManager::find(std::string key)
     return imgList.find(key)->second;
 }
 
-std::shared_ptr<CImage> LG_grass()
+std::shared_ptr<CImage> LG_field_grass()
 {
-    return std::make_shared<CImage>("media/graphic/mapchip/grass.png", 5, 5, 1, 32, 32);
+    return std::make_shared<CImage>("media/graphic/mapchip/grass.png", 16, 8, 2, 32, 32);
 }
 
-std::shared_ptr<CImage> LG_icefloor()
+std::shared_ptr<CImage> LG_field_icefloor()
 {
     return std::make_shared<CImage>("media/graphic/mapchip/ice.png", 3, 3, 1, 32, 32);
 }

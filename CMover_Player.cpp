@@ -74,7 +74,7 @@ void CMover_Player::Render() const
 {
 	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 192, 2.0, 2);
-	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(8, 8, 8 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
+	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
 	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0);
@@ -112,7 +112,7 @@ void CMover_Player::HitDispatch(std::shared_ptr<CMover> m)
 int CMover_Player::DamageColor(CAttribute shotATK)
 {
 	auto real = shotATK / costume->AttributeDEF;
-	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 2;
-	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 1;
+	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 1;
+	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 2;
 	return 0;
 }

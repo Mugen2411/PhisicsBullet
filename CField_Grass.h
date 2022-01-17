@@ -5,6 +5,7 @@ class CField_Grass :
     public CField
 {
     int decoration;
+    double animCount;
 public:
     CField_Grass(std::string gid, CVector position);
     void Update();

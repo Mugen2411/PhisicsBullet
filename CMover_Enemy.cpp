@@ -3,6 +3,7 @@
 #include "CEffect_BulletDelete.h"
 #include "CEffect_MoneyNumber.h"
 #include "CEffect_DamageNumber.h"
+#include "CImageManager.h"
 
 CMover_EnemyBase::CMover_EnemyBase(int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0)
@@ -30,6 +31,15 @@ void CMover_EnemyBase::Dead()
 
 void CMover_EnemyBase::Disappear()
 {
+}
+
+void CMover_EnemyBase::Render_HPGuage()const
+{
+	CImageManager::getIns().find("enemy_HPGuage")->DrawExtendWithBlend(Position.x - 16, Position.y - Size - 8,
+		Position.x + 16, Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 192, -1.0, 1);
+	CImageManager::getIns().find("enemy_HPGuage")->DrawExtendWithBlend(Position.x - 16, Position.y - Size - 8,
+		Position.x - 16 + 32*(baseParams.HP / baseParams.MaxHP), Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 192, -1.0, 0);
+
 }
 
 void CMover_EnemyBase::Damage(CAttribute shotATK, int style)

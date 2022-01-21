@@ -27,5 +27,7 @@ public:
     CVector getHomingAngle(double maxSpeed);
     void HitDispatch(std::shared_ptr<CMover>);
     void Hit(CMover_EnemyBase*);
+
+    virtual void ifonWall();
 };
 

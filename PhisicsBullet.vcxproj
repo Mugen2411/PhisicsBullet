@@ -157,6 +157,7 @@
     <ClCompile Include="CControllerFactory.cpp" />
     <ClCompile Include="CCostume_Uniform.cpp" />
     <ClCompile Include="CCosutumeBase.cpp" />
+    <ClCompile Include="CDrawCircleGauge.cpp" />
     <ClCompile Include="CDrawGraphFReserve.cpp" />
     <ClCompile Include="CDrawGraphReserve.cpp" />
     <ClCompile Include="CDrawModiWithBlend.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="CMover_BulletBase.cpp" />
     <ClCompile Include="CMover_ShotBase.cpp" />
     <ClCompile Include="CMover_Shot_Uniform_Homing.cpp" />
+    <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp" />
     <ClCompile Include="CNumberDrawer.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="CPower.cpp" />
@@ -214,6 +216,7 @@
     <ClInclude Include="CControllerFactory.h" />
     <ClInclude Include="CCostume_Uniform.h" />
     <ClInclude Include="CCosutumeBase.h" />
+    <ClInclude Include="CDrawCircleGauge.h" />
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />
     <ClInclude Include="CDrawModiWithBlend.h" />
@@ -251,6 +254,7 @@
     <ClInclude Include="CMover_BulletBase.h" />
     <ClInclude Include="CMover_ShotBase.h" />
     <ClInclude Include="CMover_Shot_Uniform_Homing.h" />
+    <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h" />
     <ClInclude Include="CNumberDrawer.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CParts.h" />

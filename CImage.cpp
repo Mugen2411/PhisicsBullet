@@ -7,6 +7,7 @@
 #include "CDrawRotaGraphFReserve.h"
 #include "CDrawRotaGraphFwithBlendReserve.h"
 #include "CDrawModiWithBlend.h"
+#include "CDrawCircleGauge.h"
 #include "CRenderReserveList.h"
 
 CImage::CImage(std::string path):GHandle(0)
@@ -62,4 +63,10 @@ void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2, int col
 {
 	if (num > GHandle.size())return;
 	CRenderReserveList::Add(new CDrawExtendiWithBlendReserve(GHandle[num], priority, x1, y1, x2, y2, color, Blendmode, value));
+}
+
+void CImage::DrawCircleGauge(int x, int y, double ratio, double priority, int num)
+{
+	if (num > GHandle.size())return;
+	CRenderReserveList::Add(new CDrawCircleGaugeReserve(GHandle[num], priority, x, y, ratio));
 }

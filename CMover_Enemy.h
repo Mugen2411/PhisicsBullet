@@ -30,6 +30,8 @@ public:
     virtual void Dead();
     virtual void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
+
+    void Render_HPGuage()const;
     
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);

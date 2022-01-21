@@ -11,11 +11,12 @@ class CMover_Player :
 protected:
     std::shared_ptr<CSTGInputManager> input;
 
-    int State;
+    int State;                  //0:‘€ì‰Â”\ 1:‘€ì•s”\
     int Direction;
     int Charge;					//Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
     double animCount;
     CStatus baseParams;
+    int waitDuration;
 
     std::shared_ptr<CCostumeBase> costume;
 public:
@@ -29,6 +30,7 @@ public:
     void Disappear();
     void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
 
+    void Wait(int duration);
     void Damage(CAttribute BulletATK, int style);
     void RatioDamage(CAttribute BulletATK, int style);
     void HitDispatch(std::shared_ptr<CMover>);

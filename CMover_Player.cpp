@@ -10,7 +10,7 @@
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(0), costume(std::make_shared<CCostume_Uniform>()) {
+	, Direction(1), Charge(0), State(0), baseParams(0), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)) {
 }
 
 void CMover_Player::Walk()
@@ -36,6 +36,11 @@ void CMover_Player::Walk()
 
 int CMover_Player::Update()
 {
+	if (State == 1) {
+		waitDuration--;
+		if (waitDuration == 0)State = 0;
+		return 0;
+	}
 	if (input->update() > 0) {
 		Direction = input->getDirection();
 		animCount += costume->getAnimSpeed();
@@ -59,12 +64,13 @@ void CMover_Player::Shot()
 	int LPushTime = input->LClick(true);
 	if (LPushTime == 0) {
 		Charge++;
-		Charge %= costume->getMaxCharge();
+		Charge = min(costume->getMaxCharge(), Charge);
 		return;
 	}
-	if (Charge == costume->getMaxCharge() - 1) {
+	if (Charge == costume->getMaxCharge()) {
 		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position, angle));
 		Charge = 0;
+		Wait(costume->getStrongShotDuration());
 		return;
 	}
 	if (LPushTime % costume->getShotRate() == 1)med.lock()->RegisterMover(costume->WeakShot(baseParams.ATK, Position, angle));
@@ -77,7 +83,8 @@ void CMover_Player::Render() const
 	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
-	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0);
+	CImageManager::getIns().find("aim")->DrawCircleGauge(input->MouseX(), input->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
+	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge)? 1 : 0);
 }
 
 void CMover_Player::Dead()
@@ -86,6 +93,12 @@ void CMover_Player::Dead()
 
 void CMover_Player::Disappear()
 {
+}
+
+void CMover_Player::Wait(int duration)
+{
+	State = 1;
+	waitDuration = duration;
 }
 
 void CMover_Player::Damage(CAttribute BulletATK, int style)

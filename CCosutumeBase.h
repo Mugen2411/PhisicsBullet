@@ -6,13 +6,17 @@
 #include "CMover_ShotBase.h"
 #include "CSTGInputManager.h"
 
+class CMover_Player;
+
 class CCostumeBase
 {
 protected:
+	CMover_Player* p_player;	//プレイヤーへのポインタ
 	std::string GraphFilePath;	//画像ファイルのパス
 	double animSpeed;			//毎フレーム足す量
 	int MaxCharge;				//溜め射撃に必要な時間(毎フレーム+1)
 	int ShotRate;				//連射を何フレームごとに撃つか
+	int StrongShotDuration;		//強攻撃を撃った後に操作不能になるフレーム数
 	double MaxSpeed;
 	double Accelaration;
 
@@ -20,7 +24,8 @@ public:
 	CAttribute AttributeDEF;	//属性耐性
 	double atkCF, defCF, hpCF;	//各種倍率
 
-	CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate, double maxSpeed, double accel, CAttribute attrDEF);
+	CCostumeBase(CMover_Player* player, std::string filepath, double animSpeed, int MaxCharge, int ShotRate,
+		int strongshotDuration, double maxSpeed, double accel, CAttribute attrDEF);
 
 	virtual std::shared_ptr<CMover_ShotBase> ChargeShot(double baseATK, CVector position, float angle) = 0;
 	virtual std::shared_ptr<CMover_ShotBase> WeakShot(double baseATK, CVector position, float angle) = 0;
@@ -31,5 +36,7 @@ public:
 	double getAnimSpeed();
 	int getShotRate();
 	int getMaxCharge();
+
+	int getStrongShotDuration();
 };
 

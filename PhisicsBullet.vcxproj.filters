@@ -264,6 +264,12 @@
     <ClCompile Include="CField_Wall_Log.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
+    <ClCompile Include="CDrawCircleGauge.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp">
+      <Filter>ソース ファイル\Mover\Shot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -442,6 +448,12 @@
     </ClInclude>
     <ClInclude Include="CField_Wall_Log.h">
       <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawCircleGauge.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h">
+      <Filter>ヘッダー ファイル\Mover\Shot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

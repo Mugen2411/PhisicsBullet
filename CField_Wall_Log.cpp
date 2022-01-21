@@ -18,7 +18,7 @@ void CField_Wall_Log::Update()
 		animCount = std::fmod(animCount, 3);
 		BurningTime--;
 		if (BurningTime < 0)state = 2;
-		Damage = CAttribute(0, 2.0, 0, 0, 0, 0);
+		Damage = CAttribute(0, 4.0, 0, 0, 0, 0);
 		break;
 	case 2:
 		Damage = CAttribute(0, 0, 0, 0, 0, 0);

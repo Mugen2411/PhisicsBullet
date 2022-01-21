@@ -51,3 +51,8 @@ void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
 	Status = 1;
 }
+
+void CMover_ShotBase::ifonWall()
+{
+	Status = 1;
+}

@@ -7,6 +7,7 @@ CImageManager::CImageManager()
     loaderList["player_komuk"] = LG_player_komuk;
     loaderList["aim"] = LG_aim;
     loaderList["HPGuage"] = LG_HPGuage;
+    loaderList["enemy_HPGuage"] = LG_enemy_HPGuage;
 
     loaderList["effect_bulletdelete"] = LG_effect_bulletdelete;
     loaderList["effect_number1"] = LG_effect_number1;
@@ -18,6 +19,7 @@ CImageManager::CImageManager()
     loaderList["bullet_bud_corn"] = LG_bullet_bud_corn;
 
     loaderList["shot_uniform_homing"] = LG_shot_uniform_homing;
+    loaderList["shot_uniform_strongmagic"] = LG_shot_uniform_strongmagic;
 }
 
 void CImageManager::set(std::string key, std::shared_ptr<CImage> img)
@@ -57,7 +59,7 @@ std::shared_ptr<CImage> LG_player_komuk()
 
 std::shared_ptr<CImage> LG_aim()
 {
-    return std::make_shared<CImage>("media/graphic/system/game/aim.png", 2,2,1,32,32);
+    return std::make_shared<CImage>("media/graphic/system/game/aim.png", 3,3,1,32,32);
 }
 
 std::shared_ptr<CImage> LG_effect_bulletdelete()
@@ -69,6 +71,11 @@ std::shared_ptr<CImage> LG_effect_bulletdelete()
 std::shared_ptr<CImage> LG_HPGuage()
 {
     return std::make_shared<CImage>("media/graphic/system/game/HPGuage.png", 3, 1, 3, 320, 32);
+}
+
+std::shared_ptr<CImage> LG_enemy_HPGuage()
+{
+    return std::make_shared<CImage>("media/graphic/system/game/enemy_HPGuage.png", 2, 1, 2, 32, 4);
 }
 
 std::shared_ptr<CImage> LG_effect_number1()
@@ -104,4 +111,9 @@ std::shared_ptr<CImage> LG_bullet_bud_corn()
 std::shared_ptr<CImage> LG_shot_uniform_homing()
 {
     return std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png");
+}
+
+std::shared_ptr<CImage> LG_shot_uniform_strongmagic()
+{
+    return std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/strongmagic.png");
 }

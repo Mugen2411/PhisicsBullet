@@ -35,6 +35,7 @@ std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
 std::shared_ptr<CImage> LG_effect_bulletdelete();
 std::shared_ptr<CImage> LG_HPGuage();
+std::shared_ptr<CImage> LG_enemy_HPGuage();
 
 std::shared_ptr<CImage> LG_effect_number1();
 std::shared_ptr<CImage> LG_effect_number2();
@@ -45,4 +46,5 @@ std::shared_ptr<CImage> LG_enemy_bud_intro();
 std::shared_ptr<CImage> LG_bullet_bud_corn();
 
 std::shared_ptr<CImage> LG_shot_uniform_homing();
+std::shared_ptr<CImage> LG_shot_uniform_strongmagic();
 

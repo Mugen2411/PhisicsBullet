@@ -73,7 +73,10 @@ void CMover_Player::Shot()
 		Wait(costume->getStrongShotDuration());
 		return;
 	}
-	if (LPushTime % costume->getShotRate() == 1)med.lock()->RegisterMover(costume->WeakShot(baseParams.ATK, Position, angle));
+	if (LPushTime % costume->getShotRate() == 1) {
+		med.lock()->RegisterMover(costume->WeakShot(baseParams.ATK, Position, angle));
+		Charge = 0;
+	}
 }
 
 void CMover_Player::Render() const

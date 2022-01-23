@@ -9,6 +9,7 @@ protected:
 	std::shared_ptr<CSTGInputManager> current;
 public:
 	CControllerFactory();
-	std::shared_ptr<CSTGInputManager> getController();
+	std::weak_ptr<CSTGInputManager> getController();
+	void update();
 };
 

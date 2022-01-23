@@ -13,7 +13,7 @@ class CMover;
 class CGameMediator: public Scene_Abstract, public std::enable_shared_from_this<CGameMediator>
 {
 protected:
-	std::shared_ptr<CSTGInputManager> input;
+	std::weak_ptr<CSTGInputManager> input;
 	std::shared_ptr<CMoverParent> moverParent;
 	std::shared_ptr<CFieldParent> fieldParent;
 	std::shared_ptr<CPowerParent> powerParent;

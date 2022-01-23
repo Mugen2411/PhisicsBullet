@@ -1,16 +1,25 @@
 #include "CKeyInputManager.h"
 #include "Constant.h"
 
+int CKeyInputManager::isChanged()
+{
+	return changed;
+}
+
 int CKeyInputManager::update()
 {
 	int r = 0;
-	for (int i = 0; i < 9; i++) {
-		if (CheckHitKey(KeyConfig[i]) == 1) {
+	for (int i = 0; i < 10; i++) {
+		if (CheckHitKey(KeyConfig[i])) {
 			pushedFrame[i]++;
 			if (SK_UP <= i && i <= SK_LEFT)r = 1;
 		}
 		else pushedFrame[i] = 0;
+#ifdef _DEBUG
+		printfDx("%d:%d\n", i, pushedFrame[i]);
+#endif
 	}
+	changed = r;
 
 	int nx, ny;
 	GetMousePoint(&nx, &ny);

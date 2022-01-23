@@ -15,7 +15,7 @@ CMover_Player::CMover_Player(CVector position)
 
 void CMover_Player::Walk()
 {
-	CVector v = input->getVector() * costume->getAccelaration() * nowFricted;
+	CVector v = input.lock()->getVector() * costume->getAccelaration() * nowFricted;
 	if (v.x < 0) {
 		if (Velocity.x > 0)Acceleration.x += v.x;
 		else if (-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
@@ -41,8 +41,8 @@ int CMover_Player::Update()
 		if (waitDuration == 0)State = 0;
 		return 0;
 	}
-	if (input->update() > 0) {
-		Direction = input->getDirection();
+	if (input.lock()->isChanged() > 0) {
+		Direction = input.lock()->getDirection();
 		animCount += costume->getAnimSpeed();
 		if (animCount > 3.0)animCount = 0.0;
 	}
@@ -60,8 +60,8 @@ int CMover_Player::Update()
 
 void CMover_Player::Shot()
 {
-	float angle = input->getMouseAngle(Position);
-	int LPushTime = input->LClick(true);
+	float angle = input.lock()->getMouseAngle(Position);
+	int LPushTime = input.lock()->LClick(true);
 	if (LPushTime == 0) {
 		Charge++;
 		Charge = min(costume->getMaxCharge(), Charge);
@@ -86,8 +86,8 @@ void CMover_Player::Render() const
 	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
-	CImageManager::getIns().find("aim")->DrawCircleGauge(input->MouseX(), input->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
-	CImageManager::getIns().find("aim")->DrawRota(input->MouseX(), input->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge)? 1 : 0);
+	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
+	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge)? 1 : 0);
 }
 
 void CMover_Player::Dead()

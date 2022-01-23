@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene_Abstract.h"
 #include "CMediator.h"
-#include "CFieldParent.h"
+#include "CFieldHolder.h"
 #include <memory>
 
 class CMapEditor :

@@ -1,6 +1,5 @@
 #include <DxLib.h>
 #include "Clooper.h"
-#include "CRenderReserveList.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
@@ -11,15 +10,16 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	//SetWaitVSyncFlag(FALSE);
 	CGame g = CGame();
 	int offscreen = MakeScreen(640, 480);
+	SetDrawMode(DX_DRAWMODE_BILINEAR);
+	SetDrawScreen(offscreen);
 	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0 && !CheckHitKey(KEY_INPUT_TAB)) {
-		SetDrawMode(DX_DRAWMODE_BILINEAR);
-		SetDrawScreen(offscreen);
 		g.Run();
-		CRenderReserveList::Render();
-		SetDrawScreen(DX_SCREEN_BACK);
 		SetDrawMode(DX_DRAWMODE_NEAREST);
+		SetDrawScreen(DX_SCREEN_BACK);
 		DrawExtendGraph(0, 0, 640 * 2, 480 * 2, offscreen, FALSE);
 		ScreenFlip();
+		SetDrawMode(DX_DRAWMODE_BILINEAR);
+		SetDrawScreen(offscreen);
 	}
 	DxLib_End();
 	return 0;

@@ -51,6 +51,7 @@ public:
 
 	double getMouseAngle(CVector p);
 
+	virtual int isChanged() = 0;
 	virtual int update() = 0;
 	virtual void load() = 0;
 };

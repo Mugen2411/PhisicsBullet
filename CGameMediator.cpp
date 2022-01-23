@@ -73,8 +73,12 @@ void CGameMediator::getMoney(int value)
 
 void CGameMediator::Update()
 {
+	if (input.lock()->Start() == 1) {
+		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
+		return;
+	}
 	if (isPause) {
-		if (input->A() == 1) {
+		if (input.lock()->A() == 1) {
 			isPause = false;
 			pauseGuage = 0;
 		}
@@ -84,9 +88,8 @@ void CGameMediator::Update()
 		moverParent->Update();
 		fieldParent->Update();
 		CEffectParent::Update();
-		//if (pauseGuage == 120)isPause = true;
+		if (pauseGuage == 120)isPause = true;
 	}
-	input->update();
 }
 
 void CGameMediator::Render() const

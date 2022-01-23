@@ -12,5 +12,9 @@ public:
 
 	static int ScreenW;
 	static int ScreenH;
+
+	enum SCENE_ID {
+		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE
+	};
 };
 

@@ -9,7 +9,7 @@ class CMover_Player :
     public CMover
 {
 protected:
-    std::shared_ptr<CSTGInputManager> input;
+    std::weak_ptr<CSTGInputManager> input;
 
     int State;                  //0:‘€ì‰Â”\ 1:‘€ì•s”\
     int Direction;

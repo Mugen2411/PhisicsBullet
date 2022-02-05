@@ -267,6 +267,9 @@
     <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp">
       <Filter>ソース ファイル\Mover\Shot</Filter>
     </ClCompile>
+    <ClCompile Include="CAnchor.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -448,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h">
       <Filter>ヘッダー ファイル\Mover\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnchor.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

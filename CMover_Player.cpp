@@ -6,6 +6,7 @@
 #include "CCostume_Uniform.h"
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
+#include "CAnchor.h"
 
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0), animCount(0.0)
@@ -36,6 +37,7 @@ void CMover_Player::Walk()
 
 int CMover_Player::Update()
 {
+	CAnchor::getIns().setPosition(Position - CVector(120, 120));
 	if (State == 1) {
 		waitDuration--;
 		if (waitDuration == 0)State = 0;
@@ -60,7 +62,7 @@ int CMover_Player::Update()
 
 void CMover_Player::Shot()
 {
-	float angle = input.lock()->getMouseAngle(Position);
+	float angle = input.lock()->getMouseAngle(CAnchor::getIns().getAnchoredPosition(Position));
 	int LPushTime = input.lock()->LClick(true);
 	if (LPushTime == 0) {
 		Charge++;
@@ -82,12 +84,15 @@ void CMover_Player::Shot()
 void CMover_Player::Render() const
 {
 	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
+
+	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 192, 2.0, 2);
 	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
 	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
 	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge)? 1 : 0);
+	CAnchor::getIns().disableAbsolute();
 }
 
 void CMover_Player::Dead()

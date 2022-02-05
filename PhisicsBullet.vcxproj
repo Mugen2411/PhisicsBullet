@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
     <ClCompile Include="CCostume_Uniform.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CAnchor.h" />
     <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CControllerFactory.h" />
     <ClInclude Include="CCostume_Uniform.h" />

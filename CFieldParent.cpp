@@ -3,13 +3,14 @@
 #include "CField_Grass.h"
 #include "CField_IceFloor.h"
 #include "CField_Wall.h"
+#include "CAnchor.h"
 #include <math.h>
 #include <algorithm>
 
 CFieldParent::CFieldParent(std::shared_ptr<CGameMediator> m, std::string filename)
 	:floorHolder(std::make_shared<CFieldHolder>(filename))
 {
-
+	CAnchor::getIns().setScrollLimit(CVector(floorHolder->getWidth(), floorHolder->getHeight()));
 }
 
 CFieldParent::~CFieldParent()

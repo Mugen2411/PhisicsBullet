@@ -37,7 +37,7 @@ void CMover_Player::Walk()
 
 int CMover_Player::Update()
 {
-	CAnchor::getIns().setPosition(Position - CVector(120, 120));
+	CAnchor::getIns().setPosition(Position - CVector(320, 240));
 	if (State == 1) {
 		waitDuration--;
 		if (waitDuration == 0)State = 0;

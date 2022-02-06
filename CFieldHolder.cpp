@@ -23,12 +23,12 @@ void CFieldHolder::write(std::shared_ptr<CField> f, unsigned int x, unsigned int
 	fieldlist[width * y + x] = f;
 }
 
-unsigned int CFieldHolder::getHeight()
+int CFieldHolder::getHeight()
 {
 	return height;
 }
 
-unsigned int CFieldHolder::getWidth()
+int CFieldHolder::getWidth()
 {
 	return width;
 }

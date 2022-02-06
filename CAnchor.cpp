@@ -1,12 +1,23 @@
 #include "CAnchor.h"
+#include "Constant.h"
+#include <float.h>
 
-CAnchor::CAnchor():position(0,0),isAbsolute(false)
+CAnchor::CAnchor() :position(0, 0), isAbsolute(false), ScrollLimit(DBL_MAX, DBL_MAX)
 {
 }
 
 void CAnchor::setPosition(CVector newPos)
 {
-	position = newPos;
+	//position = newPos;
+	position.x = fmin(ScrollLimit.x - Constant::ScreenW, newPos.x);
+	position.y = fmin(ScrollLimit.y - Constant::ScreenH, newPos.y);
+	position.x = fmax(0, position.x);
+	position.y = fmax(0, position.y);
+}
+
+void CAnchor::setScrollLimit(CVector mapSize)
+{
+	ScrollLimit = mapSize * 32;
 }
 
 CVector CAnchor::getAnchoredPosition(CVector pos)

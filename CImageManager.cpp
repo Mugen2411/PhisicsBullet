@@ -14,6 +14,8 @@ CImageManager::CImageManager()
     loaderList["effect_number2"] = LG_effect_number2;
     loaderList["effect_number3"] = LG_effect_number3;
 
+    loaderList["editor_cursor"] = LG_editor_cursor;
+
     loaderList["enemy_bud"] = LG_enemy_bud;
     loaderList["enemy_bud_intro"] = LG_enemy_bud_intro;
     loaderList["bullet_bud_corn"] = LG_bullet_bud_corn;
@@ -91,6 +93,11 @@ std::shared_ptr<CImage> LG_effect_number2()
 std::shared_ptr<CImage> LG_effect_number3()
 {
     return std::make_shared<CImage>("media/graphic/system/font/num3.png", 11, 11, 1, 10, 10);
+}
+
+std::shared_ptr<CImage> LG_editor_cursor()
+{
+    return std::make_shared<CImage>("media/graphic/system/game/Cursor.png");
 }
 
 std::shared_ptr<CImage> LG_enemy_bud()

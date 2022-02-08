@@ -41,6 +41,8 @@ std::shared_ptr<CImage> LG_effect_number1();
 std::shared_ptr<CImage> LG_effect_number2();
 std::shared_ptr<CImage> LG_effect_number3();
 
+std::shared_ptr<CImage> LG_editor_cursor();
+
 std::shared_ptr<CImage> LG_enemy_bud();
 std::shared_ptr<CImage> LG_enemy_bud_intro();
 std::shared_ptr<CImage> LG_bullet_bud_corn();

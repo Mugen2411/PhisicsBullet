@@ -12,8 +12,11 @@ class CMapEditor :
 protected:
     std::weak_ptr<CSTGInputManager> input;
     void CreateParts();
+    std::shared_ptr<CFieldHolder> field;
+
 public:
     CMapEditor(SceneManager *ScnMng);
+    ~CMapEditor();
     void Update();
     void Render()const;
     void PartsChanged(CParts* p);

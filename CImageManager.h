@@ -9,8 +9,8 @@
 class CImageManager :
     public Singleton<CImageManager>
 {
-    std::map<std::string, std::shared_ptr<CImage>> imgList;
-    std::map<std::string, std::shared_ptr<CImage>(*)()> loaderList;
+    std::map<std::string, std::shared_ptr<CImage>, std::less<>> imgList;
+    std::map<std::string, std::shared_ptr<CImage>(*)(), std::less<>> loaderList;
 public:
     CImageManager();
     void set(std::string key, std::shared_ptr<CImage> img);

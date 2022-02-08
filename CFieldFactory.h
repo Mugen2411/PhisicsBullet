@@ -6,7 +6,7 @@
 class CFieldFactory
 {
 private:
-	std::map<std::string, std::shared_ptr<CField>(*)(std::string name, CVector pos)> loaderList;
+	std::map<std::string, std::shared_ptr<CField>(*)(std::string name, CVector pos), std::less<>> loaderList;
 
 public:
 	CFieldFactory();

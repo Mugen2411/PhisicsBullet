@@ -23,6 +23,11 @@ CMapEditor::~CMapEditor()
 
 void CMapEditor::Update()
 {
+	if (input.lock()->Up() % 5 == 1)CAnchor::getIns().Move(CVector(0, -16));
+	if (input.lock()->Down() % 5 == 1)CAnchor::getIns().Move(CVector(0, 16));
+	if (input.lock()->Right() % 5 == 1)CAnchor::getIns().Move(CVector(16, 0));
+	if (input.lock()->Left() % 5 == 1)CAnchor::getIns().Move(CVector(-16, 0));
+
 	if (input.lock()->A() == 1) {
 		char *f = new char[256];
 		GetFileName(f, 255, true);

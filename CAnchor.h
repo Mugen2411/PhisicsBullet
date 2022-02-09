@@ -19,6 +19,7 @@ public:
     CVector getWorldPosition(CVector pos);
     double getAnchorX();
     double getAnchorY();
+    void Move(CVector diff);
 
     void enableAbsolute();
     void disableAbsolute();

@@ -29,8 +29,10 @@ public:
 };
 
 //以下ローダー関数リスト(LGはLoadGraphicの略)
+std::shared_ptr<CImage> LG_field_error();
 std::shared_ptr<CImage> LG_field_grass();
 std::shared_ptr<CImage> LG_field_icefloor();
+
 std::shared_ptr<CImage> LG_player_komuk();
 std::shared_ptr<CImage> LG_aim();
 std::shared_ptr<CImage> LG_effect_bulletdelete();

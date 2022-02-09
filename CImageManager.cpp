@@ -2,8 +2,10 @@
 
 CImageManager::CImageManager()
 {
+    loaderList["Field_Error"] = LG_field_error;
     loaderList["Field_Grass"] = LG_field_grass;
     loaderList["Field_IceFloor"] = LG_field_icefloor;
+
     loaderList["player_komuk"] = LG_player_komuk;
     loaderList["aim"] = LG_aim;
     loaderList["HPGuage"] = LG_HPGuage;
@@ -42,6 +44,11 @@ std::shared_ptr<CImage> CImageManager::find(std::string key)
     }
     set(key, loaderList[key]());
     return imgList.find(key)->second;
+}
+
+std::shared_ptr<CImage> LG_field_error()
+{
+    return std::make_shared<CImage>("media/graphic/mapchip/error.png");
 }
 
 std::shared_ptr<CImage> LG_field_grass()

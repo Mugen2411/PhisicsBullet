@@ -24,6 +24,9 @@ CMapEditor::~CMapEditor()
 
 void CMapEditor::Update()
 {
+
+	currentSelect = CAnchor::getIns().getWorldPosition(CVector(input.lock()->MouseX(), input.lock()->MouseY()))/32;
+
 	if (input.lock()->Up() % 5 == 1)CAnchor::getIns().Move(CVector(0, -16));
 	if (input.lock()->Down() % 5 == 1)CAnchor::getIns().Move(CVector(0, 16));
 	if (input.lock()->Right() % 5 == 1)CAnchor::getIns().Move(CVector(16, 0));
@@ -33,7 +36,11 @@ void CMapEditor::Update()
 	if (input.lock()->Slow() % 5 == 1)cur++;
 	currentMapchip = CFF.getKey(&cur);
 
-	if (input.lock()->A() == 1) {
+	if (input.lock()->LClick(true) > 0) {
+		field->write(CFF.create(currentSelect.x, currentSelect.y, currentMapchip), currentSelect.x, currentSelect.y);
+	}
+
+	if (input.lock()->Start() == 1) {
 		char *f = new char[256];
 		GetFileName(f, 255, true);
 		field = std::make_shared<CFieldHolder>(f);
@@ -47,10 +54,11 @@ void CMapEditor::Update()
 
 void CMapEditor::Render()const
 {
-	printfDx("Cur:%d\nCurentMapChip:%s\n", cur, currentMapchip.c_str());
-	//printfDx("X:%d, Y:%d\n", input.lock()->MouseX(), input.lock()->MouseY());
+	printfDx("Cur:%d\nPos:%d,%d\nCurentMapChip:%s\n", cur, (int)currentSelect.x, (int)currentSelect.y, currentMapchip.c_str());
+	CVector mousePos((int)(currentSelect.x) * 32 + 16, (int)(currentSelect.y) * 32 + 16);
+	mousePos = CAnchor::getIns().getAnchoredPosition(mousePos);
 	CAnchor::getIns().enableAbsolute();
-	CImageManager::getIns().find("editor_cursor")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, 0);
+	CImageManager::getIns().find("editor_cursor")->DrawRota(mousePos.x, mousePos.y, 0.0, 1.0, 1.0, 0);
 	CAnchor::getIns().disableAbsolute();
 	field->Render();
 	

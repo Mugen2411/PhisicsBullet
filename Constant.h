@@ -13,6 +13,8 @@ public:
 	static int ScreenW;
 	static int ScreenH;
 
+	static int ScrollMargin;
+
 	enum SCENE_ID {
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE
 	};

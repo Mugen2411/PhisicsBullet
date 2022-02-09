@@ -8,16 +8,16 @@ CAnchor::CAnchor() :position(0, 0), isAbsolute(false), ScrollLimit(DBL_MAX, DBL_
 
 void CAnchor::setPosition(CVector newPos)
 {
-	//position = newPos;
-	position.x = fmin(ScrollLimit.x - Constant::ScreenW, newPos.x);
-	position.y = fmin(ScrollLimit.y - Constant::ScreenH, newPos.y);
+	position = newPos;
 	position.x = fmax(0, position.x);
 	position.y = fmax(0, position.y);
+	position.x = fmin(ScrollLimit.x - Constant::ScreenW, position.x);
+	position.y = fmin(ScrollLimit.y - Constant::ScreenH, position.y);
 }
 
 void CAnchor::setScrollLimit(CVector mapSize)
 {
-	ScrollLimit = mapSize * 32;
+	ScrollLimit = mapSize * 32 + CVector(0, 0);
 }
 
 CVector CAnchor::getAnchoredPosition(CVector pos)
@@ -41,6 +41,11 @@ double CAnchor::getAnchorY()
 {
 	if (isAbsolute)return 0.0;
 	return position.y;
+}
+
+void CAnchor::Move(CVector diff)
+{
+	setPosition(position + diff);
 }
 
 void CAnchor::enableAbsolute()

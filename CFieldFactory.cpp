@@ -21,6 +21,8 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y *= 32;
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
+	auto r = loaderList.find(name);
+	if (r == loaderList.end())return loaderList["error"]("error", CVector(x, y));
 	return loaderList[name](name, CVector(x, y));
 }
 

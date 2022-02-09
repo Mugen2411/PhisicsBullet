@@ -26,6 +26,21 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	return loaderList[name](name, CVector(x, y));
 }
 
+std::string CFieldFactory::getKey(int *n)
+{
+	auto itr = loaderList.begin();
+	if (*n < 0) {
+		*n = 0;
+	}
+	if (*n > loaderList.size()-1) {
+		*n = loaderList.size()-1;
+	}
+	for (int i = 0; i < *n; i++) {
+		itr++;
+	}
+	return itr->first;
+}
+
 std::shared_ptr<CField> LF_Grass(std::string name, CVector pos)
 {
 	return std::make_shared<CField_Grass>(name, pos);

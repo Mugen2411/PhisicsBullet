@@ -11,6 +11,7 @@ private:
 public:
 	CFieldFactory();
 	std::shared_ptr<CField> create(int x, int y, std::string name);
+	std::string getKey(int *n);
 };
 
 std::shared_ptr<CField> LF_Grass(std::string name, CVector pos);

@@ -37,7 +37,13 @@ void CMover_Player::Walk()
 
 int CMover_Player::Update()
 {
-	CAnchor::getIns().setPosition(Position - CVector(320, 240));
+	auto p = CAnchor::getIns().getAnchoredPosition(Position);
+	if (p.x < Constant::ScrollMargin)CAnchor::getIns().setPosition(CVector(Position.x - Constant::ScrollMargin, CAnchor::getIns().getAnchorY()));
+	if (p.x > Constant::ScreenW - Constant::ScrollMargin)CAnchor::getIns().setPosition(CVector(Position.x - Constant::ScreenW + Constant::ScrollMargin, CAnchor::getIns().getAnchorY()));
+
+	if (p.y < Constant::ScrollMargin)CAnchor::getIns().setPosition(CVector(CAnchor::getIns().getAnchorX(), Position.y - Constant::ScrollMargin));
+	if (p.y > Constant::ScreenH - Constant::ScrollMargin)CAnchor::getIns().setPosition(CVector(CAnchor::getIns().getAnchorX(), Position.y - Constant::ScreenH + Constant::ScrollMargin));
+
 	if (State == 1) {
 		waitDuration--;
 		if (waitDuration == 0)State = 0;
@@ -55,7 +61,7 @@ int CMover_Player::Update()
 	Walk();
 
 #ifdef _DEBUG
-	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
+	printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x, p.y, Acceleration.x, Acceleration.y);
 #endif
 	return 0;
 }

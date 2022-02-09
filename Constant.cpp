@@ -10,3 +10,5 @@ double Constant::PI2 = Constant::PI * 2;
 
 int Constant::ScreenW = 640;
 int Constant::ScreenH = 480;
+
+int Constant::ScrollMargin = 240;

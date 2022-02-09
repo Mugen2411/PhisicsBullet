@@ -11,6 +11,7 @@ class CMapEditor :
     public Scene_Abstract, public CMediator
 {
 protected:
+    CVector currentSelect;  //選択中のチップの座標
     std::weak_ptr<CSTGInputManager> input;
     void CreateParts();
     std::shared_ptr<CFieldHolder> field;

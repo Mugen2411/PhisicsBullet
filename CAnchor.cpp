@@ -28,7 +28,7 @@ CVector CAnchor::getAnchoredPosition(CVector pos)
 
 CVector CAnchor::getWorldPosition(CVector pos)
 {
-	return pos + position;;
+	return pos + position;
 }
 
 double CAnchor::getAnchorX()

@@ -10,7 +10,8 @@ void CMapEditor::CreateParts()
 	delete[] f;
 }
 
-CMapEditor::CMapEditor(SceneManager* ScnMng): Scene_Abstract(ScnMng),input(CControllerFactory::getIns().getController())
+CMapEditor::CMapEditor(SceneManager* ScnMng) : Scene_Abstract(ScnMng), 
+	input(CControllerFactory::getIns().getController()), currentMapchip("NULL-OBJECT"), CFF(CFieldFactory())
 {
 	//SetMouseDispFlag(TRUE);
 	CreateParts();
@@ -28,6 +29,10 @@ void CMapEditor::Update()
 	if (input.lock()->Right() % 5 == 1)CAnchor::getIns().Move(CVector(16, 0));
 	if (input.lock()->Left() % 5 == 1)CAnchor::getIns().Move(CVector(-16, 0));
 
+	if (input.lock()->C() % 5 == 1)cur--;
+	if (input.lock()->Slow() % 5 == 1)cur++;
+	currentMapchip = CFF.getKey(&cur);
+
 	if (input.lock()->A() == 1) {
 		char *f = new char[256];
 		GetFileName(f, 255, true);
@@ -42,6 +47,7 @@ void CMapEditor::Update()
 
 void CMapEditor::Render()const
 {
+	printfDx("Cur:%d\nCurentMapChip:%s\n", cur, currentMapchip.c_str());
 	//printfDx("X:%d, Y:%d\n", input.lock()->MouseX(), input.lock()->MouseY());
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("editor_cursor")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, 0);

@@ -2,6 +2,7 @@
 #include "Scene_Abstract.h"
 #include "CMediator.h"
 #include "CFieldHolder.h"
+#include "CFieldFactory.h"
 #include "CControllerFactory.h"
 #include <memory>
 #include <DxLib.h>
@@ -13,6 +14,9 @@ protected:
     std::weak_ptr<CSTGInputManager> input;
     void CreateParts();
     std::shared_ptr<CFieldHolder> field;
+    int cur = 0;
+    std::string currentMapchip;
+    CFieldFactory CFF;
 
 public:
     CMapEditor(SceneManager *ScnMng);

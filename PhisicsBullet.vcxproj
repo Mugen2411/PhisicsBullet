@@ -180,6 +180,7 @@
     <ClCompile Include="CField_Wall.cpp" />
     <ClCompile Include="CField_Wall_Log.cpp" />
     <ClCompile Include="CField_Wall_Tree.cpp" />
+    <ClCompile Include="CField_Wall_WoodFence.cpp" />
     <ClCompile Include="CGameMediator.cpp" />
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CImageManager.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="CField_Wall.h" />
     <ClInclude Include="CField_Wall_Log.h" />
     <ClInclude Include="CField_Wall_Tree.h" />
+    <ClInclude Include="CField_Wall_WoodFence.h" />
     <ClInclude Include="CGameMediator.h" />
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CImageManager.h" />

@@ -53,7 +53,7 @@ std::shared_ptr<CImage> LG_field_error()
 
 std::shared_ptr<CImage> LG_field_grass()
 {
-    return std::make_shared<CImage>("media/graphic/mapchip/grass.png", 16, 8, 2, 32, 32);
+    return std::make_shared<CImage>("media/graphic/mapchip/grass.png", 24, 8, 3, 32, 32);
 }
 
 std::shared_ptr<CImage> LG_field_icefloor()

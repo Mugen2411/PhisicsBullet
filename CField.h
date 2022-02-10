@@ -27,7 +27,7 @@ protected:
 public:
 
 	CField(std::string gid, CVector position, CVector size,
-		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0, 0, 0, 0, 0, 0));
+		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0.0));
 	virtual ~CField() {};
 	virtual void setFrictionForce(CMover*);
 

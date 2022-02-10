@@ -3,7 +3,7 @@
 
 CAttribute CAttribute::operator*(double a)
 {
-	CAttribute ret;
+	CAttribute ret(0.0);
 	ret.None = this->None * a;
 	ret.Fire = this->Fire * a;
 	ret.Aqua = this->Aqua * a;
@@ -22,27 +22,55 @@ CAttribute CAttribute::operator*=(CAttribute a)
 
 CAttribute CAttribute::operator/(double a)
 {
-	CAttribute ret;
-	ret.None = this->None / a;
-	ret.Fire = this->Fire / a;
-	ret.Aqua = this->Aqua / a;
-	ret.Thunder = this->Thunder / a;
-	ret.Flower = this->Flower / a;
-	ret.Ice = this->Ice / a;
+	a = 1.0 / a;
+	CAttribute ret(0.0);
+	ret = *this * a;
 	return ret;
 }
 
-CAttribute::CAttribute():None(0), Fire(0), Aqua(0), Thunder(0), Flower(0), Ice(0)
-{
+CAttribute::CAttribute(double init)
+:None(init), Fire(init), Aqua(init), Thunder(init), Flower(init), Ice(init){
 }
 
-CAttribute::CAttribute(double none, double fire, double aqua, double thunder, double flower, double ice)
-:None(none), Fire(fire), Aqua(aqua), Thunder(thunder), Flower(flower), Ice(ice){
+CAttribute CAttribute::NONE(double value)
+{
+	this->None = value;
+	return *this;
+}
+
+CAttribute CAttribute::FIRE(double value)
+{	
+	this->Fire = value;
+	return *this;
+}
+
+CAttribute CAttribute::AQUA(double value)
+{
+	this->Aqua = value;
+	return *this;
+}
+
+CAttribute CAttribute::THUNDER(double value)
+{
+	this->Thunder = value;
+	return *this;
+}
+
+CAttribute CAttribute::FLOWER(double value)
+{
+	this->Flower = value;
+	return *this;
+}
+
+CAttribute CAttribute::ICE(double value)
+{
+	this->Ice = value;
+	return *this;
 }
 
 CAttribute CAttribute::operator*(CAttribute a)
 {
-	CAttribute ret;
+	CAttribute ret(0.0);
 	ret.None = this->None * a.None;
 	ret.Fire = this->Fire * a.Fire;
 	ret.Aqua = this->Aqua * a.Aqua;
@@ -54,7 +82,7 @@ CAttribute CAttribute::operator*(CAttribute a)
 
 CAttribute CAttribute::operator/(CAttribute a)
 {
-	CAttribute ret;
+	CAttribute ret(0.0);
 	ret.None = this->None / a.None;
 	ret.Fire = this->Fire / a.Fire;
 	ret.Aqua = this->Aqua / a.Aqua;
@@ -66,7 +94,7 @@ CAttribute CAttribute::operator/(CAttribute a)
 
 CAttribute CAttribute::operator+(CAttribute a)
 {
-	CAttribute ret;
+	CAttribute ret(0.0);
 	ret.None = this->None + a.None;
 	ret.Fire = this->Fire + a.Fire;
 	ret.Aqua = this->Aqua + a.Aqua;
@@ -95,5 +123,5 @@ bool CAttribute::isZero()
 
 double CAttribute::Sum()
 {
-	return None+Fire+Aqua+Thunder+Flower+Ice;
+	return None + Fire + Aqua + Thunder + Flower + Ice;
 }

@@ -3,7 +3,6 @@
 
 class CAttribute
 {
-public:
 	double None;
 	double Fire;
 	double Aqua;
@@ -11,8 +10,15 @@ public:
 	double Flower;
 	double Ice;
 
-	CAttribute();
-	CAttribute(double none, double fire, double aqua, double thunder, double flower, double ice);
+public:
+	CAttribute(double init);
+
+	CAttribute NONE(double value);
+	CAttribute FIRE(double value);
+	CAttribute AQUA(double value);
+	CAttribute THUNDER(double value);
+	CAttribute FLOWER(double value);
+	CAttribute ICE(double value);
 
 	CAttribute operator *(CAttribute a);
 	CAttribute operator *(double a);

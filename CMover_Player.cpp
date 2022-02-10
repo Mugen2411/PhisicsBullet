@@ -9,7 +9,7 @@
 #include "CAnchor.h"
 
 CMover_Player::CMover_Player(CVector position)
-	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0), animCount(0.0)
+	:CMover(MV_PLAYER, position, 16.0, CVector(0.0, 0.0), 30, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Direction(1), Charge(0), State(0), baseParams(0), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)) {
 }

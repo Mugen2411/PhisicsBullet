@@ -30,13 +30,11 @@ void CField_Wall_Log::Render() const
 {
 	switch (state) {
 	case 0:
+	case 1:
 		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 4);
 		break;
-	case 1:
-		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 5+animCount);
-		break;
 	case 2:
-		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 8);
+		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 5);
 		break;
 	}
 }

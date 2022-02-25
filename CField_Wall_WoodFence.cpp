@@ -14,3 +14,8 @@ void CField_Wall_WoodFence::Render() const
 {
 	CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 8 + state);
 }
+
+CField* CField_Wall_WoodFence::Clone(CVector position)
+{
+	return new CField_Wall_WoodFence(GID, position, state);
+}

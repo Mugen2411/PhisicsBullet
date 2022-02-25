@@ -270,11 +270,11 @@
     <ClCompile Include="CAnchor.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CField_Error.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CField_Wall_WoodFence.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CField_Error.cpp">
+      <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

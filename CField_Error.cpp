@@ -13,3 +13,8 @@ void CField_Error::Render() const
 {
 	CImageManager::getIns().find("Field_Error")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0);
 }
+
+CField* CField_Error::Clone(CVector position)
+{
+	return new CField_Error(GID, position);
+}

@@ -19,3 +19,8 @@ void CField_Grass::Render()const
 {
 	CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, decoration);
 }
+
+CField* CField_Grass::Clone(CVector position)
+{
+	return new CField_Grass(GID, position);
+}

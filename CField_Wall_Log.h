@@ -12,6 +12,8 @@ public:
 
     void Update();
     void Render()const;
+
+    CField* Clone(CVector position);
     
     void Hit(CMover* m);
 };

@@ -29,7 +29,12 @@ public:
 	CField(std::string gid, CVector position, CVector size,
 		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0.0));
 	virtual ~CField() {};
+
+	bool operator ==(std::string gid)const;
+	std::string getGID();
+
 	virtual void setFrictionForce(CMover*);
+	virtual CField* Clone(CVector position) = 0;
 
 	virtual void Hit(CMover* m) {}		//‹ß‚­‚É•¨‘Ì‚ª‚ ‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éA‰½‚à‚µ‚½‚­‚È‚¯‚ê‚Î‚µ‚È‚­‚Ä‚à‚¢‚¢
 	virtual void Update();

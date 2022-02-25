@@ -5,6 +5,17 @@ CField::CField(std::string gid, CVector position, CVector size, double frictionC
 {
 }
 
+
+bool CField::operator==(std::string gid)const
+{
+	return (gid == GID);
+}
+
+std::string CField::getGID()
+{
+	return GID;
+}
+
 void CField::setFrictionForce(CMover* m)
 {
 	m->ApplyFrictionForce(FrictionCF);

@@ -4,33 +4,36 @@
 #include "CField_Wall_Tree.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_WoodFence.h"
+#include "CField_Error.h"
 
 CFieldFactory::CFieldFactory()
 {
-	loaderList["Field_Grass"] = LF_Grass;
-	loaderList["Field_IceFloor"] = LF_IceFloor;
-	loaderList["Field_Wall_Tree"] = LF_Wall_Tree;
+	prototypes.push_back(std::make_shared<CField_Grass>("Field_Grass", CVector()));
+	prototypes.push_back(std::make_shared<CField_IceFloor>("Field_IceFloor", CVector(), -100));
+	prototypes.push_back(std::make_shared<CField_Wall_Tree>("Field_Wall_Tree", CVector()));
 
-	loaderList["Field_Wall_Log"] = LF_Wall_Log;
-	loaderList["Field_Wall_Log_Burning"] = LF_Wall_Log_Burning;
-	loaderList["Field_Wall_Log_Burned"] = LF_Wall_Log_Burned;
+	prototypes.push_back(std::make_shared<CField_Wall_Log>("Field_Wall_Log", CVector(), 0));
+	prototypes.push_back(std::make_shared<CField_Wall_Log>("Field_Wall_Log_Burning", CVector(), 1));
+	prototypes.push_back(std::make_shared<CField_Wall_Log>("Field_Wall_Log_Burned", CVector(), 2));
+	
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence", CVector(), 0));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_U", CVector(), 1));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_D", CVector(), 2));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_R", CVector(), 3));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_L", CVector(), 4));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UR", CVector(), 5));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UD", CVector(), 6));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UL", CVector(), 7));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_RL", CVector(), 8));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_DR", CVector(), 9));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_DL", CVector(), 10));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_URL", CVector(), 11));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UDR", CVector(), 12));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_DRL", CVector(), 13));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UDL", CVector(), 14));
+	prototypes.push_back(std::make_shared<CField_Wall_WoodFence>("Field_Wall_WoodFence_UDRL", CVector(), 15));
 
-	loaderList["Field_Wall_WoodFence"] = LF_Wall_WoodFence;
-	loaderList["Field_Wall_WoodFence_U"] = LF_Wall_WoodFence_U;
-	loaderList["Field_Wall_WoodFence_D"] = LF_Wall_WoodFence_D;
-	loaderList["Field_Wall_WoodFence_R"] = LF_Wall_WoodFence_R;
-	loaderList["Field_Wall_WoodFence_L"] = LF_Wall_WoodFence_L;
-	loaderList["Field_Wall_WoodFence_UR"] = LF_Wall_WoodFence_UR;
-	loaderList["Field_Wall_WoodFence_UD"] = LF_Wall_WoodFence_UD;
-	loaderList["Field_Wall_WoodFence_UL"] = LF_Wall_WoodFence_UL;
-	loaderList["Field_Wall_WoodFence_RL"] = LF_Wall_WoodFence_RL;
-	loaderList["Field_Wall_WoodFence_DR"] = LF_Wall_WoodFence_DR;
-	loaderList["Field_Wall_WoodFence_DL"] = LF_Wall_WoodFence_DL;
-	loaderList["Field_Wall_WoodFence_URL"] = LF_Wall_WoodFence_URL;
-	loaderList["Field_Wall_WoodFence_UDR"] = LF_Wall_WoodFence_UDR;
-	loaderList["Field_Wall_WoodFence_DRL"] = LF_Wall_WoodFence_DRL;
-	loaderList["Field_Wall_WoodFence_UDL"] = LF_Wall_WoodFence_UDL;
-	loaderList["Field_Wall_WoodFence_UDRL"] = LF_Wall_WoodFence_UDRL;
+	prototypes.push_back(std::make_shared<CField_Error>("Field_Error", CVector()));
 }
 
 std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
@@ -40,134 +43,24 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y *= 32;
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
-	auto r = loaderList.find(name);
-	if (r == loaderList.end())return loaderList["error"]("error", CVector(x, y));
-	return loaderList[name](name, CVector(x, y));
+	auto itr = prototypes.begin();
+	for (; itr != prototypes.end(); itr++) {
+		if (*itr->get() == name)break;
+	}
+	return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
 }
 
 std::string CFieldFactory::getKey(int *n)
 {
-	auto itr = loaderList.begin();
+	auto itr = prototypes.begin();
 	if (*n < 0) {
 		*n = 0;
 	}
-	if (*n > loaderList.size()-1) {
-		*n = loaderList.size()-1;
+	if (*n > prototypes.size()-1) {
+		*n = prototypes.size()-1;
 	}
 	for (int i = 0; i < *n; i++) {
 		itr++;
 	}
-	return itr->first;
-}
-
-std::shared_ptr<CField> LF_Grass(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Grass>(name, pos);
-}
-
-std::shared_ptr<CField> LF_IceFloor(std::string name, CVector pos)
-{
-	return std::make_shared<CField_IceFloor>(name, pos, -100);
-}
-
-std::shared_ptr<CField> LF_Wall_Tree(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_Tree>(name, pos);
-}
-
-std::shared_ptr<CField> LF_Wall_Log(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_Log>(name, pos, 0);
-}
-
-std::shared_ptr<CField> LF_Wall_Log_Burning(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_Log>(name, pos, 1);
-}
-
-std::shared_ptr<CField> LF_Wall_Log_Burned(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_Log>(name, pos, 2);
-}
-
-static const int WOODFENCE = 8;
-
-std::shared_ptr<CField> LF_Wall_WoodFence(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 0);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_U(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 1);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_D(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 2);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_R(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 3);;
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_L(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 4);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UR(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 5);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UD(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 6);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 7);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_RL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 8);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_DR(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 9);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_DL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 10);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_URL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 11);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UDR(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 12);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_DRL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 13);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UDL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 14);
-}
-
-std::shared_ptr<CField> LF_Wall_WoodFence_UDRL(std::string name, CVector pos)
-{
-	return std::make_shared<CField_Wall_WoodFence>(name, pos, 15);
+	return (*itr)->getGID();
 }

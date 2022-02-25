@@ -14,3 +14,8 @@ void CField_IceFloor::Render()const
 {
 	CImageManager::getIns().find("Field_IceFloor")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 0);
 }
+
+CField* CField_IceFloor::Clone(CVector position)
+{
+	return new CField_IceFloor(GID,position, Temperature);
+}

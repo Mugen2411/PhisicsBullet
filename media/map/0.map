@@ -41,7 +41,7 @@ Field_Wall_Tree
 Field_Wall_Tree
 Field_Wall_Tree
 Field_Wall_Tree
-Field_Grass
+Field_IceFloor
 Field_Grass
 Field_IceFloor
 Field_Grass
@@ -121,7 +121,7 @@ Field_IceFloor
 Field_IceFloor
 Field_Wall_Tree
 Field_Wall_Tree
-Field_Grass
+Field_Wall_WoodFence
 Field_IceFloor
 Field_IceFloor
 Field_Grass
@@ -161,7 +161,7 @@ Field_Wall_Log_Burning
 Field_Wall_Log_Burning
 Field_Wall_Tree
 Field_Wall_Tree
-Field_Grass
+Field_Wall_WoodFence
 Field_IceFloor
 Field_IceFloor
 Field_Grass
@@ -201,7 +201,7 @@ Field_Grass
 Field_IceFloor
 Field_Wall_Tree
 Field_Wall_Tree
-Field_IceFloor
+Field_Wall_WoodFence
 Field_IceFloor
 Field_Grass
 Field_IceFloor
@@ -241,7 +241,7 @@ Field_IceFloor
 Field_IceFloor
 Field_Wall_Tree
 Field_Wall_Tree
-Field_Grass
+Field_Wall_WoodFence
 Field_Grass
 Field_IceFloor
 Field_IceFloor
@@ -281,7 +281,7 @@ Field_Grass
 Field_Grass
 Field_Wall_Tree
 Field_Wall_Tree
-Field_Grass
+Field_Wall_WoodFence
 Field_Grass
 Field_Grass
 Field_Grass

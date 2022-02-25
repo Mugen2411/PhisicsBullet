@@ -8,6 +8,7 @@ class CFieldFactory
 {
 private:
 	std::list<std::shared_ptr<CField>> prototypes;
+	void Register(CField* f);
 
 public:
 	CFieldFactory();

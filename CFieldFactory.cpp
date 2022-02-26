@@ -48,10 +48,7 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y *= 32;
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
-	auto itr = prototypes.begin();
-	for (; itr != prototypes.end(); itr++) {
-		if (*itr->get() == name)break;
-	}
+	auto itr = std::find_if(prototypes.begin(), --prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
 	return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
 }
 

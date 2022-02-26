@@ -76,7 +76,7 @@ void CMover_Player::Shot()
 		return;
 	}
 	if (Charge == costume->getMaxCharge()) {
-		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position, angle));
+		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position+CVector(cos(angle)*8, sin(angle)*8), angle));
 		Charge = 0;
 		Wait(costume->getStrongShotDuration());
 		return;

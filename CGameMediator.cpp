@@ -24,7 +24,7 @@ void CGameMediator::CreateParts()
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32)));
 	for (int i = 0; i < 5; i++) {
-		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 0));
+		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 20));
 	}
 }
 

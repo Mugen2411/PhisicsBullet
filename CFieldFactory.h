@@ -1,13 +1,13 @@
 #pragma once
 #include "CField.h"
 #include <string>
-#include <list>
+#include <vector>
 #include <algorithm>
 
 class CFieldFactory
 {
 private:
-	std::list<std::shared_ptr<CField>> prototypes;
+	std::vector<std::shared_ptr<CField>> prototypes;
 	void Register(CField* f);
 
 public:

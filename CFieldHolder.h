@@ -10,7 +10,8 @@ class CField;
 class CFieldHolder
 {
 protected:
-	std::vector<std::shared_ptr<CField>> fieldlist;
+	std::vector<std::shared_ptr<CField>> walllist;
+	std::vector<std::shared_ptr<CField>> floorlist;
 	unsigned int width, height;
 	std::string filePath;
 
@@ -18,8 +19,12 @@ public:
 	CFieldHolder(std::string filepath);
 	~CFieldHolder();
 
-	std::shared_ptr<CField> getField(unsigned int x, unsigned int y);
-	void write(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
+	std::shared_ptr<CField> getFloor(unsigned int x, unsigned int y);
+	std::shared_ptr<CField> getWall(unsigned int x, unsigned int y);
+
+	void writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
+	void writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
+
 	int getWidth();
 	int getHeight();
 	void Update();

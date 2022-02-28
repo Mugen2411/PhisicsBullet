@@ -4,6 +4,7 @@
 #include "CField_Wall_Tree.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_WoodFence.h"
+#include "CField_Void.h"
 #include "CField_Error.h"
 
 void CFieldFactory::Register(CField* f)
@@ -38,7 +39,8 @@ CFieldFactory::CFieldFactory()
 	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UDL", CVector(), 14));
 	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UDRL", CVector(), 15));
 
-	Register(new CField_Error("Field_Error", CVector()));
+	Register(new CField_Void("Field_Void", CVector()));
+	//Register(new CField_Error("Field_Error", CVector()));
 }
 
 std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)

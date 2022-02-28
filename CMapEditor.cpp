@@ -37,7 +37,7 @@ void CMapEditor::Update()
 	currentMapchip = CFF.getKey(&cur);
 
 	if (input.lock()->LClick(true) > 0) {
-		field->write(CFF.create(currentSelect.x, currentSelect.y, currentMapchip), currentSelect.x, currentSelect.y);
+		field->writefloor(CFF.create(currentSelect.x, currentSelect.y, currentMapchip), currentSelect.x, currentSelect.y);
 	}
 
 	if (input.lock()->Start() == 1) {

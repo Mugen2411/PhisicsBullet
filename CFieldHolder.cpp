@@ -13,14 +13,24 @@ CFieldHolder::~CFieldHolder()
 	Save();
 }
 
-std::shared_ptr<CField> CFieldHolder::getField(unsigned int x, unsigned int y)
+std::shared_ptr<CField> CFieldHolder::getFloor(unsigned int x, unsigned int y)
 {
-	return fieldlist[width * y + x];
+	return floorlist[width * y + x];
 }
 
-void CFieldHolder::write(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
+std::shared_ptr<CField> CFieldHolder::getWall(unsigned int x, unsigned int y)
 {
-	fieldlist[width * y + x] = f;
+	return walllist[width * y + x];
+}
+
+void CFieldHolder::writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
+{
+	floorlist[width * y + x] = f;
+}
+
+void CFieldHolder::writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
+{
+	walllist[width * y + x] = f;
 }
 
 int CFieldHolder::getHeight()
@@ -35,14 +45,20 @@ int CFieldHolder::getWidth()
 
 void CFieldHolder::Update()
 {
-	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::shared_ptr<CField> i) {
+	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
+		i->Update();
+	});
+	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		i->Update();
 	});
 }
 
 void CFieldHolder::Render() const
 {
-	std::for_each(fieldlist.begin(), fieldlist.end(), [](std::shared_ptr<CField> i) {
+	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
+		i->Render();
+	});
+	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		i->Render();
 	});
 }
@@ -52,7 +68,10 @@ void CFieldHolder::Save()
 	std::ofstream fout;
 	fout.open(filePath);
 	fout << width << "\n" << height << "\n";
-	std::for_each(fieldlist.begin(), fieldlist.end(), [&](std::shared_ptr<CField> i) {
+	std::for_each(floorlist.begin(), floorlist.end(), [&](std::shared_ptr<CField> i) {
+		i->Save(fout);
+	});
+	std::for_each(walllist.begin(), walllist.end(), [&](std::shared_ptr<CField> i) {
 		i->Save(fout);
 	});
 }
@@ -60,15 +79,27 @@ void CFieldHolder::Save()
 int CFieldHolder::Load() {
 	std::ifstream fin(filePath);
 	if (!fin)return 1;
+
 	fin >> width;
 	fin >> height;
-	fieldlist.resize(height * width);
+
+	floorlist.resize(height * width);
+	walllist.resize(height * width);
+
 	CFieldFactory CFF;
 	std::string buf;
+
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 			fin >> buf;
-			this->write(CFF.create(x, y, buf), x, y);
+			this->writefloor(CFF.create(x, y, buf), x, y);
+		}
+	}
+
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			fin >> buf;
+			this->writewall(CFF.create(x, y, buf), x, y);
 		}
 	}
 }

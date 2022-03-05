@@ -4,41 +4,61 @@
 #include "CField_Wall_Tree.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_WoodFence.h"
+#include "CField_Void.h"
 #include "CField_Error.h"
 
-void CFieldFactory::Register(CField* f)
+void CFieldFactory::RegisterWall(CField* f)
 {
-	prototypes.push_back(std::shared_ptr<CField>(f));
+	f->Move(CVector(wx * 32 + 16, wy * 32 + 16));
+	wall_prototypes.push_back(std::shared_ptr<CField>(f));
+	wx++;
+	if (wx == 20) {
+		wx = 0; wy++;
+	}
+}
+
+void CFieldFactory::RegisterFloor(CField* f)
+{
+	f->Move(CVector(fx * 32 + 16, fy * 32 + 16));
+	floor_prototypes.push_back(std::shared_ptr<CField>(f));
+	fx++;
+	if (fx == 20) {
+		fx = 0; fy++;
+	}
 }
 
 CFieldFactory::CFieldFactory()
 {
-	Register(new CField_Grass("Field_Grass", CVector()));
-	Register(new CField_IceFloor("Field_IceFloor", CVector(), -100));
-	Register(new CField_Wall_Tree("Field_Wall_Tree", CVector()));
+	wx = 0;
+	wy = 0;
+	fx = 0;
+	fy = 0;
+	RegisterFloor(new CField_Grass("F_Grass", CVector()));
+	RegisterFloor(new CField_IceFloor("F_IceFloor", CVector(), -100));
+	RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));
 
-	Register(new CField_Wall_Log("Field_Wall_Log", CVector(), 0));
-	Register(new CField_Wall_Log("Field_Wall_Log_Burning", CVector(), 1));
-	Register(new CField_Wall_Log("Field_Wall_Log_Burned", CVector(), 2));
-	
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence", CVector(), 0));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_U", CVector(), 1));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_D", CVector(), 2));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_R", CVector(), 3));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_L", CVector(), 4));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UR", CVector(), 5));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UD", CVector(), 6));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UL", CVector(), 7));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_RL", CVector(), 8));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_DR", CVector(), 9));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_DL", CVector(), 10));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_URL", CVector(), 11));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UDR", CVector(), 12));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_DRL", CVector(), 13));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UDL", CVector(), 14));
-	Register(new CField_Wall_WoodFence("Field_Wall_WoodFence_UDRL", CVector(), 15));
+	RegisterWall(new CField_Wall_Log("W_Log", CVector(), 0));
+	RegisterWall(new CField_Wall_Log("W_Log_Burning", CVector(), 1));
+	RegisterWall(new CField_Wall_Log("W_Log_Burned", CVector(), 2));
 
-	Register(new CField_Error("Field_Error", CVector()));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence", CVector(), 0));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_U", CVector(), 1));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_D", CVector(), 2));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_R", CVector(), 3));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_L", CVector(), 4));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UR", CVector(), 5));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UD", CVector(), 6));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UL", CVector(), 7));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_RL", CVector(), 8));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DR", CVector(), 9));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DL", CVector(), 10));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_URL", CVector(), 11));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDR", CVector(), 12));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DRL", CVector(), 13));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDL", CVector(), 14));
+	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDRL", CVector(), 15));
+
+	RegisterWall(new CField_Void("W_Void", CVector()));
 }
 
 std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
@@ -48,21 +68,63 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y *= 32;
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
-	auto itr = std::find_if(prototypes.begin(), --prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
-	return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
+	if (name[0] == 'W') {
+		auto itr = std::find_if(wall_prototypes.begin(), --wall_prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
+		return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
+	}
+	else {
+		auto itr = std::find_if(floor_prototypes.begin(), --floor_prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
+		return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
+	}
+	
 }
 
-std::string CFieldFactory::getKey(int *n)
+//category=0:Floor, 1:Wall
+std::string CFieldFactory::getKey(int* n, int category)
 {
-	auto itr = prototypes.begin();
-	if (*n < 0) {
-		*n = 0;
+	if (category == 1) {
+		auto itr = wall_prototypes.begin();
+		if (*n < 0) {
+			*n = 0;
+		}
+		if (*n > wall_prototypes.size() - 1) {
+			*n = wall_prototypes.size() - 1;
+		}
+		for (int i = 0; i < *n; i++) {
+			itr++;
+		}
+		return (*itr)->getGID();
 	}
-	if (*n > prototypes.size()-1) {
-		*n = prototypes.size()-1;
+	else {
+		auto itr = floor_prototypes.begin();
+		if (*n < 0) {
+			*n = 0;
+		}
+		if (*n > floor_prototypes.size() - 1) {
+			*n = floor_prototypes.size() - 1;
+		}
+		for (int i = 0; i < *n; i++) {
+			itr++;
+		}
+		return (*itr)->getGID();
 	}
-	for (int i = 0; i < *n; i++) {
-		itr++;
+	
+	
+}
+
+void CFieldFactory::Render(int category) const
+{
+	switch (category) {
+	case 0:
+		for (const auto& p : floor_prototypes) {
+			p->Render();
+		}
+		break;
+	case 1:
+		for (const auto& p : wall_prototypes) {
+			p->Render();
+		}
+		break;
 	}
-	return (*itr)->getGID();
+	
 }

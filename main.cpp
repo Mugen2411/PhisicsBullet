@@ -9,6 +9,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	SetAlwaysRunFlag(TRUE);
 	//SetWaitVSyncFlag(FALSE);
 	CGame g = CGame();
+	SetBackgroundColor(0x7F, 0x7F, 0x7F, 0x7F);
 	SetLogFontHandle(CreateFontToHandle("MS P Gothic", 24, 4, DX_FONTTYPE_ANTIALIASING_EDGE));
 	int offscreen = MakeScreen(640, 480);
 	SetDrawMode(DX_DRAWMODE_BILINEAR);

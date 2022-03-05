@@ -11,7 +11,7 @@ class CField;
 class CFieldParent
 {
 	std::weak_ptr<CGameMediator> med;
-	std::shared_ptr<CFieldHolder> floorHolder;
+	std::shared_ptr<CFieldHolder> fieldHolder;
 	
 public:
 	CFieldParent(std::shared_ptr<CGameMediator>, std::string);

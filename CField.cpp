@@ -24,6 +24,11 @@ void CField::setFrictionForce(CMover* m)
 	DamageInterval %= 6;
 }
 
+void CField::Move(CVector p)
+{
+	Position = p;
+}
+
 void CField::Update()
 {
 }

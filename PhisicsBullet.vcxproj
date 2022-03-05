@@ -177,6 +177,7 @@
     <ClCompile Include="CField_Error.cpp" />
     <ClCompile Include="CField_Grass.cpp" />
     <ClCompile Include="CField_IceFloor.cpp" />
+    <ClCompile Include="CField_Void.cpp" />
     <ClCompile Include="CField_Wall.cpp" />
     <ClCompile Include="CField_Wall_Log.cpp" />
     <ClCompile Include="CField_Wall_Tree.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="CField_Error.h" />
     <ClInclude Include="CField_Grass.h" />
     <ClInclude Include="CField_IceFloor.h" />
+    <ClInclude Include="CField_Void.h" />
     <ClInclude Include="CField_Wall.h" />
     <ClInclude Include="CField_Wall_Log.h" />
     <ClInclude Include="CField_Wall_Tree.h" />

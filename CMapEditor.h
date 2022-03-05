@@ -19,6 +19,9 @@ protected:
     std::string currentMapchip;
     CFieldFactory CFF;
 
+    int state;      //0:マップ,1:パレット
+    int category;   //0:Floor,1:Wall
+
 public:
     CMapEditor(SceneManager *ScnMng);
     ~CMapEditor();

@@ -25,11 +25,13 @@ std::shared_ptr<CField> CFieldHolder::getWall(unsigned int x, unsigned int y)
 
 void CFieldHolder::writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
 {
+	if (0 > x || x > width || 0 > y || y > height)return;
 	floorlist[width * y + x] = f;
 }
 
 void CFieldHolder::writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
 {
+	if (0 > x || x > width || 0 > y || y > height)return;
 	walllist[width * y + x] = f;
 }
 

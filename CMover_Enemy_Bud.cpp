@@ -53,10 +53,4 @@ void CMover_Enemy_Bud::Render() const
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
 
 	Render_HPGuage();
-
-#ifdef _DEBUG
-	for (auto& i : route) {
-		CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0.0, 1.0, 5.0);
-	}
-#endif
 }

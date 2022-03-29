@@ -76,7 +76,7 @@ void CMover_Player::Shot()
 		return;
 	}
 	if (Charge == costume->getMaxCharge()) {
-		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position+CVector(cos(angle)*8, sin(angle)*8), angle));
+		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position+CVector(cos(angle)*16, sin(angle)*16), angle));
 		Charge = 0;
 		Wait(costume->getStrongShotDuration());
 		return;
@@ -146,5 +146,5 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
-	ApplyForce((Position - m->getPosition()).getNorm() * 32 * Mass / max(0.3, (Position - m->getPosition()).getLength()));
+	ApplyForce((Position - m->getPosition()).getNorm() * 16 * Mass / max(0.3, (Position - m->getPosition()).getLength()));
 }

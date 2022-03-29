@@ -143,3 +143,8 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 2;
 	return 0;
 }
+
+void CMover_Player::Hit(CMover_EnemyBase* m)
+{
+	ApplyForce((Position - m->getPosition()).getNorm() * 32 * Mass / max(0.3, (Position - m->getPosition()).getLength()));
+}

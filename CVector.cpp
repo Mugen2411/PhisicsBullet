@@ -60,9 +60,27 @@ CVector CVector::operator/(double const v)const
 	return CVector(this->x / v, this->y / v);
 }
 
+CVector CVector::operator*=(double const v)
+{
+	*this = *this * v;
+	return *this;
+}
+
 bool CVector::operator!() const
 {
 	return !is_valid;
+}
+
+bool CVector::operator<(CVector v) const
+{
+	if (x == v.x) {
+		if (y < v.y)return true;
+		else return false;
+	}
+	else {
+		if (x < v.x)return true;
+		else return false;
+	}
 }
 
 double CVector::dot(const CVector v)const

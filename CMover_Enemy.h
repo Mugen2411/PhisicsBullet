@@ -23,8 +23,12 @@ public:
     CAttribute attrDEF;		//‘®«‘Ï«(‚È‚ñ‚©‚¢‚Á‚Ï‚¢)
 
     int Color;
+
+    std::vector<CVector> route;
     
     virtual void Walk(CVector destination);
+    virtual void Move_on_Route();
+    void Find_Route();
     virtual int Update() = 0;
     virtual void Render()const = 0;
     virtual void Dead();
@@ -38,5 +42,7 @@ public:
     void Drop();
     int DamageColor(CAttribute shotATK);
     void HitDispatch(std::shared_ptr<CMover>);
+    void Hit(CMover_EnemyBase*);
+    void Hit(CMover_Player*);
 };
 

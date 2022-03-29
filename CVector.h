@@ -22,7 +22,9 @@ public:
 	CVector operator -()const;
 	CVector operator *(double const v)const;
 	CVector operator /(double const v)const;
+	CVector operator *=(double const v);
 	bool operator !()const;
+	bool operator <(CVector v)const;
 
 	double dot(CVector const v)const;
 	double cross(CVector const v)const;

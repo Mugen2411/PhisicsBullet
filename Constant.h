@@ -15,6 +15,8 @@ public:
 
 	static int ScrollMargin;
 
+	static double dbl_INF;
+
 	enum SCENE_ID {
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE
 	};

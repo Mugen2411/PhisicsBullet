@@ -27,11 +27,14 @@ protected:
 public:
 
 	CField(std::string gid, CVector position, CVector size,
-		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0.0));
+		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0.0), bool isWall = false);
 	virtual ~CField() {};
+
+	bool isWall;
 
 	bool operator ==(std::string gid)const;
 	std::string getGID();
+	CAttribute getDamage();
 
 	virtual void setFrictionForce(CMover*);
 	void Move(CVector p);

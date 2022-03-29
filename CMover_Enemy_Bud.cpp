@@ -15,13 +15,12 @@ int CMover_Enemy_Bud::Update()
 	case 1:
 		cnt++;
 		if (cnt == 90) {
+			Find_Route();
 			CVector ppos = med.lock()->GetPlayerPosition();
 			if(!!ppos)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos-Position).getAngle()));
 			cnt = 0;
-			testDest.x = GetRand(640);
-			testDest.y = GetRand(480);
 		}
-		Walk(testDest);
+		Move_on_Route();
 		animCount += 0.3;
 		if (animCount > 4)animCount = 0;
 		break;
@@ -29,10 +28,9 @@ int CMover_Enemy_Bud::Update()
 		animCount += 0.1;
 		if (animCount > 4) {
 			state = 0;
+			Find_Route();
 			animCount = 0;
 			cnt = 0;
-			testDest.x = GetRand(640);
-			testDest.y = GetRand(480);
 		}
 		break;
 	}
@@ -55,4 +53,10 @@ void CMover_Enemy_Bud::Render() const
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
 
 	Render_HPGuage();
+
+#ifdef _DEBUG
+	for (auto& i : route) {
+		CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0.0, 1.0, 5.0);
+	}
+#endif
 }

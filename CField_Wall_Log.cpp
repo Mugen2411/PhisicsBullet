@@ -12,6 +12,7 @@ void CField_Wall_Log::Update()
 	switch (state) {
 	case 0:
 		if (Temperature > 100)state = 1;
+		isWall = true;
 		break;
 	case 1:
 		animCount += 0.2;
@@ -19,9 +20,11 @@ void CField_Wall_Log::Update()
 		BurningTime--;
 		if (BurningTime < 0)state = 2;
 		Damage = CAttribute(0.0).FIRE(4.0);
+		isWall = false;
 		break;
 	case 2:
 		Damage = CAttribute(0.0);
+		isWall = false;
 		break;
 	}
 }
@@ -42,9 +45,4 @@ void CField_Wall_Log::Render() const
 CField* CField_Wall_Log::Clone(CVector position)
 {
 	return new CField_Wall_Log(GID, position, state);
-}
-
-void CField_Wall_Log::Hit(CMover* m)
-{
-	if (state == 0)m->onWall(Position, Size, ReflectCF);
 }

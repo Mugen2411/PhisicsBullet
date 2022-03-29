@@ -1,6 +1,7 @@
 #include "CFieldHolder.h"
 #include "CField.h"
 #include "CFieldFactory.h"
+#include <queue>
 
 CFieldHolder::CFieldHolder(std::string filepath) :filePath(filepath)
 {
@@ -63,6 +64,67 @@ void CFieldHolder::Render() const
 	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		i->Render();
 	});
+}
+
+std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF)
+{
+	int dx[4] = { 0, 0, 1, -1 };
+	int dy[4] = { 1, -1, 0, 0 };
+
+	CVector s((int)((start.x) / 32), (int)((start.y) / 32));
+	CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));
+	std::vector<CVector> ret;
+	using PP = std::pair<double, CVector>;
+	std::vector<std::vector<double>> g, dist;
+	dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
+	g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			g[x][y] = (s-CVector(x,y)).getLength2() + (floorlist[index(x, y)]->getDamage() / attrDEF).Sum()*20;
+		}
+	}
+	std::vector<std::vector<CVector>> pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
+	std::priority_queue<PP, std::vector<PP>, std::greater<PP>> pq;
+	dist[(int)(start.x / 32)][(int)(start.y / 32)] = 0;
+	pq.push(PP(0, s));
+
+	while (!pq.empty()) {
+		PP p = pq.top();
+		pq.pop();
+		double c = p.first;
+		int vx = p.second.x;
+		int vy = p.second.y;
+		for (int i = 0; i < 4; i++) {
+			int nx, ny;
+			nx = vx + dx[i];
+			ny = vy + dy[i];
+			if (nx < 0 || ny < 0 || nx >= width || ny >= height)continue;
+			if (walllist[index(nx, ny)]->isWall)continue;
+			if (dist[nx][ny] <= g[nx][ny] + c) continue;
+			dist[nx][ny] = g[nx][ny] + c;
+			pre[nx][ny] = CVector(vx, vy);
+			pq.push(PP(dist[nx][ny], CVector(nx, ny)));
+		}
+	}
+
+	CVector v;
+	for (; t.x != -1, t.y != -1; t.x = pre[v.x][v.y].x, t.y = pre[v.x][v.y].y) {
+		ret.push_back(t);
+		v = t;
+	}
+	for (auto& i : ret) {
+		i *= 32.0;
+		i += CVector(16, 16);
+	}
+	*ret.begin() = goal;
+	ret.back() = start;
+	//std::reverse(ret.begin(), ret.end());
+
+	return ret;
+}
+
+int CFieldHolder::index(int x, int y) {
+	return y * width + x;
 }
 
 void CFieldHolder::Save()

@@ -3,6 +3,8 @@
 #include <memory>
 #include "Scene_Abstract.h"
 #include "CControllerFactory.h"
+#include "CVector.h"
+#include "CAttribute.h"
 
 class CMoverParent;
 class CFieldParent;
@@ -32,6 +34,7 @@ public:
 	void RegisterMover(std::shared_ptr<CMover>);
 	void ApplyForceToMover(CMover*);
 	CVector GetPlayerPosition();
+	std::vector<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF);
 	std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
 	void getMoney(int value);
 

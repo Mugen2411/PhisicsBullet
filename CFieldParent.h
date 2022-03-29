@@ -18,6 +18,7 @@ public:
 	~CFieldParent();
 	void Update();
 	void ApplyForceToMover(CMover* m);
+	std::vector<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF);
 	void Render()const;
 };
 

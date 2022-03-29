@@ -37,6 +37,11 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	}
 }
 
+std::vector<CVector> CFieldParent::getRoute(CVector start, CVector goal, CAttribute attrDEF)
+{
+	return fieldHolder->Find_Route(start, goal, attrDEF);
+}
+
 void CFieldParent::Render() const
 {
 	fieldHolder->Render();

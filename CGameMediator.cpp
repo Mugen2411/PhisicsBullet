@@ -23,7 +23,7 @@ void CGameMediator::CreateParts()
 	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), "media/map/0.map");
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32)));
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 1; i++) {
 		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 20));
 	}
 }
@@ -45,6 +45,11 @@ CVector CGameMediator::GetPlayerPosition()
 	std::weak_ptr<CMover> p = moverParent->getMover(CMover::MOVER_ID::MV_PLAYER, 0);
 	if (!p.lock())return CVector(false);
 	return CVector(p.lock()->getPosition());
+}
+
+std::vector<CVector> CGameMediator::GetRoute(CVector start, CVector goal, CAttribute attrDEF)
+{
+	return fieldParent->getRoute(start, goal, attrDEF);
 }
 
 std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p)

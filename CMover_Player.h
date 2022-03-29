@@ -35,5 +35,7 @@ public:
     void RatioDamage(CAttribute BulletATK, int style);
     void HitDispatch(std::shared_ptr<CMover>);
     int DamageColor(CAttribute shotATK);
+
+    void Hit(CMover_EnemyBase*);
 };
 

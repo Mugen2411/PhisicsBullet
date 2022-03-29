@@ -12,3 +12,5 @@ int Constant::ScreenW = 640;
 int Constant::ScreenH = 480;
 
 int Constant::ScrollMargin = 240;
+
+double Constant::dbl_INF = 1.0e200;

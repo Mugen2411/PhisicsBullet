@@ -1,7 +1,7 @@
 #include "CField.h"
 
-CField::CField(std::string gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF, CAttribute damage)
-	:GID(gid), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF), Damage(damage),DamageInterval(0)
+CField::CField(std::string gid, CVector position, CVector size, double frictionCF, double temperature, double reflectCF, CAttribute damage, bool isWall)
+	:GID(gid), Position(position), Size(size), FrictionCF(frictionCF), Temperature(temperature), ReflectCF(reflectCF), Damage(damage),DamageInterval(0), isWall(isWall)
 {
 }
 
@@ -14,6 +14,11 @@ bool CField::operator==(std::string gid)const
 std::string CField::getGID()
 {
 	return GID;
+}
+
+CAttribute CField::getDamage()
+{
+	return Damage;
 }
 
 void CField::setFrictionForce(CMover* m)

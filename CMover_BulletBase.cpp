@@ -11,6 +11,10 @@ CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector
 {
 }
 
+void CMover_BulletBase::BaseUpdate()
+{
+}
+
 void CMover_BulletBase::Dead()
 {
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, 0xFF0000));

@@ -17,6 +17,11 @@ CVector CMover::getPosition()
 	return Position;
 }
 
+void CMover::setPosition(CVector pos)
+{
+	Position = pos;
+}
+
 double CMover::getSize()
 {
 	return Size;
@@ -145,6 +150,7 @@ void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 			D = true;
 		}
 	}
+	int add = 0;
 	if (U) {
 		Position.y = WallPosition.y + WallSize.y / 2 + Size;
 		Velocity.y *= -ReflectCF * WallReflectionCF;

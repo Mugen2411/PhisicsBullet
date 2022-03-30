@@ -37,6 +37,10 @@ void CMover_EnemyBase::Find_Route()
 	route = med.lock()->GetRoute(Position, med.lock()->GetPlayerPosition(), attrDEF);
 }
 
+void CMover_EnemyBase::BaseUpdate()
+{
+}
+
 void CMover_EnemyBase::Dead()
 {
 	for(int i=0;i<3;i++)CEffectParent::RegisterEffect(
@@ -112,5 +116,5 @@ void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 void CMover_EnemyBase::Hit(CMover_Player* m)
 {
 	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * 30 * Mass);
+	m->ApplyForce((m->getPosition() - Position).getNorm() * 60 * Mass);
 }

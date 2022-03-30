@@ -36,13 +36,14 @@ protected:
 
 	int Category;			//MOVER_ID‚É‚æ‚Á‚ÄƒJƒeƒSƒŠ•ª‚¯
 	int Status;				//0:¶‘¶@1:‘¼E 2:©E
-	
+
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
 		double mass, double frictionCF, double airresCF, double reflectCF, double temperature);
 	virtual ~CMover() {};
 	void setMediator(std::shared_ptr<CGameMediator>);
 	CVector getPosition();
+	void setPosition(CVector pos);
 	double getSize();
 	int getCategory();
 	void ApplyForce(CVector F);	//—Í‚ğ‚©‚¯‚é
@@ -52,6 +53,7 @@ public:
 
 	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;
 
+	virtual void BaseUpdate() = 0;
 	virtual int Update() = 0;		//0:¶‘¶@1:‘¼E 2:©E
 	virtual void Render() const = 0;
 	virtual void Hit(CMover*);

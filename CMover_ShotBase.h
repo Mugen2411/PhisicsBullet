@@ -12,9 +12,12 @@ protected:
     double baseATK;
 
     std::weak_ptr<CMover> target;
+
+    int cnt;
 public:
     CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
 
+    void BaseUpdate();
     virtual int Update() = 0;
     virtual void Render()const = 0;
 

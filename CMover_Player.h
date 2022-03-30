@@ -23,6 +23,7 @@ public:
     CMover_Player(CVector position);
     ~CMover_Player() {};
     virtual void Walk();
+    void BaseUpdate();
     int Update();
     void Shot();
     void Render()const;

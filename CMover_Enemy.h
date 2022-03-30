@@ -29,6 +29,8 @@ public:
     virtual void Walk(CVector destination);
     virtual void Move_on_Route();
     void Find_Route();
+
+    void BaseUpdate();
     virtual int Update() = 0;
     virtual void Render()const = 0;
     virtual void Dead();

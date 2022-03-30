@@ -30,6 +30,7 @@ void CMoverParent::Update()
 	Hit();
 	int r = 0;
 	for (auto itr = moverList.begin(); itr != moverList.end();) {
+		(*itr)->BaseUpdate();
 		r = (*itr)->Update();
 		med.lock()->ApplyForceToMover(itr->get());
 		(*itr)->Move();

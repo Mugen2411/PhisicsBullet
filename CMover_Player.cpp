@@ -9,7 +9,7 @@
 #include "CAnchor.h"
 
 CMover_Player::CMover_Player(CVector position)
-	:CMover(MV_PLAYER, position, 16.0, CVector(0.0, 0.0), 60, 15, 25, 0.0, 0), animCount(0.0)
+	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, 15, 25, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Direction(1), Charge(0), State(0), baseParams(0), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)) {
 }
@@ -33,6 +33,10 @@ void CMover_Player::Walk()
 		if (Velocity.y < 0)Acceleration.y += v.y;
 		else if (Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
 	}
+}
+
+void CMover_Player::BaseUpdate()
+{
 }
 
 int CMover_Player::Update()
@@ -76,7 +80,7 @@ void CMover_Player::Shot()
 		return;
 	}
 	if (Charge == costume->getMaxCharge()) {
-		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position+CVector(cos(angle)*16, sin(angle)*16), angle));
+		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position, angle));
 		Charge = 0;
 		Wait(costume->getStrongShotDuration());
 		return;
@@ -147,5 +151,5 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
 	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * 30 * Mass);
+	m->ApplyForce((m->getPosition() - Position).getNorm() * 60 * Mass);
 }

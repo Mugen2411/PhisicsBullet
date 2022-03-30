@@ -50,20 +50,20 @@ void CFieldHolder::Update()
 {
 	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
 		i->Update();
-	});
+		});
 	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		i->Update();
-	});
+		});
 }
 
 void CFieldHolder::Render() const
 {
 	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
 		i->Render();
-	});
+		});
 	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		i->Render();
-	});
+		});
 }
 
 std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF)
@@ -80,7 +80,7 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			g[x][y] = (s-CVector(x,y)).getLength2() + (floorlist[index(x, y)]->getDamage() / attrDEF).Sum()*20;
+			g[x][y] = (s - CVector(x, y)).getLength2() + (floorlist[index(x, y)]->getDamage() / attrDEF).Sum() * 12;
 		}
 	}
 	std::vector<std::vector<CVector>> pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
@@ -100,8 +100,8 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 			ny = vy + dy[i];
 			if (nx < 0 || ny < 0 || nx >= width || ny >= height)continue;
 			if (walllist[index(nx, ny)]->isWall)continue;
-			if (dist[nx][ny] <= g[nx][ny] + c) continue;
-			dist[nx][ny] = g[nx][ny] + c;
+			if (dist[nx][ny] <= g[nx][ny] + (nx - t.x) * (nx - t.x) + (ny - t.y) * (ny - t.y) + c) continue;
+			dist[nx][ny] = g[nx][ny] + (nx - t.x) * (nx - t.x) + (ny - t.y) * (ny - t.y) + c;
 			pre[nx][ny] = CVector(vx, vy);
 			pq.push(PP(dist[nx][ny], CVector(nx, ny)));
 		}
@@ -134,10 +134,10 @@ void CFieldHolder::Save()
 	fout << width << "\n" << height << "\n";
 	std::for_each(floorlist.begin(), floorlist.end(), [&](std::shared_ptr<CField> i) {
 		i->Save(fout);
-	});
+		});
 	std::for_each(walllist.begin(), walllist.end(), [&](std::shared_ptr<CField> i) {
 		i->Save(fout);
-	});
+		});
 }
 
 int CFieldHolder::Load() {

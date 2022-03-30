@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level):
-	CMover_EnemyBase(Level,0.5, 1.0, 0.8, CAttribute(1.0).FIRE(0.4).FLOWER(2.0), 10, 0xFFFF00, position, 18.0, 2.0), testDest(0.0, 0.0)
+	CMover_EnemyBase(20, Level,0.5, 1.0, 0.8, CAttribute(1.0).FIRE(0.4).FLOWER(2.0), 10, 0xFFFF00, position, 18.0, 2.0), testDest(0.0, 0.0)
 {
 }
 

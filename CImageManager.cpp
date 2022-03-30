@@ -21,6 +21,7 @@ CImageManager::CImageManager()
     loaderList["enemy_bud"] = LG_enemy_bud;
     loaderList["enemy_bud_intro"] = LG_enemy_bud_intro;
     loaderList["bullet_bud_corn"] = LG_bullet_bud_corn;
+    loaderList["enemy_shimaenaga"] = LG_enemy_shimaenaga;
 
     loaderList["shot_uniform_homing"] = LG_shot_uniform_homing;
     loaderList["shot_uniform_strongmagic"] = LG_shot_uniform_strongmagic;
@@ -120,6 +121,11 @@ std::shared_ptr<CImage> LG_enemy_bud_intro()
 std::shared_ptr<CImage> LG_bullet_bud_corn()
 {
     return std::make_shared<CImage>("media/graphic/enemy/bud/corn.png");
+}
+
+std::shared_ptr<CImage> LG_enemy_shimaenaga()
+{
+    return std::make_shared<CImage>("media/graphic/enemy/shimaenaga/shimaenaga.png", 4, 4, 1, 32, 32);
 }
 
 std::shared_ptr<CImage> LG_shot_uniform_homing()

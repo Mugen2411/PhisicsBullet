@@ -282,6 +282,9 @@
     <ClCompile Include="CField_Void.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Enemy_Shimaenaga.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjectNode.h">
@@ -478,6 +481,9 @@
     </ClInclude>
     <ClInclude Include="CField_Void.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy_Shimaenaga.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

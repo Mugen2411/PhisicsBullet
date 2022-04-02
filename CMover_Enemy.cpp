@@ -5,6 +5,7 @@
 #include "CEffect_MoneyNumber.h"
 #include "CEffect_DamageNumber.h"
 #include "CImageManager.h"
+#include "CAnchor.h"
 
 CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, 15, 25, 0.0, 0)
@@ -47,6 +48,8 @@ void CMover_EnemyBase::Dead()
 		std::make_shared<CEffect_BulletDelete>(
 			Position+CVector(GetRand(100)*0.2-10, GetRand(100) * 0.2-10), 
 			Velocity, Size+4-GetRand(8), Color));
+
+	CAnchor::getIns().Explosion(4);
 }
 
 void CMover_EnemyBase::Disappear()

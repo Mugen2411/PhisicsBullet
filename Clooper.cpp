@@ -1,6 +1,7 @@
 #include "Clooper.h"
 #include "CRenderReserveList.h"
 #include "CControllerFactory.h"
+#include "CAnchor.h"
 
 CGame::CGame():fps()
 {
@@ -17,6 +18,7 @@ CGame::~CGame()
 void CGame::Run()
 {
 	CControllerFactory::getIns().update();
+	CAnchor::getIns().Update();
 	_scene.top()->Update();
 	fps.Update();
 	_scene.top()->Render();

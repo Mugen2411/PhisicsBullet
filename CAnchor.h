@@ -9,6 +9,9 @@ private:
     CVector position;
     bool isAbsolute;
     CVector ScrollLimit;
+    CVector diff_explosion;
+    int explode_duration;
+    bool isExplode;
 
 public:
     CAnchor();
@@ -20,6 +23,8 @@ public:
     double getAnchorX();
     double getAnchorY();
     void Move(CVector diff);
+    void Explosion(int duraiton);
+    void Update();
 
     void enableAbsolute();
     void disableAbsolute();

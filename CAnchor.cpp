@@ -4,7 +4,7 @@
 #include <random>
 
 CAnchor::CAnchor() :position(0, 0), isAbsolute(false), ScrollLimit(DBL_MAX, DBL_MAX),
-	diff_explosion(0, 0), explode_duration(0),isExplode(true)
+	diff_quake(0, 0), quake_duration(0),isExplode(true)
 {
 	std::srand(1);
 }
@@ -37,14 +37,14 @@ CVector CAnchor::getWorldPosition(CVector pos)
 double CAnchor::getAnchorX()
 {
 	if (isAbsolute)return 0.0;
-	if(isExplode && explode_duration > 0)return position.x + diff_explosion.x;
+	if(isExplode && quake_duration > 0)return position.x + diff_quake.x;
 	return position.x;
 }
 
 double CAnchor::getAnchorY()
 {
 	if (isAbsolute)return 0.0;
-	if(isExplode && explode_duration > 0)return position.y + diff_explosion.y;
+	if(isExplode && quake_duration > 0)return position.y + diff_quake.y;
 	return position.y;
 }
 
@@ -53,16 +53,16 @@ void CAnchor::Move(CVector diff)
 	setPosition(position + diff);
 }
 
-void CAnchor::Explosion(int duraiton)
+void CAnchor::Quake(int duraiton)
 {
-	if (duraiton > explode_duration)explode_duration = duraiton;
+	if (duraiton > quake_duration)quake_duration = duraiton;
 }
 
 void CAnchor::Update()
 {
-	if (explode_duration > 0)explode_duration--;
-	diff_explosion.x = 4 - std::rand() % 8;
-	diff_explosion.y = 4 - std::rand() % 8;
+	if (quake_duration > 0)quake_duration--;
+	diff_quake.x = 4 - std::rand() % 8;
+	diff_quake.y = 4 - std::rand() % 8;
 }
 
 void CAnchor::enableAbsolute()

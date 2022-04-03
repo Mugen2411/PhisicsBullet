@@ -49,7 +49,7 @@ void CMover_EnemyBase::Dead()
 			Position+CVector(GetRand(100)*0.2-10, GetRand(100) * 0.2-10), 
 			Velocity, Size+4-GetRand(8), Color));
 
-	CAnchor::getIns().Explosion(4);
+	CAnchor::getIns().Quake(12);
 }
 
 void CMover_EnemyBase::Disappear()

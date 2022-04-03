@@ -4,6 +4,7 @@
 #include "CEffect_DamageNumber.h"
 #include "CEffect_BulletDelete.h"
 #include <DxLib.h>
+#include "CAnchor.h"
 
 CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
 	:CMover(MV_BULLET, position, size, velocity, mass, frictionCF, airresCF, reflectCF, 0)
@@ -42,4 +43,5 @@ void CMover_BulletBase::Hit(CMover_Player* m)
 	m->Damage(ATK*baseParams.ATK, 0);
 	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
 	Status = 1;
+	CAnchor::getIns().Quake(2);
 }

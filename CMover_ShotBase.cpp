@@ -2,6 +2,7 @@
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
 #include "CEffect_BulletDelete.h"
+#include "CAnchor.h"
 
 CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass,
 	double frictionCF, double airresCF, double waterresCF, double reflectCF)
@@ -13,6 +14,13 @@ CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector positio
 void CMover_ShotBase::BaseUpdate()
 {
 	cnt++;
+}
+
+bool CMover_ShotBase::BaseRender() const
+{
+	auto p = CAnchor::getIns().getAnchoredPosition(Position);
+	if (p.x + Size > 0 && p.x - Size < Constant::ScreenW && p.y + Size > 0 && p.y - Size < Constant::ScreenH)return true;
+	return false;
 }
 
 void CMover_ShotBase::Dead()
@@ -44,11 +52,6 @@ CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 	}
 
 	return diff;
-}
-
-void CMover_ShotBase::HitDispatch(std::shared_ptr<CMover> m)
-{
-	m->Hit(this);
 }
 
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)

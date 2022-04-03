@@ -8,7 +8,9 @@ protected:
 	int Status;			//0:ê∂ë∂ÅA1:è¡ñ≈
 public:
 	CEffect(CVector pos);
-	bool operator !();
+	inline bool operator !() {
+		return Status;
+	}
 	virtual void Update() = 0;
 	virtual void Render()const = 0; 
 };

@@ -58,6 +58,10 @@ public:
 			else return false;
 		}
 	}
+	inline bool operator ==(CVector v)const {
+		if (abs(x - v.x) < Constant::zero_border && abs(y - v.y) < Constant::zero_border)return true;
+		return false;
+	}
 
 	inline double dot(CVector const v)const {
 		return this->x * v.x + this->y * v.y;

@@ -21,5 +21,5 @@ int CMover_Shot_Uniform_Homing::Update()
 
 void CMover_Shot_Uniform_Homing::Render() const
 {
-	CImageManager::getIns().find("shot_uniform_homing")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0, -0.1);
+	CImageManager::getIns().find("shot_uniform_homing")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0, Constant::priority_shot);
 }

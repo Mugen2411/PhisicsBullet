@@ -82,6 +82,7 @@ public:
 	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;
 
 	virtual void BaseUpdate() = 0;
+	virtual bool BaseRender()const = 0;			//‰æ–Ê“à‚È‚çtrue‚ğ•Ô‚·
 	virtual int Update() = 0;		//0:¶‘¶@1:‘¼E 2:©E
 	virtual void Render() const = 0;
 	virtual void Hit(CMover*);

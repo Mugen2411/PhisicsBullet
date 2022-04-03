@@ -13,5 +13,5 @@ int CMover_Shot_Uniform_StrongMagic::Update()
 
 void CMover_Shot_Uniform_StrongMagic::Render() const
 {
-	CImageManager::getIns().find("shot_uniform_strongmagic")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1, -0.1);
+	CImageManager::getIns().find("shot_uniform_strongmagic")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1, Constant::priority_shot);
 }

@@ -14,7 +14,9 @@ class CMoverParent
 	std::vector<std::shared_ptr<CMover>> reserveList;
 public:
 	CMoverParent(std::shared_ptr<CGameMediator>);
-	void RegisterMover(std::shared_ptr<CMover>);
+	inline void RegisterMover(std::shared_ptr<CMover> m) {
+		reserveList.push_back(m);
+	}
 	std::weak_ptr<CMover> getMover(int ID, int num);
 	void Update();
 	void Render();

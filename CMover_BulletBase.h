@@ -16,6 +16,7 @@ public:
         double frictionCF, double airresCF, double waterresCF, double reflectCF);
 
     void BaseUpdate();
+    bool BaseRender()const;
     virtual int Update() = 0;
     virtual void Render()const = 0;
 
@@ -25,7 +26,9 @@ public:
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
 
-    void HitDispatch(std::shared_ptr<CMover>);
+    inline void HitDispatch(std::shared_ptr<CMover> m) {
+        m->Hit(this);
+    }
 
     void Hit(CMover_Player* m);
 };

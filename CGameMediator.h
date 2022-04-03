@@ -31,7 +31,7 @@ public:
 	
 	virtual void CreateParts();
 
-	void RegisterMover(std::shared_ptr<CMover>);
+	void RegisterMover(std::shared_ptr<CMover> m);
 	void ApplyForceToMover(CMover*);
 	CVector GetPlayerPosition();
 	std::vector<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF);

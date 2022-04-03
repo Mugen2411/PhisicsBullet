@@ -32,6 +32,7 @@ public:
     void Find_Route();
 
     void BaseUpdate();
+    bool BaseRender()const;
     virtual int Update() = 0;
     virtual void Render()const = 0;
     virtual void Dead();
@@ -44,7 +45,9 @@ public:
     void RatioDamage(CAttribute shotATK, int style);
     void Drop();
     int DamageColor(CAttribute shotATK);
-    void HitDispatch(std::shared_ptr<CMover>);
+    inline void HitDispatch(std::shared_ptr<CMover> m) {
+        m->Hit(this);
+    }
     void Hit(CMover_EnemyBase*);
     void Hit(CMover_Player*);
 

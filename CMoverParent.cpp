@@ -7,11 +7,6 @@ CMoverParent::CMoverParent(std::shared_ptr<CGameMediator> m) :med(m), moverList(
 {
 }
 
-void CMoverParent::RegisterMover(std::shared_ptr<CMover> m)
-{
-	reserveList.push_back(m);
-}
-
 std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num)
 {
 	int i = 0;
@@ -60,7 +55,7 @@ void CMoverParent::Update()
 void CMoverParent::Render()
 {
 	std::for_each(moverList.begin(), moverList.end(), [](std::shared_ptr<CMover> itr) {
-		itr->Render();
+		if(itr->BaseRender())itr->Render();
 		});
 #ifdef _DEBUG
 	printfDx("Objects: %d\n", moverList.size());

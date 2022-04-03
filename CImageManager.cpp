@@ -10,6 +10,7 @@ CImageManager::CImageManager()
     loaderList["aim"] = LG_aim;
     loaderList["HPGuage"] = LG_HPGuage;
     loaderList["enemy_HPGuage"] = LG_enemy_HPGuage;
+    loaderList["enemy_marker"] = LG_enemy_marker;
 
     loaderList["effect_bulletdelete"] = LG_effect_bulletdelete;
     loaderList["effect_number1"] = LG_effect_number1;
@@ -86,6 +87,11 @@ std::shared_ptr<CImage> LG_HPGuage()
 std::shared_ptr<CImage> LG_enemy_HPGuage()
 {
     return std::make_shared<CImage>("media/graphic/system/game/enemy_HPGuage.png", 2, 1, 2, 32, 4);
+}
+
+std::shared_ptr<CImage> LG_enemy_marker()
+{
+    return std::make_shared<CImage>("media/graphic/system/game/enemy_marker.png");
 }
 
 std::shared_ptr<CImage> LG_effect_number1()

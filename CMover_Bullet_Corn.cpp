@@ -1,7 +1,7 @@
 #include "CMover_Bullet_Corn.h"
 
 CMover_Bullet_Corn::CMover_Bullet_Corn(CStatus baseparams, CVector position, double angle)
-    :CMover_BulletBase(baseparams, CAttribute(0.0).NONE(50).FLOWER(50), position, 16, CVector(angle) * 4.0, 0.5, 0.05, 0.9, 5.0, 0.1)
+    :CMover_BulletBase(baseparams, CAttribute(0.0).NONE(50).FLOWER(50), position, 16, CVector(angle) * 4.0, 0.5, 0.02, 0.3, 0.2, 0.1)
 {
 }
 
@@ -13,5 +13,5 @@ int CMover_Bullet_Corn::Update()
 
 void CMover_Bullet_Corn::Render() const
 {
-    CImageManager::getIns().find("bullet_bud_corn")->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0, 0.0);
+    CImageManager::getIns().find("bullet_bud_corn")->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0, Constant::priority_bullet);
 }

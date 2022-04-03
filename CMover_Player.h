@@ -24,6 +24,7 @@ public:
     ~CMover_Player() {};
     virtual void Walk();
     void BaseUpdate();
+    bool BaseRender()const;
     int Update();
     void Shot();
     void Render()const;
@@ -34,7 +35,9 @@ public:
     void Wait(int duration);
     void Damage(CAttribute BulletATK, int style);
     void RatioDamage(CAttribute BulletATK, int style);
-    void HitDispatch(std::shared_ptr<CMover>);
+    void inline HitDispatch(std::shared_ptr<CMover> m) {
+        m->Hit(this);
+    }
     int DamageColor(CAttribute shotATK);
 
     void Hit(CMover_EnemyBase*);

@@ -14,7 +14,8 @@ class CFieldHolder
 protected:
 	std::vector<std::shared_ptr<CField>> walllist;
 	std::vector<std::shared_ptr<CField>> floorlist;
-	std::vector<double> dist;
+	std::vector<std::vector<double>> g, dist;
+	std::vector<std::vector<CVector>> pre;
 	unsigned int width, height;
 	std::string filePath;
 
@@ -22,19 +23,29 @@ public:
 	CFieldHolder(std::string filepath);
 	~CFieldHolder();
 
-	std::shared_ptr<CField> getFloor(unsigned int x, unsigned int y);
-	std::shared_ptr<CField> getWall(unsigned int x, unsigned int y);
+	inline std::shared_ptr<CField> getFloor(unsigned int x, unsigned int y) {
+		return floorlist[width * y + x];
+	}
+	inline std::shared_ptr<CField> getWall(unsigned int x, unsigned int y) {
+		return walllist[width * y + x];
+	}
 
 	void writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
 	void writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
 
-	int getWidth();
-	int getHeight();
+	inline int getWidth() {
+		return width;
+	}
+	inline int getHeight() {
+		return height;
+	}
 	void Update();
 	void Render()const;
 
 	std::vector<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF);	//––”ö‚ªˆê”Ô©•ª‚É‹ß‚¢I
-	int index(int, int);
+	inline int index(int x, int y) {
+		return y * width + x;
+	}
 
 	void Save();
 	int Load();		//0:³í 1:ˆÙí(¸”s)

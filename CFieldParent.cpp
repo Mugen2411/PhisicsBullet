@@ -28,14 +28,14 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	CVector p = m->getPosition();
 	int x = p.x / 32;
 	int y = p.y / 32;
-	/*if (x < 0)m->setPosition(p.x = 0);
+	if (x < 0)m->setPosition(p.x = 0);
 	if (y < 0)m->setPosition(p.y = 0);
 	if (x > fieldHolder->getWidth())m->setPosition(p.x = 32* fieldHolder->getWidth());
 	if (y > fieldHolder->getHeight())m->setPosition(p.y = 32 * fieldHolder->getHeight());
 
 	p = m->getPosition();
 	x = p.x / 32;
-	y = p.y / 32;*/
+	y = p.y / 32;
 
 	/*if (fieldHolder->getWall(x, y)->isWall) {
 		if (y < fieldHolder->getHeight() / 2)m->setPosition(p.y += 32);

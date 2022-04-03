@@ -18,7 +18,7 @@ int CMover_Enemy_Bud::Update()
 		if (cnt == 90) {
 			Find_Route();
 			CVector ppos = med.lock()->GetPlayerPosition();
-			if(!!ppos)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos-Position).getAngle()));
+			if(!!ppos && route.size() < 8)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos-Position).getAngle()));
 			cnt = 0;
 		}
 		Move_on_Route();
@@ -35,25 +35,16 @@ int CMover_Enemy_Bud::Update()
 		}
 		break;
 	}
-#ifdef _DEBUG
-	printfDx("V:%lf,%lf\nA:%lf,%lf\n", Velocity.x, Velocity.y, Acceleration.x, Acceleration.y);
-#endif
 	return Status;
 }
 
 void CMover_Enemy_Bud::Render() const
 {
-#ifdef _DEBUG
-	printfDx("state:%d\n", state);
-	DrawCircle(testDest.x, testDest.y, 8, 0xFFFF00);
-#endif
 	if (state < 0) {
-		CImageManager::getIns().find("enemy_bud_intro")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, (int)(animCount));
+		CImageManager::getIns().find("enemy_bud_intro")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, (int)(animCount));
 		return;
 	}
-	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + (int)(animCount));
-
-	Render_HPGuage();
+	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, Direction * 4 + (int)(animCount));
 }
 
 CMover_EnemyBase* CMover_Enemy_Bud::Clone(CVector Position, int Level)

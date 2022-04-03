@@ -12,7 +12,7 @@ void CField_Wall_WoodFence::Update()
 
 void CField_Wall_WoodFence::Render() const
 {
-	CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.0, 8 + state);
+	CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_wall, 8 + state);
 }
 
 CField* CField_Wall_WoodFence::Clone(CVector position)

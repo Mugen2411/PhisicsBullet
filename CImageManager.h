@@ -38,6 +38,7 @@ std::shared_ptr<CImage> LG_aim();
 std::shared_ptr<CImage> LG_effect_bulletdelete();
 std::shared_ptr<CImage> LG_HPGuage();
 std::shared_ptr<CImage> LG_enemy_HPGuage();
+std::shared_ptr<CImage> LG_enemy_marker();
 
 std::shared_ptr<CImage> LG_effect_number1();
 std::shared_ptr<CImage> LG_effect_number2();

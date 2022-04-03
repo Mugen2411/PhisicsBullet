@@ -6,6 +6,7 @@ class CImage
 {
 private:
 	std::vector<int> GHandle;
+	unsigned int ArrSize;
 public:
 	CImage(std::string path);
 	CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h);

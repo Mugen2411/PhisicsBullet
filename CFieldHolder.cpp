@@ -7,21 +7,13 @@ CFieldHolder::CFieldHolder(std::string filepath) :filePath(filepath)
 {
 	if (Load() == 0)return;
 	else OutputDebugString("Stage Load Error");
+	dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
+	g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
+	pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1,-1)));
 }
 
 CFieldHolder::~CFieldHolder()
 {
-	Save();
-}
-
-std::shared_ptr<CField> CFieldHolder::getFloor(unsigned int x, unsigned int y)
-{
-	return floorlist[width * y + x];
-}
-
-std::shared_ptr<CField> CFieldHolder::getWall(unsigned int x, unsigned int y)
-{
-	return walllist[width * y + x];
 }
 
 void CFieldHolder::writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
@@ -34,16 +26,6 @@ void CFieldHolder::writewall(std::shared_ptr<CField> f, unsigned int x, unsigned
 {
 	if (0 > x || x > width || 0 > y || y > height)return;
 	walllist[width * y + x] = f;
-}
-
-int CFieldHolder::getHeight()
-{
-	return height;
-}
-
-int CFieldHolder::getWidth()
-{
-	return width;
 }
 
 void CFieldHolder::Update()
@@ -59,10 +41,10 @@ void CFieldHolder::Update()
 void CFieldHolder::Render() const
 {
 	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
-		i->Render();
+		if (i->isInScreen())i->Render();
 		});
 	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
-		i->Render();
+		if (i->isInScreen())i->Render();
 		});
 }
 
@@ -75,15 +57,13 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));
 	std::vector<CVector> ret;
 	using PP = std::pair<double, CVector>;
-	std::vector<std::vector<double>> g, dist;
-	dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
-	g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			g[x][y] = (s - CVector(x, y)).getLength2() + (floorlist[index(x, y)]->getDamage() / attrDEF).Sum() * 12;
+			g[x][y] = (floorlist[index(x, y)]->getDamage() / attrDEF).Sum() * 24;
+			dist[x][y] = Constant::dbl_INF;
+			pre[x][y] = CVector(-1, -1);
 		}
 	}
-	std::vector<std::vector<CVector>> pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
 	std::priority_queue<PP, std::vector<PP>, std::greater<PP>> pq;
 	dist[(int)(start.x / 32)][(int)(start.y / 32)] = 0;
 	pq.push(PP(0, s));
@@ -91,6 +71,7 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	while (!pq.empty()) {
 		PP p = pq.top();
 		pq.pop();
+		if (p.second == t)break;
 		double c = p.first;
 		int vx = p.second.x;
 		int vy = p.second.y;
@@ -100,15 +81,15 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 			ny = vy + dy[i];
 			if (nx < 0 || ny < 0 || nx >= width || ny >= height)continue;
 			if (walllist[index(nx, ny)]->isWall)continue;
-			if (dist[nx][ny] <= g[nx][ny] + (nx - t.x) * (nx - t.x) + (ny - t.y) * (ny - t.y) + c) continue;
-			dist[nx][ny] = g[nx][ny] + (nx - t.x) * (nx - t.x) + (ny - t.y) * (ny - t.y) + c;
+			if (dist[nx][ny] <= g[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c) continue;
+			dist[nx][ny] = g[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c;
 			pre[nx][ny] = CVector(vx, vy);
 			pq.push(PP(dist[nx][ny], CVector(nx, ny)));
 		}
 	}
 
 	CVector v;
-	for (; t.x != -1, t.y != -1; t.x = pre[v.x][v.y].x, t.y = pre[v.x][v.y].y) {
+	for (; t.x != -1 || t.y != -1; t.x = pre[v.x][v.y].x, t.y = pre[v.x][v.y].y) {
 		ret.push_back(t);
 		v = t;
 	}
@@ -121,10 +102,6 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	//std::reverse(ret.begin(), ret.end());
 
 	return ret;
-}
-
-int CFieldHolder::index(int x, int y) {
-	return y * width + x;
 }
 
 void CFieldHolder::Save()

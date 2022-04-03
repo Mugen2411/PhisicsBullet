@@ -12,7 +12,7 @@ void CField_IceFloor::Update()
 
 void CField_IceFloor::Render()const
 {
-	CImageManager::getIns().find("Field_IceFloor")->DrawRota(Position.x, Position.y, 0.0, 1.0, -1.1, 0);
+	CImageManager::getIns().find("Field_IceFloor")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field, 0);
 }
 
 CField* CField_IceFloor::Clone(CVector position)

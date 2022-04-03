@@ -17,13 +17,13 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style)const
 		id = "effect_number1";
 		margin = 5;
 		width = 10;
-		priority = 0.6;
+		priority = 1.5;
 		break;
 	case 1:
 		id = "effect_number2";
 		margin = 3;
 		width = 7;
-		priority = 0.5;
+		priority = 1.4;
 		break;
 	}
 

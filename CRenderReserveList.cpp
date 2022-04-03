@@ -2,11 +2,6 @@
 
 std::list<IRenderReserve*> CRenderReserveList::list;
 
-void CRenderReserveList::Add(IRenderReserve* v)
-{
-	list.push_back(v);
-}
-
 void CRenderReserveList::Render()
 {
 	list.sort(compRenderReserve);

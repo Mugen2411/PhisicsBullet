@@ -16,6 +16,13 @@ void CMover_BulletBase::BaseUpdate()
 {
 }
 
+bool CMover_BulletBase::BaseRender() const
+{
+	auto p = CAnchor::getIns().getAnchoredPosition(Position);
+	if (p.x + Size > 0 && p.x - Size < Constant::ScreenW && p.y + Size > 0 && p.y - Size < Constant::ScreenH)return true;
+	return false;
+}
+
 void CMover_BulletBase::Dead()
 {
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, 0xFF0000));
@@ -31,11 +38,6 @@ void CMover_BulletBase::Damage(CAttribute shotATK, int style)
 
 void CMover_BulletBase::RatioDamage(CAttribute shotATK, int style)
 {
-}
-
-void CMover_BulletBase::HitDispatch(std::shared_ptr<CMover> m)
-{
-	m->Hit(this);
 }
 
 void CMover_BulletBase::Hit(CMover_Player* m)

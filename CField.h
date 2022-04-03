@@ -5,6 +5,7 @@
 #include "CImage.h"
 #include "CImageManager.h"
 #include "CAttribute.h"
+#include "CAnchor.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -34,6 +35,12 @@ public:
 
 	inline bool operator ==(std::string gid)const {
 		return (gid == GID);
+	}
+	inline bool isInScreen() {
+		const int Size = 32;
+		auto p = CAnchor::getIns().getAnchoredPosition(Position);
+		if (p.x + Size > 0 && p.x - Size < Constant::ScreenW && p.y + Size > 0 && p.y - Size < Constant::ScreenH)return true;
+		return false;
 	}
 	inline std::string getGID() {
 		return GID;

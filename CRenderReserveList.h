@@ -6,7 +6,9 @@ class CRenderReserveList
 {
 	static std::list<IRenderReserve*> list;
 public:
-	static void Add(IRenderReserve*);
+	inline static void Add(IRenderReserve* v) {
+		list.push_back(v);
+	}
 	static void Render();
 };
 

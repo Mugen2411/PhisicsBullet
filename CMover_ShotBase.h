@@ -19,6 +19,7 @@ public:
         double frictionCF, double airresCF, double waterresCF, double reflectCF);
 
     void BaseUpdate();
+    bool BaseRender()const;
     virtual int Update() = 0;
     virtual void Render()const = 0;
 
@@ -29,7 +30,9 @@ public:
     void RatioDamage(CAttribute shotATK, int style);
 
     CVector getHomingAngle(double maxSpeed);
-    void HitDispatch(std::shared_ptr<CMover>);
+    inline void HitDispatch(std::shared_ptr<CMover> m) {
+        m->Hit(this);
+    }
     void Hit(CMover_EnemyBase*);
 
     virtual void ifonWall();

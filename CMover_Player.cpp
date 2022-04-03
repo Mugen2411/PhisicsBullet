@@ -39,6 +39,11 @@ void CMover_Player::BaseUpdate()
 {
 }
 
+bool CMover_Player::BaseRender() const
+{
+	return true;
+}
+
 int CMover_Player::Update()
 {
 	auto p = CAnchor::getIns().getAnchoredPosition(Position);
@@ -133,11 +138,6 @@ void CMover_Player::RatioDamage(CAttribute BulletATK, int style)
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
-}
-
-void CMover_Player::HitDispatch(std::shared_ptr<CMover> m)
-{
-	m->Hit(this);
 }
 
 int CMover_Player::DamageColor(CAttribute shotATK)

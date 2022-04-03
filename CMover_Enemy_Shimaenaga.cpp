@@ -15,8 +15,7 @@ int CMover_Enemy_Shimaenaga::Update()
 
 void CMover_Enemy_Shimaenaga::Render() const
 {
-	CImageManager::getIns().find("enemy_shimaenaga")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, animCount);
-	Render_HPGuage();
+	CImageManager::getIns().find("enemy_shimaenaga")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, animCount);
 }
 
 CMover_EnemyBase* CMover_Enemy_Shimaenaga::Clone(CVector Position, int Level)

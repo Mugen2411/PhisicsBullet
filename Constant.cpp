@@ -14,3 +14,9 @@ int Constant::ScreenH = 480;
 int Constant::ScrollMargin = 240;
 
 double Constant::dbl_INF = 1.0e200;
+
+double Constant::priority_field = -1.1;
+double Constant::priority_wall = -1.0;
+double Constant::priority_bullet = 1.3;
+double Constant::priority_enemy = 0.0;
+double Constant::priority_shot = -0.1;

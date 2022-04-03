@@ -5,33 +5,12 @@ CField::CField(std::string gid, CVector position, CVector size, double frictionC
 {
 }
 
-
-bool CField::operator==(std::string gid)const
-{
-	return (gid == GID);
-}
-
-std::string CField::getGID()
-{
-	return GID;
-}
-
-CAttribute CField::getDamage()
-{
-	return Damage;
-}
-
 void CField::setFrictionForce(CMover* m)
 {
 	m->ApplyFrictionForce(FrictionCF);
 	if(DamageInterval == 0)m->RatioDamage(Damage / 10.0, 1);
 	DamageInterval++;
 	DamageInterval %= 6;
-}
-
-void CField::Move(CVector p)
-{
-	Position = p;
 }
 
 void CField::Update()

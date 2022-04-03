@@ -26,7 +26,10 @@ void CMover_EnemyBase::Walk(CVector destination)
 
 void CMover_EnemyBase::Move_on_Route()
 {
-	if (route.empty())return;
+	if (route.empty()) {
+		Find_Route();
+		return;
+	}
 	if ((Position - route.back()).getLength2() < 8 * 8) {
 		route.pop_back();
 		return;

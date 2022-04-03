@@ -24,7 +24,7 @@ void CGameMediator::CreateParts()
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32)));
 	CEnemyFactory CEF;
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 400; i++) {
 		RegisterMover(CEF.create("E_Shimaenaga", CVector((GetRand(16) + 2) * 32 + 16, (GetRand(11) + 2) * 32 + 16), 0));
 		RegisterMover(CEF.create("E_Budcorn", CVector((GetRand(16) + 2) * 32 + 16, (GetRand(11) + 2) * 32 + 16), 0));
 	}

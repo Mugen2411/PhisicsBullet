@@ -32,12 +32,20 @@ public:
 
 	bool isWall;
 
-	bool operator ==(std::string gid)const;
-	std::string getGID();
-	CAttribute getDamage();
+	inline bool operator ==(std::string gid)const {
+		return (gid == GID);
+	}
+	inline std::string getGID() {
+		return GID;
+	}
+	inline CAttribute getDamage() {
+		return Damage;
+	}
 
 	virtual void setFrictionForce(CMover*);
-	void Move(CVector p);
+	inline void Move(CVector p) {
+		Position = p;
+	}
 	virtual CField* Clone(CVector position) = 0;
 
 	virtual void Hit(CMover* m) {}		//‹ß‚­‚É•¨‘Ì‚ª‚ ‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éA‰½‚à‚µ‚½‚­‚È‚¯‚ê‚Î‚µ‚È‚­‚Ä‚à‚¢‚¢

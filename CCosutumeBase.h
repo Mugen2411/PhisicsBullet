@@ -30,13 +30,23 @@ public:
 	virtual std::shared_ptr<CMover_ShotBase> ChargeShot(double baseATK, CVector position, float angle) = 0;
 	virtual std::shared_ptr<CMover_ShotBase> WeakShot(double baseATK, CVector position, float angle) = 0;
 
-	double getMaxSpeed();
-	double getAccelaration();
-
-	double getAnimSpeed();
-	int getShotRate();
-	int getMaxCharge();
-
-	int getStrongShotDuration();
+	inline double getMaxSpeed() {
+		return MaxSpeed;
+	}
+	inline double getAccelaration() {
+		return Accelaration;
+	}
+	inline double getAnimSpeed() {
+		return animSpeed;
+	}
+	inline int getShotRate() {
+		return ShotRate;
+	}
+	inline int getMaxCharge() {
+		return MaxCharge;
+	}
+	inline int getStrongShotDuration() {
+		return StrongShotDuration;
+	}
 };
 

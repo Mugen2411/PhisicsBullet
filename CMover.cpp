@@ -8,62 +8,6 @@ CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, dou
 {
 }
 
-void CMover::setMediator(std::shared_ptr<CGameMediator> m)
-{
-	med = m;
-}
-
-CVector CMover::getPosition()
-{
-	return Position;
-}
-
-void CMover::setPosition(CVector pos)
-{
-	Position = pos;
-}
-
-double CMover::getSize()
-{
-	return Size;
-}
-
-int CMover::getCategory()
-{
-	return Category;
-}
-
-void CMover::ApplyForce(CVector F)
-{
-	Acceleration += (F / Mass);
-}
-
-void CMover::ApplyFrictionForce(double FloorFrictionCF)
-{
-	nowFricted = FloorFrictionCF;
-	auto NormA = Velocity;
-	ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
-}
-
-void CMover::ApplyAirForce(CVector F)
-{
-	ApplyForce(F * AirResCF);
-}
-
-void CMover::ApplyWaterForce(CVector F)
-{
-	ApplyForce(F * WaterResCF);
-}
-
-void CMover::Move()
-{
-	Velocity += Acceleration * Constant::perFrame;
-	Position += Velocity;
-	Acceleration.x = 0;
-	Acceleration.y = 0;
-	Velocity.zero();
-}
-
 void CMover::Hit(CMover* m)
 {
 }

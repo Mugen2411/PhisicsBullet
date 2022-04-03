@@ -42,16 +42,42 @@ public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
 		double mass, double frictionCF, double airresCF,double waterResCF, double reflectCF, double temperature);
 	virtual ~CMover() {};
-	void setMediator(std::shared_ptr<CGameMediator>);
-	CVector getPosition();
-	void setPosition(CVector pos);
-	double getSize();
-	int getCategory();
-	void ApplyForce(CVector F);	//—Í‚ð‚©‚¯‚é
-	void ApplyFrictionForce(double FloorFrictionForce);
-	void ApplyAirForce(CVector F);
-	void ApplyWaterForce(CVector F);
-	void Move();
+	inline void setMediator(std::shared_ptr<CGameMediator> m) {
+		med = m;
+	}
+	inline CVector getPosition() {
+		return Position;
+	}
+	inline void setPosition(CVector pos) {
+		Position = pos;
+	}
+	inline double getSize() {
+		return Size;
+	}
+	inline int getCategory() {
+		return Category;
+	}
+	inline void ApplyForce(CVector F) {
+		Acceleration += (F / Mass);
+	}	//—Í‚ð‚©‚¯‚é
+	inline void ApplyFrictionForce(double FloorFrictionCF) {
+		nowFricted = FloorFrictionCF;
+		auto NormA = Velocity;
+		ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
+	}
+	inline void ApplyAirForce(CVector F) {
+		ApplyForce(F * AirResCF);
+	}
+	inline void ApplyWaterForce(CVector F) {
+		ApplyForce(F * WaterResCF);
+	}
+	inline void Move() {
+		Velocity += Acceleration * Constant::perFrame;
+		Position += Velocity;
+		Acceleration.x = 0;
+		Acceleration.y = 0;
+		Velocity.zero();
+	}
 
 	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;
 

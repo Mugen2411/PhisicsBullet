@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CMover_Enemy_Shimaenaga::CMover_Enemy_Shimaenaga(CVector Position, int Level):
-	CMover_EnemyBase(40, Level, 0.1, 5.0, 5.0, CAttribute(1.0), 1000, 0xFFFFFF, Position, 0.0, 0.0), animCount(0.0)
+	CMover_EnemyBase(40, Level, 0.1, 1.0, 3.0, CAttribute(1.0), 1000, 0xFFFFFF, Position, 0.0, 0.0, 0.1, 0.8, 0.8), animCount(0.0)
 {
 }
 
@@ -17,4 +17,9 @@ void CMover_Enemy_Shimaenaga::Render() const
 {
 	CImageManager::getIns().find("enemy_shimaenaga")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, animCount);
 	Render_HPGuage();
+}
+
+CMover_EnemyBase* CMover_Enemy_Shimaenaga::Clone(CVector Position, int Level)
+{
+	return new CMover_Enemy_Shimaenaga(Position, Level);
 }

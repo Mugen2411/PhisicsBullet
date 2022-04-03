@@ -9,14 +9,14 @@
 #include "CAnchor.h"
 
 CMover_Player::CMover_Player(CVector position)
-	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, 15, 25, 0.0, 0), animCount(0.0)
+	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, 0.5, 0.25, 0.8, 0.0, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Direction(1), Charge(0), State(0), baseParams(0), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)) {
 }
 
 void CMover_Player::Walk()
 {
-	CVector v = input.lock()->getVector() * costume->getAccelaration() * nowFricted;
+	CVector v = input.lock()->getVector() * costume->getAccelaration() * nowFricted * Constant::Frame;
 	if (v.x < 0) {
 		if (Velocity.x > 0)Acceleration.x += v.x;
 		else if (-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
@@ -150,6 +150,6 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
-	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * 60 * Mass);
+	//m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength2() * Mass);
+	m->ApplyForce((m->getPosition() - Position).getNorm() * Mass * Size);
 }

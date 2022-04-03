@@ -29,6 +29,7 @@ protected:
 	double nowFricted;		//Œ»İó‚¯‚Ä‚¢‚é–€CŒn”
 	double FrictionCF;		//–€CŒW”
 	double AirResCF;		//‹ó‹C’ïRŒW”(•——Í‚Ìó‚¯‚â‚·‚³)
+	double WaterResCF;		//…ˆ³’ïRŒW”(…ˆ³‚Ìó‚¯‚â‚·‚³)
 	double ReflectCF;		//”½”­ŒW”
 	double Temperature;		//‰·“x
 
@@ -39,7 +40,7 @@ protected:
 
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
-		double mass, double frictionCF, double airresCF, double reflectCF, double temperature);
+		double mass, double frictionCF, double airresCF,double waterResCF, double reflectCF, double temperature);
 	virtual ~CMover() {};
 	void setMediator(std::shared_ptr<CGameMediator>);
 	CVector getPosition();
@@ -49,6 +50,7 @@ public:
 	void ApplyForce(CVector F);	//—Í‚ğ‚©‚¯‚é
 	void ApplyFrictionForce(double FloorFrictionForce);
 	void ApplyAirForce(CVector F);
+	void ApplyWaterForce(CVector F);
 	void Move();
 
 	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;

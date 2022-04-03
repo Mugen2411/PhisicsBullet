@@ -4,8 +4,7 @@
 #include "CPowerParent.h"
 #include "CEffectParent.h"
 #include "CMover_Player.h"
-#include "CMover_Enemy_Bud.h"
-#include "CMover_Enemy_Shimaenaga.h"
+#include "CEnemyFactory.h"
 #include "CMover.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPause(false)
@@ -24,8 +23,10 @@ void CGameMediator::CreateParts()
 	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), "media/map/0.map");
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32)));
-	for (int i = 0; i < 40; i++) {
-		RegisterMover(std::make_shared<CMover_Enemy_Bud>(CVector((GetRand(16)+2) * 32+16, (GetRand(11) + 2)*32+16), 0));
+	CEnemyFactory CEF;
+	for (int i = 0; i < 20; i++) {
+		RegisterMover(CEF.create("E_Shimaenaga", CVector((GetRand(16) + 2) * 32 + 16, (GetRand(11) + 2) * 32 + 16), 0));
+		RegisterMover(CEF.create("E_Budcorn", CVector((GetRand(16) + 2) * 32 + 16, (GetRand(11) + 2) * 32 + 16), 0));
 	}
 }
 

@@ -7,7 +7,8 @@ class CMover_EnemyBase :
     public CMover
 {
 public:
-    CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector Position, double accel, double maxSpeed);
+    CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
+        int color, CVector Position, double accel, double maxSpeed, double frictionCF, double airresCF, double waterResCF);
     virtual ~CMover_EnemyBase() {}
 
     int state = -1; //-1:oŒ»’†, 0:–_—§‚¿, 1:ˆÚ“®, 2:‹¯‚İ, ‚»‚êˆÈ~‚Í“G‚²‚Æ‚É’è‹`
@@ -46,5 +47,7 @@ public:
     void HitDispatch(std::shared_ptr<CMover>);
     void Hit(CMover_EnemyBase*);
     void Hit(CMover_Player*);
+
+    virtual CMover_EnemyBase* Clone(CVector Position, int Level) = 0;
 };
 

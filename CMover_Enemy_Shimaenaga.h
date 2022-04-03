@@ -9,5 +9,7 @@ public:
     CMover_Enemy_Shimaenaga(CVector Position, int Level);
     int Update();
     void Render()const;
+
+    CMover_EnemyBase* Clone(CVector Position, int Level);
 };
 

@@ -7,8 +7,9 @@
 #include "CImageManager.h"
 #include "CAnchor.h"
 
-CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney, int color, CVector position, double accel, double maxSpeed):
-	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, 15, 25, 0.0, 0)
+CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
+	int color, CVector position, double accel, double maxSpeed, double frictionCF, double airresCF, double waterCF):
+	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, frictionCF, airresCF, waterCF, 0.0, 0)
 	,Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
 	baseParams(Level, atkCF, defCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
 {
@@ -20,7 +21,7 @@ void CMover_EnemyBase::Walk(CVector destination)
 	double angle = diff.getAngle();
 	Direction = diff.getDirection();
 	if (diff.dot(Velocity)> MaxSpeed)return;
-	Acceleration += diff * Accel * nowFricted;
+	Acceleration += diff * Accel * nowFricted * Constant::Frame;
 }
 
 void CMover_EnemyBase::Move_on_Route()
@@ -113,11 +114,11 @@ void CMover_EnemyBase::HitDispatch(std::shared_ptr<CMover> m)
 
 void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 {
-	m->ApplyForce((m->getPosition() - Position).getNorm() * 60 * Mass);
+	m->ApplyForce((m->getPosition() - Position).getNorm() * Mass * Size);
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)
 {
-	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * 60 * Mass);
+	//m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
+	m->ApplyForce((m->getPosition() - Position).getNorm() * Mass * Size);
 }

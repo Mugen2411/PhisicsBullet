@@ -1,9 +1,10 @@
 #include "CMover.h"
 
-CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF, double temperature)
+CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass,
+	double frictionCF, double airresCF, double waterResCF, double reflectCF, double temperature)
 	:Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
 	Mass(mass), nowFricted(0.0), FrictionCF(frictionCF), AirResCF(airresCF),
-	ReflectCF(reflectCF), Temperature(temperature), Status(0), Category(ID)
+	ReflectCF(reflectCF), WaterResCF(waterResCF), Temperature(temperature), Status(0), Category(ID)
 {
 }
 
@@ -40,13 +41,18 @@ void CMover::ApplyForce(CVector F)
 void CMover::ApplyFrictionForce(double FloorFrictionCF)
 {
 	nowFricted = FloorFrictionCF;
-	auto NormA = Velocity.getNorm();
-	ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity);
+	auto NormA = Velocity;
+	ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
 }
 
 void CMover::ApplyAirForce(CVector F)
 {
 	ApplyForce(F * AirResCF);
+}
+
+void CMover::ApplyWaterForce(CVector F)
+{
+	ApplyForce(F * WaterResCF);
 }
 
 void CMover::Move()
@@ -80,7 +86,7 @@ void CMover::Hit(CMover_BulletBase* m)
 
 void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)
 {
-	CVector nextPosition = Position + Velocity + Acceleration*Constant::perFrame;
+	CVector nextPosition = Position + Velocity + Acceleration * Constant::perFrame;
 	double max = (Position.x + Size) - (WallPosition.x - WallSize.x / 2), may = (Position.y + Size) - (WallPosition.y - WallSize.y / 2);
 	double nax = (WallPosition.x + WallSize.x / 2) - (Position.x - Size), nay = (WallPosition.y + WallSize.y / 2) - (Position.y - Size);
 	double _max = (nextPosition.x + Size) - (WallPosition.x - WallSize.x / 2), _may = (nextPosition.y + Size) - (WallPosition.y - WallSize.y / 2);

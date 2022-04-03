@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CMover_Shot_Uniform_StrongMagic::CMover_Shot_Uniform_StrongMagic(double baseATK, CVector position, double angle)
-	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(300), position, 24, CVector(angle) * 6.0, 1.0, 0.0, 5.0, 0.0)
+	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(300), position, 24, CVector(angle) * 6.0, 1.0, 0.1, 0.0, 0.0, 0.1)
 {
 }
 

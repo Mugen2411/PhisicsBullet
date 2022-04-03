@@ -12,7 +12,8 @@ protected:
     CAttribute ATK;
     CStatus baseParams;
 public:
-    CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF);
+    CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, 
+        double frictionCF, double airresCF, double waterresCF, double reflectCF);
 
     void BaseUpdate();
     virtual int Update() = 0;

@@ -3,8 +3,9 @@
 #include "CEffect_DamageNumber.h"
 #include "CEffect_BulletDelete.h"
 
-CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, double frictionCF, double airresCF, double reflectCF)
-	:CMover(MV_SHOT, position, size, velocity, mass, frictionCF, airresCF, reflectCF, 0)
+CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass,
+	double frictionCF, double airresCF, double waterresCF, double reflectCF)
+	:CMover(MV_SHOT, position, size, velocity, mass, frictionCF, airresCF, waterresCF, reflectCF, 0)
 	,ATK(atk), baseATK(baseATK),cnt(0)
 {
 }

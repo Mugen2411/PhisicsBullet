@@ -10,5 +10,7 @@ public:
     CMover_Enemy_Bud(CVector position, int Level);
     int Update();
     void Render()const;
+
+    CMover_EnemyBase* Clone(CVector Position, int Level);
 };
 

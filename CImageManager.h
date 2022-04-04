@@ -10,7 +10,7 @@ class CImageManager :
     public Singleton<CImageManager>
 {
     std::map<std::string, std::shared_ptr<CImage>, std::less<>> imgList;
-    std::map<std::string, std::shared_ptr<CImage>(*)(), std::less<>> loaderList;
+
 public:
     CImageManager();
     void set(std::string key, std::shared_ptr<CImage> img);
@@ -27,30 +27,4 @@ public:
 
     void Render()const;
 };
-
-//以下ローダー関数リスト(LGはLoadGraphicの略)
-std::shared_ptr<CImage> LG_field_error();
-std::shared_ptr<CImage> LG_field_grass();
-std::shared_ptr<CImage> LG_field_icefloor();
-
-std::shared_ptr<CImage> LG_player_komuk();
-std::shared_ptr<CImage> LG_aim();
-std::shared_ptr<CImage> LG_effect_bulletdelete();
-std::shared_ptr<CImage> LG_HPGuage();
-std::shared_ptr<CImage> LG_enemy_HPGuage();
-std::shared_ptr<CImage> LG_enemy_marker();
-
-std::shared_ptr<CImage> LG_effect_number1();
-std::shared_ptr<CImage> LG_effect_number2();
-std::shared_ptr<CImage> LG_effect_number3();
-
-std::shared_ptr<CImage> LG_editor_cursor();
-
-std::shared_ptr<CImage> LG_enemy_bud();
-std::shared_ptr<CImage> LG_enemy_bud_intro();
-std::shared_ptr<CImage> LG_bullet_bud_corn();
-std::shared_ptr<CImage> LG_enemy_shimaenaga();
-
-std::shared_ptr<CImage> LG_shot_uniform_homing();
-std::shared_ptr<CImage> LG_shot_uniform_strongmagic();
 

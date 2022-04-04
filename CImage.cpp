@@ -11,24 +11,23 @@
 #include "CRenderReserveList.h"
 #include "CAnchor.h"
 
-CImage::CImage(std::string path):GHandle(0),ArrSize(1)
+CImage::CImage(std::string path, int width, int height):GHandle(0), path(path), ArrSize(1), Xnum(1), Ynum(1), Width(width), Height(height)
 {
-	GHandle.resize(1);
-
-	*GHandle.data() = LoadGraph(path.c_str());
 }
 
-CImage::CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h):GHandle(0)
+CImage::CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h):GHandle(0), path(path), ArrSize(AllNum), Xnum(Xnum), Ynum(Ynum), Width(w), Height(h)
 {
-	GHandle.resize(AllNum);
-
-	LoadDivGraph(path.c_str(), AllNum, Xnum, Ynum, w, h, GHandle.data());
-	ArrSize = GHandle.size();
 }
 
 CImage::~CImage()
 {
+	Release();
+}
+
+void CImage::Release()
+{
 	std::for_each(GHandle.begin(), GHandle.end(), [](int v) { DeleteGraph(v); });
+	GHandle.clear();
 }
 
 void CImage::Draw(int x1, int y1, double priority, int num)

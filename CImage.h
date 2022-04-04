@@ -1,16 +1,26 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <DxLib.h>
 
 class CImage
 {
 private:
 	std::vector<int> GHandle;
-	unsigned int ArrSize;
+	std::string path;
+	unsigned int ArrSize, Xnum, Ynum, Width, Height;
 public:
-	CImage(std::string path);
+	CImage(std::string path, int width, int height);
 	CImage(std::string path, int AllNum, int Xnum, int Ynum, int w, int h);
 	~CImage();
+
+	void Release();
+	inline void Load() {
+		if (GHandle.empty()) {
+			GHandle.resize(ArrSize);
+			LoadDivGraph(path.c_str(), ArrSize, Xnum, Ynum, Width, Height, GHandle.data());
+		}
+	}
 	
 	void Draw(int x1, int y1, double priority = 0.0, int num = 0);
 	void Draw(float x1, float y1, double priority = 0.0, int num = 0);

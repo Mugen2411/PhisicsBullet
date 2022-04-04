@@ -5,6 +5,7 @@
 #include "CEffect_MoneyNumber.h"
 #include "CEffect_DamageNumber.h"
 #include "CImageManager.h"
+#include "CSoundManager.h"
 #include "CAnchor.h"
 
 CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
@@ -106,6 +107,7 @@ void CMover_EnemyBase::Dead()
 			Velocity, Size + 4 - GetRand(8), Color));
 
 	CAnchor::getIns().Quake(12);
+	CSoundManager::getIns().find("kill_enemy")->Play(CSound::PT_BACK);
 }
 
 void CMover_EnemyBase::Disappear()

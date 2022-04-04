@@ -207,6 +207,8 @@
     <ClCompile Include="CPowerParent.cpp" />
     <ClCompile Include="CPower_Line.cpp" />
     <ClCompile Include="CRenderReserveList.cpp" />
+    <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CSoundManager.cpp" />
     <ClCompile Include="CStatus.cpp" />
     <ClCompile Include="CSTGInputManager.cpp" />
     <ClCompile Include="CVector.cpp" />
@@ -274,6 +276,8 @@
     <ClInclude Include="CPowerParent.h" />
     <ClInclude Include="CPower_Line.h" />
     <ClInclude Include="CRenderReserveList.h" />
+    <ClInclude Include="CSound.h" />
+    <ClInclude Include="CSoundManager.h" />
     <ClInclude Include="CStatus.h" />
     <ClInclude Include="CSTGInputManager.h" />
     <ClInclude Include="CVector.h" />

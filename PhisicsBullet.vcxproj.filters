@@ -94,6 +94,12 @@
     <Filter Include="ヘッダー ファイル\Costume">
       <UniqueIdentifier>{7bd285f5-8cbb-4de5-82c7-cb967dbd8309}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{9afa98b4-8a72-4a01-ad41-ac1ffcaa6bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Sound">
+      <UniqueIdentifier>{451c9814-b543-448b-a2a0-d5f5be6222e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="CEnemyFactory.cpp">
       <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundManager.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -484,6 +496,12 @@
     </ClInclude>
     <ClInclude Include="CAnchor.h">
       <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundManager.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

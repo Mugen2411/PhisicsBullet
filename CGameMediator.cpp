@@ -6,6 +6,7 @@
 #include "CMover_Player.h"
 #include "CEnemyFactory.h"
 #include "CMover.h"
+#include "CSoundManager.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPause(false)
 {
@@ -28,6 +29,7 @@ void CGameMediator::CreateParts()
 		//RegisterMover(CEF.create("E_Shimaenaga", CVector(10 * 32 + 16, +48 * 32 + 16), 0));
 		RegisterMover(CEF.create("E_Budcorn", CVector(10 * 32 + 16, + 48 * 32 + 16), 0));
 	}
+	CSoundManager::getIns().find("bgm_test")->Play(CSound::PT_LOOP);
 }
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)

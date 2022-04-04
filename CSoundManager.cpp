@@ -3,6 +3,8 @@
 CSoundManager::CSoundManager()
 {
     sndList["kill_enemy"] = std::make_shared<CSound>("media/sound/se/kill_enemy.wav");
+
+    sndList["bgm_test"] = std::make_shared<CSound>("media/sound/bgm/NaoGame02.ogg");
 }
 
 void CSoundManager::unload()

@@ -29,7 +29,7 @@ int CKeyInputManager::update()
 	if (mx > Constant::ScreenW)mx = Constant::ScreenW;
 	if (my < 0)my = 0;
 	if (my > Constant::ScreenH)my = Constant::ScreenH;
-	SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
+	if(GetWindowActiveFlag())SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
 
 	int mi = GetMouseInput();
 	if (mi & MOUSE_INPUT_LEFT) {

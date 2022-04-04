@@ -13,6 +13,7 @@ void CMapEditor::CreateParts()
 CMapEditor::CMapEditor(SceneManager* ScnMng) : Scene_Abstract(ScnMng), 
 	input(CControllerFactory::getIns().getController()), currentMapchip("NULL-OBJECT"), CFF(CFieldFactory()), state(0), category(0)
 {
+	CAnchor::getIns().setPosition(CVector(0, 0));
 	//SetMouseDispFlag(TRUE);
 	CreateParts();
 }
@@ -28,10 +29,10 @@ void CMapEditor::Update()
 	switch (state) {
 	case 0:
 
-		if (input.lock()->Up() % 5 == 1)CAnchor::getIns().Move(CVector(0, -16));
-		if (input.lock()->Down() % 5 == 1)CAnchor::getIns().Move(CVector(0, 16));
-		if (input.lock()->Right() % 5 == 1)CAnchor::getIns().Move(CVector(16, 0));
-		if (input.lock()->Left() % 5 == 1)CAnchor::getIns().Move(CVector(-16, 0));
+		if (input.lock()->Up() % 5 == 1)CAnchor::getIns().Move(CVector(0, -32));
+		if (input.lock()->Down() % 5 == 1)CAnchor::getIns().Move(CVector(0, 32));
+		if (input.lock()->Right() % 5 == 1)CAnchor::getIns().Move(CVector(32, 0));
+		if (input.lock()->Left() % 5 == 1)CAnchor::getIns().Move(CVector(-32, 0));
 
 		if (input.lock()->A() == 1) { state = 1; return; }
 
@@ -60,8 +61,8 @@ void CMapEditor::Update()
 		break;
 	case 1:
 		if (input.lock()->LClick(true) == 1) {
-			currentSelect = CVector(input.lock()->MouseX(), input.lock()->MouseY()) / 32;
-			cur = (int)currentSelect.x + (int)currentSelect.y * 20;
+			currentSelect = CAnchor::getIns().getAnchoredPosition(CVector(input.lock()->MouseX(), input.lock()->MouseY())) / 32;
+			cur = (int)(currentSelect.x) + (int)(currentSelect.y) * 20;
 			currentMapchip = CFF.getKey(&cur, category);
 			state = 0;
 			return;
@@ -88,9 +89,11 @@ void CMapEditor::Render()const
 		break;
 	}
 	CVector mousePos((int)(currentSelect.x) * 32 + 16, (int)(currentSelect.y) * 32 + 16);
+	printfDx("Mouse:%lf,%lf\n", mousePos.x, mousePos.y);
 	mousePos = CAnchor::getIns().getAnchoredPosition(mousePos);
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("editor_cursor")->DrawRota(mousePos.x, mousePos.y, 0.0, 1.0, 1.0, 0);
+	printfDx("AbsMouse:%lf,%lf\n", mousePos.x, mousePos.y);
 	CAnchor::getIns().disableAbsolute();
 }
 

@@ -7,6 +7,7 @@
 #include "CEnemyFactory.h"
 #include "CMover.h"
 #include "CSoundManager.h"
+#include "CImageManager.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng):Scene_Abstract(ScnMng), isPause(false)
 {

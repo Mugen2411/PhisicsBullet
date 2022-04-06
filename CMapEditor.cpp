@@ -14,7 +14,7 @@ CMapEditor::CMapEditor(SceneManager* ScnMng) : Scene_Abstract(ScnMng),
 	input(CControllerFactory::getIns().getController()), currentMapchip("NULL-OBJECT"), CFF(CFieldFactory()), state(0), category(0)
 {
 	CAnchor::getIns().setPosition(CVector(0, 0));
-	//SetMouseDispFlag(TRUE);
+	SetMouseDispFlag(TRUE);
 	CreateParts();
 }
 
@@ -61,7 +61,7 @@ void CMapEditor::Update()
 		break;
 	case 1:
 		if (input.lock()->LClick(true) == 1) {
-			currentSelect = CAnchor::getIns().getAnchoredPosition(CVector(input.lock()->MouseX(), input.lock()->MouseY())) / 32;
+			currentSelect = CVector(input.lock()->MouseX(), input.lock()->MouseY()) / 32;
 			cur = (int)(currentSelect.x) + (int)(currentSelect.y) * 20;
 			currentMapchip = CFF.getKey(&cur, category);
 			state = 0;

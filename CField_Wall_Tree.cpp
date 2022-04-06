@@ -3,6 +3,7 @@
 CField_Wall_Tree::CField_Wall_Tree(std::string gid, CVector position)
 	:CField_Wall(gid, position, 0.5)
 {
+	isWall = false;
 }
 
 void CField_Wall_Tree::Update()

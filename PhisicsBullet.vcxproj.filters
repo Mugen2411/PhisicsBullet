@@ -297,6 +297,15 @@
     <ClCompile Include="CSound.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Dirt.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CField_Wall_Vegetable.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CField_Wall_Well.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -502,6 +511,15 @@
     </ClInclude>
     <ClInclude Include="CSound.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Dirt.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_Vegetable.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_Well.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

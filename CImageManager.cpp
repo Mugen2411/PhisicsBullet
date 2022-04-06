@@ -2,7 +2,7 @@
 
 CImageManager::CImageManager()
 {
-    imgList["Field_Grass"] = std::make_shared<CImage>("media/graphic/mapchip/grass.png", 24, 8, 3, 32, 32);
+    imgList["Field_Grass"] = std::make_shared<CImage>("media/graphic/mapchip/grass.png", 32, 8, 4, 32, 32);
     imgList["Field_IceFloor"] = std::make_shared<CImage>("media/graphic/mapchip/ice.png", 3, 3, 1, 32, 32);
     imgList["Field_Error"] = std::make_shared<CImage>("media/graphic/mapchip/error.png", 32, 32);
 

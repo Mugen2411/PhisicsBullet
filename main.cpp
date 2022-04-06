@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "Clooper.h"
+#include "CSoundManager.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
@@ -23,6 +24,8 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 		SetDrawScreen(offscreen);
 	}
+	CImageManager::getIns().unload();
+	CSoundManager::getIns().unload();
 	DxLib_End();
 	return 0;
 }

@@ -18,3 +18,8 @@ void CSound::Stop()
 {
 	StopSoundMem(SHandle);
 }
+
+void CSound::SetVolume(double volume)
+{
+	ChangeVolumeSoundMem(volume * 255, SHandle);
+}

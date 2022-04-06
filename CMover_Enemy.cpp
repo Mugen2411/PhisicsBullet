@@ -166,11 +166,14 @@ int CMover_EnemyBase::DamageColor(CAttribute shotATK)
 
 void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 {
-	m->ApplyForce((m->getPosition() - Position + CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.01).getNorm() * Mass * Size);
+	CVector delta = (m->getPosition() - Position ).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
+	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)
 {
-	//m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * Mass * Size);
+	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
+	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
 }

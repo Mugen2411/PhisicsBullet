@@ -21,5 +21,6 @@ public:
 		PT_LOOP = DX_PLAYTYPE_LOOP
 	};
 	void Stop();
+	void SetVolume(double volume);	//0.0~1.0
 };
 

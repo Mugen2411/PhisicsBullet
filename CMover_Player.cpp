@@ -150,6 +150,7 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
-	//m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength2() * Mass);
-	m->ApplyForce((m->getPosition() - Position).getNorm() * Mass * Size);
+	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
+	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
 }

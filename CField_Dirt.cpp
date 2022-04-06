@@ -4,6 +4,7 @@
 CField_Dirt::CField_Dirt(std::string gid, CVector position, int state)
 	:CField(gid, position, CVector(32.0, 32.0),COF().setFrictionCF(0.9), 0.0), state(state)
 {
+	if (state == 1)Cofs.setFrictionCF(0.7);
 }
 
 void CField_Dirt::Update()

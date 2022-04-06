@@ -27,10 +27,7 @@ protected:
 
 	double Mass;			//¿—Ê
 	double nowFricted;		//Œ»İó‚¯‚Ä‚¢‚é–€CŒn”
-	double FrictionCF;		//–€CŒW”
-	double AirResCF;		//‹ó‹C’ïRŒW”(•——Í‚Ìó‚¯‚â‚·‚³)
-	double WaterResCF;		//…ˆ³’ïRŒW”(…ˆ³‚Ìó‚¯‚â‚·‚³)
-	double ReflectCF;		//”½”­ŒW”
+	COF Cofs;				//Šeí’è”
 	double Temperature;		//‰·“x
 
 	double Size;			//•¨‘Ì‚Ì‘å‚«‚³(”¼Œa)
@@ -40,7 +37,7 @@ protected:
 
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
-		double mass, double frictionCF, double airresCF,double waterResCF, double reflectCF, double temperature);
+		double mass, COF cofs, double temperature);
 	virtual ~CMover() {};
 	inline void setMediator(std::shared_ptr<CGameMediator> m) {
 		med = m;
@@ -63,13 +60,17 @@ public:
 	inline void ApplyFrictionForce(double FloorFrictionCF) {
 		nowFricted = FloorFrictionCF;
 		auto NormA = Velocity;
-		ApplyForce(-NormA * FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
+		ApplyForce(-NormA * Cofs.FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
 	}
 	inline void ApplyAirForce(CVector F) {
-		ApplyForce(F * AirResCF);
+		ApplyForce(F * Cofs.AirResCF);
+	}
+	inline void ApplyWaterRegistance(double waterResCF) {
+		auto NormA = Velocity;
+		ApplyForce(-NormA * Cofs.WaterResCF * waterResCF * Mass * Constant::Frame);
 	}
 	inline void ApplyWaterForce(CVector F) {
-		ApplyForce(F * WaterResCF);
+		ApplyForce(F * Cofs.WaterResCF);
 	}
 	inline void Move() {
 		Velocity += Acceleration * Constant::perFrame;

@@ -8,7 +8,7 @@ class CMover_EnemyBase :
 {
 public:
     CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
-        int color, CVector Position, double accel, double maxSpeed, double frictionCF, double airresCF, double waterResCF);
+        int color, CVector Position, double accel, double maxSpeed, COF cofs);
     virtual ~CMover_EnemyBase() {}
 
     int state = -1; //-1:oŒ»’†, 0:–_—§‚¿, 1:ˆÚ“®, 2:‹¯‚İ, ‚»‚êˆÈ~‚Í“G‚²‚Æ‚É’è‹`

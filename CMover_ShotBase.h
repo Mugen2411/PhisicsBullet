@@ -15,8 +15,7 @@ protected:
 
     int cnt;
 public:
-    CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass,
-        double frictionCF, double airresCF, double waterresCF, double reflectCF);
+    CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs);
 
     void BaseUpdate();
     bool BaseRender()const;

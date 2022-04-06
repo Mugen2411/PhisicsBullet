@@ -306,6 +306,9 @@
     <ClCompile Include="CField_Wall_Well.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Wall_DeepWater.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -519,6 +522,9 @@
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
     <ClInclude Include="CField_Wall_Well.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_DeepWater.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>

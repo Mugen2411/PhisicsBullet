@@ -4,8 +4,9 @@
 class CField_Dirt :
     public CField
 {
+    int state;
 public:
-    CField_Dirt(std::string gid, CVector position);
+    CField_Dirt(std::string gid, CVector position, int state);
     void Update();
     void Render()const;
 

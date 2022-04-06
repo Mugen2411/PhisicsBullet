@@ -7,6 +7,7 @@
 #include "CField_Wall_WoodFence.h"
 #include "CField_Wall_Vegetable.h"
 #include "CField_Wall_Well.h"
+#include "CField_Wall_DeepWater.h"
 #include "CField_Void.h"
 #include "CField_Error.h"
 
@@ -37,8 +38,10 @@ CFieldFactory::CFieldFactory()
 	fx = 0;
 	fy = 0;
 	RegisterFloor(new CField_Grass("F_Grass", CVector()));
+	RegisterFloor(new CField_IceFloor("F_Water", CVector(), 0));
 	RegisterFloor(new CField_IceFloor("F_IceFloor", CVector(), -100));
-	RegisterFloor(new CField_Dirt("F_Dirt", CVector()));
+	RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
+	RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
 
 	RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));
 	RegisterWall(new CField_Wall_Log("W_Log", CVector(), 0));
@@ -64,6 +67,8 @@ CFieldFactory::CFieldFactory()
 	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DRL", CVector(), 13));
 	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDL", CVector(), 14));
 	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDRL", CVector(), 15));
+
+	RegisterWall(new CField_Wall_DeepWater("W_DeepWater", CVector()));
 
 	RegisterWall(new CField_Void("W_Void", CVector()));
 }

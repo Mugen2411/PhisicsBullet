@@ -1,10 +1,9 @@
 #include "CMover.h"
 
 CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass,
-	double frictionCF, double airresCF, double waterResCF, double reflectCF, double temperature)
+	COF cofs, double temperature)
 	:Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
-	Mass(mass), nowFricted(0.0), FrictionCF(frictionCF), AirResCF(airresCF),
-	ReflectCF(reflectCF), WaterResCF(waterResCF), Temperature(temperature), Status(0), Category(ID)
+	Mass(mass), nowFricted(0.0), Cofs(cofs), Temperature(temperature), Status(0), Category(ID)
 {
 }
 
@@ -103,32 +102,32 @@ void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	int add = 0;
 	if (U) {
 		Position.y = WallPosition.y + WallSize.y / 2 + Size;
-		Velocity.y *= -ReflectCF * WallReflectionCF;
-		Acceleration.y *= -ReflectCF * WallReflectionCF;
+		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
 		//Velocity.x *= ReflectCF * WallReflectionCF;
 		//if(Acceleration.y < 0)Acceleration.y = 0;
 		ifonWall();
 	}
 	if (D) {
 		Position.y = WallPosition.y - WallSize.y / 2 - Size;
-		Velocity.y *= -ReflectCF * WallReflectionCF;
-		Acceleration.y *= -ReflectCF * WallReflectionCF;
+		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
 		//Velocity.x *= ReflectCF * WallReflectionCF;
 		//if (Acceleration.y > 0)Acceleration.y = 0;
 		ifonWall();
 	}
 	if (R) {
 		Position.x = WallPosition.x - WallSize.x / 2 - Size;
-		Velocity.x *= -ReflectCF * WallReflectionCF;
-		Acceleration.x *= -ReflectCF * WallReflectionCF;
+		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
 		//Velocity.y *= ReflectCF * WallReflectionCF;
 		//if (Acceleration.x > 0)Acceleration.x = 0;
 		ifonWall();
 	}
 	if (L) {
 		Position.x = WallPosition.x + WallSize.x / 2 + Size;
-		Velocity.x *= -ReflectCF * WallReflectionCF;
-		Acceleration.x *= -ReflectCF * WallReflectionCF;
+		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
 		//Velocity.y *= ReflectCF * WallReflectionCF;
 		//if (Acceleration.x < 0)Acceleration.x = 0;
 		ifonWall();

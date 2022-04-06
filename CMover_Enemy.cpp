@@ -9,8 +9,8 @@
 #include "CAnchor.h"
 
 CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
-	int color, CVector position, double accel, double maxSpeed, double frictionCF, double airresCF, double waterCF) :
-	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, frictionCF, airresCF, waterCF, 0.0, 0)
+	int color, CVector position, double accel, double maxSpeed, COF cofs) :
+	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0)
 	, Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
 	baseParams(Level, atkCF, defCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
 {

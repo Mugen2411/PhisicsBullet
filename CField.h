@@ -18,9 +18,8 @@ private:
 protected:
 	CVector Position;
 	CVector Size;
-	double FrictionCF;
+	COF Cofs;
 	double Temperature;
-	double ReflectCF;
 	CAttribute Damage;
 
 	std::string GID;
@@ -28,7 +27,7 @@ protected:
 public:
 
 	CField(std::string gid, CVector position, CVector size,
-		double frictionCF, double temperature, double reflectCF, CAttribute damage = CAttribute(0.0), bool isWall = false);
+		COF cofs, double temperature, CAttribute damage = CAttribute(0.0), bool isWall = false);
 	virtual ~CField() {};
 
 	bool isWall;

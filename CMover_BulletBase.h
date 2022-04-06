@@ -13,7 +13,7 @@ protected:
     CStatus baseParams;
 public:
     CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, 
-        double frictionCF, double airresCF, double waterresCF, double reflectCF);
+        COF cofs);
 
     void BaseUpdate();
     bool BaseRender()const;

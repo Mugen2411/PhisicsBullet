@@ -43,8 +43,8 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 		if (x < fieldHolder->getWidth() / 2)m->setPosition(p.x += 32);
 		else m->setPosition(p.x -= 32);
 	}*/
+	fieldHolder->getWall(x, y)->setFrictionForce(m);
 	fieldHolder->getFloor(x, y)->setFrictionForce(m);
-	//fieldHolder->getWall(x, y)->Hit(m);
 
 	for (int ay = max(0, y - 3); ay < min(fieldHolder->getHeight(), y + 3); ay++) {
 		for (int ax = max(0, x - 3); ax < min((int)fieldHolder->getWidth(), x + 3); ax++) {

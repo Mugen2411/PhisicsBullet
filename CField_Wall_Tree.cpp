@@ -1,9 +1,8 @@
 #include "CField_Wall_Tree.h"
 
 CField_Wall_Tree::CField_Wall_Tree(std::string gid, CVector position)
-	:CField_Wall(gid, position, 0.5)
+	:CField_Wall(gid, position, COF().setReflectCF(0.8))
 {
-	isWall = false;
 }
 
 void CField_Wall_Tree::Update()

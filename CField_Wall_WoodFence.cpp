@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CField_Wall_WoodFence::CField_Wall_WoodFence(std::string gid, CVector position, int state)
-	:CField_Wall(gid, position, 0.0), state(state)
+	:CField_Wall(gid, position, COF().setReflectCF(0.8)), state(state)
 {
 }
 

@@ -29,3 +29,34 @@ public:
 	};
 };
 
+struct COF {
+	double FrictionCF = 0.0;	//–€CŒW”
+	double WaterResCF = 0.0;	//…‚Ì’ïRŒW”
+	double AirResCF = 0.0;		//‹ó‹C’ïRŒW”
+	double ReflectCF = 0.0;		//”½ËŒW”
+
+	COF(double frictionCF, double waterResCF, double airResCF, double reflectCF)
+	:FrictionCF(frictionCF), WaterResCF(waterResCF), AirResCF(airResCF), ReflectCF(reflectCF) {
+	}
+
+	COF() :FrictionCF(0.0), WaterResCF(0.0), AirResCF(0.0), ReflectCF(0.0) {
+
+	}
+
+	COF setFrictionCF(double frictionCF) {
+		FrictionCF = frictionCF;
+		return *this;
+	}
+	COF setWaterResCF(double waterResCF) {
+		WaterResCF = waterResCF;
+		return *this;
+	}
+	COF setAirResCF(double airResCF) {
+		AirResCF = airResCF;
+		return *this;
+	}
+	COF setReflectCF(double reflectCF) {
+		ReflectCF = reflectCF;
+		return *this;
+	}
+};

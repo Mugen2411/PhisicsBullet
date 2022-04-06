@@ -2,9 +2,8 @@
 #include <DxLib.h>
 
 CField_Wall_Log::CField_Wall_Log(std::string gid, CVector position, int state)
-	:CField_Wall(gid, position, 0.0), animCount(0.0), state(state), BurningTime(600)
+	:CField_Wall(gid, position, COF().setFrictionCF(0.9)), animCount(0.0), state(state), BurningTime(600)
 {
-	FrictionCF = 1.6;
 }
 
 void CField_Wall_Log::Update()

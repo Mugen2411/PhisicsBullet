@@ -1,7 +1,7 @@
 #include "CField_Wall_Vegetable.h"
 
 CField_Wall_Vegetable::CField_Wall_Vegetable(std::string gid, CVector position, int col)
-	:CField_Wall(gid, position, 0.5),state(col)
+	:CField_Wall(gid, position, COF().setFrictionCF(0.0)),state(col)
 {
 	isWall = false;
 }

@@ -4,9 +4,8 @@
 #include "CEffect_BulletDelete.h"
 #include "CAnchor.h"
 
-CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass,
-	double frictionCF, double airresCF, double waterresCF, double reflectCF)
-	:CMover(MV_SHOT, position, size, velocity, mass, frictionCF, airresCF, waterresCF, reflectCF, 0)
+CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs)
+	:CMover(MV_SHOT, position, size, velocity, mass, cofs, 0)
 	,ATK(atk), baseATK(baseATK),cnt(0)
 {
 }

@@ -14,10 +14,10 @@ void CField_Wall_Log::Update()
 		isWall = true;
 		break;
 	case 1:
-		animCount += 0.2;
+		animCount += 0.15;
 		animCount = std::fmod(animCount, 3);
 		BurningTime--;
-		if (BurningTime < 0)state = 2;
+		//if (BurningTime < 0)state = 2;
 		Damage = CAttribute(0.0).FIRE(4.0);
 		isWall = false;
 		break;
@@ -31,8 +31,9 @@ void CField_Wall_Log::Update()
 void CField_Wall_Log::Render() const
 {
 	switch (state) {
-	case 0:
 	case 1:
+		CImageManager::getIns().find("effect_flame")->DrawRotaFwithBlend(Position.x, Position.y, 0.0, 1.0, 0xFFFFFF, CImageManager::BM_ADD, 216, Constant::priority_enemy, animCount);
+	case 0:
 		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_wall, 4);
 		break;
 	case 2:

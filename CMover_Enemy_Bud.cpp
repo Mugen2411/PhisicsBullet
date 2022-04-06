@@ -45,6 +45,9 @@ void CMover_Enemy_Bud::Render() const
 		return;
 	}
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, Direction * 4 + (int)(animCount));
+	for (auto& i : route) {
+		CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0, 1, Constant::priority_enemy);
+	}
 }
 
 CMover_EnemyBase* CMover_Enemy_Bud::Clone(CVector Position, int Level)

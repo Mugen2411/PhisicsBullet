@@ -59,7 +59,7 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	using PP = std::pair<double, CVector>;
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			g[x][y] = (floorlist[index(x, y)]->getDamage() / attrDEF).Sum() * 24;
+			g[x][y] = ((floorlist[index(x, y)]->getDamage() + walllist[index(x, y)]->getDamage()) / attrDEF).Sum() * 24;
 			dist[x][y] = Constant::dbl_INF;
 			pre[x][y] = CVector(-1, -1);
 		}

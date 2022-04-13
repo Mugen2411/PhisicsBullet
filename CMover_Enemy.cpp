@@ -8,11 +8,11 @@
 #include "CSoundManager.h"
 #include "CAnchor.h"
 
-CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
+CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double hpCF, CAttribute attrDEF, int baseMoney,
 	int color, CVector position, double accel, double maxSpeed, COF cofs) :
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0)
 	, Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
-	baseParams(Level, atkCF, defCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
+	baseParams(Level, atkCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
 {
 }
 
@@ -126,7 +126,7 @@ void CMover_EnemyBase::Render_HPGuage()const
 void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 {
 	if (Status < 0)return;
-	double ret = (shotATK / (attrDEF * baseParams.DEF)).Sum();
+	double ret = (shotATK / attrDEF * 0.01).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));

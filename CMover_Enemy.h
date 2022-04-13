@@ -7,7 +7,7 @@ class CMover_EnemyBase :
     public CMover
 {
 public:
-    CMover_EnemyBase(double Mass, int Level, double atkCF, double defCF, double hpCF, CAttribute attrDEF, int baseMoney,
+    CMover_EnemyBase(double Mass, int Level, double atkCF, double hpCF, CAttribute attrDEF, int baseMoney,
         int color, CVector Position, double accel, double maxSpeed, COF cofs);
     virtual ~CMover_EnemyBase() {}
 

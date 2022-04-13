@@ -11,7 +11,7 @@
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, COF(0.5, 0.2, 0.1, 0.0), 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(0), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)) {
+	, Direction(1), Charge(0), State(0), baseParams(0), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)), CND() {
 }
 
 void CMover_Player::Walk()
@@ -105,8 +105,11 @@ void CMover_Player::Render() const
 	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
+	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 2.3);
+	printfDx("HP:%lf\n", baseParams.HP);
+	//CND.Draw(16 + 48 + 16 * DigitHP, 16 + 8, baseParams.MaxHP, 0, 0, 2.3);
 	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
-	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge)? 1 : 0);
+	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge) ? 1 : 0);
 	CAnchor::getIns().disableAbsolute();
 }
 
@@ -126,7 +129,7 @@ void CMover_Player::Wait(int duration)
 
 void CMover_Player::Damage(CAttribute BulletATK, int style)
 {
-	double ret = ((BulletATK) / (baseParams.DEF)).Sum();
+	double ret = ((BulletATK) / costume->AttributeDEF * 0.01).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));

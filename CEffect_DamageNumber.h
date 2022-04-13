@@ -10,6 +10,8 @@ class CEffect_DamageNumber :
     double num;
     int type = 0;
     int style = 0;
+
+    CNumberDrawer CND;
 public:
     CEffect_DamageNumber(CVector position, double num, int type, int Style=0);
 

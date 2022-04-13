@@ -450,9 +450,9 @@ W_Vegetable_radish
 W_Vegetable_carrot
 W_WoodFence_UD
 F_Grass
-W_Log_Burning
-W_Log_Burning
-W_Log_Burning
+W_Void
+W_Void
+W_Void
 W_Void
 F_Grass
 F_Grass
@@ -470,9 +470,9 @@ W_Vegetable_carrot
 W_Vegetable_radish
 W_WoodFence_UD
 F_Grass
-W_Log_Burning
-W_Log_Burning
-W_Log_Burning
+F_Grass
+F_Grass
+F_Grass
 F_Grass
 F_Grass
 F_Grass

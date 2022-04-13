@@ -13,8 +13,8 @@ CImageManager::CImageManager()
     imgList["enemy_marker"] = std::make_shared<CImage>("media/graphic/system/game/enemy_marker.png", 16, 16);
 
     imgList["effect_bulletdelete"] = std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
-    imgList["effect_number1"] = std::make_shared<CImage>("media/graphic/system/font/num1.png", 44, 11, 4, 10, 10);;
-    imgList["effect_number2"] = std::make_shared<CImage>("media/graphic/system/font/num2.png", 44, 11, 4, 7, 7);
+    imgList["effect_number1"] = std::make_shared<CImage>("media/graphic/system/font/num1.png", 48, 12, 4, 10, 10);
+    imgList["effect_number2"] = std::make_shared<CImage>("media/graphic/system/font/num2.png", 48, 12, 4, 7, 7);
     imgList["effect_number3"] = std::make_shared<CImage>("media/graphic/system/font/num3.png", 11, 11, 1, 10, 10);
     imgList["effect_flame"] = std::make_shared<CImage>("media/graphic/system/game/flame.png", 4, 2, 2, 32, 32);
 

@@ -4,6 +4,7 @@
 #include "CStatus.h"
 #include "CAttribute.h"
 #include "CCosutumeBase.h"
+#include "CNumberDrawer.h"
 
 class CMover_Player :
     public CMover
@@ -16,7 +17,10 @@ protected:
     int Charge;					//Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
     double animCount;
     CStatus baseParams;
+    int DigitHP;
     int waitDuration;
+
+    CNumberDrawer CND;
 
     std::shared_ptr<CCostumeBase> costume;
 public:

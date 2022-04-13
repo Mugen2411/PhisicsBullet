@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num, int type, int Style)
-	:CEffect(position), num(num), type(type), cnt(0), style(Style), dy(4.0)
+	:CEffect(position), num(num), type(type), cnt(0), style(Style), dy(4.0), CND()
 {
 }
 
@@ -16,5 +16,5 @@ void CEffect_DamageNumber::Update()
 
 void CEffect_DamageNumber::Render() const
 {
-	CNumberDrawer::getIns().Draw(Position.x, Position.y, num, type, style);
+	CND.Draw(Position.x, Position.y, num, type, style, style==0 ? 1.5 : 0.6);
 }

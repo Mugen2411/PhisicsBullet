@@ -100,6 +100,18 @@
     <Filter Include="ヘッダー ファイル\Sound">
       <UniqueIdentifier>{451c9814-b543-448b-a2a0-d5f5be6222e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Uniform">
+      <UniqueIdentifier>{f8a87698-17e1-4140-98f3-5f1fa0a5ecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Festa">
+      <UniqueIdentifier>{d4669889-43af-4e65-ad41-5abbd6451399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Festa">
+      <UniqueIdentifier>{2beefac8-b73e-4266-9030-7c0ddaee46ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Uniform">
+      <UniqueIdentifier>{e7c68ac5-4d17-44ad-aad0-01ee44db66cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -240,9 +252,6 @@
     <ClCompile Include="CMover_ShotBase.cpp">
       <Filter>ソース ファイル\Mover\Shot</Filter>
     </ClCompile>
-    <ClCompile Include="CMover_Shot_Uniform_Homing.cpp">
-      <Filter>ソース ファイル\Mover\Shot</Filter>
-    </ClCompile>
     <ClCompile Include="CStatus.cpp">
       <Filter>ソース ファイル\Status</Filter>
     </ClCompile>
@@ -269,9 +278,6 @@
     </ClCompile>
     <ClCompile Include="CDrawCircleGauge.cpp">
       <Filter>ソース ファイル\Image</Filter>
-    </ClCompile>
-    <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp">
-      <Filter>ソース ファイル\Mover\Shot</Filter>
     </ClCompile>
     <ClCompile Include="CField_Wall_WoodFence.cpp">
       <Filter>ソース ファイル\Field</Filter>
@@ -308,6 +314,18 @@
     </ClCompile>
     <ClCompile Include="CField_Wall_DeepWater.cpp">
       <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Uniform_Homing.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Uniform</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Uniform</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Festa_Superball.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Festa</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Festa.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +473,6 @@
     <ClInclude Include="CMover_ShotBase.h">
       <Filter>ヘッダー ファイル\Mover\Shot</Filter>
     </ClInclude>
-    <ClInclude Include="CMover_Shot_Uniform_Homing.h">
-      <Filter>ヘッダー ファイル\Mover\Shot</Filter>
-    </ClInclude>
     <ClInclude Include="CStatus.h">
       <Filter>ヘッダー ファイル\Status</Filter>
     </ClInclude>
@@ -487,9 +502,6 @@
     </ClInclude>
     <ClInclude Include="CDrawCircleGauge.h">
       <Filter>ヘッダー ファイル\Image</Filter>
-    </ClInclude>
-    <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h">
-      <Filter>ヘッダー ファイル\Mover\Shot</Filter>
     </ClInclude>
     <ClInclude Include="CMover_Enemy_Shimaenaga.h">
       <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
@@ -526,6 +538,18 @@
     </ClInclude>
     <ClInclude Include="CField_Wall_DeepWater.h">
       <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Uniform</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Uniform_Homing.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Uniform</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Festa_Superball.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Festa</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Festa.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

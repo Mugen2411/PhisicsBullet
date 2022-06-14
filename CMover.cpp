@@ -101,35 +101,27 @@ void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	}
 	int add = 0;
 	if (U) {
-		Position.y = WallPosition.y + WallSize.y / 2 + Size;
+		Position.y = WallPosition.y + WallSize.y / 2 + (Size+0.2);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
-		//Velocity.x *= ReflectCF * WallReflectionCF;
-		//if(Acceleration.y < 0)Acceleration.y = 0;
 		ifonWall();
 	}
 	if (D) {
-		Position.y = WallPosition.y - WallSize.y / 2 - Size;
+		Position.y = WallPosition.y - WallSize.y / 2 - (Size + 0.2);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
-		//Velocity.x *= ReflectCF * WallReflectionCF;
-		//if (Acceleration.y > 0)Acceleration.y = 0;
 		ifonWall();
 	}
 	if (R) {
-		Position.x = WallPosition.x - WallSize.x / 2 - Size;
+		Position.x = WallPosition.x - WallSize.x / 2 - (Size + 0.2);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
-		//Velocity.y *= ReflectCF * WallReflectionCF;
-		//if (Acceleration.x > 0)Acceleration.x = 0;
 		ifonWall();
 	}
 	if (L) {
-		Position.x = WallPosition.x + WallSize.x / 2 + Size;
+		Position.x = WallPosition.x + WallSize.x / 2 + (Size + 0.2);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
-		//Velocity.y *= ReflectCF * WallReflectionCF;
-		//if (Acceleration.x < 0)Acceleration.x = 0;
 		ifonWall();
 	}
 }

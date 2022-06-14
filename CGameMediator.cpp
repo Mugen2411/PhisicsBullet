@@ -28,7 +28,7 @@ void CGameMediator::CreateParts()
 	CEnemyFactory CEF;
 	for (int i = 0; i < 1; i++) {
 		//RegisterMover(CEF.create("E_Shimaenaga", CVector(10 * 32 + 16, +48 * 32 + 16), 0));
-		RegisterMover(CEF.create("E_Budcorn", CVector(10 * 32 + 16, + 8 * 32 + 16), 30));
+		RegisterMover(CEF.create("E_Budcorn", CVector(10 * 32 + 16, + 8 * 32 + 16), 3));
 	}
 	CSoundManager::getIns().find("kill_enemy")->SetVolume(0.2);
 	CSoundManager::getIns().find("bgm_test")->SetVolume(0.4);

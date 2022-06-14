@@ -43,6 +43,7 @@ public:
         m->Hit(this);
     }
     int DamageColor(CAttribute shotATK);
+    void RegisterShot(std::shared_ptr<CMover_ShotBase>);
 
     void Hit(CMover_EnemyBase*);
 };

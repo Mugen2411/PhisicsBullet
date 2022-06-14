@@ -156,6 +156,7 @@
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
+    <ClCompile Include="CCostume_Festa.cpp" />
     <ClCompile Include="CCostume_Uniform.cpp" />
     <ClCompile Include="CCosutumeBase.cpp" />
     <ClCompile Include="CDrawCircleGauge.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="CMover_Player.cpp" />
     <ClCompile Include="CMover_BulletBase.cpp" />
     <ClCompile Include="CMover_ShotBase.cpp" />
+    <ClCompile Include="CMover_Shot_Festa_Superball.cpp" />
     <ClCompile Include="CMover_Shot_Uniform_Homing.cpp" />
     <ClCompile Include="CMover_Shot_Uniform_StrongMagic.cpp" />
     <ClCompile Include="CNumberDrawer.cpp" />
@@ -227,6 +229,7 @@
     <ClInclude Include="CAnchor.h" />
     <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CControllerFactory.h" />
+    <ClInclude Include="CCostume_Festa.h" />
     <ClInclude Include="CCostume_Uniform.h" />
     <ClInclude Include="CCosutumeBase.h" />
     <ClInclude Include="CDrawCircleGauge.h" />
@@ -275,6 +278,7 @@
     <ClInclude Include="CMover_Player.h" />
     <ClInclude Include="CMover_BulletBase.h" />
     <ClInclude Include="CMover_ShotBase.h" />
+    <ClInclude Include="CMover_Shot_Festa_Superball.h" />
     <ClInclude Include="CMover_Shot_Uniform_Homing.h" />
     <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h" />
     <ClInclude Include="CNumberDrawer.h" />

@@ -27,8 +27,8 @@ public:
 	CCostumeBase(CMover_Player* player, std::string filepath, double animSpeed, int MaxCharge, int ShotRate,
 		int strongshotDuration, double maxSpeed, double accel, CAttribute attrDEF);
 
-	virtual std::shared_ptr<CMover_ShotBase> ChargeShot(double baseATK, CVector position, float angle) = 0;
-	virtual std::shared_ptr<CMover_ShotBase> WeakShot(double baseATK, CVector position, float angle) = 0;
+	virtual void ChargeShot(double baseATK, CVector position, float angle) = 0;
+	virtual void WeakShot(double baseATK, CVector position, float angle) = 0;
 
 	inline double getMaxSpeed() {
 		return MaxSpeed;
@@ -48,5 +48,7 @@ public:
 	inline int getStrongShotDuration() {
 		return StrongShotDuration;
 	}
+
+	void RegisterShot(std::shared_ptr<CMover_ShotBase>);
 };
 

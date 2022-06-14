@@ -2,8 +2,7 @@
 #include "CImageManager.h"
 #include <cmath>
 #include <DxLib.h>
-#include "CMover_Shot_Uniform_Homing.h"
-#include "CCostume_Uniform.h"
+#include "CCostume_Festa.h"
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
 #include "CAnchor.h"
@@ -11,7 +10,7 @@
 CMover_Player::CMover_Player(CVector position)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, COF(0.5, 0.2, 0.1, 0.0), 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(0), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::make_shared<CCostume_Uniform>(this)), CND() {
+	, Direction(1), Charge(0), State(0), baseParams(0), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::make_shared<CCostume_Festa>(this)), CND() {
 }
 
 void CMover_Player::Walk()
@@ -85,13 +84,13 @@ void CMover_Player::Shot()
 		return;
 	}
 	if (Charge == costume->getMaxCharge()) {
-		med.lock()->RegisterMover(costume->ChargeShot(baseParams.ATK, Position, angle));
+		costume->ChargeShot(baseParams.ATK, Position, angle);
 		Charge = 0;
 		Wait(costume->getStrongShotDuration());
 		return;
 	}
 	if (LPushTime % costume->getShotRate() == 1) {
-		med.lock()->RegisterMover(costume->WeakShot(baseParams.ATK, Position, angle));
+		costume->WeakShot(baseParams.ATK, Position, angle);
 		Charge = 0;
 	}
 }
@@ -149,6 +148,11 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 1;
 	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 2;
 	return 0;
+}
+
+void CMover_Player::RegisterShot(std::shared_ptr<CMover_ShotBase> s)
+{
+	med.lock()->RegisterMover(s);
 }
 
 void CMover_Player::Hit(CMover_EnemyBase* m)

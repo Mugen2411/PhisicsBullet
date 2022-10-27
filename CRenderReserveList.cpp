@@ -4,13 +4,11 @@ std::list<IRenderReserve*> CRenderReserveList::list;
 
 void CRenderReserveList::Render()
 {
-	list.sort(compRenderReserve);
-	for (IRenderReserve* v : list) {
+	//std::sort(list.begin(), list.end(), compRR);
+	list.sort(compRR);
+	for (auto& v : list) {
 		v->Render();
+		delete v;
 	}
-	auto itr = list.begin();
-	while (list.size() != 0) {
-		delete (*itr);
-		itr = list.erase(itr);
-	}
+	list.clear();
 }

@@ -19,6 +19,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 		g.Run();
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 		SetDrawScreen(DX_SCREEN_BACK);
+		ClearDrawScreen();
 		DrawExtendGraph(0, 0, 640 * 2, 480 * 2, offscreen, FALSE);
 		ScreenFlip();
 		SetDrawMode(DX_DRAWMODE_BILINEAR);

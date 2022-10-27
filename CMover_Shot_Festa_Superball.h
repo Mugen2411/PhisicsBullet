@@ -4,6 +4,9 @@
 class CMover_Shot_Festa_Superball : public CMover_ShotBase
 {
 	int color;
+	int effColor[4] = {
+		0xFF0000, 0x00FFFF, 0x00FF00, 0xFFFF00
+	};
 public:
 	CMover_Shot_Festa_Superball(double baseATK, CVector position, double angle);
 	int Update();

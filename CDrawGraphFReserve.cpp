@@ -1,8 +1,8 @@
 #include "CDrawGraphFReserve.h"
 #include <DxLib.h>
 
-CDrawGraphFReserve::CDrawGraphFReserve(int GHandle, float x, float y, double Priority)
-	:IRenderReserve(GHandle, Priority), x(x), y(y)
+CDrawGraphFReserve::CDrawGraphFReserve(int GHandle, float x, float y, double Priority, int width, int height)
+	:IRenderReserve(GHandle, Priority, x, y, width, height)
 {
 }
 

@@ -1,6 +1,9 @@
 #pragma once
 #include "IRenderReserve.h"
 #include <list>
+#include <vector>
+#include <memory>
+#include <algorithm>
 
 class CRenderReserveList
 {
@@ -11,4 +14,3 @@ public:
 	}
 	static void Render();
 };
-

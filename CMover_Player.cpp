@@ -3,6 +3,7 @@
 #include <cmath>
 #include <DxLib.h>
 #include "CCostume_Festa.h"
+#include "CCostume_Uniform.h"
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
 #include "CAnchor.h"
@@ -100,15 +101,15 @@ void CMover_Player::Render() const
 	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
 
 	CAnchor::getIns().enableAbsolute();
-	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 2.0, 2);
+	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);
 	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
-		0xffffff, DX_BLENDMODE_ALPHA, 192, 2.1, 1);
-	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 2.2, 0);
-	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 2.3);
+		0xffffff, DX_BLENDMODE_ALPHA, 192, 5, 1);
+	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);
+	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 7);
 	printfDx("HP:%lf\n", baseParams.HP);
 	//CND.Draw(16 + 48 + 16 * DigitHP, 16 + 8, baseParams.MaxHP, 0, 0, 2.3);
-	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 0.9, 2);
-	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 1.0, (costume->getMaxCharge() == Charge) ? 1 : 0);
+	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 7, 2);
+	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 7, (costume->getMaxCharge() == Charge) ? 1 : 0);
 	CAnchor::getIns().disableAbsolute();
 }
 

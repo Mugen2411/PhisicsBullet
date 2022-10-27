@@ -1,8 +1,9 @@
 #include "CDrawRotaGraphFwithBlendReserve.h"
 #include <DxLib.h>
+#include <cmath>
 
-CDrawRotaGraphFwithBlendReserve::CDrawRotaGraphFwithBlendReserve(int GHandle, double Priority, float x, float y, float angle, float extend, int color, int Blendmode, int value)
-:IRenderReserve(GHandle, Priority), x(x), y(y), angle(angle), extend(extend), Blendmode(Blendmode), value(value), Color(color){
+CDrawRotaGraphFwithBlendReserve::CDrawRotaGraphFwithBlendReserve(int GHandle, double Priority, float x, float y, float angle, float extend, int color, int Blendmode, int value, int width, int height)
+:IRenderReserve(GHandle, Priority, x, y, width* cos(angle)* extend + height * sin(angle) * extend, width* sin(angle)* extend + height * cos(angle) * extend), angle(angle), extend(extend), Blendmode(Blendmode), value(value), Color(color){
 }
 
 void CDrawRotaGraphFwithBlendReserve::Render() const

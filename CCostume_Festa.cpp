@@ -2,7 +2,7 @@
 #include "CMover_Shot_Festa_Superball.h"
 
 CCostume_Festa::CCostume_Festa(CMover_Player* player)
-	:CCostumeBase(player, "media/graphic/character/komuk/komuk.png", 0.1, 60, 12, 20, 2.5, 1.5, CAttribute(1.0).FLOWER(1.5))
+	:CCostumeBase(player, "media/graphic/character/komuk/komuk.png", 0.1, 60, 12, 10, 2.5, 1.5, CAttribute(1.0).FLOWER(1.5))
 {
 }
 

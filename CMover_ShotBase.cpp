@@ -4,9 +4,9 @@
 #include "CEffect_BulletDelete.h"
 #include "CAnchor.h"
 
-CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs)
+CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor = 0xFFFFFF)
 	:CMover(MV_SHOT, position, size, velocity, mass, cofs, 0)
-	,ATK(atk), baseATK(baseATK),cnt(0)
+	,ATK(atk), baseATK(baseATK),cnt(0), effectColor(effectColor)
 {
 }
 
@@ -24,7 +24,7 @@ bool CMover_ShotBase::BaseRender() const
 
 void CMover_ShotBase::Dead()
 {
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, 0x00FFFF));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, effectColor));
 }
 
 void CMover_ShotBase::Disappear()

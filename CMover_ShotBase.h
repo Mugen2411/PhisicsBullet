@@ -14,8 +14,9 @@ protected:
     std::weak_ptr<CMover> target;
 
     int cnt;
+    int effectColor;
 public:
-    CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs);
+    CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor);
 
     void BaseUpdate();
     bool BaseRender()const;

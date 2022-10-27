@@ -3,9 +3,7 @@
 class CDrawGraphFReserve :
     public IRenderReserve
 {
-protected:
-    float x, y;
 public:
-    CDrawGraphFReserve(int GHandle, float x, float y, double Priority);
+    CDrawGraphFReserve(int GHandle, float x, float y, double Priority, int width, int height);
     void Render()const;
 };

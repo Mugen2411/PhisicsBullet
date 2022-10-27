@@ -17,12 +17,12 @@ public:
 
 	static double dbl_INF;
 
-	static double priority_field;
-	static double priority_wall;
-	static double priority_enemy;
-	static double priority_shot;
-	static double priority_bullet;
-	static double priority_number;
+	static int priority_field;
+	static int priority_wall;
+	static int priority_enemy;
+	static int priority_shot;
+	static int priority_bullet;
+	static int priority_number;
 
 	enum SCENE_ID {
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE

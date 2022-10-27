@@ -4,10 +4,9 @@ class CDrawRotaGraphReserve :
     public IRenderReserve
 {
 protected:
-    int x, y;
     float angle, extend;
 public:
-    CDrawRotaGraphReserve(int GHandle, double Priority, int x, int y, float angle, float extend);
+    CDrawRotaGraphReserve(int GHandle, double Priority, int x, int y, float angle, float extend, int width, int height);
     void Render()const;
 };
 

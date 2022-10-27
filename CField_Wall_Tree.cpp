@@ -11,7 +11,7 @@ void CField_Wall_Tree::Update()
 
 void CField_Wall_Tree::Render() const
 {
-	CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_wall, 3);
+	CImageManager::getIns().find("Field_Tree")->DrawRota(Position.x, Position.y-16, 0.0, 1.0, Constant::priority_wall, 0);
 }
 
 CField* CField_Wall_Tree::Clone(CVector position)

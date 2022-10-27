@@ -5,11 +5,16 @@
 
 CFieldHolder::CFieldHolder(std::string filepath) :filePath(filepath)
 {
-	if (Load() == 0)return;
-	else OutputDebugString("Stage Load Error");
-	dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
-	g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
-	pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1,-1)));
+	if (Load() == 0) {
+		dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
+		g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
+		pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
+		return;
+	}
+	else{
+		OutputDebugString("Stage Load Error");
+		exit(1);
+	}
 }
 
 CFieldHolder::~CFieldHolder()
@@ -143,4 +148,5 @@ int CFieldHolder::Load() {
 			this->writewall(CFF.create(x, y, buf), x, y);
 		}
 	}
+	return 0;
 }

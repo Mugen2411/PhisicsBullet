@@ -15,8 +15,8 @@ int Constant::ScrollMargin = 240;
 
 double Constant::dbl_INF = 1.0e200;
 
-double Constant::priority_field = -1.1;
-double Constant::priority_wall = -1.0;
-double Constant::priority_bullet = 1.3;
-double Constant::priority_enemy = 0.0;
-double Constant::priority_shot = -0.1;
+int Constant::priority_field = -2;
+int Constant::priority_wall = 3;
+int Constant::priority_bullet = 2;
+int Constant::priority_enemy = 0;
+int Constant::priority_shot = 1;

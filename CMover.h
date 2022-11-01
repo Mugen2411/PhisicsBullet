@@ -48,6 +48,9 @@ public:
 	inline void setPosition(CVector pos) {
 		Position = pos;
 	}
+	inline CVector getVelocity() {
+		return Velocity;
+	}
 	inline double getSize() {
 		return Size;
 	}
@@ -61,6 +64,10 @@ public:
 		nowFricted = FloorFrictionCF;
 		auto NormA = Velocity;
 		ApplyForce(-NormA * Cofs.FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
+	}
+	inline void ApplyAirRegistance() {
+		auto NormA = Velocity;
+		ApplyForce(-NormA * Cofs.AirResCF * Mass * Constant::Frame);
 	}
 	inline void ApplyAirForce(CVector F) {
 		ApplyForce(F * Cofs.AirResCF);

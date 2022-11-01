@@ -15,6 +15,7 @@ int Constant::ScrollMargin = 240;
 
 double Constant::dbl_INF = 1.0e200;
 
+int Constant::priority_decoration = -1;
 int Constant::priority_field = -2;
 int Constant::priority_wall = 3;
 int Constant::priority_bullet = 2;

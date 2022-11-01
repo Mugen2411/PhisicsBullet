@@ -3,7 +3,7 @@
 #include "CMover_Shot_Uniform_StrongMagic.h"
 
 CCostume_Uniform::CCostume_Uniform(CMover_Player* player) :
-	CCostumeBase(player ,"media/graphic/character/komuk/komuk.png", 0.1, 60, 12, 20, 3.0, 2.0, CAttribute(1.0)) {
+	CCostumeBase(player ,"media/graphic/character/komuk/costume/uniform/komuk.png", 0.1, 60, 12, 20, 3.0, 2.0, CAttribute(1.0)) {
 }
 
 void CCostume_Uniform::WeakShot(double baseATK, CVector position, float angle)

@@ -29,6 +29,7 @@ CImageManager::CImageManager()
     imgList["shot_uniform_homing"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png", 16, 16);
     imgList["shot_uniform_strongmagic"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/strongmagic.png", 24, 24);
     imgList["shot_festa_superball"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/festa/superball.png", 4, 4, 1, 16, 16);
+    imgList["shot_festa_cork"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/festa/cork.png", 16, 16);
 }
 
 void CImageManager::set(std::string key, std::shared_ptr<CImage> img)

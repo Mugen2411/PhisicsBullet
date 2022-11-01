@@ -10,5 +10,9 @@ public:
 
     void WeakShot(double baseATK, CVector position, float angle);
     void ChargeShot(double baseATK, CVector position, float angle);
+
+    CCostumeBase* Clone(CMover_Player* player) {
+        return new CCostume_Festa(player);
+    }
 };
 

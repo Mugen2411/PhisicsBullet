@@ -50,5 +50,7 @@ public:
 	}
 
 	void RegisterShot(std::shared_ptr<CMover_ShotBase>);
+
+	virtual CCostumeBase* Clone(CMover_Player* player) = 0;
 };
 

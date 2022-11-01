@@ -26,12 +26,12 @@ void CGameMediator::CreateParts()
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
 	RegisterMover(std::make_shared<CMover_Player>(CVector(8*32, 8*32)));
 	CEnemyFactory CEF;
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 3; i++) {
 		//RegisterMover(CEF.create("E_Shimaenaga", CVector(10 * 32 + 16, +48 * 32 + 16), 0));
-		RegisterMover(CEF.create("E_Budcorn", CVector(10 * 32 + 16, + 8 * 32 + 16), 3));
+		RegisterMover(CEF.create("E_Budcorn", CVector(1 * 32 + 16, + 8 * 32 + 16), 0));
 	}
-	CSoundManager::getIns().find("kill_enemy")->SetVolume(0.2);
-	CSoundManager::getIns().find("bgm_test")->SetVolume(0.4);
+	CSoundManager::getIns().find("kill_enemy")->SetVolume(0.3);
+	CSoundManager::getIns().find("bgm_test")->SetVolume(0.3);
 	CSoundManager::getIns().find("bgm_test")->Play(CSound::PT_LOOP);
 }
 
@@ -95,7 +95,10 @@ void CGameMediator::Update()
 			pauseGuage = 0;
 		}
 	} else {
+		CEnemyFactory CEF;
 		pauseGuage++;
+		pauseGuage %= 180;
+		if (pauseGuage == 0)RegisterMover(CEF.create("E_Budcorn", CVector(1 * 32 + 16, +8 * 32 + 16), 0));
 		powerParent->Update();
 		moverParent->Update();
 		fieldParent->Update();

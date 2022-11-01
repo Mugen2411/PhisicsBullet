@@ -45,6 +45,7 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	}*/
 	fieldHolder->getWall(x, y)->setFrictionForce(m);
 	fieldHolder->getFloor(x, y)->setFrictionForce(m);
+	m->ApplyAirRegistance();
 
 	for (int ay = max(0, y - 3); ay < min(fieldHolder->getHeight(), y + 3); ay++) {
 		for (int ax = max(0, x - 3); ax < min((int)fieldHolder->getWidth(), x + 3); ax++) {

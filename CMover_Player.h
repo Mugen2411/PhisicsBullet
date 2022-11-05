@@ -24,7 +24,7 @@ protected:
 
     std::shared_ptr<CCostumeBase> costume;
 public:
-    CMover_Player(CVector position);
+    CMover_Player(CVector position, int level, CCostumeBase* costume);
     ~CMover_Player() {};
     virtual void Walk();
     void BaseUpdate();

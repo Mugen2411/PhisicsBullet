@@ -107,7 +107,7 @@ void CMover_EnemyBase::Dead()
 			Velocity, Size + 4 - GetRand(8), Color));
 
 	CAnchor::getIns().Quake(12);
-	CSoundManager::getIns().find("kill_enemy")->Play(CSound::PT_BACK);
+	CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);
 }
 
 void CMover_EnemyBase::Disappear()
@@ -130,6 +130,7 @@ void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
+	CSoundManager::getIns().find("enemy_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	if (baseParams.HP < 0) {
 		Status = 1;
 		Drop();

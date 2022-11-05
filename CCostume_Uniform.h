@@ -6,13 +6,13 @@ class CCostume_Uniform :
     public CCostumeBase
 {
 public:
-    CCostume_Uniform(CMover_Player* player);
+    CCostume_Uniform(std::string GID);
 
     void WeakShot(double baseATK, CVector position, float angle);
     void ChargeShot(double baseATK, CVector position, float angle);
 
-    CCostumeBase* Clone(CMover_Player* player) {
-        return new CCostume_Uniform(player);
+    CCostumeBase* Clone() {
+        return new CCostume_Uniform(GID);
     }
 };
 

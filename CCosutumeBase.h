@@ -19,13 +19,15 @@ protected:
 	int StrongShotDuration;		//強攻撃を撃った後に操作不能になるフレーム数
 	double MaxSpeed;
 	double Accelaration;
+	std::string GID;
 
 public:
 	CAttribute AttributeDEF;	//属性耐性
 	double atkCF, defCF, hpCF;	//各種倍率
 
-	CCostumeBase(CMover_Player* player, std::string filepath, double animSpeed, int MaxCharge, int ShotRate,
-		int strongshotDuration, double maxSpeed, double accel, CAttribute attrDEF);
+	CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate,
+		int strongshotDuration, double maxSpeed, double accel, CAttribute attrDEF, std::string GID);
+	virtual ~CCostumeBase(){}
 
 	virtual void ChargeShot(double baseATK, CVector position, float angle) = 0;
 	virtual void WeakShot(double baseATK, CVector position, float angle) = 0;
@@ -48,9 +50,14 @@ public:
 	inline int getStrongShotDuration() {
 		return StrongShotDuration;
 	}
-
+	inline std::string getGID() {
+		return GID;
+	}
+	void setPlayer(CMover_Player* p) {
+		p_player = p;
+	}
 	void RegisterShot(std::shared_ptr<CMover_ShotBase>);
 
-	virtual CCostumeBase* Clone(CMover_Player* player) = 0;
+	virtual CCostumeBase* Clone() = 0;
 };
 

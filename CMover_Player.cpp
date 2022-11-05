@@ -1,5 +1,6 @@
 #include "CMover_Player.h"
 #include "CImageManager.h"
+#include "CSoundManager.h"
 #include <cmath>
 #include <DxLib.h>
 #include "CCostume_Festa.h"
@@ -8,10 +9,11 @@
 #include "CEffect_DamageNumber.h"
 #include "CAnchor.h"
 
-CMover_Player::CMover_Player(CVector position)
+CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, COF(0.5, 0.2, 0.1, 0.0), 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(0), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::make_shared<CCostume_Festa>(this)), CND() {
+	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::shared_ptr<CCostumeBase>(costume)), CND() {
+	costume->setPlayer(this);
 }
 
 void CMover_Player::Walk()
@@ -132,6 +134,7 @@ void CMover_Player::Damage(CAttribute BulletATK, int style)
 	double ret = ((BulletATK) / costume->AttributeDEF * 0.01).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
+	CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
 }
 
@@ -140,6 +143,7 @@ void CMover_Player::RatioDamage(CAttribute BulletATK, int style)
 	double ret = ((BulletATK * baseParams.MaxHP) / (costume->AttributeDEF * 100)).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
+	CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
 }
 

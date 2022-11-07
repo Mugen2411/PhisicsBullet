@@ -22,8 +22,8 @@ protected:
 
     CNumberDrawer CND;
 
-    std::shared_ptr<CCostumeBase> costume;
 public:
+    std::shared_ptr<CCostumeBase> costume;
     CMover_Player(CVector position, int level, CCostumeBase* costume);
     ~CMover_Player() {};
     virtual void Walk();
@@ -44,6 +44,12 @@ public:
     }
     int DamageColor(CAttribute shotATK);
     void RegisterShot(std::shared_ptr<CMover_ShotBase>);
+    void ChangeCostume(CCostumeBase* c) {
+        costume.reset(c);
+        costume->setPlayer(this);
+        Cofs = costume->constants;
+        Mass = costume->Mass;
+    }
 
     void Hit(CMover_EnemyBase*);
 };

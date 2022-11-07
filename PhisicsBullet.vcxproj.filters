@@ -333,6 +333,9 @@
     <ClCompile Include="CMover_Shot_Festa_Cork.cpp">
       <Filter>ソース ファイル\Mover\Shot\Festa</Filter>
     </ClCompile>
+    <ClCompile Include="CDrawRectGraphWithBlendReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -562,6 +565,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Shot_Festa_Cork.h">
       <Filter>ヘッダー ファイル\Mover\Shot\Festa</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawRectGraphWithBlendReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,6 +16,6 @@ CCostumeFactory::CCostumeFactory()
 
 CCostumeBase* CCostumeFactory::create(std::string GID)
 {
-	auto itr = std::find_if(list.begin(), --list.end(), [&](std::shared_ptr<CCostumeBase>& v) {return (*v).getGID() == GID; });
+	auto itr = std::find_if(list.begin(), --list.end(), [&](std::shared_ptr<CCostumeBase>& v) {return (*v).GID == GID; });
 	return (*itr)->Clone();
 }

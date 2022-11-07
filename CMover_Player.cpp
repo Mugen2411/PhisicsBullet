@@ -10,7 +10,7 @@
 #include "CAnchor.h"
 
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
-	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), 60, COF(0.5, 0.2, 0.1, 0.0), 0), animCount(0.0)
+	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass, costume->constants, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::shared_ptr<CCostumeBase>(costume)), CND() {
 	costume->setPlayer(this);
@@ -18,22 +18,22 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 
 void CMover_Player::Walk()
 {
-	CVector v = input.lock()->getVector() * costume->getAccelaration() * nowFricted * Constant::Frame;
+	CVector v = input.lock()->getVector() * costume->Accelaration * nowFricted * Constant::Frame;
 	if (v.x < 0) {
 		if (Velocity.x > 0)Acceleration.x += v.x;
-		else if (-Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
+		else if (-Velocity.x < costume->MaxSpeed)Acceleration.x += v.x;
 	}
 	else {
 		if (Velocity.x < 0)Acceleration.x += v.x;
-		else if (Velocity.x < costume->getMaxSpeed())Acceleration.x += v.x;
+		else if (Velocity.x < costume->MaxSpeed)Acceleration.x += v.x;
 	}
 	if (v.y < 0) {
 		if (Velocity.y > 0)Acceleration.y += v.y;
-		else if (-Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
+		else if (-Velocity.y < costume->MaxSpeed)Acceleration.y += v.y;
 	}
 	else {
 		if (Velocity.y < 0)Acceleration.y += v.y;
-		else if (Velocity.y < costume->getMaxSpeed())Acceleration.y += v.y;
+		else if (Velocity.y < costume->MaxSpeed)Acceleration.y += v.y;
 	}
 }
 
@@ -62,7 +62,7 @@ int CMover_Player::Update()
 	}
 	if (input.lock()->isChanged() > 0) {
 		Direction = input.lock()->getDirection();
-		animCount += costume->getAnimSpeed();
+		animCount += costume->animSpeed;
 		if (animCount > 3.0)animCount = 0.0;
 	}
 	else {
@@ -83,16 +83,16 @@ void CMover_Player::Shot()
 	int LPushTime = input.lock()->LClick(true);
 	if (LPushTime == 0) {
 		Charge++;
-		Charge = min(costume->getMaxCharge(), Charge);
+		Charge = min(costume->MaxCharge, Charge);
 		return;
 	}
-	if (Charge == costume->getMaxCharge()) {
+	if (Charge == costume->MaxCharge) {
 		costume->ChargeShot(baseParams.ATK, Position, angle);
 		Charge = 0;
-		Wait(costume->getStrongShotDuration());
+		Wait(costume->StrongShotDuration);
 		return;
 	}
-	if (LPushTime % costume->getShotRate() == 1) {
+	if (LPushTime % costume->ShotRate == 1) {
 		costume->WeakShot(baseParams.ATK, Position, angle);
 		Charge = 0;
 	}
@@ -110,8 +110,8 @@ void CMover_Player::Render() const
 	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 7);
 	printfDx("HP:%lf\n", baseParams.HP);
 	//CND.Draw(16 + 48 + 16 * DigitHP, 16 + 8, baseParams.MaxHP, 0, 0, 2.3);
-	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->getMaxCharge(), 7, 2);
-	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 7, (costume->getMaxCharge() == Charge) ? 1 : 0);
+	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->MaxCharge, 7, 2);
+	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 7, (costume->MaxCharge == Charge) ? 1 : 0);
 	CAnchor::getIns().disableAbsolute();
 }
 

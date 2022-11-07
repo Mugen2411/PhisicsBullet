@@ -6,6 +6,7 @@
 #include "CDrawRotaGraphReserve.h"
 #include "CDrawRotaGraphFReserve.h"
 #include "CDrawRotaGraphFwithBlendReserve.h"
+#include "CDrawRectGraphWithBlendReserve.h"
 #include "CDrawModiWithBlend.h"
 #include "CDrawCircleGauge.h"
 #include "CRenderReserveList.h"
@@ -58,6 +59,11 @@ void CImage::DrawRotaFwithBlend(float x1, float y1, float angle, float extend, i
 {
 	if (num > ArrSize)return;
 	CRenderReserveList::Add(new CDrawRotaGraphFwithBlendReserve(GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(), y1 - CAnchor::getIns().getAnchorY(), angle, extend, color, Blendmode, value, Width, Height));
+}
+
+void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color, int Blendmode, int value, int priority, int num) {
+	if (num > ArrSize)return;
+	CRenderReserveList::Add(new CDrawRectGraphWithBlendReserve(GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(), y1 - CAnchor::getIns().getAnchorY(), color, Blendmode, value, w1, h1));
 }
 
 void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2, int color, int Blendmode, int value, int priority, int num)

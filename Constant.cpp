@@ -21,3 +21,6 @@ int Constant::priority_wall = 3;
 int Constant::priority_bullet = 2;
 int Constant::priority_enemy = 0;
 int Constant::priority_shot = 1;
+int Constant::priority_number = 7;
+
+int Constant::MaxPause = 180;

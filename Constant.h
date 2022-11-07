@@ -25,6 +25,8 @@ public:
 	static int priority_bullet;
 	static int priority_number;
 
+	static int MaxPause;
+
 	enum SCENE_ID {
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE
 	};

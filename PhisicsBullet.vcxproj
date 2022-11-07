@@ -167,6 +167,7 @@
     <ClCompile Include="CDrawGraphFReserve.cpp" />
     <ClCompile Include="CDrawGraphReserve.cpp" />
     <ClCompile Include="CDrawModiWithBlend.cpp" />
+    <ClCompile Include="CDrawRectGraphWithBlendReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphFReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphFwithBlendReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphReserve.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />
     <ClInclude Include="CDrawModiWithBlend.h" />
+    <ClInclude Include="CDrawRectGraphWithBlendReserve.h" />
     <ClInclude Include="CDrawRotaGraphFReserve.h" />
     <ClInclude Include="CDrawRotaGraphFwithBlendReserve.h" />
     <ClInclude Include="CDrawRotaGraphReserve.h" />

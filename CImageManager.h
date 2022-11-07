@@ -28,3 +28,4 @@ public:
     void Render()const;
 };
 
+int HSV2RGB(float H, float S, float V);

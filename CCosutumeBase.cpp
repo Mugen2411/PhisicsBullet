@@ -8,7 +8,7 @@ CCostumeBase::CCostumeBase(std::string filepath, double animSpeed, int MaxCharge
 MaxSpeed(maxSpeed), Accelaration(accel), Mass(mass), AttributeDEF(attrDEF), p_player(nullptr), constants(constants), GID(GID)
 {
 	GraphFilePath = filepath;
-	CImageManager::getIns().set("player_komuk", std::make_shared<CImage>(GraphFilePath, 16, 4, 4, 32, 32));
+	CImageManager::getIns().set(GID, std::make_shared<CImage>(GraphFilePath, 16, 4, 4, 32, 32));
 }
 
 void CCostumeBase::RegisterShot(std::shared_ptr<CMover_ShotBase> s)

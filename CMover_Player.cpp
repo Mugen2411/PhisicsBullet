@@ -100,7 +100,7 @@ void CMover_Player::Shot()
 
 void CMover_Player::Render() const
 {
-	CImageManager::getIns().find("player_komuk")->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
+	CImageManager::getIns().find(costume->GID)->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0, Direction * 4 + std::round(animCount));
 
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);

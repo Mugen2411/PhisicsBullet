@@ -147,24 +147,38 @@ void CGameMediator::Render() const
 }
 
 void CGameMediator::UpdateDresschangeMenu() {
+	static CCostumeFactory CCF;
+	static int currentCostumeIndex = 0;
+	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create(currentCostumeIndex));
 	if (input.lock()->Select() == 1) {
 		isPause = false;
 		pauseGuage = 0;
+		player->ChangeCostume(CCF.create(currentCostumeIndex));
 		return;
 	}
-	CCostumeFactory CCF;
-	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Festa"));
+	if (input.lock()->Right() == 1) {
+		currentCostumeIndex += 1;
+		currentCostumeIndex %= CCF.getSize();
+	}
+	if (input.lock()->Left() == 1) {
+		currentCostumeIndex += CCF.getSize()-1;
+		currentCostumeIndex %= CCF.getSize();
+	}
 }
 
 void CGameMediator::RenderDresschangeMenu()const {
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
+	CImageManager::getIns().find("system_costume_frame")->DrawRota(160, 64, 0.0f, 1.0f, 102);
+	CImageManager::getIns().find((*costumeNowFocusOn)->GID)->DrawRota(160, 64, 0.0f, 1.0f, 101, 4);
 	for (int i = 0; i < 6; i++) {
 		CImageManager::getIns().find("system_status_guage")->Draw(360, 80 + i * 64, 103, 1);
 		CImageManager::getIns().find("system_status_guage")->Draw(360, 80 + i * 64, 101, 3);
+		CImageManager::getIns().find("system_status_next_now")->Draw(344, 80 + i * 64, 101, 1);
 		CImageManager::getIns().find("system_status_guage")->Draw(360, 96 + i * 64, 103, 1);
 		CImageManager::getIns().find("system_status_guage")->Draw(360, 96 + i * 64, 101, 3);
+		CImageManager::getIns().find("system_status_next_now")->Draw(344, 96 + i * 64, 101, 0);
 		CImageManager::getIns().find("system_status_guage")->Draw(360, 64 + i * 64, 103, 0);
 		CImageManager::getIns().find("system_status_name")->Draw(360 + 80, 64 + i * 64, 103, i);
 		switch (i) {

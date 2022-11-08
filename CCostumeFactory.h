@@ -15,6 +15,10 @@ class CCostumeFactory {
 public:
 	CCostumeFactory();
 	CCostumeBase* create(std::string);
+	CCostumeBase* create(int);
+	int getSize() {
+		return list.size();
+	}
 	void getMinMaxFriction(double& min, double& max) {
 		min = 9999;
 		max = 0;

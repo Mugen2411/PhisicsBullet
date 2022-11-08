@@ -16,6 +16,8 @@ CImageManager::CImageManager()
     imgList["system_curtain"] = std::make_shared<CImage>("media/graphic/system/game/curtain.png", 2, 2, 1, 320, 480);
     imgList["system_status_guage"] = std::make_shared<CImage>("media/graphic/system/game/status_guage.png", 4, 1, 4, 240, 16);
     imgList["system_status_name"] = std::make_shared<CImage>("media/graphic/system/game/status_name.png", 6, 1, 6, 80, 16);
+    imgList["system_status_next_now"] = std::make_shared<CImage>("media/graphic/system/game/status_next_now.png", 2, 2, 1, 16, 16);
+    imgList["system_costume_frame"] = std::make_shared<CImage>("media/graphic/system/game/costume_frame.png", 38, 38);
 
     imgList["effect_bulletdelete"] = std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
     imgList["effect_number1"] = std::make_shared<CImage>("media/graphic/system/font/num1.png", 48, 12, 4, 10, 10);

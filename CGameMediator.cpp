@@ -34,7 +34,7 @@ void CGameMediator::CreateParts()
 	CCF.getMinMaxVelocity(minVelocity, maxVelocity);
 	CCF.getMinMaxAccel(minAccel, maxAccel);
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
-	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 20, CCF.create("C_Uniform")));
+	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 0, CCF.create("C_Uniform")));
 	CEnemyFactory CEF;
 	for (int i = 0; i < 3; i++) {
 		//RegisterMover(CEF.create("E_Shimaenaga", CVector(10 * 32 + 16, +48 * 32 + 16), 0));

@@ -112,6 +112,12 @@
     <Filter Include="ソース ファイル\Mover\Shot\Uniform">
       <UniqueIdentifier>{e7c68ac5-4d17-44ad-aad0-01ee44db66cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Archer">
+      <UniqueIdentifier>{d44f87c4-a9ce-49d2-ad81-822dc93e64a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Archer">
+      <UniqueIdentifier>{6b87e072-f473-4158-a29a-2f7e33418828}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -335,6 +341,15 @@
     </ClCompile>
     <ClCompile Include="CDrawRectGraphWithBlendReserve.cpp">
       <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Archer_Flame.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Archer_FlameArrow.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Archer_PlaneArrow.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Archer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -568,6 +583,15 @@
     </ClInclude>
     <ClInclude Include="CDrawRectGraphWithBlendReserve.h">
       <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Archer_Flame.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Archer_FlameArrow.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Archer_PlaneArrow.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Archer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

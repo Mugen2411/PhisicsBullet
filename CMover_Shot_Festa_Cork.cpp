@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CMover_Shot_Festa_Cork::CMover_Shot_Festa_Cork(double baseATK, CVector position, double angle)
-	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(90), position, 16, CVector(angle)*16.0, 0.1, COF(0.001, 0.4, 0.1, 0.7), 0xFF7F00)
+	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(80), position, 16, CVector(angle)*16.0, 0.1, COF(0.001, 0.4, 0.1, 0.7), 0xFF7F00)
 {
 }
 

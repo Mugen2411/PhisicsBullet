@@ -118,6 +118,12 @@
     <Filter Include="ヘッダー ファイル\Mover\Shot\Archer">
       <UniqueIdentifier>{6b87e072-f473-4158-a29a-2f7e33418828}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Spawner">
+      <UniqueIdentifier>{7a64a38d-4650-483d-b0d6-f271321a0ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Spawner">
+      <UniqueIdentifier>{ba427eff-d623-4fb2-bd3a-f1d0bf0eae4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -350,6 +356,9 @@
     </ClCompile>
     <ClCompile Include="CMover_Shot_Archer_PlaneArrow.cpp">
       <Filter>ソース ファイル\Mover\Shot\Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemySpawner.cpp">
+      <Filter>ソース ファイル\Spawner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -592,6 +601,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Shot_Archer_PlaneArrow.h">
       <Filter>ヘッダー ファイル\Mover\Shot\Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemySpawner.h">
+      <Filter>ヘッダー ファイル\Spawner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iterator>
 
-CMoverParent::CMoverParent(std::shared_ptr<CGameMediator> m) :med(m), moverList(), reserveList(), cnt(0)
+CMoverParent::CMoverParent(std::weak_ptr<CGameMediator> m) :med(m), moverList(), reserveList(), cnt(0)
 {
 }
 

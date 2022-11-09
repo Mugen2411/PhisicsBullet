@@ -10,8 +10,9 @@
 #include "CSoundManager.h"
 #include "CImageManager.h"
 #include "CAnchor.h"
+#include "CEnemySpawner.h"
 
-CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(false), pauseGuage(0), cnt(0)
+CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(false), pauseGuage(0), cnt(0), costumeSelecterCNT(0), isCostumeSelecterEnd(false)
 {
 	input = CControllerFactory::getIns().getController();
 }
@@ -35,11 +36,11 @@ void CGameMediator::CreateParts()
 	CCF.getMinMaxAccel(minAccel, maxAccel);
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
 	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 0, CCF.create("C_Uniform")));
-	CEnemyFactory CEF;
-	for (int i = 0; i < 3; i++) {
-		//RegisterMover(CEF.create("E_Shimaenaga", CVector(10 * 32 + 16, +48 * 32 + 16), 0));
-		RegisterMover(CEF.create("E_Budcorn", CVector(1 * 32 + 16, +8 * 32 + 16), 0));
-	}
+	Spawner_Desc sd;
+	sd.countOfSpawn = 3;
+	sd.timeToSpawn = 12;
+	sd.GID = "E_Budcorn";
+	enemySpawner.push_back(std::make_unique<CEnemySpawner>(shared_from_this(), CVector(1 * 32 + 16, +8 * 32 + 16), 0, sd));
 	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);
@@ -108,13 +109,23 @@ void CGameMediator::Update()
 	CEnemyFactory CEF;
 	++pauseGuage;
 	pauseGuage = min(pauseGuage, Constant::MaxPause);
-	if (cnt % 180 == 0)RegisterMover(CEF.create("E_Budcorn", CVector(1 * 32 + 16, +8 * 32 + 16), 0));
 	if (input.lock()->A() == 1) {
 		CCostumeFactory CCF;
 		player->ChangeCostume(CCF.create("C_Festa"));
 	}
 	if (input.lock()->Select() == 1) {
-		if (pauseGuage == Constant::MaxPause)isPause = true;
+		if (pauseGuage == Constant::MaxPause) {
+			isPause = true;
+			costumeSelecterCNT = 0;
+		}
+	}
+	for (auto i = enemySpawner.begin(); i != enemySpawner.end();) {
+		int r = (*i)->Update();
+		if (r == 1) {
+			i = enemySpawner.erase(i);
+			continue;
+		}
+		++i;
 	}
 	powerParent->Update();
 	moverParent->Update();
@@ -150,8 +161,16 @@ void CGameMediator::UpdateDresschangeMenu() {
 	static CCostumeFactory CCF;
 	static int currentCostumeIndex = 0;
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create(currentCostumeIndex));
-	if (input.lock()->Select() == 1) {
+	costumeSelecterCNT = min(isCostumeSelecterEnd ? --costumeSelecterCNT : ++costumeSelecterCNT, 12);
+	if (isCostumeSelecterEnd) {
+		if (costumeSelecterCNT != 0)return;
+		costumeSelecterCNT = 0;
 		isPause = false;
+		isCostumeSelecterEnd = false;
+		return;
+	}
+	if (input.lock()->Select() == 1) {
+		isCostumeSelecterEnd = true;
 		pauseGuage = 0;
 		player->ChangeCostume(CCF.create(currentCostumeIndex));
 		return;
@@ -161,15 +180,15 @@ void CGameMediator::UpdateDresschangeMenu() {
 		currentCostumeIndex %= CCF.getSize();
 	}
 	if (input.lock()->Left() == 1) {
-		currentCostumeIndex += CCF.getSize()-1;
+		currentCostumeIndex += CCF.getSize() - 1;
 		currentCostumeIndex %= CCF.getSize();
 	}
 }
 
 void CGameMediator::RenderDresschangeMenu()const {
 	CAnchor::getIns().enableAbsolute();
-	CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
-	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
+	CImageManager::getIns().find("system_curtain")->Draw(0 - (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 0);
+	CImageManager::getIns().find("system_curtain")->Draw(320 + (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 1);
 	CImageManager::getIns().find("system_costume_frame")->DrawRota(160, 64, 0.0f, 1.0f, 102);
 	CImageManager::getIns().find((*costumeNowFocusOn)->GID)->DrawRota(160, 64, 0.0f, 1.0f, 101, 4);
 	for (int i = 0; i < 6; i++) {

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <list>
 #include <memory>
 #include "Scene_Abstract.h"
 #include "CControllerFactory.h"
@@ -12,6 +13,7 @@ class CPowerParent;
 class CMover_Player;
 class CMover;
 class CCostumeBase;
+class CEnemySpawner;
 
 class CGameMediator: public Scene_Abstract, public std::enable_shared_from_this<CGameMediator>
 {
@@ -21,8 +23,10 @@ protected:
 	std::shared_ptr<CFieldParent> fieldParent;
 	std::shared_ptr<CPowerParent> powerParent;
 	std::shared_ptr<CMover_Player> player;
+	std::list<std::unique_ptr<CEnemySpawner>> enemySpawner;
 
 	bool isPause;
+	bool isCostumeSelecterEnd;
 	int pauseGuage;
 	int cnt;
 
@@ -41,6 +45,7 @@ protected:
 	double maxVelocity;
 	double minAccel;
 	double maxAccel;
+	int costumeSelecterCNT;
 
 public:
 	CGameMediator(SceneManager *ScnMng);

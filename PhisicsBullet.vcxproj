@@ -178,6 +178,7 @@
     <ClCompile Include="CEffect_DamageNumber.cpp" />
     <ClCompile Include="CEffect_MoneyNumber.cpp" />
     <ClCompile Include="CEnemyFactory.cpp" />
+    <ClCompile Include="CEnemySpawner.cpp" />
     <ClCompile Include="CField.cpp" />
     <ClCompile Include="CFieldFactory.cpp" />
     <ClCompile Include="CFieldHolder.cpp" />
@@ -281,6 +282,7 @@
     <ClInclude Include="CMapEditor.h" />
     <ClInclude Include="CMediator.h" />
     <ClInclude Include="CMenuSelecter.h" />
+    <ClInclude Include="CEnemySpawner.h" />
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
     <ClInclude Include="CMover_Bullet_Corn.h" />

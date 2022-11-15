@@ -18,6 +18,7 @@ double Constant::dbl_INF = 1.0e200;
 int Constant::priority_decoration = -1;
 int Constant::priority_field = -2;
 int Constant::priority_wall = 3;
+int Constant::priority_effect = 4;
 int Constant::priority_bullet = 2;
 int Constant::priority_enemy = 0;
 int Constant::priority_shot = 1;

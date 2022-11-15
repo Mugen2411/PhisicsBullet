@@ -360,6 +360,9 @@
     <ClCompile Include="CEnemySpawner.cpp">
       <Filter>ソース ファイル\Spawner</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Wall_EnemySpawner.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -604,6 +607,9 @@
     </ClInclude>
     <ClInclude Include="CEnemySpawner.h">
       <Filter>ヘッダー ファイル\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Wall_EnemySpawner.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

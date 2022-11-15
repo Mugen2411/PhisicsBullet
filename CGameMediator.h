@@ -47,6 +47,8 @@ protected:
 	double maxAccel;
 	int costumeSelecterCNT;
 
+	int nowLevelOfStage;
+
 public:
 	CGameMediator(SceneManager *ScnMng);
 	virtual ~CGameMediator();

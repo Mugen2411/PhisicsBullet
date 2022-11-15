@@ -8,6 +8,7 @@
 #include "CField_Wall_Vegetable.h"
 #include "CField_Wall_Well.h"
 #include "CField_Wall_DeepWater.h"
+#include "CField_Wall_EnemySpawner.h"
 #include "CField_Void.h"
 #include "CField_Error.h"
 
@@ -70,6 +71,12 @@ CFieldFactory::CFieldFactory()
 
 	RegisterWall(new CField_Wall_DeepWater("W_DeepWater", CVector()));
 
+	std::string buf;
+	for (int i = 0; i < 8; i++) {
+		buf = "E" + std::to_string(i);
+		RegisterWall(new CField_Wall_EnemySpawner(buf, CVector(), i));
+	}
+
 	RegisterWall(new CField_Void("W_Void", CVector()));
 }
 
@@ -80,7 +87,7 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y *= 32;
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
-	if (name[0] == 'W') {
+	if (name[0] == 'W' || name[0] == 'E') {
 		auto itr = std::find_if(wall_prototypes.begin(), --wall_prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
 		return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
 	}

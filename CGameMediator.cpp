@@ -12,14 +12,14 @@
 #include "CAnchor.h"
 #include "CEnemySpawner.h"
 
-CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(false), pauseGuage(0), cnt(0), costumeSelecterCNT(0), isCostumeSelecterEnd(false)
+CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0),
+costumeSelecterCNT(0), isCostumeSelecterEnd(false), nowLevelOfStage(0)
 {
 	input = CControllerFactory::getIns().getController();
 }
 
 CGameMediator::~CGameMediator()
 {
-	OutputDebugString("CGameMediatorÇÕè¡Ç¶ÇƒÇÈ");
 }
 
 void CGameMediator::CreateParts()
@@ -27,6 +27,7 @@ void CGameMediator::CreateParts()
 	moverParent = std::make_shared<CMoverParent>(shared_from_this());
 	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), "media/map/0.map");
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
+	fieldParent->convertEnemySpawner(enemySpawner, nowLevelOfStage);
 	CCostumeFactory CCF;
 	CCF.getMinMaxFriction(minFric, maxFric);
 	CCF.getMinMaxWaterRes(minWaterRes, maxWaterRes);
@@ -35,12 +36,7 @@ void CGameMediator::CreateParts()
 	CCF.getMinMaxVelocity(minVelocity, maxVelocity);
 	CCF.getMinMaxAccel(minAccel, maxAccel);
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
-	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 0, CCF.create("C_Uniform")));
-	Spawner_Desc sd;
-	sd.countOfSpawn = 3;
-	sd.timeToSpawn = 12;
-	sd.GID = "E_Budcorn";
-	enemySpawner.push_back(std::make_unique<CEnemySpawner>(shared_from_this(), CVector(1 * 32 + 16, +8 * 32 + 16), 0, sd));
+	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 100, CCF.create("C_Uniform")));
 	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);

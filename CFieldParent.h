@@ -20,5 +20,8 @@ public:
 	void ApplyForceToMover(CMover* m);
 	std::vector<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF);
 	void Render()const;
+	void convertEnemySpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level) {
+		fieldHolder->convertEnemySpawner(sp, med, level);
+	}
 };
 

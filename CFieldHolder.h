@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "CEnemySpawner.h"
 
 class CField;
 
@@ -41,6 +42,8 @@ public:
 	}
 	void Update();
 	void Render()const;
+
+	void convertEnemySpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level);
 
 	std::vector<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF);	//––”ö‚ªˆê”Ô©•ª‚É‹ß‚¢I
 	inline int index(int x, int y) {

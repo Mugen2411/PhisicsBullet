@@ -20,6 +20,7 @@ public:
 	static int priority_decoration;
 	static int priority_field;
 	static int priority_wall;
+	static int priority_effect;
 	static int priority_enemy;
 	static int priority_shot;
 	static int priority_bullet;

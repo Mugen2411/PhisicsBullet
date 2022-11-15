@@ -2,8 +2,10 @@
 #include "CField.h"
 #include "CFieldFactory.h"
 #include <queue>
+#include <strstream>
+#include <sstream>
 
-CFieldHolder::CFieldHolder(std::string filepath) :filePath(filepath)
+CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 {
 	if (Load() == 0) {
 		dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
@@ -51,6 +53,51 @@ void CFieldHolder::Render() const
 	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
 		if (i->isInScreen())i->Render();
 		});
+}
+
+void CFieldHolder::convertEnemySpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level)
+{
+	std::string fn = filePath;
+	std::vector<Spawner_Desc> sdList;
+	for (int i = 0; i < 3; i++)fn.pop_back();
+	fn += "spn";
+	int fp = FileRead_open(fn.c_str());
+	int ver;
+	char buf[256];
+	std::string tmp;
+	for (int i = 0; i < 32;i++) {
+		if (FileRead_gets(buf, 256, fp) == -1)break;
+		int cnt = 0;
+		Spawner_Desc desc = Spawner_Desc{};
+		std::stringstream stream(std::string(buf, 256), std::ios::in);
+		while (std::getline(stream, tmp, ',')) {
+			switch (cnt) {
+			case 0:
+				break;
+			case 1:
+				desc.GID = tmp;
+				break;
+			case 2:
+				desc.timeToSpawn = std::stoi(tmp);
+				break;
+			case 3:
+				desc.countOfSpawn = std::stoi(tmp);
+				break;
+			}
+			++cnt;
+		}
+		sdList.emplace_back(desc);
+	}
+	FileRead_close(fp);
+	CFieldFactory CFF;
+	size_t end = walllist.size();
+	for (int i = 0; i < end; i++) {
+		tmp = walllist[i]->getGID();
+		if (tmp[0] == 'E') {
+			es.push_back(std::make_unique<CEnemySpawner>(med, walllist[i]->Position, level, sdList[std::stoi(tmp.erase(0, 1))]));
+			walllist[i] = std::shared_ptr<CField>(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
+		}
+	}
 }
 
 std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF)

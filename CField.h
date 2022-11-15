@@ -59,5 +59,7 @@ public:
 	virtual void Render()const;
 
 	void Save(std::ofstream &fout);
+
+	friend CFieldHolder;
 };
 

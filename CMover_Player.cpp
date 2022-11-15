@@ -104,7 +104,7 @@ void CMover_Player::Render() const
 
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);
-	CImageManager::getIns().find("HPGuage")->DrawExtendWithBlend(16, 8, 16 + 320 * (baseParams.HP / baseParams.MaxHP), 40,
+	CImageManager::getIns().find("HPGuage")->DrawRectwithBlend(16, 8, 320 * (baseParams.HP / baseParams.MaxHP), 32,
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 5, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);
 	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 7);

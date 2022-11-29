@@ -25,7 +25,7 @@ CFieldHolder::~CFieldHolder()
 
 void CFieldHolder::writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
 {
-	if (0 > x || x > width || 0 > y || y > height)return;
+	if (0 > x || x >= width || 0 > y || y >= height)return;
 	floorlist[width * y + x] = f;
 }
 
@@ -55,7 +55,7 @@ void CFieldHolder::Render() const
 		});
 }
 
-void CFieldHolder::convertEnemySpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level)
+void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level, CVector &playerPos)
 {
 	std::string fn = filePath;
 	std::vector<Spawner_Desc> sdList;
@@ -95,6 +95,10 @@ void CFieldHolder::convertEnemySpawner(std::list<std::unique_ptr<CEnemySpawner>>
 		tmp = walllist[i]->getGID();
 		if (tmp[0] == 'E') {
 			es.push_back(std::make_unique<CEnemySpawner>(med, walllist[i]->Position, level, sdList[std::stoi(tmp.erase(0, 1))]));
+			walllist[i] = std::shared_ptr<CField>(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
+		}
+		if (tmp[0] == 'P') {
+			playerPos = walllist[i]->Position;
 			walllist[i] = std::shared_ptr<CField>(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
 		}
 	}

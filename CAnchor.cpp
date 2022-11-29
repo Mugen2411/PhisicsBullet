@@ -1,10 +1,10 @@
 #include "CAnchor.h"
 #include "Constant.h"
 #include <float.h>
-#include <random>
+#include <algorithm>
 
 CAnchor::CAnchor() :position(0, 0), isAbsolute(false), ScrollLimit(DBL_MAX, DBL_MAX),
-	diff_quake(0, 0), quake_duration(0),isExplode(true)
+diff_quake(0, 0), engine(seed()), randomGenerator(-1.0, 1.0)
 {
 	std::srand(1);
 }
@@ -20,7 +20,18 @@ void CAnchor::setPosition(CVector newPos)
 
 void CAnchor::Update()
 {
-	if (quake_duration > 0)quake_duration--;
-	diff_quake.x = 4 - std::rand() % 8;
-	diff_quake.y = 4 - std::rand() % 8;
+	diff_quake.x = 0;
+	diff_quake.y = 0;
+	for (auto itr = quakeQueue.begin(); itr != quakeQueue.end();) {
+		diff_quake.x += randomGenerator(engine) * itr->power;
+		diff_quake.y += randomGenerator(engine) * itr->power;
+		itr->power *= 0.8;
+		itr->duration--;
+		if (itr->duration < 0) {
+			itr = quakeQueue.erase(itr);
+		}
+		else {
+			itr++;
+		}
+	}
 }

@@ -11,6 +11,6 @@ public:
 		return instance;
 	}
 private:
-	void operator=(const Singleton& obj) {}
-	Singleton(const Singleton &obj) {}
+	void operator=(const Singleton& obj) = delete;
+	Singleton(const Singleton& obj) = delete;
 };

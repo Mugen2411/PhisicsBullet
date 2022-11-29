@@ -11,9 +11,10 @@
 #include "CImageManager.h"
 #include "CAnchor.h"
 #include "CEnemySpawner.h"
+#include "CProgressData.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0),
-costumeSelecterCNT(0), isCostumeSelecterEnd(false), nowLevelOfStage(0)
+costumeSelecterCNT(0), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage())
 {
 	input = CControllerFactory::getIns().getController();
 }
@@ -24,10 +25,13 @@ CGameMediator::~CGameMediator()
 
 void CGameMediator::CreateParts()
 {
+	CProgressData::getIns().setCurrentStage(1);
 	moverParent = std::make_shared<CMoverParent>(shared_from_this());
-	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), "media/map/0.map");
+	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), CProgressData::getIns().getMapFilepath());
 	powerParent = std::make_shared<CPowerParent>(shared_from_this());
-	fieldParent->convertEnemySpawner(enemySpawner, nowLevelOfStage);
+
+	CVector playerPos;
+	fieldParent->convertSpawner(enemySpawner, nowLevelOfStage, playerPos);
 	CCostumeFactory CCF;
 	CCF.getMinMaxFriction(minFric, maxFric);
 	CCF.getMinMaxWaterRes(minWaterRes, maxWaterRes);
@@ -36,12 +40,12 @@ void CGameMediator::CreateParts()
 	CCF.getMinMaxVelocity(minVelocity, maxVelocity);
 	CCF.getMinMaxAccel(minAccel, maxAccel);
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
-	RegisterMover(player = std::make_shared<CMover_Player>(CVector(8 * 32, 8 * 32), 100, CCF.create("C_Uniform")));
+	RegisterMover(player = std::make_shared<CMover_Player>(playerPos, 100, CCF.create("C_Uniform")));
 	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);
-	CSoundManager::getIns().find("bgm_test")->SetVolume(0.3);
-	CSoundManager::getIns().find("bgm_test")->Play(CSound::PT_LOOP);
+	CSoundManager::getIns().find("bgm")->SetVolume(0.3);
+	CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
 }
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)

@@ -1,6 +1,8 @@
 #pragma once
 #include "Singleton.h"
 #include "CVector.h"
+#include <list>
+#include <random>
 
 class CAnchor :
     public Singleton<CAnchor>
@@ -10,8 +12,16 @@ private:
     bool isAbsolute;
     CVector ScrollLimit;
     CVector diff_quake;
-    int quake_duration;
-    bool isExplode;
+
+    struct quakeData {
+        int duration;
+        float power;
+    };
+
+    std::list<quakeData> quakeQueue;
+    std::random_device seed{};
+    std::default_random_engine engine;
+    std::uniform_real_distribution<double> randomGenerator;
 
 public:
     CAnchor();
@@ -29,19 +39,19 @@ public:
     }
     inline double getAnchorX() {
         if (isAbsolute)return 0.0;
-        if (isExplode && quake_duration > 0)return position.x + diff_quake.x;
+        if (!quakeQueue.empty())return position.x + diff_quake.x;
         return position.x;
     }
     inline double getAnchorY() {
         if (isAbsolute)return 0.0;
-        if (isExplode && quake_duration > 0)return position.y + diff_quake.y;
+        if (!quakeQueue.empty())return position.y + diff_quake.y;
         return position.y;
     }
     inline void Move(CVector diff) {
         setPosition(position + diff);
     }
-    inline void Quake(int duraiton) {
-        if (duraiton > quake_duration)quake_duration = duraiton;
+    inline void Quake(int duration, float power = 4.0f) {
+        quakeQueue.emplace_back(quakeData{ duration, power });
     }
     void Update();
 

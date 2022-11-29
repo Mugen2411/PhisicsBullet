@@ -9,7 +9,7 @@ CSoundManager::CSoundManager()
     sndList["shot_superball"] = std::make_shared<CSound>("media/sound/se/superball.wav");
     sndList["shot_cork"] = std::make_shared<CSound>("media/sound/se/cork.wav");
 
-    sndList["bgm_test"] = std::make_shared<CSound>("media/sound/bgm/NaoGame02.ogg");
+    sndList["bgm"] = std::make_shared<CSound>("media/sound/bgm/farm.ogg");
 }
 
 void CSoundManager::unload()

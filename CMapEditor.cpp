@@ -92,7 +92,7 @@ void CMapEditor::Render()const
 	printfDx("Mouse:%lf,%lf\n", mousePos.x, mousePos.y);
 	mousePos = CAnchor::getIns().getAnchoredPosition(mousePos);
 	CAnchor::getIns().enableAbsolute();
-	CImageManager::getIns().find("editor_cursor")->DrawRota(mousePos.x, mousePos.y, 0.0, 1.0, 1.0, 0);
+	CImageManager::getIns().find("editor_cursor")->DrawRota(mousePos.x, mousePos.y, 0.0, 1.0, 100, 0);
 	printfDx("AbsMouse:%lf,%lf\n", mousePos.x, mousePos.y);
 	CAnchor::getIns().disableAbsolute();
 }

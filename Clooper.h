@@ -1,7 +1,4 @@
 #pragma once
-#include "CGameMediator.h"
-#include "CMapEditor.h"
-#include "Scene_Abstract.h"
 #include "SceneManager.h"
 #include "Fps.h"
 #include <memory>
@@ -10,11 +7,15 @@
 class CGame: public SceneManager
 {
 	Fps fps;
+	bool isQuit;
 public:
 	CGame();
 	virtual ~CGame();
 
 	void Run();
 	void ChangeScene(int Scene, bool isStackClear);
+	bool isQuitted() {
+		return isQuit;
+	}
 };
 

@@ -230,12 +230,14 @@
     <ClCompile Include="CSoundManager.cpp" />
     <ClCompile Include="CStatus.cpp" />
     <ClCompile Include="CSTGInputManager.cpp" />
+    <ClCompile Include="CTextDrawer.cpp" />
     <ClCompile Include="CVector.cpp" />
     <ClCompile Include="IRenderReserve.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Abstract.cpp" />
+    <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +317,7 @@
     <ClInclude Include="CSoundManager.h" />
     <ClInclude Include="CStatus.h" />
     <ClInclude Include="CSTGInputManager.h" />
+    <ClInclude Include="CTextDrawer.h" />
     <ClInclude Include="CVector.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="include_InputManagers.h" />
@@ -322,6 +325,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Abstract.h" />
+    <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

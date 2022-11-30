@@ -14,7 +14,7 @@ public:
 	}
 	int getLastStage()		//今までに進んだ最大のステージ
 	{
-		return lastStage;
+		return data.lastStage;
 	}
 
 	int getCurrentStage()	//次に入るステージ(Mediatorから参照)
@@ -25,17 +25,25 @@ public:
 		return std::string("media/map/") + std::to_string(currentStage) + std::string("/") + std::to_string(currentStage) + std::string(".map");
 	}
 
-		void win(int money);		//勝った時の獲得処理
-	void lose(int money);	//負けた時の獲得処理
-	
+	int getPlayerLevel() {
+		return data.playerLevel;
+	}
+
+	void win(int money);		//勝った時の獲得処理
+	void lose(int money);		//負けた時の獲得処理
+	void retire(int money);		//諦めた時の獲得処理
+
 private:
 	CProgressData();
 
 	int currentStage;
 	int maxStage;
-	int lastStage;
 
-	int Money;
+	struct progressData {
+		int lastStage;		//10をかけると始めるべきステージになる
+		int Money;
+		int playerLevel;
+	}data;
 
 	friend class Singleton<CProgressData>;
 };

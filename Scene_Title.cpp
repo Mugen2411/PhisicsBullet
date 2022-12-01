@@ -1,12 +1,14 @@
 #include "Scene_Title.h"
 #include "CControllerFactory.h"
 #include "CProgressData.h"
+#include "CImageManager.h"
 
 Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(3, 0), currentStage(0) {
 	input = CControllerFactory::getIns().getController();
-	menuText[0] = CTextDrawer::Text("Start→stage:", CVector(320, 200), 0xFFFFFF, 0x00FFFF, 1);
-	menuText[1] = CTextDrawer::Text("Upgrade", CVector(320, 280), 0xFFFFFF, 0xFFFF00, 1);
-	menuText[2] = CTextDrawer::Text("Quit", CVector(320, 320), 0xFFFFFF, 0xFF0000, 1);
+	menuText[0] = CTextDrawer::Text("Start→stage:", CVector(320, 280), 0xFFFFFF, 0x007F7F, 1);
+	menuText[1] = CTextDrawer::Text("Upgrade", CVector(320, 320), 0xFFFFFF, 0x7F7F00, 1);
+	menuText[2] = CTextDrawer::Text("Quit", CVector(320, 360), 0xFFFFFF, 0x7F0000, 1);
+	titleText = CTextDrawer::Text("タイトル未定！", CVector(320-72*3.5, 32.0), 0xFFFFFF, 0x0000FF, 2);
 	CProgressData::getIns().load();
 }
 
@@ -35,7 +37,10 @@ void Scene_Title::Update() {
 }
 
 void Scene_Title::Render()const {
+	DrawBox(0, 0, Constant::ScreenW, Constant::ScreenH, 0x00FF00, TRUE);
+	CImageManager::getIns().find("title_face")->DrawRota(216, Constant::ScreenH - 256, 0, 1, 0, 0);
 	for (int i = 0; i < 3; i++) {
 		CTextDrawer::getIns().Register(menuText[i]);
 	}
+	CTextDrawer::getIns().Register(titleText);
 }

@@ -8,7 +8,7 @@ Scene_Stageclear::Scene_Stageclear(SceneManager* ScnMng):Scene_Abstract(ScnMng),
 {
 	input = CControllerFactory::getIns().getController();
 	text[0] = CTextDrawer::Text("STAGE CLEAR!!", CVector(320 - 6.5 * 30, 32.0), 0xFFFFFF, 0xFF0000, 2);
-	text[1] = CTextDrawer::Text("", CVector(320 - 36 * 7, 240), 0xFFFFFF, 0xCFCF00, 1);
+	text[1] = CTextDrawer::Text("", CVector(320 - 36 * 7, 180), 0xFFFFFF, 0xCFCF00, 1);
 	text[1].text = std::string("コインを") + std::to_string(CProgressData::getIns().getEarnedMoney()) + std::string("枚獲得しました。");
 	text[2] = CTextDrawer::Text("SPACEキーを押すと次のステージに進みます。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
 }

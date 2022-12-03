@@ -6,6 +6,7 @@
 #include "Scene_Title.h"
 #include "Scene_Gameover.h"
 #include "Scene_Stageclear.h"
+#include "Scene_Upgrade.h"
 #include "Scene_Abstract.h"
 #include "CTextDrawer.h"
 #include "CAnchor.h"
@@ -63,6 +64,9 @@ void CGame::ChangeScene(int Scene, bool isStackClear)
 		break;
 	case Constant::SCENE_ID::SCENE_STAGECLEAR:
 		_scene.push_front(std::make_shared<Scene_Stageclear>(this));
+		break;
+	case Constant::SCENE_ID::SCENE_UPGRADE:
+		_scene.push_front(std::make_shared<Scene_Upgrade>(this));
 		break;
 	}
 }

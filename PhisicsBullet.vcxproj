@@ -240,6 +240,7 @@
     <ClCompile Include="Scene_Gameover.cpp" />
     <ClCompile Include="Scene_Stageclear.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
+    <ClCompile Include="Scene_Upgrade.cpp" />
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +331,7 @@
     <ClInclude Include="Scene_Gameover.h" />
     <ClInclude Include="Scene_Stageclear.h" />
     <ClInclude Include="Scene_Title.h" />
+    <ClInclude Include="Scene_Upgrade.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

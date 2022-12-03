@@ -36,8 +36,12 @@ void Scene_Title::Update() {
 			CProgressData::getIns().setCurrentStage(currentStage);
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_MAIN, true);
 			break;
+		case 1:
+			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_UPGRADE, true);
+			break;
 		case 2:
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_QUIT, true);
+			break;
 		}
 	}
 	for (int i = 0; i < 3; i++) {

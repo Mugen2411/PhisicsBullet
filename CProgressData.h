@@ -32,6 +32,15 @@ public:
 		return data.playerLevel;
 	}
 
+	int getMoney() {
+		return data.Money;
+	}
+
+	void upgrade(int money) {
+		data.Money -= money;
+		data.playerLevel++;
+	}
+
 	void win(int money);		//Ÿ‚Á‚½‚ÌŠl“¾ˆ—
 	void lose(int money);		//•‰‚¯‚½‚ÌŠl“¾ˆ—
 	void retire(int money);		//’ú‚ß‚½‚ÌŠl“¾ˆ—

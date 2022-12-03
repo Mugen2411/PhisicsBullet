@@ -4,8 +4,9 @@
 #include "CImageManager.h"
 #include "CAnchor.h"
 #include "CStatus.h"
+#include <cassert>
 
-Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng) :Scene_Abstract(ScnMng), hasEnoughMoney(true)
+Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng) :Scene_Abstract(ScnMng), hasEnoughMoney(true), cnt(0), now(CProgressData::getIns().getPlayerLevel()), next(CProgressData::getIns().getPlayerLevel()+1)
 {
 	input = CControllerFactory::getIns().getController();
 	text[0] = CTextDrawer::Text("アップグレード", CVector(320 - 3.5 * 60, 32.0), 0xFFFFFF, 0x7F7F00, 2);
@@ -19,8 +20,8 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng) :Scene_Abstract(ScnMng), hasE
 
 void Scene_Upgrade::Update()
 {
-	CStatus now(CProgressData::getIns().getPlayerLevel());
-	CStatus next(CProgressData::getIns().getPlayerLevel() + 1);
+	now = CStatus(CProgressData::getIns().getPlayerLevel());
+	next = CStatus(CProgressData::getIns().getPlayerLevel() + 1);
 	text[1].text = std::string("所持コイン：") + std::to_string(CProgressData::getIns().getMoney());
 	text[2].text = std::string("必要コイン：") + std::to_string(CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));
 	text[3].text = std::string("現在のステータス→") + std::string("HP:") + std::to_string(now.MaxHP)
@@ -42,6 +43,7 @@ void Scene_Upgrade::Update()
 
 void Scene_Upgrade::Render() const
 {
+	assert(text[0].position.y < 40.0);
 	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);

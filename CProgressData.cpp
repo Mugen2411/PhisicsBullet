@@ -23,6 +23,7 @@ void CProgressData::load()
 	errno_t err = fopen_s(&fp, "media/save/0.sav", "rb");
 	if (err != 0) {
 		MessageBox(NULL, "セーブデータを新しく作成します", "MugenApp", MB_OK);
+		save();
 		return;
 	}
 	fread(&data, sizeof(progressData), 1, fp);

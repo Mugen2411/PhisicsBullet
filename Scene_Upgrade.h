@@ -4,6 +4,7 @@
 #include "CSTGInputManager.h"
 #include <memory>
 #include "CTextDrawer.h"
+#include "CStatus.h"
 
 class Scene_Upgrade : public Scene_Abstract {
 public:
@@ -18,4 +19,6 @@ private:
 	CTextDrawer::Text text[7];
 	int cnt;
 	bool hasEnoughMoney;
+	CStatus now;
+	CStatus next;
 };

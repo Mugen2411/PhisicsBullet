@@ -18,6 +18,7 @@ public:
 		reserveList.push_back(m);
 	}
 	std::weak_ptr<CMover> getMover(int ID, int num);
+	int getCountByCategory(int ID);
 	void Update();
 	void Render();
 

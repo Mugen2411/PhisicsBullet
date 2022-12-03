@@ -106,7 +106,14 @@ void CGameMediator::Update()
 	if (player->getHP() < 0) {
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("player_dead")->Play(CSound::PLAYTYPE::PT_BACK);
+		CProgressData::getIns().lose(reserveMoney);
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMEOVER, false);
+		return;
+	}
+	if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0 && enemySpawner.empty()) {
+		CSoundManager::getIns().find("bgm")->Stop();
+		CProgressData::getIns().win(reserveMoney);
+		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
 		return;
 	}
 	if (isPause) {

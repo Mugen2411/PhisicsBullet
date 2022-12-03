@@ -12,6 +12,9 @@ public:
 	void setCurrentStage(int stage) {	//次に入るステージ(Mediatorから設定)
 		currentStage = (std::min)(stage, maxStage);
 	}
+	void nextCurrentStage() {	//次に入るステージ(Mediatorから設定)
+		currentStage = (std::min)(++currentStage, maxStage);
+	}
 	int getLastStage()		//今までに進んだ最大のステージ
 	{
 		return data.lastStage;

@@ -20,6 +20,15 @@ std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num)
 	return std::weak_ptr<CMover>();
 }
 
+int CMoverParent::getCountByCategory(int ID)
+{
+	int r = 0;
+	for (auto& i : moverList) {
+		if (i->Category == ID)r++;
+	}
+	return r;
+}
+
 void CMoverParent::Update()
 {	
 	Hit();

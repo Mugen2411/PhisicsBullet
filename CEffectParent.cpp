@@ -7,6 +7,11 @@ void CEffectParent::RegisterEffect(std::shared_ptr<CEffect> e)
 	effectlist.push_back(e);
 }
 
+void CEffectParent::Reset()
+{
+	effectlist.clear();
+}
+
 void CEffectParent::Update()
 {
 	for (std::shared_ptr<CEffect> v : CEffectParent::effectlist) {

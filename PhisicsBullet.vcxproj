@@ -237,6 +237,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Abstract.cpp" />
+    <ClCompile Include="Scene_Gameover.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
@@ -325,6 +326,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Abstract.h" />
+    <ClInclude Include="Scene_Gameover.h" />
     <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>

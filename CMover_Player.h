@@ -50,6 +50,9 @@ public:
         Cofs = costume->constants;
         Mass = costume->Mass;
     }
+    double getHP() {
+        return baseParams.HP;
+    }
 
     void Hit(CMover_EnemyBase*);
 };

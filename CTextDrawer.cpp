@@ -3,9 +3,9 @@
 
 CTextDrawer::CTextDrawer() : font_path("media/font/Nosutaru-dotMPlusH-10-Regular.ttf") {
 	AddFontResourceEx(font_path.c_str(), FR_PRIVATE, NULL);
-	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 18, 1, DX_FONTTYPE_EDGE));
+	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 12, 1, DX_FONTTYPE_EDGE));
 	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 36, 1, DX_FONTTYPE_EDGE));
-	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 72, 1, DX_FONTTYPE_EDGE));
+	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 60, 1, DX_FONTTYPE_EDGE));
 }
 
 CTextDrawer::~CTextDrawer() {

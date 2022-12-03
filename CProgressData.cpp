@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 
-CProgressData::CProgressData() :currentStage(0), maxStage(2), data{ maxStage,0,0 } {
+CProgressData::CProgressData() :currentStage(0), maxStage(2), earnedMoney(0), data{maxStage,0,0} {
 }
 
 void CProgressData::save()
@@ -31,19 +31,22 @@ void CProgressData::load()
 
 void CProgressData::win(int money)
 {
-	data.Money += money;
+	earnedMoney = money;
+	data.Money += earnedMoney;
 	data.lastStage = (std::max)(data.lastStage, currentStage / 10);
 }
 
 void CProgressData::lose(int money)
 {
-	data.Money += money * 0.5;
+	earnedMoney = money * 0.5;
+	data.Money += earnedMoney;
 	data.lastStage = (std::max)(data.lastStage, (currentStage - 1) / 10);
 }
 
 void CProgressData::retire(int money)
 {
-	data.Money += money;
+	earnedMoney = money;
+	data.Money += earnedMoney;
 	data.lastStage = (std::max)(data.lastStage, (currentStage - 1) / 10);
 }
 

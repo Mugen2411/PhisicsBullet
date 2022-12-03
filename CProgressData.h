@@ -33,11 +33,16 @@ public:
 	void lose(int money);		//負けた時の獲得処理
 	void retire(int money);		//諦めた時の獲得処理
 
+	int getEarnedMoney() {
+		return earnedMoney;
+	}
+
 private:
 	CProgressData();
 
 	int currentStage;
 	int maxStage;
+	int earnedMoney;
 
 	struct progressData {
 		int lastStage;		//10をかけると始めるべきステージになる

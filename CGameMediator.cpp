@@ -14,7 +14,7 @@
 #include "CProgressData.h"
 
 CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0),
-costumeSelecterCNT(0), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage()*3+1)
+costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage()*3+1)
 {
 	input = CControllerFactory::getIns().getController();
 }
@@ -97,8 +97,16 @@ void CGameMediator::getMoney(int value)
 
 void CGameMediator::Update()
 {
+#ifdef _DEBUG
 	if (input.lock()->Start() == 1) {
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
+		return;
+	}
+#endif
+	if (player->getHP() < 0) {
+		CSoundManager::getIns().find("bgm")->Stop();
+		CSoundManager::getIns().find("player_dead")->Play(CSound::PLAYTYPE::PT_BACK);
+		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMEOVER, false);
 		return;
 	}
 	if (isPause) {

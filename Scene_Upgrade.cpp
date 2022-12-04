@@ -4,6 +4,7 @@
 #include "CImageManager.h"
 #include "CAnchor.h"
 #include "CStatus.h"
+#include "CSoundManager.h"
 #include <cassert>
 
 Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng) :Scene_Abstract(ScnMng), hasEnoughMoney(true), cnt(0), now(CProgressData::getIns().getPlayerLevel()), next(CProgressData::getIns().getPlayerLevel()+1)
@@ -16,6 +17,8 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng) :Scene_Abstract(ScnMng), hasE
 	text[4] = CTextDrawer::Text("強化後ステータス", CVector(320 - 200, 270), 0xFFFFFF, 0xCFCF00, 0);
 	text[5] = CTextDrawer::Text("SPACEキーを押すとコインを消費して強化します。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
 	text[6] = CTextDrawer::Text("コインが足りません！", CVector(320 - 5 * 36, 360), 0xFFFFFF, 0xFF0000, 1);
+	CSoundManager::getIns().find("money")->SetVolume(0.5);
+	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
 }
 
 void Scene_Upgrade::Update()
@@ -32,10 +35,15 @@ void Scene_Upgrade::Update()
 		if (CProgressData::getIns().getMoney() >= CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel())) {
 			CProgressData::getIns().upgrade(CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));
 			hasEnoughMoney = true;
+			CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
 		}
-		else hasEnoughMoney = false;
+		else {
+			CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
+			hasEnoughMoney = false;
+		}
 	}
 	if (input.lock()->Start() == 1) {
+		CProgressData::getIns().save();
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
 		return;
 	}

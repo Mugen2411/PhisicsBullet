@@ -83,6 +83,9 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 			case 3:
 				desc.countOfSpawn = std::stoi(tmp);
 				break;
+			case 4:
+				desc.spawnProbability = std::stoi(tmp);
+				break;
 			}
 			++cnt;
 		}

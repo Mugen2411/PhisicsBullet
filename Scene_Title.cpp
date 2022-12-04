@@ -3,6 +3,7 @@
 #include "CProgressData.h"
 #include "CImageManager.h"
 #include "CAnchor.h"
+#include "CSoundManager.h"
 
 Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(3, 0), currentStage(0) {
 	input = CControllerFactory::getIns().getController();
@@ -14,6 +15,8 @@ Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(3, 0
 	underText[2] = CTextDrawer::Text("ゲームを終了します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	titleText = CTextDrawer::Text("タイトル未定！", CVector(320-72*3.5, 32.0), 0xFFFFFF, 0x0000FF, 2);
 	CProgressData::getIns().load();
+	CSoundManager::getIns().find("success")->SetVolume(0.5);
+	CSoundManager::getIns().find("cursor")->SetVolume(0.5);
 }
 
 void Scene_Title::Update() {
@@ -23,14 +26,21 @@ void Scene_Title::Update() {
 		return;
 	}
 #endif
-	if (input.lock()->Down() == 1)CMS.next();
-	if (input.lock()->Up() == 1)CMS.prev();
+	if (input.lock()->Down() == 1) {
+		CSoundManager::getIns().find("cursor")->Play(CSound::PLAYTYPE::PT_BACK);
+		CMS.next();
+	}
+	if (input.lock()->Up() == 1) {
+		CSoundManager::getIns().find("cursor")->Play(CSound::PLAYTYPE::PT_BACK);
+		CMS.prev();
+	}
 	if (CMS.get() == 0) {
 		if (input.lock()->Right() == 1)currentStage = (currentStage + 1) % CProgressData::getIns().getLastStage();
 		if (input.lock()->Left() == 1)currentStage = (currentStage + (CProgressData::getIns().getLastStage() - 1)) % CProgressData::getIns().getLastStage();
 	}
 	menuText[0].text = std::string("Start→stage:") + std::to_string(currentStage);
 	if (input.lock()->Select() == 1) {
+		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		switch (CMS.get()) {
 		case 0:
 			CProgressData::getIns().setCurrentStage(currentStage);

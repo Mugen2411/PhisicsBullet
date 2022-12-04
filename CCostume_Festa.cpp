@@ -18,7 +18,7 @@ void CCostume_Festa::WeakShot(double baseATK, CVector position, float angle)
 
 void CCostume_Festa::ChargeShot(double baseATK, CVector position, float angle)
 {
-	for (int i = 0; i < 20; i++) {
-		RegisterShot(std::make_shared<CMover_Shot_Festa_Superball>(baseATK, position, angle+(GetRand(160)/80.0 - 1.0)*Constant::PI/6));
+	for (int i = 0; i < 15; i++) {
+		RegisterShot(std::make_shared<CMover_Shot_Festa_Superball>(baseATK, position, angle+(GetRand(160)/80.0 - 1.0)*Constant::PI/4));
 	}
 }

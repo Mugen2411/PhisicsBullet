@@ -8,6 +8,9 @@ CSoundManager::CSoundManager()
     sndList["enemy_hit"] = std::make_shared<CSound>("media/sound/se/enemy_hit.wav");
     sndList["shot_superball"] = std::make_shared<CSound>("media/sound/se/superball.wav");
     sndList["shot_cork"] = std::make_shared<CSound>("media/sound/se/cork.wav");
+    sndList["cursor"] = std::make_shared<CSound>("media/sound/se/cursor.wav");
+    sndList["money"] = std::make_shared<CSound>("media/sound/se/money.wav");
+    sndList["success"] = std::make_shared<CSound>("media/sound/se/success.wav");
 
     sndList["bgm"] = std::make_shared<CSound>("media/sound/bgm/farm.ogg");
 }

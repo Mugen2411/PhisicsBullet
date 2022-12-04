@@ -43,6 +43,7 @@ void CGameMediator::CreateParts()
 	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);
+	CSoundManager::getIns().find("success")->SetVolume(0.5);
 	CSoundManager::getIns().find("bgm")->SetVolume(0.5);
 	CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
 }
@@ -112,6 +113,7 @@ void CGameMediator::Update()
 	}
 	if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0 && enemySpawner.empty()) {
 		CSoundManager::getIns().find("bgm")->Stop();
+		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		CProgressData::getIns().win(reserveMoney);
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
 		return;

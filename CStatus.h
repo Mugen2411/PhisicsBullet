@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <string>
 
 class CStatus
 {
@@ -17,9 +18,15 @@ public:
 
 	void Calculate();
 	static int getMoneyToUpgrade(int now) {
-		return 100 * std::powl(1.15, now);
+		return 200 * std::powl(1.5, now);
 	}
 	CStatus Test(int TargetLevel);
 	CStatus operator -(CStatus v);
 };
 
+_NODISCARD inline std::string floating_to_string(double _Val) {
+	const auto _Len = static_cast<size_t>(_CSTD _scprintf("%.2f", _Val));
+	std::string _Str(_Len, '\0');
+	_CSTD sprintf_s(&_Str[0], _Len + 1, "%.2f", _Val);
+	return _Str;
+}

@@ -27,10 +27,10 @@ void Scene_Upgrade::Update()
 	next = CStatus(CProgressData::getIns().getPlayerLevel() + 1);
 	text[1].text = std::string("所持コイン：") + std::to_string(CProgressData::getIns().getMoney());
 	text[2].text = std::string("必要コイン：") + std::to_string(CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));
-	text[3].text = std::string("現在のステータス→") + std::string("HP:") + std::to_string(now.MaxHP)
-		+ std::string(" ATK:") + std::to_string(now.ATK);
-	text[4].text = std::string("強化後ステータス→") + std::string("HP:") + std::to_string(next.MaxHP)
-		+ std::string(" ATK:") + std::to_string(next.ATK);
+	text[3].text = std::string("現在のステータス→") + std::string("HP:") + floating_to_string(now.MaxHP)
+		+ std::string(" ATK:") + floating_to_string(now.ATK);
+	text[4].text = std::string("強化後ステータス→") + std::string("HP:") + floating_to_string(next.MaxHP)
+		+ std::string(" ATK:") + floating_to_string(next.ATK);
 	if (input.lock()->Select() == 1) {
 		if (CProgressData::getIns().getMoney() >= CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel())) {
 			CProgressData::getIns().upgrade(CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));

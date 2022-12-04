@@ -73,6 +73,7 @@ int CMover_Player::Update()
 
 #ifdef _DEBUG
 	printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x, p.y, Acceleration.x, Acceleration.y);
+	printfDx("HP:%lf\n", baseParams.HP);
 #endif
 	return 0;
 }
@@ -108,7 +109,6 @@ void CMover_Player::Render() const
 		0xffffff, DX_BLENDMODE_ALPHA, 192, 5, 1);
 	CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);
 	CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 7);
-	printfDx("HP:%lf\n", baseParams.HP);
 	//CND.Draw(16 + 48 + 16 * DigitHP, 16 + 8, baseParams.MaxHP, 0, 0, 2.3);
 	CImageManager::getIns().find("aim")->DrawCircleGauge(input.lock()->MouseX(), input.lock()->MouseY(), (double)Charge / costume->MaxCharge, 7, 2);
 	CImageManager::getIns().find("aim")->DrawRota(input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 7, (costume->MaxCharge == Charge) ? 1 : 0);

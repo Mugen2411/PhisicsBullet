@@ -71,6 +71,7 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 		Spawner_Desc desc = Spawner_Desc{};
 		std::stringstream stream(std::string(buf, 256), std::ios::in);
 		while (std::getline(stream, tmp, ',')) {
+			if (tmp.empty())break;
 			switch (cnt) {
 			case 0:
 				break;

@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CMover_Shot_Archer_FlameArrow::CMover_Shot_Archer_FlameArrow(double baseATK, CVector position, double angle)
-	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(40).FIRE(80), position, 24, CVector(angle) * 32.0, 0.2, COF(0.0, 0.5, 0.15, 0.0), 0xFF0000)
+	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(40).FIRE(50), position, 24, CVector(angle) * 32.0, 0.2, COF(0.0, 0.5, 0.15, 0.0), 0xFF0000)
 {
 }
 

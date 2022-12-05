@@ -115,7 +115,9 @@ void CGameMediator::Update()
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		CProgressData::getIns().win(reserveMoney);
-		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage()-1)
+			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
+			else scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
 		return;
 	}
 	if (isPause) {

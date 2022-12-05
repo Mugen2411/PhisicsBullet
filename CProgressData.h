@@ -24,6 +24,10 @@ public:
 	{
 		return currentStage;
 	}
+	int getMaxStage() {
+		return maxStage;
+	}
+
 	std::string getMapFilepath() {
 		return std::string("media/map/") + std::to_string(currentStage) + std::string("/") + std::to_string(currentStage) + std::string(".map");
 	}

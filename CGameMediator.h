@@ -51,6 +51,8 @@ protected:
 
 	int nowLevelOfStage;
 
+	void ProcessEnemySpawner();
+
 public:
 	CGameMediator(SceneManager *ScnMng);
 	virtual ~CGameMediator();

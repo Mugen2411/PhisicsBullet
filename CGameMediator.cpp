@@ -13,6 +13,18 @@
 #include "CEnemySpawner.h"
 #include "CProgressData.h"
 
+void CGameMediator::ProcessEnemySpawner()
+{
+	for (auto i = enemySpawner.begin(); i != enemySpawner.end();) {
+		int r = (*i)->Update();
+		if (r == 1) {
+			i = enemySpawner.erase(i);
+			continue;
+		}
+		++i;
+	}
+}
+
 CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0), isInitialized(false),
 costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1)
 {
@@ -140,13 +152,9 @@ void CGameMediator::Update()
 			costumeSelecterCNT = 0;
 		}
 	}
-	for (auto i = enemySpawner.begin(); i != enemySpawner.end();) {
-		int r = (*i)->Update();
-		if (r == 1) {
-			i = enemySpawner.erase(i);
-			continue;
-		}
-		++i;
+	ProcessEnemySpawner();
+	if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0) {
+		ProcessEnemySpawner();
 	}
 	powerParent->Update();
 	moverParent->Update();

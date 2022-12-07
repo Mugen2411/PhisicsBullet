@@ -17,10 +17,10 @@ class CEnemySpawner {
 	Spawner_Desc desc;
 	CVector pos;
 	CEnemyFactory CEF;
-	std::weak_ptr<CGameMediator> mp;
+	CGameMediator* mp;
 	int level;
 	std::random_device rand;
 public:
-	CEnemySpawner(std::weak_ptr<CGameMediator> mp, CVector pos, int level, Spawner_Desc desc);
+	CEnemySpawner(CGameMediator* mp, CVector pos, int level, Spawner_Desc desc);
 	int Update();	//0:通常 1:スポーン終了(削除要請)
 };

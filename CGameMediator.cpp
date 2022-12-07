@@ -25,9 +25,9 @@ CGameMediator::~CGameMediator()
 
 void CGameMediator::CreateParts()
 {
-	moverParent = std::make_shared<CMoverParent>(shared_from_this());
-	fieldParent = std::make_shared<CFieldParent>(shared_from_this(), CProgressData::getIns().getMapFilepath());
-	powerParent = std::make_shared<CPowerParent>(shared_from_this());
+	moverParent = std::make_unique<CMoverParent>(this);
+	fieldParent = std::make_unique<CFieldParent>(this, CProgressData::getIns().getMapFilepath());
+	powerParent = std::make_unique<CPowerParent>(this);
 
 	CVector playerPos;
 	fieldParent->convertSpawner(enemySpawner, nowLevelOfStage, playerPos);
@@ -52,7 +52,7 @@ void CGameMediator::CreateParts()
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)
 {
-	m->setMediator(shared_from_this());
+	m->setMediator(this);
 	moverParent->RegisterMover(m);
 }
 
@@ -100,13 +100,18 @@ void CGameMediator::getMoney(int value)
 
 void CGameMediator::Update()
 {
-	if (!isInitialized)return;
+	if (!isInitialized)
+		return;
 #ifdef _DEBUG
 	if (input.lock()->Start() == 1) {
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
 		return;
 	}
 #endif
+	if (isPause) {
+		UpdateDresschangeMenu();
+		return;
+	}
 	if (player->getHP() < 0) {
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("player_dead")->Play(CSound::PLAYTYPE::PT_BACK);
@@ -124,10 +129,6 @@ void CGameMediator::Update()
 		else {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
 		}
-		return;
-	}
-	if (isPause) {
-		UpdateDresschangeMenu();
 		return;
 	}
 	CEnemyFactory CEF;

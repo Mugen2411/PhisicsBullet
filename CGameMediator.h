@@ -15,14 +15,14 @@ class CMover;
 class CCostumeBase;
 class CEnemySpawner;
 
-class CGameMediator: public Scene_Abstract, public std::enable_shared_from_this<CGameMediator>
+class CGameMediator: public Scene_Abstract
 {
 protected:
 	std::weak_ptr<CSTGInputManager> input;
-	std::shared_ptr<CMoverParent> moverParent;
-	std::shared_ptr<CFieldParent> fieldParent;
-	std::shared_ptr<CPowerParent> powerParent;
+	std::unique_ptr<CMoverParent> moverParent;
+	std::unique_ptr<CPowerParent> powerParent;
 	std::shared_ptr<CMover_Player> player;
+	std::unique_ptr<CFieldParent> fieldParent;
 	std::list<std::unique_ptr<CEnemySpawner>> enemySpawner;
 
 	bool isPause;

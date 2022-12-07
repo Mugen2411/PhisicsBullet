@@ -17,12 +17,15 @@ int CMover_Enemy_Yadokari::Update()
 		cnt++;
 		if (cnt == 90) {
 			Find_Route();
-			CVector ppos = med.lock()->GetPlayerPosition();
-			if (!!ppos && route.size() <= 5) {
-				for (int i = 0; i < 3; i++) {
-					med.lock()->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, (ppos - Position).getAngle(), 7.0+i*3.0));
+			if (auto r = med) {
+				CVector ppos = r->GetPlayerPosition();
+				if (!!ppos && route.size() <= 5) {
+					for (int i = 0; i < 3; i++) {
+						r->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, (ppos - Position).getAngle(), 7.0 + i * 3.0));
+					}
 				}
 			}
+			
 			cnt = 0;
 		}
 		if (route.size() >= 5)Move_on_Route();

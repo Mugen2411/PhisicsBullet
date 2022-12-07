@@ -7,8 +7,8 @@
 #include <math.h>
 #include <algorithm>
 
-CFieldParent::CFieldParent(std::shared_ptr<CGameMediator> m, std::string filename)
-	:fieldHolder(std::make_shared<CFieldHolder>(filename)), med(m)
+CFieldParent::CFieldParent(CGameMediator* m, std::string filename)
+	:fieldHolder(new CFieldHolder(filename)), med(m)
 {
 	CAnchor::getIns().setScrollLimit(CVector(fieldHolder->getWidth(), fieldHolder->getHeight()));
 }

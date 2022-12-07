@@ -18,7 +18,7 @@ public:
 
 	void Calculate();
 	static int getMoneyToUpgrade(int now) {
-		return 200 * std::powl(1.5, now);
+		return 200 * std::powl(1.32, now);
 	}
 	CStatus Test(int TargetLevel);
 	CStatus operator -(CStatus v);

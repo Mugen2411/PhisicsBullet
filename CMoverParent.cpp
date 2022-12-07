@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iterator>
 
-CMoverParent::CMoverParent(std::weak_ptr<CGameMediator> m) :med(m), moverList(), reserveList(), cnt(0)
+CMoverParent::CMoverParent(CGameMediator* m) :med(m), moverList(), reserveList(), cnt(0)
 {
 }
 
@@ -36,7 +36,7 @@ void CMoverParent::Update()
 	for (auto itr = moverList.begin(); itr != moverList.end();) {
 		(*itr)->BaseUpdate();
 		r = (*itr)->Update();
-		med.lock()->ApplyForceToMover(itr->get());
+		med->ApplyForceToMover(itr->get());
 		(*itr)->Move();
 		switch (r) {
 		case 0:

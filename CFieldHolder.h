@@ -43,7 +43,7 @@ public:
 	void Update();
 	void Render()const;
 
-	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level, CVector &playerPos);
+	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector &playerPos);
 
 	std::vector<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF);	//––”ö‚ªˆê”Ô©•ª‚É‹ß‚¢I
 	inline int index(int x, int y) {

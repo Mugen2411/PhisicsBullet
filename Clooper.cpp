@@ -47,30 +47,30 @@ void CGame::ChangeScene(int Scene, bool isStackClear)
 	}
 	switch (Scene) {
 	case Constant::SCENE_ID::SCENE_MAIN:
-		{auto s = std::make_shared<CGameMediator>(this);
+		{auto s = new CGameMediator(this);
 		s->CreateParts();
-		_scene.push_front(s); }
+		_scene.push_front(std::unique_ptr<CGameMediator>(s)); }
 		break;
 	case Constant::SCENE_ID::SCENE_EDITOR:
-		_scene.push_front(std::make_shared <CMapEditor>(this));
+		_scene.push_front(std::make_unique <CMapEditor>(this));
 		break;
 	case Constant::SCENE_ID::SCENE_TITLE:
-		_scene.push_front(std::make_shared <Scene_Title>(this));
+		_scene.push_front(std::make_unique <Scene_Title>(this));
 		break;
 	case Constant::SCENE_ID::SCENE_QUIT:
 		isQuit = true;
 		break;
 	case Constant::SCENE_ID::SCENE_GAMEOVER:
-		_scene.push_front(std::make_shared<Scene_Gameover>(this));
+		_scene.push_front(std::make_unique<Scene_Gameover>(this));
 		break;
 	case Constant::SCENE_ID::SCENE_STAGECLEAR:
-		_scene.push_front(std::make_shared<Scene_Stageclear>(this));
+		_scene.push_front(std::make_unique<Scene_Stageclear>(this));
 		break;
 	case Constant::SCENE_ID::SCENE_UPGRADE:
-		_scene.push_front(std::make_shared<Scene_Upgrade>(this));
+		_scene.push_front(std::make_unique<Scene_Upgrade>(this));
 		break;
 	case Constant::SCENE_ID::SCENE_GAMECLEAR:
-		_scene.push_front(std::make_shared<Scene_Gameclear>(this));
+		_scene.push_front(std::make_unique<Scene_Gameclear>(this));
 		break;
 	}
 }

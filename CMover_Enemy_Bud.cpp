@@ -17,8 +17,11 @@ int CMover_Enemy_Bud::Update()
 		cnt++;
 		if (cnt == 90) {
 			Find_Route();
-			CVector ppos = med.lock()->GetPlayerPosition();
-			if(!!ppos && route.size() <= 4)med.lock()->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos-Position).getAngle()));
+			if (auto r = med) {
+				CVector ppos = r->GetPlayerPosition();
+				if (!!ppos && route.size() <= 4)r->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos - Position).getAngle()));
+
+			}
 			cnt = 0;
 		}
 		if(route.size() >= 4)Move_on_Route();

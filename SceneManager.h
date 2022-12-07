@@ -7,7 +7,7 @@ class Scene_Abstract;
 class SceneManager
 {
 protected:
-	std::list<std::shared_ptr<Scene_Abstract>> _scene;
+	std::list<std::unique_ptr<Scene_Abstract>> _scene;
 public:
 	SceneManager();
 	virtual ~SceneManager();

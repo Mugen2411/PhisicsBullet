@@ -10,11 +10,11 @@ class CField;
 
 class CFieldParent
 {
-	std::weak_ptr<CGameMediator> med;
-	std::shared_ptr<CFieldHolder> fieldHolder;
+	CGameMediator* med;
+	std::unique_ptr<CFieldHolder> fieldHolder;
 	
 public:
-	CFieldParent(std::shared_ptr<CGameMediator>, std::string);
+	CFieldParent(CGameMediator*, std::string);
 	~CFieldParent();
 	void Update();
 	void ApplyForceToMover(CMover* m);

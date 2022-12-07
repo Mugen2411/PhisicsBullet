@@ -2,7 +2,7 @@
 #include "CPower.h"
 #include "CPower_Line.h"
 
-CPowerParent::CPowerParent(std::shared_ptr<CGameMediator> m) : med(m)
+CPowerParent::CPowerParent(CGameMediator* m) : med(m)
 {
 }
 

@@ -61,7 +61,7 @@ void CFieldHolder::Render() const
 	}
 }
 
-void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level, CVector &playerPos)
+void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector &playerPos)
 {
 	std::string fn = filePath;
 	std::vector<Spawner_Desc> sdList;
@@ -123,6 +123,7 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 	CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));
 	std::vector<CVector> ret;
 	using PP = std::pair<double, CVector>;
+
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
 			g[x][y] = ((floorlist[index(x, y)]->getDamage() + walllist[index(x, y)]->getDamage()) / attrDEF).Sum() * 24;
@@ -189,6 +190,7 @@ int CFieldHolder::Load() {
 
 	fin >> width;
 	fin >> height;
+	if (width == 0 || height == 0)return 1;
 
 	floorlist.resize(height * width);
 	walllist.resize(height * width);

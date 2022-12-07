@@ -19,7 +19,7 @@ public:
 		MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET
 	};
 protected:
-	std::weak_ptr<CGameMediator> med;
+	CGameMediator* med;
 
 	CVector Position;		//ç¿ïW
 	CVector Velocity;		//ë¨ìx
@@ -39,7 +39,7 @@ public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
 		double mass, COF cofs, double temperature);
 	virtual ~CMover() {};
-	inline void setMediator(std::shared_ptr<CGameMediator> m) {
+	inline void setMediator(CGameMediator* m) {
 		med = m;
 	}
 	inline CVector getPosition() {

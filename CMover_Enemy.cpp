@@ -40,8 +40,8 @@ void CMover_EnemyBase::Move_on_Route()
 
 void CMover_EnemyBase::Find_Route()
 {
-	if (!med.lock())return;
-	route = med.lock()->GetRoute(Position, med.lock()->GetPlayerPosition(), attrDEF);
+	if (!med)return;
+	route = med->GetRoute(Position, med->GetPlayerPosition(), attrDEF);
 }
 
 void CMover_EnemyBase::BaseUpdate()
@@ -154,7 +154,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 void CMover_EnemyBase::Drop()
 {
 	int val = std::ceil(baseMoney * (1 + baseParams.Level * 0.1)) + (baseParams.Level / 5.0);
-	med.lock()->getMoney(val);
+	if(auto r = med)r->getMoney(val);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
 

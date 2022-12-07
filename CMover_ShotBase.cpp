@@ -42,7 +42,7 @@ void CMover_ShotBase::RatioDamage(CAttribute shotATK, int style)
 CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 {
 	if (!target.lock()) {
-		target = med.lock()->GetNearestMover(CMover::MOVER_ID::MV_ENEMY, Position);
+		target = med->GetNearestMover(CMover::MOVER_ID::MV_ENEMY, Position);
 		return CVector(0.0, 0.0);
 	}
 	auto diff = (target.lock()->getPosition() - (Position + Velocity)).getNorm();

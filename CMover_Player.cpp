@@ -157,7 +157,7 @@ int CMover_Player::DamageColor(CAttribute shotATK)
 
 void CMover_Player::RegisterShot(std::shared_ptr<CMover_ShotBase> s)
 {
-	med.lock()->RegisterMover(s);
+	med->RegisterMover(s);
 }
 
 void CMover_Player::Hit(CMover_EnemyBase* m)

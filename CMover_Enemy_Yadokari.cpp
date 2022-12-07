@@ -13,24 +13,30 @@ int CMover_Enemy_Yadokari::Update()
 {
 	switch (state) {
 	case 0:
-	case 1:
 		cnt++;
-		if (cnt == 90) {
+		if (cnt % 60 == 0) {
 			Find_Route();
-			if (auto r = med) {
-				CVector ppos = r->GetPlayerPosition();
-				if (!!ppos && route.size() <= 5) {
-					for (int i = 0; i < 3; i++) {
-						r->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, (ppos - Position).getAngle(), 7.0 + i * 3.0));
-					}
-				}
-			}
-			
-			cnt = 0;
 		}
 		if (route.size() >= 5)Move_on_Route();
+		else {
+			CVector ppos = med->GetPlayerPosition();
+			for (int i = 0; i < 3; i++) {
+				med->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, (ppos - Position).getAngle(), 7.0 + i * 3.0));
+			}
+			state = 1;
+			cnt = 0;
+			break;
+		}
 		animCount += 0.3;
 		if (animCount > 4)animCount = 0;
+		break;
+	case 1:
+		if (cnt > 40) {
+			state = 0;
+			cnt = 0;
+			break;
+		}
+		cnt++;
 		break;
 	case -1:
 		animCount += 0.1;

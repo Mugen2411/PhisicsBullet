@@ -17,7 +17,7 @@ CImageManager::CImageManager()
     imgList["system_status_guage"] = std::make_shared<CImage>("media/graphic/system/game/status_guage.png", 4, 1, 4, 240, 16);
     imgList["system_status_name"] = std::make_shared<CImage>("media/graphic/system/game/status_name.png", 6, 1, 6, 80, 16);
     imgList["system_status_next_now"] = std::make_shared<CImage>("media/graphic/system/game/status_next_now.png", 2, 2, 1, 16, 16);
-    imgList["system_costume_frame"] = std::make_shared<CImage>("media/graphic/system/game/costume_frame.png", 38, 38);
+    imgList["system_costume_frame"] = std::make_shared<CImage>("media/graphic/system/game/costume_frame.png", 96, 38);
     imgList["title_face"] = std::make_shared<CImage>("media/graphic/system/game/titleKomuk_x4.png", 1, 1, 1, 512, 512);
 
     imgList["effect_bulletdelete"] = std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
@@ -32,6 +32,8 @@ CImageManager::CImageManager()
     imgList["enemy_bud_intro"] = std::make_shared<CImage>("media/graphic/enemy/bud/intro.png", 4, 4, 1, 32, 32);;
     imgList["bullet_bud_corn"] = std::make_shared<CImage>("media/graphic/enemy/bud/corn.png", 16, 16);
     imgList["enemy_shimaenaga"] = std::make_shared<CImage>("media/graphic/enemy/shimaenaga/shimaenaga.png", 4, 4, 1, 32, 32);
+    imgList["enemy_yadokari"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/yadokari.png", 16, 4, 4, 32, 32);
+    imgList["bullet_yadokari_watersplash"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/water.png", 32, 32);
 
     imgList["shot_uniform_homing"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png", 16, 16);
     imgList["shot_uniform_strongmagic"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/strongmagic.png", 24, 24);

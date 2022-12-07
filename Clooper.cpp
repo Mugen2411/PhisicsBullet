@@ -13,7 +13,7 @@
 #include "CAnchor.h"
 #include "CProgressData.h"
 
-CGame::CGame():fps(),isQuit(false)
+CGame::CGame() :fps(), isQuit(false)
 {
 	ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
 }
@@ -30,7 +30,7 @@ void CGame::Run()
 	(*_scene.begin())->Update();
 	if (_scene.empty())return;
 	fps.Update();
-	for(auto &i : _scene){
+	for (auto& i : _scene) {
 		i->Render();
 	}
 	CRenderReserveList::Render();

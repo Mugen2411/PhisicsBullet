@@ -8,8 +8,14 @@
 CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 {
 	if (Load() == 0) {
-		dist = std::vector<std::vector<double> >(width, std::vector<double>(height, Constant::dbl_INF));
-		g = std::vector<std::vector<double> >(width, std::vector<double>(height, 0.0));
+		dist = std::vector<std::vector<double> >(width);
+		for (auto& i : dist) {
+			i = std::vector<double>(height, Constant::dbl_INF);
+		}
+		g = std::vector<std::vector<double> >(width);
+		for (auto& i : g) {
+			i = std::vector<double>(height, 0.0);
+		}
 		pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
 		return;
 	}
@@ -23,36 +29,36 @@ CFieldHolder::~CFieldHolder()
 {
 }
 
-void CFieldHolder::writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
+void CFieldHolder::writefloor(CField* f, unsigned int x, unsigned int y)
 {
 	if (0 > x || x >= width || 0 > y || y >= height)return;
-	floorlist[width * y + x] = f;
+	floorlist[width * y + x].reset(f);
 }
 
-void CFieldHolder::writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y)
+void CFieldHolder::writewall(CField* f, unsigned int x, unsigned int y)
 {
 	if (0 > x || x > width || 0 > y || y > height)return;
-	walllist[width * y + x] = f;
+	walllist[width * y + x].reset(f);
 }
 
 void CFieldHolder::Update()
 {
-	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
+	for (auto& i : walllist) {
 		i->Update();
-		});
-	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
+	}
+	for (auto& i : floorlist) {
 		i->Update();
-		});
+	}
 }
 
 void CFieldHolder::Render() const
 {
-	std::for_each(walllist.begin(), walllist.end(), [](std::shared_ptr<CField> i) {
+	for (auto& i : walllist) {
+		if(i->isInScreen())i->Render();
+	}
+	for (auto& i : floorlist) {
 		if (i->isInScreen())i->Render();
-		});
-	std::for_each(floorlist.begin(), floorlist.end(), [](std::shared_ptr<CField> i) {
-		if (i->isInScreen())i->Render();
-		});
+	}
 }
 
 void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, std::weak_ptr<CGameMediator> med, int level, CVector &playerPos)
@@ -99,11 +105,11 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 		tmp = walllist[i]->getGID();
 		if (tmp[0] == 'E') {
 			es.push_back(std::make_unique<CEnemySpawner>(med, walllist[i]->Position, level, sdList[std::stoi(tmp.erase(0, 1))]));
-			walllist[i] = std::shared_ptr<CField>(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
+			walllist[i].reset(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
 		}
 		if (tmp[0] == 'P') {
 			playerPos = walllist[i]->Position;
-			walllist[i] = std::shared_ptr<CField>(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
+			walllist[i].reset(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
 		}
 	}
 }
@@ -169,12 +175,12 @@ void CFieldHolder::Save()
 	std::ofstream fout;
 	fout.open(filePath);
 	fout << width << "\n" << height << "\n";
-	std::for_each(floorlist.begin(), floorlist.end(), [&](std::shared_ptr<CField> i) {
+	for (auto& i : floorlist) {
 		i->Save(fout);
-		});
-	std::for_each(walllist.begin(), walllist.end(), [&](std::shared_ptr<CField> i) {
+	}
+	for (auto& i : walllist) {
 		i->Save(fout);
-		});
+	}
 }
 
 int CFieldHolder::Load() {

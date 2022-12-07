@@ -209,9 +209,11 @@
     <ClCompile Include="CMover.cpp" />
     <ClCompile Include="CMoverParent.cpp" />
     <ClCompile Include="CMover_Bullet_Corn.cpp" />
+    <ClCompile Include="CMover_Bullet_WaterSplash.cpp" />
     <ClCompile Include="CMover_Enemy.cpp" />
     <ClCompile Include="CMover_Enemy_Bud.cpp" />
     <ClCompile Include="CMover_Enemy_Shimaenaga.cpp" />
+    <ClCompile Include="CMover_Enemy_Yadokari.cpp" />
     <ClCompile Include="CMover_Player.cpp" />
     <ClCompile Include="CMover_BulletBase.cpp" />
     <ClCompile Include="CMover_ShotBase.cpp" />
@@ -299,9 +301,11 @@
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
     <ClInclude Include="CMover_Bullet_Corn.h" />
+    <ClInclude Include="CMover_Bullet_WaterSplash.h" />
     <ClInclude Include="CMover_Enemy.h" />
     <ClInclude Include="CMover_Enemy_Bud.h" />
     <ClInclude Include="CMover_Enemy_Shimaenaga.h" />
+    <ClInclude Include="CMover_Enemy_Yadokari.h" />
     <ClInclude Include="CMover_Player.h" />
     <ClInclude Include="CMover_BulletBase.h" />
     <ClInclude Include="CMover_ShotBase.h" />

@@ -13,8 +13,8 @@ class CField;
 class CFieldHolder
 {
 protected:
-	std::vector<std::shared_ptr<CField>> walllist;
-	std::vector<std::shared_ptr<CField>> floorlist;
+	std::vector<std::unique_ptr<CField>> walllist;
+	std::vector<std::unique_ptr<CField>> floorlist;
 	std::vector<std::vector<double>> g, dist;
 	std::vector<std::vector<CVector>> pre;
 	unsigned int width, height;
@@ -24,15 +24,15 @@ public:
 	CFieldHolder(std::string filepath);
 	~CFieldHolder();
 
-	inline std::shared_ptr<CField> getFloor(unsigned int x, unsigned int y) {
-		return floorlist[width * y + x];
+	inline CField* getFloor(unsigned int x, unsigned int y) {
+		return floorlist[width * y + x].get();
 	}
-	inline std::shared_ptr<CField> getWall(unsigned int x, unsigned int y) {
-		return walllist[width * y + x];
+	inline CField* getWall(unsigned int x, unsigned int y) {
+		return walllist[width * y + x].get();
 	}
 
-	void writefloor(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
-	void writewall(std::shared_ptr<CField> f, unsigned int x, unsigned int y);
+	void writefloor(CField* f, unsigned int x, unsigned int y);
+	void writewall(CField* f, unsigned int x, unsigned int y);
 
 	inline int getWidth() {
 		return width;

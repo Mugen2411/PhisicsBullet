@@ -40,6 +40,7 @@ void CMover_EnemyBase::Move_on_Route()
 
 void CMover_EnemyBase::Find_Route()
 {
+	if (!med.lock())return;
 	route = med.lock()->GetRoute(Position, med.lock()->GetPlayerPosition(), attrDEF);
 }
 

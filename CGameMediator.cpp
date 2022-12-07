@@ -13,8 +13,8 @@
 #include "CEnemySpawner.h"
 #include "CProgressData.h"
 
-CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0),
-costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage()*3+1)
+CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0), isInitialized(false),
+costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1)
 {
 	input = CControllerFactory::getIns().getController();
 }
@@ -46,6 +46,8 @@ void CGameMediator::CreateParts()
 	CSoundManager::getIns().find("success")->SetVolume(0.5);
 	CSoundManager::getIns().find("bgm")->SetVolume(0.5);
 	CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
+	CEffectParent::Reset();
+	isInitialized = true;
 }
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)
@@ -98,6 +100,7 @@ void CGameMediator::getMoney(int value)
 
 void CGameMediator::Update()
 {
+	if (!isInitialized)return;
 #ifdef _DEBUG
 	if (input.lock()->Start() == 1) {
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
@@ -115,9 +118,12 @@ void CGameMediator::Update()
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		CProgressData::getIns().win(reserveMoney);
-		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage()-1)
+		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage() - 1) {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
-			else scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+		}
+		else {
+			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+		}
 		return;
 	}
 	if (isPause) {

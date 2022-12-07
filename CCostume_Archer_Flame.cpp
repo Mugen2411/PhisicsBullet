@@ -14,6 +14,6 @@ void CCostume_Archer_Flame::WeakShot(double baseATK, CVector position, float ang
 void CCostume_Archer_Flame::ChargeShot(double baseATK, CVector position, float angle)
 {
 	for (int i = -1; i < 2; i++) {
-		RegisterShot(std::make_shared<CMover_Shot_Archer_FlameArrow>(baseATK, position, angle+i*Constant::PI/12));
+		RegisterShot(std::make_shared<CMover_Shot_Archer_FlameArrow>(baseATK, position, angle+i*Constant::PI/24));
 	}
 }

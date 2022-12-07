@@ -30,6 +30,8 @@ protected:
 	int pauseGuage;
 	int cnt;
 
+	bool isInitialized;
+
 	int reserveMoney=0;	//‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
 
 	std::unique_ptr<CCostumeBase*> costumeNowFocusOn;

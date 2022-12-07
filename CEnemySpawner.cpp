@@ -9,7 +9,7 @@ int CEnemySpawner::Update() {
 	if (desc.timeToSpawn == 0) {
 		if ((rand() - (rand.min)()) / (double)(rand.max)() > desc.spawnProbability * 0.01)return 1;
 		for (int i = 0; i < desc.countOfSpawn; i++) {
-			mp.lock()->RegisterMover(CEF.create(desc.GID, pos, level));
+			mp.lock()->RegisterMover(CEF.create(desc.GID, pos, level+GetRand(2)));
 		}
 		return 1;
 	}

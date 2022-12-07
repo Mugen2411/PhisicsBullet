@@ -11,9 +11,10 @@ class CMover_BulletBase :
 protected:
     CAttribute ATK;
     CStatus baseParams;
+    int color;
 public:
     CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, 
-        COF cofs);
+        COF cofs, int color);
 
     void BaseUpdate();
     bool BaseRender()const;

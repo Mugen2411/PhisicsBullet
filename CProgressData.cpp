@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 
-CProgressData::CProgressData() :currentStage(0), maxStage(2), earnedMoney(0), data{maxStage,0,0} {
+CProgressData::CProgressData() :currentStage(0), maxStage(3), earnedMoney(0), data{0,0,0} {
 }
 
 void CProgressData::save()

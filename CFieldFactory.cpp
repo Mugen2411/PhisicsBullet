@@ -16,7 +16,7 @@
 void CFieldFactory::RegisterWall(CField* f)
 {
 	f->Move(CVector(wx * 32 + 16, wy * 32 + 16));
-	wall_prototypes.push_back(std::shared_ptr<CField>(f));
+	wall_prototypes.push_back(std::unique_ptr<CField>(f));
 	wx++;
 	if (wx == 20) {
 		wx = 0; wy++;
@@ -26,7 +26,7 @@ void CFieldFactory::RegisterWall(CField* f)
 void CFieldFactory::RegisterFloor(CField* f)
 {
 	f->Move(CVector(fx * 32 + 16, fy * 32 + 16));
-	floor_prototypes.push_back(std::shared_ptr<CField>(f));
+	floor_prototypes.push_back(std::unique_ptr<CField>(f));
 	fx++;
 	if (fx == 20) {
 		fx = 0; fy++;
@@ -82,7 +82,7 @@ CFieldFactory::CFieldFactory()
 	RegisterWall(new CField_Void("W_Void", CVector()));
 }
 
-std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
+CField* CFieldFactory::create(int x, int y, std::string name)
 {
 	x *= 32;
 	x += 16;
@@ -90,12 +90,12 @@ std::shared_ptr<CField> CFieldFactory::create(int x, int y, std::string name)
 	y += 16;
 	//ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
 	if (name[0] == 'W' || name[0] == 'E' || name[0] == 'P') {
-		auto itr = std::find_if(wall_prototypes.begin(), --wall_prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
-		return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
+		auto itr = std::find_if(wall_prototypes.begin(), --wall_prototypes.end(), [name](std::unique_ptr<CField>& f) {return *f == name; });
+		return ((*itr)->Clone(CVector(x, y)));
 	}
 	else {
-		auto itr = std::find_if(floor_prototypes.begin(), --floor_prototypes.end(), [name](std::shared_ptr<CField>& f) {return *f == name; });
-		return std::shared_ptr<CField>((*itr)->Clone(CVector(x, y)));
+		auto itr = std::find_if(floor_prototypes.begin(), --floor_prototypes.end(), [name](std::unique_ptr<CField>& f) {return *f == name; });
+		return ((*itr)->Clone(CVector(x, y)));
 	}
 	
 }

@@ -387,6 +387,12 @@
     <ClCompile Include="Scene_Gameclear.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Enemy_Yadokari.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Bullet_WaterSplash.cpp">
+      <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -658,6 +664,12 @@
     </ClInclude>
     <ClInclude Include="Scene_Gameclear.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy_Yadokari.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Bullet_WaterSplash.h">
+      <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,9 +6,9 @@
 #include <DxLib.h>
 #include "CAnchor.h"
 
-CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs)
+CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int color = 0xFFFFFF)
 	:CMover(MV_BULLET, position, size, velocity, mass, cofs, 0)
-	,baseParams(baseparams), ATK(atk)
+	,baseParams(baseparams), ATK(atk), color(color)
 {
 }
 
@@ -25,7 +25,7 @@ bool CMover_BulletBase::BaseRender() const
 
 void CMover_BulletBase::Dead()
 {
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, 0xFF0000));
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(Position, Velocity, Size, color));
 }
 
 void CMover_BulletBase::Disappear()

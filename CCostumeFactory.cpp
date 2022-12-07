@@ -11,8 +11,8 @@ void CCostumeFactory::Register(CCostumeBase* f)
 
 CCostumeFactory::CCostumeFactory()
 {
-	Register(new CCostume_Festa("C_Festa"));
 	Register(new CCostume_Uniform("C_Uniform"));
+	Register(new CCostume_Festa("C_Festa"));
 	Register(new CCostume_Archer_Flame("C_Archer_Flame"));
 }
 

@@ -23,7 +23,7 @@ CStatus::CStatus(int Level, double atkCF, double hpCF)
 void CStatus::Calculate()
 {
 	ATK = (100 * std::pow(1.08, Level) + 2 * Level) * atkCF;
-	MaxHP = (1000 * std::pow(1.08, Level) + 5 * Level) * hpCF;
+	MaxHP = (500 * std::pow(1.08, Level) + 5 * Level) * hpCF;
 	HP = MaxHP;
 }
 

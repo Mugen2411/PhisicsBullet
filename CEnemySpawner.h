@@ -11,6 +11,7 @@ struct Spawner_Desc {
 	int timeToSpawn = 0;
 	int countOfSpawn = 0;
 	int spawnProbability = 100;
+	Spawner_Desc():GID(), timeToSpawn(0), countOfSpawn(0), spawnProbability(100){}
 };
 
 class CEnemySpawner {

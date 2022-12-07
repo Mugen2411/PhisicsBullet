@@ -19,7 +19,7 @@ CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 		pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
 		return;
 	}
-	else{
+	else {
 		OutputDebugString("Stage Load Error");
 		exit(1);
 	}
@@ -54,14 +54,14 @@ void CFieldHolder::Update()
 void CFieldHolder::Render() const
 {
 	for (auto& i : walllist) {
-		if(i->isInScreen())i->Render();
+		if (i->isInScreen())i->Render();
 	}
 	for (auto& i : floorlist) {
 		if (i->isInScreen())i->Render();
 	}
 }
 
-void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector &playerPos)
+void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector& playerPos)
 {
 	std::string fn = filePath;
 	std::vector<Spawner_Desc> sdList;
@@ -71,10 +71,13 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 	int ver;
 	char buf[256];
 	std::string tmp;
-	for (int i = 0; i < 32;i++) {
+	for (int i = 0; i < 32; i++) {
+		for (auto& b : buf) {
+			b = '\0';
+		}
 		if (FileRead_gets(buf, 256, fp) == -1)break;
 		int cnt = 0;
-		Spawner_Desc desc = Spawner_Desc{};
+		Spawner_Desc desc = Spawner_Desc();
 		std::stringstream stream(std::string(buf, 256), std::ios::in);
 		while (std::getline(stream, tmp, ',')) {
 			if (tmp.empty())break;

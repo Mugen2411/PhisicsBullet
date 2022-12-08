@@ -3,7 +3,7 @@
 CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass,
 	COF cofs, double temperature)
 	:Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
-	Mass(mass), nowFricted(0.0), Cofs(cofs), Temperature(temperature), Status(0), Category(ID)
+	Mass(mass), nowFricted(0.0), nowWatered(0.0), Cofs(cofs), Temperature(temperature), Status(0), Category(ID)
 {
 }
 
@@ -27,7 +27,7 @@ void CMover::Hit(CMover_BulletBase* m)
 {
 }
 
-void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)
+bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)
 {
 	CVector nextPosition = Position + Velocity + Acceleration;
 	double max = (Position.x + Size) - (WallPosition.x - WallSize.x / 2), may = (Position.y + Size) - (WallPosition.y - WallSize.y / 2);
@@ -136,4 +136,5 @@ void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 		frictionForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		ifonWall();
 	}
+	return U || D || R || L;
 }

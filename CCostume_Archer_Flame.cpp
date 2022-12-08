@@ -3,7 +3,7 @@
 #include "CMover_Shot_Archer_FlameArrow.h"
 
 CCostume_Archer_Flame::CCostume_Archer_Flame(std::string GID) :
-	CCostumeBase("media/graphic/character/komuk/costume/archer/flame.png", 0.15, 40, 24, 10, 4.5, 2.0, 18.0, CAttribute(1.0).FIRE(1.5), COF(0.7, 0.95, 0.05, 0.0), GID) {
+	CCostumeBase("media/graphic/character/komuk/costume/archer/flame.png", 0.15, 40, 24, 10, 4.0, 2.0, 18.0, CAttribute(1.0).FIRE(1.5), COF(0.7, 0.97, 0.05, 0.0), GID) {
 }
 
 void CCostume_Archer_Flame::WeakShot(double baseATK, CVector position, float angle)

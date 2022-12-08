@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level) :
-	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 3.0, 1.5, COF(0.5, 0.1, 0.6, 0.1)),
+	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 2.5, 1.5, COF(0.7, 0.2, 0.08, 0.1)),
 	testDest(0.0, 0.0)
 {
 }
@@ -19,9 +19,7 @@ int CMover_Enemy_Yadokari::Update()
 		if (!route.empty())Move_on_Route();
 		else {
 			CVector ppos = med->GetPlayerPosition();
-			for (int i = 0; i < 3; i++) {
-				med->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, (ppos - Position).getAngle(), 7.0 + i * 3.0));
-			}
+			focus = (ppos - Position).getAngle();
 			state = 1;
 			cnt = 0;
 			break;
@@ -31,7 +29,12 @@ int CMover_Enemy_Yadokari::Update()
 		if (animCount > 4)animCount = 0;
 		break;
 	case 1:
-		if (cnt > 40) {
+		if (cnt == 25) {
+			for (int i = 0; i < 3; i++) {
+				med->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, focus, 6.0 + i * 3.6));
+			}
+		}
+		if (cnt > 60) {
 			state = 0;
 			cnt = 0;
 			break;

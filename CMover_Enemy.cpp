@@ -20,7 +20,7 @@ void CMover_EnemyBase::Walk(CVector destination)
 {
 	CVector diff = (destination - Position).getNorm() * MaxSpeed;
 	CVector v = diff - Velocity;
-	Acceleration += v.getNorm() * min(v.getLength(), 1.0) * Accel;
+	Acceleration += v.getNorm() * min(v.getLength(), 1.0) * Accel * std::sqrtl(nowFricted * Cofs.FrictionCF) * std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
 }
 
 void CMover_EnemyBase::Move_on_Route()

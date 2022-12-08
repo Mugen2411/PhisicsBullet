@@ -54,7 +54,7 @@ public:
 	}
 	virtual CField* Clone(CVector position) = 0;
 
-	virtual void Hit(CMover* m) {}		//‹ß‚­‚É•¨‘Ì‚ª‚ ‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éA‰½‚à‚µ‚½‚­‚È‚¯‚ê‚Î‚µ‚È‚­‚Ä‚à‚¢‚¢
+	virtual bool Hit(CMover* m) { return false; }		//‹ß‚­‚É•¨‘Ì‚ª‚ ‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éA‰½‚à‚µ‚½‚­‚È‚¯‚ê‚Î‚µ‚È‚­‚Ä‚à‚¢‚¢
 	virtual void Update();
 	virtual void Render()const;
 

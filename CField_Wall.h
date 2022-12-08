@@ -7,6 +7,6 @@ class CField_Wall :
 public:
     CField_Wall(std::string GID, CVector position, COF cofs);
 
-    void Hit(CMover*)override;
+    bool Hit(CMover*)override;
 };
 

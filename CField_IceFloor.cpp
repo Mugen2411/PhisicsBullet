@@ -13,7 +13,7 @@ void CField_IceFloor::Update()
 		Damage = CAttribute(0.0).ICE(3.0);
 	}
 	else {
-		Cofs.setWaterResCF(0.9).setFrictionCF(0.2);
+		Cofs.setWaterResCF(0.8).setFrictionCF(0.2);
 		Damage = CAttribute(0.0).AQUA(3.0);
 	}
 }

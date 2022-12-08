@@ -6,6 +6,7 @@ class CMover_Enemy_Yadokari :
 {
 	CVector testDest;
 	int cnt = 0;
+	double focus;
 public:
 	CMover_Enemy_Yadokari(CVector position, int Level);
 	int Update();

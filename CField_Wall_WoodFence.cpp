@@ -4,6 +4,7 @@
 CField_Wall_WoodFence::CField_Wall_WoodFence(std::string gid, CVector position, int state)
 	:CField_Wall(gid, position, COF().setReflectCF(0.8)), state(state)
 {
+	Damage = CAttribute(12.0);
 }
 
 void CField_Wall_WoodFence::Update()

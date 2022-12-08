@@ -20,7 +20,7 @@ void CMover_Player::Walk()
 {
 	CVector v = input.lock()->getVector();
 	CVector a = v * costume->MaxSpeed - Velocity;
-	Acceleration += a.getNorm() * costume->Accelaration;
+	Acceleration += a.getNorm() * costume->Accelaration * std::sqrtl(nowFricted*Cofs.FrictionCF) * std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
 }
 
 void CMover_Player::BaseUpdate()

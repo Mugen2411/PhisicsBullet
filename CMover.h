@@ -27,6 +27,7 @@ protected:
 
 	double Mass;			//質量
 	double nowFricted;		//現在受けている摩擦系数
+	double nowWatered;		//同じく水の抵抗
 	COF Cofs;				//各種定数
 	double Temperature;		//温度
 
@@ -61,6 +62,9 @@ public:
 	inline int getCategory() {
 		return Category;
 	}
+	inline void setStatus(int status) {
+		Status = status;
+	}
 	inline void ApplyForce(CVector F) {
 		Acceleration += (F / Mass);
 	}	//力をかける
@@ -78,6 +82,7 @@ public:
 		ApplyForce(F * Cofs.AirResCF);
 	}
 	inline void ApplyWaterRegistance(double waterResCF) {
+		nowWatered = waterResCF;
 		auto NormA = Velocity;
 		waterForce = (-NormA * Cofs.WaterResCF * waterResCF);
 	}
@@ -132,7 +137,7 @@ public:
 	virtual void Damage(CAttribute shotATK, int style) = 0;			//ダメージを受ける処理
 	virtual void RatioDamage(CAttribute shotATK, int style) = 0;	//割合ダメージを受ける処理
 
-	void onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//壁の上に乗ったか判定し、反射する
+	bool onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//壁の上に乗ったか判定し、反射する
 	virtual void ifonWall() {};
 };
 

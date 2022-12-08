@@ -6,8 +6,9 @@ CField_Wall::CField_Wall(std::string GID, CVector position, COF cofs)
 {
 }
 
-void CField_Wall::Hit(CMover* m)
+bool CField_Wall::Hit(CMover* m)
 {
-	if(isWall)m->onWall(Position, Size, Cofs.ReflectCF);
+	if(isWall)return m->onWall(Position, Size, Cofs.ReflectCF);
+	return false;
 }
 

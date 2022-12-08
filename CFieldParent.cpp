@@ -27,10 +27,10 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	CVector p = m->getPosition();
 	int x = p.x / 32;
 	int y = p.y / 32;
-	if (x < 0)m->setPosition(p.x = 0);
-	if (y < 0)m->setPosition(p.y = 0);
-	if (x > fieldHolder->getWidth())m->setPosition(p.x = 32* fieldHolder->getWidth());
-	if (y > fieldHolder->getHeight())m->setPosition(p.y = 32 * fieldHolder->getHeight());
+	if (x < 0)m->setStatus(2);
+	if (y < 0)m->setStatus(2);
+	if (x > fieldHolder->getWidth())m->setStatus(2);
+	if (y > fieldHolder->getHeight())m->setStatus(2);
 
 	p = m->getPosition();
 	x = p.x / 32;
@@ -52,11 +52,14 @@ void CFieldParent::HitToMover(CMover* m)
 	CVector p = m->getPosition();
 	int x = p.x / 32;
 	int y = p.y / 32;
+
+	int hittedWall = 0;
 	for (int ay = max(0, y - 3); ay < min(fieldHolder->getHeight(), y + 3); ay++) {
 		for (int ax = max(0, x - 3); ax < min((int)fieldHolder->getWidth(), x + 3); ax++) {
-			fieldHolder->getWall(ax, ay)->Hit(m);
+			if (fieldHolder->getWall(ax, ay)->Hit(m))hittedWall++;
 		}
 	}
+	if (hittedWall > 4)m->setStatus(2);
 }
 
 std::list<CVector> CFieldParent::getRoute(CVector start, CVector goal, CAttribute attrDEF, int distance)

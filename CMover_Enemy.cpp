@@ -18,11 +18,9 @@ CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double 
 
 void CMover_EnemyBase::Walk(CVector destination)
 {
-	CVector diff = (destination - Position).getNorm();
-	double angle = diff.getAngle();
-	Direction = diff.getDirection();
-	if (diff.dot(Velocity) > MaxSpeed)return;
-	Acceleration += diff * Accel * nowFricted * Constant::Frame;
+	CVector diff = (destination - Position).getNorm() * MaxSpeed;
+	CVector v = diff - Velocity;
+	Acceleration += v.getNorm() * min(v.getLength(), 1.0) * Accel;
 }
 
 void CMover_EnemyBase::Move_on_Route()
@@ -47,7 +45,7 @@ void CMover_EnemyBase::findTargetByDistance(int distance)
 {
 	if (!med)return;
 	std::vector<CVector> dists = med->GetTargetByDistance(med->GetPlayerPosition(), distance);
-	std::uniform_int_distribution<> r(0, dists.size()-1);
+	std::uniform_int_distribution<> r(0, dists.size() - 1);
 	CVector target = dists[r(rand)];
 	route = med->GetRoute(Position, target, attrDEF, 0);
 }
@@ -162,7 +160,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 void CMover_EnemyBase::Drop()
 {
 	int val = std::ceil(baseMoney * (1 + baseParams.Level * 0.1)) + (baseParams.Level / 5.0);
-	if(auto r = med)r->getMoney(val);
+	if (auto r = med)r->getMoney(val);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
 
@@ -176,14 +174,14 @@ int CMover_EnemyBase::DamageColor(CAttribute shotATK)
 
 void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 {
-	CVector delta = (m->getPosition() - Position ).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
-	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
-	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
+	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
+	m->ApplyForce(Acceleration * 0.1 * Mass);
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)
 {
 	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
-	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
-	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
+	m->ApplyForce(Acceleration * 0.1 * Mass);
 }

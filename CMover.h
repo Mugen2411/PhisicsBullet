@@ -30,6 +30,10 @@ protected:
 	COF Cofs;				//Šeí’è”
 	double Temperature;		//‰·“x
 
+	CVector frictionForce;	//Ã~‚ğƒVƒ~ƒ…ƒŒ[ƒg‚·‚é‚½‚ß‚Éˆê•Û‘¶‚·‚é–€C—Í
+	CVector waterForce;		//“¯‚¶‚­…‚Ì’ïR
+	CVector airForce;		//“¯‚¶‚­‹ó‹C’ïR
+
 	double Size;			//•¨‘Ì‚Ì‘å‚«‚³(”¼Œa)
 
 	int Category;			//MOVER_ID‚É‚æ‚Á‚ÄƒJƒeƒSƒŠ•ª‚¯
@@ -63,24 +67,48 @@ public:
 	inline void ApplyFrictionForce(double FloorFrictionCF) {
 		nowFricted = FloorFrictionCF;
 		auto NormA = Velocity;
-		ApplyForce(-NormA * Cofs.FrictionCF * FloorFrictionCF * Mass * Constant::Gravity * Constant::Frame);
+		double cons = Cofs.FrictionCF * FloorFrictionCF * Constant::Gravity;
+		frictionForce = (NormA * -cons);
 	}
 	inline void ApplyAirRegistance() {
 		auto NormA = Velocity;
-		ApplyForce(-NormA * Cofs.AirResCF * Mass * Constant::Frame);
+		airForce = (-NormA * Cofs.AirResCF);
 	}
 	inline void ApplyAirForce(CVector F) {
 		ApplyForce(F * Cofs.AirResCF);
 	}
 	inline void ApplyWaterRegistance(double waterResCF) {
 		auto NormA = Velocity;
-		ApplyForce(-NormA * Cofs.WaterResCF * waterResCF * Mass * Constant::Frame);
+		waterForce = (-NormA * Cofs.WaterResCF * waterResCF);
 	}
 	inline void ApplyWaterForce(CVector F) {
 		ApplyForce(F * Cofs.WaterResCF);
 	}
 	inline void Move() {
-		Velocity += Acceleration * Constant::perFrame;
+		Velocity += Acceleration;
+
+		//–€C‚Æ…‚Ì’ïR‚Æ‹ó‹C’ïR‚ÅÃ~‚·‚é
+		CVector frictedVelocity = Velocity + frictionForce;
+		if (frictedVelocity.dot(Velocity) < 0)frictedVelocity = CVector(0.0, 0.0);
+
+		CVector wateredVelocity = Velocity + waterForce;
+		if (wateredVelocity.dot(Velocity) < 0)wateredVelocity = CVector(0.0, 0.0);
+
+		CVector airedVelocity = Velocity + airForce;
+		if (airedVelocity.dot(Velocity) < 0)airedVelocity = CVector(0.0, 0.0);
+
+		if (frictedVelocity.getLength2() < Constant::zero_border ||
+			wateredVelocity.getLength2() < Constant::zero_border ||
+			airedVelocity.getLength2() < Constant::zero_border)
+		{
+			Velocity = CVector(0.0, 0.0);
+		}
+		else {
+			Velocity += frictionForce;
+			Velocity += waterForce;
+			Velocity += airForce;
+		}
+
 		Position += Velocity;
 		Acceleration.x = 0;
 		Acceleration.y = 0;

@@ -29,7 +29,7 @@ public:
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
 
-    CVector getHomingAngle(double maxSpeed);
+    CVector getHomingAngle();
     inline void HitDispatch(std::shared_ptr<CMover> m) {
         m->Hit(this);
     }

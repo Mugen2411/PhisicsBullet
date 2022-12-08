@@ -39,16 +39,13 @@ void CMover_ShotBase::RatioDamage(CAttribute shotATK, int style)
 {
 }
 
-CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
+CVector CMover_ShotBase::getHomingAngle()
 {
 	if (!target.lock()) {
 		target = med->GetNearestMover(CMover::MOVER_ID::MV_ENEMY, Position);
 		return CVector(0.0, 0.0);
 	}
 	auto diff = (target.lock()->getPosition() - (Position + Velocity)).getNorm();
-	if (diff.dot(Velocity) > maxSpeed) {
-		return diff - Velocity.getNorm();
-	}
 
 	return diff;
 }
@@ -56,7 +53,7 @@ CVector CMover_ShotBase::getHomingAngle(double maxSpeed)
 void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
 	m->Damage(ATK * baseATK, 1);
-	m->ApplyForce(Velocity.getNorm() * Mass * Constant::Frame * Velocity.getLength2());
+	m->ApplyForce(Velocity * Mass);
 	Status = 1;
 }
 

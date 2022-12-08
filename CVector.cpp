@@ -33,6 +33,6 @@ int CVector::getDirection()
 CVector CVector::getNorm()const
 {
 	double l = getLength();
-	if (l == 0.0)return CVector(0.0, 0.0);
+	if (l < Constant::zero_border)return CVector(0.0, 0.0);
 	return *this / l;
 }

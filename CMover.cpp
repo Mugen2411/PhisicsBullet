@@ -29,7 +29,7 @@ void CMover::Hit(CMover_BulletBase* m)
 
 void CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)
 {
-	CVector nextPosition = Position + Velocity + Acceleration * Constant::perFrame;
+	CVector nextPosition = Position + Velocity + Acceleration;
 	double max = (Position.x + Size) - (WallPosition.x - WallSize.x / 2), may = (Position.y + Size) - (WallPosition.y - WallSize.y / 2);
 	double nax = (WallPosition.x + WallSize.x / 2) - (Position.x - Size), nay = (WallPosition.y + WallSize.y / 2) - (Position.y - Size);
 	double _max = (nextPosition.x + Size) - (WallPosition.x - WallSize.x / 2), _may = (nextPosition.y + Size) - (WallPosition.y - WallSize.y / 2);

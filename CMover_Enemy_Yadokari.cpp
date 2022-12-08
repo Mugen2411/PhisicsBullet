@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level) :
-	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 3.0, 2.7, COF(0.1, 0.01, 0.6, 0.0)),
+	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 3.0, 1.5, COF(0.5, 0.1, 0.6, 0.1)),
 	testDest(0.0, 0.0)
 {
 }

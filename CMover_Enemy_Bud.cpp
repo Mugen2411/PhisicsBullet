@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level) :
-	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(0.4).FLOWER(2.0), 10, 0xFFFF00, position, 3.0, 2.4, COF(0.1, 0.7, 0.9, 0.0)),
+	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(0.3).FLOWER(2.0).AQUA(0.5), 10, 0xFFFF00, position, 2.7, 1.2, COF(0.7, 0.9, 0.06, 0.1)),
 	testDest(0.0, 0.0)
 {
 }
@@ -14,7 +14,7 @@ int CMover_Enemy_Bud::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			if (GetRand(10) == 0)findTargetByDistance(8);
+			if (GetRand(5) == 0)findTargetByDistance(8);
 				else Find_Route(4);
 		}
 		if (!route.empty()) {

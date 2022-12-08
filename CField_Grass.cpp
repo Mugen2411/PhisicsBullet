@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CField_Grass::CField_Grass(std::string gid, CVector position)
-	:CField(gid, position,CVector(32.0,32.0), COF().setFrictionCF(0.8), 0), animCount(0)
+	:CField(gid, position,CVector(32.0,32.0), COF().setFrictionCF(0.7), 0), animCount(0)
 {
 	if (GetRand(3) != 0)decoration = 0;
 	else {

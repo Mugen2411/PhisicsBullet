@@ -33,6 +33,8 @@ void CField_Wall_Log::Render() const
 	switch (state) {
 	case 1:
 		CImageManager::getIns().find("effect_flame")->DrawRotaFwithBlend(Position.x, Position.y, GetRand(16)/256.0f, 1.0, 0xFFFFFF, CImageManager::BM_ADD, 216, Constant::priority_effect, animCount);
+		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_decoration, 4);
+		break;
 	case 0:
 		CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_wall, 4);
 		break;

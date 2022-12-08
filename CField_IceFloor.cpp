@@ -2,19 +2,19 @@
 #include <DxLib.h>
 
 CField_IceFloor::CField_IceFloor(std::string gid, CVector position, double temperature)
-	:CField(gid, position, CVector(32.0, 32.0), COF().setFrictionCF(0.1), temperature, CAttribute(0.0).ICE(2.0))
+	:CField(gid, position, CVector(32.0, 32.0), COF().setFrictionCF(0.5), temperature, CAttribute(0.0).ICE(2.0))
 {
 }
 
 void CField_IceFloor::Update()
 {
 	if (Temperature < 0) {
-		Cofs.setWaterResCF(0.0);
-		Damage = CAttribute(0.0).ICE(2.0);
+		Cofs.setWaterResCF(0.0).setFrictionCF(0.1);
+		Damage = CAttribute(0.0).ICE(3.0);
 	}
 	else {
-		Cofs.setWaterResCF(0.7);
-		Damage = CAttribute(0.0).AQUA(0.5);
+		Cofs.setWaterResCF(0.8).setFrictionCF(0.2);
+		Damage = CAttribute(0.0).AQUA(3.0);
 	}
 }
 

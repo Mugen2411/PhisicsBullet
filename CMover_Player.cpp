@@ -18,23 +18,9 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 
 void CMover_Player::Walk()
 {
-	CVector v = input.lock()->getVector() * costume->Accelaration * nowFricted * Constant::Frame;
-	if (v.x < 0) {
-		if (Velocity.x > 0)Acceleration.x += v.x;
-		else if (-Velocity.x < costume->MaxSpeed)Acceleration.x += v.x;
-	}
-	else {
-		if (Velocity.x < 0)Acceleration.x += v.x;
-		else if (Velocity.x < costume->MaxSpeed)Acceleration.x += v.x;
-	}
-	if (v.y < 0) {
-		if (Velocity.y > 0)Acceleration.y += v.y;
-		else if (-Velocity.y < costume->MaxSpeed)Acceleration.y += v.y;
-	}
-	else {
-		if (Velocity.y < 0)Acceleration.y += v.y;
-		else if (Velocity.y < costume->MaxSpeed)Acceleration.y += v.y;
-	}
+	CVector v = input.lock()->getVector();
+	CVector a = v * costume->MaxSpeed - Velocity;
+	Acceleration += a.getNorm() * costume->Accelaration;
 }
 
 void CMover_Player::BaseUpdate()
@@ -162,7 +148,7 @@ void CMover_Player::RegisterShot(std::shared_ptr<CMover_ShotBase> s)
 
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
-	m->ApplyForce(Acceleration.getNorm() * Acceleration.getLength() * 0.1 * Mass);
+	m->ApplyForce(Acceleration * 0.1 * Mass);
 	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
-	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass * Size * Size);
+	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
 }

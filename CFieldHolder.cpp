@@ -4,6 +4,7 @@
 #include <queue>
 #include <strstream>
 #include <sstream>
+#include <cassert>
 
 CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 {
@@ -15,6 +16,10 @@ CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 		g = std::vector<std::vector<double> >(width);
 		for (auto& i : g) {
 			i = std::vector<double>(height, 0.0);
+		}
+		diff = std::vector<std::vector<int>>(width);
+		for (auto& i : diff) {
+			i = std::vector<int>(height, 0);
 		}
 		pre = std::vector<std::vector<CVector> >(width, std::vector<CVector>(height, CVector(-1, -1)));
 		return;
@@ -117,14 +122,14 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 	}
 }
 
-std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF)
+std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF, int distance)
 {
 	int dx[4] = { 0, 0, 1, -1 };
 	int dy[4] = { 1, -1, 0, 0 };
 
 	CVector s((int)((start.x) / 32), (int)((start.y) / 32));
 	CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));
-	std::vector<CVector> ret;
+	std::list<CVector> ret;
 	using PP = std::pair<double, CVector>;
 
 	for (int x = 0; x < width; x++) {
@@ -160,17 +165,59 @@ std::vector<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttr
 
 	CVector v;
 	for (; t.x != -1 || t.y != -1; t.x = pre[v.x][v.y].x, t.y = pre[v.x][v.y].y) {
-		ret.push_back(t);
+		ret.push_front(t);
 		v = t;
 	}
 	for (auto& i : ret) {
 		i *= 32.0;
 		i += CVector(16, 16);
 	}
-	*ret.begin() = goal;
-	ret.back() = start;
-	//std::reverse(ret.begin(), ret.end());
+	*ret.begin() = start;
+	ret.back() = goal;
+	for (int i = 0; i < distance; i++) {
+		if (ret.empty())break;
+		ret.pop_front();
+	}
 
+	return ret;
+}
+
+std::vector<CVector> CFieldHolder::findTargetByDistance(CVector start, int distance)
+{
+	int dx[4] = { 0, 0, 1, -1 };
+	int dy[4] = { 1, -1, 0, 0 };
+	std::vector<CVector> ret;
+	CVector s((int)((start.x) / 32), (int)((start.y) / 32));
+
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			diff[x][y] = 9999999;
+		}
+	}
+	std::priority_queue<CVector> pq;
+	pq.push(s);
+	diff[s.x][s.y] = 0;
+	while (!pq.empty()) {
+		CVector now = pq.top();
+		pq.pop();
+		int vx = now.x;
+		int vy = now.y;
+		for (int i = 0; i < 4; i++) {
+			int nx = vx + dx[i];
+			int ny = vy + dy[i];
+			if (nx < 0 || ny < 0 || nx >= width || ny >= height)continue;
+			if (walllist[index(nx, ny)]->isWall)continue;
+			if (diff[nx][ny] <= diff[vx][vy] + 1)continue;
+			diff[nx][ny] = diff[vx][vy] + 1;
+			assert(nx >= 0 && ny >= 0 && nx < width&& ny < height);
+			if (diff[nx][ny] == distance)ret.push_back(CVector(nx, ny));
+			pq.push(CVector(nx, ny));
+		}
+	}
+	for (auto& i : ret) {
+		i *= 32.0;
+		i += CVector(16, 16);
+	}
 	return ret;
 }
 

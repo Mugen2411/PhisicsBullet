@@ -4,7 +4,7 @@
 #include "CNumberDrawer.h"
 
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level) :
-	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 3.0, 1.8, COF(0.1, 0.01, 0.6, 0.0)),
+	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 3.0, 2.7, COF(0.1, 0.01, 0.6, 0.0)),
 	testDest(0.0, 0.0)
 {
 }
@@ -14,9 +14,9 @@ int CMover_Enemy_Yadokari::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			Find_Route();
+			Find_Route(6);
 		}
-		if (route.size() >= 5)Move_on_Route();
+		if (!route.empty())Move_on_Route();
 		else {
 			CVector ppos = med->GetPlayerPosition();
 			for (int i = 0; i < 3; i++) {
@@ -42,7 +42,7 @@ int CMover_Enemy_Yadokari::Update()
 		animCount += 0.1;
 		if (animCount > 4) {
 			state = 0;
-			Find_Route();
+			Find_Route(6);
 			animCount = 0;
 			cnt = 0;
 		}

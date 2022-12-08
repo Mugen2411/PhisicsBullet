@@ -2,6 +2,7 @@
 #include "CMover.h"
 #include "CStatus.h"
 #include "CAttribute.h"
+#include <random>
 
 class CMover_EnemyBase :
     public CMover
@@ -25,11 +26,12 @@ public:
 
     int Color;
 
-    std::vector<CVector> route;
+    std::list<CVector> route;
     
     virtual void Walk(CVector destination);
     virtual void Move_on_Route();
-    void Find_Route();
+    void Find_Route(int distance);
+    void findTargetByDistance(int distance);
 
     void BaseUpdate();
     bool BaseRender()const;
@@ -52,5 +54,9 @@ public:
     void Hit(CMover_Player*);
 
     virtual CMover_EnemyBase* Clone(CVector Position, int Level) = 0;
+
+protected:
+    std::random_device seed;
+    std::default_random_engine rand;
 };
 

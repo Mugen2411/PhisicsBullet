@@ -32,7 +32,7 @@ int CVector::getDirection()
 
 CVector CVector::getNorm()const
 {
-	double l = sqrt(getLength2());
+	double l = getLength();
 	if (l == 0.0)return CVector(0.0, 0.0);
 	return *this / l;
 }

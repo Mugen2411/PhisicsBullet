@@ -4,7 +4,7 @@
 #include "CSoundManager.h"
 
 CCostume_Festa::CCostume_Festa(std::string GID)
-	:CCostumeBase("media/graphic/character/komuk/costume/festa/komuk.png", 0.1, 60, 12, 10, 2.5, 1.5, 60.0, CAttribute(1.0).FLOWER(1.5), COF(0.5, 0.2, 0.1, 0.0), GID)
+	:CCostumeBase("media/graphic/character/komuk/costume/festa/komuk.png", 0.1, 60, 12, 10, 2.5, 1.5, 20.0, CAttribute(1.0).FLOWER(1.5), COF(0.5, 0.2, 0.1, 0.0), GID)
 {
 	CSoundManager::getIns().find("shot_superball")->SetVolume(0.3);
 	CSoundManager::getIns().find("shot_cork")->SetVolume(0.3);

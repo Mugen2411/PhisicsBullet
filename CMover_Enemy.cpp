@@ -12,7 +12,7 @@ CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double 
 	int color, CVector position, double accel, double maxSpeed, COF cofs) :
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0)
 	, Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
-	baseParams(Level, atkCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color)
+	baseParams(Level, atkCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color), seed(), rand(seed())
 {
 }
 
@@ -28,20 +28,28 @@ void CMover_EnemyBase::Walk(CVector destination)
 void CMover_EnemyBase::Move_on_Route()
 {
 	if (route.empty()) {
-		Find_Route();
 		return;
 	}
-	if ((Position - route.back()).getLength2() < 8 * 8) {
-		route.pop_back();
+	if ((Position - route.front()).getLength2() < 8 * 8) {
+		route.pop_front();
 		return;
 	}
-	Walk(route.back());
+	Walk(route.front());
 }
 
-void CMover_EnemyBase::Find_Route()
+void CMover_EnemyBase::Find_Route(int distance)
 {
 	if (!med)return;
-	route = med->GetRoute(Position, med->GetPlayerPosition(), attrDEF);
+	route = med->GetRoute(Position, med->GetPlayerPosition(), attrDEF, distance);
+}
+
+void CMover_EnemyBase::findTargetByDistance(int distance)
+{
+	if (!med)return;
+	std::vector<CVector> dists = med->GetTargetByDistance(med->GetPlayerPosition(), distance);
+	std::uniform_int_distribution<> r(0, dists.size()-1);
+	CVector target = dists[r(rand)];
+	route = med->GetRoute(Position, target, attrDEF, 0);
 }
 
 void CMover_EnemyBase::BaseUpdate()

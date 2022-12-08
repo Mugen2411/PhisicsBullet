@@ -62,7 +62,8 @@ public:
 	void RegisterMover(std::shared_ptr<CMover> m);
 	void ApplyForceToMover(CMover*);
 	CVector GetPlayerPosition();
-	std::vector<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF);
+	std::list<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF, int distance);
+	std::vector<CVector> GetTargetByDistance(CVector start, int distance);
 	std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
 	void getMoney(int value);
 

@@ -53,6 +53,7 @@ void CGameMediator::CreateParts()
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
 	RegisterMover(player = std::make_shared<CMover_Player>(playerPos, CProgressData::getIns().getPlayerLevel(), CCF.create("C_Uniform")));
 	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
+	CSoundManager::getIns().find("player_dead")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
 	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);
 	CSoundManager::getIns().find("success")->SetVolume(0.5);
@@ -81,9 +82,14 @@ CVector CGameMediator::GetPlayerPosition()
 	return CVector(p.lock()->getPosition());
 }
 
-std::vector<CVector> CGameMediator::GetRoute(CVector start, CVector goal, CAttribute attrDEF)
+std::list<CVector> CGameMediator::GetRoute(CVector start, CVector goal, CAttribute attrDEF, int distance)
 {
-	return fieldParent->getRoute(start, goal, attrDEF);
+	return fieldParent->getRoute(start, goal, attrDEF, distance);
+}
+
+std::vector<CVector> CGameMediator::GetTargetByDistance(CVector start, int distance)
+{
+	return fieldParent->getTargetByDistance(start, distance);
 }
 
 std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p)

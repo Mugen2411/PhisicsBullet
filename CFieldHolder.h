@@ -16,6 +16,7 @@ protected:
 	std::vector<std::unique_ptr<CField>> walllist;
 	std::vector<std::unique_ptr<CField>> floorlist;
 	std::vector<std::vector<double>> g, dist;
+	std::vector<std::vector<int>> diff;
 	std::vector<std::vector<CVector>> pre;
 	unsigned int width, height;
 	std::string filePath;
@@ -45,7 +46,8 @@ public:
 
 	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector &playerPos);
 
-	std::vector<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF);	//末尾が一番自分に近い！
+	std::list<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF, int distance);	//先頭が一番自分に近い！
+	std::vector<CVector> findTargetByDistance(CVector start, int distance);		//基準となる座標から一定の距離離れた点のベクトルを返す
 	inline int index(int x, int y) {
 		return y * width + x;
 	}

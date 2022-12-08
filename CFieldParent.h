@@ -18,7 +18,8 @@ public:
 	~CFieldParent();
 	void Update();
 	void ApplyForceToMover(CMover* m);
-	std::vector<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF);
+	std::list<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF, int distance);
+	std::vector<CVector> getTargetByDistance(CVector start, int distance);
 	void Render()const;
 	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level, CVector &playerPos) {
 		fieldHolder->convertSpawner(sp, med, level, playerPos);

@@ -16,7 +16,10 @@ Scene_Gameover::Scene_Gameover(SceneManager* ScnMng):Scene_Abstract(ScnMng), cnt
 
 void Scene_Gameover::Update()
 {
-	if (input.lock()->Select() == 1)scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+	if (input.lock()->Select() == 1) {
+		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+		return;
+	}
 	cnt = min(++cnt, 12);
 }
 

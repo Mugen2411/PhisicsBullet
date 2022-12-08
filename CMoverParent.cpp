@@ -37,6 +37,7 @@ void CMoverParent::Update()
 		(*itr)->BaseUpdate();
 		r = (*itr)->Update();
 		med->ApplyForceToMover(itr->get());
+		med->HitToMover(itr->get());
 		(*itr)->Move();
 		switch (r) {
 		case 0:

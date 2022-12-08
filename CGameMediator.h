@@ -61,6 +61,7 @@ public:
 
 	void RegisterMover(std::shared_ptr<CMover> m);
 	void ApplyForceToMover(CMover*);
+	void HitToMover(CMover*);
 	CVector GetPlayerPosition();
 	std::list<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF, int distance);
 	std::vector<CVector> GetTargetByDistance(CVector start, int distance);

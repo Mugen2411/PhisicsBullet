@@ -18,6 +18,7 @@ public:
 	~CFieldParent();
 	void Update();
 	void ApplyForceToMover(CMover* m);
+	void HitToMover(CMover* m);
 	std::list<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF, int distance);
 	std::vector<CVector> getTargetByDistance(CVector start, int distance);
 	void Render()const;

@@ -75,6 +75,11 @@ void CGameMediator::ApplyForceToMover(CMover* m)
 	fieldParent->ApplyForceToMover(m);
 }
 
+void CGameMediator::HitToMover(CMover* m)
+{
+	fieldParent->HitToMover(m);
+}
+
 CVector CGameMediator::GetPlayerPosition()
 {
 	std::weak_ptr<CMover> p = moverParent->getMover(CMover::MOVER_ID::MV_PLAYER, 0);

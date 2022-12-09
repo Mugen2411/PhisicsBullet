@@ -16,12 +16,21 @@ void CTextDrawer::Register(Text txt) {
 	textQueue.push_back(txt);
 }
 
+void CTextDrawer::RegisterForCostumeDetail(Text txt)
+{
+	costumeDetailQueue.push_back(txt);
+}
+
 void CTextDrawer::Render()const {
 	for (auto& i : textQueue) {
 		DrawStringToHandle(i.position.x, i.position.y, i.text.c_str(), i.mainColor, fontArray[i.fontID], i.edgeColor);
+	}
+	for (auto& i : costumeDetailQueue) {
+		DrawFormatStringToHandle(i.position.x, i.position.y, i.mainColor, fontArray[i.fontID], i.text.c_str());
 	}
 }
 
 void CTextDrawer::Clear() {
 	textQueue.clear();
+	costumeDetailQueue.clear();
 }

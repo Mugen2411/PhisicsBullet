@@ -350,5 +350,6 @@ void CGameMediator::RenderDresschangeMenu()const {
 			break;
 		}
 	}
+	CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
 	CAnchor::getIns().disableAbsolute();
 }

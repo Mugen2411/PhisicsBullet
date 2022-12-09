@@ -1,4 +1,5 @@
 #include "Constant.h"
+#include "CVector.h"
 
 double Constant::Gravity = 0.98;
 double Constant::Frame = 60.0;
@@ -25,3 +26,5 @@ int Constant::priority_shot = 1;
 int Constant::priority_number = 7;
 
 int Constant::MaxPause = 180;
+
+CVector Constant::Costume_detail_pos = CVector(32, 128);

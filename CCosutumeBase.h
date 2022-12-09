@@ -5,6 +5,7 @@
 #include <memory>
 #include "CMover_ShotBase.h"
 #include "CSTGInputManager.h"
+#include "CTextDrawer.h"
 
 class CMover_Player;
 
@@ -25,6 +26,7 @@ public:
 	const double MaxSpeed;
 	const double Accelaration;
 	const std::string GID;
+	CTextDrawer::Text detail;
 
 	CCostumeBase(std::string filepath, double animSpeed, int MaxCharge, int ShotRate,
 		int strongshotDuration, double maxSpeed, double accel, double mass, CAttribute attrDEF, COF constants, std::string GID);

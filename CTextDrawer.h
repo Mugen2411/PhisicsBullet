@@ -20,12 +20,14 @@ public:
 		Text() {}
 	};
 	void Register(Text txt);
+	void RegisterForCostumeDetail(Text txt);
 	void Render()const;
 	void Clear();
 
 private:
 	std::vector<int> fontArray;
 	std::list<Text> textQueue;
+	std::list<Text> costumeDetailQueue;
 
 	std::string font_path;
 

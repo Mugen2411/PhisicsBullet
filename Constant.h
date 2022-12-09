@@ -1,4 +1,7 @@
 #pragma once
+
+class CVector;
+
 class Constant
 {
 public:
@@ -32,6 +35,8 @@ public:
 		SCENE_MAIN, SCENE_EDITOR, SCENE_TITLE, SCENE_QUIT, 
 		SCENE_GAMEOVER, SCENE_STAGECLEAR, SCENE_UPGRADE, SCENE_GAMECLEAR
 	};
+
+	static CVector Costume_detail_pos;
 };
 
 struct COF {

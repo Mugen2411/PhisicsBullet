@@ -243,9 +243,9 @@ void CGameMediator::RenderDresschangeMenu()const {
 			break;
 		case 1:
 			CImageManager::getIns().find("system_status_guage")->DrawRectwithBlend(360, 80 + i * 64,
-				240 * min(1.0, max(0.02, (player->costume->constants.WaterResCF - minWaterRes) / max(0.0001, maxWaterRes - minWaterRes))), 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+				240 * min(1.0, max(0.02, ((1.0 - player->costume->constants.WaterResCF) - minWaterRes) / max(0.0001, maxWaterRes - minWaterRes))), 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
 			CImageManager::getIns().find("system_status_guage")->DrawRectwithBlend(360, 96 + i * 64,
-				240 * min(1.0, max(0.02, ((*costumeNowFocusOn)->constants.WaterResCF - minWaterRes) / max(0.0001, maxWaterRes - minWaterRes))), 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+				240 * min(1.0, max(0.02, ((1.0 - (*costumeNowFocusOn)->constants.WaterResCF) - minWaterRes) / max(0.0001, maxWaterRes - minWaterRes))), 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
 			break;
 		case 2:
 			CImageManager::getIns().find("system_status_guage")->DrawRectwithBlend(360, 80 + i * 64,

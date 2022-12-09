@@ -42,6 +42,8 @@ public:
 			if (i->constants.WaterResCF < min)min = i->constants.WaterResCF;
 			if (i->constants.WaterResCF > max)max = i->constants.WaterResCF;
 		}
+		min = 1.0 - max;
+		max = 1.0 - min;
 	}
 	void getMinMaxMass(double& min, double& max) {
 		min = 9999;

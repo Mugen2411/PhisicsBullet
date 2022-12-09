@@ -52,12 +52,6 @@ void CGameMediator::CreateParts()
 	CCF.getMinMaxAccel(minAccel, maxAccel);
 	costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
 	RegisterMover(player = std::make_shared<CMover_Player>(playerPos, CProgressData::getIns().getPlayerLevel(), CCF.create("C_Uniform")));
-	CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
-	CSoundManager::getIns().find("player_dead")->SetVolume(0.5);
-	CSoundManager::getIns().find("enemy_kill")->SetVolume(0.5);
-	CSoundManager::getIns().find("enemy_hit")->SetVolume(0.4);
-	CSoundManager::getIns().find("success")->SetVolume(0.5);
-	CSoundManager::getIns().find("bgm")->SetVolume(0.5);
 	CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
 	CEffectParent::Reset();
 	isInitialized = true;

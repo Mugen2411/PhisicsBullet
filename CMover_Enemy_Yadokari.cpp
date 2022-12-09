@@ -2,10 +2,11 @@
 #include "CImageManager.h"
 #include "CMover_Bullet_WaterSplash.h"
 #include "CNumberDrawer.h"
+#include "CSoundManager.h"
 
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level) :
 	CMover_EnemyBase(40, Level, 1.0, 1.0, CAttribute(1.5).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 18, 0xFF7F00, position, 2.5, 1.5, COF(0.7, 0.2, 0.08, 0.1)),
-	testDest(0.0, 0.0)
+	testDest(0.0, 0.0), focus(0.0)
 {
 }
 
@@ -33,6 +34,7 @@ int CMover_Enemy_Yadokari::Update()
 			for (int i = 0; i < 3; i++) {
 				med->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(baseParams, Position, focus, 6.0 + i * 3.6));
 			}
+			CSoundManager::getIns().find("splash")->Play(CSound::PLAYTYPE::PT_BACK);
 		}
 		if (cnt > 60) {
 			state = 0;

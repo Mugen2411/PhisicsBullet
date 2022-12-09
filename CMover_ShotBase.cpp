@@ -39,6 +39,11 @@ void CMover_ShotBase::RatioDamage(CAttribute shotATK, int style)
 {
 }
 
+CAttribute CMover_ShotBase::TestDamage(CAttribute shotATK)
+{
+	return CAttribute(0.0);
+}
+
 CVector CMover_ShotBase::getHomingAngle()
 {
 	if (!target.lock()) {

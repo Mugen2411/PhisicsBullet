@@ -136,6 +136,7 @@ public:
 
 	virtual void Damage(CAttribute shotATK, int style) = 0;			//ダメージを受ける処理
 	virtual void RatioDamage(CAttribute shotATK, int style) = 0;	//割合ダメージを受ける処理
+	virtual CAttribute TestDamage(CAttribute shotATK) = 0;	//ダメージをテストする
 
 	bool onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//壁の上に乗ったか判定し、反射する
 	virtual void ifonWall() {};

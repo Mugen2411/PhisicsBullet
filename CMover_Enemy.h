@@ -45,6 +45,9 @@ public:
     
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
+    CAttribute TestDamage(CAttribute shotATK) {
+        return shotATK / attrDEF;
+    }
     void Drop();
     int DamageColor(CAttribute shotATK);
     inline void HitDispatch(std::shared_ptr<CMover> m) {

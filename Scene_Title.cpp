@@ -15,8 +15,6 @@ Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(3, 0
 	underText[2] = CTextDrawer::Text("ゲームを終了します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	titleText = CTextDrawer::Text("タイトル未定！", CVector(320 - 72 * 3.5, 32.0), 0xFFFFFF, 0x0000FF, 2);
 	CProgressData::getIns().load();
-	CSoundManager::getIns().find("success")->SetVolume(0.5);
-	CSoundManager::getIns().find("cursor")->SetVolume(0.5);
 }
 
 void Scene_Title::Update() {

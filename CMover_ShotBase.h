@@ -28,6 +28,7 @@ public:
 
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
+    CAttribute TestDamage(CAttribute shotATK);
 
     CVector getHomingAngle();
     inline void HitDispatch(std::shared_ptr<CMover> m) {

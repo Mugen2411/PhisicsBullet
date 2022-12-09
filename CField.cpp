@@ -9,7 +9,10 @@ void CField::setFrictionForce(CMover* m)
 {
 	m->ApplyFrictionForce(Cofs.FrictionCF);
 	m->ApplyWaterRegistance(Cofs.WaterResCF);
-	if(DamageInterval == 0)m->RatioDamage(Damage / 10.0, 1);
+	if (DamageInterval == 0) {
+		CAttribute t = m->TestDamage(Damage);
+		if(Damage.Sum() < t.Sum())m->RatioDamage(Damage / 10.0, 1);
+	}
 	DamageInterval++;
 	DamageInterval %= 6;
 }

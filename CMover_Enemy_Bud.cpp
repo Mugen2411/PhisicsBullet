@@ -2,9 +2,10 @@
 #include "CImageManager.h"
 #include "CMover_Bullet_Corn.h"
 #include "CNumberDrawer.h"
+#include "CSoundManager.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level) :
-	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(0.3).FLOWER(2.0).AQUA(0.5), 10, 0xFFFF00, position, 2.7, 1.2, COF(0.85, 0.9, 0.06, 0.1)),
+	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(0.3).FLOWER(2.0).AQUA(0.5), 10, 0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.06, 0.1)),
 	testDest(0.0, 0.0)
 {
 }
@@ -23,6 +24,7 @@ int CMover_Enemy_Bud::Update()
 		else {
 			CVector ppos = med->GetPlayerPosition();
 			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos - Position).getAngle()));
+			CSoundManager::getIns().find("pretty_throw")->Play(CSound::PLAYTYPE::PT_BACK);
 			cnt = 0;
 			state = 1;
 			break;

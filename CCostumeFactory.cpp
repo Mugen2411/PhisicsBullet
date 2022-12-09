@@ -2,6 +2,7 @@
 #include "CCostume_Uniform.h"
 #include "CCostume_Festa.h"
 #include "CCostume_Archer_Flame.h"
+#include "CCostume_Swimsuit.h"
 #include <algorithm>
 
 void CCostumeFactory::Register(CCostumeBase* f)
@@ -14,6 +15,7 @@ CCostumeFactory::CCostumeFactory()
 	Register(new CCostume_Uniform("C_Uniform"));
 	Register(new CCostume_Festa("C_Festa"));
 	Register(new CCostume_Archer_Flame("C_Archer_Flame"));
+	Register(new CCostume_Swimsuit("C_Swimsuit"));
 }
 
 CCostumeBase* CCostumeFactory::create(std::string GID)

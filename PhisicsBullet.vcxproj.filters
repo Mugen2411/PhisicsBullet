@@ -124,6 +124,12 @@
     <Filter Include="ヘッダー ファイル\Spawner">
       <UniqueIdentifier>{ba427eff-d623-4fb2-bd3a-f1d0bf0eae4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Swimsuit">
+      <UniqueIdentifier>{0012da64-b021-4e03-b8e7-a7dd054ba00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Swimsuit">
+      <UniqueIdentifier>{3e8acd93-c569-444f-987f-860b7e7c14c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -392,6 +398,18 @@
     </ClCompile>
     <ClCompile Include="CMover_Bullet_WaterSplash.cpp">
       <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Swimsuit.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Swimsuit_iPhone.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Swimsuit</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Swimsuit_Bat.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Swimsuit</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect_Bat_Swing.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -670,6 +688,18 @@
     </ClInclude>
     <ClInclude Include="CMover_Bullet_WaterSplash.h">
       <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Swimsuit.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Swimsuit_iPhone.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Swimsuit</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Swimsuit_Bat.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Swimsuit</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect_Bat_Swing.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

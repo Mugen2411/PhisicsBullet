@@ -12,7 +12,8 @@
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass, costume->constants, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0), costume(std::shared_ptr<CCostumeBase>(costume)), CND() {
+	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0),
+	costume(std::shared_ptr<CCostumeBase>(costume)), CND(), shotWait(0) {
 	costume->setPlayer(this);
 }
 
@@ -76,13 +77,16 @@ void CMover_Player::Shot()
 	if (Charge == costume->MaxCharge) {
 		costume->ChargeShot(baseParams.ATK, Position, angle);
 		Charge = 0;
+		shotWait = 0;
 		Wait(costume->StrongShotDuration);
 		return;
 	}
-	if (LPushTime % costume->ShotRate == 1) {
+	if (shotWait > costume->ShotRate) {
+		shotWait = 0;
 		costume->WeakShot(baseParams.ATK, Position, angle);
 		Charge = 0;
 	}
+	shotWait++;
 }
 
 void CMover_Player::Render() const

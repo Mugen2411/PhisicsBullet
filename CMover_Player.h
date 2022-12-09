@@ -19,6 +19,7 @@ protected:
     CStatus baseParams;
     int DigitHP;
     int waitDuration;
+    int shotWait;
 
     CNumberDrawer CND;
 
@@ -41,6 +42,9 @@ public:
     void RatioDamage(CAttribute BulletATK, int style);
     void inline HitDispatch(std::shared_ptr<CMover> m) {
         m->Hit(this);
+    }
+    CAttribute TestDamage(CAttribute shotATK) {
+        return shotATK / costume->AttributeDEF;
     }
     int DamageColor(CAttribute shotATK);
     void RegisterShot(std::shared_ptr<CMover_ShotBase>);

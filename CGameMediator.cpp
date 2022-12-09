@@ -273,5 +273,82 @@ void CGameMediator::RenderDresschangeMenu()const {
 			break;
 		}
 	}
+	const int icon_left = 64;
+	for (int i = 0; i < 6; i++) {
+		switch (i) {
+		case 0:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.None > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i +16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.None < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		case 1:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.Fire > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.Fire < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		case 2:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.Aqua > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.Aqua < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		case 3:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.Thunder > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.Thunder < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		case 4:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.Flower > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.Flower < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		case 5:
+			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
+			if ((*costumeNowFocusOn)->AttributeDEF.Ice > 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
+			}
+			else if ((*costumeNowFocusOn)->AttributeDEF.Ice < 1.0) {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
+			}
+			else {
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 2);
+			}
+			break;
+		}
+	}
 	CAnchor::getIns().disableAbsolute();
 }

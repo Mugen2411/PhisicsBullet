@@ -6,6 +6,7 @@
 #include "CControllerFactory.h"
 #include "CVector.h"
 #include "CAttribute.h"
+#include "CTextDrawer.h"
 
 class CMoverParent;
 class CFieldParent;
@@ -26,6 +27,7 @@ protected:
 	std::list<std::unique_ptr<CEnemySpawner>> enemySpawner;
 
 	bool isPause;
+	bool isRetire;
 	bool isCostumeSelecterEnd;
 	int pauseGuage;
 	int cnt;
@@ -33,6 +35,8 @@ protected:
 	bool isInitialized;
 
 	int reserveMoney=0;	//‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
+
+	CTextDrawer::Text retireText[2];
 
 	std::unique_ptr<CCostumeBase*> costumeNowFocusOn;
 	double minFric;
@@ -70,6 +74,9 @@ public:
 
 	void UpdateDresschangeMenu();
 	void RenderDresschangeMenu()const;
+
+	void UpdateRetireMenu();
+	void RenderRetireMenu()const;
 
 	void Update();
 	void Render()const;

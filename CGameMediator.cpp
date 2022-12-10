@@ -25,10 +25,12 @@ void CGameMediator::ProcessEnemySpawner()
 	}
 }
 
-CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), pauseGuage(0), cnt(0), isInitialized(false),
+CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true),isRetire(false), pauseGuage(0), cnt(0), isInitialized(false),
 costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1)
 {
 	input = CControllerFactory::getIns().getController();
+	retireText[0] = CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32), 0xFFFFFF, 0x000000, 1);
+	retireText[1] = CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
 }
 
 CGameMediator::~CGameMediator()
@@ -119,16 +121,20 @@ void CGameMediator::Update()
 {
 	if (!isInitialized)
 		return;
+	if (isRetire) {
+		UpdateRetireMenu();
+		return;
+	}
+	if (isPause) {
+		UpdateDresschangeMenu();
+		return;
+	}
 #ifdef _DEBUG
 	if (input.lock()->Start() == 1) {
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
 		return;
 	}
 #endif
-	if (isPause) {
-		UpdateDresschangeMenu();
-		return;
-	}
 	if (player->getHP() < 0) {
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("player_dead")->Play(CSound::PLAYTYPE::PT_BACK);
@@ -183,8 +189,14 @@ void CGameMediator::Render() const
 		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 9, (input.lock()->Select() > 0) ? 1 : 0);
 	CAnchor::getIns().disableAbsolute();
 
-	if (isPause)
+	if (isRetire) {
+		RenderRetireMenu();
+		return;
+	}
+	if (isPause) {
 		RenderDresschangeMenu();
+		return;
+	}
 
 #ifdef _DEBUG
 	printfDx("Money:%d\nGraphHandle:%d\n", reserveMoney, GetGraphNum());
@@ -207,6 +219,10 @@ void CGameMediator::UpdateDresschangeMenu() {
 		isCostumeSelecterEnd = true;
 		pauseGuage = 0;
 		player->ChangeCostume(CCF.create(currentCostumeIndex));
+		return;
+	}
+	if (input.lock()->Start() == 1) {
+		isRetire = true;
 		return;
 	}
 	if (input.lock()->Right() == 1) {
@@ -352,4 +368,25 @@ void CGameMediator::RenderDresschangeMenu()const {
 	}
 	CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
 	CAnchor::getIns().disableAbsolute();
+}
+
+void CGameMediator::UpdateRetireMenu()
+{
+	if (input.lock()->Start() == 1) {
+		isRetire = false;
+		return;
+	}
+	if (input.lock()->Select() == 1) {
+		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+		return;
+	}
+}
+
+void CGameMediator::RenderRetireMenu()const
+{
+	CImageManager::getIns().find("system_curtain")->Draw(0 , 0, 100, 0);
+	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
+	for (auto &i : retireText) {
+		CTextDrawer::getIns().Register(i);
+	}
 }

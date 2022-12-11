@@ -29,7 +29,7 @@ int CKeyInputManager::update()
 	if (mx > Constant::ScreenW)mx = Constant::ScreenW;
 	if (my < 0)my = 0;
 	if (my > Constant::ScreenH)my = Constant::ScreenH;
-	if(GetWindowActiveFlag())SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
+	if(GetWindowActiveFlag() && !isMouseShown)SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
 
 	int mi = GetMouseInput();
 	if (mi & MOUSE_INPUT_LEFT) {
@@ -63,5 +63,5 @@ int CKeyInputManager::update()
 void CKeyInputManager::load()
 {
 	if(GetActiveFlag())SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
-	SetMouseDispFlag(FALSE);
+	SetMouseDispFlag(isMouseShown);
 }

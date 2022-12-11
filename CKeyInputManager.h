@@ -20,5 +20,15 @@ public:
     int isChanged();
     int update();
     void load();
+
+    void SetMouseVisible() {
+        isMouseShown = true;
+        SetMouseDispFlag(isMouseShown);
+    }
+
+    void SetMouseInvisible() {
+        isMouseShown = false;
+        SetMouseDispFlag(isMouseShown);
+    }
 };
 

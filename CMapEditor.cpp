@@ -14,7 +14,7 @@ CMapEditor::CMapEditor(SceneManager* ScnMng) : Scene_Abstract(ScnMng),
 	input(CControllerFactory::getIns().getController()), currentMapchip("NULL-OBJECT"), CFF(CFieldFactory()), state(0), category(0)
 {
 	CAnchor::getIns().setPosition(CVector(0, 0));
-	SetMouseDispFlag(TRUE);
+	input.lock()->SetMouseVisible();
 	CreateParts();
 }
 

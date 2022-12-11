@@ -11,6 +11,7 @@ protected:
 	int pushedFrame[10];
 	int mx, my;
 	int clickedFrame[3][2];
+	bool isMouseShown;
 
 	struct ConfigData {
 		int Up;
@@ -54,5 +55,8 @@ public:
 	virtual int isChanged() = 0;
 	virtual int update() = 0;
 	virtual void load() = 0;
+
+	virtual void SetMouseVisible() = 0;
+	virtual void SetMouseInvisible() = 0;
 };
 

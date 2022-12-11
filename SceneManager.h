@@ -12,6 +12,7 @@ public:
 	SceneManager();
 	virtual ~SceneManager();
 
+	virtual void PopScene() = 0;
 	virtual void ChangeScene(int Scene, bool isStackClear) = 0;
 	void update();
 	void render();

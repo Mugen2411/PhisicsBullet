@@ -1,7 +1,7 @@
 #include "CTextDrawer.h"
 #include <DxLib.h>
 
-CTextDrawer::CTextDrawer() : font_path("media/font/Nosutaru-dotMPlusH-10-Regular.ttf") {
+CTextDrawer::CTextDrawer() : font_path("media/font/Nosutaru-dotMPlusH-10-Regular.ttf"), priority(0) {
 	AddFontResourceEx(font_path.c_str(), FR_PRIVATE, NULL);
 	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 12, 1, DX_FONTTYPE_EDGE));
 	fontArray.emplace_back(CreateFontToHandle("ノスタルドット（M+）", 36, 1, DX_FONTTYPE_EDGE));
@@ -13,6 +13,7 @@ CTextDrawer::~CTextDrawer() {
 }
 
 void CTextDrawer::Register(Text txt) {
+	if (priority != 0)return;
 	textQueue.push_back(txt);
 }
 

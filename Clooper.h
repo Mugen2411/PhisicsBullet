@@ -13,6 +13,7 @@ public:
 	virtual ~CGame();
 
 	void Run();
+	void PopScene();
 	void ChangeScene(int Scene, bool isStackClear);
 	bool isQuitted() {
 		return isQuit;

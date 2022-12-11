@@ -44,7 +44,7 @@ void Scene_Upgrade::Update()
 	}
 	if (input.lock()->Start() == 1) {
 		CProgressData::getIns().save();
-		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+		scn_mng->PopScene();
 		return;
 	}
 }

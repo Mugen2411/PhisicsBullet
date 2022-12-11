@@ -19,12 +19,16 @@ public:
 		}
 		Text() {}
 	};
+	void setPriority(int p) {
+		priority = p;
+	}
 	void Register(Text txt);
 	void RegisterForCostumeDetail(Text txt);
 	void Render()const;
 	void Clear();
 
 private:
+	int priority;		//ˆê”Ôã‚ÌƒV[ƒ“‚©‚ç‚µ‚©ó‚¯æ‚ç‚È‚¢I
 	std::vector<int> fontArray;
 	std::list<Text> textQueue;
 	std::list<Text> costumeDetailQueue;

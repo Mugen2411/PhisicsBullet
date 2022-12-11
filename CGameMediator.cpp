@@ -121,6 +121,7 @@ void CGameMediator::Update()
 {
 	if (!isInitialized)
 		return;
+	cnt++;
 	if (isRetire) {
 		UpdateRetireMenu();
 		return;
@@ -171,7 +172,6 @@ void CGameMediator::Update()
 	moverParent->Update();
 	fieldParent->Update();
 	CEffectParent::Update();
-	cnt++;
 }
 
 void CGameMediator::Render() const
@@ -366,9 +366,15 @@ void CGameMediator::RenderDresschangeMenu()const {
 			break;
 		}
 	}
-	CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
+	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
+		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 101, (input.lock()->Select() > 0) ? 1 : 0);
+	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
+		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
+		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 103, (input.lock()->Select() > 0) ? 1 : 0);
 	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
 	CAnchor::getIns().disableAbsolute();
+	CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
 }
 
 void CGameMediator::UpdateRetireMenu()
@@ -386,10 +392,12 @@ void CGameMediator::UpdateRetireMenu()
 
 void CGameMediator::RenderRetireMenu()const
 {
+	CAnchor::getIns().enableAbsolute();
 	CImageManager::getIns().find("system_curtain")->Draw(0 , 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
 	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
 	for (auto &i : retireText) {
 		CTextDrawer::getIns().Register(i);
 	}
+	CAnchor::getIns().disableAbsolute();
 }

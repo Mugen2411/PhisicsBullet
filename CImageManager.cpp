@@ -36,6 +36,7 @@ CImageManager::CImageManager()
     imgList["bullet_bud_corn"] = std::make_shared<CImage>("media/graphic/enemy/bud/corn.png", 16, 16);
     imgList["enemy_shimaenaga"] = std::make_shared<CImage>("media/graphic/enemy/shimaenaga/shimaenaga.png", 4, 4, 1, 32, 32);
     imgList["enemy_yadokari"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/yadokari.png", 16, 4, 4, 32, 32);
+    imgList["enemy_yadokari_intro"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/intro.png", 4, 4, 1, 32, 32);
     imgList["bullet_yadokari_watersplash"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/water.png", 32, 32);
 
     imgList["shot_uniform_homing"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png", 16, 16);

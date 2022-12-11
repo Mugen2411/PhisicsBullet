@@ -30,14 +30,24 @@ void CGame::Run()
 	(*_scene.begin())->Update();
 	if (_scene.empty())return;
 	fps.Update();
-	for (auto& i : _scene) {
-		i->Render();
+	int size = _scene.size();
+	auto itr = _scene.begin();
+	for (int i = 0; i < size; i++) {
+		CTextDrawer::getIns().setPriority(i);
+		(*itr)->Render();
+		++itr;
 	}
 	CRenderReserveList::Render();
 	CTextDrawer::getIns().Render();
 	CTextDrawer::getIns().Clear();
 	fps.Draw();
 	fps.Wait();
+}
+
+void CGame::PopScene()
+{
+	if (_scene.size() < 2)return;
+	_scene.pop_front();
 }
 
 void CGame::ChangeScene(int Scene, bool isStackClear)

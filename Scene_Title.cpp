@@ -45,7 +45,7 @@ void Scene_Title::Update() {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_MAIN, true);
 			break;
 		case 1:
-			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_UPGRADE, true);
+			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_UPGRADE, false);
 			break;
 		case 2:
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_QUIT, true);

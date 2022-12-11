@@ -4,17 +4,18 @@
 
 void CMapEditor::CreateParts()
 {
+	input.lock()->SetMouseVisible();
 	char* f = new char[256];
 	GetFileName(f, 255, true);
 	field = std::make_shared<CFieldHolder>(f);
 	delete[] f;
+	input.lock()->SetMouseInvisible();
 }
 
 CMapEditor::CMapEditor(SceneManager* ScnMng) : Scene_Abstract(ScnMng), 
 	input(CControllerFactory::getIns().getController()), currentMapchip("NULL-OBJECT"), CFF(CFieldFactory()), state(0), category(0)
 {
 	CAnchor::getIns().setPosition(CVector(0, 0));
-	input.lock()->SetMouseVisible();
 	CreateParts();
 }
 
@@ -49,14 +50,18 @@ void CMapEditor::Update()
 		}
 
 		if (input.lock()->Start() == 1) {
+			input.lock()->SetMouseVisible();
 			char* f = new char[256];
 			GetFileName(f, 255, true);
 			field = std::make_shared<CFieldHolder>(f);
 			delete[] f;
+			input.lock()->SetMouseInvisible();
 		}
 		if (input.lock()->B() == 1) {
+			input.lock()->SetMouseVisible();
 			field->Save();
 			MessageBox(NULL, "ƒZ[ƒu‚³‚ê‚Ü‚µ‚½", "MapEditor", MB_OK);
+			input.lock()->SetMouseInvisible();
 		}
 		break;
 	case 1:

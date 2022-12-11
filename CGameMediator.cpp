@@ -367,6 +367,7 @@ void CGameMediator::RenderDresschangeMenu()const {
 		}
 	}
 	CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
+	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
 	CAnchor::getIns().disableAbsolute();
 }
 
@@ -377,6 +378,7 @@ void CGameMediator::UpdateRetireMenu()
 		return;
 	}
 	if (input.lock()->Select() == 1) {
+		CSoundManager::getIns().find("bgm")->Stop();
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
 		return;
 	}
@@ -386,6 +388,7 @@ void CGameMediator::RenderRetireMenu()const
 {
 	CImageManager::getIns().find("system_curtain")->Draw(0 , 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
+	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
 	for (auto &i : retireText) {
 		CTextDrawer::getIns().Register(i);
 	}

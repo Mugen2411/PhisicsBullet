@@ -21,6 +21,7 @@ CImageManager::CImageManager()
     imgList["title_face"] = std::make_shared<CImage>("media/graphic/system/game/titleKomuk_x4.png", 1, 1, 1, 512, 512);
     imgList["icon_attribute"] = std::make_shared<CImage>("media/graphic/system/game/attribute.png", 6, 6, 1, 16, 16);
     imgList["icon_weak_or_strong"] = std::make_shared<CImage>("media/graphic/system/game/weak_or_strong.png", 3, 3, 1, 16, 16);
+    imgList["icon_return"] = std::make_shared<CImage>("media/graphic/system/game/return_to_escape.png", 64, 64);
 
     imgList["effect_bulletdelete"] = std::make_shared<CImage>("media/graphic/system/game/bullet_delete.png", 8, 8, 1, 32, 32);
     imgList["effect_number1"] = std::make_shared<CImage>("media/graphic/system/font/num1.png", 48, 12, 4, 10, 10);

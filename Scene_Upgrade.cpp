@@ -59,5 +59,6 @@ void Scene_Upgrade::Render() const
 		CTextDrawer::getIns().Register(text[i]);
 	}
 	if (!hasEnoughMoney)CTextDrawer::getIns().Register(text[6]);
+	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
 	CAnchor::getIns().disableAbsolute();
 }

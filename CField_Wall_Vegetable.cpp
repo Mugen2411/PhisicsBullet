@@ -4,6 +4,7 @@ CField_Wall_Vegetable::CField_Wall_Vegetable(std::string gid, CVector position, 
 	:CField_Wall(gid, position, COF().setFrictionCF(0.0)),state(col)
 {
 	isWall = false;
+	Damage = CAttribute(0.0);
 }
 
 void CField_Wall_Vegetable::Update()

@@ -12,6 +12,7 @@
 #include "CAnchor.h"
 #include "CEnemySpawner.h"
 #include "CProgressData.h"
+#include "CEffect_Bright.h"
 
 void CGameMediator::ProcessEnemySpawner()
 {
@@ -45,6 +46,7 @@ void CGameMediator::CreateParts()
 
 	CVector playerPos;
 	fieldParent->convertSpawner(enemySpawner, nowLevelOfStage, playerPos);
+	fieldParent->readDefine();
 	CCostumeFactory CCF;
 	CCF.getMinMaxFriction(minFric, maxFric);
 	CCF.getMinMaxWaterRes(minWaterRes, maxWaterRes);
@@ -168,6 +170,7 @@ void CGameMediator::Update()
 	if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0) {
 		ProcessEnemySpawner();
 	}
+	CEffect_Bright::getIns().Clear();
 	powerParent->Update();
 	moverParent->Update();
 	fieldParent->Update();

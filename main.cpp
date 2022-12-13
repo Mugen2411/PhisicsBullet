@@ -3,6 +3,7 @@
 #include "CSoundManager.h"
 #include "CImageManager.h"
 #include "CProgressData.h"
+#include "CEffect_Bright.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
@@ -13,9 +14,10 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	//SetAlwaysRunFlag(TRUE);
 	//SetWaitVSyncFlag(FALSE);
 	CGame g = CGame();
-	SetBackgroundColor(0x7F, 0x7F, 0x7F, 0x7F);
+	SetBackgroundColor(0,0,0,0);
 	SetLogFontHandle(CreateFontToHandle("MS P Gothic", 24, 4, DX_FONTTYPE_ANTIALIASING_EDGE));
 	int offscreen = MakeScreen(640, 480);
+	CEffect_Bright::getIns().setOffScreen(offscreen);
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
 	SetDrawScreen(offscreen);
 	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0 && !CheckHitKey(KEY_INPUT_TAB)) {

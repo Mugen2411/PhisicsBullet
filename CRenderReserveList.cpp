@@ -1,4 +1,5 @@
 #include "CRenderReserveList.h"
+#include "CEffect_Bright.h"
 
 std::list<IRenderReserve*> CRenderReserveList::list;
 
@@ -11,4 +12,5 @@ void CRenderReserveList::Render()
 		delete v;
 	}
 	list.clear();
+	CEffect_Bright::getIns().Render();
 }

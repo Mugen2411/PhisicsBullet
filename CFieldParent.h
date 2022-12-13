@@ -25,5 +25,8 @@ public:
 	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level, CVector &playerPos) {
 		fieldHolder->convertSpawner(sp, med, level, playerPos);
 	}
+	void readDefine() {
+		fieldHolder->readDefine();
+	}
 };
 

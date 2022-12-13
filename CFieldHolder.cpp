@@ -6,6 +6,7 @@
 #include <sstream>
 #include <cassert>
 #include "CSoundManager.h"
+#include "CEffect_Bright.h"
 
 CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 {
@@ -132,6 +133,7 @@ void CFieldHolder::readDefine()
 	int fp = FileRead_open(fn.c_str());
 	char buf[256];
 	std::string tmp;
+	CEffect_Bright::getIns().setBrightLevel(0);
 	for (int i = 0; i < Constant::NumEnemySpawner; i++) {
 		for (auto& b : buf) {
 			b = '\0';
@@ -143,7 +145,7 @@ void CFieldHolder::readDefine()
 			CSoundManager::getIns().LoadBGM(buf);
 			break;
 		case 1:
-			
+			CEffect_Bright::getIns().setBrightLevel(atof(buf));
 			break;
 		}
 	}

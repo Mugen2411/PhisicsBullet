@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
     <ClCompile Include="CControllerFactory.cpp" />
@@ -345,6 +346,7 @@
     <ClInclude Include="Scene_Abstract.h" />
     <ClInclude Include="Scene_Gameclear.h" />
     <ClInclude Include="Scene_Gameover.h" />
+    <ClInclude Include="Scene_Option.h" />
     <ClInclude Include="Scene_Stageclear.h" />
     <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="Scene_Upgrade.h" />

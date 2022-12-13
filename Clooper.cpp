@@ -8,6 +8,7 @@
 #include "Scene_Stageclear.h"
 #include "Scene_Gameclear.h"
 #include "Scene_Upgrade.h"
+#include "Scene_Option.h"
 #include "Scene_Abstract.h"
 #include "CTextDrawer.h"
 #include "CAnchor.h"
@@ -81,6 +82,9 @@ void CGame::ChangeScene(int Scene, bool isStackClear)
 		break;
 	case Constant::SCENE_ID::SCENE_GAMECLEAR:
 		_scene.push_front(std::make_unique<Scene_Gameclear>(this));
+		break;
+	case Constant::SCENE_ID::SCENE_OPTION:
+		_scene.push_front(std::make_unique<Scene_Option>(this));
 		break;
 	}
 }

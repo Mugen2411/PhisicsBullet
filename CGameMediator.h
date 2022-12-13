@@ -7,6 +7,7 @@
 #include "CVector.h"
 #include "CAttribute.h"
 #include "CTextDrawer.h"
+#include "CNumberDrawer.h"
 
 class CMoverParent;
 class CFieldParent;
@@ -54,6 +55,8 @@ protected:
 	int costumeSelecterCNT;
 
 	int nowLevelOfStage;
+
+	CNumberDrawer CND;
 
 	void ProcessEnemySpawner();
 

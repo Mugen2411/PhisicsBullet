@@ -6,8 +6,9 @@
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
-	//SetWindowSizeExtendRate(2.0);
-	SetGraphMode(640 * 2, 480 * 2, 32);
+	CProgressData::getIns().load();
+	int WindowExtendRate = 1 + CProgressData::getIns().getWindowX2();
+	SetGraphMode(640 * WindowExtendRate, 480 * WindowExtendRate, 32);
 	if (DxLib_Init() != 0)return -1;
 	//SetAlwaysRunFlag(TRUE);
 	//SetWaitVSyncFlag(FALSE);
@@ -22,7 +23,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 		SetDrawScreen(DX_SCREEN_BACK);
 		ClearDrawScreen();
-		DrawExtendGraph(0, 0, 640 * 2, 480 * 2, offscreen, FALSE);
+		DrawExtendGraph(0, 0, 640 * WindowExtendRate, 480 * WindowExtendRate, offscreen, FALSE);
 		ScreenFlip();
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 		SetDrawScreen(offscreen);

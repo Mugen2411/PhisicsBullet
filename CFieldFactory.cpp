@@ -73,7 +73,7 @@ CFieldFactory::CFieldFactory()
 	RegisterWall(new CField_Wall_DeepWater("W_DeepWater", CVector()));
 
 	std::string buf;
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < Constant::NumEnemySpawner; i++) {
 		buf = "E" + std::to_string(i);
 		RegisterWall(new CField_Wall_EnemySpawner(buf, CVector(), i));
 	}

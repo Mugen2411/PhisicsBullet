@@ -26,7 +26,7 @@ void CGameMediator::ProcessEnemySpawner()
 }
 
 CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true),isRetire(false), pauseGuage(0), cnt(0), isInitialized(false),
-costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1)
+costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1), CND()
 {
 	input = CControllerFactory::getIns().getController();
 	retireText[0] = CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32), 0xFFFFFF, 0x000000, 1);
@@ -187,6 +187,7 @@ void CGameMediator::Render() const
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 8, 2);
 	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160 * ((float)pauseGuage / 180), 32,
 		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 9, (input.lock()->Select() > 0) ? 1 : 0);
+	CND.Draw(480, 16, reserveMoney, 0, 2, 10);
 	CAnchor::getIns().disableAbsolute();
 
 	if (isRetire) {

@@ -76,7 +76,7 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 	int ver;
 	char buf[256];
 	std::string tmp;
-	for (int i = 0; i < 32; i++) {
+	for (int i = 0; i < Constant::NumEnemySpawner; i++) {
 		for (auto& b : buf) {
 			b = '\0';
 		}
@@ -134,7 +134,9 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttrib
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			g[x][y] = ((floorlist[index(x, y)]->getDamage() + walllist[index(x, y)]->getDamage()) / attrDEF).Sum() * 24;
+			CAttribute dmg = floorlist[index(x, y)]->getDamage() + walllist[index(x, y)]->getDamage();
+			if ((dmg / attrDEF).Sum() > (dmg / CAttribute(1.0)).Sum())g[x][y] = (dmg / attrDEF).Sum() * 24;
+			else g[x][y] = 0;
 			dist[x][y] = Constant::dbl_INF;
 			pre[x][y] = CVector(-1, -1);
 		}

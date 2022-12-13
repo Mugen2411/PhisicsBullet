@@ -40,6 +40,14 @@ public:
 		return data.Money;
 	}
 
+	void setWindowX2(int v) {	//0:Šg‘å–³‚µ 1:2”{Šg‘å
+		data.isWindowX2 = v;
+	}
+
+	int getWindowX2() {
+		return data.isWindowX2;
+	}
+
 	void upgrade(int money) {
 		data.Money -= money;
 		data.playerLevel++;
@@ -64,6 +72,7 @@ private:
 		int lastStage;		//10‚ğ‚©‚¯‚é‚Æn‚ß‚é‚×‚«ƒXƒe[ƒW‚É‚È‚é
 		int Money;
 		int playerLevel;
+		int isWindowX2;
 	}data;
 
 	friend class Singleton<CProgressData>;

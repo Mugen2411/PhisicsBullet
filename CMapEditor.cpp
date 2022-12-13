@@ -65,6 +65,10 @@ void CMapEditor::Update()
 		}
 		break;
 	case 1:
+		if (input.lock()->Start() == 1) {
+			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+			return;
+		}
 		if (input.lock()->LClick(true) == 1) {
 			currentSelect = CVector(input.lock()->MouseX(), input.lock()->MouseY()) / 32;
 			cur = (int)(currentSelect.x) + (int)(currentSelect.y) * 20;
@@ -115,8 +119,8 @@ int GetFileName(char* filename, int bufsize, bool isOpen)
 	o.hwndOwner = GetMainWindowHandle();
 	o.lpstrFile = filename;
 	o.nMaxFile = bufsize;
-	o.lpstrFilter = "mapファイル(*.map)";
-	o.lpstrDefExt = "map";
+	//o.lpstrFilter = "mapファイル(*.map)";
+	//o.lpstrDefExt = "map\0";
 	o.lpstrTitle = isOpen ? "ファイルを開く" : "ファイルを保存";
 	o.nFilterIndex = 1;
 	o.Flags = OFN_NOCHANGEDIR;

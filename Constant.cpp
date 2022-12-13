@@ -28,3 +28,5 @@ int Constant::priority_number = 7;
 int Constant::MaxPause = 180;
 
 CVector Constant::Costume_detail_pos = CVector(32, 128);
+
+int Constant::NumEnemySpawner = 32;

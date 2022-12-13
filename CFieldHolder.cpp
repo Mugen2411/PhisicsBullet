@@ -5,6 +5,7 @@
 #include <strstream>
 #include <sstream>
 #include <cassert>
+#include "CSoundManager.h"
 
 CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath)
 {
@@ -42,7 +43,7 @@ void CFieldHolder::writefloor(CField* f, unsigned int x, unsigned int y)
 
 void CFieldHolder::writewall(CField* f, unsigned int x, unsigned int y)
 {
-	if (0 > x || x > width || 0 > y || y > height)return;
+	if (0 > x || x >= width || 0 > y || y >= height)return;
 	walllist[width * y + x].reset(f);
 }
 
@@ -120,6 +121,33 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
 			walllist[i].reset(CFF.create(walllist[i]->Position.x, walllist[i]->Position.y, "W_Void"));
 		}
 	}
+}
+
+void CFieldHolder::readDefine()
+{
+	std::string fn = filePath;
+	std::vector<Spawner_Desc> sdList;
+	for (int i = 0; i < 3; i++)fn.pop_back();
+	fn += "def";
+	int fp = FileRead_open(fn.c_str());
+	char buf[256];
+	std::string tmp;
+	for (int i = 0; i < Constant::NumEnemySpawner; i++) {
+		for (auto& b : buf) {
+			b = '\0';
+		}
+		if (FileRead_gets(buf, 256, fp) == -1)break;
+		std::stringstream stream(std::string(buf, 256), std::ios::in);
+		switch (i) {
+		case 0:
+			CSoundManager::getIns().LoadBGM(buf);
+			break;
+		case 1:
+			
+			break;
+		}
+	}
+	FileRead_close(fp);
 }
 
 std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttribute attrDEF, int distance)
@@ -246,6 +274,8 @@ int CFieldHolder::Load() {
 
 	floorlist.resize(height * width);
 	walllist.resize(height * width);
+
+	CAnchor::getIns().setScrollLimit(CVector((int)width, (int)height));
 
 	CFieldFactory CFF;
 	std::string buf;

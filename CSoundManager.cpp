@@ -36,3 +36,8 @@ std::shared_ptr<CSound> CSoundManager::find(std::string key)
     itr->Load();
     return itr;
 }
+
+void CSoundManager::LoadBGM(std::string path)
+{
+    sndList["bgm"] = std::make_shared<CSound>(path);
+}

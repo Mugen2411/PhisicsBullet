@@ -45,6 +45,7 @@ public:
 	void Render()const;
 
 	void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es, CGameMediator* med, int level, CVector &playerPos);
+	void readDefine();
 
 	std::list<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF, int distance);	//先頭が一番自分に近い！
 	std::vector<CVector> findTargetByDistance(CVector start, int distance);		//基準となる座標から一定の距離離れた点のベクトルを返す

@@ -158,6 +158,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CEffect_Bright.cpp" />
+    <ClCompile Include="CField_Cave.cpp" />
+    <ClCompile Include="CField_Wall_Cave.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
@@ -274,6 +277,7 @@
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEffectParent.h" />
     <ClInclude Include="CEffect_Bat_Swing.h" />
+    <ClInclude Include="CEffect_Bright.h" />
     <ClInclude Include="CEffect_BulletDelete.h" />
     <ClInclude Include="CEffect_DamageNumber.h" />
     <ClInclude Include="CEffect_MoneyNumber.h" />
@@ -288,6 +292,7 @@
     <ClInclude Include="CField_IceFloor.h" />
     <ClInclude Include="CField_Void.h" />
     <ClInclude Include="CField_Wall.h" />
+    <ClInclude Include="CField_Wall_Cave.h" />
     <ClInclude Include="CField_Wall_DeepWater.h" />
     <ClInclude Include="CField_Wall_EnemySpawner.h" />
     <ClInclude Include="CField_Wall_Log.h" />
@@ -338,6 +343,7 @@
     <ClInclude Include="CSTGInputManager.h" />
     <ClInclude Include="CTextDrawer.h" />
     <ClInclude Include="CVector.h" />
+    <ClInclude Include="CField_Cave.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="include_InputManagers.h" />
     <ClInclude Include="IRenderReserve.h" />

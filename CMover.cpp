@@ -103,7 +103,8 @@ bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	if (U) {
 		Position.y = WallPosition.y + WallSize.y / 2 + (Size+0.2);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
-		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
+		//Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.y = 0;
 		airForce.y *= -Cofs.ReflectCF * WallReflectionCF;
 		waterForce.y *= -Cofs.ReflectCF * WallReflectionCF;
 		frictionForce.y *= -Cofs.ReflectCF * WallReflectionCF;
@@ -112,7 +113,8 @@ bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	if (D) {
 		Position.y = WallPosition.y - WallSize.y / 2 - (Size + 0.2);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
-		Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
+		//Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.y = 0;
 		airForce.y *= -Cofs.ReflectCF * WallReflectionCF;
 		waterForce.y *= -Cofs.ReflectCF * WallReflectionCF;
 		frictionForce.y *= -Cofs.ReflectCF * WallReflectionCF;
@@ -121,7 +123,8 @@ bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	if (R) {
 		Position.x = WallPosition.x - WallSize.x / 2 - (Size + 0.2);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
-		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
+		//Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.x = 0;
 		airForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		waterForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		frictionForce.x *= -Cofs.ReflectCF * WallReflectionCF;
@@ -130,11 +133,13 @@ bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectio
 	if (L) {
 		Position.x = WallPosition.x + WallSize.x / 2 + (Size + 0.2);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
-		Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
+		//Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
+		Acceleration.x = 0;
 		airForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		waterForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		frictionForce.x *= -Cofs.ReflectCF * WallReflectionCF;
 		ifonWall();
 	}
-	return U || D || R || L;
+	isLockedAxis = ((U | D) << 1) | (R | L);
+	return (U | D) << 1 | (R | L);
 }

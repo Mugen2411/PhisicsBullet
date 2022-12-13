@@ -71,9 +71,9 @@ void CGameMediator::ApplyForceToMover(CMover* m)
 	fieldParent->ApplyForceToMover(m);
 }
 
-void CGameMediator::HitToMover(CMover* m)
+bool CGameMediator::HitToMover(CMover* m)
 {
-	fieldParent->HitToMover(m);
+	return fieldParent->HitToMover(m);
 }
 
 CVector CGameMediator::GetPlayerPosition()

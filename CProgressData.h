@@ -53,6 +53,10 @@ public:
 		data.playerLevel++;
 	}
 
+	void degrade() {
+		data.playerLevel--;
+	}
+
 	void win(int money);		//Ÿ‚Á‚½‚ÌŠl“¾ˆ—
 	void lose(int money);		//•‰‚¯‚½‚ÌŠl“¾ˆ—
 	void retire(int money);		//’ú‚ß‚½‚ÌŠl“¾ˆ—

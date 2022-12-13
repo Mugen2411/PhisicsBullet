@@ -10,7 +10,6 @@
 CFieldParent::CFieldParent(CGameMediator* m, std::string filename)
 	:fieldHolder(new CFieldHolder(filename)), med(m)
 {
-	CAnchor::getIns().setScrollLimit(CVector(fieldHolder->getWidth(), fieldHolder->getHeight()));
 }
 
 CFieldParent::~CFieldParent()
@@ -47,19 +46,20 @@ void CFieldParent::ApplyForceToMover(CMover* m)
 	m->ApplyAirRegistance();
 }
 
-void CFieldParent::HitToMover(CMover* m)
+bool CFieldParent::HitToMover(CMover* m)
 {
 	CVector p = m->getPosition();
 	int x = p.x / 32;
 	int y = p.y / 32;
+	int size = ((m->getVelocity()+m->getAcceleration()).getLength2() / (16 * 16)) + 1;
 
-	int hittedWall = 0;
-	for (int ay = max(0, y - 3); ay < min(fieldHolder->getHeight(), y + 3); ay++) {
-		for (int ax = max(0, x - 3); ax < min((int)fieldHolder->getWidth(), x + 3); ax++) {
-			if (fieldHolder->getWall(ax, ay)->Hit(m))hittedWall++;
+	bool hitted = false;
+	for (int ay = max(0, y - size); ay < min(fieldHolder->getHeight(), y + size + 1); ay++) {
+		for (int ax = max(0, x - size); ax < min((int)fieldHolder->getWidth(), x + size + 1); ax++) {
+			hitted |= fieldHolder->getWall(ax, ay)->Hit(m);
 		}
 	}
-	if (hittedWall > 4)m->setStatus(2);
+	return hitted;
 }
 
 std::list<CVector> CFieldParent::getRoute(CVector start, CVector goal, CAttribute attrDEF, int distance)

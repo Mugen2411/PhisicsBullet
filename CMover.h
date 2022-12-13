@@ -40,6 +40,8 @@ protected:
 	int Category;			//MOVER_ID‚É‚æ‚Á‚ÄƒJƒeƒSƒŠ•ª‚¯
 	int Status;				//0:¶‘¶@1:‘¼ŽE 2:Ž©ŽE
 
+	int isLockedAxis;		//(XŒÅ’è)(YŒÅ’è)
+
 public:
 	CMover(MOVER_ID ID, CVector position, double size, CVector velocity,
 		double mass, COF cofs, double temperature);
@@ -55,6 +57,9 @@ public:
 	}
 	inline CVector getVelocity() {
 		return Velocity;
+	}
+	inline CVector getAcceleration() {
+		return Acceleration;
 	}
 	inline double getSize() {
 		return Size;
@@ -90,6 +95,7 @@ public:
 		ApplyForce(F * Cofs.WaterResCF);
 	}
 	inline void Move() {
+
 		Velocity += Acceleration;
 
 		//–€ŽC‚Æ…‚Ì’ïR‚Æ‹ó‹C’ïR‚ÅÃŽ~‚·‚é
@@ -114,9 +120,32 @@ public:
 			Velocity += airForce;
 		}
 
-		Position += Velocity;
+		if (Velocity.getLength2() > 32 * 32) {
+			Velocity = Velocity.getNorm() * 32;
+		}
+
+		if (!(isLockedAxis & 1)) {
+			Position.x += Velocity.x;
+		}
+		if (!((isLockedAxis >> 1) & 1)) {
+			Position.y += Velocity.y;
+		}
+		isLockedAxis = 0;
 		Acceleration.x = 0;
 		Acceleration.y = 0;
+		frictionForce = CVector(0.0, 0.0);
+		waterForce = CVector(0.0, 0.0);
+		airForce = CVector(0.0, 0.0);
+		Velocity.zero();
+	}
+
+	void resetPower() {
+		isLockedAxis = 0;
+		Acceleration.x = 0;
+		Acceleration.y = 0;
+		frictionForce = CVector(0.0, 0.0);
+		waterForce = CVector(0.0, 0.0);
+		airForce = CVector(0.0, 0.0);
 		Velocity.zero();
 	}
 

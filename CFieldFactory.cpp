@@ -2,12 +2,14 @@
 #include "CField_Grass.h"
 #include "CField_IceFloor.h"
 #include "CField_Dirt.h"
+#include "CField_Cave.h"
 #include "CField_Wall_Tree.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_WoodFence.h"
 #include "CField_Wall_Vegetable.h"
 #include "CField_Wall_Well.h"
 #include "CField_Wall_DeepWater.h"
+#include "CField_Wall_Cave.h"
 #include "CField_Wall_EnemySpawner.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Void.h"
@@ -44,6 +46,7 @@ CFieldFactory::CFieldFactory()
 	RegisterFloor(new CField_IceFloor("F_IceFloor", CVector(), -100));
 	RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
 	RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
+	RegisterFloor(new CField_Cave("F_Cave", CVector()));
 
 	RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));
 	RegisterWall(new CField_Wall_Log("W_Log", CVector(), 0));
@@ -53,24 +56,16 @@ CFieldFactory::CFieldFactory()
 	RegisterWall(new CField_Wall_Vegetable("W_Vegetable_radish", CVector(), 1));
 	RegisterWall(new CField_Wall_Well("W_Well", CVector()));
 
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence", CVector(), 0));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_U", CVector(), 1));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_D", CVector(), 2));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_R", CVector(), 3));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_L", CVector(), 4));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UR", CVector(), 5));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UD", CVector(), 6));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UL", CVector(), 7));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_RL", CVector(), 8));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DR", CVector(), 9));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DL", CVector(), 10));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_URL", CVector(), 11));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDR", CVector(), 12));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_DRL", CVector(), 13));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDL", CVector(), 14));
-	RegisterWall(new CField_Wall_WoodFence("W_WoodFence_UDRL", CVector(), 15));
+	std::string direction[] = { "", "_U", "_D", "_R", "_L", "_UR", "_UD", "_UL", "_RL",
+		"_DR", "_DL", "_URL", "_UDR", "_DRL", "_UDL", "_UDRL" };
+	for (int i = 0; i < 16; i++) {
+		RegisterWall(new CField_Wall_WoodFence("W_WoodFence"+direction[i], CVector(), i));
+	}
 
 	RegisterWall(new CField_Wall_DeepWater("W_DeepWater", CVector()));
+	for (int i = 0; i < 16; i++) {
+		RegisterWall(new CField_Wall_Cave("W_Cave" + direction[i], CVector(), i));
+	}
 
 	std::string buf;
 	for (int i = 0; i < Constant::NumEnemySpawner; i++) {

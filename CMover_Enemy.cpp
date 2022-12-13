@@ -180,7 +180,7 @@ void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 	CVector diff = m->getPosition() - Position;
 	CVector delta = diff.getLength2() < Constant::zero_border ? CVector(Constant::PI2 / 64 * GetRand(64)) : CVector(0.0,0.0);
 	m->ApplyForce((diff + delta).getNorm() * Mass / pushed);
-	m->ApplyForce(Acceleration * Mass / pushed);
+	m->ApplyForce(Velocity * Mass * 0.1 / pushed);
 	
 }
 
@@ -189,5 +189,5 @@ void CMover_EnemyBase::Hit(CMover_Player* m)
 	CVector diff = m->getPosition() - Position;
 	CVector delta = CVector(Constant::PI2 / 64 * GetRand(64));
 	m->ApplyForce((diff + delta).getNorm() * Mass);
-	m->ApplyForce(Acceleration * Mass);
+	m->ApplyForce(Velocity * Mass);
 }

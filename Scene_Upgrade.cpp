@@ -31,6 +31,8 @@ void Scene_Upgrade::Update()
 		+ std::string(" ATK:") + floating_to_string(now.ATK);
 	text[4].text = std::string("強化後ステータス→") + std::string("HP:") + floating_to_string(next.MaxHP)
 		+ std::string(" ATK:") + floating_to_string(next.ATK);
+	
+#ifndef _DEBUG
 	if (input.lock()->Select() == 1) {
 		if (CProgressData::getIns().getMoney() >= CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel())) {
 			CProgressData::getIns().upgrade(CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));
@@ -42,6 +44,21 @@ void Scene_Upgrade::Update()
 			hasEnoughMoney = false;
 		}
 	}
+#endif
+
+#ifdef _DEBUG
+	if (input.lock()->Select() == 1) {
+		CProgressData::getIns().upgrade(0);
+		hasEnoughMoney = true;
+		CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
+	}
+	if (input.lock()->A() == 1) {
+		CProgressData::getIns().degrade();
+		hasEnoughMoney = true;
+		CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
+	}
+#endif
+
 	if (input.lock()->Start() == 1) {
 		CProgressData::getIns().save();
 		scn_mng->PopScene();

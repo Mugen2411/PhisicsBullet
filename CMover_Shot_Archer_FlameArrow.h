@@ -1,5 +1,6 @@
 #pragma once
 #include "CMover_ShotBase.h"
+#include "CEffect_Bright.h"
 
 class CMover_Shot_Archer_FlameArrow : public CMover_ShotBase
 {

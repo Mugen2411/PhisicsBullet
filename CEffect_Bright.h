@@ -9,6 +9,8 @@ public:
 		CVector position;
 		double radius;
 		int power;
+		BrightDesc(CVector pos, double radius, int power) :position(pos), radius(radius), power(power) {
+		}
 	};
 
 	void Register(BrightDesc b) {
@@ -26,8 +28,17 @@ public:
 		offscreen = screen;
 	}
 
+	void activate() {
+		active = true;
+	}
+	void inactivate() {
+		active = false;
+	}
+
 protected:
 	CEffect_Bright();
+
+	bool active;
 
 	int offscreen;
 	int brightScreen;

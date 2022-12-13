@@ -58,6 +58,7 @@ void CGameMediator::CreateParts()
 	RegisterMover(player = std::make_shared<CMover_Player>(playerPos, CProgressData::getIns().getPlayerLevel(), CCF.create("C_Uniform")));
 	CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
 	CEffectParent::Reset();
+	CEffect_Bright::getIns().inactivate();
 	isInitialized = true;
 }
 
@@ -134,6 +135,7 @@ void CGameMediator::Update()
 	}
 #ifdef _DEBUG
 	if (input.lock()->Start() == 1) {
+		CEffect_Bright::getIns().inactivate();
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
 		return;
 	}
@@ -142,6 +144,7 @@ void CGameMediator::Update()
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("player_dead")->Play(CSound::PLAYTYPE::PT_BACK);
 		CProgressData::getIns().lose(reserveMoney);
+		CEffect_Bright::getIns().inactivate();
 		scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMEOVER, false);
 		return;
 	}
@@ -149,6 +152,7 @@ void CGameMediator::Update()
 		CSoundManager::getIns().find("bgm")->Stop();
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		CProgressData::getIns().win(reserveMoney);
+		CEffect_Bright::getIns().inactivate();
 		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage() - 1) {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
 		}
@@ -164,6 +168,7 @@ void CGameMediator::Update()
 		if (pauseGuage == Constant::MaxPause) {
 			isPause = true;
 			costumeSelecterCNT = 0;
+			CEffect_Bright::getIns().inactivate();
 		}
 	}
 	ProcessEnemySpawner();
@@ -223,6 +228,7 @@ void CGameMediator::UpdateDresschangeMenu() {
 		isCostumeSelecterEnd = true;
 		pauseGuage = 0;
 		player->ChangeCostume(CCF.create(currentCostumeIndex));
+		CEffect_Bright::getIns().activate();
 		return;
 	}
 	if (input.lock()->Start() == 1) {

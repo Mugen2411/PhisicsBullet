@@ -88,6 +88,11 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style, double prio
 	if (num < 0)return;
 	if (num == 0) {
 		CImageManager::getIns().find(id)->DrawRota(x, y, 0, 1, priority, Xnum * type);
+		if (style == 2) {
+			x -= width;
+			CImageManager::getIns().find(id)->
+				DrawRota(x, y, 0.0, 1.0, priority, 10);
+		}
 		return;
 	}
 	int l = std::log10(num)+1;

@@ -29,7 +29,7 @@ void CMover_EnemyBase::Move_on_Route()
 	if (route.empty()) {
 		return;
 	}
-	if ((Position - route.front()).getLength2() < 3 * 3) {
+	if ((Position - route.front()).getLength2() < 8 * 8) {
 		route.pop_front();
 		return;
 	}

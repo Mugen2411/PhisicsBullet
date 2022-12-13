@@ -3,7 +3,6 @@
 CField_Wall_Tree::CField_Wall_Tree(std::string gid, CVector position)
 	:CField_Wall(gid, position, COF().setReflectCF(0.9))
 {
-	Damage = CAttribute(12.0);
 }
 
 void CField_Wall_Tree::Update()

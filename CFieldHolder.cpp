@@ -178,7 +178,7 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttrib
 	ret.back() = goal;
 	for (int i = 0; i < distance; i++) {
 		if (ret.empty())break;
-		ret.pop_front();
+		ret.pop_back();
 	}
 
 	return ret;

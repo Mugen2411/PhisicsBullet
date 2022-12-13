@@ -15,8 +15,8 @@ int CMover_Enemy_Bud::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			if (GetRand(5) == 0)findTargetByDistance(8);
-				else Find_Route(4);
+			if (GetRand(5) == 0)findTargetByDistance(5);
+				else Find_Route(3);
 		}
 		if (!route.empty()) {
 			Move_on_Route();
@@ -45,7 +45,7 @@ int CMover_Enemy_Bud::Update()
 		animCount += 0.1;
 		if (animCount > 4) {
 			state = 0;
-			Find_Route(4);
+			Find_Route(3);
 			animCount = 0;
 			cnt = 0;
 		}
@@ -61,9 +61,6 @@ void CMover_Enemy_Bud::Render() const
 		return;
 	}
 	CImageManager::getIns().find("enemy_bud")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, Direction * 4 + (int)(animCount));
-	/*for (auto& i : route) {
-		CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0, 1, Constant::priority_enemy);
-	}*/
 }
 
 CMover_EnemyBase* CMover_Enemy_Bud::Clone(CVector Position, int Level)

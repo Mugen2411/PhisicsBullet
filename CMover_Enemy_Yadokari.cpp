@@ -15,7 +15,7 @@ int CMover_Enemy_Yadokari::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			Find_Route(6);
+			Find_Route(5);
 		}
 		if (!route.empty())Move_on_Route();
 		else {
@@ -47,7 +47,7 @@ int CMover_Enemy_Yadokari::Update()
 		animCount += 0.1;
 		if (animCount > 4) {
 			state = 0;
-			Find_Route(6);
+			Find_Route(5);
 			animCount = 0;
 			cnt = 0;
 		}
@@ -63,6 +63,9 @@ void CMover_Enemy_Yadokari::Render() const
 		return;
 	}
 	CImageManager::getIns().find("enemy_yadokari")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, Direction * 4 + (int)(animCount));
+	/*for (auto& i : route) {
+		CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0, 1, Constant::priority_enemy);
+	}*/
 }
 
 CMover_EnemyBase* CMover_Enemy_Yadokari::Clone(CVector Position, int Level)

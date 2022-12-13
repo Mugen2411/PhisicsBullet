@@ -3,7 +3,6 @@
 CField_Wall_DeepWater::CField_Wall_DeepWater(std::string gid, CVector position)
 	:CField_Wall(gid, position, COF())
 {
-	Damage = CAttribute(12.0);
 }
 
 void CField_Wall_DeepWater::Update()

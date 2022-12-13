@@ -15,7 +15,7 @@ int CMover_Enemy_Bud::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			if (GetRand(5) == 0)findTargetByDistance(5);
+			if (GetRand(5) == 0)findTargetByDistance(6);
 				else Find_Route(3);
 		}
 		if (!route.empty()) {

@@ -73,7 +73,7 @@ bool CMover_EnemyBase::BaseRender() const
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
-		CImageManager::getIns().find("enemy_marker")->DrawRota(8, p.y, 0.0, 1.0, 0.9);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(8, p.y, Constant::PI, 1.0, 0.9);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}

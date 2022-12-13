@@ -28,6 +28,7 @@ public:
 	static int priority_shot;
 	static int priority_bullet;
 	static int priority_number;
+	static int priority_marker;
 
 	static int MaxPause;
 

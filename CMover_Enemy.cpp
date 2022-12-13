@@ -65,41 +65,41 @@ bool CMover_EnemyBase::BaseRender() const
 	CAnchor::getIns().enableAbsolute();
 	if (p.x + Size < 0) {
 		if (p.y + Size < 0) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(8, 8, (CVector(0, 0) - p).getAngle(), 1.0, 0.9);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(8, 8, (CVector(0, 0) - p).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
 		if (p.y - Size > Constant::ScreenH) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(8, Constant::ScreenH - 8, (CVector(0, Constant::ScreenH) - p).getAngle(), 1.0, 0.9);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(8, Constant::ScreenH - 8, (CVector(0, Constant::ScreenH) - p).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
-		CImageManager::getIns().find("enemy_marker")->DrawRota(8, p.y, Constant::PI, 1.0, 0.9);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(8, p.y, Constant::PI, 1.0, Constant::priority_marker);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}
 	if (p.x - Size > Constant::ScreenW) {
 		if (p.y + Size < 0) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, 8, (CVector(Constant::ScreenW, 0) - p).getAngle(), 1.0, 0.9);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, 8, (CVector(Constant::ScreenW, 0) - p).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
 		if (p.y - Size > Constant::ScreenH) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, Constant::ScreenH - 8, (CVector(Constant::ScreenW, Constant::ScreenH) - p).getAngle(), 1.0, 0.9);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, Constant::ScreenH - 8, (CVector(Constant::ScreenW, Constant::ScreenH) - p).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
-		CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, p.y, Constant::PI, 1.0, 0.9);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, p.y, Constant::PI, 1.0, Constant::priority_marker);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}
 	if (p.y + Size < 0) {
-		CImageManager::getIns().find("enemy_marker")->DrawRota(p.x, 8, -Constant::PI / 2, 1.0, 0.9);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(p.x, 8, -Constant::PI / 2, 1.0, Constant::priority_marker);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}
 	if (p.y - Size > Constant::ScreenH) {
-		CImageManager::getIns().find("enemy_marker")->DrawRota(p.x, Constant::ScreenH - 8, Constant::PI / 2, 1.0, 0.9);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(p.x, Constant::ScreenH - 8, Constant::PI / 2, 1.0, Constant::priority_marker);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}

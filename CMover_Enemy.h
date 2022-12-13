@@ -18,6 +18,8 @@ public:
     double MaxSpeed;
     int baseMoney;
 
+    int pushed;
+
     int Direction;
     double animCount;
 

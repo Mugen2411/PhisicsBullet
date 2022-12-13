@@ -12,7 +12,7 @@ CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double 
 	int color, CVector position, double accel, double maxSpeed, COF cofs) :
 	CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0)
 	, Accel(accel), MaxSpeed(maxSpeed), Direction(0), animCount(0),
-	baseParams(Level, atkCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color), seed(), rand(seed())
+	baseParams(Level, atkCF, hpCF), attrDEF(attrDEF), baseMoney(baseMoney), Color(color), seed(), rand(seed()), pushed(0)
 {
 }
 
@@ -53,6 +53,7 @@ void CMover_EnemyBase::findTargetByDistance(int distance)
 
 void CMover_EnemyBase::BaseUpdate()
 {
+	pushed = 0;
 }
 
 bool CMover_EnemyBase::BaseRender() const
@@ -175,14 +176,18 @@ int CMover_EnemyBase::DamageColor(CAttribute shotATK)
 
 void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 {
-	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
-	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
-	m->ApplyForce(Acceleration * 0.1 * Mass);
+	pushed++;
+	CVector diff = m->getPosition() - Position;
+	CVector delta = diff.getLength2() < Constant::zero_border ? CVector(Constant::PI2 / 64 * GetRand(64)) : CVector(0.0,0.0);
+	m->ApplyForce((diff + delta).getNorm() * Mass / pushed);
+	m->ApplyForce(Acceleration * Mass / pushed);
+	
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)
 {
-	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
-	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
-	m->ApplyForce(Acceleration * 0.1 * Mass);
+	CVector diff = m->getPosition() - Position;
+	CVector delta = CVector(Constant::PI2 / 64 * GetRand(64));
+	m->ApplyForce((diff + delta).getNorm() * Mass);
+	m->ApplyForce(Acceleration * Mass);
 }

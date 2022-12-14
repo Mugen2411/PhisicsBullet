@@ -426,6 +426,9 @@
     <ClCompile Include="CField_Wall_Rock.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Decoration_Torch.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -729,6 +732,9 @@
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
     <ClInclude Include="CField_Wall_Rock.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Decoration_Torch.h">
       <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>

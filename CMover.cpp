@@ -1,4 +1,5 @@
 #include "CMover.h"
+#include "CField.h"
 
 CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass,
 	COF cofs, double temperature)
@@ -27,8 +28,10 @@ void CMover::Hit(CMover_BulletBase* m)
 {
 }
 
-bool CMover::onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF)
+bool CMover::onWall(CField* f, double WallReflectionCF)
 {
+	CVector WallPosition = f->getPosition();
+	CVector WallSize = f->getSize();
 	CVector nextPosition = Position + Velocity + Acceleration;
 	double max = (Position.x + Size) - (WallPosition.x - WallSize.x / 2), may = (Position.y + Size) - (WallPosition.y - WallSize.y / 2);
 	double nax = (WallPosition.x + WallSize.x / 2) - (Position.x - Size), nay = (WallPosition.y + WallSize.y / 2) - (Position.y - Size);

@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 
 CField_Wall_Cave::CField_Wall_Cave(std::string gid, CVector position, int state)
-	:CField_Wall(gid, position, COF().setReflectCF(0.8)), state(state)
+	:CField_Wall(gid, position, COF().setReflectCF(0.9)), state(state)
 {
 	Damage = CAttribute(12.0);
 }

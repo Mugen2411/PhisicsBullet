@@ -29,6 +29,7 @@ CImageManager::CImageManager()
     imgList["effect_number2"] = std::make_shared<CImage>("media/graphic/system/font/num2.png", 48, 12, 4, 7, 7);
     imgList["effect_number3"] = std::make_shared<CImage>("media/graphic/system/font/num3.png", 11, 11, 1, 10, 10);
     imgList["effect_flame"] = std::make_shared<CImage>("media/graphic/system/game/flame.png", 4, 2, 2, 32, 32);
+    imgList["effect_bornfire"] = std::make_shared<CImage>("media/graphic/system/game/bornfire.png", 4, 4, 1, 32, 32);
 
     imgList["editor_cursor"] = std::make_shared<CImage>("media/graphic/system/game/Cursor.png", 32, 32);
 

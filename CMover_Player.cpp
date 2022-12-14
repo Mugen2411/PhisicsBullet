@@ -8,6 +8,7 @@
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
 #include "CAnchor.h"
+#include "CField.h"
 
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass, costume->constants, 0), animCount(0.0)
@@ -155,4 +156,7 @@ void CMover_Player::Hit(CMover_EnemyBase* m)
 	m->ApplyForce(Acceleration * 0.1 * Mass);
 	CVector delta = (m->getPosition() - Position).getLength2() < 4 ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02 : CVector(0.0, 0.0);
 	m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
+}
+
+void CMover_Player::FieldDispatch(CField* f) {
 }

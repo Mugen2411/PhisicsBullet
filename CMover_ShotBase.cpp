@@ -3,6 +3,7 @@
 #include "CEffect_DamageNumber.h"
 #include "CEffect_BulletDelete.h"
 #include "CAnchor.h"
+#include "CField.h"
 
 CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor = 0xFFFFFF)
 	:CMover(MV_SHOT, position, size, velocity, mass, cofs, 0)
@@ -65,4 +66,8 @@ void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 void CMover_ShotBase::ifonWall()
 {
 	Status = 1;
+}
+
+void CMover_ShotBase::FieldDispatch(CField* f) {
+	f->attributeEffect(this);
 }

@@ -11,6 +11,9 @@
 #include <vector>
 #include <fstream>
 
+class CMover_ShotBase;
+class CMover_BulletBase;
+
 class CField
 {
 private:
@@ -47,8 +50,21 @@ public:
 	inline CAttribute getDamage() {
 		return Damage;
 	}
+	inline CVector getPosition() {
+		return Position;
+	}
+	inline CVector getSize() {
+		return Size;
+	}
 
-	virtual void setFrictionForce(CMover*);
+	virtual void setFrictionForce(CMover* m);
+	void attributeEffect(CMover * m) {
+	};
+	void attributeEffect(CMover_ShotBase* m);
+	void attributeEffect(CMover_BulletBase* m);
+
+	virtual void attributeReaction(CAttribute) {}
+
 	inline void Move(CVector p) {
 		Position = p;
 	}

@@ -1,7 +1,7 @@
 #include "CField_Wall_Rock.h"
 
 CField_Wall_Rock::CField_Wall_Rock(std::string gid, CVector position)
-	:CField_Wall(gid, position, COF())
+	:CField_Wall(gid, position, COF().setReflectCF(0.6))
 {
 }
 

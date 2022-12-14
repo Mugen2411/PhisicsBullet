@@ -11,6 +11,7 @@
 #include "CField_Wall_DeepWater.h"
 #include "CField_Wall_Cave.h"
 #include "CField_Wall_Rock.h"
+#include "CField_Decoration_Torch.h"
 #include "CField_Wall_EnemySpawner.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Void.h"
@@ -48,6 +49,7 @@ CFieldFactory::CFieldFactory()
 	RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
 	RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
 	RegisterFloor(new CField_Cave("F_Cave", CVector()));
+	RegisterFloor(new CField_Void("F_Void", CVector()));
 
 	RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));
 	RegisterWall(new CField_Wall_Log("W_Log", CVector(), 0));
@@ -69,6 +71,7 @@ CFieldFactory::CFieldFactory()
 		RegisterWall(new CField_Wall_Cave("W_Cave" + direction[i], CVector(), i));
 	}
 	RegisterWall(new CField_Wall_Rock("W_Rock", CVector()));
+	RegisterWall(new CField_Decoration_Torch("W_Torch", CVector()));
 
 	std::string buf;
 	for (int i = 0; i < Constant::NumEnemySpawner; i++) {

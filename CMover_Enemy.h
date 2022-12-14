@@ -4,6 +4,8 @@
 #include "CAttribute.h"
 #include <random>
 
+class CField;
+
 class CMover_EnemyBase :
     public CMover
 {
@@ -41,7 +43,7 @@ public:
     virtual void Render()const = 0;
     virtual void Dead();
     virtual void Disappear();
-    void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
+    void onWall(CField* f, double WallReflectCF);
 
     void Render_HPGuage()const;
     
@@ -52,6 +54,9 @@ public:
     }
     void Drop();
     int DamageColor(CAttribute shotATK);
+
+    virtual void FieldDispatch(CField* f){}
+
     inline void HitDispatch(std::shared_ptr<CMover> m) {
         m->Hit(this);
     }

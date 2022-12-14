@@ -4,6 +4,8 @@
 #include "CAttribute.h"
 #include "CStatus.h"
 
+class CField;
+
 class CMover_ShotBase :
     public CMover
 {
@@ -26,6 +28,10 @@ public:
     virtual void Dead();            //‘¼ŽE
     virtual void Disappear();       //Ž©ŽE
 
+    CAttribute getBaseAttribute() {
+        return ATK;
+    }
+
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
     CAttribute TestDamage(CAttribute shotATK);
@@ -35,6 +41,7 @@ public:
         m->Hit(this);
     }
     void Hit(CMover_EnemyBase*);
+    virtual void FieldDispatch(CField* f);
 
     virtual void ifonWall();
 };

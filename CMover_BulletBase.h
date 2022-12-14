@@ -5,6 +5,8 @@
 #include "CStatus.h"
 #include "CAttribute.h"
 
+class CField;
+
 class CMover_BulletBase :
     public CMover
 {
@@ -24,6 +26,9 @@ public:
     virtual void Dead();            //‘¼ŽE
     virtual void Disappear();       //Ž©ŽE
 
+    CAttribute getBaseAttribute() {
+        return ATK;
+    }
     void Damage(CAttribute shotATK, int style);
     void RatioDamage(CAttribute shotATK, int style);
     CAttribute TestDamage(CAttribute shotATK) {
@@ -33,6 +38,7 @@ public:
     inline void HitDispatch(std::shared_ptr<CMover> m) {
         m->Hit(this);
     }
+    virtual void FieldDispatch(CField* f);
 
     void Hit(CMover_Player* m);
 };

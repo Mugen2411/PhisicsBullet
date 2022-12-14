@@ -828,7 +828,7 @@ F_Cave
 F_Cave
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 W_Cave_UDR
 W_Cave_UDL
 F_Cave
@@ -837,7 +837,7 @@ F_Cave
 F_Cave
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 W_Cave_UDR
 W_Cave_UDRL
 W_Cave_UDRL
@@ -922,7 +922,7 @@ W_Cave_UDR
 W_Cave_UDRL
 W_Cave_UDRL
 W_Cave_UDL
-F_Cave
+W_Torch
 F_Cave
 F_Cave
 F_Cave
@@ -1005,7 +1005,7 @@ W_Cave_UDL
 W_Rock
 F_Cave
 W_Void
-W_Void
+W_Torch
 W_Cave_UDR
 W_Cave_UDRL
 W_Cave_UDRL
@@ -1157,7 +1157,7 @@ W_Cave_DL
 F_Cave
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 W_Cave_UDR
 W_Cave_UDRL
 W_Cave_UDRL
@@ -1223,7 +1223,7 @@ W_Cave_UDR
 W_Cave_UDL
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 F_Cave
 F_Cave
 F_Cave
@@ -1276,7 +1276,7 @@ W_Cave_UDL
 F_Cave
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 F_Cave
 F_Cave
 W_Cave_UDR
@@ -1511,7 +1511,7 @@ W_Cave_UL
 W_Rock
 F_Cave
 F_Cave
-F_Cave
+W_Torch
 W_Cave_UR
 W_Cave_UDRL
 W_Cave_UDRL

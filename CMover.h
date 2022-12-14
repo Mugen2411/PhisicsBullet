@@ -10,6 +10,7 @@ class CMover_ShotBase;
 class CMover_EnemyBase;
 class CMover_BulletBase;
 class CMover_Player;
+class CField;
 
 class CMover
 {
@@ -150,6 +151,7 @@ public:
 	}
 
 	virtual void HitDispatch(std::shared_ptr<CMover> m) = 0;
+	virtual void FieldDispatch(CField *f) = 0;
 
 	virtual void BaseUpdate() = 0;
 	virtual bool BaseRender()const = 0;			//画面内ならtrueを返す
@@ -167,7 +169,7 @@ public:
 	virtual void RatioDamage(CAttribute shotATK, int style) = 0;	//割合ダメージを受ける処理
 	virtual CAttribute TestDamage(CAttribute shotATK) = 0;	//ダメージをテストする
 
-	bool onWall(CVector WallPosition, CVector WallSize, double WallReflectionCF);		//壁の上に乗ったか判定し、反射する
+	bool onWall(CField* f, double WallReflectionCF);		//壁の上に乗ったか判定し、反射する
 	virtual void ifonWall() {};
 };
 

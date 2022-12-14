@@ -6,6 +6,8 @@
 #include "CCosutumeBase.h"
 #include "CNumberDrawer.h"
 
+class CField;
+
 class CMover_Player :
     public CMover
 {
@@ -35,7 +37,7 @@ public:
     void Render()const;
     void Dead();
     void Disappear();
-    void onWall(CVector WallPosition, CVector WallSize, double WallReflectCF);
+    void onWall(CField* f, double WallReflectCF);
 
     void Wait(int duration);
     void Damage(CAttribute BulletATK, int style);
@@ -59,5 +61,7 @@ public:
     }
 
     void Hit(CMover_EnemyBase*);
+
+    virtual void FieldDispatch(CField* f);
 };
 

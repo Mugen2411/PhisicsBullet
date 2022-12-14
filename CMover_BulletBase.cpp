@@ -5,6 +5,7 @@
 #include "CEffect_BulletDelete.h"
 #include <DxLib.h>
 #include "CAnchor.h"
+#include "CField.h"
 
 CMover_BulletBase::CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int color = 0xFFFFFF)
 	:CMover(MV_BULLET, position, size, velocity, mass, cofs, 0)
@@ -46,4 +47,8 @@ void CMover_BulletBase::Hit(CMover_Player* m)
 	m->ApplyForce(Velocity * Mass);
 	Status = 1;
 	CAnchor::getIns().Quake(2);
+}
+
+void CMover_BulletBase::FieldDispatch(CField* f) {
+	f->attributeEffect(this);
 }

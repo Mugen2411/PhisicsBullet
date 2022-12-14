@@ -14,6 +14,6 @@ int CMover_Shot_Archer_FlameArrow::Update()
 
 void CMover_Shot_Archer_FlameArrow::Render() const
 {
-	CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 96.0, 108));
+	CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 96.0, 128));
 	CImageManager::getIns().find("shot_archer_arrow")->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0, Constant::priority_shot, 1);
 }

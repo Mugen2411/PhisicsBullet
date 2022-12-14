@@ -10,6 +10,7 @@
 #include "CField_Wall_Well.h"
 #include "CField_Wall_DeepWater.h"
 #include "CField_Wall_Cave.h"
+#include "CField_Wall_Rock.h"
 #include "CField_Wall_EnemySpawner.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Void.h"
@@ -63,9 +64,11 @@ CFieldFactory::CFieldFactory()
 	}
 
 	RegisterWall(new CField_Wall_DeepWater("W_DeepWater", CVector()));
+
 	for (int i = 0; i < 16; i++) {
 		RegisterWall(new CField_Wall_Cave("W_Cave" + direction[i], CVector(), i));
 	}
+	RegisterWall(new CField_Wall_Rock("W_Rock", CVector()));
 
 	std::string buf;
 	for (int i = 0; i < Constant::NumEnemySpawner; i++) {

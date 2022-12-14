@@ -161,6 +161,7 @@
     <ClCompile Include="CEffect_Bright.cpp" />
     <ClCompile Include="CField_Cave.cpp" />
     <ClCompile Include="CField_Wall_Cave.cpp" />
+    <ClCompile Include="CField_Wall_Rock.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="CField_Wall_EnemySpawner.h" />
     <ClInclude Include="CField_Wall_Log.h" />
     <ClInclude Include="CField_Wall_PlayerSpawner.h" />
+    <ClInclude Include="CField_Wall_Rock.h" />
     <ClInclude Include="CField_Wall_Tree.h" />
     <ClInclude Include="CField_Wall_Vegetable.h" />
     <ClInclude Include="CField_Wall_Well.h" />

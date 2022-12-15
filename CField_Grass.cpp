@@ -2,7 +2,7 @@
 #include <DxLib.h>
 
 CField_Grass::CField_Grass(std::string gid, CVector position)
-	:CField(gid, position,CVector(32.0,32.0), COF().setFrictionCF(0.7), 0), animCount(0), BurningTime(0), state(0)
+	:CField(gid, position,CVector(32.0,32.0), COF().setFrictionCF(0.7), 0), animCount(0), BurningTime(0), state(0), Fertile(0)
 {
 	if (GetRand(3) != 0)decoration = 0;
 	else {
@@ -25,10 +25,16 @@ void CField_Grass::Update()
 		animCount += 0.15;
 		animCount = std::fmod(animCount, 3);
 		BurningTime--;
-		if (BurningTime < 0)state = 2;
+		if (BurningTime < 0 || Temperature < 0) {
+			state = 2;
+		}
 		break;
 	case 2:
 		Damage = CAttribute(0.0);
+		if (Fertile > 200.0) {
+			state = 0;
+			Temperature = 0;
+		}
 		break;
 	}
 	

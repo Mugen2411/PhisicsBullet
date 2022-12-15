@@ -16,9 +16,13 @@ public:
     void Render()const;
 
     void attributeReaction(CAttribute a) {
-        a *= CAttribute(0.0).FIRE(1.0);
-        if (a.Sum() > 0.0) {
+        auto f = a * CAttribute(0.0).FIRE(1.0);
+        if (f.Sum() > 0.0) {
             state = 1;
+        }
+        auto aq = a * CAttribute(0.0).AQUA(1.0);
+        if (aq.Sum() > 0.0) {
+            state = 0;
         }
     };
     virtual void attributeEffect(CMover_BulletBase* m) {};

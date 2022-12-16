@@ -7,7 +7,7 @@ CMover_Bullet_WaterSplash::CMover_Bullet_WaterSplash(CStatus baseparams, CVector
 
 int CMover_Bullet_WaterSplash::Update()
 {
-    if (Velocity.getLength2() < 0.05)Status = 2;
+    if (Velocity.getLength2() < 0.05)setStatus(STATUS::DEAD);
     return Status;
 }
 

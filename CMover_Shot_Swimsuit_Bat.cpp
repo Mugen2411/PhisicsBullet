@@ -9,7 +9,7 @@ CMover_Shot_Swimsuit_Bat::CMover_Shot_Swimsuit_Bat(double baseATK, CVector posit
 
 int CMover_Shot_Swimsuit_Bat::Update()
 {
-	if (cnt > 9)return 1;
+	if (cnt > 9)setStatus(STATUS::DEAD);
 	cnt++;
 	return Status;
 }

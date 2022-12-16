@@ -8,7 +8,7 @@ CMover_Shot_Archer_PlaneArrow::CMover_Shot_Archer_PlaneArrow(double baseATK, CVe
 
 int CMover_Shot_Archer_PlaneArrow::Update()
 {
-	if (Velocity.getLength2() < Constant::zero_border)Status = 1;
+	if (Velocity.getLength2() < Constant::zero_border)setStatus(STATUS::DEAD);
 	return Status;
 }
 

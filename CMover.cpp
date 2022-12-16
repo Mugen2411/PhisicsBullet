@@ -4,7 +4,7 @@
 CMover::CMover(MOVER_ID ID, CVector position, double size, CVector velocity, double mass,
 	COF cofs, double temperature)
 	:Position(position), Velocity(velocity), Acceleration(0.0, 0.0), Size(size * 0.5),
-	Mass(mass), nowFricted(0.0), nowWatered(0.0), Cofs(cofs), Temperature(temperature), Status(0), Category(ID)
+	Mass(mass), nowFricted(0.0), nowWatered(0.0), Cofs(cofs), Temperature(temperature), Status(STATUS::ALIVE), Category(ID)
 {
 }
 

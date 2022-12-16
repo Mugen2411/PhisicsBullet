@@ -16,8 +16,11 @@ class CMover
 {
 	friend CMoverParent;
 public:
-	enum MOVER_ID {
+	static enum MOVER_ID {
 		MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET
+	};
+	static enum STATUS {
+		ALIVE = 0, DEAD, VANISHED
 	};
 protected:
 	CGameMediator* med;
@@ -70,6 +73,9 @@ public:
 	}
 	inline void setStatus(int status) {
 		Status = status;
+	}
+	inline int getStatus() {
+		return Status;
 	}
 	inline void ApplyForce(CVector F) {
 		Acceleration += (F / Mass);

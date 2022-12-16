@@ -45,7 +45,7 @@ void CMover_BulletBase::Hit(CMover_Player* m)
 {
 	m->Damage(ATK*baseParams.ATK, 0);
 	m->ApplyForce(Velocity * Mass);
-	Status = 1;
+	setStatus(STATUS::DEAD);
 	CAnchor::getIns().Quake(2);
 }
 

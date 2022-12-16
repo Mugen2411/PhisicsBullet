@@ -60,12 +60,12 @@ void CMover_ShotBase::Hit(CMover_EnemyBase* m)
 {
 	m->Damage(ATK * baseATK, 1);
 	m->ApplyForce(Velocity * Mass);
-	Status = 1;
+	setStatus(STATUS::DEAD);
 }
 
 void CMover_ShotBase::ifonWall()
 {
-	Status = 1;
+	setStatus(STATUS::DEAD);
 }
 
 void CMover_ShotBase::FieldDispatch(CField* f) {

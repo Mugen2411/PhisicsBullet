@@ -19,7 +19,7 @@ void CMover_Shot_Swimsuit_iPhone::Dead()
 int CMover_Shot_Swimsuit_iPhone::Update()
 {
 	if (Velocity.getLength2() < 0.05) {
-		return 1;
+		setStatus(STATUS::DEAD);
 	}
 	renderAngle += Constant::PI2 * Constant::perFrame * 1.5;
 	return Status;

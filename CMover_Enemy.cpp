@@ -141,7 +141,7 @@ void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
 	CSoundManager::getIns().find("enemy_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	if (baseParams.HP < 0) {
-		Status = 1;
+		setStatus(STATUS::DEAD);
 		Drop();
 	}
 }
@@ -154,7 +154,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 	baseParams.HP -= ret;
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
 	if (baseParams.HP < 0) {
-		Status = 1;
+		setStatus(STATUS::DEAD);
 		Drop();
 	}
 }

@@ -8,7 +8,7 @@ CMover_Shot_Archer_FlameArrow::CMover_Shot_Archer_FlameArrow(double baseATK, CVe
 
 int CMover_Shot_Archer_FlameArrow::Update()
 {
-	if (Velocity.getLength2() < Constant::zero_border)Status = 1;
+	if (Velocity.getLength2() < Constant::zero_border)setStatus(STATUS::DEAD);
 	return Status;
 }
 

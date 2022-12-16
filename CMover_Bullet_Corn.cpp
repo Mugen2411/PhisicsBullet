@@ -7,7 +7,7 @@ CMover_Bullet_Corn::CMover_Bullet_Corn(CStatus baseparams, CVector position, dou
 
 int CMover_Bullet_Corn::Update()
 {
-    if (Velocity.getLength2() < 0.05)Status = 2;
+    if (Velocity.getLength2() < 0.05)setStatus(STATUS::DEAD);
     return Status;
 }
 

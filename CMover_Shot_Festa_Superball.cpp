@@ -12,8 +12,8 @@ CMover_Shot_Festa_Superball::CMover_Shot_Festa_Superball(double baseATK, CVector
 int CMover_Shot_Festa_Superball::Update()
 {
 	cnt++;
-	if (cnt > 300)Status = 1;
-	if (Velocity.getLength2() < Constant::zero_border)Status = 1;
+	if (cnt > 300)setStatus(STATUS::DEAD);
+	if (Velocity.getLength2() < Constant::zero_border)setStatus(STATUS::DEAD);
 	return Status;
 }
 

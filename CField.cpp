@@ -11,7 +11,7 @@ void CField::setFrictionForce(CMover* m)
 {
 	m->ApplyFrictionForce(Cofs.FrictionCF);
 	m->ApplyWaterRegistance(Cofs.WaterResCF);
-	if (DamageInterval == 0) {
+	if (DamageInterval == 0 || m->getStatus() == CMover::STATUS::DEAD) {
 		m->FieldDispatch(this);
 		CAttribute t = m->TestDamage(Damage);
 		if(Damage.Sum() < t.Sum())m->RatioDamage(Damage / 10.0, 1);

@@ -8,7 +8,7 @@ CMover_Shot_Festa_Cork::CMover_Shot_Festa_Cork(double baseATK, CVector position,
 
 int CMover_Shot_Festa_Cork::Update()
 {
-	if (Velocity.getLength2() < Constant::zero_border)Status = 1;
+	if (Velocity.getLength2() < Constant::zero_border)setStatus(STATUS::DEAD);
 	return Status;
 }
 

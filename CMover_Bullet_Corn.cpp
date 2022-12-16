@@ -13,5 +13,5 @@ int CMover_Bullet_Corn::Update()
 
 void CMover_Bullet_Corn::Render() const
 {
-    CImageManager::getIns().find("bullet_bud_corn")->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0, Constant::priority_bullet);
+    CImageManager::getIns().find("bullet_corn")->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0, Constant::priority_bullet);
 }

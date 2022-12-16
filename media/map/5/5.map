@@ -823,7 +823,7 @@ W_Cave_UDRL
 W_Cave_UDRL
 W_Cave_UDL
 W_Rock
-F_Cave
+E8
 F_Cave
 F_Cave
 F_Cave
@@ -852,7 +852,7 @@ F_Cave
 W_Cave_UDR
 W_Cave_UDL
 F_Cave
-F_Cave
+E7
 F_Cave
 F_Cave
 F_Cave
@@ -1548,7 +1548,7 @@ W_Cave_UDRL
 W_Cave_UDRL
 W_Cave_UDL
 F_Cave
-F_Cave
+E9
 P0
 F_Cave
 E6

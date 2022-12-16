@@ -163,6 +163,8 @@
     <ClCompile Include="CField_Decoration_Torch.cpp" />
     <ClCompile Include="CField_Wall_Cave.cpp" />
     <ClCompile Include="CField_Wall_Rock.cpp" />
+    <ClCompile Include="CMover_Bullet_Axe.cpp" />
+    <ClCompile Include="CMover_Enemy_Goblin.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
@@ -316,10 +318,12 @@
     <ClInclude Include="CEnemySpawner.h" />
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
+    <ClInclude Include="CMover_Bullet_Axe.h" />
     <ClInclude Include="CMover_Bullet_Corn.h" />
     <ClInclude Include="CMover_Bullet_WaterSplash.h" />
     <ClInclude Include="CMover_Enemy.h" />
     <ClInclude Include="CMover_Enemy_Bud.h" />
+    <ClInclude Include="CMover_Enemy_Goblin.h" />
     <ClInclude Include="CMover_Enemy_Shimaenaga.h" />
     <ClInclude Include="CMover_Enemy_Yadokari.h" />
     <ClInclude Include="CMover_Player.h" />

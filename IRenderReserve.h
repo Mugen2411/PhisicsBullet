@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 
+class CRenderReserveList;
+
 class IRenderReserve
 {
 protected:
@@ -25,6 +27,7 @@ public:
 		return Priority < rhs.Priority;
 	}*/
 	friend bool compRR(const IRenderReserve* lhs, const IRenderReserve* rhs);
+	friend CRenderReserveList;
 };
 
 bool compRR(const IRenderReserve* lhs, const IRenderReserve* rhs);

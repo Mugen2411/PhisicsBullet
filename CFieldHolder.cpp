@@ -61,10 +61,10 @@ void CFieldHolder::Update()
 void CFieldHolder::Render() const
 {
 	for (auto& i : walllist) {
-		if (i->isInScreen())i->Render();
+		i->Render();
 	}
 	for (auto& i : floorlist) {
-		if (i->isInScreen())i->Render();
+		i->Render();
 	}
 }
 

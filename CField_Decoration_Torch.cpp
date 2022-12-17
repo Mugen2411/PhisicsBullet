@@ -12,14 +12,15 @@ void CField_Decoration_Torch::Update()
 	animCount += 0.15;
 	animCount = std::fmod(animCount, 3);
 	BurningTime--;
-	Damage = CAttribute(0.0).FIRE(4.0);
+	if (state == 1)Damage = CAttribute(0.0).FIRE(4.0);
+	else Damage = CAttribute(0.0);
 	isWall = false;
 }
 
 void CField_Decoration_Torch::Render() const
 {
 	if (state == 1) {
-		CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 192 - GetRand(8), 64));
+		CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 512 - GetRand(16), 216));
 		CImageManager::getIns().find("effect_bornfire")->
 			DrawRotaFwithBlend(Position.x, Position.y, GetRand(16) / 256.0f, 1.0,
 				0xFFFFFF, CImageManager::BM_ADD, 216, Constant::priority_effect, animCount);

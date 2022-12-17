@@ -12,6 +12,7 @@
 #include "CField_Wall_Cave.h"
 #include "CField_Wall_Rock.h"
 #include "CField_Decoration_Torch.h"
+#include "CField_Decoration_Light.h"
 #include "CField_Wall_EnemySpawner.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Void.h"
@@ -72,6 +73,7 @@ CFieldFactory::CFieldFactory()
 	}
 	RegisterWall(new CField_Wall_Rock("W_Rock", CVector()));
 	RegisterWall(new CField_Decoration_Torch("W_Torch", CVector()));
+	RegisterWall(new CField_Decoration_Light("W_Light", CVector()));
 
 	std::string buf;
 	for (int i = 0; i < Constant::NumEnemySpawner; i++) {

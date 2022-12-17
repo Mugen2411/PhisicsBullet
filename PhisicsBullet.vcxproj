@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="CEffect_Bright.cpp" />
     <ClCompile Include="CField_Cave.cpp" />
+    <ClCompile Include="CField_Decoration_Light.cpp" />
     <ClCompile Include="CField_Decoration_Torch.cpp" />
     <ClCompile Include="CField_Wall_Cave.cpp" />
     <ClCompile Include="CField_Wall_Rock.cpp" />
@@ -290,6 +291,7 @@
     <ClInclude Include="CFieldFactory.h" />
     <ClInclude Include="CFieldHolder.h" />
     <ClInclude Include="CFieldParent.h" />
+    <ClInclude Include="CField_Decoration_Light.h" />
     <ClInclude Include="CField_Decoration_Torch.h" />
     <ClInclude Include="CField_Dirt.h" />
     <ClInclude Include="CField_Error.h" />

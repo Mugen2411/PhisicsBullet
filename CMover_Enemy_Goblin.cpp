@@ -63,7 +63,7 @@ void CMover_Enemy_Goblin::Render() const
 		return;
 	}
 	CImageManager::getIns().find("enemy_goblin")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy, Direction * 4 + (int)(animCount));
-	CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 128, 192));
+	CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 192, 192));
 }
 
 CMover_EnemyBase* CMover_Enemy_Goblin::Clone(CVector Position, int Level)

@@ -435,6 +435,9 @@
     <ClCompile Include="CMover_Bullet_Axe.cpp">
       <Filter>ソース ファイル\Mover\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Decoration_Light.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -748,6 +751,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Bullet_Axe.h">
       <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Decoration_Light.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

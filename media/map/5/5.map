@@ -831,7 +831,7 @@ F_Cave
 W_Torch
 W_Cave_UDR
 W_Cave_UDL
-F_Cave
+W_Light
 F_Cave
 F_Cave
 F_Cave
@@ -957,7 +957,7 @@ W_Cave_UDR
 W_Cave_UDL
 F_Cave
 F_Cave
-F_Cave
+W_Light
 W_Cave_UDR
 W_Cave_UDRL
 W_Cave_UDRL
@@ -1070,7 +1070,7 @@ F_Cave
 F_Cave
 F_Cave
 F_Cave
-F_Cave
+W_Light
 W_Cave_UR
 W_Cave_URL
 W_Cave_URL
@@ -1369,7 +1369,7 @@ W_Cave_UDRL
 W_Cave_UDRL
 W_Cave_UDRL
 W_Cave_UDL
-F_Cave
+W_Light
 F_Cave
 F_Cave
 F_Cave

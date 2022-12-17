@@ -30,6 +30,8 @@ public:
 	static int priority_number;
 	static int priority_marker;
 
+	static double bullet_delete_velocity;
+
 	static int MaxPause;
 
 	enum SCENE_ID {

@@ -27,7 +27,7 @@ void CGameMediator::ProcessEnemySpawner()
 }
 
 CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true),isRetire(false), pauseGuage(0), cnt(0), isInitialized(false),
-costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 4 + 1), CND()
+costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 3), CND()
 {
 	input = CControllerFactory::getIns().getController();
 	retireText[0] = CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32), 0xFFFFFF, 0x000000, 1);

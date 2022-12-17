@@ -26,6 +26,8 @@ int Constant::priority_shot = 1;
 int Constant::priority_number = 7;
 int Constant::priority_marker = 10;
 
+double Constant::bullet_delete_velocity = 0.5;
+
 int Constant::MaxPause = 180;
 
 CVector Constant::Costume_detail_pos = CVector(16, 128);

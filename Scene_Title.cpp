@@ -77,8 +77,8 @@ void Scene_Title::Update() {
 		return;
 	}
 	for (int i = 0; i < 5; i++) {
-		if (CMS.get() == i)menuText[i].position.x = 420;
-		else menuText[i].position.x = 400;
+		if (CMS.get() == i)menuText[i].position.x = 400;
+		else menuText[i].position.x = 420;
 	}
 }
 

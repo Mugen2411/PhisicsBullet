@@ -9,7 +9,7 @@ CMover_Bullet_Axe::CMover_Bullet_Axe(CStatus baseparams, CVector position, doubl
 int CMover_Bullet_Axe::Update()
 {
 	baseAngle += Constant::PI2 * Constant::perFrame * 2.0;
-	if (Velocity.getLength2() < 0.05)setStatus(STATUS::DEAD);
+	if (Velocity.getLength2() < Constant::bullet_delete_velocity)setStatus(STATUS::DEAD);
 	return Status;
 }
 

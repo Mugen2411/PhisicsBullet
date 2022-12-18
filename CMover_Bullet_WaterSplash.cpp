@@ -1,7 +1,7 @@
 #include "CMover_Bullet_WaterSplash.h"
 
 CMover_Bullet_WaterSplash::CMover_Bullet_WaterSplash(CStatus baseparams, CVector position, double angle, double speed)
-    :CMover_BulletBase(baseparams, CAttribute(0.0).NONE(20).AQUA(90), position, 16, CVector(angle) * speed, 0.8, COF(0.002, 0.001, 0.05, 0.1), 0x00FFFF)
+    :CMover_BulletBase(baseparams, CAttribute(0.0).NONE(20).AQUA(80), position, 16, CVector(angle) * speed, 0.8, COF(0.002, 0.001, 0.05, 0.1), 0x00FFFF)
 {
 }
 

@@ -126,9 +126,9 @@ void CMover_EnemyBase::Disappear()
 void CMover_EnemyBase::Render_HPGuage()const
 {
 	CImageManager::getIns().find("enemy_HPGuage")->DrawExtendWithBlend(Position.x - 16, Position.y - Size - 8,
-		Position.x + 16, Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 1.1, 1);
+		Position.x + 16, Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, Constant::priority_marker, 1);
 	CImageManager::getIns().find("enemy_HPGuage")->DrawExtendWithBlend(Position.x - 16, Position.y - Size - 8,
-		Position.x - 16 + 32 * (baseParams.HP / baseParams.MaxHP), Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160, 1.2, 0);
+		Position.x - 16 + 32 * (baseParams.HP / baseParams.MaxHP), Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160, Constant::priority_marker, 0);
 
 }
 

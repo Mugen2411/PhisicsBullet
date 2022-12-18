@@ -104,7 +104,7 @@ bool CMover::onWall(CField* f, double WallReflectionCF)
 	}
 	int add = 0;
 	if (U) {
-		Position.y = WallPosition.y + WallSize.y / 2 + (Size+0.2);
+		Position.y = WallPosition.y + WallSize.y / 2 + (Size+1.0);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
 		//Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.y = 0;
@@ -114,7 +114,7 @@ bool CMover::onWall(CField* f, double WallReflectionCF)
 		ifonWall();
 	}
 	if (D) {
-		Position.y = WallPosition.y - WallSize.y / 2 - (Size + 0.2);
+		Position.y = WallPosition.y - WallSize.y / 2 - (Size + 1.0);
 		Velocity.y *= -Cofs.ReflectCF * WallReflectionCF;
 		//Acceleration.y *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.y = 0;
@@ -124,7 +124,7 @@ bool CMover::onWall(CField* f, double WallReflectionCF)
 		ifonWall();
 	}
 	if (R) {
-		Position.x = WallPosition.x - WallSize.x / 2 - (Size + 0.2);
+		Position.x = WallPosition.x - WallSize.x / 2 - (Size + 1.0);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
 		//Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.x = 0;
@@ -134,7 +134,7 @@ bool CMover::onWall(CField* f, double WallReflectionCF)
 		ifonWall();
 	}
 	if (L) {
-		Position.x = WallPosition.x + WallSize.x / 2 + (Size + 0.2);
+		Position.x = WallPosition.x + WallSize.x / 2 + (Size + 1.0);
 		Velocity.x *= -Cofs.ReflectCF * WallReflectionCF;
 		//Acceleration.x *= -Cofs.ReflectCF * WallReflectionCF;
 		Acceleration.x = 0;

@@ -156,6 +156,7 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal, CAttrib
 {
 	int dx[4] = { 0, 0, 1, -1 };
 	int dy[4] = { 1, -1, 0, 0 };
+	if (start.x < 0 || start.y < 0 || start.x > width*32 || start.y > height*32)return std::list<CVector>();
 
 	CVector s((int)((start.x) / 32), (int)((start.y) / 32));
 	CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));

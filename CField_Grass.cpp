@@ -22,7 +22,7 @@ void CField_Grass::Update()
 		}
 		break;
 	case 1:
-		Damage.FIRE(4.0);
+		Damage.FIRE(8.0);
 		animCount += 0.15;
 		animCount = std::fmod(animCount, 3);
 		BurningTime--;

@@ -5,7 +5,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level) :
-	CMover_EnemyBase(20, Level, 0.5, 0.7, CAttribute(1.0).FIRE(0.3).FLOWER(2.0).AQUA(0.5), 10, 0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.06, 0.1)),
+	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(0.3).FLOWER(2.0).AQUA(0.5), 10, 0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.06, 0.1)),
 	testDest(0.0, 0.0)
 {
 }

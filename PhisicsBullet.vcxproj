@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CEffect_Bright.cpp" />
+    <ClCompile Include="CEffect_EnemyDelete.cpp" />
     <ClCompile Include="CField_Cave.cpp" />
     <ClCompile Include="CField_Decoration_Light.cpp" />
     <ClCompile Include="CField_Decoration_Torch.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="CEffect_Bright.h" />
     <ClInclude Include="CEffect_BulletDelete.h" />
     <ClInclude Include="CEffect_DamageNumber.h" />
+    <ClInclude Include="CEffect_EnemyDelete.h" />
     <ClInclude Include="CEffect_MoneyNumber.h" />
     <ClInclude Include="CEnemyFactory.h" />
     <ClInclude Include="CField.h" />

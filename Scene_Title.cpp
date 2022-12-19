@@ -42,23 +42,18 @@ void Scene_Title::Update() {
 		if (input.lock()->Right() == 1)currentStage = (currentStage + 1) % (CProgressData::getIns().getMaxStage());
 		if (input.lock()->Left() == 1)currentStage = (currentStage + CProgressData::getIns().getMaxStage()-1) % (CProgressData::getIns().getMaxStage());
 	}
-	menuText[0].text = std::string("Start¨")+std::to_string(currentStage);
 #else
 	if (CMS.get() == 0) {
 		if (input.lock()->Right() == 1)currentStage = (currentStage + 1) % (CProgressData::getIns().getLastStage()+1);
 		if (input.lock()->Left() == 1)currentStage = (currentStage + CProgressData::getIns().getLastStage()) % (CProgressData::getIns().getLastStage()+1);
 	}
-	menuText[0].text = std::string("Start¨") + std::to_string(currentStage*5+1);
 #endif
+	menuText[0].text = std::string("Start¨") + std::to_string(currentStage);
 	if (input.lock()->Select() == 1) {
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		switch (CMS.get()) {
 		case 0:
-#ifdef _DEBUG
 			CProgressData::getIns().setCurrentStage(currentStage);
-#else
-			CProgressData::getIns().setCurrentStage(currentStage*5);
-#endif
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_MAIN, true);
 			break;
 		case 1:

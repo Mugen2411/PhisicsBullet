@@ -1,7 +1,7 @@
 #include "CMover_Enemy.h"
 #include "CMover_Player.h"
 #include "CEffectParent.h"
-#include "CEffect_BulletDelete.h"
+#include "CEffect_EnemyDelete.h"
 #include "CEffect_MoneyNumber.h"
 #include "CEffect_DamageNumber.h"
 #include "CImageManager.h"
@@ -110,12 +110,12 @@ bool CMover_EnemyBase::BaseRender() const
 
 void CMover_EnemyBase::Dead()
 {
-	for (int i = 0; i < 3; i++)CEffectParent::RegisterEffect(
-		std::make_shared<CEffect_BulletDelete>(
-			Position + CVector(GetRand(100) * 0.2 - 10, GetRand(100) * 0.2 - 10),
-			Velocity, Size + 4 - GetRand(8), Color));
+	for (int i = 0; i < 6; i++)CEffectParent::RegisterEffect(
+		std::make_shared<CEffect_EnemyDelete>(
+			Position + CVector(GetRand(Size*3) - Size*1.5, GetRand(Size*3) - Size*1.5),
+			Size*0.5 + GetRand(Size*1.5), Color));
 
-	CAnchor::getIns().Quake(12);
+	CAnchor::getIns().Quake(15, 6.0);
 	CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);
 }
 

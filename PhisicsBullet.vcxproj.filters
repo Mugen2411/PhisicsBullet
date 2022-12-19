@@ -441,6 +441,9 @@
     <ClCompile Include="CMover_Enemy_Acecorn.cpp">
       <Filter>ソース ファイル\Mover\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="CEffect_EnemyDelete.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -760,6 +763,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Enemy_Acecorn.h">
       <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect_EnemyDelete.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

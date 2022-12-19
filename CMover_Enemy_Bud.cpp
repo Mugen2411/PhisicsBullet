@@ -15,7 +15,11 @@ int CMover_Enemy_Bud::Update()
 	switch (state) {
 	case 0:
 		if (cnt % 60 == 0) {
-			if (GetRand(5) == 0)findTargetByDistance(6);
+			if (GetRand(5) == 0) {
+				findTargetByDistance(6);
+				state = 2;
+				cnt = 0;
+			}
 				else Find_Route(3);
 		}
 		if (!route.empty()) {
@@ -40,6 +44,18 @@ int CMover_Enemy_Bud::Update()
 			break;
 		}
 		cnt++;
+		break;
+	case 2:
+		if (!route.empty()) {
+			Move_on_Route();
+		}
+		else {
+			state = 0;
+			cnt = 0;
+		}
+		cnt++;
+		animCount += 0.3;
+		if (animCount > 4)animCount = 0;
 		break;
 	case -1:
 		animCount += 0.1;

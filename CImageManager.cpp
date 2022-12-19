@@ -34,7 +34,8 @@ CImageManager::CImageManager()
     imgList["editor_cursor"] = std::make_shared<CImage>("media/graphic/system/game/Cursor.png", 32, 32);
 
     imgList["enemy_bud"] = std::make_shared<CImage>("media/graphic/enemy/bud/bud.png", 16, 4, 4, 32, 32);
-    imgList["enemy_bud_intro"] = std::make_shared<CImage>("media/graphic/enemy/bud/intro.png", 4, 4, 1, 32, 32);;
+    imgList["enemy_bud_intro"] = std::make_shared<CImage>("media/graphic/enemy/bud/intro.png", 4, 4, 1, 32, 32);
+    imgList["enemy_acecorn"] = std::make_shared<CImage>("media/graphic/enemy/bud/ace.png", 16, 4, 4, 32, 32);
     imgList["bullet_corn"] = std::make_shared<CImage>("media/graphic/enemy/bud/corn.png", 16, 16);
     imgList["enemy_shimaenaga"] = std::make_shared<CImage>("media/graphic/enemy/shimaenaga/shimaenaga.png", 4, 4, 1, 32, 32);
     imgList["enemy_yadokari"] = std::make_shared<CImage>("media/graphic/enemy/yadokari/yadokari.png", 16, 4, 4, 32, 32);

@@ -156,12 +156,12 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 	if (baseParams.HP < 0) {
 		setStatus(STATUS::DEAD);
 		Drop();
-	}
+	} 
 }
 
 void CMover_EnemyBase::Drop()
 {
-	int val = std::ceil(baseMoney * (1 + baseParams.Level * 0.1)) + (baseParams.Level / 5.0);
+	int val = std::ceil(baseMoney * (1.0 + (int)(baseParams.Level / 15.0)*0.1) + (baseParams.Level));
 	if (auto r = med)r->getMoney(val);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
@@ -178,10 +178,10 @@ void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 {
 	pushed++;
 	CVector diff = m->getPosition() - Position;
-	CVector delta = diff.getLength2() < Constant::zero_border ? CVector(Constant::PI2 / 64 * GetRand(64)) : CVector(0.0,0.0);
+	CVector delta = diff.getLength2() < Constant::zero_border ? CVector(Constant::PI2 / 64 * GetRand(64)) : CVector(0.0, 0.0);
 	m->ApplyForce((diff + delta).getNorm() * Mass / pushed);
 	m->ApplyForce(Velocity * Mass * 0.1 / pushed);
-	
+
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)

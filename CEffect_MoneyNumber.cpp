@@ -21,10 +21,10 @@ void CEffect_MoneyNumber::Render() const
 	int x = Position.x + l * 5;
 	for (int i = 0; i < l; i++) {
 		CImageManager::getIns().find("effect_number3")->
-			DrawRota(x, Position.y, 0.0, 1.0, 0.7, n % 10);
+			DrawRota(x, Position.y, 0.0, 1.0, Constant::priority_number, n % 10);
 		x -= 10;
 		n /= 10;
 	}
 	CImageManager::getIns().find("effect_number3")->
-		DrawRota(x, Position.y, 0.0, 1.0, 0.7, 10);
+		DrawRota(x, Position.y, 0.0, 1.0, Constant::priority_number, 10);
 }

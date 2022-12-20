@@ -65,12 +65,12 @@ bool CMover_EnemyBase::BaseRender() const
 	CAnchor::getIns().enableAbsolute();
 	if (p.x + Size < 0) {
 		if (p.y + Size < 0) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(8, 8, (CVector(0, 0) - p).getAngle(), 1.0, Constant::priority_marker);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(8, 8, (p - CVector(0, 0)).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
 		if (p.y - Size > Constant::ScreenH) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(8, Constant::ScreenH - 8, (CVector(0, Constant::ScreenH) - p).getAngle(), 1.0, Constant::priority_marker);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(8, Constant::ScreenH - 8, (p - CVector(0, Constant::ScreenH)).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
@@ -80,16 +80,16 @@ bool CMover_EnemyBase::BaseRender() const
 	}
 	if (p.x - Size > Constant::ScreenW) {
 		if (p.y + Size < 0) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, 8, (CVector(Constant::ScreenW, 0) - p).getAngle(), 1.0, Constant::priority_marker);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, 8, (p - CVector(Constant::ScreenW, 0)).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
 		if (p.y - Size > Constant::ScreenH) {
-			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, Constant::ScreenH - 8, (CVector(Constant::ScreenW, Constant::ScreenH) - p).getAngle(), 1.0, Constant::priority_marker);
+			CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, Constant::ScreenH - 8, (p - CVector(Constant::ScreenW, Constant::ScreenH)).getAngle(), 1.0, Constant::priority_marker);
 			CAnchor::getIns().disableAbsolute();
 			return false;
 		}
-		CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, p.y, Constant::PI, 1.0, Constant::priority_marker);
+		CImageManager::getIns().find("enemy_marker")->DrawRota(Constant::ScreenW - 8, p.y, Constant::PI * 3, 1.0, Constant::priority_marker);
 		CAnchor::getIns().disableAbsolute();
 		return false;
 	}
@@ -112,11 +112,11 @@ void CMover_EnemyBase::Dead()
 {
 	for (int i = 0; i < 5; i++)CEffectParent::RegisterEffect(
 		std::make_shared<CEffect_EnemyDelete>(
-			Position + CVector(GetRand(Size*3) - Size*1.5, GetRand(Size*3) - Size*1.5),
-			Size*0.5 + GetRand(Size*1.5), Color, 30));
+			Position + CVector(GetRand(Size * 3) - Size * 1.5, GetRand(Size * 3) - Size * 1.5),
+			Size * 0.5 + GetRand(Size * 1.5), Color, 30));
 	for (int i = 0; i < 2; i++)CEffectParent::RegisterEffect(
 		std::make_shared<CEffect_EnemyDelete>(
-			Position, Size*(4+i*1.0),Color, 12));
+			Position, Size * (4 + i * 1.0), Color, 12));
 
 	CAnchor::getIns().Quake(15, 6.0);
 	CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);
@@ -159,12 +159,12 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 	if (baseParams.HP < 0) {
 		setStatus(STATUS::DEAD);
 		Drop();
-	} 
+	}
 }
 
 void CMover_EnemyBase::Drop()
 {
-	int val = std::ceil(baseMoney * (1.0 + (int)(baseParams.Level / 15.0)*0.1) + (baseParams.Level));
+	int val = std::ceil(baseMoney * (1.0 + (int)(baseParams.Level / 15.0) * 0.1) + (baseParams.Level));
 	if (auto r = med)r->getMoney(val);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
@@ -183,8 +183,6 @@ void CMover_EnemyBase::Hit(CMover_EnemyBase* m)
 	CVector diff = m->getPosition() - Position;
 	CVector delta = diff.getLength2() < Constant::zero_border ? CVector(Constant::PI2 / 64 * GetRand(64)) : CVector(0.0, 0.0);
 	m->ApplyForce((diff + delta).getNorm() * Mass / pushed);
-	m->ApplyForce(Velocity * Mass * 0.1 / pushed);
-
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m)

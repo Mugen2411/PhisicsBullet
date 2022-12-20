@@ -12,7 +12,7 @@ Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(5, 0
 	menuText[2] = CTextDrawer::Text("Option", CVector(340, 320), 0xFFFFFF, 0x7F7F7F, 1);
 	menuText[3] = CTextDrawer::Text("Manual", CVector(340, 360), 0xFFFFFF, 0x007F00, 1);
 	menuText[4] = CTextDrawer::Text("Quit", CVector(340, 400), 0xFFFFFF, 0x7F0000, 1);
-	underText[0] = CTextDrawer::Text("ADキーでチェックポイントを選択しSPACEキーでゲームを開始します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
+	underText[0] = CTextDrawer::Text("ADキーでステージを選択しSPACEキーでゲームを開始します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	underText[1] = CTextDrawer::Text("ゲーム内通貨を使用して自機のレベルを上げます。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	underText[2] = CTextDrawer::Text("各種設定を変更します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	underText[3] = CTextDrawer::Text("操作方法やルールの説明を見ます。(メモ帳を開きます)", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
@@ -48,7 +48,7 @@ void Scene_Title::Update() {
 		if (input.lock()->Left() == 1)currentStage = (currentStage + CProgressData::getIns().getLastStage()) % (CProgressData::getIns().getLastStage()+1);
 	}
 #endif
-	menuText[0].text = std::string("Start→") + std::to_string(currentStage);
+	menuText[0].text = std::string("Start→") + std::to_string(currentStage+1);
 	if (input.lock()->Select() == 1) {
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		switch (CMS.get()) {

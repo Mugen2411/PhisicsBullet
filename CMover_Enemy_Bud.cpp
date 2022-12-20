@@ -53,6 +53,7 @@ int CMover_Enemy_Bud::Update()
 			state = 0;
 			cnt = 0;
 		}
+		if((med->GetPlayerPosition()-Position).getLength2() > (32*6*32*6) && cnt % 90 == 0)findTargetByDistance(6);
 		cnt++;
 		animCount += 0.3;
 		if (animCount > 4)animCount = 0;

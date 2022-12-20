@@ -17,7 +17,7 @@ Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(5, 0
 	underText[2] = CTextDrawer::Text("各種設定を変更します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	underText[3] = CTextDrawer::Text("操作方法やルールの説明を見ます。(メモ帳を開きます)", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
 	underText[4] = CTextDrawer::Text("ゲームを終了します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
-	titleText = CTextDrawer::Text("タイトル未定！", CVector(320 - 72 * 3.5, 32.0), 0xFFFFFF, 0x0000FF, 2);
+	titleText = CTextDrawer::Text("MAKEOVER trial", CVector(320 - 72 * 3.0, 32.0), 0xFFFFFF, 0x0000FF, 2);
 	CProgressData::getIns().load();
 	input.lock()->SetMouseInvisible();
 }

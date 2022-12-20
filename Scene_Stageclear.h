@@ -15,6 +15,6 @@ public:
 
 private:
 	std::weak_ptr<CSTGInputManager> input;
-	CTextDrawer::Text text[3];
+	CTextDrawer::Text text[4];
 	int cnt;
 };

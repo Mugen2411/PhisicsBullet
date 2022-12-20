@@ -110,10 +110,13 @@ bool CMover_EnemyBase::BaseRender() const
 
 void CMover_EnemyBase::Dead()
 {
-	for (int i = 0; i < 6; i++)CEffectParent::RegisterEffect(
+	for (int i = 0; i < 5; i++)CEffectParent::RegisterEffect(
 		std::make_shared<CEffect_EnemyDelete>(
 			Position + CVector(GetRand(Size*3) - Size*1.5, GetRand(Size*3) - Size*1.5),
-			Size*0.5 + GetRand(Size*1.5), Color));
+			Size*0.5 + GetRand(Size*1.5), Color, 30));
+	for (int i = 0; i < 2; i++)CEffectParent::RegisterEffect(
+		std::make_shared<CEffect_EnemyDelete>(
+			Position, Size*(4+i*1.0),Color, 12));
 
 	CAnchor::getIns().Quake(15, 6.0);
 	CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);

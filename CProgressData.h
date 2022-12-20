@@ -64,6 +64,9 @@ public:
 	int getEarnedMoney() {
 		return earnedMoney;
 	}
+	int getStageMoney() {
+		return stageMoney;
+	}
 
 private:
 	CProgressData();
@@ -71,6 +74,7 @@ private:
 	int currentStage;
 	int maxStage;
 	int earnedMoney;
+	int stageMoney;
 
 	struct progressData {
 		int lastStage;		//10をかけると始めるべきステージになる

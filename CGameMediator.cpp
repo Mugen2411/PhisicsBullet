@@ -193,7 +193,7 @@ void CGameMediator::Render() const
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 7, (input.lock()->Select() > 0) ? 1 : 0);
 	if (pauseGuage == Constant::MaxPause)CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 8, 2);
-	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160 * ((float)pauseGuage / 180), 32,
+	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160 * ((float)pauseGuage / Constant::MaxPause), 32,
 		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 9, (input.lock()->Select() > 0) ? 1 : 0);
 	CND.Draw(480, 16, reserveMoney, 0, 2, Constant::priority_number);
 	CAnchor::getIns().disableAbsolute();

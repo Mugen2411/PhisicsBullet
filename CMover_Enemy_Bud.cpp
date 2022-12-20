@@ -27,7 +27,7 @@ int CMover_Enemy_Bud::Update()
 		}
 		else {
 			CVector ppos = med->GetPlayerPosition();
-			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos - Position).getAngle()));
+			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, (ppos - Position).getAngle(), 4.0));
 			CSoundManager::getIns().find("pretty_throw")->Play(CSound::PLAYTYPE::PT_BACK);
 			cnt = 0;
 			state = 1;

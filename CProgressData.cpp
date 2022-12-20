@@ -33,21 +33,23 @@ void CProgressData::load()
 void CProgressData::win(int money)
 {
 	earnedMoney = money;
+	stageMoney = 400 * (currentStage+1);
 	data.Money += earnedMoney;
-	data.lastStage = (std::max)(data.lastStage, (currentStage+1));
+	data.Money += stageMoney;
+	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage+1)));
 }
 
 void CProgressData::lose(int money)
 {
-	earnedMoney = money * 0.5;
+	earnedMoney = money;
 	data.Money += earnedMoney;
-	data.lastStage = (std::max)(data.lastStage, (currentStage));
+	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage)));
 }
 
 void CProgressData::retire(int money)
 {
 	earnedMoney = money;
 	data.Money += earnedMoney;
-	data.lastStage = (std::max)(data.lastStage, (currentStage));
+	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage)));
 }
 

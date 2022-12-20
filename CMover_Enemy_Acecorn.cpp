@@ -39,7 +39,7 @@ int CMover_Enemy_Acecorn::Update()
 		break;
 	case 1:
 		if (cnt == 10) {
-			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus));
+			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus, 5.0));
 			CSoundManager::getIns().find("pretty_throw")->Play(CSound::PLAYTYPE::PT_BACK);
 		}
 		if (cnt > 20) {
@@ -59,7 +59,7 @@ int CMover_Enemy_Acecorn::Update()
 			CVector ppos = med->GetPlayerPosition();
 			focus = (ppos - Position).getAngle();
 			for (int i = 0; i < 12; i++) {
-				med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus + Constant::PI2 / 12 * i));
+				med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus + Constant::PI2 / 12 * i, 6.5));
 			}
 			cnt = 0;
 			state = 0;

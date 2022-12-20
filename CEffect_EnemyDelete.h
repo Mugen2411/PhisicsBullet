@@ -7,9 +7,9 @@ class CEffect_EnemyDelete :
     double Size;
     int Color;
     double animCount;
-    const int duration;
+    int duration;
 public:
-    CEffect_EnemyDelete(CVector position, double size, int color);
+    CEffect_EnemyDelete(CVector position, double size, int color, int duration);
 
     void Update();
     void Render()const;

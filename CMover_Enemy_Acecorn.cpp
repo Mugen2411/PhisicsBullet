@@ -5,7 +5,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_Acecorn::CMover_Enemy_Acecorn(CVector position, int Level) :
-	CMover_EnemyBase(30, Level, 1.35, 3.2, CAttribute(1.0).FIRE(0.3).FLOWER(4.0).AQUA(0.9), 60, 0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
+	CMover_EnemyBase(30, Level, 1.35, 3.2, CAttribute(1.0).FIRE(0.3).FLOWER(4.0).AQUA(0.9), 80, 0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
 	testDest(0.0, 0.0), focus(0.0)
 {
 }
@@ -39,7 +39,7 @@ int CMover_Enemy_Acecorn::Update()
 		break;
 	case 1:
 		if (cnt == 10) {
-			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus, 5.0));
+			med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(baseParams, Position, focus, 6.0));
 			CSoundManager::getIns().find("pretty_throw")->Play(CSound::PLAYTYPE::PT_BACK);
 		}
 		if (cnt > 20) {

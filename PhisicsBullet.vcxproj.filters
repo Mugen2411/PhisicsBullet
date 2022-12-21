@@ -767,5 +767,13 @@
     <ClInclude Include="CEffect_EnemyDelete.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

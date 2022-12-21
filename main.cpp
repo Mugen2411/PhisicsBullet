@@ -7,6 +7,9 @@
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	ChangeWindowMode(TRUE);
+	SetWindowText("Makeover trial");
+	SetOutApplicationLogValidFlag(FALSE);
+	SetWindowIconID(101);
 	CProgressData::getIns().load();
 	int WindowExtendRate = 1 + CProgressData::getIns().getWindowX2();
 	SetGraphMode(640 * WindowExtendRate, 480 * WindowExtendRate, 32);

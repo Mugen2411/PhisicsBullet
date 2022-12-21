@@ -6,7 +6,7 @@
 #include "CEffect_Bright.h"
 
 CMover_Enemy_Goblin::CMover_Enemy_Goblin(CVector position, int Level) :
-	CMover_EnemyBase(40, Level, 1.0, 1.5, CAttribute(1.0).NONE(0.5).FIRE(2.5).THUNDER(0.8), 36, 0x00FF00, position, 2.5, 1.2, COF(0.8, 0.9, 0.03, 0.1)),
+	CMover_EnemyBase(40, Level, 1.0, 1.5, CAttribute(1.0).NONE(0.5).FIRE(2.5).THUNDER(0.8), 40, 0x00FF00, position, 2.5, 1.2, COF(0.8, 0.9, 0.03, 0.1)),
 	testDest(0.0, 0.0), focus(0.0)
 {
 }

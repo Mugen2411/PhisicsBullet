@@ -118,7 +118,7 @@ void CMover_EnemyBase::Dead()
 		std::make_shared<CEffect_EnemyDelete>(
 			Position, Size * (4 + i * 1.0), Color, 12));
 
-	CAnchor::getIns().Quake(15, 6.0);
+	CAnchor::getIns().Quake(15, 3.0);
 	CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);
 }
 

@@ -5,7 +5,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_Acecorn::CMover_Enemy_Acecorn(CVector position, int Level) :
-	CMover_EnemyBase(30, Level, 1.35, 3.2, CAttribute(1.0).FIRE(0.3).FLOWER(4.0).AQUA(0.9), 80, 0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
+	CMover_EnemyBase(30, Level, 1.35, 3.2, CAttribute(1.0).FIRE(0.3).FLOWER(4.0).AQUA(0.8), 80, 0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
 	testDest(0.0, 0.0), focus(0.0)
 {
 }

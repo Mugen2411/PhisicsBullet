@@ -12,6 +12,10 @@ void CEffectParent::Reset()
 	effectlist.clear();
 }
 
+bool CEffectParent::empty() {
+	return effectlist.empty();
+}
+
 void CEffectParent::Update()
 {
 	for (std::shared_ptr<CEffect> v : CEffectParent::effectlist) {

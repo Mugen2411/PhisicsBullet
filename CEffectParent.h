@@ -11,5 +11,6 @@ public:
 	static void Reset();
 	static void Update();
 	static void Render();
+	static bool empty();
 };
 

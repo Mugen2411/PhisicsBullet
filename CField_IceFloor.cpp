@@ -10,11 +10,11 @@ void CField_IceFloor::Update()
 {
 	if (Temperature < 0) {
 		Cofs.setWaterResCF(0.0).setFrictionCF(0.1);
-		Damage = CAttribute(0.0).ICE(3.0);
+		Damage = CAttribute(0.0).ICE(4.0);
 	}
 	else {
 		Cofs.setWaterResCF(0.8).setFrictionCF(0.2);
-		Damage = CAttribute(0.0).AQUA(3.0);
+		Damage = CAttribute(0.0).AQUA(4.0);
 	}
 }
 

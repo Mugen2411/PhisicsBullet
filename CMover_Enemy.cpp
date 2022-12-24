@@ -165,7 +165,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 
 void CMover_EnemyBase::Drop()
 {
-	int val = std::ceil(baseMoney * (1.0 + (int)(baseParams.Level / 15.0) * 0.1) + (baseParams.Level)) * CPassiveSkill::getIns().getMoneyMult();
+	int val = std::ceil((baseMoney + baseParams.Level) * (1.0 + (int)(baseParams.Level / 15.0) * 0.1) * CPassiveSkill::getIns().getMoneyMult());
 	if (auto r = med)r->getMoney(val);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }

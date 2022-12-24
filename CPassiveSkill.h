@@ -59,10 +59,10 @@ protected:
 	};
 	const int attrATKperLEVEL = 10;
 	const int attrDEFperLEVEL = 10;
-	const int allATKperLEVEL = 3;
-	const int allDEFperLEVEL = 3;
+	const int allATKperLEVEL = 5;
+	const int allDEFperLEVEL = 5;
 	const double healPerLEVEL = 0.5;
-	const int moneyPerLEVEL = 5;
+	const int moneyPerLEVEL = 10;
 	const int chargePerLEVEL = 2;
 	const int speedPerLEVEL = 2;
 

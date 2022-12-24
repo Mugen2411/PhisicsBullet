@@ -30,7 +30,7 @@ public:
 	}
 
 	std::string getMapFilepath() {
-		return std::string("media/map/") + std::to_string(currentStage%maxStage) + std::string("/") + std::to_string(currentStage) + std::string(".map");
+		return std::string("media/map/") + std::to_string(currentStage%maxStage) + std::string("/") + std::to_string(currentStage%maxStage) + std::string(".map");
 	}
 
 	int getPlayerLevel() {

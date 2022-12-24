@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
 	CEffect_Bright::getIns().setOffScreen(offscreen);
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
 	SetDrawScreen(offscreen);
-	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0 && !CheckHitKey(KEY_INPUT_TAB)) {
+	while (ProcessMessage() == 0 && ClearDrawScreen() == 0 && clsDx() == 0) {
 		g.Run();
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 		SetDrawScreen(DX_SCREEN_BACK);

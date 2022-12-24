@@ -57,10 +57,10 @@ protected:
 		DEF_NONE, DEF_FIRE, DEF_AQUA, DEF_THUNDER, DEF_FLOWER, DEF_ICE, DEF_WIND,
 		ATK_ALL, DEF_ALL, HEAL, MONEY, CHARGE, SPEED
 	};
-	const int attrATKperLEVEL = 5;
-	const int attrDEFperLEVEL = 5;
-	const int allATKperLEVEL = 2;
-	const int allDEFperLEVEL = 2;
+	const int attrATKperLEVEL = 10;
+	const int attrDEFperLEVEL = 10;
+	const int allATKperLEVEL = 3;
+	const int allDEFperLEVEL = 3;
 	const double healPerLEVEL = 0.5;
 	const int moneyPerLEVEL = 5;
 	const int chargePerLEVEL = 2;

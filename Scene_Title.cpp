@@ -59,6 +59,7 @@ void Scene_Title::Update() {
 		case 0:
 			CPassiveSkill::getIns().Reset();
 			CProgressData::getIns().setCurrentStage(currentStage);
+			CProgressData::getIns().setEndless(false);
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_MAIN, true);
 			break;
 		case 1:

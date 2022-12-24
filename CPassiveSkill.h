@@ -11,16 +11,16 @@ public:
 	CAttribute getATKmult();
 	CAttribute getDEFmult();
 	double getHealRatio() {
-		return 0.005 * has[HEAL];
+		return 0.01 * healPerLEVEL * has[HEAL];
 	}
 	double getMoneyMult() {
-		return 1.0 + 0.05 * has[MONEY];
+		return 1.0 + 0.01 * moneyPerLEVEL * has[MONEY];
 	}
 	double getChargeMult() {
-		return 1.0 + 0.02 * has[CHARGE];
+		return 1.0 + 0.01 * chargePerLEVEL * has[CHARGE];
 	}
 	double getSpeedMult() {
-		return 1.0 + 0.02 * has[SPEED];
+		return 1.0 + 0.01 * speedPerLEVEL * has[SPEED];
 	}
 	void Reset() {
 		for (auto& i : has) {
@@ -57,6 +57,15 @@ protected:
 		DEF_NONE, DEF_FIRE, DEF_AQUA, DEF_THUNDER, DEF_FLOWER, DEF_ICE, DEF_WIND,
 		ATK_ALL, DEF_ALL, HEAL, MONEY, CHARGE, SPEED
 	};
+	const int attrATKperLEVEL = 5;
+	const int attrDEFperLEVEL = 5;
+	const int allATKperLEVEL = 2;
+	const int allDEFperLEVEL = 2;
+	const double healPerLEVEL = 0.5;
+	const int moneyPerLEVEL = 5;
+	const int chargePerLEVEL = 2;
+	const int speedPerLEVEL = 2;
+
 	std::random_device rnd;
 	std::mt19937 engine;
 	CPassiveSkill();

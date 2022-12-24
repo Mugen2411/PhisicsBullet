@@ -27,6 +27,9 @@ protected:
 	std::unique_ptr<CFieldParent> fieldParent;
 	std::list<std::unique_ptr<CEnemySpawner>> enemySpawner;
 
+	std::vector<int> skillList;
+	std::vector<int> skillLevelList;
+
 	bool isPause;
 	bool isRetire;
 	bool isCostumeSelecterEnd;

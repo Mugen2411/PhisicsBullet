@@ -1,8 +1,9 @@
 #include "CProgressData.h"
 #include <stdlib.h>
 #include <windows.h>
+#include "CPassiveSkill.h"
 
-CProgressData::CProgressData() :currentStage(0), maxStage(10), earnedMoney(0), data{0,0,0} {
+CProgressData::CProgressData() :currentStage(0), maxStage(10), earnedMoney(0), data{ 0,0,0 } {
 }
 
 void CProgressData::save()
@@ -32,24 +33,24 @@ void CProgressData::load()
 
 void CProgressData::win(int money)
 {
-	earnedMoney = money;
-	stageMoney = 400 * (currentStage+1);
+	earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
+	stageMoney = 400 * (currentStage + 1) * CPassiveSkill::getIns().getMoneyMult();
 	data.Money += earnedMoney;
 	data.Money += stageMoney;
-	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage+1)));
+	data.lastStage = (std::min)(maxStage - 1, (std::max)(data.lastStage, (currentStage + 1)));
 }
 
 void CProgressData::lose(int money)
 {
-	earnedMoney = money;
+	earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
 	data.Money += earnedMoney;
-	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage)));
+	data.lastStage = (std::min)(maxStage - 1, (std::max)(data.lastStage, (currentStage)));
 }
 
 void CProgressData::retire(int money)
 {
-	earnedMoney = money;
+	earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
 	data.Money += earnedMoney;
-	data.lastStage = (std::min)(maxStage-1, (std::max)(data.lastStage, (currentStage)));
+	data.lastStage = (std::min)(maxStage - 1, (std::max)(data.lastStage, (currentStage)));
 }
 

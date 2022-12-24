@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "CSTGInputManager.h"
 #include <memory>
+#include <vector>
 #include "CTextDrawer.h"
 
 class Scene_Stageclear : public Scene_Abstract {
@@ -16,5 +17,7 @@ public:
 private:
 	std::weak_ptr<CSTGInputManager> input;
 	CTextDrawer::Text text[5];
+	std::vector<int> skillList;
 	int cnt;
+	int cur;
 };

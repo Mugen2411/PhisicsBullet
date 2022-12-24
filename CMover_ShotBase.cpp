@@ -5,7 +5,7 @@
 #include "CAnchor.h"
 #include "CField.h"
 
-CMover_ShotBase::CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor = 0xFFFFFF)
+CMover_ShotBase::CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor = 0xFFFFFF)
 	:CMover(MV_SHOT, position, size, velocity, mass, cofs, 0)
 	,ATK(atk), baseATK(baseATK),cnt(0), effectColor(effectColor)
 {

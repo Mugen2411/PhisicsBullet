@@ -32,8 +32,8 @@ public:
 		int strongshotDuration, double maxSpeed, double accel, double mass, CAttribute attrDEF, COF constants, std::string GID);
 	virtual ~CCostumeBase(){}
 
-	virtual void ChargeShot(double baseATK, CVector position, float angle) = 0;
-	virtual void WeakShot(double baseATK, CVector position, float angle) = 0;
+	virtual void ChargeShot(CAttribute baseATK, CVector position, float angle) = 0;
+	virtual void WeakShot(CAttribute baseATK, CVector position, float angle) = 0;
 
 	void setPlayer(CMover_Player* p) {
 		p_player = p;

@@ -9,13 +9,13 @@ CCostume_Festa::CCostume_Festa(std::string GID)
 	detail = CTextDrawer::Text("縁日に着て行く浴衣。\nそもそも戦闘に向いていないので\n足が遅いが水の影響が少し少ない。\n連射は射的のコルク弾。\n扱いやすく連射が利く。\n強射はスーパーボール。\n広い範囲にたくさん投げるので狭い場所で有効。", Constant::Costume_detail_pos, 0xFFFFFF, 0x000000, 0);
 }
 
-void CCostume_Festa::WeakShot(double baseATK, CVector position, float angle)
+void CCostume_Festa::WeakShot(CAttribute baseATK, CVector position, float angle)
 {
 	RegisterShot(std::make_shared<CMover_Shot_Festa_Cork>(baseATK, position, angle));
 	CSoundManager::getIns().find("shot_cork")->Play(CSound::PLAYTYPE::PT_BACK);
 }
 
-void CCostume_Festa::ChargeShot(double baseATK, CVector position, float angle)
+void CCostume_Festa::ChargeShot(CAttribute baseATK, CVector position, float angle)
 {
 	CSoundManager::getIns().find("throw")->Play(CSound::PLAYTYPE::PT_BACK);
 	for (int i = 0; i < 40; i++) {

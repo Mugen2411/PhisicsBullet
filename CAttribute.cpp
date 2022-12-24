@@ -10,6 +10,7 @@ CAttribute CAttribute::operator*(double a)
 	ret.Thunder = this->Thunder * a;
 	ret.Flower = this->Flower * a;
 	ret.Ice = this->Ice * a;
+	ret.Wind = this->Wind * a;
 	return ret;
 }
 
@@ -29,7 +30,7 @@ CAttribute CAttribute::operator/(double a)
 }
 
 CAttribute::CAttribute(double init)
-:None(init), Fire(init), Aqua(init), Thunder(init), Flower(init), Ice(init){
+:None(init), Fire(init), Aqua(init), Thunder(init), Flower(init), Ice(init), Wind(init) {
 }
 
 CAttribute CAttribute::NONE(double value)

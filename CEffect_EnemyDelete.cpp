@@ -9,7 +9,7 @@ void CEffect_EnemyDelete::Update()
 {
 	animCount += 8.0 / duration;
 	cnt++;
-	if (cnt > duration)Status = 1;
+	if (cnt > duration - 1)Status = 1;
 }
 
 void CEffect_EnemyDelete::Render()const

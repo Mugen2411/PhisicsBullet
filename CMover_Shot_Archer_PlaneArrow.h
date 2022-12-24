@@ -4,7 +4,7 @@
 class CMover_Shot_Archer_PlaneArrow : public CMover_ShotBase
 {
 public:
-	CMover_Shot_Archer_PlaneArrow(double baseATK, CVector position, double angle);
+	CMover_Shot_Archer_PlaneArrow(CAttribute baseATK, CVector position, double angle);
 	int Update();
 	void Render()const;
 };

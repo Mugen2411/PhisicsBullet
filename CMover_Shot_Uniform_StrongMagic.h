@@ -6,7 +6,7 @@ class CMover_Shot_Uniform_StrongMagic :
 {
 protected:
 public:
-    CMover_Shot_Uniform_StrongMagic(double baseATK, CVector position, double angle);
+    CMover_Shot_Uniform_StrongMagic(CAttribute baseATK, CVector position, double angle);
 
     int Update();
     void Render()const;

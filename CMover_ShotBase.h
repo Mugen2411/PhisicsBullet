@@ -11,14 +11,14 @@ class CMover_ShotBase :
 {
 protected:
     CAttribute ATK;
-    double baseATK;
+    CAttribute baseATK;
 
     std::weak_ptr<CMover> target;
 
     int cnt;
     int effectColor;
 public:
-    CMover_ShotBase(double baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor);
+    CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor);
 
     void BaseUpdate();
     bool BaseRender()const;

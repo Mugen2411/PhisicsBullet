@@ -1,7 +1,7 @@
 #include "CMover_Shot_Festa_Superball.h"
 #include "CImageManager.h"
 
-CMover_Shot_Festa_Superball::CMover_Shot_Festa_Superball(double baseATK, CVector position, double angle)
+CMover_Shot_Festa_Superball::CMover_Shot_Festa_Superball(CAttribute baseATK, CVector position, double angle)
 	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(18), position, 12, CVector(angle)*16.0*(0.8+0.4*(GetRand(100)*0.01)), 0.5, COF(0.01, 0.09, 0.001, 1.0), 0)
 	,color(0)
 {

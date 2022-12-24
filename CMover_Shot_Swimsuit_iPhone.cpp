@@ -4,7 +4,7 @@
 #include "CEffectParent.h"
 #include "CEffect_BulletDelete.h"
 
-CMover_Shot_Swimsuit_iPhone::CMover_Shot_Swimsuit_iPhone(double baseATK, CVector position, double angle)
+CMover_Shot_Swimsuit_iPhone::CMover_Shot_Swimsuit_iPhone(CAttribute baseATK, CVector position, double angle)
 	:CMover_ShotBase(baseATK, CAttribute(0.0).NONE(10).THUNDER(50), position, 24, CVector(angle) * 16.0, 2.0, COF(0.02, 0.05, 0.05, 0.1), 0x7F7F7F),
 	renderAngle(0.0)
 {

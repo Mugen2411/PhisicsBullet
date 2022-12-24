@@ -9,7 +9,7 @@ class CMover_Shot_Festa_Superball : public CMover_ShotBase
 		0xFF0000, 0x00FFFF, 0x00FF00, 0xFFFF00
 	};
 public:
-	CMover_Shot_Festa_Superball(double baseATK, CVector position, double angle);
+	CMover_Shot_Festa_Superball(CAttribute baseATK, CVector position, double angle);
 	int Update();
 	void Render()const;
 

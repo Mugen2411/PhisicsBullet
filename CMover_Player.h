@@ -5,6 +5,7 @@
 #include "CAttribute.h"
 #include "CCosutumeBase.h"
 #include "CNumberDrawer.h"
+#include "CPassiveSkill.h"
 
 class CField;
 
@@ -16,12 +17,13 @@ protected:
 
     int State;                  //0:‘€ì‰Â”\ 1:‘€ì•s”\
     int Direction;
-    int Charge;					//Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
+    double Charge;					//Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
     double animCount;
     CStatus baseParams;
     int DigitHP;
     int waitDuration;
     int shotWait;
+    int healWait;
 
     CNumberDrawer CND;
 
@@ -42,6 +44,7 @@ public:
     void Wait(int duration);
     void Damage(CAttribute BulletATK, int style);
     void RatioDamage(CAttribute BulletATK, int style);
+    void RatioHeal();
     void inline HitDispatch(std::shared_ptr<CMover> m) {
         m->Hit(this);
     }

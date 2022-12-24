@@ -4,6 +4,7 @@
 #include "CImageManager.h"
 #include "CAnchor.h"
 #include "CSoundManager.h"
+#include "CPassiveSkill.h"
 
 Scene_Title::Scene_Title(SceneManager* ScnMng) :Scene_Abstract(ScnMng), CMS(5, 0), currentStage(0) {
 	input = CControllerFactory::getIns().getController();
@@ -53,6 +54,7 @@ void Scene_Title::Update() {
 		CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
 		switch (CMS.get()) {
 		case 0:
+			CPassiveSkill::getIns().Reset();
 			CProgressData::getIns().setCurrentStage(currentStage);
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_MAIN, true);
 			break;

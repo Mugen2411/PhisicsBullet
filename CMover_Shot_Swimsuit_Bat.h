@@ -7,7 +7,7 @@ class CMover_Shot_Swimsuit_Bat :
 protected:
     int cnt;
 public:
-    CMover_Shot_Swimsuit_Bat(double baseATK, CVector position, double angle, double speed);
+    CMover_Shot_Swimsuit_Bat(CAttribute baseATK, CVector position, double angle, double speed);
 
     void Dead(){}
     int Update();

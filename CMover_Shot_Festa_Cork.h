@@ -4,7 +4,7 @@
 class CMover_Shot_Festa_Cork : public CMover_ShotBase
 {
 public:
-	CMover_Shot_Festa_Cork(double baseATK, CVector position, double angle);
+	CMover_Shot_Festa_Cork(CAttribute baseATK, CVector position, double angle);
 	int Update();
 	void Render()const;
 };

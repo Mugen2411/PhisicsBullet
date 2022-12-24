@@ -9,13 +9,13 @@ CCostume_Archer_Flame::CCostume_Archer_Flame(std::string GID) :
 	detail = CTextDrawer::Text("火属性の弓を操るアーチャー衣装。\n戦闘に適しており足が速いが水にめっぽう弱い。\n連射は普通の弓。扱いやすい。\n強射は火属性を纏った弓を3つ放つ。\n火力がとても高い。", Constant::Costume_detail_pos, 0xFFFFFF, 0x000000, 0);
 }
 
-void CCostume_Archer_Flame::WeakShot(double baseATK, CVector position, float angle)
+void CCostume_Archer_Flame::WeakShot(CAttribute baseATK, CVector position, float angle)
 {
 	CSoundManager::getIns().find("throw")->Play(CSound::PLAYTYPE::PT_BACK);
 	RegisterShot(std::make_shared<CMover_Shot_Archer_PlaneArrow>(baseATK, position, angle));
 }
 
-void CCostume_Archer_Flame::ChargeShot(double baseATK, CVector position, float angle)
+void CCostume_Archer_Flame::ChargeShot(CAttribute baseATK, CVector position, float angle)
 {
 	CSoundManager::getIns().find("throw")->Play(CSound::PLAYTYPE::PT_BACK);
 	CSoundManager::getIns().find("little_fire")->Play(CSound::PLAYTYPE::PT_BACK);

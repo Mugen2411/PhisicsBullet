@@ -26,12 +26,14 @@ void CGameMediator::ProcessEnemySpawner()
 	}
 }
 
-CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true),isRetire(false), pauseGuage(0), cnt(0), isInitialized(false),
+CGameMediator::CGameMediator(SceneManager* ScnMng) :Scene_Abstract(ScnMng), isPause(true), isRetire(false), pauseGuage(0), cnt(0), isInitialized(false),
 costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 3), CND()
 {
 	input = CControllerFactory::getIns().getController();
 	retireText[0] = CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32), 0xFFFFFF, 0x000000, 1);
 	retireText[1] = CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
+	skillList = CPassiveSkill::getIns().getGotSkillList();
+	skillLevelList = CPassiveSkill::getIns().getGotSkillLevelList();
 }
 
 CGameMediator::~CGameMediator()
@@ -195,7 +197,12 @@ void CGameMediator::Render() const
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 8, 2);
 	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160 * ((float)pauseGuage / Constant::MaxPause), 32,
 		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 9, (input.lock()->Select() > 0) ? 1 : 0);
-	CND.Draw(480, 16, reserveMoney, 0, 2, Constant::priority_number);
+	CND.Draw(540, 16, reserveMoney, 0, 2, Constant::priority_number);
+	CImageManager::getIns().find("system_passive_frame")->Draw(320 + 24, 8, Constant::priority_number + 1);
+	for (int i = 0; i < skillList.size(); i++) {
+		CImageManager::getIns().find("icon_passiveskill")->Draw(321 + 24 + 32 * i, 8 + 1, Constant::priority_number, skillList[i]);
+		CImageManager::getIns().find("icon_passive_progress")->Draw(321 + 24 + 32 * i, 32 + 8 + 1, Constant::priority_number, skillLevelList[i]);
+	}
 	CAnchor::getIns().disableAbsolute();
 
 	if (isRetire) {
@@ -305,7 +312,7 @@ void CGameMediator::RenderDresschangeMenu()const {
 		case 0:
 			CImageManager::getIns().find("icon_attribute")->Draw(icon_left + 32 * i + 0, 96, 101, i);
 			if ((*costumeNowFocusOn)->AttributeDEF.None > 1.0) {
-				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i +16, 96, 101, 0);
+				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 0);
 			}
 			else if ((*costumeNowFocusOn)->AttributeDEF.None < 1.0) {
 				CImageManager::getIns().find("icon_weak_or_strong")->Draw(icon_left + 32 * i + 16, 96, 101, 1);
@@ -403,10 +410,10 @@ void CGameMediator::UpdateRetireMenu()
 void CGameMediator::RenderRetireMenu()const
 {
 	CAnchor::getIns().enableAbsolute();
-	CImageManager::getIns().find("system_curtain")->Draw(0 , 0, 100, 0);
+	CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
 	CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
-	for (auto &i : retireText) {
+	for (auto& i : retireText) {
 		CTextDrawer::getIns().Register(i);
 	}
 	CAnchor::getIns().disableAbsolute();

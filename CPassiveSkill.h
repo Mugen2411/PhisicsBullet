@@ -1,7 +1,10 @@
 #pragma once
 #include "Singleton.h"
 #include "CAttribute.h"
+#include "CTextDrawer.h"
 #include <set>
+#include <random>
+#include <algorithm>
 
 class CPassiveSkill :public Singleton<CPassiveSkill> {
 public:
@@ -10,7 +13,7 @@ public:
 	double getHealRatio() {
 		return 0.005 * has[HEAL];
 	}
-	double getMoneyRatio() {
+	double getMoneyMult() {
 		return 1.0 + 0.05 * has[MONEY];
 	}
 	double getChargeMult() {
@@ -24,35 +27,29 @@ public:
 			i = 0;
 		}
 	}
-	std::set<int> getRandomList() {
-		std::set<int> ret;
-		int idx = 0;
+
+	std::vector<int> getRandomList();
+
+	std::vector<int> getGotSkillList() {
+		std::vector<int> ret;
 		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 5 - has[i]; j++) {
-				ret.insert(i);
-			}
+			if (has[i] != 0)ret.push_back(i);
 		}
 		return ret;
 	}
-
-	std::set<int> getRandomList(int got[5]) {
-		std::set<int> ret;
-		int p = 0;
+	std::vector<int> getGotSkillLevelList() {
+		std::vector<int> ret;
 		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 5; j++) {
-				p |= got[j] == i;
-			}
-			if (!p)continue;
-			for (int j = 0; j < 5 - has[i]; j++) {
-				ret.insert(i);
-			}
+			if (has[i] != 0)ret.push_back(has[i]);
 		}
 		return ret;
 	}
 
 	void add(int index) {
-		has[index] = std::min(++has[index], 5);
+		has[index] = (std::min)(++has[index], 5);
 	}
+
+	CTextDrawer::Text getText(int index);
 protected:
 	int has[7 + 7 + 2 + 4];
 	enum {
@@ -60,6 +57,8 @@ protected:
 		DEF_NONE, DEF_FIRE, DEF_AQUA, DEF_THUNDER, DEF_FLOWER, DEF_ICE, DEF_WIND,
 		ATK_ALL, DEF_ALL, HEAL, MONEY, CHARGE, SPEED
 	};
+	std::random_device rnd;
+	std::mt19937 engine;
 	CPassiveSkill();
 	friend Singleton<CPassiveSkill>;
 };

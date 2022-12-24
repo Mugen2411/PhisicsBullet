@@ -7,6 +7,7 @@
 #include "CImageManager.h"
 #include "CSoundManager.h"
 #include "CAnchor.h"
+#include "CPassiveSkill.h"
 
 CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF, double hpCF, CAttribute attrDEF, int baseMoney,
 	int color, CVector position, double accel, double maxSpeed, COF cofs) :
@@ -165,7 +166,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 void CMover_EnemyBase::Drop()
 {
 	int val = std::ceil(baseMoney * (1.0 + (int)(baseParams.Level / 15.0) * 0.1) + (baseParams.Level));
-	if (auto r = med)r->getMoney(val);
+	if (auto r = med)r->getMoney(val*CPassiveSkill::getIns().getMoneyMult());
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(Position - CVector(0.0, Size), val));
 }
 

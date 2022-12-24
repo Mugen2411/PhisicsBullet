@@ -14,14 +14,14 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass, costume->constants, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
 	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0),
-	costume(std::shared_ptr<CCostumeBase>(costume)), CND(), shotWait(0) {
+	costume(std::shared_ptr<CCostumeBase>(costume)), CND(), shotWait(0), healWait(0) {
 	costume->setPlayer(this);
 }
 
 void CMover_Player::Walk()
 {
 	CVector v = input.lock()->getVector();
-	CVector a = v * costume->MaxSpeed - Velocity;
+	CVector a = v * costume->MaxSpeed*CPassiveSkill::getIns().getSpeedMult() - Velocity;
 	Acceleration += a.getNorm() * costume->Accelaration * std::sqrtl(nowFricted*Cofs.FrictionCF) * std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
 }
 
@@ -56,6 +56,11 @@ int CMover_Player::Update()
 	else {
 		animCount = 0.0;
 	}
+	healWait++;
+	if (healWait == Constant::Frame) {
+		RatioHeal();
+		healWait = 0;
+	}
 	Shot();
 	Walk();
 
@@ -71,12 +76,12 @@ void CMover_Player::Shot()
 	float angle = input.lock()->getMouseAngle(CAnchor::getIns().getAnchoredPosition(Position));
 	int LPushTime = input.lock()->LClick(true);
 	if (LPushTime == 0) {
-		Charge++;
+		Charge+=CPassiveSkill::getIns().getChargeMult();
 		Charge = min(costume->MaxCharge, Charge);
 		return;
 	}
 	if (Charge == costume->MaxCharge) {
-		costume->ChargeShot(baseParams.ATK, Position, angle);
+		costume->ChargeShot(CPassiveSkill::getIns().getATKmult() * baseParams.ATK, Position, angle);
 		Charge = 0;
 		shotWait = 0;
 		Wait(costume->StrongShotDuration);
@@ -84,7 +89,7 @@ void CMover_Player::Shot()
 	}
 	if (shotWait > costume->ShotRate) {
 		shotWait = 0;
-		costume->WeakShot(baseParams.ATK, Position, angle);
+		costume->WeakShot(CPassiveSkill::getIns().getATKmult() * baseParams.ATK, Position, angle);
 		Charge = 0;
 	}
 	shotWait++;
@@ -122,7 +127,7 @@ void CMover_Player::Wait(int duration)
 
 void CMover_Player::Damage(CAttribute BulletATK, int style)
 {
-	double ret = ((BulletATK) / costume->AttributeDEF * 0.01).Sum();
+	double ret = ((BulletATK) / costume->AttributeDEF*CPassiveSkill::getIns().getDEFmult() * 0.01).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
@@ -131,11 +136,19 @@ void CMover_Player::Damage(CAttribute BulletATK, int style)
 
 void CMover_Player::RatioDamage(CAttribute BulletATK, int style)
 {
-	double ret = ((BulletATK * baseParams.MaxHP) / (costume->AttributeDEF * 100)).Sum();
+	double ret = ((BulletATK * baseParams.MaxHP) / (costume->AttributeDEF * CPassiveSkill::getIns().getDEFmult() * 100)).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
+}
+
+void CMover_Player::RatioHeal()
+{
+	double diff = baseParams.MaxHP * CPassiveSkill::getIns().getHealRatio();
+	if (diff < Constant::zero_border)return;
+	baseParams.HP = (std::min)(baseParams.HP + diff, baseParams.MaxHP);
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), diff, 3, 0));
 }
 
 int CMover_Player::DamageColor(CAttribute shotATK)

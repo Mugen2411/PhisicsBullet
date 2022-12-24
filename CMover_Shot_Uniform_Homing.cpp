@@ -2,7 +2,7 @@
 #include "CImageManager.h"
 #include "CEffect_Bright.h"
 
-CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(double baseATK, CVector position, double angle)
+CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(CAttribute baseATK, CVector position, double angle)
 :CMover_ShotBase(baseATK, CAttribute(0.0).NONE(40), position, 16, CVector(angle) * 3.0, 1, COF(0.0, 0.0, 0.0, 0.1), 0x00FFFF), cnt(0), pow(0.0) {
 }
 

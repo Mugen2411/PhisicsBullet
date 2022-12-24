@@ -13,7 +13,8 @@ public:
 		currentStage = (std::min)(stage, maxStage);
 	}
 	void nextCurrentStage() {	//次に入るステージ(Mediatorから設定)
-		currentStage = (std::min)(++currentStage, maxStage);
+		if (!isEndless)currentStage = (std::min)(++currentStage, maxStage);
+		else currentStage = ++currentStage;
 	}
 	int getLastStage()		//今までに進んだ最大のステージ
 	{
@@ -29,7 +30,7 @@ public:
 	}
 
 	std::string getMapFilepath() {
-		return std::string("media/map/") + std::to_string(currentStage) + std::string("/") + std::to_string(currentStage) + std::string(".map");
+		return std::string("media/map/") + std::to_string(currentStage%maxStage) + std::string("/") + std::to_string(currentStage) + std::string(".map");
 	}
 
 	int getPlayerLevel() {
@@ -46,6 +47,14 @@ public:
 
 	int getWindowX2() {
 		return data.isWindowX2;
+	}
+
+	void setEndless(bool flag) {
+		isEndless = flag;
+	}
+
+	bool getEndless() {
+		return isEndless;
 	}
 
 	void upgrade(int money) {
@@ -75,6 +84,8 @@ private:
 	int maxStage;
 	int earnedMoney;
 	int stageMoney;
+
+	bool isEndless;
 
 	struct progressData {
 		int lastStage;		//10をかけると始めるべきステージになる

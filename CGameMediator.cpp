@@ -156,7 +156,9 @@ void CGameMediator::Update()
 		CProgressData::getIns().win(reserveMoney);
 		CEffect_Bright::getIns().inactivate();
 		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage() - 1) {
-			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
+			if (CProgressData::getIns().getEndless()) {
+				scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+			}else scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
 		}
 		else {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);

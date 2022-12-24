@@ -17,8 +17,8 @@ public:
 private:
 	std::weak_ptr<CSTGInputManager> input;
 	CMenuSelecter CMS;
-	CTextDrawer::Text menuText[5];
+	CTextDrawer::Text menuText[6];
 	CTextDrawer::Text titleText;
-	CTextDrawer::Text underText[5];
+	CTextDrawer::Text underText[6];
 	int currentStage;
 };

@@ -53,10 +53,10 @@ std::vector<int> CPassiveSkill::getRandomList() {
 			p++;
 		}
 	}
-	p = 0;
 	for (int i = 0; i < 20; i++) {
+		p = 0;
 		for (int j = 0; j < 5; j++) {
-			p |= got[j] == i;
+			p |= (got[j] == i);
 		}
 		if (!p)continue;
 		for (int j = 0; j < 5 - has[i]; j++) {

@@ -1,7 +1,7 @@
 #include "CMover_Bullet_Axe.h"
 
 CMover_Bullet_Axe::CMover_Bullet_Axe(CStatus baseparams, CVector position, double angle, double speed)
-	:CMover_BulletBase(baseparams, CAttribute(0.0).NONE(60), position, 16, CVector(angle)* speed, 4.0, COF(0.001, 0.05, 0.01, 0.98), 0xFFFFFF),
+	:CMover_BulletBase(baseparams, CAttribute(0.0).NONE(100), position, 16, CVector(angle)* speed, 4.0, COF(0.001, 0.05, 0.01, 0.98), 0xFFFFFF),
 	baseAngle(0.0)
 {
 }

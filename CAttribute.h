@@ -12,6 +12,7 @@ public:
 	CAttribute THUNDER(double value);
 	CAttribute FLOWER(double value);
 	CAttribute ICE(double value);
+	CAttribute WIND(double value);
 
 	double None;
 	double Fire;
@@ -19,6 +20,7 @@ public:
 	double Thunder;
 	double Flower;
 	double Ice;
+	double Wind;
 
 	CAttribute operator *(CAttribute a);
 	CAttribute operator *(double a);

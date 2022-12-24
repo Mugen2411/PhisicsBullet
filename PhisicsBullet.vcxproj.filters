@@ -444,6 +444,9 @@
     <ClCompile Include="CEffect_EnemyDelete.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="CPassiveSkill.cpp">
+      <Filter>ソース ファイル\Status</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -769,6 +772,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CPassiveSkill.h">
+      <Filter>ヘッダー ファイル\Status</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

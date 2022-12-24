@@ -170,6 +170,7 @@
     <ClCompile Include="CMover_Bullet_Axe.cpp" />
     <ClCompile Include="CMover_Enemy_Acecorn.cpp" />
     <ClCompile Include="CMover_Enemy_Goblin.cpp" />
+    <ClCompile Include="CPassiveSkill.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
     <ClCompile Include="CAttribute.cpp" />
@@ -348,6 +349,7 @@
     <ClInclude Include="CNumberDrawer.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CParts.h" />
+    <ClInclude Include="CPassiveSkill.h" />
     <ClInclude Include="CPower.h" />
     <ClInclude Include="CPowerParent.h" />
     <ClInclude Include="CPower_Line.h" />

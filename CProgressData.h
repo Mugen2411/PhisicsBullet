@@ -2,6 +2,8 @@
 #include "Singleton.h"
 #include <algorithm>
 #include <string>
+#include <list>
+#include <random>
 #include <DxLib.h>
 
 class CProgressData : public Singleton<CProgressData> {
@@ -33,13 +35,14 @@ public:
 	std::string getMapFilepath() {
 		int cur = currentStage;
 		if (isEndless) {
-			while (1) {
-				cur = GetRand(maxStage);
-				if (cur != beforeStage) {
-					beforeStage = cur;
-					break;
-				}
+			if (randomStage.empty()) {
+				do {
+					shuffleStage();
+				} while (randomStage.front() == beforeStage);
 			}
+			cur = randomStage.front();
+			randomStage.pop_front();
+			beforeStage = cur;
 		}
 		return std::string("media/map/") + std::to_string(cur%maxStage) + std::string("/") + std::to_string(cur%maxStage) + std::string(".map");
 	}
@@ -97,6 +100,10 @@ private:
 	int stageMoney;
 	int beforeStage;
 
+	std::list<int> randomStage;
+	std::random_device dev;
+	std::mt19937 eng;
+
 	bool isEndless;
 
 	struct progressData {
@@ -105,6 +112,15 @@ private:
 		int playerLevel;
 		int isWindowX2;
 	}data;
+
+	void shuffleStage() {
+		randomStage.clear();
+		for (int i = 0; i < maxStage; i++) {
+			randomStage.push_front(i);
+		}
+		randomStage.sort([&](int l, int r) {return eng() % 2; });
+		//std::shuffle(randomStage.begin(), randomStage.end(), eng);
+	}
 
 	friend class Singleton<CProgressData>;
 };

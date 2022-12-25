@@ -3,7 +3,8 @@
 #include <windows.h>
 #include "CPassiveSkill.h"
 
-CProgressData::CProgressData() :currentStage(0), maxStage(10), earnedMoney(0), data{ 0,0,0 }, isEndless(false), beforeStage(0xFF) {
+CProgressData::CProgressData() :currentStage(0), maxStage(10), earnedMoney(0), data{ 0,0,0 },
+isEndless(false), beforeStage(0xFF), dev(), eng(dev()) {
 }
 
 void CProgressData::save()

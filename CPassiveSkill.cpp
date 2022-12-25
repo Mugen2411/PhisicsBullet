@@ -34,11 +34,11 @@ std::vector<int> CPassiveSkill::getRandomList() {
 	std::vector<int> smp;
 	int got[5];
 	int p = 0;
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 21; i++) {
 		if (has[i] != 0)p++;
 	}
 	if (p < 5) {
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 21; i++) {
 			for (int j = 0; j < 5 - has[i]; j++) {
 				ret.insert(i);
 			}
@@ -47,13 +47,13 @@ std::vector<int> CPassiveSkill::getRandomList() {
 		return smp;
 	}
 	p = 0;
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 21; i++) {
 		if (has[i] != 0) {
 			got[p] = i;
 			p++;
 		}
 	}
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 21; i++) {
 		p = 0;
 		for (int j = 0; j < 5; j++) {
 			p |= (got[j] == i);
@@ -106,9 +106,16 @@ CTextDrawer::Text CPassiveSkill::getText(int index)
 			std::string("%→") + std::to_string((has[index] + 1) * chargePerLEVEL) + std::string("%増加する。");
 		return ret;
 	}
-	ret.text = std::string("自機の最高速度を") + std::to_string(has[index] * speedPerLEVEL) +
-		std::string("%→") + std::to_string((has[index] + 1) * speedPerLEVEL) + std::string("%増加する。");
-	return ret;
+	if (index == SPEED) {
+		ret.text = std::string("自機の最高速度を") + std::to_string(has[index] * speedPerLEVEL) +
+			std::string("%→") + std::to_string((has[index] + 1) * speedPerLEVEL) + std::string("%増加する。");
+		return ret;
+	}
+	if (index == MAXHP) {
+		ret.text = std::string("自機のHP最大値を") + std::to_string(has[index] * maxHPperLEVEL) +
+			std::string("%→") + std::to_string((has[index] + 1) * maxHPperLEVEL) + std::string("%増加する。");
+		return ret;
+	}
 }
 
 CPassiveSkill::CPassiveSkill() : has{ 0 }, rnd(), engine(rnd())

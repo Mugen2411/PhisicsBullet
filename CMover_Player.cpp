@@ -13,7 +13,7 @@
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 	:CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass, costume->constants, 0), animCount(0.0)
 	, input(CControllerFactory::getIns().getController())
-	, Direction(1), Charge(0), State(0), baseParams(level), DigitHP(std::log10(baseParams.MaxHP)+1), waitDuration(0),
+	, Direction(1), Charge(0), State(0), baseParams(level, 1.0, CPassiveSkill::getIns().getMaxHPmult()), DigitHP(std::log10(baseParams.MaxHP) + 1), waitDuration(0),
 	costume(std::shared_ptr<CCostumeBase>(costume)), CND(), shotWait(0), healWait(0) {
 	costume->setPlayer(this);
 }
@@ -21,8 +21,8 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 void CMover_Player::Walk()
 {
 	CVector v = input.lock()->getVector();
-	CVector a = v * costume->MaxSpeed*CPassiveSkill::getIns().getSpeedMult() - Velocity;
-	Acceleration += a.getNorm() * costume->Accelaration * std::sqrtl(nowFricted*Cofs.FrictionCF) * std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
+	CVector a = v * costume->MaxSpeed * CPassiveSkill::getIns().getSpeedMult() - Velocity;
+	Acceleration += a.getNorm() * costume->Accelaration * CPassiveSkill::getIns().getSpeedMult() * std::sqrtl(nowFricted * Cofs.FrictionCF) * std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
 }
 
 void CMover_Player::BaseUpdate()
@@ -76,7 +76,7 @@ void CMover_Player::Shot()
 	float angle = input.lock()->getMouseAngle(CAnchor::getIns().getAnchoredPosition(Position));
 	int LPushTime = input.lock()->LClick(true);
 	if (LPushTime == 0) {
-		Charge+=CPassiveSkill::getIns().getChargeMult();
+		Charge += CPassiveSkill::getIns().getChargeMult();
 		Charge = min(costume->MaxCharge, Charge);
 		return;
 	}
@@ -127,7 +127,7 @@ void CMover_Player::Wait(int duration)
 
 void CMover_Player::Damage(CAttribute BulletATK, int style)
 {
-	double ret = ((BulletATK) / costume->AttributeDEF*CPassiveSkill::getIns().getDEFmult() * 0.01).Sum();
+	double ret = ((BulletATK) / costume->AttributeDEF * CPassiveSkill::getIns().getDEFmult() * 0.01).Sum();
 	if (ret < Constant::zero_border)return;
 	baseParams.HP -= ret;
 	CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);

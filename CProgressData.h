@@ -2,6 +2,7 @@
 #include "Singleton.h"
 #include <algorithm>
 #include <string>
+#include <DxLib.h>
 
 class CProgressData : public Singleton<CProgressData> {
 public:
@@ -30,7 +31,17 @@ public:
 	}
 
 	std::string getMapFilepath() {
-		return std::string("media/map/") + std::to_string(currentStage%maxStage) + std::string("/") + std::to_string(currentStage%maxStage) + std::string(".map");
+		int cur = currentStage;
+		if (isEndless) {
+			while (1) {
+				cur = GetRand(maxStage);
+				if (cur != beforeStage) {
+					beforeStage = cur;
+					break;
+				}
+			}
+		}
+		return std::string("media/map/") + std::to_string(cur%maxStage) + std::string("/") + std::to_string(cur%maxStage) + std::string(".map");
 	}
 
 	int getPlayerLevel() {
@@ -84,6 +95,7 @@ private:
 	int maxStage;
 	int earnedMoney;
 	int stageMoney;
+	int beforeStage;
 
 	bool isEndless;
 

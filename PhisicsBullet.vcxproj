@@ -168,7 +168,9 @@
     <ClCompile Include="CField_Wall_Cave.cpp" />
     <ClCompile Include="CField_Wall_Rock.cpp" />
     <ClCompile Include="CMover_Bullet_Axe.cpp" />
+    <ClCompile Include="CMover_Bullet_Flame.cpp" />
     <ClCompile Include="CMover_Enemy_Acecorn.cpp" />
+    <ClCompile Include="CMover_Enemy_FlameSerpent.cpp" />
     <ClCompile Include="CMover_Enemy_Goblin.cpp" />
     <ClCompile Include="CPassiveSkill.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
@@ -328,10 +330,12 @@
     <ClInclude Include="CMoverParent.h" />
     <ClInclude Include="CMover_Bullet_Axe.h" />
     <ClInclude Include="CMover_Bullet_Corn.h" />
+    <ClInclude Include="CMover_Bullet_Flame.h" />
     <ClInclude Include="CMover_Bullet_WaterSplash.h" />
     <ClInclude Include="CMover_Enemy.h" />
     <ClInclude Include="CMover_Enemy_Acecorn.h" />
     <ClInclude Include="CMover_Enemy_Bud.h" />
+    <ClInclude Include="CMover_Enemy_FlameSerpent.h" />
     <ClInclude Include="CMover_Enemy_Goblin.h" />
     <ClInclude Include="CMover_Enemy_Shimaenaga.h" />
     <ClInclude Include="CMover_Enemy_Yadokari.h" />

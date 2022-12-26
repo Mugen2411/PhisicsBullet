@@ -47,6 +47,7 @@ CImageManager::CImageManager()
     imgList["enemy_goblin"] = std::make_shared<CImage>("media/graphic/enemy/goblin/goblin.png", 16, 4, 4, 32, 32);
     imgList["enemy_goblin_intro"] = std::make_shared<CImage>("media/graphic/enemy/goblin/intro.png", 4, 4, 1, 32, 32);
     imgList["bullet_axe"] = std::make_shared<CImage>("media/graphic/enemy/goblin/axe.png", 32, 32);
+    imgList["enemy_flameserpent"] = std::make_shared<CImage>("media/graphic/enemy/flame_serpent/serpent.png", 16, 4, 4, 32, 32);
 
     imgList["shot_uniform_homing"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/homing.png", 16, 16);
     imgList["shot_uniform_strongmagic"] = std::make_shared<CImage>("media/graphic/character/komuk/costume/uniform/strongmagic.png", 24, 24);

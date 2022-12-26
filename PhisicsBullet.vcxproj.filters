@@ -447,6 +447,12 @@
     <ClCompile Include="CPassiveSkill.cpp">
       <Filter>ソース ファイル\Status</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Enemy_FlameSerpent.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Bullet_Flame.cpp">
+      <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -775,6 +781,12 @@
     </ClInclude>
     <ClInclude Include="CPassiveSkill.h">
       <Filter>ヘッダー ファイル\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy_FlameSerpent.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Bullet_Flame.h">
+      <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

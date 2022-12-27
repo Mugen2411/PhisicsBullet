@@ -25,6 +25,7 @@ CImageManager::CImageManager()
     imgList["icon_weak_or_strong"] = std::make_shared<CImage>("media/graphic/system/game/weak_or_strong.png", 3, 3, 1, 16, 16);
     imgList["icon_return"] = std::make_shared<CImage>("media/graphic/system/game/return_to_escape.png", 64, 64);
     imgList["icon_passiveskill"] = std::make_shared<CImage>("media/graphic/system/game/icon_passiveskill.png", 21, 7, 3, 32, 32);
+    imgList["icon_passive_covered"] = std::make_shared<CImage>("media/graphic/system/game/passive_covered.png", 32, 32);
     imgList["system_passive_frame"] = std::make_shared<CImage>("media/graphic/system/game/passive_frame.png", 162, 34);
     imgList["icon_passive_progress"] = std::make_shared<CImage>("media/graphic/system/game/passive_progress.png", 6, 6, 1, 32, 16);
 

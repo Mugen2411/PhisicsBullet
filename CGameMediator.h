@@ -41,6 +41,7 @@ protected:
 	int reserveMoney=0;	//‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
 
 	CTextDrawer::Text retireText[2];
+	CTextDrawer::Text waveNumber;
 
 	std::unique_ptr<CCostumeBase*> costumeNowFocusOn;
 	double minFric;

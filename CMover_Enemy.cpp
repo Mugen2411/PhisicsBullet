@@ -140,9 +140,10 @@ void CMover_EnemyBase::Damage(CAttribute shotATK, int style)
 {
 	if (Status < 0)return;
 	double ret = (shotATK / attrDEF * 0.01).Sum();
-	if (ret < Constant::zero_border)return;
+	//if (ret < Constant::zero_border && ret > -Constant::zero_border)return;
 	baseParams.HP -= ret;
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
+	baseParams.HP = min(baseParams.HP, baseParams.MaxHP);
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), (ret < 0) ? -ret : ret, DamageColor(shotATK), style));
 	CSoundManager::getIns().find("enemy_hit")->Play(CSound::PLAYTYPE::PT_BACK);
 	if (baseParams.HP < 0) {
 		setStatus(STATUS::DEAD);
@@ -154,9 +155,10 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style)
 {
 	if (Status < 0)return;
 	double ret = ((shotATK * baseParams.MaxHP) / (attrDEF * 100)).Sum();
-	if (ret < Constant::zero_border)return;
+	//if (ret < Constant::zero_border && ret > -Constant::zero_border)return;
 	baseParams.HP -= ret;
-	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), ret, DamageColor(shotATK), style));
+	baseParams.HP = min(baseParams.HP, baseParams.MaxHP);
+	CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(Position - CVector(0.0, Size), (ret < 0) ? -ret : ret, DamageColor(shotATK), style));
 	if (baseParams.HP < 0) {
 		setStatus(STATUS::DEAD);
 		Drop();
@@ -173,6 +175,7 @@ void CMover_EnemyBase::Drop()
 int CMover_EnemyBase::DamageColor(CAttribute shotATK)
 {
 	auto real = shotATK * attrDEF;
+	if (real.Sum() < 0.0)return 3;
 	if (real.Sum() - shotATK.Sum() > Constant::zero_border)return 2;
 	if (real.Sum() - shotATK.Sum() < -Constant::zero_border)return 1;
 	return 0;

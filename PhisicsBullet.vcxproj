@@ -165,6 +165,7 @@
     <ClCompile Include="CField_Cave.cpp" />
     <ClCompile Include="CField_Decoration_Light.cpp" />
     <ClCompile Include="CField_Decoration_Torch.cpp" />
+    <ClCompile Include="CField_Lava.cpp" />
     <ClCompile Include="CField_Wall_Cave.cpp" />
     <ClCompile Include="CField_Wall_Rock.cpp" />
     <ClCompile Include="CMover_Bullet_Axe.cpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="CField_Error.h" />
     <ClInclude Include="CField_Grass.h" />
     <ClInclude Include="CField_IceFloor.h" />
+    <ClInclude Include="CField_Lava.h" />
     <ClInclude Include="CField_Void.h" />
     <ClInclude Include="CField_Wall.h" />
     <ClInclude Include="CField_Wall_Cave.h" />

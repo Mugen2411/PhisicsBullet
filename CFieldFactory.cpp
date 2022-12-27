@@ -3,6 +3,8 @@
 #include "CField_IceFloor.h"
 #include "CField_Dirt.h"
 #include "CField_Cave.h"
+#include "CField_Lava.h"
+
 #include "CField_Wall_Tree.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_WoodFence.h"
@@ -13,6 +15,7 @@
 #include "CField_Wall_Rock.h"
 #include "CField_Decoration_Torch.h"
 #include "CField_Decoration_Light.h"
+
 #include "CField_Wall_EnemySpawner.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Void.h"
@@ -50,6 +53,8 @@ CFieldFactory::CFieldFactory()
 	RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
 	RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
 	RegisterFloor(new CField_Cave("F_Cave", CVector()));
+	RegisterFloor(new CField_Lava("F_Lava", CVector(), 1000));
+	RegisterFloor(new CField_Lava("F_ColdLava", CVector(), -200));
 	RegisterFloor(new CField_Void("F_Void", CVector()));
 
 	RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));

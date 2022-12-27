@@ -7,6 +7,7 @@ CImageManager::CImageManager()
     imgList["Field_Tree"] = std::make_shared<CImage>("media/graphic/mapchip/tree.png", 1, 1, 1, 32, 64);
     imgList["Field_Error"] = std::make_shared<CImage>("media/graphic/mapchip/error.png", 32, 32);
     imgList["Field_Cave"] = std::make_shared<CImage>("media/graphic/mapchip/cave.png", 32, 8, 4, 32, 32);
+    imgList["Field_Lava"] = std::make_shared<CImage>("media/graphic/mapchip/lava.png", 32, 8, 4, 32, 32);
 
     imgList["player_komuk"] = std::make_shared<CImage>("media/graphic/character/komuk/komuk.png", 16, 4, 4, 32, 32);
     imgList["aim"] = std::make_shared<CImage>("media/graphic/system/game/aim.png", 3, 3, 1, 32, 32);

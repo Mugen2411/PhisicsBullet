@@ -5,7 +5,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_FlameSerpent::CMover_Enemy_FlameSerpent(CVector position, int Level) :
-	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(12.0).AQUA(0.6).ICE(0.4), 
+	CMover_EnemyBase(20, Level, 0.5, 0.8, CAttribute(1.0).FIRE(-1.0).AQUA(0.6).ICE(0.4),
 		15, 0xFF3F00, position, 2.7, 1.2, COF(0.8, 0.2, 0.06, 0.1)),
 	testDest(0.0, 0.0), focus(0.0)
 {
@@ -21,7 +21,7 @@ int CMover_Enemy_FlameSerpent::Update()
 				state = 2;
 				cnt = 0;
 			}
-			else Find_Route(4);
+			else Find_Route(3);
 		}
 		if (!route.empty()) {
 			Move_on_Route();
@@ -38,10 +38,16 @@ int CMover_Enemy_FlameSerpent::Update()
 		if (animCount > 4)animCount = 0;
 		break;
 	case 1:
-		if (cnt > 10 && cnt % 3 == 0) {
+		if (cnt > 30 && cnt % 4 == 0) {
 			med->RegisterMover(std::make_shared<CMover_Bullet_Flame>(baseParams, Position, focus, 6.0));
 		}
-		if (cnt > 30) {
+		{
+			CVector ppos = med->GetPlayerPosition() - Position;
+			if (CVector(focus).dot(ppos.getNorm()) < 1.0) {
+				focus += (ppos.getAngle() - focus) * 0.05;
+			}
+		}
+		if (cnt > 180) {
 			state = 0;
 			cnt = 0;
 			break;

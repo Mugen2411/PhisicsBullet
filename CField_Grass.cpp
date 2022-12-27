@@ -47,7 +47,7 @@ void CField_Grass::Render()const
 	else CImageManager::getIns().find("Field_Grass")->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field, 28);
 
 	if (state == 1) {
-		CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 256 - GetRand(16), 216));
+		CEffect_Bright::getIns().Register(CEffect_Bright::BrightDesc(Position, 128 - GetRand(16), 216));
 		CImageManager::getIns().find("effect_flame")->
 			DrawRotaFwithBlend(Position.x, Position.y, GetRand(16) / 256.0f, 1.0,
 				0xFFFFFF, CImageManager::BM_ADD, 216, Constant::priority_effect, animCount);

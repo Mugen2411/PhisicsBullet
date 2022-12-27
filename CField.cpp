@@ -14,7 +14,7 @@ void CField::setFrictionForce(CMover* m)
 	if (DamageInterval == 0 || m->getStatus() == CMover::STATUS::DEAD) {
 		m->FieldDispatch(this);
 		CAttribute t = m->TestDamage(Damage);
-		if(Damage.Sum() < t.Sum())m->RatioDamage(Damage / 10.0, 1);
+		if(Damage.Sum() < t.Sum() || Damage.Sum() > 12.0)m->RatioDamage(Damage / 10.0, 1);
 	}
 	DamageInterval++;
 	DamageInterval %= 6;

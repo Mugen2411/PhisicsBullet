@@ -453,6 +453,9 @@
     <ClCompile Include="CMover_Bullet_Flame.cpp">
       <Filter>ソース ファイル\Mover\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="CField_Lava.cpp">
+      <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -787,6 +790,9 @@
     </ClInclude>
     <ClInclude Include="CMover_Bullet_Flame.h">
       <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CField_Lava.h">
+      <Filter>ヘッダー ファイル\Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

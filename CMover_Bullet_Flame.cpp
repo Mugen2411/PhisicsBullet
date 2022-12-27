@@ -8,8 +8,8 @@ CMover_Bullet_Flame::CMover_Bullet_Flame(CStatus baseparams, CVector position, d
 
 int CMover_Bullet_Flame::Update()
 {
-	animCount += 0.25;
-	if (animCount > 4.0)animCount = 0;
+	animCount += 0.24;
+	if (animCount > 4.0)animCount = 0.0;
 	baseAngle += Constant::PI2 * 3 * Constant::perFrame;
 	if (Velocity.getLength2() < Constant::bullet_delete_velocity)setStatus(STATUS::DEAD);
 	return Status;

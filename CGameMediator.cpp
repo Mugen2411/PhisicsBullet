@@ -32,7 +32,7 @@ costumeSelecterCNT(12), isCostumeSelecterEnd(false), nowLevelOfStage(CProgressDa
 	input = CControllerFactory::getIns().getController();
 	retireText[0] = CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32), 0xFFFFFF, 0x000000, 1);
 	retireText[1] = CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
-	waveNumber = CTextDrawer::Text(std::string("WAVE:") + std::to_string(CProgressData::getIns().getCurrentStage() + 1), 
+	waveNumber = CTextDrawer::Text(std::string("WAVE:") + std::to_string(CProgressData::getIns().getCurrentStage() + 1),
 		CVector(320 + 88, 8), 0xFFFFFF, 0x000000, 1);
 	skillList = CPassiveSkill::getIns().getGotSkillList();
 	skillLevelList = CPassiveSkill::getIns().getGotSkillLevelList();
@@ -160,7 +160,8 @@ void CGameMediator::Update()
 		if (CProgressData::getIns().getCurrentStage() == CProgressData::getIns().getMaxStage() - 1) {
 			if (CProgressData::getIns().getEndless()) {
 				scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
-			}else scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
+			}
+			else scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
 		}
 		else {
 			scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
@@ -195,21 +196,20 @@ void CGameMediator::Render() const
 	powerParent->Render();
 	CEffectParent::Render();
 	CAnchor::getIns().enableAbsolute();
-	CTextDrawer::getIns().Register(waveNumber);
 	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 7, (input.lock()->Select() > 0) ? 1 : 0);
 	if (pauseGuage == Constant::MaxPause)CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160, 32,
 		0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 8, 2);
 	CImageManager::getIns().find("system_dress_guage")->DrawRectwithBlend(240, 480 - 32, 160 * ((float)pauseGuage / Constant::MaxPause), 32,
 		HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0), CImageManager::BLENDMODE::BM_SUB, 0x7F, 9, (input.lock()->Select() > 0) ? 1 : 0);
-	CND.Draw(540, 16, reserveMoney, 0, 2, Constant::priority_number);
-	CImageManager::getIns().find("system_passive_frame")->Draw(24, 480 - 48, 102 + 1);
+	CND.Draw(16, 56, reserveMoney, 0, 3, Constant::priority_number);
+	CImageManager::getIns().find("system_passive_frame")->Draw(320 + 24, 8, Constant::priority_number + 1);
 	for (int i = 0; i < 5; i++) {
 		if (i < skillList.size()) {
-			CImageManager::getIns().find("icon_passiveskill")->Draw(1 + 24 + 32 * i, 480-48 + 1, 102, skillList[i]);
-			CImageManager::getIns().find("icon_passive_progress")->Draw(1 + 24 + 32 * i, 480 - 48 + 1, 102, skillLevelList[i]);
+			CImageManager::getIns().find("icon_passiveskill")->Draw(321 + 24 + 32 * i, 8 + 1, Constant::priority_number, skillList[i]);
+			CImageManager::getIns().find("icon_passive_progress")->Draw(321 + 24 + 32 * i, 8 + 32 + 1, Constant::priority_number, skillLevelList[i]);
 		}
-		else CImageManager::getIns().find("icon_passive_covered")->Draw(1 + 24 + 32 * i, 480 - 48 + 1, 102);
+		else CImageManager::getIns().find("icon_passive_covered")->Draw(321 + 24 + 32 * i, 8 + 1, Constant::priority_number);
 	}
 	CAnchor::getIns().disableAbsolute();
 
@@ -262,6 +262,7 @@ void CGameMediator::UpdateDresschangeMenu() {
 
 void CGameMediator::RenderDresschangeMenu()const {
 	CAnchor::getIns().enableAbsolute();
+	CTextDrawer::getIns().Register(waveNumber);
 	CImageManager::getIns().find("system_curtain")->Draw(0 - (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 0);
 	CImageManager::getIns().find("system_curtain")->Draw(320 + (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 1);
 	CImageManager::getIns().find("system_costume_frame")->DrawRota(160, 64, 0.0f, 1.0f, 102);

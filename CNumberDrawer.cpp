@@ -83,12 +83,18 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style, double prio
 		margin = 5;
 		width = 10;
 		break;
+	case 3:
+		id = "effect_number4";
+		margin = 16;
+		width = 16;
+		break;
 	}
 
 	if (num < 0)return;
 	if (num == 0) {
+		x += margin;
 		CImageManager::getIns().find(id)->DrawRota(x, y, 0, 1, priority, Xnum * type);
-		if (style == 2) {
+		if (style == 2 || style == 3) {
 			x -= width;
 			CImageManager::getIns().find(id)->
 				DrawRota(x, y, 0.0, 1.0, priority, 10);
@@ -102,6 +108,6 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style, double prio
 		num /= 10;
 		x -= width;
 	}
-	if(style == 2)CImageManager::getIns().find(id)->
+	if(style == 2 || style == 3)CImageManager::getIns().find(id)->
 		DrawRota(x, y, 0.0, 1.0, priority, 10);
 }

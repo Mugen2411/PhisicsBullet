@@ -56,8 +56,8 @@ public:
 	}
 
 	void setWindowX2(int v) {	//0:Šg‘å–³‚µ 1:2”{Šg‘å
-		if (v)data.isOptionFlags |= v & 1;
-		else data.isOptionFlags &= v & 1;
+		if (v)data.isOptionFlags |= (v & 1);
+		else data.isOptionFlags &= (v & 1);
 	}
 
 	int getWindowX2() {
@@ -65,8 +65,8 @@ public:
 	}
 
 	void setFMorPCM(int v) {	//0:PCM 1:FM
-		if (v)data.isOptionFlags |= (v & 1) << 1;
-		else data.isOptionFlags &= (v & 1) << 1;
+		if (v)data.isOptionFlags |= ((v & 1) << 1);
+		else data.isOptionFlags &= ((v & 1) << 1);
 	}
 
 	int getFMorPCM() {

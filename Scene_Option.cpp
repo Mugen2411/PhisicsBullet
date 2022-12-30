@@ -11,7 +11,7 @@ scalingOption{ "640x480","1280x960" }, soundOption{ "PCM音源", "FM音源" }, CMS(2
 	text[1] = CTextDrawer::Text("", CVector(320 - 36 * 7, 180), 0xFFFFFF, 0xCFCF00, 1);
 	text[1].text = std::string("画面解像度:") + scalingOption[CProgressData::getIns().getWindowX2()];
 	text[2] = CTextDrawer::Text("", CVector(320 - 36 * 7, 250), 0xFFFFFF, 0x00CF00, 1);
-	text[2].text = std::string("BGM音源:") + scalingOption[CProgressData::getIns().getFMorPCM()];
+	text[2].text = std::string("BGM音源:") + soundOption[CProgressData::getIns().getFMorPCM()];
 	text[3] = CTextDrawer::Text("設定は次のゲーム起動から適用されます。", CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
 }
 

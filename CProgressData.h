@@ -44,7 +44,7 @@ public:
 			randomStage.pop_front();
 			beforeStage = cur;
 		}
-		return std::string("media/map/") + std::to_string(cur%maxStage) + std::string("/") + std::to_string(cur%maxStage) + std::string(".map");
+		return std::string("media/map/") + std::to_string(cur % maxStage) + std::string("/") + std::to_string(cur % maxStage) + std::string(".map");
 	}
 
 	int getPlayerLevel() {
@@ -56,11 +56,21 @@ public:
 	}
 
 	void setWindowX2(int v) {	//0:ägëÂñ≥Çµ 1:2î{ägëÂ
-		data.isWindowX2 = v;
+		if (v)data.isOptionFlags |= v & 1;
+		else data.isOptionFlags &= v & 1;
 	}
 
 	int getWindowX2() {
-		return data.isWindowX2;
+		return data.isOptionFlags & 1;
+	}
+
+	void setFMorPCM(int v) {	//0:PCM 1:FM
+		if (v)data.isOptionFlags |= (v & 1) << 1;
+		else data.isOptionFlags &= (v & 1) << 1;
+	}
+
+	int getFMorPCM() {
+		return (data.isOptionFlags >> 1) & 1;
 	}
 
 	void setEndless(bool flag) {
@@ -110,7 +120,7 @@ private:
 		int lastStage;		//10ÇÇ©ÇØÇÈÇ∆énÇﬂÇÈÇ◊Ç´ÉXÉeÅ[ÉWÇ…Ç»ÇÈ
 		int Money;
 		int playerLevel;
-		int isWindowX2;
+		int isOptionFlags;	//â∫à 1bit:ägëÂó¶(0=x1,1=x2),2bit:âπåπ(0=PCM, 1=FM)
 	}data;
 
 	void shuffleStage() {

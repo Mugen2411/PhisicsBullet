@@ -4,6 +4,7 @@
 #include "CSTGInputManager.h"
 #include <memory>
 #include "CTextDrawer.h"
+#include "CMenuSelecter.h"
 
 class Scene_Option : public Scene_Abstract {
 public:
@@ -20,7 +21,9 @@ public:
 
 private:
 	std::weak_ptr<CSTGInputManager> input;
-	CTextDrawer::Text text[3];
+	CTextDrawer::Text text[4];
 	std::string scalingOption[2];
+	std::string soundOption[2];
+	CMenuSelecter CMS;
 	int cnt;
 };

@@ -8,6 +8,7 @@ CPowerParent::CPowerParent(CGameMediator* m) : med(m)
 
 void CPowerParent::Add(const std::shared_ptr<CPower>& p)
 {
+	p->setParent(this);
 	powerList.push_back(p);
 }
 

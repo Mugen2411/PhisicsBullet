@@ -12,6 +12,7 @@
 class CMoverParent;
 class CFieldParent;
 class CPowerParent;
+class CPower;
 class CMover_Player;
 class CMover;
 class CCostumeBase;
@@ -71,6 +72,7 @@ public:
 	virtual void CreateParts();
 
 	void RegisterMover(std::shared_ptr<CMover> m);
+	void RegisterPower(std::shared_ptr<CPower> p);
 	void ApplyForceToMover(CMover*);
 	bool HitToMover(CMover*);
 	CVector GetPlayerPosition();

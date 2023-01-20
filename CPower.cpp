@@ -1,5 +1,6 @@
 #include "CPower.h"
 
-CPower::CPower(CPowerParent* p, CVector position, double power):parent(p), Position(position), Power(power)
+CPower::CPower(CVector position, double power, int duration)
+	:parent(nullptr), Position(position), Power(power), duration(duration), cnt(0)
 {
 }

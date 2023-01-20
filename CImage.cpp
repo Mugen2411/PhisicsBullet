@@ -7,7 +7,8 @@
 #include "CDrawRotaGraphFReserve.h"
 #include "CDrawRotaGraphFwithBlendReserve.h"
 #include "CDrawRectGraphWithBlendReserve.h"
-#include "CDrawModiWithBlend.h"
+#include "CDrawExtendWithBlend.h"
+#include "CDrawModiGraphReserve.h"
 #include "CDrawCircleGauge.h"
 #include "CRenderReserveList.h"
 #include "CAnchor.h"
@@ -69,11 +70,22 @@ void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color, int Bl
 void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2, int color, int Blendmode, int value, int priority, int num)
 {
 	if (num > ArrSize)return;
-	CRenderReserveList::Add(new CDrawExtendiWithBlendReserve(GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(), y1 - CAnchor::getIns().getAnchorY(), x2 - CAnchor::getIns().getAnchorX(), y2 - CAnchor::getIns().getAnchorY(), color, Blendmode, value));
+	CRenderReserveList::Add(new CDrawExtendWithBlendReserve(GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(), y1 - CAnchor::getIns().getAnchorY(), x2 - CAnchor::getIns().getAnchorX(), y2 - CAnchor::getIns().getAnchorY(), color, Blendmode, value));
 }
 
 void CImage::DrawCircleGauge(int x, int y, double ratio, int priority, int num)
 {
 	if (num > ArrSize)return;
 	CRenderReserveList::Add(new CDrawCircleGaugeReserve(GHandle[num], priority, x - CAnchor::getIns().getAnchorX(), y - CAnchor::getIns().getAnchorY(), ratio, Width, Height));
+}
+
+void CImage::DrawModi(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int priority, int num)
+{
+	if (num > ArrSize)return;
+	CRenderReserveList::Add(new CDrawModiGraphReserve(GHandle[num], priority,
+		x1 - CAnchor::getIns().getAnchorX(),
+		y1 - CAnchor::getIns().getAnchorY(), x2 - CAnchor::getIns().getAnchorX(),
+		y2 - CAnchor::getIns().getAnchorY(), x3 - CAnchor::getIns().getAnchorX(),
+		y3 - CAnchor::getIns().getAnchorY(), x4 - CAnchor::getIns().getAnchorX(),
+		y4 - CAnchor::getIns().getAnchorY()));
 }

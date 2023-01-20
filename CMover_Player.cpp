@@ -164,6 +164,11 @@ void CMover_Player::RegisterShot(std::shared_ptr<CMover_ShotBase> s)
 	med->RegisterMover(s);
 }
 
+void CMover_Player::RegisterPower(std::shared_ptr<CPower> p)
+{
+	med->RegisterPower(p);
+}
+
 void CMover_Player::Hit(CMover_EnemyBase* m)
 {
 	m->ApplyForce(Acceleration * 0.1 * Mass);

@@ -10,7 +10,7 @@ protected:
     CVector ForceDirection; //—Í‚ð‚©‚¯‚é•ûŒü
 
 public:
-    CPower_Line(CPowerParent* p, CVector position, CVector direction, double width, double power);
+    CPower_Line(CVector position, CVector direction, double width, double power, int duration);
     bool isHit(CVector mPosition, double size);
     void ApplyForceToMover(CMover*);
     int Update();

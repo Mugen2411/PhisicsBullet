@@ -72,6 +72,11 @@ void CGameMediator::RegisterMover(std::shared_ptr<CMover> m)
 	moverParent->RegisterMover(m);
 }
 
+void CGameMediator::RegisterPower(std::shared_ptr<CPower> p)
+{
+	powerParent->Add(p);
+}
+
 void CGameMediator::ApplyForceToMover(CMover* m)
 {
 	powerParent->ApplyForceToMover(m);

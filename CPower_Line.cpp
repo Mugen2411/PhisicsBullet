@@ -1,8 +1,10 @@
 #include "CPower_Line.h"
-#include <DxLib.h>
+#include "CImageManager.h"
+#include "CEffect_Wind.h"
+#include "CEffectParent.h"
 
-CPower_Line::CPower_Line(CPowerParent* p, CVector position, CVector direction, double width, double power)
-	:CPower(p, position, power), Direction(direction), Width(width)
+CPower_Line::CPower_Line(CVector position, CVector direction, double width, double power, int duration)
+	:CPower(position, power, duration), Direction(direction), Width(width)
 {
 	Corner[0].x = position.x + cos(direction.x - Constant::PI / 2) * width / 2;
 	Corner[0].y = position.y + sin(direction.x - Constant::PI / 2) * width / 2;
@@ -57,15 +59,16 @@ void CPower_Line::ApplyForceToMover(CMover* m)
 
 int CPower_Line::Update()
 {
+	cnt++;
+	if (cnt > duration)return 1;
 	return 0;
 }
 
 void CPower_Line::Render() const
 {
-	for (int i = 0; i < 4; i++) {
-		DrawLineAA(Corner[i].x, Corner[i].y, Corner[(i + 1) % 4].x, Corner[(i + 1) % 4].y, 0x00FF00, 3.0);
+	//CImageManager::getIns().find("effect_wind")->DrawModi(Corner[0].x, Corner[0].y, Corner[1].x, Corner[1].y,
+	//	Corner[2].x, Corner[2].y, Corner[3].x, Corner[3].y, Constant::priority_effect, 0);
+	for (int i = 0; i < 3; i++) {
+		CEffectParent::RegisterEffect(std::make_shared<CEffect_Wind>(Position, Power, Direction.x, Width, Direction.y));
 	}
-	DrawCircleAA(Corner[0].x, Corner[0].y, 3, 6, 0xFF00FF);
-	DrawCircleAA(Corner[2].x, Corner[2].y, 3, 6, 0xFF00FF);
-	DrawLineAA(Position.x, Position.y, Position.x + cos(Direction.x) * Direction.y, Position.y + sin(Direction.x) * Direction.y, 0x0000FF, 4.0);
 }

@@ -8,8 +8,13 @@ protected:
 	CPowerParent* parent;
 	CVector Position;
 	double Power;
+	int duration;
+	int cnt;
 public:
-	CPower(CPowerParent* p, CVector position, double power);
+	CPower(CVector position, double power, int duration);
+	void setParent(CPowerParent* p) {
+		parent = p;
+	}
 
 	virtual void ApplyForceToMover(CMover*) = 0;
 	virtual int Update() = 0;

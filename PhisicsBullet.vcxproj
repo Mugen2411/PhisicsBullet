@@ -160,8 +160,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CDrawModiGraphReserve.cpp" />
     <ClCompile Include="CEffect_Bright.cpp" />
     <ClCompile Include="CEffect_EnemyDelete.cpp" />
+    <ClCompile Include="CEffect_Wind.cpp" />
     <ClCompile Include="CField_Cave.cpp" />
     <ClCompile Include="CField_Decoration_Light.cpp" />
     <ClCompile Include="CField_Decoration_Torch.cpp" />
@@ -187,7 +189,7 @@
     <ClCompile Include="CDrawCircleGauge.cpp" />
     <ClCompile Include="CDrawGraphFReserve.cpp" />
     <ClCompile Include="CDrawGraphReserve.cpp" />
-    <ClCompile Include="CDrawModiWithBlend.cpp" />
+    <ClCompile Include="CDrawExtendWithBlend.cpp" />
     <ClCompile Include="CDrawRectGraphWithBlendReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphFReserve.cpp" />
     <ClCompile Include="CDrawRotaGraphFwithBlendReserve.cpp" />
@@ -282,7 +284,8 @@
     <ClInclude Include="CDrawCircleGauge.h" />
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />
-    <ClInclude Include="CDrawModiWithBlend.h" />
+    <ClInclude Include="CDrawExtendWithBlend.h" />
+    <ClInclude Include="CDrawModiGraphReserve.h" />
     <ClInclude Include="CDrawRectGraphWithBlendReserve.h" />
     <ClInclude Include="CDrawRotaGraphFReserve.h" />
     <ClInclude Include="CDrawRotaGraphFwithBlendReserve.h" />
@@ -295,6 +298,7 @@
     <ClInclude Include="CEffect_DamageNumber.h" />
     <ClInclude Include="CEffect_EnemyDelete.h" />
     <ClInclude Include="CEffect_MoneyNumber.h" />
+    <ClInclude Include="CEffect_Wind.h" />
     <ClInclude Include="CEnemyFactory.h" />
     <ClInclude Include="CField.h" />
     <ClInclude Include="CFieldFactory.h" />

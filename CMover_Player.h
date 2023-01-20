@@ -5,6 +5,7 @@
 #include "CAttribute.h"
 #include "CCosutumeBase.h"
 #include "CNumberDrawer.h"
+#include "CPowerParent.h"
 #include "CPassiveSkill.h"
 
 class CField;
@@ -53,6 +54,7 @@ public:
     }
     int DamageColor(CAttribute shotATK);
     void RegisterShot(std::shared_ptr<CMover_ShotBase>);
+    void RegisterPower(std::shared_ptr<CPower>);
     void ChangeCostume(CCostumeBase* c) {
         costume.reset(c);
         costume->setPlayer(this);

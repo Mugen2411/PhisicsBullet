@@ -288,7 +288,7 @@
     <ClCompile Include="CCostume_Uniform.cpp">
       <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
-    <ClCompile Include="CDrawModiWithBlend.cpp">
+    <ClCompile Include="CDrawExtendWithBlend.cpp">
       <Filter>ソース ファイル\Image</Filter>
     </ClCompile>
     <ClCompile Include="CField_Wall_Log.cpp">
@@ -455,6 +455,12 @@
     </ClCompile>
     <ClCompile Include="CField_Lava.cpp">
       <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawModiGraphReserve.cpp">
+      <Filter>ソース ファイル\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect_Wind.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -623,7 +629,7 @@
     <ClInclude Include="CCostume_Uniform.h">
       <Filter>ヘッダー ファイル\Costume</Filter>
     </ClInclude>
-    <ClInclude Include="CDrawModiWithBlend.h">
+    <ClInclude Include="CDrawExtendWithBlend.h">
       <Filter>ヘッダー ファイル\Image</Filter>
     </ClInclude>
     <ClInclude Include="CField_Wall_Log.h">
@@ -793,6 +799,12 @@
     </ClInclude>
     <ClInclude Include="CField_Lava.h">
       <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawModiGraphReserve.h">
+      <Filter>ヘッダー ファイル\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect_Wind.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

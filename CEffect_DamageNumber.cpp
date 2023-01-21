@@ -21,6 +21,6 @@ void CEffect_DamageNumber::Update() {
 
 void CEffect_DamageNumber::Render() const {
   CND.Draw(
-      Position.x, Position.y, num, type, style,
+      (int)Position.x, (int)Position.y, num, type, style,
       style == 0 ? Constant::priority_number + 1 : Constant::priority_number);
 }

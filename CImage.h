@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "CVector.h"
+
 class CImage {
  private:
   std::vector<int> GHandle;
@@ -24,23 +26,26 @@ class CImage {
     }
   }
 
-  void Draw(int x1, int y1, int priority = 0.0, int num = 0);
-  void Draw(float x1, float y1, int priority = 0.0, int num = 0);
+  void Draw(int x1, int y1, int priority = 0.0, unsigned int num = 0);
+  void Draw(double x1, double y1, int priority = 0.0, unsigned int num = 0);
+  void Draw(CVector pos, int priority = 0.0, unsigned int num = 0);
   void DrawRota(int x1, int y1, float angle, float extend, int priority = 0.0,
-                int num = 0);
-  void DrawRotaF(float x1, float y1, float angle, float extend,
-                 int priority = 0.0, int num = 0);
-  void DrawRotaFwithBlend(float x1, float y1, float angle, float extend,
+                unsigned int num = 0);
+  void DrawRota(CVector pos, float angle, float extend, int priority = 0.0,
+                unsigned int num = 0);
+  void DrawRotaF(double x1, double y1, float angle, float extend,
+                 int priority = 0.0, unsigned int num = 0);
+  void DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
                           int color, int Blendmode, int value,
-                          int priority = 0.0, int num = 0);
+                          int priority = 0.0, unsigned int num = 0);
   void DrawRectwithBlend(int x1, int y1, int w1, int h1, int color,
                          int Blendmode, int value, int priority = 0.0,
-                         int num = 0);
-  void DrawExtendWithBlend(float x1, float y1, float x2, float y2, int color,
+                         unsigned int num = 0);
+  void DrawExtendWithBlend(double x1, double y1, double x2, double y2, int color,
                            int Blendmode, int value, int priority = 0.0,
-                           int num = 0);
+                           unsigned int num = 0);
   void DrawCircleGauge(int x, int y, double ratio, int priority = 0.0,
-                       int num = 0);
-  void DrawModi(float x1, float y1, float x2, float y2, float x3, float y3,
-                float x4, float y4, int priority = 0.0, int num = 0);
+                       unsigned int num = 0);
+  void DrawModi(double x1, double y1, double x2, double y2, double x3, double y3,
+                double x4, double y4, int priority = 0.0, unsigned int num = 0);
 };

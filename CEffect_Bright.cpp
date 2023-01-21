@@ -26,27 +26,27 @@ void CEffect_Bright::Render() const {
     return;
   }
   SetDrawScreen(brightBuffer);
-  int b = max(0, brightLevel * 0xFF);
+  int b = (int)max(0, brightLevel * 0xFF);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   DrawBox(0, 0, 640, 480, GetColor(b, b, b), TRUE);
   for (auto& i : list) {
     if (i.power < 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, i.power);
-    DrawRotaGraph(i.position.x - CAnchor::getIns().getAnchorX(),
-                  i.position.y - CAnchor::getIns().getAnchorY(),
+    DrawRotaGraph((int)(i.position.x - CAnchor::getIns().getAnchorX()),
+                  (int)(i.position.y - CAnchor::getIns().getAnchorY()),
                   i.radius / 256.0, 0, brightGraph, TRUE);
   }
 
   SetDrawScreen(shadowBuffer);
-  b = min(0, brightLevel * 0xFF);
+  b = (int)min(0, brightLevel * 0xFF);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   DrawBox(0, 0, 640, 480, GetColor(-b, -b, -b), TRUE);
   for (auto& i : list) {
     if (i.power > 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, -i.power);
-    DrawRotaGraph(i.position.x - CAnchor::getIns().getAnchorX(),
-                  i.position.y - CAnchor::getIns().getAnchorY(),
-                  i.radius / 256.0, 0, brightGraph, TRUE);
+    DrawRotaGraphF((float)(i.position.x - CAnchor::getIns().getAnchorX()),
+                  (float)(i.position.y - CAnchor::getIns().getAnchorY()),
+                  (float)i.radius / 256.0f, 0.0f, brightGraph, TRUE);
   }
   SetDrawScreen(brightScreen);
   SetDrawBlendMode(DX_BLENDMODE_ADD, 0xFF);

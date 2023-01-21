@@ -11,7 +11,7 @@ CMover_Bullet_Flame::CMover_Bullet_Flame(CStatus baseparams, CVector position,
 int CMover_Bullet_Flame::Update() {
   animCount += 0.24;
   if (animCount > 4.0) animCount = 0.0;
-  baseAngle += Constant::PI2 * 3 * Constant::perFrame;
+  baseAngle += (float)(Constant::PI2 * 3 * Constant::perFrame);
   if (Velocity.getLength2() < Constant::bullet_delete_velocity)
     setStatus(STATUS::DEAD);
   return Status;
@@ -23,5 +23,5 @@ void CMover_Bullet_Flame::Render() const {
       ->DrawRotaFwithBlend(Position.x, Position.y,
                            Velocity.getAngle() + baseAngle, 1.0, 0xFFFFFF,
                            CImageManager::BLENDMODE::BM_ADD, 0xFF,
-                           Constant::priority_bullet, animCount);
+                           Constant::priority_bullet, (uint32_t)animCount);
 }

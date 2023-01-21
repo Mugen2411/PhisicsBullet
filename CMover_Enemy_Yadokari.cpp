@@ -64,13 +64,13 @@ void CMover_Enemy_Yadokari::Render() const {
   if (state < 0) {
     CImageManager::getIns()
         .find("enemy_yadokari_intro")
-        ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
+        ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
                    (int)(animCount));
     return;
   }
   CImageManager::getIns()
       .find("enemy_yadokari")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
+      ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
                  Direction * 4 + (int)(animCount));
   /*for (auto& i : route) {
           CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0,

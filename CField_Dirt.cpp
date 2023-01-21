@@ -13,7 +13,7 @@ void CField_Dirt::Update() {}
 void CField_Dirt::Render() const {
   CImageManager::getIns()
       .find("Field_Grass")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field,
+      ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
                  24 + state);
 }
 

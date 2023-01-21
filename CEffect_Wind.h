@@ -5,13 +5,13 @@ class CEffect_Wind : public CEffect {
   CVector basePos;
   int cnt = 0;
   int duration;
-  float power, angle, width, length;
-  float delta;
+  double power, width, length;
+  float delta, angle;
   float x, y, z;
 
  public:
-  CEffect_Wind(CVector position, float power, float angle, float width,
-               float length);
+  CEffect_Wind(CVector position, double power, float angle, double width,
+               double length);
 
   void Update();
   void Render() const;

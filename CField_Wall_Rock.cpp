@@ -8,7 +8,7 @@ void CField_Wall_Rock::Update() {}
 void CField_Wall_Rock::Render() const {
   CImageManager::getIns()
       .find("Field_Cave")
-      ->DrawRota(Position.x, Position.y, 0, 1, Constant::priority_wall, 3);
+      ->DrawRota(Position, 0, 1, Constant::priority_wall, 3);
 }
 
 CField* CField_Wall_Rock::Clone(CVector position) {

@@ -36,7 +36,7 @@ void Scene_Stageclear::Update() {
     cur = (cur + 1) % skillList.size();
   }
   if (input.lock()->Left() == 1) {
-    cur = (cur + skillList.size() - 1) % skillList.size();
+    cur = (cur + (int)skillList.size() - 1) % (int)skillList.size();
   }
   if (input.lock()->Select() == 1) {
     CPassiveSkill::getIns().add(skillList[cur]);
@@ -55,18 +55,18 @@ void Scene_Stageclear::Render() const {
   CAnchor::getIns().enableAbsolute();
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(0 - (12 - cnt) / 12.0 * 320, 0, 100, 0);
+      ->Draw(0 - (12 - cnt) / 12.0 * 320, 0.0, 100, 0);
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(320 + (12 - cnt) / 12.0 * 320, 0, 100, 1);
+      ->Draw(320 + (12 - cnt) / 12.0 * 320, 0.0, 100, 1);
   for (int i = 0; i < skillList.size(); i++) {
     CImageManager::getIns()
         .find("icon_passiveskill")
-        ->Draw(320 - 64 * 1.5 + 64 * i, 240, 101, skillList[i]);
+        ->Draw(320 - 64 * 1.5 + 64 * i, 240.0, 101, skillList[i]);
   }
   CImageManager::getIns()
       .find("system_costume_frame")
-      ->DrawRota(320 - 64 * 1.5 + 64 * cur + 16, 240 + 16, 0, 1, 102);
+      ->DrawRota(int(320 - 64 * 1.5 + 64 * cur + 16), 240 + 16, 0.0f, 1.0f, 102);
   CTextDrawer::getIns().Register(
       CPassiveSkill::getIns().getText(skillList[cur]));
   for (int i = 0; i < 4; i++) {

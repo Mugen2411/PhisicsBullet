@@ -3,11 +3,11 @@
 
 class CMover_Shot_Swimsuit_iPhone : public CMover_ShotBase {
  protected:
-  double renderAngle;
+  float renderAngle;
 
  public:
   CMover_Shot_Swimsuit_iPhone(CAttribute baseATK, CVector position,
-                              double angle);
+                              float angle);
 
   void Dead();
 

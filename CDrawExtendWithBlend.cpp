@@ -5,7 +5,7 @@
 #include <cmath>
 
 CDrawExtendWithBlendReserve::CDrawExtendWithBlendReserve(
-    int GHandle, double Priority, float x1, float y1, float x2, float y2,
+    int GHandle, int Priority, double x1, double y1, double x2, double y2,
     int color, int Blendmode, int value)
     : IRenderReserve(GHandle, Priority, x1, y1, std::abs(x1 - x2),
                      std::abs(y1 - y2)),
@@ -20,7 +20,7 @@ CDrawExtendWithBlendReserve::CDrawExtendWithBlendReserve(
 void CDrawExtendWithBlendReserve::Render() const {
   SetDrawBright((Color >> 16) & 0xFF, (Color >> 8) & 0xFF, (Color >> 0) & 0xFF);
   SetDrawBlendMode(Blendmode, value);
-  DrawExtendGraphF(x1, y1, x2, y2, GHandle, TRUE);
+  DrawExtendGraphF(float(x1), float(y1), float(x2), float(y2), GHandle, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   SetDrawBright(0xFF, 0xFF, 0xFF);
 }

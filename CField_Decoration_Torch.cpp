@@ -30,11 +30,11 @@ void CField_Decoration_Torch::Render() const {
         .find("effect_bornfire")
         ->DrawRotaFwithBlend(Position.x, Position.y, GetRand(16) / 256.0f, 1.0,
                              0xFFFFFF, CImageManager::BM_ADD, 216,
-                             Constant::priority_effect, animCount);
+                             Constant::priority_effect, (uint32_t)animCount);
   }
   CImageManager::getIns()
       .find("Field_Cave")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0,
+      ->DrawRota(Position, 0.0, 1.0,
                  Constant::priority_decoration, 4);
 }
 

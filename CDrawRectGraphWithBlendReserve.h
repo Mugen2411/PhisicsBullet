@@ -5,7 +5,7 @@ class CDrawRectGraphWithBlendReserve : public IRenderReserve {
   int Color, Blendmode, value;
 
  public:
-  CDrawRectGraphWithBlendReserve(int GHandle, double Priority, float x, float y,
+  CDrawRectGraphWithBlendReserve(int GHandle, int Priority, double x, double y,
                                  int color, int Blendmode, int value, int width,
                                  int height);
   void Render() const;

@@ -11,7 +11,7 @@ void CField_Wall_PlayerSpawner::Update() {}
 void CField_Wall_PlayerSpawner::Render() const {
   CImageManager::getIns()
       .find("player_komuk")
-      ->DrawRota(Position.x, Position.y, 0, 1, Constant::priority_enemy, 4);
+      ->DrawRota(Position, 0, 1, Constant::priority_enemy, 4);
 }
 
 CField* CField_Wall_PlayerSpawner::Clone(CVector position) {

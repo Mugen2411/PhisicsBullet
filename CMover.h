@@ -17,8 +17,8 @@ class CMover {
   friend CMoverParent;
 
  public:
-  static enum MOVER_ID { MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET };
-  static enum STATUS { ALIVE = 0, DEAD, VANISHED };
+  enum MOVER_ID { MV_PLAYER, MV_ENEMY, MV_SHOT, MV_BULLET };
+  enum STATUS { ALIVE = 0, DEAD, VANISHED };
 
  protected:
   CGameMediator* med;

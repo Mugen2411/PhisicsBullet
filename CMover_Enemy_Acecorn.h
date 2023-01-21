@@ -4,7 +4,7 @@
 class CMover_Enemy_Acecorn : public CMover_EnemyBase {
   CVector testDest;
   int cnt = 0;
-  float focus;
+  double focus;
 
  public:
   CMover_Enemy_Acecorn(CVector position, int Level);

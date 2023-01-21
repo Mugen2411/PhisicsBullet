@@ -76,6 +76,6 @@ void CPower_Line::Render() const {
   //Corner[3].x, Corner[3].y, Constant::priority_effect, 0);
   for (int i = 0; i < 3; i++) {
     CEffectParent::RegisterEffect(std::make_shared<CEffect_Wind>(
-        Position, Power, Direction.x, Width, Direction.y));
+        Position, Power, (float)Direction.x, Width, Direction.y));
   }
 }

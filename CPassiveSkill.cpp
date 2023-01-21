@@ -137,6 +137,7 @@ CTextDrawer::Text CPassiveSkill::getText(int index) {
                std::string("%‘‰Á‚·‚éB");
     return ret;
   }
+  return ret;
 }
 
 CPassiveSkill::CPassiveSkill() : has{0}, rnd(), engine(rnd()) {}

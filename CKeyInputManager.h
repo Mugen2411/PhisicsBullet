@@ -3,7 +3,7 @@
 
 #include "CSTGInputManager.h"
 
-class CKeyInputManager : public CSTGInputManager {
+class CKeyInputManager final : public CSTGInputManager {
  private:
   int KeyConfig[10];
   int changed;

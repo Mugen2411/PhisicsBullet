@@ -22,13 +22,13 @@ void CEffect_EnemyDelete::Render() const {
       .find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
           Position.x, Position.y, 0,
-          (Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0, Color,
-          CImageManager::BM_NONE, 255, Constant::priority_effect, animCount);
+          float(Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0f, Color,
+          CImageManager::BM_NONE, 255, Constant::priority_effect, (uint32_t)animCount);
   CImageManager::getIns()
       .find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
           Position.x, Position.y, 0,
-          (Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0,
+          float(Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0f,
           0xFFFFFF, CImageManager::BM_ADD, 255, Constant::priority_effect + 1,
-          animCount);
+          (uint32_t)animCount);
 }

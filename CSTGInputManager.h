@@ -37,6 +37,7 @@ class CSTGInputManager {
 
  public:
   CSTGInputManager();
+  virtual ~CSTGInputManager(){};
 
   int Up();
   int Down();
@@ -59,11 +60,10 @@ class CSTGInputManager {
   CVector getVector();
   int getDirection();
 
-  double getMouseAngle(CVector p);
+  float getMouseAngle(CVector p);
 
   virtual int isChanged() = 0;
   virtual int update() = 0;
-  virtual void load() = 0;
 
   virtual void SetMouseVisible() = 0;
   virtual void SetMouseInvisible() = 0;

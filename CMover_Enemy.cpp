@@ -56,7 +56,7 @@ void CMover_EnemyBase::findTargetByDistance(int distance) {
   if (!med) return;
   std::vector<CVector> dists =
       med->GetTargetByDistance(med->GetPlayerPosition(), distance);
-  std::uniform_int_distribution<> r(0, dists.size() - 1);
+  std::uniform_int_distribution<> r(0, (int)dists.size() - 1);
   CVector target = dists[r(rand)];
   route = med->GetRoute(Position, target, attrDEF, 0);
 }
@@ -90,7 +90,7 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::getIns()
         .find("enemy_marker")
-        ->DrawRota(8, p.y, Constant::PI, 1.0, Constant::priority_marker);
+        ->DrawRota(8, (int)p.y, (float)Constant::PI, 1.0f, Constant::priority_marker);
     CAnchor::getIns().disableAbsolute();
     return false;
   }
@@ -116,7 +116,7 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::getIns()
         .find("enemy_marker")
-        ->DrawRota(Constant::ScreenW - 8, p.y, Constant::PI * 3, 1.0,
+        ->DrawRota(Constant::ScreenW - 8, (int)p.y, (float)Constant::PI * 3, 1.0f,
                    Constant::priority_marker);
     CAnchor::getIns().disableAbsolute();
     return false;
@@ -124,14 +124,15 @@ bool CMover_EnemyBase::BaseRender() const {
   if (p.y + Size < 0) {
     CImageManager::getIns()
         .find("enemy_marker")
-        ->DrawRota(p.x, 8, -Constant::PI / 2, 1.0, Constant::priority_marker);
+        ->DrawRota((int)p.x, 8, -(float)Constant::PI / 2, 1.0f,
+                   Constant::priority_marker);
     CAnchor::getIns().disableAbsolute();
     return false;
   }
   if (p.y - Size > Constant::ScreenH) {
     CImageManager::getIns()
         .find("enemy_marker")
-        ->DrawRota(p.x, Constant::ScreenH - 8, Constant::PI / 2, 1.0,
+        ->DrawRota((int)p.x, Constant::ScreenH - 8, (float)Constant::PI / 2, 1.0f,
                    Constant::priority_marker);
     CAnchor::getIns().disableAbsolute();
     return false;
@@ -144,9 +145,9 @@ bool CMover_EnemyBase::BaseRender() const {
 void CMover_EnemyBase::Dead() {
   for (int i = 0; i < 5; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
-        Position + CVector(GetRand(Size * 3) - Size * 1.5,
-                           GetRand(Size * 3) - Size * 1.5),
-        Size * 0.5 + GetRand(Size * 1.5), Color, 30));
+        Position + CVector(GetRand((int)Size * 3) - Size * 1.5,
+                           GetRand((int)Size * 3) - Size * 1.5),
+        Size * 0.5 + GetRand((int)(Size * 1.5)), Color, 30));
   for (int i = 0; i < 2; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
         Position, Size * (4 + i * 1.0), Color, 12));
@@ -205,7 +206,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
 }
 
 void CMover_EnemyBase::Drop() {
-  int val = std::ceil((baseMoney + baseParams.Level) *
+  int val = (int)std::ceil((baseMoney + baseParams.Level) *
                       (1.0 + (int)(baseParams.Level / 15.0) * 0.1) *
                       CPassiveSkill::getIns().getMoneyMult());
   if (auto r = med) r->getMoney(val);

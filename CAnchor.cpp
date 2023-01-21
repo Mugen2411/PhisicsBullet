@@ -30,7 +30,7 @@ void CAnchor::Update() {
   for (auto itr = quakeQueue.begin(); itr != quakeQueue.end();) {
     diff_quake.x += randomGenerator(engine) * itr->power;
     diff_quake.y += randomGenerator(engine) * itr->power;
-    itr->power *= 0.98;
+    itr->power *= 0.98f;
     itr->duration--;
     if (itr->duration < 0) {
       itr = quakeQueue.erase(itr);

@@ -22,7 +22,7 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
       Charge(0),
       State(0),
       baseParams(level, 1.0, CPassiveSkill::getIns().getMaxHPmult()),
-      DigitHP(std::log10(baseParams.MaxHP) + 1),
+      DigitHP((int)std::log10(baseParams.MaxHP) + 1),
       waitDuration(0),
       costume(std::shared_ptr<CCostumeBase>(costume)),
       CND(),
@@ -120,14 +120,14 @@ void CMover_Player::Shot() {
 void CMover_Player::Render() const {
   CImageManager::getIns()
       .find(costume->GID)
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0, 0.0,
-                 Direction * 4 + std::round(animCount));
+      ->DrawRota(Position, 0.0f, 1.0f, 0,
+                 Direction * 4 + (uint32_t)std::round(animCount));
 
   CAnchor::getIns().enableAbsolute();
   CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(
       16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);
   CImageManager::getIns().find("HPGuage")->DrawRectwithBlend(
-      16, 8, 320 * (baseParams.HP / baseParams.MaxHP), 32, 0xffffff,
+      16, 8, int(320 * (baseParams.HP / baseParams.MaxHP)), 32, 0xffffff,
       DX_BLENDMODE_ALPHA, 192, 5, 1);
   CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(
       16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);

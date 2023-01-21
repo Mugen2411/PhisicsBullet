@@ -12,7 +12,7 @@ void CField_Wall_Vegetable::Update() {}
 void CField_Wall_Vegetable::Render() const {
   CImageManager::getIns()
       .find("Field_Grass")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0,
+      ->DrawRota(Position, 0.0, 1.0,
                  Constant::priority_decoration, 26 + state);
 }
 

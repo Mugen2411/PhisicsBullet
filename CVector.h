@@ -70,7 +70,7 @@ class CVector {
   inline double cross(CVector const v) const { return v.x * y - v.y * x; }
   inline double getLength2() const { return x * x + y * y; }
   inline double getLength() const { return sqrt(getLength2()); }
-  inline double getAngle() const { return atan2(y, x); }
+  inline float getAngle() const { return (float)atan2(y, x); }
   int getDirection();
   CVector getNorm() const;
 

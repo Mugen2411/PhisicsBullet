@@ -16,6 +16,6 @@ int CMover_Bullet_WaterSplash::Update() {
 void CMover_Bullet_WaterSplash::Render() const {
   CImageManager::getIns()
       .find("bullet_watersplash")
-      ->DrawRota(Position.x, Position.y, Velocity.getAngle(), 1.0,
+      ->DrawRota(Position, Velocity.getAngle(), 1.0,
                  Constant::priority_bullet);
 }

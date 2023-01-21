@@ -41,39 +41,54 @@ void CImage::Release() {
   GHandle.clear();
 }
 
-void CImage::Draw(int x1, int y1, int priority, int num) {
+void CImage::Draw(int x1, int y1, int priority, unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawGraphReserve(
-      GHandle[num], x1 - CAnchor::getIns().getAnchorX(),
-      y1 - CAnchor::getIns().getAnchorY(), priority, Width, Height));
+      GHandle[num], x1 - (int)CAnchor::getIns().getAnchorX(),
+      y1 - (int)CAnchor::getIns().getAnchorY(), priority, Width, Height));
 }
 
-void CImage::Draw(float x1, float y1, int priority, int num) {
+void CImage::Draw(double x1, double y1, int priority, unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawGraphFReserve(
       GHandle[num], x1 - CAnchor::getIns().getAnchorX(),
       y1 - CAnchor::getIns().getAnchorY(), priority, Width, Height));
 }
 
-void CImage::DrawRota(int x1, int y1, float angle, float extend, int priority,
-                      int num) {
+void CImage::Draw(CVector pos, int priority, unsigned int num) {
   if (num > ArrSize) return;
-  CRenderReserveList::Add(new CDrawRotaGraphReserve(
-      GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),
-      y1 - CAnchor::getIns().getAnchorY(), angle, extend, Width, Height));
+  CRenderReserveList::Add(new CDrawGraphReserve(
+      GHandle[num], (int)pos.x - (int)CAnchor::getIns().getAnchorX(),
+      (int)pos.y - (int)CAnchor::getIns().getAnchorY(), priority, Width, Height));
 }
 
-void CImage::DrawRotaF(float x1, float y1, float angle, float extend,
-                       int priority, int num) {
+void CImage::DrawRota(int x1, int y1, float angle, float extend, int priority, unsigned int num) {
+  if (num > ArrSize) return;
+  CRenderReserveList::Add(new CDrawRotaGraphReserve(
+      GHandle[num], priority, x1 - (int)CAnchor::getIns().getAnchorX(),
+      y1 - (int)CAnchor::getIns().getAnchorY(), angle, extend, Width, Height));
+}
+
+void CImage::DrawRota(CVector pos, float angle, float extend, int priority,
+                      unsigned int num) {
+  if (num > ArrSize) return;
+  CRenderReserveList::Add(new CDrawRotaGraphReserve(
+      GHandle[num], priority, (int)pos.x - (int)CAnchor::getIns().getAnchorX(),
+      (int)pos.y - (int)CAnchor::getIns().getAnchorY(), angle, extend, Width,
+      Height));
+}
+
+void CImage::DrawRotaF(double x1, double y1, float angle, float extend,
+                       int priority, unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawRotaGraphFReserve(
       GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),
       y1 - CAnchor::getIns().getAnchorY(), angle, extend, Width, Height));
 }
 
-void CImage::DrawRotaFwithBlend(float x1, float y1, float angle, float extend,
+void CImage::DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
                                 int color, int Blendmode, int value,
-                                int priority, int num) {
+                                int priority, unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawRotaGraphFwithBlendReserve(
       GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),
@@ -83,16 +98,16 @@ void CImage::DrawRotaFwithBlend(float x1, float y1, float angle, float extend,
 
 void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color,
                                int Blendmode, int value, int priority,
-                               int num) {
+                               unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawRectGraphWithBlendReserve(
       GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),
       y1 - CAnchor::getIns().getAnchorY(), color, Blendmode, value, w1, h1));
 }
 
-void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2,
+void CImage::DrawExtendWithBlend(double x1, double y1, double x2, double y2,
                                  int color, int Blendmode, int value,
-                                 int priority, int num) {
+                                 int priority, unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawExtendWithBlendReserve(
       GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),
@@ -101,15 +116,16 @@ void CImage::DrawExtendWithBlend(float x1, float y1, float x2, float y2,
 }
 
 void CImage::DrawCircleGauge(int x, int y, double ratio, int priority,
-                             int num) {
+                             unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawCircleGaugeReserve(
-      GHandle[num], priority, x - CAnchor::getIns().getAnchorX(),
-      y - CAnchor::getIns().getAnchorY(), ratio, Width, Height));
+      GHandle[num], priority, x - (int)CAnchor::getIns().getAnchorX(),
+      y - (int)CAnchor::getIns().getAnchorY(), ratio, Width, Height));
 }
 
-void CImage::DrawModi(float x1, float y1, float x2, float y2, float x3,
-                      float y3, float x4, float y4, int priority, int num) {
+void CImage::DrawModi(double x1, double y1, double x2, double y2, double x3,
+                      double y3, double x4, double y4, int priority,
+                      unsigned int num) {
   if (num > ArrSize) return;
   CRenderReserveList::Add(new CDrawModiGraphReserve(
       GHandle[num], priority, x1 - CAnchor::getIns().getAnchorX(),

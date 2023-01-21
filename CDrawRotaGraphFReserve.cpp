@@ -4,8 +4,8 @@
 
 #include <cmath>
 
-CDrawRotaGraphFReserve::CDrawRotaGraphFReserve(int GHandle, double Priority,
-                                               float x, float y, float angle,
+CDrawRotaGraphFReserve::CDrawRotaGraphFReserve(int GHandle, int Priority,
+                                               double x, double y, float angle,
                                                float extend, int width,
                                                int height)
     : IRenderReserve(
@@ -16,5 +16,5 @@ CDrawRotaGraphFReserve::CDrawRotaGraphFReserve(int GHandle, double Priority,
       extend(extend) {}
 
 void CDrawRotaGraphFReserve::Render() const {
-  DrawRotaGraphF(x, y, extend, angle, GHandle, TRUE);
+  DrawRotaGraphF(float(x), float(y), extend, angle, GHandle, TRUE);
 }

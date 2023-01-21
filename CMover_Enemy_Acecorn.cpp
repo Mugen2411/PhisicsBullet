@@ -86,13 +86,13 @@ void CMover_Enemy_Acecorn::Render() const {
   if (state < 0) {
     CImageManager::getIns()
         .find("enemy_bud_intro")
-        ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
+        ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
                    (int)(animCount));
     return;
   }
   CImageManager::getIns()
       .find("enemy_acecorn")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
+      ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
                  Direction * 4 + (int)(animCount));
 }
 

@@ -16,7 +16,7 @@ class CStatus {
   CStatus(int Level, double atkCF, double hpCF);
 
   void Calculate();
-  static int getMoneyToUpgrade(int now) { return 500 * std::powl(1.15, now); }
+  static int getMoneyToUpgrade(int now) { return (int)std::ceil(500 * std::powl(1.15, now)); }
   CStatus Test(int TargetLevel);
   CStatus operator-(CStatus v);
 };

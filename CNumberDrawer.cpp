@@ -7,7 +7,7 @@
 CNumberDrawer::CNumberDrawer() : Xnum(12) {}
 
 void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
-                         double priority) const {
+                         int priority) const {
   int margin;
   int width;
   std::string id;
@@ -49,7 +49,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
       CImageManager::getIns().find(id)->DrawRota(x, y, 0, 1, priority, 10);
     return;
   }
-  int l = std::log10(num) + 1;
+  int l = (int)std::log10(num) + 1;
   x += (l + 2) * margin;
   num *= 10;
   CImageManager::getIns().find(id)->DrawRota(
@@ -71,7 +71,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
 }
 
 void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
-                         double priority) const {
+                         int priority) const {
   int margin;
   int width;
   std::string id;
@@ -109,7 +109,7 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
     }
     return;
   }
-  int l = std::log10(num) + 1;
+  int l = (int)std::log10(num) + 1;
   x += l * margin;
   for (int i = 0; i < l; i++) {
     CImageManager::getIns().find(id)->DrawRota(x, y, 0, 1, priority,

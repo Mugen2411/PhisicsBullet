@@ -7,6 +7,7 @@ class CEffect {
   int Status;  // 0:ê∂ë∂ÅA1:è¡ñ≈
  public:
   CEffect(CVector pos);
+  virtual ~CEffect(){};
   inline bool operator!() { return Status; }
   virtual void Update() = 0;
   virtual void Render() const = 0;

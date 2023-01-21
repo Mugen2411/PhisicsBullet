@@ -8,7 +8,7 @@ void CField_Wall_DeepWater::Update() {}
 void CField_Wall_DeepWater::Render() const {
   CImageManager::getIns()
       .find("Field_IceFloor")
-      ->DrawRota(Position.x, Position.y, 0, 1, Constant::priority_wall, 2);
+      ->DrawRota(Position, 0, 1, Constant::priority_wall, 2);
 }
 
 CField* CField_Wall_DeepWater::Clone(CVector position) {

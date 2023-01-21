@@ -15,7 +15,7 @@ class CMover_Player : public CMover {
   std::weak_ptr<CSTGInputManager> input;
 
   int State;  // 0:‘€ì‰Â”\ 1:‘€ì•s”\
-  int Direction;
+  uint32_t Direction;
   double Charge;  //Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
   double animCount;
   CStatus baseParams;

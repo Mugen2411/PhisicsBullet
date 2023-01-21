@@ -19,23 +19,17 @@ void CFieldParent::Update() { fieldHolder->Update(); }
 
 void CFieldParent::ApplyForceToMover(CMover* m) {
   CVector p = m->getPosition();
-  int x = p.x / 32;
-  int y = p.y / 32;
+  int x = (int)p.x / 32;
+  int y = (int)p.y / 32;
   if (x < 0) m->setStatus(2);
   if (y < 0) m->setStatus(2);
   if (x > fieldHolder->getWidth()) m->setStatus(2);
   if (y > fieldHolder->getHeight()) m->setStatus(2);
 
   p = m->getPosition();
-  x = p.x / 32;
-  y = p.y / 32;
+  x = (int)(p.x / 32);
+  y = (int)(p.y / 32);
 
-  /*if (fieldHolder->getWall(x, y)->isWall) {
-          if (y < fieldHolder->getHeight() / 2)m->setPosition(p.y += 32);
-          else m->setPosition(p.y -= 32);
-          if (x < fieldHolder->getWidth() / 2)m->setPosition(p.x += 32);
-          else m->setPosition(p.x -= 32);
-  }*/
   fieldHolder->getWall(x, y)->setFrictionForce(m);
   fieldHolder->getFloor(x, y)->setFrictionForce(m);
   m->ApplyAirRegistance();
@@ -43,10 +37,10 @@ void CFieldParent::ApplyForceToMover(CMover* m) {
 
 bool CFieldParent::HitToMover(CMover* m) {
   CVector p = m->getPosition();
-  int x = p.x / 32;
-  int y = p.y / 32;
+  int x = (int)p.x / 32;
+  int y = (int)p.y / 32;
   int size =
-      ((m->getVelocity() + m->getAcceleration()).getLength2() / (16 * 16)) + 1;
+      (int)((m->getVelocity() + m->getAcceleration()).getLength2() / (16 * 16)) + 1;
 
   bool hitted = false;
   for (int ay = max(0, y - size);

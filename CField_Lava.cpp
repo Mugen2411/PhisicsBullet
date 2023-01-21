@@ -22,14 +22,14 @@ void CField_Lava::Render() const {
   if (Temperature < 0)
     CImageManager::getIns()
         .find("Field_Lava")
-        ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field,
+        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
                    1);
   else {
     CEffect_Bright::getIns().Register(
         CEffect_Bright::BrightDesc(Position, 512 - GetRand(16), 64));
     CImageManager::getIns()
         .find("Field_Lava")
-        ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field,
+        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
                    0);
   }
 }

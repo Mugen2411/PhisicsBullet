@@ -19,6 +19,7 @@ class CFieldFactory {
  public:
   CFieldFactory();
   CField* create(int x, int y, std::string name);
+  CField* create(CVector pos, std::string name);
   std::string getKey(int* n, int category);
 
   void Render(int category) const;

@@ -32,8 +32,8 @@ class CFieldHolder {
     return walllist[width * y + x].get();
   }
 
-  void writefloor(CField* f, unsigned int x, unsigned int y);
-  void writewall(CField* f, unsigned int x, unsigned int y);
+  void writefloor(CField* f, CVector pos);
+  void writewall(CField* f, CVector pos);
 
   inline int getWidth() { return width; }
   inline int getHeight() { return height; }

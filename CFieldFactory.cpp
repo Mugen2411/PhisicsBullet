@@ -109,6 +109,25 @@ CField* CFieldFactory::create(int x, int y, std::string name) {
   }
 }
 
+CField* CFieldFactory::create(CVector pos, std::string name) {
+  pos.x *= 32;
+  pos.x += 16;
+  pos.y *= 32;
+  pos.y += 16;
+  //ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
+  if (name[0] == 'W' || name[0] == 'E' || name[0] == 'P') {
+    auto itr =
+        std::find_if(wall_prototypes.begin(), --wall_prototypes.end(),
+                     [name](std::unique_ptr<CField>& f) { return *f == name; });
+    return ((*itr)->Clone(pos));
+  } else {
+    auto itr =
+        std::find_if(floor_prototypes.begin(), --floor_prototypes.end(),
+                     [name](std::unique_ptr<CField>& f) { return *f == name; });
+    return ((*itr)->Clone(pos));
+  }
+}
+
 // category=0:Floor, 1:Wall
 std::string CFieldFactory::getKey(int* n, int category) {
   if (category == 1) {
@@ -117,7 +136,7 @@ std::string CFieldFactory::getKey(int* n, int category) {
       *n = 0;
     }
     if (*n > wall_prototypes.size() - 1) {
-      *n = wall_prototypes.size() - 1;
+      *n = (int)wall_prototypes.size() - 1;
     }
     for (int i = 0; i < *n; i++) {
       itr++;
@@ -129,7 +148,7 @@ std::string CFieldFactory::getKey(int* n, int category) {
       *n = 0;
     }
     if (*n > floor_prototypes.size() - 1) {
-      *n = floor_prototypes.size() - 1;
+      *n = (int)floor_prototypes.size() - 1;
     }
     for (int i = 0; i < *n; i++) {
       itr++;

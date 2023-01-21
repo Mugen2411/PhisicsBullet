@@ -20,7 +20,7 @@ void CField_Cave::Update() {}
 void CField_Cave::Render() const {
   CImageManager::getIns()
       .find("Field_Cave")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0, Constant::priority_field,
+      ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
                  decoration);
 }
 

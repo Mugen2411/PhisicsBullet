@@ -39,9 +39,9 @@ void CProgressData::load() {
 }
 
 void CProgressData::win(int money) {
-  earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
+  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
   stageMoney =
-      400 * (currentStage + 1) * CPassiveSkill::getIns().getMoneyMult();
+      400 * (int)std::ceil((currentStage + 1) * CPassiveSkill::getIns().getMoneyMult());
   data.Money += earnedMoney;
   data.Money += stageMoney;
   if (!isEndless)
@@ -50,7 +50,7 @@ void CProgressData::win(int money) {
 }
 
 void CProgressData::lose(int money) {
-  earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
+  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
   data.Money += earnedMoney;
   if (!isEndless)
     data.lastStage =
@@ -58,7 +58,7 @@ void CProgressData::lose(int money) {
 }
 
 void CProgressData::retire(int money) {
-  earnedMoney = money * CPassiveSkill::getIns().getMoneyMult();
+  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
   data.Money += earnedMoney;
   if (!isEndless)
     data.lastStage =

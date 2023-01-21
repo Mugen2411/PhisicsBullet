@@ -4,7 +4,7 @@ class CDrawCircleGaugeReserve : public IRenderReserve {
   double ratio;
 
  public:
-  CDrawCircleGaugeReserve(int GHandle, double priority, int x, int y,
+  CDrawCircleGaugeReserve(int GHandle, int priority, int x, int y,
                           double ratio, int width, int height);
 
   void Render() const;

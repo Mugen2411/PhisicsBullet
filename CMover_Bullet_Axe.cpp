@@ -8,7 +8,7 @@ CMover_Bullet_Axe::CMover_Bullet_Axe(CStatus baseparams, CVector position,
       baseAngle(0.0) {}
 
 int CMover_Bullet_Axe::Update() {
-  baseAngle += Constant::PI2 * Constant::perFrame * 0.8;
+  baseAngle += (float)(Constant::PI2 * Constant::perFrame) * 0.8f;
   if (Velocity.getLength2() < Constant::bullet_delete_velocity)
     setStatus(STATUS::DEAD);
   return Status;
@@ -17,6 +17,6 @@ int CMover_Bullet_Axe::Update() {
 void CMover_Bullet_Axe::Render() const {
   CImageManager::getIns()
       .find("bullet_axe")
-      ->DrawRota(Position.x, Position.y, Velocity.getAngle() + baseAngle, 1.0,
+      ->DrawRotaF(Position.x, Position.y, Velocity.getAngle() + baseAngle, 1.0,
                  Constant::priority_bullet);
 }

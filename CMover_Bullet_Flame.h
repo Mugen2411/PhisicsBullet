@@ -9,5 +9,5 @@ class CMover_Bullet_Flame : public CMover_BulletBase {
 
  protected:
   double animCount;
-  double baseAngle;
+  float baseAngle;
 };

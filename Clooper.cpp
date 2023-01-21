@@ -27,7 +27,7 @@ void CGame::Run() {
   (*_scene.begin())->Update();
   if (_scene.empty()) return;
   fps.Update();
-  int size = _scene.size();
+  int size = (int) _scene.size();
   auto itr = _scene.begin();
   for (int i = 0; i < size; i++) {
     CTextDrawer::getIns().setPriority(i);

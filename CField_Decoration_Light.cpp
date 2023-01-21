@@ -23,7 +23,7 @@ void CField_Decoration_Light::Render() const {
   }
   CImageManager::getIns()
       .find("Field_Cave")
-      ->DrawRota(Position.x, Position.y, 0.0, 1.0,
+      ->DrawRota(Position, 0.0, 1.0,
                  Constant::priority_decoration, 5);
 }
 

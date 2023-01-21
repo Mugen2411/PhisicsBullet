@@ -172,4 +172,5 @@ int HSV2RGB(float H, float S, float V) {
 
     return (int)(r * 0xFF) << 16 | (int)(g * 0xFF) << 8 | (int)(b * 0xFF);
   }
+  return 0;
 }

@@ -58,10 +58,10 @@ void Scene_Option::Render() const {
   CAnchor::getIns().enableAbsolute();
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(0 - (12 - cnt) / 12.0 * 320, 0, 100, 0);
+      ->Draw(0 - (12 - cnt) / 12.0 * 320, 0.0, 100, 0);
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(320 + (12 - cnt) / 12.0 * 320, 0, 100, 1);
+      ->Draw(320 + (12 - cnt) / 12.0 * 320, 0.0, 100, 1);
   for (int i = 0; i < 4; i++) {
     CTextDrawer::getIns().Register(text[i]);
   }

@@ -218,7 +218,7 @@ void CGameMediator::Render() const {
   CImageManager::getIns()
       .find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32,
-                          160 * ((float)pauseGuage / Constant::MaxPause), 32,
+                          (int)(160 * (pauseGuage / Constant::MaxPause)), 32,
                           HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0),
                           CImageManager::BLENDMODE::BM_SUB, 0x7F, 9,
                           (input.lock()->Select() > 0) ? 1 : 0);
@@ -297,10 +297,10 @@ void CGameMediator::RenderDresschangeMenu() const {
   CTextDrawer::getIns().Register(waveNumber);
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(0 - (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 0);
+      ->Draw(0 - (12 - costumeSelecterCNT) / 12.0 * 320, 0.0, 100, 0);
   CImageManager::getIns()
       .find("system_curtain")
-      ->Draw(320 + (12 - costumeSelecterCNT) / 12.0 * 320, 0, 100, 1);
+      ->Draw(320 + (12 - costumeSelecterCNT) / 12.0 * 320, 0.0, 100, 1);
   CImageManager::getIns()
       .find("system_costume_frame")
       ->DrawRota(160, 64, 0.0f, 1.0f, 102);
@@ -338,19 +338,19 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 *
+                int(240 *
                     min(1.0, max(0.02, (player->costume->constants.FrictionCF -
                                         minFric) /
-                                           max(0.0001, maxFric - minFric))),
+                                           max(0.0001, maxFric - minFric)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 * min(1.0, max(0.02,
+                int(240 * min(1.0, max(0.02,
                                    ((*costumeNowFocusOn)->constants.FrictionCF -
                                     minFric) /
-                                       max(0.0001, maxFric - minFric))),
+                                       max(0.0001, maxFric - minFric)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
       case 1:
@@ -358,22 +358,22 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 * min(1.0,
+                int(240 * min(1.0,
                           max(0.02,
                               ((1.0 - player->costume->constants.WaterResCF) -
                                minWaterRes) /
-                                  max(0.0001, maxWaterRes - minWaterRes))),
+                                  max(0.0001, maxWaterRes - minWaterRes)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 *
+                int(240 *
                     min(1.0, max(0.02,
                                  ((1.0 -
                                    (*costumeNowFocusOn)->constants.WaterResCF) -
                                   minWaterRes) /
-                                     max(0.0001, maxWaterRes - minWaterRes))),
+                                     max(0.0001, maxWaterRes - minWaterRes)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
       case 2:
@@ -381,19 +381,19 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 *
+                int(240 *
                     min(1.0, max(0.02, (player->costume->constants.AirResCF -
                                         minAirRes) /
-                                           max(0.0001, maxAirRes - minAirRes))),
+                                           max(0.0001, maxAirRes - minAirRes)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 * min(1.0,
+                int(240 * min(1.0,
                           max(0.02, ((*costumeNowFocusOn)->constants.AirResCF -
                                      minAirRes) /
-                                        max(0.0001, maxAirRes - minAirRes))),
+                                        max(0.0001, maxAirRes - minAirRes)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
       case 3:
@@ -401,16 +401,16 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 * min(1.0, max(0.02, (player->costume->Mass - minMass) /
-                                             max(0.0001, maxMass - minMass))),
+                int(240 * min(1.0, max(0.02, (player->costume->Mass - minMass) /
+                                             max(0.0001, maxMass - minMass)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 *
+                int(240 *
                     min(1.0, max(0.02, ((*costumeNowFocusOn)->Mass - minMass) /
-                                           max(0.0001, maxMass - minMass))),
+                                           max(0.0001, maxMass - minMass)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
       case 4:
@@ -418,18 +418,18 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 * min(1.0, max(0.02,
+                int(240 * min(1.0, max(0.02,
                                    (player->costume->MaxSpeed - minVelocity) /
-                                       max(0.0001, maxVelocity - minVelocity))),
+                                       max(0.0001, maxVelocity - minVelocity)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 * min(1.0,
+                int(240 * min(1.0,
                           max(0.02,
                               ((*costumeNowFocusOn)->MaxSpeed - minVelocity) /
-                                  max(0.0001, maxVelocity - minVelocity))),
+                                  max(0.0001, maxVelocity - minVelocity)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
       case 5:
@@ -437,17 +437,17 @@ void CGameMediator::RenderDresschangeMenu() const {
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                240 * min(1.0,
+                int(240 * min(1.0,
                           max(0.02, (player->costume->Accelaration - minAccel) /
-                                        max(0.0001, maxAccel - minAccel))),
+                                        max(0.0001, maxAccel - minAccel)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         CImageManager::getIns()
             .find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                240 * min(1.0, max(0.02, ((*costumeNowFocusOn)->Accelaration -
+                int(240 * min(1.0, max(0.02, ((*costumeNowFocusOn)->Accelaration -
                                           minAccel) /
-                                             max(0.0001, maxAccel - minAccel))),
+                                             max(0.0001, maxAccel - minAccel)))),
                 16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
         break;
     }

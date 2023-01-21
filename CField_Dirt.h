@@ -1,17 +1,15 @@
 #pragma once
 #include "CField.h"
 
-class CField_Dirt :
-    public CField
-{
-    int state;
-public:
-    CField_Dirt(std::string gid, CVector position, int state);
-    void Update();
-    void Render()const;
+class CField_Dirt : public CField {
+  int state;
 
-    CField* Clone(CVector position);
+ public:
+  CField_Dirt(std::string gid, CVector position, int state);
+  void Update();
+  void Render() const;
 
-    void Save(std::ofstream& fout);
+  CField* Clone(CVector position);
+
+  void Save(std::ofstream& fout);
 };
-

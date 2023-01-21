@@ -1,12 +1,9 @@
 #pragma once
 #include "CField.h"
 
-class CField_Wall :
-    public CField
-{
-public:
-    CField_Wall(std::string GID, CVector position, COF cofs);
+class CField_Wall : public CField {
+ public:
+  CField_Wall(std::string GID, CVector position, COF cofs);
 
-    bool Hit(CMover*)override;
+  bool Hit(CMover*) override;
 };
-

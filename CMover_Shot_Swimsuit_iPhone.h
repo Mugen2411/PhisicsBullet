@@ -1,16 +1,16 @@
 #pragma once
 #include "CMover_ShotBase.h"
 
-class CMover_Shot_Swimsuit_iPhone :
-    public CMover_ShotBase
-{
-protected:
-    double renderAngle;
-public:
-    CMover_Shot_Swimsuit_iPhone(CAttribute baseATK, CVector position, double angle);
+class CMover_Shot_Swimsuit_iPhone : public CMover_ShotBase {
+ protected:
+  double renderAngle;
 
-    void Dead();
+ public:
+  CMover_Shot_Swimsuit_iPhone(CAttribute baseATK, CVector position,
+                              double angle);
 
-    int Update();
-    void Render()const;
+  void Dead();
+
+  int Update();
+  void Render() const;
 };

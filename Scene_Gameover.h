@@ -1,20 +1,21 @@
 #pragma once
-#include "Scene_Abstract.h"
-#include "SceneManager.h"
-#include "CSTGInputManager.h"
 #include <memory>
+
+#include "CSTGInputManager.h"
 #include "CTextDrawer.h"
+#include "SceneManager.h"
+#include "Scene_Abstract.h"
 
 class Scene_Gameover : public Scene_Abstract {
-public:
-	Scene_Gameover(SceneManager* ScnMng);
-	~Scene_Gameover() {}
+ public:
+  Scene_Gameover(SceneManager* ScnMng);
+  ~Scene_Gameover() {}
 
-	void Update();
-	void Render()const;
+  void Update();
+  void Render() const;
 
-private:
-	std::weak_ptr<CSTGInputManager> input;
-	CTextDrawer::Text text[3];
-	int cnt;
+ private:
+  std::weak_ptr<CSTGInputManager> input;
+  CTextDrawer::Text text[3];
+  int cnt;
 };

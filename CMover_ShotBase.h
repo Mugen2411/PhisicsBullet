@@ -1,48 +1,44 @@
 #pragma once
+#include "CAttribute.h"
 #include "CMover.h"
 #include "CMover_Enemy.h"
-#include "CAttribute.h"
 #include "CStatus.h"
 
 class CField;
 
-class CMover_ShotBase :
-    public CMover
-{
-protected:
-    CAttribute ATK;
-    CAttribute baseATK;
+class CMover_ShotBase : public CMover {
+ protected:
+  CAttribute ATK;
+  CAttribute baseATK;
 
-    std::weak_ptr<CMover> target;
+  std::weak_ptr<CMover> target;
 
-    int cnt;
-    int effectColor;
-public:
-    CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position, double size, CVector velocity, double mass, COF cofs, int effectColor);
+  int cnt;
+  int effectColor;
 
-    void BaseUpdate();
-    bool BaseRender()const;
-    virtual int Update() = 0;
-    virtual void Render()const = 0;
+ public:
+  CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position,
+                  double size, CVector velocity, double mass, COF cofs,
+                  int effectColor);
 
-    virtual void Dead();            //‘¼ŽE
-    virtual void Disappear();       //Ž©ŽE
+  void BaseUpdate();
+  bool BaseRender() const;
+  virtual int Update() = 0;
+  virtual void Render() const = 0;
 
-    CAttribute getBaseAttribute() {
-        return ATK;
-    }
+  virtual void Dead();       //‘¼ŽE
+  virtual void Disappear();  //Ž©ŽE
 
-    void Damage(CAttribute shotATK, int style);
-    void RatioDamage(CAttribute shotATK, int style);
-    CAttribute TestDamage(CAttribute shotATK);
+  CAttribute getBaseAttribute() { return ATK; }
 
-    CVector getHomingAngle();
-    inline void HitDispatch(std::shared_ptr<CMover> m) {
-        m->Hit(this);
-    }
-    void Hit(CMover_EnemyBase*);
-    virtual void FieldDispatch(CField* f);
+  void Damage(CAttribute shotATK, int style);
+  void RatioDamage(CAttribute shotATK, int style);
+  CAttribute TestDamage(CAttribute shotATK);
 
-    virtual void ifonWall();
+  CVector getHomingAngle();
+  inline void HitDispatch(std::shared_ptr<CMover> m) { m->Hit(this); }
+  void Hit(CMover_EnemyBase*);
+  virtual void FieldDispatch(CField* f);
+
+  virtual void ifonWall();
 };
-

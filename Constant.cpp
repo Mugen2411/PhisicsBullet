@@ -1,4 +1,5 @@
 #include "Constant.h"
+
 #include "CVector.h"
 
 double Constant::Gravity = 0.98;

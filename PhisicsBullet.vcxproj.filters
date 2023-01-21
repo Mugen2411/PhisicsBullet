@@ -138,9 +138,6 @@
     <ClCompile Include="CMenuSelecter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Singleton.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CField.cpp">
       <Filter>ソース ファイル\Field</Filter>
     </ClCompile>

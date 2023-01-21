@@ -1,26 +1,24 @@
 #pragma once
 #include "CField_Wall.h"
-#include "CMover_ShotBase.h"
 #include "CMover_BulletBase.h"
+#include "CMover_ShotBase.h"
 
-class CField_Decoration_Light :
-    public CField_Wall
-{
-    int state;
-public:
-    CField_Decoration_Light(std::string gid, CVector position);
+class CField_Decoration_Light : public CField_Wall {
+  int state;
 
-    void Update();
-    void Render()const;
+ public:
+  CField_Decoration_Light(std::string gid, CVector position);
 
-    void attributeReaction(CAttribute a) {
-        auto f = a * CAttribute(0.0).THUNDER(1.0);
-        if (f.Sum() > 0.0) {
-            state = 1;
-        }
-    };
-    virtual void attributeEffect(CMover_BulletBase* m) {};
+  void Update();
+  void Render() const;
 
-    CField* Clone(CVector position);
+  void attributeReaction(CAttribute a) {
+    auto f = a * CAttribute(0.0).THUNDER(1.0);
+    if (f.Sum() > 0.0) {
+      state = 1;
+    }
+  };
+  virtual void attributeEffect(CMover_BulletBase* m){};
 
+  CField* Clone(CVector position);
 };

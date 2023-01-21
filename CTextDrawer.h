@@ -1,42 +1,45 @@
 #pragma once
-#include "Singleton.h"
-#include <string>
-#include "CVector.h"
 #include <list>
+#include <string>
 #include <vector>
 
-class CTextDrawer :public Singleton<CTextDrawer>{
-public:
-	struct Text {
-		std::string text;
-		CVector position;
-		int mainColor;
-		int edgeColor;
-		int fontID;
+#include "CVector.h"
+#include "Singleton.h"
 
-		Text(std::string text, CVector position, int mainColor , int edgeColor, int fontID):
-		text(text) ,position(position), mainColor(mainColor), edgeColor(edgeColor), fontID(fontID) {
-		}
-		Text() {}
-	};
-	void setPriority(int p) {
-		priority = p;
-	}
-	void Register(Text txt);
-	void RegisterForCostumeDetail(Text txt);
-	void Render()const;
-	void Clear();
+class CTextDrawer : public Singleton<CTextDrawer> {
+ public:
+  struct Text {
+    std::string text;
+    CVector position;
+    int mainColor;
+    int edgeColor;
+    int fontID;
 
-private:
-	int priority;		//一番上のシーンからしか受け取らない！
-	std::vector<int> fontArray;
-	std::list<Text> textQueue;
-	std::list<Text> costumeDetailQueue;
+    Text(std::string text, CVector position, int mainColor, int edgeColor,
+         int fontID)
+        : text(text),
+          position(position),
+          mainColor(mainColor),
+          edgeColor(edgeColor),
+          fontID(fontID) {}
+    Text() {}
+  };
+  void setPriority(int p) { priority = p; }
+  void Register(Text txt);
+  void RegisterForCostumeDetail(Text txt);
+  void Render() const;
+  void Clear();
 
-	std::string font_path;
+ private:
+  int priority;  //一番上のシーンからしか受け取らない！
+  std::vector<int> fontArray;
+  std::list<Text> textQueue;
+  std::list<Text> costumeDetailQueue;
 
-	CTextDrawer();
-	~CTextDrawer();
+  std::string font_path;
 
-	friend class Singleton<CTextDrawer>;
+  CTextDrawer();
+  ~CTextDrawer();
+
+  friend class Singleton<CTextDrawer>;
 };

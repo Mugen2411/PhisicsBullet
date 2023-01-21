@@ -269,7 +269,6 @@
     <ClCompile Include="Scene_Stageclear.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="Scene_Upgrade.cpp" />
-    <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnchor.h" />

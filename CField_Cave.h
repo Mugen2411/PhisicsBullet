@@ -1,19 +1,16 @@
 #pragma once
 #include "CField.h"
 
-class CField_Cave :
-    public CField
-{
-    int decoration;
-    double animCount;
+class CField_Cave : public CField {
+  int decoration;
+  double animCount;
 
-public:
-    CField_Cave(std::string gid, CVector position);
-    void Update();
-    void Render()const;
+ public:
+  CField_Cave(std::string gid, CVector position);
+  void Update();
+  void Render() const;
 
-    CField* Clone(CVector position);
+  CField* Clone(CVector position);
 
-    void Save(std::ofstream& fout);
+  void Save(std::ofstream& fout);
 };
-

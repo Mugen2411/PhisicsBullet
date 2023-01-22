@@ -16,10 +16,10 @@ class Scene_Upgrade : public Scene_Abstract {
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CTextDrawer::Text text[7];
-  int cnt;
-  bool hasEnoughMoney;
-  CStatus now;
-  CStatus next;
+  std::weak_ptr<CSTGInputManager> input_;
+  CTextDrawer::Text text_[7];
+  int cnt_;
+  bool has_enough_money_;
+  CStatus now_;
+  CStatus next_;
 };

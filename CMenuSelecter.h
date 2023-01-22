@@ -1,21 +1,21 @@
 #pragma once
 
 //メニューにおける選択を簡単にする
-class CMenuSelecter {
+class CMenuSelector {
  private:
-  int m_cur;
-  int m_max;
+  int cur_;
+  int max_;
 
  public:
   //最大値と初期位置
-  CMenuSelecter(int context_max, int current)
-      : m_max(context_max), m_cur(current) {
-    if (this->m_cur > m_max) this->m_cur = m_max;
+  CMenuSelector(int context_max, int current)
+      : max_(context_max), cur_(current) {
+    if (this->cur_ > max_) this->cur_ = max_;
   }
   // 1項目前へ
-  void prev();
+  void Prev();
   // 1項目後へ
-  void next();
+  void Next();
   //現在の位置を取得(0～最大値)
-  int get() const;
+  int Get() const;
 };

@@ -2,10 +2,11 @@
 #include "CMediator.h"
 
 class CParts {
-  CMediator* med;
-
  public:
-  CParts(CMediator* m) : med(m){};
+  CParts(CMediator* m) : med_(m){};
   virtual ~CParts() {}
-  virtual void Changed() { med->PartsChanged(this); }
+  virtual void Changed() { med_->PartsChanged(this); }
+
+ private:
+  CMediator* med_;
 };

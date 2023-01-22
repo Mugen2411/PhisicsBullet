@@ -2,12 +2,12 @@
 #include "CMover_Enemy.h"
 class CMover_Enemy_Shimaenaga : public CMover_EnemyBase {
  protected:
-  double animCount;
+  double animation_cnt_;
 
  public:
-  CMover_Enemy_Shimaenaga(CVector Position, int Level);
+  CMover_Enemy_Shimaenaga(CVector position, int Level);
   int Update();
   void Render() const;
 
-  CMover_EnemyBase* Clone(CVector Position, int Level);
+  CMover_EnemyBase* Clone(CVector position, int Level);
 };

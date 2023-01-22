@@ -8,13 +8,13 @@ class CField;
 
 class CMover_ShotBase : public CMover {
  protected:
-  CAttribute ATK;
-  CAttribute baseATK;
+  CAttribute atk_;
+  CAttribute base_atk_;
 
-  std::weak_ptr<CMover> target;
+  std::weak_ptr<CMover> target_;
 
-  int cnt;
-  int effectColor;
+  int cnt_;
+  int effect_color_;
 
  public:
   CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position,
@@ -29,16 +29,16 @@ class CMover_ShotBase : public CMover {
   virtual void Dead();       //‘¼ŽE
   virtual void Disappear();  //Ž©ŽE
 
-  CAttribute getBaseAttribute() { return ATK; }
+  CAttribute GetBaseAttribute() { return atk_; }
 
   void Damage(CAttribute shotATK, int style);
   void RatioDamage(CAttribute shotATK, int style);
   CAttribute TestDamage(CAttribute shotATK);
 
-  CVector getHomingAngle();
+  CVector GetHomingAngle();
   inline void HitDispatch(std::shared_ptr<CMover> m) { m->Hit(this); }
   void Hit(CMover_EnemyBase*);
   virtual void FieldDispatch(CField* f);
 
-  virtual void ifonWall();
+  virtual void IfOnWall();
 };

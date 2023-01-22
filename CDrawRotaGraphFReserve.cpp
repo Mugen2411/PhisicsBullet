@@ -12,9 +12,9 @@ CDrawRotaGraphFReserve::CDrawRotaGraphFReserve(int GHandle, int Priority,
           GHandle, Priority, x, y,
           width * cos(angle) * extend + height * sin(angle) * extend,
           width * sin(angle) * extend + height * cos(angle) * extend),
-      angle(angle),
-      extend(extend) {}
+      angle_(angle),
+      extend_(extend) {}
 
 void CDrawRotaGraphFReserve::Render() const {
-  DrawRotaGraphF(float(x), float(y), extend, angle, GHandle, TRUE);
+  DrawRotaGraphF(float(x_), float(y_), extend_, angle_, graphic_handle_, TRUE);
 }

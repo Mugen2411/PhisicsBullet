@@ -3,17 +3,18 @@
 #include "CNumberDrawer.h"
 
 class CEffect_DamageNumber : public CEffect {
-  double dy;
-  int cnt = 0;
-  double num;
-  int type = 0;
-  int style = 0;
-
-  CNumberDrawer CND;
-
  public:
-  CEffect_DamageNumber(CVector position, double num, int type, int Style = 0);
+  CEffect_DamageNumber(CVector position_, double num, int type, int Style = 0);
 
   void Update();
   void Render() const;
+
+ private:
+  double dy_;
+  int cnt_ = 0;
+  double num_;
+  int type_ = 0;
+  int style_ = 0;
+
+  CNumberDrawer number_drawer_;
 };

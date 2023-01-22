@@ -3,13 +3,14 @@
 #include "CNumberDrawer.h"
 
 class CField_Wall_EnemySpawner : public CField {
-  int index;
-  CNumberDrawer CND;
-
  public:
-  CField_Wall_EnemySpawner(std::string gid, CVector position, int index);
+  CField_Wall_EnemySpawner(std::string gid, CVector position_, int index);
   void Update();
   void Render() const;
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
+
+ private:
+  int index_;
+  CNumberDrawer number_drawer_;
 };

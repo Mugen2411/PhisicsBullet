@@ -16,10 +16,10 @@ class Scene_Title : public Scene_Abstract {
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CMenuSelecter CMS;
-  CTextDrawer::Text menuText[6];
-  CTextDrawer::Text titleText;
-  CTextDrawer::Text underText[6];
-  int currentStage;
+  std::weak_ptr<CSTGInputManager> input_;
+  CMenuSelector menu_selector_;
+  CTextDrawer::Text menu_text_[6];
+  CTextDrawer::Text title_text_;
+  CTextDrawer::Text under_text_[6];
+  int current_stage_;
 };

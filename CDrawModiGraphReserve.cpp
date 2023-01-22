@@ -7,16 +7,16 @@ CDrawModiGraphReserve::CDrawModiGraphReserve(int GHandle, int priority,
                                              double y2, double x3, double y3,
                                              double x4, double y4)
     : IRenderReserve(GHandle, priority, 0, 0, 0, 0),
-      x1(x1),
-      y1(y1),
-      x2(x2),
-      y2(y2),
-      x3(x3),
-      y3(y3),
-      x4(x4),
-      y4(y4) {}
+      x1_(x1),
+      y1_(y1),
+      x2_(x2),
+      y2_(y2),
+      x3_(x3),
+      y3_(y3),
+      x4_(x4),
+      y4_(y4) {}
 
 void CDrawModiGraphReserve::Render() const {
-  DrawModiGraphF((float)x1, (float)y1, (float)x2, (float)y2, (float)x3,
-                 (float)y3, (float)x4, (float)y4, GHandle, TRUE);
+  DrawModiGraphF((float)x1_, (float)y1_, (float)x2_, (float)y2_, (float)x3_,
+                 (float)y3_, (float)x4_, (float)y4_, graphic_handle_, TRUE);
 }

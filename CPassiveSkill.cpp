@@ -2,52 +2,52 @@
 
 #include "CStatus.h"
 
-CAttribute CPassiveSkill::getATKmult() {
+CAttribute CPassiveSkill::GetAtkMult() {
   CAttribute ret(1.0);
-  ret.None *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_NONE];
-  ret.Fire *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_FIRE];
-  ret.Aqua *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_AQUA];
-  ret.Thunder *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_THUNDER];
-  ret.Flower *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_FLOWER];
-  ret.Ice *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_ICE];
-  ret.Wind *= 1.0 + 0.01 * attrATKperLEVEL * has[ATK_WIND];
-  ret *= CAttribute(1.0 + 0.01 * allATKperLEVEL * has[ATK_ALL]);
+  ret.none_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkNone];
+  ret.fire_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkFire];
+  ret.aqua_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkAqua];
+  ret.thunder_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkThunder];
+  ret.flower_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkFlower];
+  ret.ice_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkIce];
+  ret.wind_ *= 1.0 + 0.01 * attr_atk_per_level_ * has_[kAtkWind];
+  ret *= CAttribute(1.0 + 0.01 * all_atk_per_level_ * has_[kAtkAll]);
   return ret;
 }
 
-CAttribute CPassiveSkill::getDEFmult() {
+CAttribute CPassiveSkill::GetDefMult() {
   CAttribute ret(1.0);
-  ret.None *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_NONE];
-  ret.Fire *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_FIRE];
-  ret.Aqua *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_AQUA];
-  ret.Thunder *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_THUNDER];
-  ret.Flower *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_FLOWER];
-  ret.Ice *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_ICE];
-  ret.Wind *= 1.0 + 0.01 * attrDEFperLEVEL * has[DEF_WIND];
-  ret *= CAttribute(1.0 + 0.01 * allDEFperLEVEL * has[DEF_ALL]);
+  ret.none_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefNone];
+  ret.fire_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefFire];
+  ret.aqua_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefAqua];
+  ret.thunder_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefThunder];
+  ret.flower_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefFlower];
+  ret.ice_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefIce];
+  ret.wind_ *= 1.0 + 0.01 * attr_def_per_level_ * has_[kDefWind];
+  ret *= CAttribute(1.0 + 0.01 * all_def_per_level_ * has_[kDefAll]);
   return ret;
 }
 
-std::vector<int> CPassiveSkill::getRandomList() {
+std::vector<int> CPassiveSkill::GetRandomList() {
   std::set<int> ret;
   std::vector<int> smp;
   int got[5];
   int p = 0;
   for (int i = 0; i < 21; i++) {
-    if (has[i] != 0) p++;
+    if (has_[i] != 0) p++;
   }
   if (p < 5) {
     for (int i = 0; i < 21; i++) {
-      for (int j = 0; j < 5 - has[i]; j++) {
+      for (int j = 0; j < 5 - has_[i]; j++) {
         ret.insert(i);
       }
     }
-    std::sample(ret.begin(), ret.end(), std::back_inserter(smp), 3, engine);
+    std::sample(ret.begin(), ret.end(), std::back_inserter(smp), 3, engine_);
     return smp;
   }
   p = 0;
   for (int i = 0; i < 21; i++) {
-    if (has[i] != 0) {
+    if (has_[i] != 0) {
       got[p] = i;
       p++;
     }
@@ -58,86 +58,86 @@ std::vector<int> CPassiveSkill::getRandomList() {
       p |= (got[j] == i);
     }
     if (!p) continue;
-    for (int j = 0; j < 5 - has[i]; j++) {
+    for (int j = 0; j < 5 - has_[i]; j++) {
       ret.insert(i);
     }
   }
-  std::sample(ret.begin(), ret.end(), std::back_inserter(smp), 3, engine);
+  std::sample(ret.begin(), ret.end(), std::back_inserter(smp), 3, engine_);
   return smp;
 }
 
-CTextDrawer::Text CPassiveSkill::getText(int index) {
+CTextDrawer::Text CPassiveSkill::GetText(int index) {
   CTextDrawer::Text ret("", CVector(32.0, 280.0), 0xFFFFFF, 0x000000, 0);
   std::string attr[7] = {"無", "炎", "水", "雷", "花", "氷", "風"};
-  if (index <= ATK_WIND) {
-    ret.text = std::string("与える") + attr[index % 7] +
+  if (index <= kAtkWind) {
+    ret.text_ = std::string("与える") + attr[index % 7] +
                std::string("属性ダメージを") +
-               std::to_string(has[index] * attrATKperLEVEL) +
+               std::to_string(has_[index] * attr_atk_per_level_) +
                std::string("%→") +
-               std::to_string((has[index] + 1) * attrATKperLEVEL) +
+               std::to_string((has_[index] + 1) * attr_atk_per_level_) +
                std::string("%増加する。");
     return ret;
   }
-  if (index <= DEF_WIND) {
-    ret.text = std::string("受ける") + attr[index % 7] +
+  if (index <= kDefWind) {
+    ret.text_ = std::string("受ける") + attr[index % 7] +
                std::string("属性ダメージを") +
-               std::to_string(has[index] * attrDEFperLEVEL) +
+               std::to_string(has_[index] * attr_def_per_level_) +
                std::string("%→") +
-               std::to_string((has[index] + 1) * attrDEFperLEVEL) +
+               std::to_string((has_[index] + 1) * attr_def_per_level_) +
                std::string("%軽減する。");
     return ret;
   }
-  if (index == ATK_ALL) {
-    ret.text = std::string("与える") + std::string("全てのダメージを") +
-               std::to_string(has[index] * allATKperLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * allATKperLEVEL) +
+  if (index == kAtkAll) {
+    ret.text_ = std::string("与える") + std::string("全てのダメージを") +
+               std::to_string(has_[index] * all_atk_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * all_atk_per_level_) +
                std::string("%増加する。");
     return ret;
   }
-  if (index == DEF_ALL) {
-    ret.text = std::string("受ける") + std::string("全てのダメージを") +
-               std::to_string(has[index] * allDEFperLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * allDEFperLEVEL) +
+  if (index == kDefAll) {
+    ret.text_ = std::string("受ける") + std::string("全てのダメージを") +
+               std::to_string(has_[index] * all_def_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * all_def_per_level_) +
                std::string("%軽減する。");
     return ret;
   }
-  if (index == HEAL) {
-    ret.text = std::string("HPを毎秒") +
-               floating_to_string(has[index] * healPerLEVEL) +
+  if (index == kHeal) {
+    ret.text_ = std::string("HPを毎秒") +
+               FloatToString(has_[index] * heal_per_level_) +
                std::string("%→") +
-               floating_to_string((has[index] + 1) * healPerLEVEL) +
+               FloatToString((has_[index] + 1) * heal_per_level_) +
                std::string("%回復する。");
     return ret;
   }
-  if (index == MONEY) {
-    ret.text = std::string("獲得する全てのコインを") +
-               std::to_string(has[index] * moneyPerLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * moneyPerLEVEL) +
+  if (index == kMoney) {
+    ret.text_ = std::string("獲得する全てのコインを") +
+               std::to_string(has_[index] * money_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * money_per_level_) +
                std::string("%増加する。");
     return ret;
   }
-  if (index == CHARGE) {
-    ret.text = std::string("射撃のチャージ速度を") +
-               std::to_string(has[index] * chargePerLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * chargePerLEVEL) +
+  if (index == kCharge) {
+    ret.text_ = std::string("射撃のチャージ速度を") +
+               std::to_string(has_[index] * charge_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * charge_per_level_) +
                std::string("%増加する。");
     return ret;
   }
-  if (index == SPEED) {
-    ret.text = std::string("自機の最高速度を") +
-               std::to_string(has[index] * speedPerLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * speedPerLEVEL) +
+  if (index == kSpeed) {
+    ret.text_ = std::string("自機の最高速度を") +
+               std::to_string(has_[index] * speed_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * speed_per_level_) +
                std::string("%増加する。");
     return ret;
   }
-  if (index == MAXHP) {
-    ret.text = std::string("自機のHP最大値を") +
-               std::to_string(has[index] * maxHPperLEVEL) + std::string("%→") +
-               std::to_string((has[index] + 1) * maxHPperLEVEL) +
+  if (index == kMaxHP) {
+    ret.text_ = std::string("自機のHP最大値を") +
+               std::to_string(has_[index] * maxHP_per_level_) + std::string("%→") +
+               std::to_string((has_[index] + 1) * maxHP_per_level_) +
                std::string("%増加する。");
     return ret;
   }
   return ret;
 }
 
-CPassiveSkill::CPassiveSkill() : has{0}, rnd(), engine(rnd()) {}
+CPassiveSkill::CPassiveSkill() : has_{0}, rnd_(), engine_(rnd_()) {}

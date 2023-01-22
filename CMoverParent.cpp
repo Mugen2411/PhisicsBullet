@@ -6,12 +6,12 @@
 #include "CMover_Player.h"
 
 CMoverParent::CMoverParent(CGameMediator* m)
-    : med(m), moverList(), reserveList(), cnt(0) {}
+    : med_(m), mover_list_(), reserve_list_(), cnt(0) {}
 
-std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num) {
+std::weak_ptr<CMover> CMoverParent::GetMover(int ID, int num) {
   int i = 0;
-  for (std::shared_ptr<CMover> v : moverList) {
-    if (v->Category == ID) {
+  for (std::shared_ptr<CMover> v : mover_list_) {
+    if (v->category_ == ID) {
       if (i == num) return v;
       i++;
     }
@@ -19,10 +19,10 @@ std::weak_ptr<CMover> CMoverParent::getMover(int ID, int num) {
   return std::weak_ptr<CMover>();
 }
 
-int CMoverParent::getCountByCategory(int ID) {
+int CMoverParent::GetCountByCategory(int ID) {
   int r = 0;
-  for (auto& i : moverList) {
-    if (i->Category == ID) r++;
+  for (auto& i : mover_list_) {
+    if (i->category_ == ID) r++;
   }
   return r;
 }
@@ -30,52 +30,52 @@ int CMoverParent::getCountByCategory(int ID) {
 void CMoverParent::Update() {
   Hit();
   int r = 0;
-  for (auto itr = moverList.begin(); itr != moverList.end();) {
+  for (auto itr = mover_list_.begin(); itr != mover_list_.end();) {
     (*itr)->BaseUpdate();
     r = (*itr)->Update();
-    med->ApplyForceToMover(itr->get());
-    med->HitToMover(itr->get());
+    med_->ApplyForceToMover(itr->get());
+    med_->HitToMover(itr->get());
     (*itr)->Move();
     switch (r) {
-      case CMover::STATUS::ALIVE:
+      case CMover::Status::kAlive:
         break;
-      case CMover::STATUS::DEAD:
+      case CMover::Status::kDead:
         (*itr)->Dead();
-        itr = moverList.erase(itr);
+        itr = mover_list_.erase(itr);
         continue;
         break;
-      case CMover::STATUS::VANISHED:
+      case CMover::Status::kVanished:
         (*itr)->Disappear();
-        itr = moverList.erase(itr);
+        itr = mover_list_.erase(itr);
         continue;
         break;
     }
     itr++;
   }
-  if (reserveList.size() > 0) {
-    std::copy(reserveList.begin(), reserveList.end(),
-              std::back_inserter(moverList));
-    reserveList.clear();
+  if (reserve_list_.size() > 0) {
+    std::copy(reserve_list_.begin(), reserve_list_.end(),
+              std::back_inserter(mover_list_));
+    reserve_list_.clear();
   }
   cnt++;
 }
 
 void CMoverParent::Render() {
-  std::for_each(moverList.begin(), moverList.end(),
+  std::for_each(mover_list_.begin(), mover_list_.end(),
                 [](std::shared_ptr<CMover> itr) {
                   if (itr->BaseRender()) itr->Render();
                 });
 #ifdef _DEBUG
-  printfDx("Objects: %d\n", moverList.size());
+  printfDx("Objects: %d\n", mover_list_.size());
 #endif
 }
 
 void CMoverParent::Hit() {
-  for (std::shared_ptr<CMover> i : moverList) {
-    for (std::shared_ptr<CMover> j : moverList) {
+  for (std::shared_ptr<CMover> i : mover_list_) {
+    for (std::shared_ptr<CMover> j : mover_list_) {
       if (i == j) continue;
-      if ((i->Position - j->Position).getLength2() <
-          (i->getSize() + j->getSize()) * (i->getSize() + j->getSize())) {
+      if ((i->position_ - j->position_).GetLength2() <
+          (i->GetSize() + j->GetSize()) * (i->GetSize() + j->GetSize())) {
         i->HitDispatch(j);
       }
     }

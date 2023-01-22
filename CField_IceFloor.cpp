@@ -2,34 +2,34 @@
 
 #include <DxLib.h>
 
-CField_IceFloor::CField_IceFloor(std::string gid, CVector position,
+CField_IceFloor::CField_IceFloor(std::string gid, CVector position_,
                                  double temperature)
-    : CField(gid, position, CVector(32.0, 32.0), COF().setFrictionCF(0.5),
-             temperature, CAttribute(0.0).ICE(2.0)) {}
+    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.5),
+             temperature, CAttribute(0.0).Ice(2.0)) {}
 
 void CField_IceFloor::Update() {
-  if (Temperature < 0) {
-    Cofs.setWaterResCF(0.0).setFrictionCF(0.1);
-    Damage = CAttribute(0.0).ICE(4.0);
+  if (temperature_ < 0) {
+    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.1);
+    damage_ = CAttribute(0.0).Ice(4.0);
   } else {
-    Cofs.setWaterResCF(0.8).setFrictionCF(0.2);
-    Damage = CAttribute(0.0).AQUA(4.0);
+    cofs_.SetWaterResCF(0.8).SetFrictionCF(0.2);
+    damage_ = CAttribute(0.0).Aqua(4.0);
   }
 }
 
 void CField_IceFloor::Render() const {
-  if (Temperature < 0)
-    CImageManager::getIns()
-        .find("Field_IceFloor")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
+  if (temperature_ < 0)
+    CImageManager::GetIns()
+        .Find("Field_IceFloor")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
                    0);
   else
-    CImageManager::getIns()
-        .find("Field_IceFloor")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
+    CImageManager::GetIns()
+        .Find("Field_IceFloor")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
                    1);
 }
 
-CField* CField_IceFloor::Clone(CVector position) {
-  return new CField_IceFloor(GID, position, Temperature);
+CField* CField_IceFloor::Clone(CVector position_) {
+  return new CField_IceFloor(gid_, position_, temperature_);
 }

@@ -2,15 +2,15 @@
 
 #include "CEffect_Bright.h"
 
-std::list<IRenderReserve*> CRenderReserveList::list;
+std::list<IRenderReserve*> CRenderReserveList::list_;
 
 void CRenderReserveList::Render() {
-  // std::sort(list.begin(), list.end(), compRR);
-  list.sort(compRR);
-  for (auto& v : list) {
+  // std::sort(list_.begin(), list_.end(), compRR);
+  list_.sort(compRR);
+  for (auto& v : list_) {
     v->Render();
     delete v;
   }
-  list.clear();
-  CEffect_Bright::getIns().Render();
+  list_.clear();
+  CEffect_Bright::GetIns().Render();
 }

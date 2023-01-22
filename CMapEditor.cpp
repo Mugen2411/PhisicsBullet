@@ -4,22 +4,22 @@
 #include "CImageManager.h"
 
 void CMapEditor::CreateParts() {
-  input.lock()->SetMouseVisible();
+  input_.lock()->SetMouseVisible();
   char* f = new char[256];
   GetFileName(f, 255, true);
-  field = std::make_shared<CFieldHolder>(f);
+  field_ = std::make_shared<CFieldHolder>(f);
   delete[] f;
-  input.lock()->SetMouseInvisible();
+  input_.lock()->SetMouseInvisible();
 }
 
 CMapEditor::CMapEditor(SceneManager* ScnMng)
     : Scene_Abstract(ScnMng),
-      input(CControllerFactory::getIns().getController()),
-      currentMapchip("NULL-OBJECT"),
-      CFF(CFieldFactory()),
-      state(0),
-      category(0) {
-  CAnchor::getIns().setPosition(CVector(0, 0));
+      input_(CControllerFactory::GetIns().GetController()),
+      current_mapchip_("NULL-OBJECT"),
+      field_factory_(CFieldFactory()),
+      state_(0),
+      category_(0) {
+  CAnchor::GetIns().SetPosition(CVector(0, 0));
   CreateParts();
 }
 
@@ -28,99 +28,99 @@ CMapEditor::~CMapEditor() {
 }
 
 void CMapEditor::Update() {
-  currentSelect = CAnchor::getIns().getWorldPosition(
-                      CVector(input.lock()->MouseX(), input.lock()->MouseY())) /
+  current_select_ = CAnchor::GetIns().GetWorldPosition(
+                      CVector(input_.lock()->MouseX(), input_.lock()->MouseY())) /
                   32;
-  switch (state) {
+  switch (state_) {
     case 0:
 
-      if (input.lock()->Up() % 5 == 1) CAnchor::getIns().Move(CVector(0, -32));
-      if (input.lock()->Down() % 5 == 1) CAnchor::getIns().Move(CVector(0, 32));
-      if (input.lock()->Right() % 5 == 1)
-        CAnchor::getIns().Move(CVector(32, 0));
-      if (input.lock()->Left() % 5 == 1)
-        CAnchor::getIns().Move(CVector(-32, 0));
+      if (input_.lock()->Up() % 5 == 1) CAnchor::GetIns().Move(CVector(0, -32));
+      if (input_.lock()->Down() % 5 == 1) CAnchor::GetIns().Move(CVector(0, 32));
+      if (input_.lock()->Right() % 5 == 1)
+        CAnchor::GetIns().Move(CVector(32, 0));
+      if (input_.lock()->Left() % 5 == 1)
+        CAnchor::GetIns().Move(CVector(-32, 0));
 
-      if (input.lock()->A() == 1) {
-        state = 1;
+      if (input_.lock()->A() == 1) {
+        state_ = 1;
         return;
       }
 
-      if (input.lock()->LClick(true) == 1 || input.lock()->LClick(true) > 10) {
-        switch (category) {
+      if (input_.lock()->LClick(true) == 1 || input_.lock()->LClick(true) > 10) {
+        switch (category_) {
           case 0:
-            field->writefloor(
-                CFF.create(currentSelect, currentMapchip),
-                currentSelect);
+            field_->WriteFloor(
+                field_factory_.create(current_select_, current_mapchip_),
+                current_select_);
             break;
           case 1:
-            field->writewall(
-                CFF.create(currentSelect, currentMapchip),
-                currentSelect);
+            field_->WriteWall(
+                field_factory_.create(current_select_, current_mapchip_),
+                current_select_);
             break;
         }
       }
 
-      if (input.lock()->Start() == 1) {
-        input.lock()->SetMouseVisible();
+      if (input_.lock()->Start() == 1) {
+        input_.lock()->SetMouseVisible();
         char* f = new char[256];
         GetFileName(f, 255, true);
-        field = std::make_shared<CFieldHolder>(f);
+        field_ = std::make_shared<CFieldHolder>(f);
         delete[] f;
-        input.lock()->SetMouseInvisible();
+        input_.lock()->SetMouseInvisible();
       }
-      if (input.lock()->B() == 1) {
-        input.lock()->SetMouseVisible();
-        field->Save();
+      if (input_.lock()->B() == 1) {
+        input_.lock()->SetMouseVisible();
+        field_->Save();
         MessageBox(NULL, "ƒZ[ƒu‚³‚ê‚Ü‚µ‚½", "MapEditor", MB_OK);
-        input.lock()->SetMouseInvisible();
+        input_.lock()->SetMouseInvisible();
       }
       break;
     case 1:
-      if (input.lock()->Start() == 1) {
-        scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+      if (input_.lock()->Start() == 1) {
+        scene_manager_->ChangeScene(Constant::SceneID::kSceneTitle, true);
         return;
       }
-      if (input.lock()->LClick(true) == 1) {
-        currentSelect =
-            CVector(input.lock()->MouseX(), input.lock()->MouseY()) / 32;
-        cur = (int)(currentSelect.x) + (int)(currentSelect.y) * 20;
-        currentMapchip = CFF.getKey(&cur, category);
-        state = 0;
+      if (input_.lock()->LClick(true) == 1) {
+        current_select_ =
+            CVector(input_.lock()->MouseX(), input_.lock()->MouseY()) / 32;
+        cur_ = (int)(current_select_.x) + (int)(current_select_.y) * 20;
+        current_mapchip_ = field_factory_.getKey(&cur_, category_);
+        state_ = 0;
         return;
       }
-      if (input.lock()->RClick(true) == 1) {
-        category++;
-        category %= 2;
+      if (input_.lock()->RClick(true) == 1) {
+        category_++;
+        category_ %= 2;
       }
       break;
   }
 }
 
 void CMapEditor::Render() const {
-  switch (state) {
+  switch (state_) {
     case 0:
-      printfDx("Cur:%d\nPos:%d,%d\nCurentMapChip:%s\n", cur,
-               (int)currentSelect.x, (int)currentSelect.y,
-               currentMapchip.c_str());
-      field->Render();
+      printfDx("Cur:%d\nPos:%d,%d\nCurentMapChip:%s\n", cur_,
+               (int)current_select_.x, (int)current_select_.y,
+               current_mapchip_.c_str());
+      field_->Render();
       break;
     case 1:
-      CAnchor::getIns().enableAbsolute();
-      CFF.Render(category);
-      CAnchor::getIns().disableAbsolute();
+      CAnchor::GetIns().EnableAbsolute();
+      field_factory_.Render(category_);
+      CAnchor::GetIns().DisableAbsolute();
       break;
   }
-  CVector mousePos((int)(currentSelect.x) * 32 + 16,
-                   (int)(currentSelect.y) * 32 + 16);
+  CVector mousePos((int)(current_select_.x) * 32 + 16,
+                   (int)(current_select_.y) * 32 + 16);
   printfDx("Mouse:%lf,%lf\n", mousePos.x, mousePos.y);
-  mousePos = CAnchor::getIns().getAnchoredPosition(mousePos);
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns()
-      .find("editor_cursor")
+  mousePos = CAnchor::GetIns().GetAnchoredPosition(mousePos);
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns()
+      .Find("editor_cursor")
       ->DrawRota(mousePos, 0.0f, 1.0f, 100, 0);
   printfDx("AbsMouse:%lf,%lf\n", mousePos.x, mousePos.y);
-  CAnchor::getIns().disableAbsolute();
+  CAnchor::GetIns().DisableAbsolute();
 }
 
 void CMapEditor::PartsChanged(CParts* p) {}

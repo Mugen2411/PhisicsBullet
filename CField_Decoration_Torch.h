@@ -4,27 +4,28 @@
 #include "CMover_ShotBase.h"
 
 class CField_Decoration_Torch : public CField_Wall {
-  double animCount;
-  int state;
-  int BurningTime;
-
  public:
-  CField_Decoration_Torch(std::string gid, CVector position);
+  CField_Decoration_Torch(std::string gid, CVector position_);
 
   void Update();
   void Render() const;
 
-  void attributeReaction(CAttribute a) {
-    auto f = a * CAttribute(0.0).FIRE(1.0);
+  void AttributeReaction(CAttribute a) {
+    auto f = a * CAttribute(0.0).Fire(1.0);
     if (f.Sum() > 0.0) {
-      state = 1;
+      state_ = 1;
     }
-    auto aq = a * CAttribute(0.0).AQUA(1.0);
+    auto aq = a * CAttribute(0.0).Aqua(1.0);
     if (aq.Sum() > 0.0) {
-      state = 0;
+      state_ = 0;
     }
   };
-  virtual void attributeEffect(CMover_BulletBase* m){};
+  virtual void AttributeEffect(CMover_BulletBase* m){};
 
-  CField* Clone(CVector position);
+ private:
+  double animation_cnt_;
+  int state_;
+  int burning_time_;
+
+  CField* Clone(CVector position_);
 };

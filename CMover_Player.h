@@ -11,23 +11,8 @@
 class CField;
 
 class CMover_Player : public CMover {
- protected:
-  std::weak_ptr<CSTGInputManager> input;
-
-  int State;  // 0:操作可能 1:操作不能
-  uint32_t Direction;
-  double Charge;  //現在の溜め時間(0≦Charge≦MaxCharge)
-  double animCount;
-  CStatus baseParams;
-  int DigitHP;
-  int waitDuration;
-  int shotWait;
-  int healWait;
-
-  CNumberDrawer CND;
-
  public:
-  std::shared_ptr<CCostumeBase> costume;
+  std::shared_ptr<CCostumeBase> costume_;
   CMover_Player(CVector position, int level, CCostumeBase* costume);
   ~CMover_Player(){};
   virtual void Walk();
@@ -38,7 +23,7 @@ class CMover_Player : public CMover {
   void Render() const;
   void Dead();
   void Disappear();
-  void onWall(CField* f, double WallReflectCF);
+  void OnWall(CField* f, double WallReflectCF);
 
   void Wait(int duration);
   void Damage(CAttribute BulletATK, int style);
@@ -46,20 +31,35 @@ class CMover_Player : public CMover {
   void RatioHeal();
   void inline HitDispatch(std::shared_ptr<CMover> m) { m->Hit(this); }
   CAttribute TestDamage(CAttribute shotATK) {
-    return shotATK / costume->AttributeDEF;
+    return shotATK / costume_->attribute_def_;
   }
   int DamageColor(CAttribute shotATK);
   void RegisterShot(std::shared_ptr<CMover_ShotBase>);
   void RegisterPower(std::shared_ptr<CPower>);
   void ChangeCostume(CCostumeBase* c) {
-    costume.reset(c);
-    costume->setPlayer(this);
-    Cofs = costume->constants;
-    Mass = costume->Mass;
+    costume_.reset(c);
+    costume_->SetPlayer(this);
+    cofs_ = costume_->constants_;
+    mass_ = costume_->mass_;
   }
-  double getHP() { return baseParams.HP; }
+  double GetHP() { return base_params_.HP_; }
 
   void Hit(CMover_EnemyBase*);
 
   virtual void FieldDispatch(CField* f);
+
+ protected:
+  std::weak_ptr<CSTGInputManager> input_;
+
+  int state_;  // 0:操作可能 1:操作不能
+  uint32_t direction_;
+  double charge_;  //現在の溜め時間(0≦Charge≦MaxCharge)
+  double animation_cnt_;
+  CStatus base_params_;
+  int digitHP_;
+  int wait_duration_;
+  int shot_wait_;
+  int heal_wait_;
+
+  CNumberDrawer number_drawer_;
 };

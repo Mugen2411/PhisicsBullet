@@ -15,70 +15,70 @@
 #include "Scene_Title.h"
 #include "Scene_Upgrade.h"
 
-CGame::CGame() : fps(), isQuit(false) {
-  ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+CGame::CGame() : fps_(), is_quit_(false) {
+  ChangeScene(Constant::SceneID::kSceneTitle, true);
 }
 
-CGame::~CGame() { _scene.clear(); }
+CGame::~CGame() { scene_.clear(); }
 
 void CGame::Run() {
-  CControllerFactory::getIns().update();
-  CAnchor::getIns().Update();
-  (*_scene.begin())->Update();
-  if (_scene.empty()) return;
-  fps.Update();
-  int size = (int) _scene.size();
-  auto itr = _scene.begin();
+  CControllerFactory::GetIns().Update();
+  CAnchor::GetIns().Update();
+  (*scene_.begin())->Update();
+  if (scene_.empty()) return;
+  fps_.Update();
+  int size = (int) scene_.size();
+  auto itr = scene_.begin();
   for (int i = 0; i < size; i++) {
-    CTextDrawer::getIns().setPriority(i);
+    CTextDrawer::GetIns().SetPriority(i);
     (*itr)->Render();
     ++itr;
   }
   CRenderReserveList::Render();
-  CTextDrawer::getIns().Render();
-  CTextDrawer::getIns().Clear();
-  fps.Draw();
-  fps.Wait();
+  CTextDrawer::GetIns().Render();
+  CTextDrawer::GetIns().Clear();
+  fps_.Draw();
+  fps_.Wait();
 }
 
 void CGame::PopScene() {
-  if (_scene.size() < 2) return;
-  _scene.pop_front();
+  if (scene_.size() < 2) return;
+  scene_.pop_front();
 }
 
 void CGame::ChangeScene(int Scene, bool isStackClear) {
   if (isStackClear) {
-    _scene.clear();
+    scene_.clear();
   }
   switch (Scene) {
-    case Constant::SCENE_ID::SCENE_MAIN: {
+    case Constant::SceneID::kSceneMain: {
       auto s = new CGameMediator(this);
       s->CreateParts();
-      _scene.push_front(std::unique_ptr<CGameMediator>(s));
+      scene_.push_front(std::unique_ptr<CGameMediator>(s));
     } break;
-    case Constant::SCENE_ID::SCENE_EDITOR:
-      _scene.push_front(std::make_unique<CMapEditor>(this));
+    case Constant::SceneID::kSceneEditor:
+      scene_.push_front(std::make_unique<CMapEditor>(this));
       break;
-    case Constant::SCENE_ID::SCENE_TITLE:
-      _scene.push_front(std::make_unique<Scene_Title>(this));
+    case Constant::SceneID::kSceneTitle:
+      scene_.push_front(std::make_unique<Scene_Title>(this));
       break;
-    case Constant::SCENE_ID::SCENE_QUIT:
-      isQuit = true;
+    case Constant::SceneID::kSceneQuit:
+      is_quit_ = true;
       break;
-    case Constant::SCENE_ID::SCENE_GAMEOVER:
-      _scene.push_front(std::make_unique<Scene_Gameover>(this));
+    case Constant::SceneID::kSceneGameover:
+      scene_.push_front(std::make_unique<Scene_Gameover>(this));
       break;
-    case Constant::SCENE_ID::SCENE_STAGECLEAR:
-      _scene.push_front(std::make_unique<Scene_Stageclear>(this));
+    case Constant::SceneID::kSceneStageclear:
+      scene_.push_front(std::make_unique<Scene_Stageclear>(this));
       break;
-    case Constant::SCENE_ID::SCENE_UPGRADE:
-      _scene.push_front(std::make_unique<Scene_Upgrade>(this));
+    case Constant::SceneID::kSceneUpgrade:
+      scene_.push_front(std::make_unique<Scene_Upgrade>(this));
       break;
-    case Constant::SCENE_ID::SCENE_GAMECLEAR:
-      _scene.push_front(std::make_unique<Scene_Gameclear>(this));
+    case Constant::SceneID::kSceneGameclear:
+      scene_.push_front(std::make_unique<Scene_Gameclear>(this));
       break;
-    case Constant::SCENE_ID::SCENE_OPTION:
-      _scene.push_front(std::make_unique<Scene_Option>(this));
+    case Constant::SceneID::kSceneOption:
+      scene_.push_front(std::make_unique<Scene_Option>(this));
       break;
   }
 }

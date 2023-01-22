@@ -3,19 +3,19 @@
 
 class CField_Lava : public CField {
  public:
-  CField_Lava(std::string gid, CVector position, double temperature);
+  CField_Lava(std::string gid, CVector position_, double temperature);
   void Update();
   void Render() const;
 
-  void attributeReaction(CAttribute a) {
-    auto f = a * CAttribute(0.0).FIRE(1.0);
-    Temperature += f.Sum();
-    f = a * CAttribute(0.0).AQUA(0.5).ICE(1.0);
-    Temperature -= f.Sum();
-    Temperature = min(1000, max(Temperature, -100));
+  void AttributeReaction(CAttribute a) {
+    auto f = a * CAttribute(0.0).Fire(1.0);
+    temperature_ += f.Sum();
+    f = a * CAttribute(0.0).Aqua(0.5).Ice(1.0);
+    temperature_ -= f.Sum();
+    temperature_ = min(1000, max(temperature_, -100));
   };
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
 
   void Save(std::ofstream& fout);
 };

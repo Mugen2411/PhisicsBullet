@@ -6,13 +6,14 @@
 #include "Singleton.h"
 
 class CSoundManager : public Singleton<CSoundManager> {
-  std::unordered_map<std::string, std::shared_ptr<CSound>> sndList;
-  CSoundManager();
-
  public:
-  void unload();
-  std::shared_ptr<CSound> find(std::string key);
+  void Unload();
+  std::shared_ptr<CSound> Find(std::string key);
   void LoadBGM(std::string path);
+
+ private:
+  std::unordered_map<std::string, std::shared_ptr<CSound>> sound_list_;
+  CSoundManager();
 
   friend class Singleton<CSoundManager>;
 };

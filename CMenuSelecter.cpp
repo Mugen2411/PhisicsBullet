@@ -1,13 +1,13 @@
 #include "CMenuSelecter.h"
 
-void CMenuSelecter::prev() {
-  m_cur += (m_max - 1);
-  m_cur %= m_max;
+void CMenuSelector::Prev() {
+  cur_ += (max_ - 1);
+  cur_ %= max_;
 }
 
-void CMenuSelecter::next() {
-  m_cur++;
-  m_cur %= m_max;
+void CMenuSelector::Next() {
+  cur_++;
+  cur_ %= max_;
 }
 
-int CMenuSelecter::get() const { return m_cur; }
+int CMenuSelector::Get() const { return cur_; }

@@ -1,17 +1,17 @@
 #include "CField_Wall_Tree.h"
 
-CField_Wall_Tree::CField_Wall_Tree(std::string gid, CVector position)
-    : CField_Wall(gid, position, COF().setReflectCF(0.9)) {}
+CField_Wall_Tree::CField_Wall_Tree(std::string gid, CVector position_)
+    : CField_Wall(gid, position_, COF().SetReflectCF(0.9)) {}
 
 void CField_Wall_Tree::Update() {}
 
 void CField_Wall_Tree::Render() const {
-  CImageManager::getIns()
-      .find("Field_Tree")
-      ->DrawRota(Position - CVector(0,16), 0.0, 1.0, Constant::priority_wall,
+  CImageManager::GetIns()
+      .Find("Field_Tree")
+      ->DrawRota(position_ - CVector(0,16), 0.0, 1.0, Constant::kPriorityWall,
                  0);
 }
 
-CField* CField_Wall_Tree::Clone(CVector position) {
-  return new CField_Wall_Tree(GID, position);
+CField* CField_Wall_Tree::Clone(CVector position_) {
+  return new CField_Wall_Tree(gid_, position_);
 }

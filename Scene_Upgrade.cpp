@@ -11,92 +11,92 @@
 
 Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng)
     : Scene_Abstract(ScnMng),
-      hasEnoughMoney(true),
-      cnt(0),
-      now(CProgressData::getIns().getPlayerLevel()),
-      next(CProgressData::getIns().getPlayerLevel() + 1) {
-  input = CControllerFactory::getIns().getController();
-  text[0] = CTextDrawer::Text("アップグレード", CVector(320 - 3.5 * 60, 32.0),
+      has_enough_money_(true),
+      cnt_(0),
+      now_(CProgressData::GetIns().GetPlayerLevel()),
+      next_(CProgressData::GetIns().GetPlayerLevel() + 1) {
+  input_ = CControllerFactory::GetIns().GetController();
+  text_[0] = CTextDrawer::Text("アップグレード", CVector(320 - 3.5 * 60, 32.0),
                               0xFFFFFF, 0x7F7F00, 2);
-  text[1] = CTextDrawer::Text("所持コイン", CVector(320 - 36 * 5, 120),
+  text_[1] = CTextDrawer::Text("所持コイン", CVector(320 - 36 * 5, 120),
                               0xFFFFFF, 0xCFCF00, 1);
-  text[2] = CTextDrawer::Text("必要コイン", CVector(320 - 36 * 5, 160),
+  text_[2] = CTextDrawer::Text("必要コイン", CVector(320 - 36 * 5, 160),
                               0xFFFFFF, 0xCFCF00, 1);
-  text[3] = CTextDrawer::Text("現在のステータス", CVector(320 - 200, 240),
+  text_[3] = CTextDrawer::Text("現在のステータス", CVector(320 - 200, 240),
                               0xFFFFFF, 0xCFCF00, 0);
-  text[4] = CTextDrawer::Text("強化後ステータス", CVector(320 - 200, 270),
+  text_[4] = CTextDrawer::Text("強化後ステータス", CVector(320 - 200, 270),
                               0xFFFFFF, 0xCFCF00, 0);
-  text[5] =
+  text_[5] =
       CTextDrawer::Text("SPACEキーを押すとコインを消費して強化します。",
                         CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
-  text[6] =
+  text_[6] =
       CTextDrawer::Text("コインが足りません！", CVector(320 - 5 * 36, 360),
                         0xFFFFFF, 0xFF0000, 1);
-  CSoundManager::getIns().find("money")->SetVolume(0.5);
-  CSoundManager::getIns().find("player_hit")->SetVolume(0.5);
+  CSoundManager::GetIns().Find("money")->SetVolume(0.5);
+  CSoundManager::GetIns().Find("player_hit")->SetVolume(0.5);
 }
 
 void Scene_Upgrade::Update() {
-  now = CStatus(CProgressData::getIns().getPlayerLevel());
-  next = CStatus(CProgressData::getIns().getPlayerLevel() + 1);
-  text[1].text = std::string("所持コイン：") +
-                 std::to_string(CProgressData::getIns().getMoney());
-  text[2].text = std::string("必要コイン：") +
-                 std::to_string(CStatus::getMoneyToUpgrade(
-                     CProgressData::getIns().getPlayerLevel()));
-  text[3].text = std::string("現在のステータス→") + std::string("HP:") +
-                 floating_to_string(now.MaxHP) + std::string(" ATK:") +
-                 floating_to_string(now.ATK);
-  text[4].text = std::string("強化後ステータス→") + std::string("HP:") +
-                 floating_to_string(next.MaxHP) + std::string(" ATK:") +
-                 floating_to_string(next.ATK);
+  now_ = CStatus(CProgressData::GetIns().GetPlayerLevel());
+  next_ = CStatus(CProgressData::GetIns().GetPlayerLevel() + 1);
+  text_[1].text_ = std::string("所持コイン：") +
+                 std::to_string(CProgressData::GetIns().GetMoney());
+  text_[2].text_ = std::string("必要コイン：") +
+                 std::to_string(CStatus::GetMoneyToUpgrade(
+                     CProgressData::GetIns().GetPlayerLevel()));
+  text_[3].text_ = std::string("現在のステータス→") + std::string("HP:") +
+                 FloatToString(now_.maxHP_) + std::string(" ATK:") +
+                 FloatToString(now_.atk_);
+  text_[4].text_ = std::string("強化後ステータス→") + std::string("HP:") +
+                 FloatToString(next_.maxHP_) + std::string(" ATK:") +
+                 FloatToString(next_.atk_);
 
 #ifndef _DEBUG
-  if (input.lock()->Select() == 1) {
-    if (CProgressData::getIns().getMoney() >=
-        CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel())) {
-      CProgressData::getIns().upgrade(
-          CStatus::getMoneyToUpgrade(CProgressData::getIns().getPlayerLevel()));
-      hasEnoughMoney = true;
-      CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
+  if (input_.lock()->Select() == 1) {
+    if (CProgressData::GetIns().GetMoney() >=
+        CStatus::GetMoneyToUpgrade(CProgressData::GetIns().GetPlayerLevel())) {
+      CProgressData::GetIns().Upgrade(
+          CStatus::GetMoneyToUpgrade(CProgressData::GetIns().GetPlayerLevel()));
+      has_enough_money_ = true;
+      CSoundManager::GetIns().Find("money")->Play(CSound::Playtype::kBack);
     } else {
-      CSoundManager::getIns()
-          .find("player_hit")
-          ->Play(CSound::PLAYTYPE::PT_BACK);
-      hasEnoughMoney = false;
+      CSoundManager::GetIns()
+          .Find("player_hit")
+          ->Play(CSound::Playtype::kBack);
+      has_enough_money_ = false;
     }
   }
 #endif
 
 #ifdef _DEBUG
-  if (input.lock()->Select() == 1) {
-    CProgressData::getIns().upgrade(0);
-    hasEnoughMoney = true;
-    CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
+  if (input_.lock()->Select() == 1) {
+    CProgressData::GetIns().Upgrade(0);
+    has_enough_money_ = true;
+    CSoundManager::GetIns().Find("money")->Play(CSound::PlayType::kBack);
   }
-  if (input.lock()->A() == 1) {
-    CProgressData::getIns().degrade();
-    hasEnoughMoney = true;
-    CSoundManager::getIns().find("money")->Play(CSound::PLAYTYPE::PT_BACK);
+  if (input_.lock()->A() == 1) {
+    CProgressData::GetIns().Degrade();
+    has_enough_money_ = true;
+    CSoundManager::GetIns().Find("money")->Play(CSound::PlayType::kBack);
   }
 #endif
 
-  if (input.lock()->Start() == 1) {
-    CProgressData::getIns().save();
-    scn_mng->PopScene();
+  if (input_.lock()->Start() == 1) {
+    CProgressData::GetIns().Save();
+    scene_manager_->PopScene();
     return;
   }
 }
 
 void Scene_Upgrade::Render() const {
-  assert(text[0].position.y < 40.0);
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
-  CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
+  assert(text_[0].position_.y < 40.0);
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns().Find("system_curtain")->Draw(0, 0, 100, 0);
+  CImageManager::GetIns().Find("system_curtain")->Draw(320, 0, 100, 1);
   for (int i = 0; i < 6; i++) {
-    CTextDrawer::getIns().Register(text[i]);
+    CTextDrawer::GetIns().Register(text_[i]);
   }
-  if (!hasEnoughMoney) CTextDrawer::getIns().Register(text[6]);
-  CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
-  CAnchor::getIns().disableAbsolute();
+  if (!has_enough_money_) CTextDrawer::GetIns().Register(text_[6]);
+  CImageManager::GetIns().Find("icon_return")->Draw(0, 0, 101);
+  CAnchor::GetIns().DisableAbsolute();
 }

@@ -11,56 +11,56 @@
 #include "CField_Wall.h"
 
 CFieldParent::CFieldParent(CGameMediator* m, std::string filename)
-    : fieldHolder(new CFieldHolder(filename)), med(m) {}
+    : field_holder_(new CFieldHolder(filename)), med_(m) {}
 
 CFieldParent::~CFieldParent() {}
 
-void CFieldParent::Update() { fieldHolder->Update(); }
+void CFieldParent::Update() { field_holder_->Update(); }
 
 void CFieldParent::ApplyForceToMover(CMover* m) {
-  CVector p = m->getPosition();
+  CVector p = m->GetPosition();
   int x = (int)p.x / 32;
   int y = (int)p.y / 32;
-  if (x < 0) m->setStatus(2);
-  if (y < 0) m->setStatus(2);
-  if (x > fieldHolder->getWidth()) m->setStatus(2);
-  if (y > fieldHolder->getHeight()) m->setStatus(2);
+  if (x < 0) m->SetStatus(2);
+  if (y < 0) m->SetStatus(2);
+  if (x > field_holder_->GetWidth()) m->SetStatus(2);
+  if (y > field_holder_->GetHeight()) m->SetStatus(2);
 
-  p = m->getPosition();
+  p = m->GetPosition();
   x = (int)(p.x / 32);
   y = (int)(p.y / 32);
 
-  fieldHolder->getWall(x, y)->setFrictionForce(m);
-  fieldHolder->getFloor(x, y)->setFrictionForce(m);
+  field_holder_->GetWall(x, y)->SetFrictionForce(m);
+  field_holder_->GetFloor(x, y)->SetFrictionForce(m);
   m->ApplyAirRegistance();
 }
 
 bool CFieldParent::HitToMover(CMover* m) {
-  CVector p = m->getPosition();
+  CVector p = m->GetPosition();
   int x = (int)p.x / 32;
   int y = (int)p.y / 32;
   int size =
-      (int)((m->getVelocity() + m->getAcceleration()).getLength2() / (16 * 16)) + 1;
+      (int)((m->GetVelocity() + m->GetAcceleration()).GetLength2() / (16 * 16)) + 1;
 
   bool hitted = false;
   for (int ay = max(0, y - size);
-       ay < min(fieldHolder->getHeight(), y + size + 1); ay++) {
+       ay < min(field_holder_->GetHeight(), y + size + 1); ay++) {
     for (int ax = max(0, x - size);
-         ax < min((int)fieldHolder->getWidth(), x + size + 1); ax++) {
-      hitted |= fieldHolder->getWall(ax, ay)->Hit(m);
+         ax < min((int)field_holder_->GetWidth(), x + size + 1); ax++) {
+      hitted |= field_holder_->GetWall(ax, ay)->Hit(m);
     }
   }
   return hitted;
 }
 
-std::list<CVector> CFieldParent::getRoute(CVector start, CVector goal,
+std::list<CVector> CFieldParent::GetRoute(CVector start, CVector goal,
                                           CAttribute attrDEF, int distance) {
-  return fieldHolder->Find_Route(start, goal, attrDEF, distance);
+  return field_holder_->FindRoute(start, goal, attrDEF, distance);
 }
 
-std::vector<CVector> CFieldParent::getTargetByDistance(CVector start,
+std::vector<CVector> CFieldParent::GetTargetByDistance(CVector start,
                                                        int distance) {
-  return fieldHolder->findTargetByDistance(start, distance);
+  return field_holder_->FindTargetByDistance(start, distance);
 }
 
-void CFieldParent::Render() const { fieldHolder->Render(); }
+void CFieldParent::Render() const { field_holder_->Render(); }

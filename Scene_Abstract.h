@@ -5,7 +5,7 @@
 
 class Scene_Abstract {
  protected:
-  SceneManager *scn_mng;
+  SceneManager *scene_manager_;
 
  public:
   Scene_Abstract(SceneManager *scn_mng);

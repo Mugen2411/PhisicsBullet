@@ -6,41 +6,41 @@
 #include "CProgressData.h"
 
 Scene_Gameclear::Scene_Gameclear(SceneManager* ScnMng)
-    : Scene_Abstract(ScnMng), cnt(0) {
-  input = CControllerFactory::getIns().getController();
-  text[0] = CTextDrawer::Text("CONGRATULATION!!", CVector(320 - 8 * 30, 32),
+    : Scene_Abstract(ScnMng), cnt_(0) {
+  input_ = CControllerFactory::GetIns().GetController();
+  text_[0] = CTextDrawer::Text("CONGRATULATION!!", CVector(320 - 8 * 30, 32),
                               0xFFFFFF, 0xFF0000, 2);
-  text[1] =
+  text_[1] =
       CTextDrawer::Text("最終ステージをクリアしました！",
                         CVector(320 - 36 * 8, 180), 0xFFFFFF, 0xCFCF00, 1);
-  text[2] =
+  text_[2] =
       CTextDrawer::Text("プレイしてくれてありがとう！",
                         CVector(320 - 36 * 8, 216), 0xFFFFFF, 0xCFCF00, 1);
-  text[3] =
+  text_[3] =
       CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。",
                         CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
-  CProgressData::getIns().save();
+  CProgressData::GetIns().Save();
 }
 
 void Scene_Gameclear::Update() {
-  if (input.lock()->Select() == 1) {
-    CProgressData::getIns().nextCurrentStage();
-    scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+  if (input_.lock()->Select() == 1) {
+    CProgressData::GetIns().NextCurrentStage();
+    scene_manager_->ChangeScene(Constant::SceneID::kSceneTitle, true);
     return;
   }
-  cnt = min(++cnt, 12);
+  cnt_ = min(++cnt_, 12);
 }
 
 void Scene_Gameclear::Render() const {
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns()
-      .find("system_curtain")
-      ->Draw(0 - (12 - cnt) / 12.0 * 320, 0.0, 100, 0);
-  CImageManager::getIns()
-      .find("system_curtain")
-      ->Draw(320 + (12 - cnt) / 12.0 * 320, 0.0, 100, 1);
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns()
+      .Find("system_curtain")
+      ->Draw(0 - (12 - cnt_) / 12.0 * 320, 0.0, 100, 0);
+  CImageManager::GetIns()
+      .Find("system_curtain")
+      ->Draw(320 + (12 - cnt_) / 12.0 * 320, 0.0, 100, 1);
   for (int i = 0; i < 4; i++) {
-    CTextDrawer::getIns().Register(text[i]);
+    CTextDrawer::GetIns().Register(text_[i]);
   }
-  CAnchor::getIns().disableAbsolute();
+  CAnchor::GetIns().DisableAbsolute();
 }

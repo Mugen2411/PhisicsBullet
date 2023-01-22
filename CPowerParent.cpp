@@ -3,28 +3,28 @@
 #include "CPower.h"
 #include "CPower_Line.h"
 
-CPowerParent::CPowerParent(CGameMediator* m) : med(m) {}
+CPowerParent::CPowerParent(CGameMediator* m) : med_(m) {}
 
 void CPowerParent::Add(const std::shared_ptr<CPower>& p) {
-  p->setParent(this);
-  powerList.push_back(p);
+  p->SetParent(this);
+  power_list_.push_back(p);
 }
 
 void CPowerParent::ApplyForceToMover(CMover* m) {
-  for (auto itr = powerList.begin(); itr != powerList.end(); itr++) {
+  for (auto itr = power_list_.begin(); itr != power_list_.end(); itr++) {
     (*itr)->ApplyForceToMover(m);
   }
 }
 
 void CPowerParent::Update() {
   int r = 0;
-  for (auto itr = powerList.begin(); itr != powerList.end();) {
+  for (auto itr = power_list_.begin(); itr != power_list_.end();) {
     r = (*itr)->Update();
     switch (r) {
       case 0:
         break;
       case 1:
-        itr = powerList.erase(itr);
+        itr = power_list_.erase(itr);
         continue;
         break;
     }
@@ -33,7 +33,7 @@ void CPowerParent::Update() {
 }
 
 void CPowerParent::Render() {
-  for (auto itr = powerList.begin(); itr != powerList.end(); itr++) {
+  for (auto itr = power_list_.begin(); itr != power_list_.end(); itr++) {
     (*itr)->Render();
   }
 }

@@ -10,22 +10,23 @@
 class CField;
 
 class CFieldParent {
-  CGameMediator* med;
-  std::unique_ptr<CFieldHolder> fieldHolder;
-
  public:
   CFieldParent(CGameMediator*, std::string);
   ~CFieldParent();
   void Update();
   void ApplyForceToMover(CMover* m);
   bool HitToMover(CMover* m);
-  std::list<CVector> getRoute(CVector start, CVector goal, CAttribute attrDEF,
+  std::list<CVector> GetRoute(CVector start, CVector goal, CAttribute attrDEF,
                               int distance);
-  std::vector<CVector> getTargetByDistance(CVector start, int distance);
+  std::vector<CVector> GetTargetByDistance(CVector start, int distance);
   void Render() const;
-  void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level,
+  void ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level,
                       CVector& playerPos) {
-    fieldHolder->convertSpawner(sp, med, level, playerPos);
+    field_holder_->ConvertSpawner(sp, med_, level, playerPos);
   }
-  void readDefine() { fieldHolder->readDefine(); }
+  void readDefine() { field_holder_->ReadDefine(); }
+
+ private:
+  CGameMediator* med_;
+  std::unique_ptr<CFieldHolder> field_holder_;
 };

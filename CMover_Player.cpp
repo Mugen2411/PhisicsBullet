@@ -14,31 +14,31 @@
 #include "CSoundManager.h"
 
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
-    : CMover(MV_PLAYER, position, 24.0, CVector(0.0, 0.0), costume->Mass,
-             costume->constants, 0),
-      animCount(0.0),
-      input(CControllerFactory::getIns().getController()),
-      Direction(1),
-      Charge(0),
-      State(0),
-      baseParams(level, 1.0, CPassiveSkill::getIns().getMaxHPmult()),
-      DigitHP((int)std::log10(baseParams.MaxHP) + 1),
-      waitDuration(0),
-      costume(std::shared_ptr<CCostumeBase>(costume)),
-      CND(),
-      shotWait(0),
-      healWait(0) {
-  costume->setPlayer(this);
+    : CMover(kPlayer, position, 24.0, CVector(0.0, 0.0), costume->mass_,
+             costume->constants_, 0),
+      animation_cnt_(0.0),
+      input_(CControllerFactory::GetIns().GetController()),
+      direction_(1),
+      charge_(0),
+      state_(0),
+      base_params_(level, 1.0, CPassiveSkill::GetIns().GetMaxHPmult()),
+      digitHP_((int)std::log10(base_params_.maxHP_) + 1),
+      wait_duration_(0),
+      costume_(std::shared_ptr<CCostumeBase>(costume)),
+      number_drawer_(),
+      shot_wait_(0),
+      heal_wait_(0) {
+  costume->SetPlayer(this);
 }
 
 void CMover_Player::Walk() {
-  CVector v = input.lock()->getVector();
+  CVector v = input_.lock()->GetVector();
   CVector a =
-      v * costume->MaxSpeed * CPassiveSkill::getIns().getSpeedMult() - Velocity;
-  Acceleration += a.getNorm() * costume->Accelaration *
-                  CPassiveSkill::getIns().getSpeedMult() *
-                  std::sqrtl(nowFricted * Cofs.FrictionCF) *
-                  std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
+      v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() - velocity_;
+  acceleration_ += a.GetNorm() * costume_->accelaration_ *
+                  CPassiveSkill::GetIns().GetSpeedMult() *
+                  std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
+                  std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
 }
 
 void CMover_Player::BaseUpdate() {}
@@ -46,100 +46,100 @@ void CMover_Player::BaseUpdate() {}
 bool CMover_Player::BaseRender() const { return true; }
 
 int CMover_Player::Update() {
-  auto p = CAnchor::getIns().getAnchoredPosition(Position);
-  if (p.x < Constant::ScrollMargin)
-    CAnchor::getIns().setPosition(CVector(Position.x - Constant::ScrollMargin,
-                                          CAnchor::getIns().getAnchorY()));
-  if (p.x > Constant::ScreenW - Constant::ScrollMargin)
-    CAnchor::getIns().setPosition(
-        CVector(Position.x - Constant::ScreenW + Constant::ScrollMargin,
-                CAnchor::getIns().getAnchorY()));
+  auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
+  if (p.x < Constant::kScrollMargin)
+    CAnchor::GetIns().SetPosition(CVector(position_.x - Constant::kScrollMargin,
+                                          CAnchor::GetIns().GetAnchorY()));
+  if (p.x > Constant::kScreenW - Constant::kScrollMargin)
+    CAnchor::GetIns().SetPosition(
+        CVector(position_.x - Constant::kScreenW + Constant::kScrollMargin,
+                CAnchor::GetIns().GetAnchorY()));
 
-  if (p.y < Constant::ScrollMargin)
-    CAnchor::getIns().setPosition(CVector(CAnchor::getIns().getAnchorX(),
-                                          Position.y - Constant::ScrollMargin));
-  if (p.y > Constant::ScreenH - Constant::ScrollMargin)
-    CAnchor::getIns().setPosition(
-        CVector(CAnchor::getIns().getAnchorX(),
-                Position.y - Constant::ScreenH + Constant::ScrollMargin));
+  if (p.y < Constant::kScrollMargin)
+    CAnchor::GetIns().SetPosition(CVector(CAnchor::GetIns().GetAnchorX(),
+                                          position_.y - Constant::kScrollMargin));
+  if (p.y > Constant::kScreenH - Constant::kScrollMargin)
+    CAnchor::GetIns().SetPosition(
+        CVector(CAnchor::GetIns().GetAnchorX(),
+                position_.y - Constant::kScreenH + Constant::kScrollMargin));
 
-  if (State == 1) {
-    waitDuration--;
-    if (waitDuration == 0) State = 0;
+  if (state_ == 1) {
+    wait_duration_--;
+    if (wait_duration_ == 0) state_ = 0;
     return 0;
   }
-  if (input.lock()->isChanged() > 0) {
-    Direction = input.lock()->getDirection();
-    animCount += costume->animSpeed;
-    if (animCount > 3.0) animCount = 0.0;
+  if (input_.lock()->IsChanged() > 0) {
+    direction_ = input_.lock()->GetDirection();
+    animation_cnt_ += costume_->animation_speed_;
+    if (animation_cnt_ > 3.0) animation_cnt_ = 0.0;
   } else {
-    animCount = 0.0;
+    animation_cnt_ = 0.0;
   }
-  healWait++;
-  if (healWait == Constant::Frame) {
+  heal_wait_++;
+  if (heal_wait_ == Constant::kFrame) {
     RatioHeal();
-    healWait = 0;
+    heal_wait_ = 0;
   }
   Shot();
   Walk();
 
 #ifdef _DEBUG
-  printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x, p.y, Acceleration.x,
-           Acceleration.y);
-  printfDx("HP:%lf\n", baseParams.HP);
+  printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x, p.y, acceleration_.x,
+           acceleration_.y);
+  printfDx("HP:%lf\n", base_params_.HP_);
 #endif
   return 0;
 }
 
 void CMover_Player::Shot() {
-  float angle = input.lock()->getMouseAngle(
-      CAnchor::getIns().getAnchoredPosition(Position));
-  int LPushTime = input.lock()->LClick(true);
+  float angle = input_.lock()->GetMouseAngle(
+      CAnchor::GetIns().GetAnchoredPosition(position_));
+  int LPushTime = input_.lock()->LClick(true);
   if (LPushTime == 0) {
-    Charge += CPassiveSkill::getIns().getChargeMult();
-    Charge = min(costume->MaxCharge, Charge);
+    charge_ += CPassiveSkill::GetIns().GetChargeMult();
+    charge_ = min(costume_->max_charge_, charge_);
     return;
   }
-  if (Charge == costume->MaxCharge) {
-    costume->ChargeShot(CPassiveSkill::getIns().getATKmult() * baseParams.ATK,
-                        Position, angle);
-    Charge = 0;
-    shotWait = 0;
-    Wait(costume->StrongShotDuration);
+  if (charge_ == costume_->max_charge_) {
+    costume_->ChargeShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
+                        position_, angle);
+    charge_ = 0;
+    shot_wait_ = 0;
+    Wait(costume_->strong_shot_duration_);
     return;
   }
-  if (shotWait > costume->ShotRate) {
-    shotWait = 0;
-    costume->WeakShot(CPassiveSkill::getIns().getATKmult() * baseParams.ATK,
-                      Position, angle);
-    Charge = 0;
+  if (shot_wait_ > costume_->shot_rate_) {
+    shot_wait_ = 0;
+    costume_->WeakShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
+                      position_, angle);
+    charge_ = 0;
   }
-  shotWait++;
+  shot_wait_++;
 }
 
 void CMover_Player::Render() const {
-  CImageManager::getIns()
-      .find(costume->GID)
-      ->DrawRota(Position, 0.0f, 1.0f, 0,
-                 Direction * 4 + (uint32_t)std::round(animCount));
+  CImageManager::GetIns()
+      .Find(costume_->gid_)
+      ->DrawRota(position_, 0.0f, 1.0f, 0,
+                 direction_ * 4 + (uint32_t)std::round(animation_cnt_));
 
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(
       16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);
-  CImageManager::getIns().find("HPGuage")->DrawRectwithBlend(
-      16, 8, int(320 * (baseParams.HP / baseParams.MaxHP)), 32, 0xffffff,
+  CImageManager::GetIns().Find("HPGuage")->DrawRectwithBlend(
+      16, 8, int(320 * (base_params_.HP_ / base_params_.maxHP_)), 32, 0xffffff,
       DX_BLENDMODE_ALPHA, 192, 5, 1);
-  CImageManager::getIns().find("HPGuage")->DrawRotaFwithBlend(
+  CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(
       16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);
-  CND.Draw(16 + 160, 16 + 8, baseParams.HP, 0, 0, 7);
-  // CND.Draw(16 + 48 + 16 * DigitHP, 16 + 8, baseParams.MaxHP, 0, 0, 2.3);
-  CImageManager::getIns().find("aim")->DrawCircleGauge(
-      input.lock()->MouseX(), input.lock()->MouseY(),
-      (double)Charge / costume->MaxCharge, 7, 2);
-  CImageManager::getIns().find("aim")->DrawRota(
-      input.lock()->MouseX(), input.lock()->MouseY(), 0.0, 1.0, 7,
-      (costume->MaxCharge == Charge) ? 1 : 0);
-  CAnchor::getIns().disableAbsolute();
+  number_drawer_.Draw(16 + 160, 16 + 8, base_params_.HP_, 0, 0, 7);
+  // number_drawer_.Draw(16 + 48 + 16 * digitHP_, 16 + 8, base_params_.maxHP_, 0, 0, 2.3);
+  CImageManager::GetIns().Find("aim")->DrawCircleGauge(
+      input_.lock()->MouseX(), input_.lock()->MouseY(),
+      (double)charge_ / costume_->max_charge_, 7, 2);
+  CImageManager::GetIns().Find("aim")->DrawRota(
+      input_.lock()->MouseX(), input_.lock()->MouseY(), 0.0, 1.0, 7,
+      (costume_->max_charge_ == charge_) ? 1 : 0);
+  CAnchor::GetIns().DisableAbsolute();
 }
 
 void CMover_Player::Dead() {}
@@ -147,62 +147,62 @@ void CMover_Player::Dead() {}
 void CMover_Player::Disappear() {}
 
 void CMover_Player::Wait(int duration) {
-  State = 1;
-  waitDuration = duration;
+  state_ = 1;
+  wait_duration_ = duration;
 }
 
 void CMover_Player::Damage(CAttribute BulletATK, int style) {
-  double ret = ((BulletATK) / costume->AttributeDEF *
-                CPassiveSkill::getIns().getDEFmult() * 0.01)
+  double ret = ((BulletATK) / costume_->attribute_def_ *
+                CPassiveSkill::GetIns().GetDefMult() * 0.01)
                    .Sum();
-  if (ret < Constant::zero_border) return;
-  baseParams.HP -= ret;
-  CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
+  if (ret < Constant::kZeroBorder) return;
+  base_params_.HP_ -= ret;
+  CSoundManager::GetIns().Find("player_hit")->Play(CSound::PlayType::kBack);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(
-      Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
+      position_ - CVector(0.0, size_), ret, DamageColor(BulletATK), style));
 }
 
 void CMover_Player::RatioDamage(CAttribute BulletATK, int style) {
   double ret =
-      ((BulletATK * baseParams.MaxHP) /
-       (costume->AttributeDEF * CPassiveSkill::getIns().getDEFmult() * 100))
+      ((BulletATK * base_params_.maxHP_) /
+       (costume_->attribute_def_ * CPassiveSkill::GetIns().GetDefMult() * 100))
           .Sum();
-  if (ret < Constant::zero_border) return;
-  baseParams.HP -= ret;
-  CSoundManager::getIns().find("player_hit")->Play(CSound::PLAYTYPE::PT_BACK);
+  if (ret < Constant::kZeroBorder) return;
+  base_params_.HP_ -= ret;
+  CSoundManager::GetIns().Find("player_hit")->Play(CSound::PlayType::kBack);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(
-      Position - CVector(0.0, Size), ret, DamageColor(BulletATK), style));
+      position_ - CVector(0.0, size_), ret, DamageColor(BulletATK), style));
 }
 
 void CMover_Player::RatioHeal() {
-  double diff = baseParams.MaxHP * CPassiveSkill::getIns().getHealRatio();
-  if (diff < Constant::zero_border) return;
-  baseParams.HP = (std::min)(baseParams.HP + diff, baseParams.MaxHP);
+  double diff = base_params_.maxHP_ * CPassiveSkill::GetIns().GetHealRatio();
+  if (diff < Constant::kZeroBorder) return;
+  base_params_.HP_ = (std::min)(base_params_.HP_ + diff, base_params_.maxHP_);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(
-      Position - CVector(0.0, Size), diff, 3, 0));
+      position_ - CVector(0.0, size_), diff, 3, 0));
 }
 
 int CMover_Player::DamageColor(CAttribute shotATK) {
-  auto real = shotATK / costume->AttributeDEF;
-  if (real.Sum() - shotATK.Sum() > Constant::zero_border) return 1;
-  if (real.Sum() - shotATK.Sum() < -Constant::zero_border) return 2;
+  auto real = shotATK / costume_->attribute_def_;
+  if (real.Sum() - shotATK.Sum() > Constant::kZeroBorder) return 1;
+  if (real.Sum() - shotATK.Sum() < -Constant::kZeroBorder) return 2;
   return 0;
 }
 
 void CMover_Player::RegisterShot(std::shared_ptr<CMover_ShotBase> s) {
-  med->RegisterMover(s);
+  med_->RegisterMover(s);
 }
 
 void CMover_Player::RegisterPower(std::shared_ptr<CPower> p) {
-  med->RegisterPower(p);
+  med_->RegisterPower(p);
 }
 
 void CMover_Player::Hit(CMover_EnemyBase* m) {
-  m->ApplyForce(Acceleration * 0.1 * Mass);
-  CVector delta = (m->getPosition() - Position).getLength2() < 4
+  m->ApplyForce(acceleration_ * 0.1 * mass_);
+  CVector delta = (m->GetPosition() - position_).GetLength2() < 4
                       ? CVector(GetRand(10) - 5, GetRand(10) - 5) * 0.02
                       : CVector(0.0, 0.0);
-  m->ApplyForce((m->getPosition() - Position + delta).getNorm() * Mass);
+  m->ApplyForce((m->GetPosition() - position_ + delta).GetNorm() * mass_);
 }
 
 void CMover_Player::FieldDispatch(CField* f) {}

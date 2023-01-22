@@ -4,50 +4,50 @@ class CVector;
 
 class Constant {
  public:
-  static double Gravity;
-  static double Frame;
-  static double perFrame;
-  static double zero_border;
+  static double kGravity;
+  static double kFrame;
+  static double kPerFrame;
+  static double kZeroBorder;
 
-  static double PI;
-  static double PI2;
+  static double kPI;
+  static double kPI2;
 
-  static int ScreenW;
-  static int ScreenH;
+  static int kScreenW;
+  static int kScreenH;
 
-  static int ScrollMargin;
+  static int kScrollMargin;
 
-  static double dbl_INF;
+  static double kDoubleInfinity;
 
-  static int priority_decoration;
-  static int priority_field;
-  static int priority_wall;
-  static int priority_effect;
-  static int priority_enemy;
-  static int priority_shot;
-  static int priority_bullet;
-  static int priority_number;
-  static int priority_marker;
+  static int kPriorityDecoration;
+  static int kPriorityField;
+  static int kPriorityWall;
+  static int kPriorityEffect;
+  static int kPriorityEnemy;
+  static int kPriorityShot;
+  static int kPriorityBullet;
+  static int kPriorityNumber;
+  static int kPriorityMarker;
 
-  static double bullet_delete_velocity;
+  static double kBulletDeleteVelocity;
 
-  static int MaxPause;
+  static int kMaxPause;
 
-  enum SCENE_ID {
-    SCENE_MAIN,
-    SCENE_EDITOR,
-    SCENE_TITLE,
-    SCENE_QUIT,
-    SCENE_GAMEOVER,
-    SCENE_STAGECLEAR,
-    SCENE_UPGRADE,
-    SCENE_GAMECLEAR,
-    SCENE_OPTION
+  enum SceneID {
+    kSceneMain,
+    kSceneEditor,
+    kSceneTitle,
+    kSceneQuit,
+    kSceneGameover,
+    kSceneStageclear,
+    kSceneUpgrade,
+    kSceneGameclear,
+    kSceneOption
   };
 
-  static CVector Costume_detail_pos;
+  static CVector kCostumeDetailPosition;
 
-  static int NumEnemySpawner;
+  static int kNumEnemySpawner;
 };
 
 struct COF {
@@ -64,19 +64,19 @@ struct COF {
 
   COF() : FrictionCF(0.0), WaterResCF(0.0), AirResCF(0.0), ReflectCF(0.0) {}
 
-  COF setFrictionCF(double frictionCF) {
+  COF SetFrictionCF(double frictionCF) {
     FrictionCF = frictionCF;
     return *this;
   }
-  COF setWaterResCF(double waterResCF) {
+  COF SetWaterResCF(double waterResCF) {
     WaterResCF = waterResCF;
     return *this;
   }
-  COF setAirResCF(double airResCF) {
+  COF SetAirResCF(double airResCF) {
     AirResCF = airResCF;
     return *this;
   }
-  COF setReflectCF(double reflectCF) {
+  COF SetReflectCF(double reflectCF) {
     ReflectCF = reflectCF;
     return *this;
   }

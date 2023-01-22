@@ -2,14 +2,14 @@
 #include "CMover_Enemy.h"
 
 class CMover_Enemy_Yadokari : public CMover_EnemyBase {
-  CVector testDest;
-  int cnt = 0;
-  double focus;
+  CVector test_dest_;
+  int cnt_ = 0;
+  double focus_;
 
  public:
   CMover_Enemy_Yadokari(CVector position, int Level);
   int Update();
   void Render() const;
 
-  CMover_EnemyBase* Clone(CVector Position, int Level);
+  CMover_EnemyBase* Clone(CVector position, int Level);
 };

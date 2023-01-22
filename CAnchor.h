@@ -6,50 +6,50 @@
 #include "Singleton.h"
 
 class CAnchor : public Singleton<CAnchor> {
- private:
-  CVector position;
-  bool isAbsolute;
-  CVector ScrollLimit;
-  CVector diff_quake;
+ public:
+  CAnchor();
 
-  struct quakeData {
+  void SetPosition(CVector newPos);
+  inline void SetScrollLimit(CVector mapSize) {
+    scroll_limit_ = mapSize * 32 + CVector(0, 0);
+  }  //マップの大きさを整数値で
+  inline CVector GetAnchoredPosition(CVector pos) {
+    if (is_absolute_) return pos;
+    return pos - position_;
+  }
+  inline CVector GetWorldPosition(CVector pos) { return pos + position_; }
+  inline double GetAnchorX() {
+    if (is_absolute_) return 0.0;
+    if (!quake_queue_.empty()) return position_.x + diff_quake_.x;
+    return position_.x;
+  }
+  inline double GetAnchorY() {
+    if (is_absolute_) return 0.0;
+    if (!quake_queue_.empty()) return position_.y + diff_quake_.y;
+    return position_.y;
+  }
+  inline void Move(CVector diff) { SetPosition(position_ + diff); }
+  inline void Quake(int duration, float power = 4.0f) {
+    quake_queue_.emplace_back(QuakeData{duration, power});
+  }
+  void Update();
+
+  inline void EnableAbsolute() { is_absolute_ = true; }
+  inline void DisableAbsolute() { is_absolute_ = false; }
+
+  private:
+  struct QuakeData {
     int duration;
     float power;
   };
 
-  std::list<quakeData> quakeQueue;
-  std::random_device seed{};
-  std::default_random_engine engine;
-  std::uniform_real_distribution<double> randomGenerator;
+  CVector position_;
+  bool is_absolute_;
+  CVector scroll_limit_;
+  CVector diff_quake_;
 
- public:
-  CAnchor();
-
-  void setPosition(CVector newPos);
-  inline void setScrollLimit(CVector mapSize) {
-    ScrollLimit = mapSize * 32 + CVector(0, 0);
-  }  //マップの大きさを整数値で
-  inline CVector getAnchoredPosition(CVector pos) {
-    if (isAbsolute) return pos;
-    return pos - position;
-  }
-  inline CVector getWorldPosition(CVector pos) { return pos + position; }
-  inline double getAnchorX() {
-    if (isAbsolute) return 0.0;
-    if (!quakeQueue.empty()) return position.x + diff_quake.x;
-    return position.x;
-  }
-  inline double getAnchorY() {
-    if (isAbsolute) return 0.0;
-    if (!quakeQueue.empty()) return position.y + diff_quake.y;
-    return position.y;
-  }
-  inline void Move(CVector diff) { setPosition(position + diff); }
-  inline void Quake(int duration, float power = 4.0f) {
-    quakeQueue.emplace_back(quakeData{duration, power});
-  }
-  void Update();
-
-  inline void enableAbsolute() { isAbsolute = true; }
-  inline void disableAbsolute() { isAbsolute = false; }
+  std::list<QuakeData> quake_queue_;
+  std::random_device seed_{};
+  std::default_random_engine engine_;
+  std::uniform_real_distribution<double> random_generator_;
 };

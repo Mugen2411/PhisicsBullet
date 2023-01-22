@@ -10,114 +10,114 @@
 
 class CProgressData : public Singleton<CProgressData> {
  public:
-  void save();
-  void load();
+  void Save();
+  void Load();
 
-  void setCurrentStage(int stage) {  //次に入るステージ(Mediatorから設定)
-    currentStage = (std::min)(stage, maxStage);
+  void SetCurrentStage(int stage) {  //次に入るステージ(Mediatorから設定)
+    current_stage_ = (std::min)(stage, max_stage_);
   }
-  void nextCurrentStage() {  //次に入るステージ(Mediatorから設定)
-    if (!isEndless)
-      currentStage = (std::min)(++currentStage, maxStage);
+  void NextCurrentStage() {  //次に入るステージ(Mediatorから設定)
+    if (!is_endless_)
+      current_stage_ = (std::min)(++current_stage_, max_stage_);
     else
-      currentStage = ++currentStage;
+      current_stage_ = ++current_stage_;
   }
-  int getLastStage()  //今までに進んだ最大のステージ
+  int GetLastStage()  //今までに進んだ最大のステージ
   {
-    return data.lastStage;
+    return data_.last_stage;
   }
 
-  int getCurrentStage()  //次に入るステージ(Mediatorから参照)
+  int GetCurrentStage()  //次に入るステージ(Mediatorから参照)
   {
-    return currentStage;
+    return current_stage_;
   }
-  int getMaxStage() { return maxStage; }
+  int GetMaxStage() { return max_stage_; }
 
-  std::string getMapFilepath() {
-    int cur = currentStage;
-    if (isEndless) {
-      if (randomStage.empty()) {
+  std::string GetMapFilepath() {
+    int cur = current_stage_;
+    if (is_endless_) {
+      if (random_stage_.empty()) {
         do {
-          shuffleStage();
-        } while (randomStage.back() == beforeStage);
+          ShuffleStage();
+        } while (random_stage_.back() == before_stage_);
       }
-      cur = randomStage.back();
-      randomStage.pop_back();
-      beforeStage = cur;
+      cur = random_stage_.back();
+      random_stage_.pop_back();
+      before_stage_ = cur;
     }
-    return std::string("media/map/") + std::to_string(cur % maxStage) +
-           std::string("/") + std::to_string(cur % maxStage) +
+    return std::string("media/map/") + std::to_string(cur % max_stage_) +
+           std::string("/") + std::to_string(cur % max_stage_) +
            std::string(".map");
   }
 
-  int getPlayerLevel() { return data.playerLevel; }
+  int GetPlayerLevel() { return data_.player_level_; }
 
-  int getMoney() { return data.Money; }
+  int GetMoney() { return data_.money; }
 
-  void setWindowX2(int v) {  // 0:拡大無し 1:2倍拡大
+  void SetWindowX2(int v) {  // 0:拡大無し 1:2倍拡大
     if (v)
-      data.isOptionFlags |= (v & 1);
+      data_.is_option_flags |= (v & 1);
     else
-      data.isOptionFlags &= (v & 1);
+      data_.is_option_flags &= (v & 1);
   }
 
-  int getWindowX2() { return data.isOptionFlags & 1; }
+  int GetWindowX2() { return data_.is_option_flags & 1; }
 
-  void setFMorPCM(int v) {  // 0:PCM 1:FM
+  void SetFMorPCM(int v) {  // 0:PCM 1:FM
     if (v)
-      data.isOptionFlags |= ((v & 1) << 1);
+      data_.is_option_flags |= ((v & 1) << 1);
     else
-      data.isOptionFlags &= ((v & 1) << 1);
+      data_.is_option_flags &= ((v & 1) << 1);
   }
 
-  int getFMorPCM() { return (data.isOptionFlags >> 1) & 1; }
+  int GetFMorPCM() { return (data_.is_option_flags >> 1) & 1; }
 
-  void setEndless(bool flag) { isEndless = flag; }
+  void SetEndless(bool flag) { is_endless_ = flag; }
 
-  bool getEndless() { return isEndless; }
+  bool GetEndless() { return is_endless_; }
 
-  void upgrade(int money) {
-    data.Money -= money;
-    data.playerLevel++;
+  void Upgrade(int money) {
+    data_.money -= money;
+    data_.player_level_++;
   }
 
-  void degrade() { data.playerLevel--; }
+  void Degrade() { data_.player_level_--; }
 
-  void win(int money);     //勝った時の獲得処理
-  void lose(int money);    //負けた時の獲得処理
-  void retire(int money);  //諦めた時の獲得処理
+  void Win(int money);     //勝った時の獲得処理
+  void Lose(int money);    //負けた時の獲得処理
+  void Retire(int money);  //諦めた時の獲得処理
 
-  int getEarnedMoney() { return earnedMoney; }
-  int getStageMoney() { return stageMoney; }
+  int GetEarnedMoney() { return earned_money_; }
+  int GetStageMoney() { return stage_money_; }
 
  private:
   CProgressData();
 
-  int currentStage;
-  int maxStage;
-  int earnedMoney;
-  int stageMoney;
-  int beforeStage;
+  int current_stage_;
+  int max_stage_;
+  int earned_money_;
+  int stage_money_;
+  int before_stage_;
 
-  std::vector<int> randomStage;
-  std::random_device dev;
-  std::mt19937 eng;
+  std::vector<int> random_stage_;
+  std::random_device dev_;
+  std::mt19937 eng_;
 
-  bool isEndless;
+  bool is_endless_;
 
-  struct progressData {
-    int lastStage;  // 10をかけると始めるべきステージになる
-    int Money;
-    int playerLevel;
-    int isOptionFlags;  //下位1bit:拡大率(0=x1,1=x2),2bit:音源(0=PCM, 1=FM)
-  } data;
+  struct ProgressData {
+    int last_stage;  // 5をかけると始めるべきステージになる
+    int money;
+    int player_level_;
+    int is_option_flags;  //下位1bit:拡大率(0=x1_,1=x2_),2bit:音源(0=PCM, 1=FM)
+  } data_;
 
-  void shuffleStage() {
-    randomStage.clear();
-    for (int i = 0; i < maxStage; i++) {
-      randomStage.push_back(i);
+  void ShuffleStage() {
+    random_stage_.clear();
+    for (int i = 0; i < max_stage_; i++) {
+      random_stage_.push_back(i);
     }
-    std::shuffle(randomStage.begin(), randomStage.end(), eng);
+    std::shuffle(random_stage_.begin(), random_stage_.end(), eng_);
   }
 
   friend class Singleton<CProgressData>;

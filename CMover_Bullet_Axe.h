@@ -8,5 +8,5 @@ class CMover_Bullet_Axe : public CMover_BulletBase {
   void Render() const;
 
  protected:
-  float baseAngle;
+  float base_angle_;
 };

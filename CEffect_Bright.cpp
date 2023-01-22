@@ -4,65 +4,65 @@
 
 #include "CAnchor.h"
 
-CEffect_Bright::CEffect_Bright() : brightLevel(0), active(false) {
-  brightScreen = MakeScreen(640, 480);
-  shadowScreen = MakeScreen(640, 480);
-  brightBuffer = MakeScreen(640, 480);
-  shadowBuffer = MakeScreen(640, 480);
-  brightGraph = LoadGraph("media/graphic/system/game/bright.png");
+CEffect_Bright::CEffect_Bright() : bright_level_(0), active_(false) {
+  bright_screen_ = MakeScreen(640, 480);
+  shadow_screen_ = MakeScreen(640, 480);
+  bright_buffer_ = MakeScreen(640, 480);
+  shadow_buffer_ = MakeScreen(640, 480);
+  bright_graph_ = LoadGraph("media/graphic/system/game/bright.png");
 }
 
 void CEffect_Bright::Render() const {
-  SetDrawScreen(brightScreen);
+  SetDrawScreen(bright_screen_);
   ClearDrawScreen();
-  SetDrawScreen(shadowScreen);
+  SetDrawScreen(shadow_screen_);
   ClearDrawScreen();
-  SetDrawScreen(brightBuffer);
+  SetDrawScreen(bright_buffer_);
   ClearDrawScreen();
-  SetDrawScreen(shadowBuffer);
+  SetDrawScreen(shadow_buffer_);
   ClearDrawScreen();
-  if (!active) {
-    SetDrawScreen(offscreen);
+  if (!active_) {
+    SetDrawScreen(offscreen_);
     return;
   }
-  SetDrawScreen(brightBuffer);
-  int b = (int)max(0, brightLevel * 0xFF);
+  SetDrawScreen(bright_buffer_);
+  int b = (int)max(0, bright_level_ * 0xFF);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   DrawBox(0, 0, 640, 480, GetColor(b, b, b), TRUE);
-  for (auto& i : list) {
+  for (auto& i : list_) {
     if (i.power < 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, i.power);
-    DrawRotaGraph((int)(i.position.x - CAnchor::getIns().getAnchorX()),
-                  (int)(i.position.y - CAnchor::getIns().getAnchorY()),
-                  i.radius / 256.0, 0, brightGraph, TRUE);
+    DrawRotaGraph((int)(i.position_.x - CAnchor::GetIns().GetAnchorX()),
+                  (int)(i.position_.y - CAnchor::GetIns().GetAnchorY()),
+                  i.radius / 256.0, 0, bright_graph_, TRUE);
   }
 
-  SetDrawScreen(shadowBuffer);
-  b = (int)min(0, brightLevel * 0xFF);
+  SetDrawScreen(shadow_buffer_);
+  b = (int)min(0, bright_level_ * 0xFF);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   DrawBox(0, 0, 640, 480, GetColor(-b, -b, -b), TRUE);
-  for (auto& i : list) {
+  for (auto& i : list_) {
     if (i.power > 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, -i.power);
-    DrawRotaGraphF((float)(i.position.x - CAnchor::getIns().getAnchorX()),
-                  (float)(i.position.y - CAnchor::getIns().getAnchorY()),
-                  (float)i.radius / 256.0f, 0.0f, brightGraph, TRUE);
+    DrawRotaGraphF((float)(i.position_.x - CAnchor::GetIns().GetAnchorX()),
+                  (float)(i.position_.y - CAnchor::GetIns().GetAnchorY()),
+                  (float)i.radius / 256.0f, 0.0f, bright_graph_, TRUE);
   }
-  SetDrawScreen(brightScreen);
+  SetDrawScreen(bright_screen_);
   SetDrawBlendMode(DX_BLENDMODE_ADD, 0xFF);
-  DrawGraph(0, 0, brightBuffer, TRUE);
+  DrawGraph(0, 0, bright_buffer_, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_SUB, 0xFF);
-  DrawGraph(0, 0, shadowBuffer, TRUE);
+  DrawGraph(0, 0, shadow_buffer_, TRUE);
 
-  SetDrawScreen(shadowScreen);
+  SetDrawScreen(shadow_screen_);
   SetDrawBlendMode(DX_BLENDMODE_ADD, 0xFF);
-  DrawGraph(0, 0, shadowBuffer, TRUE);
+  DrawGraph(0, 0, shadow_buffer_, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_SUB, 0xFF);
-  DrawGraph(0, 0, brightBuffer, TRUE);
+  DrawGraph(0, 0, bright_buffer_, TRUE);
 
-  SetDrawScreen(offscreen);
+  SetDrawScreen(offscreen_);
   SetDrawBlendMode(DX_BLENDMODE_SUB, 0xFF);
-  DrawGraph(0, 0, shadowScreen, TRUE);
+  DrawGraph(0, 0, shadow_screen_, TRUE);
   // SetDrawBlendMode(DX_BLENDMODE_ADD, 0xFF);
   // DrawGraph(0, 0, brightScreen, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

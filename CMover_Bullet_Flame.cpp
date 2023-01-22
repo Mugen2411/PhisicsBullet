@@ -2,26 +2,26 @@
 
 CMover_Bullet_Flame::CMover_Bullet_Flame(CStatus baseparams, CVector position,
                                          double angle, double speed)
-    : CMover_BulletBase(baseparams, CAttribute(0.0).NONE(2).FIRE(18), position,
+    : CMover_BulletBase(baseparams, CAttribute(0.0).None(2).Fire(18), position,
                         16, CVector(angle) * speed, 0.5,
                         COF(0.005, 0.005, 0.04, 0.1), 0xFF0000),
-      baseAngle(0.0),
-      animCount(0.0) {}
+      base_angle_(0.0),
+      animation_cnt_(0.0) {}
 
 int CMover_Bullet_Flame::Update() {
-  animCount += 0.24;
-  if (animCount > 4.0) animCount = 0.0;
-  baseAngle += (float)(Constant::PI2 * 3 * Constant::perFrame);
-  if (Velocity.getLength2() < Constant::bullet_delete_velocity)
-    setStatus(STATUS::DEAD);
-  return Status;
+  animation_cnt_ += 0.24;
+  if (animation_cnt_ > 4.0) animation_cnt_ = 0.0;
+  base_angle_ += (float)(Constant::kPI2 * 3 * Constant::kPerFrame);
+  if (velocity_.GetLength2() < Constant::kBulletDeleteVelocity)
+    SetStatus(Status::kDead);
+  return status_;
 }
 
 void CMover_Bullet_Flame::Render() const {
-  CImageManager::getIns()
-      .find("effect_flame")
-      ->DrawRotaFwithBlend(Position.x, Position.y,
-                           Velocity.getAngle() + baseAngle, 1.0, 0xFFFFFF,
-                           CImageManager::BLENDMODE::BM_ADD, 0xFF,
-                           Constant::priority_bullet, (uint32_t)animCount);
+  CImageManager::GetIns()
+      .Find("effect_flame")
+      ->DrawRotaFwithBlend(position_.x, position_.y,
+                           velocity_.GetAngle() + base_angle_, 1.0, 0xFFFFFF,
+                           CImageManager::BlendMode::kAdd, 0xFF,
+                           Constant::kPriorityBullet, (uint32_t)animation_cnt_);
 }

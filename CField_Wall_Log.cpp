@@ -2,61 +2,61 @@
 
 #include <DxLib.h>
 
-CField_Wall_Log::CField_Wall_Log(std::string gid, CVector position, int state)
-    : CField_Wall(gid, position, COF().setFrictionCF(0.9)),
-      animCount(0.0),
-      state(state),
-      BurningTime(600) {}
+CField_Wall_Log::CField_Wall_Log(std::string gid, CVector position_, int state_)
+    : CField_Wall(gid, position_, COF().SetFrictionCF(0.9)),
+      animation_cnt_(0.0),
+      state_(state_),
+      burning_time_(600) {}
 
 void CField_Wall_Log::Update() {
-  switch (state) {
+  switch (state_) {
     case 0:
-      if (Temperature > 100) state = 1;
-      isWall = true;
+      if (temperature_ > 100) state_ = 1;
+      is_wall_ = true;
       break;
     case 1:
-      animCount += 0.15;
-      animCount = std::fmod(animCount, 3);
-      BurningTime--;
-      // if (BurningTime < 0)state = 2;
-      Damage = CAttribute(0.0).FIRE(6.0);
-      isWall = false;
+      animation_cnt_ += 0.15;
+      animation_cnt_ = std::fmod(animation_cnt_, 3);
+      burning_time_--;
+      // if (burning_time_ < 0)state_ = 2;
+      damage_ = CAttribute(0.0).Fire(6.0);
+      is_wall_ = false;
       break;
     case 2:
-      Damage = CAttribute(0.0);
-      isWall = false;
+      damage_ = CAttribute(0.0);
+      is_wall_ = false;
       break;
   }
 }
 
 void CField_Wall_Log::Render() const {
-  switch (state) {
+  switch (state_) {
     case 1:
-      CImageManager::getIns()
-          .find("effect_flame")
-          ->DrawRotaFwithBlend(Position.x, Position.y, GetRand(16) / 256.0f,
-                               1.0, 0xFFFFFF, CImageManager::BM_ADD, 216,
-                               Constant::priority_effect, (unsigned int)animCount);
-      CImageManager::getIns()
-          .find("Field_Grass")
-          ->DrawRota(Position, 0.0, 1.0,
-                     Constant::priority_decoration, 4);
+      CImageManager::GetIns()
+          .Find("effect_flame")
+          ->DrawRotaFwithBlend(position_.x, position_.y, GetRand(16) / 256.0f,
+                               1.0, 0xFFFFFF, CImageManager::kAdd, 216,
+                               Constant::kPriorityEffect, (unsigned int)animation_cnt_);
+      CImageManager::GetIns()
+          .Find("Field_Grass")
+          ->DrawRota(position_, 0.0, 1.0,
+                     Constant::kPriorityDecoration, 4);
       break;
     case 0:
-      CImageManager::getIns()
-          .find("Field_Grass")
-          ->DrawRota(Position, 0.0, 1.0, Constant::priority_wall,
+      CImageManager::GetIns()
+          .Find("Field_Grass")
+          ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityWall,
                      4);
       break;
     case 2:
-      CImageManager::getIns()
-          .find("Field_Grass")
-          ->DrawRota(Position, 0.0, 1.0, Constant::priority_wall,
+      CImageManager::GetIns()
+          .Find("Field_Grass")
+          ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityWall,
                      5);
       break;
   }
 }
 
-CField* CField_Wall_Log::Clone(CVector position) {
-  return new CField_Wall_Log(GID, position, state);
+CField* CField_Wall_Log::Clone(CVector position_) {
+  return new CField_Wall_Log(gid_, position_, state_);
 }

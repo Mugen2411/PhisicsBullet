@@ -16,10 +16,10 @@
 #include "CSoundManager.h"
 
 void CGameMediator::ProcessEnemySpawner() {
-  for (auto i = enemySpawner.begin(); i != enemySpawner.end();) {
+  for (auto i = enemy_spawner_.begin(); i != enemy_spawner_.end();) {
     int r = (*i)->Update();
     if (r == 1) {
-      i = enemySpawner.erase(i);
+      i = enemy_spawner_.erase(i);
       continue;
     }
     ++i;
@@ -28,102 +28,102 @@ void CGameMediator::ProcessEnemySpawner() {
 
 CGameMediator::CGameMediator(SceneManager* ScnMng)
     : Scene_Abstract(ScnMng),
-      isPause(true),
-      isRetire(false),
-      pauseGuage(0),
-      cnt(0),
-      isInitialized(false),
-      costumeSelecterCNT(12),
-      isCostumeSelecterEnd(false),
-      nowLevelOfStage(CProgressData::getIns().getCurrentStage() * 3),
-      CND() {
-  input = CControllerFactory::getIns().getController();
-  retireText[0] =
+      is_pause_(true),
+      is_retire_(false),
+      pause_guage_(0),
+      cnt_(0),
+      is_initialized_(false),
+      costume_selecter_cnt_(12),
+      is_costume_selecter_end_(false),
+      now_level_of_stage_(CProgressData::GetIns().GetCurrentStage() * 3),
+      number_drawer_() {
+  input_ = CControllerFactory::GetIns().GetController();
+  retire_text_[0] =
       CTextDrawer::Text("本当にリタイアしますか？", CVector(320 - 6 * 36, 32),
                         0xFFFFFF, 0x000000, 1);
-  retireText[1] =
+  retire_text_[1] =
       CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。",
                         CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
-  waveNumber = CTextDrawer::Text(
+  wave_number_ = CTextDrawer::Text(
       std::string("WAVE:") +
-          std::to_string(CProgressData::getIns().getCurrentStage() + 1),
+          std::to_string(CProgressData::GetIns().GetCurrentStage() + 1),
       CVector(320 + 88, 8), 0xFFFFFF, 0x000000, 1);
-  skillList = CPassiveSkill::getIns().getGotSkillList();
-  skillLevelList = CPassiveSkill::getIns().getGotSkillLevelList();
+  skill_list_ = CPassiveSkill::GetIns().GetGotSkillList();
+  skill_level_list_ = CPassiveSkill::GetIns().GetGotSkillLevelList();
 }
 
 CGameMediator::~CGameMediator() {}
 
 void CGameMediator::CreateParts() {
-  moverParent = std::make_unique<CMoverParent>(this);
-  fieldParent = std::make_unique<CFieldParent>(
-      this, CProgressData::getIns().getMapFilepath());
-  powerParent = std::make_unique<CPowerParent>(this);
+  mover_parent_ = std::make_unique<CMoverParent>(this);
+  field_parent_ = std::make_unique<CFieldParent>(
+      this, CProgressData::GetIns().GetMapFilepath());
+  power_parent_ = std::make_unique<CPowerParent>(this);
 
   CVector playerPos;
-  fieldParent->convertSpawner(enemySpawner, nowLevelOfStage, playerPos);
-  fieldParent->readDefine();
+  field_parent_->ConvertSpawner(enemy_spawner_, now_level_of_stage_, playerPos);
+  field_parent_->readDefine();
   CCostumeFactory CCF;
-  CCF.getMinMaxFriction(minFric, maxFric);
-  CCF.getMinMaxWaterRes(minWaterRes, maxWaterRes);
-  CCF.getMinMaxAirRes(minAirRes, maxAirRes);
-  CCF.getMinMaxMass(minMass, maxMass);
-  CCF.getMinMaxVelocity(minVelocity, maxVelocity);
-  CCF.getMinMaxAccel(minAccel, maxAccel);
-  costumeNowFocusOn = std::make_unique<CCostumeBase*>(CCF.create("C_Uniform"));
-  RegisterMover(player = std::make_shared<CMover_Player>(
-                    playerPos, CProgressData::getIns().getPlayerLevel(),
-                    CCF.create("C_Uniform")));
-  CSoundManager::getIns().find("bgm")->Play(CSound::PT_LOOP);
+  CCF.GetMinMaxFriction(min_fric_, max_fric_);
+  CCF.GetMinMaxWaterRes(min_water_res_, max_water_res_);
+  CCF.GetMinMaxAirRes(min_air_res_, max_air_res_);
+  CCF.GetMinMaxMass(min_mass_, max_mass_);
+  CCF.GetMinMaxVelocity(min_velocity_, max_velocity_);
+  CCF.GetMinMaxAccel(min_accel_, max_accel_);
+  costume_now_focus_ = std::make_unique<CCostumeBase*>(CCF.Create("C_Uniform"));
+  RegisterMover(player_ = std::make_shared<CMover_Player>(
+                    playerPos, CProgressData::GetIns().GetPlayerLevel(),
+                    CCF.Create("C_Uniform")));
+  CSoundManager::GetIns().Find("bgm")->Play(CSound::kLoop);
   CEffectParent::Reset();
-  CEffect_Bright::getIns().inactivate();
-  isInitialized = true;
+  CEffect_Bright::GetIns().Inactivate();
+  is_initialized_ = true;
 }
 
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m) {
-  m->setMediator(this);
-  moverParent->RegisterMover(m);
+  m->SetMediator(this);
+  mover_parent_->RegisterMover(m);
 }
 
 void CGameMediator::RegisterPower(std::shared_ptr<CPower> p) {
-  powerParent->Add(p);
+  power_parent_->Add(p);
 }
 
 void CGameMediator::ApplyForceToMover(CMover* m) {
-  powerParent->ApplyForceToMover(m);
-  fieldParent->ApplyForceToMover(m);
+  power_parent_->ApplyForceToMover(m);
+  field_parent_->ApplyForceToMover(m);
 }
 
-bool CGameMediator::HitToMover(CMover* m) { return fieldParent->HitToMover(m); }
+bool CGameMediator::HitToMover(CMover* m) { return field_parent_->HitToMover(m); }
 
 CVector CGameMediator::GetPlayerPosition() {
   std::weak_ptr<CMover> p =
-      moverParent->getMover(CMover::MOVER_ID::MV_PLAYER, 0);
+      mover_parent_->GetMover(CMover::MoverID::kPlayer, 0);
   if (!p.lock()) return CVector(false);
-  return CVector(p.lock()->getPosition());
+  return CVector(p.lock()->GetPosition());
 }
 
 std::list<CVector> CGameMediator::GetRoute(CVector start, CVector goal,
                                            CAttribute attrDEF, int distance) {
-  return fieldParent->getRoute(start, goal, attrDEF, distance);
+  return field_parent_->GetRoute(start, goal, attrDEF, distance);
 }
 
 std::vector<CVector> CGameMediator::GetTargetByDistance(CVector start,
                                                         int distance) {
-  return fieldParent->getTargetByDistance(start, distance);
+  return field_parent_->GetTargetByDistance(start, distance);
 }
 
 std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p) {
   int i = 0;
-  auto cur = moverParent->getMover(ID, i);
+  auto cur = mover_parent_->GetMover(ID, i);
   if (!cur.lock()) return std::weak_ptr<CMover>();
-  double dist = (p - cur.lock()->getPosition()).getLength2();
+  double dist = (p - cur.lock()->GetPosition()).GetLength2();
   i++;
   while (1) {
-    auto next = moverParent->getMover(ID, i);
+    auto next = mover_parent_->GetMover(ID, i);
     if (!next.lock()) break;
-    if (dist > (p - next.lock()->getPosition()).getLength2()) {
-      dist = (p - next.lock()->getPosition()).getLength2();
+    if (dist > (p - next.lock()->GetPosition()).GetLength2()) {
+      dist = (p - next.lock()->GetPosition()).GetLength2();
       cur = next;
     }
     i++;
@@ -131,324 +131,324 @@ std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p) {
   return cur;
 }
 
-void CGameMediator::getMoney(int value) { reserveMoney += value; }
+void CGameMediator::GetMoney(int value) { reserve_money_ += value; }
 
 void CGameMediator::Update() {
-  if (!isInitialized) return;
-  cnt++;
-  if (isRetire) {
+  if (!is_initialized_) return;
+  cnt_++;
+  if (is_retire_) {
     UpdateRetireMenu();
     return;
   }
-  if (isPause) {
+  if (is_pause_) {
     UpdateDresschangeMenu();
     return;
   }
 #ifdef _DEBUG
-  if (input.lock()->Start() == 1) {
-    CEffect_Bright::getIns().inactivate();
-    scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_EDITOR, true);
+  if (input_.lock()->Start() == 1) {
+    CEffect_Bright::GetIns().Inactivate();
+    scene_manager_->ChangeScene(Constant::SceneID::kSceneEditor, true);
     return;
   }
 #endif
-  if (player->getHP() < 0) {
-    CSoundManager::getIns().find("bgm")->Stop();
-    CSoundManager::getIns()
-        .find("player_dead")
-        ->Play(CSound::PLAYTYPE::PT_BACK);
-    CProgressData::getIns().lose(reserveMoney);
-    CEffect_Bright::getIns().inactivate();
-    scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMEOVER, false);
+  if (player_->GetHP() < 0) {
+    CSoundManager::GetIns().Find("bgm")->Stop();
+    CSoundManager::GetIns()
+        .Find("player_dead")
+        ->Play(CSound::PlayType::kBack);
+    CProgressData::GetIns().Lose(reserve_money_);
+    CEffect_Bright::GetIns().Inactivate();
+    scene_manager_->ChangeScene(Constant::SceneID::kSceneGameover, false);
     return;
   }
-  if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0 &&
-      enemySpawner.empty()) {
-    CSoundManager::getIns().find("bgm")->Stop();
-    CSoundManager::getIns().find("success")->Play(CSound::PLAYTYPE::PT_BACK);
-    CProgressData::getIns().win(reserveMoney);
-    CEffect_Bright::getIns().inactivate();
-    if (CProgressData::getIns().getCurrentStage() ==
-        CProgressData::getIns().getMaxStage() - 1) {
-      if (CProgressData::getIns().getEndless()) {
-        scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+  if (mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0 &&
+      enemy_spawner_.empty()) {
+    CSoundManager::GetIns().Find("bgm")->Stop();
+    CSoundManager::GetIns().Find("success")->Play(CSound::PlayType::kBack);
+    CProgressData::GetIns().Win(reserve_money_);
+    CEffect_Bright::GetIns().Inactivate();
+    if (CProgressData::GetIns().GetCurrentStage() ==
+        CProgressData::GetIns().GetMaxStage() - 1) {
+      if (CProgressData::GetIns().GetEndless()) {
+        scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear, false);
       } else
-        scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_GAMECLEAR, false);
+        scene_manager_->ChangeScene(Constant::SceneID::kSceneGameclear, false);
     } else {
-      scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_STAGECLEAR, false);
+      scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear, false);
     }
     return;
   }
   CEnemyFactory CEF;
-  ++pauseGuage;
-  pauseGuage = min(pauseGuage, Constant::MaxPause);
-  if (input.lock()->Select() == 1) {
-    if (pauseGuage == Constant::MaxPause) {
-      isPause = true;
-      costumeSelecterCNT = 0;
-      CEffect_Bright::getIns().inactivate();
+  ++pause_guage_;
+  pause_guage_ = min(pause_guage_, Constant::kMaxPause);
+  if (input_.lock()->Select() == 1) {
+    if (pause_guage_ == Constant::kMaxPause) {
+      is_pause_ = true;
+      costume_selecter_cnt_ = 0;
+      CEffect_Bright::GetIns().Inactivate();
     }
   }
   ProcessEnemySpawner();
-  if (moverParent->getCountByCategory(CMover::MOVER_ID::MV_ENEMY) == 0) {
+  if (mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0) {
     ProcessEnemySpawner();
   }
-  CEffect_Bright::getIns().Clear();
-  powerParent->Update();
-  moverParent->Update();
-  fieldParent->Update();
+  CEffect_Bright::GetIns().Clear();
+  power_parent_->Update();
+  mover_parent_->Update();
+  field_parent_->Update();
   CEffectParent::Update();
 }
 
 void CGameMediator::Render() const {
-  fieldParent->Render();
-  moverParent->Render();
-  powerParent->Render();
+  field_parent_->Render();
+  mover_parent_->Render();
+  power_parent_->Render();
   CEffectParent::Render();
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns()
-      .find("system_dress_guage")
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns()
+      .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                          CImageManager::BLENDMODE::BM_NONE, 0, 7,
-                          (input.lock()->Select() > 0) ? 1 : 0);
-  if (pauseGuage == Constant::MaxPause)
-    CImageManager::getIns()
-        .find("system_dress_guage")
+                          CImageManager::BlendMode::kNone, 0, 7,
+                          (input_.lock()->Select() > 0) ? 1 : 0);
+  if (pause_guage_ == Constant::kMaxPause)
+    CImageManager::GetIns()
+        .Find("system_dress_guage")
         ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                            CImageManager::BLENDMODE::BM_NONE, 0, 8, 2);
-  CImageManager::getIns()
-      .find("system_dress_guage")
+                            CImageManager::BlendMode::kNone, 0, 8, 2);
+  CImageManager::GetIns()
+      .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32,
-                          (int)(160 * (pauseGuage / Constant::MaxPause)), 32,
-                          HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0),
-                          CImageManager::BLENDMODE::BM_SUB, 0x7F, 9,
-                          (input.lock()->Select() > 0) ? 1 : 0);
-  CND.Draw(16, 56, reserveMoney, 0, 3, Constant::priority_number);
-  CImageManager::getIns()
-      .find("system_passive_frame")
-      ->Draw(320 + 24, 8, Constant::priority_number + 1);
+                          (int)(160 * (pause_guage_ / Constant::kMaxPause)), 32,
+                          HSV2RGB((float)(cnt_ % 60) / 60, 1.0, 1.0),
+                          CImageManager::BlendMode::kSub, 0x7F, 9,
+                          (input_.lock()->Select() > 0) ? 1 : 0);
+  number_drawer_.Draw(16, 56, reserve_money_, 0, 3, Constant::kPriorityNumber);
+  CImageManager::GetIns()
+      .Find("system_passive_frame")
+      ->Draw(320 + 24, 8, Constant::kPriorityNumber + 1);
   for (int i = 0; i < 5; i++) {
-    if (i < skillList.size()) {
-      CImageManager::getIns()
-          .find("icon_passiveskill")
-          ->Draw(321 + 24 + 32 * i, 8 + 1, Constant::priority_number,
-                 skillList[i]);
-      CImageManager::getIns()
-          .find("icon_passive_progress")
-          ->Draw(321 + 24 + 32 * i, 8 + 32 + 1, Constant::priority_number,
-                 skillLevelList[i]);
+    if (i < skill_list_.size()) {
+      CImageManager::GetIns()
+          .Find("icon_passiveskill")
+          ->Draw(321 + 24 + 32 * i, 8 + 1, Constant::kPriorityNumber,
+                 skill_list_[i]);
+      CImageManager::GetIns()
+          .Find("icon_passive_progress")
+          ->Draw(321 + 24 + 32 * i, 8 + 32 + 1, Constant::kPriorityNumber,
+                 skill_level_list_[i]);
     } else
-      CImageManager::getIns()
-          .find("icon_passive_covered")
-          ->Draw(321 + 24 + 32 * i, 8 + 1, Constant::priority_number);
+      CImageManager::GetIns()
+          .Find("icon_passive_covered")
+          ->Draw(321 + 24 + 32 * i, 8 + 1, Constant::kPriorityNumber);
   }
-  CAnchor::getIns().disableAbsolute();
+  CAnchor::GetIns().DisableAbsolute();
 
-  if (isRetire) {
+  if (is_retire_) {
     RenderRetireMenu();
     return;
   }
-  if (isPause) {
+  if (is_pause_) {
     RenderDresschangeMenu();
     return;
   }
 
 #ifdef _DEBUG
-  printfDx("Money:%d\nGraphHandle:%d\n", reserveMoney, GetGraphNum());
+  printfDx("Money:%d\nGraphHandle:%d\n", reserve_money_, GetGraphNum());
 #endif
 }
 
 void CGameMediator::UpdateDresschangeMenu() {
   static CCostumeFactory CCF;
   static int currentCostumeIndex = 0;
-  costumeNowFocusOn =
-      std::make_unique<CCostumeBase*>(CCF.create(currentCostumeIndex));
-  costumeSelecterCNT = min(
-      isCostumeSelecterEnd ? --costumeSelecterCNT : ++costumeSelecterCNT, 12);
-  if (isCostumeSelecterEnd) {
-    if (costumeSelecterCNT != 0) return;
-    costumeSelecterCNT = 0;
-    isPause = false;
-    isCostumeSelecterEnd = false;
+  costume_now_focus_ =
+      std::make_unique<CCostumeBase*>(CCF.Create(currentCostumeIndex));
+  costume_selecter_cnt_ = min(
+      is_costume_selecter_end_ ? --costume_selecter_cnt_ : ++costume_selecter_cnt_, 12);
+  if (is_costume_selecter_end_) {
+    if (costume_selecter_cnt_ != 0) return;
+    costume_selecter_cnt_ = 0;
+    is_pause_ = false;
+    is_costume_selecter_end_ = false;
     return;
   }
-  if (input.lock()->Select() == 1) {
-    isCostumeSelecterEnd = true;
-    pauseGuage = 0;
-    player->ChangeCostume(CCF.create(currentCostumeIndex));
-    CEffect_Bright::getIns().activate();
+  if (input_.lock()->Select() == 1) {
+    is_costume_selecter_end_ = true;
+    pause_guage_ = 0;
+    player_->ChangeCostume(CCF.Create(currentCostumeIndex));
+    CEffect_Bright::GetIns().Activate();
     return;
   }
-  if (input.lock()->Start() == 1) {
-    isRetire = true;
+  if (input_.lock()->Start() == 1) {
+    is_retire_ = true;
     return;
   }
-  if (input.lock()->Right() == 1) {
+  if (input_.lock()->Right() == 1) {
     currentCostumeIndex += 1;
-    currentCostumeIndex %= CCF.getSize();
+    currentCostumeIndex %= CCF.GetSize();
   }
-  if (input.lock()->Left() == 1) {
-    currentCostumeIndex += CCF.getSize() - 1;
-    currentCostumeIndex %= CCF.getSize();
+  if (input_.lock()->Left() == 1) {
+    currentCostumeIndex += CCF.GetSize() - 1;
+    currentCostumeIndex %= CCF.GetSize();
   }
 }
 
 void CGameMediator::RenderDresschangeMenu() const {
-  CAnchor::getIns().enableAbsolute();
-  CTextDrawer::getIns().Register(waveNumber);
-  CImageManager::getIns()
-      .find("system_curtain")
-      ->Draw(0 - (12 - costumeSelecterCNT) / 12.0 * 320, 0.0, 100, 0);
-  CImageManager::getIns()
-      .find("system_curtain")
-      ->Draw(320 + (12 - costumeSelecterCNT) / 12.0 * 320, 0.0, 100, 1);
-  CImageManager::getIns()
-      .find("system_costume_frame")
+  CAnchor::GetIns().EnableAbsolute();
+  CTextDrawer::GetIns().Register(wave_number_);
+  CImageManager::GetIns()
+      .Find("system_curtain")
+      ->Draw(0 - (12 - costume_selecter_cnt_) / 12.0 * 320, 0.0, 100, 0);
+  CImageManager::GetIns()
+      .Find("system_curtain")
+      ->Draw(320 + (12 - costume_selecter_cnt_) / 12.0 * 320, 0.0, 100, 1);
+  CImageManager::GetIns()
+      .Find("system_costume_frame")
       ->DrawRota(160, 64, 0.0f, 1.0f, 102);
-  CImageManager::getIns()
-      .find((*costumeNowFocusOn)->GID)
+  CImageManager::GetIns()
+      .Find((*costume_now_focus_)->gid_)
       ->DrawRota(160, 64, 0.0f, 1.0f, 101, 4);
   for (int i = 0; i < 6; i++) {
-    CImageManager::getIns()
-        .find("system_status_guage")
+    CImageManager::GetIns()
+        .Find("system_status_guage")
         ->Draw(360, 80 + i * 64, 103, 1);
-    CImageManager::getIns()
-        .find("system_status_guage")
+    CImageManager::GetIns()
+        .Find("system_status_guage")
         ->Draw(360, 80 + i * 64, 101, 3);
-    CImageManager::getIns()
-        .find("system_status_next_now")
+    CImageManager::GetIns()
+        .Find("system_status_next_now")
         ->Draw(344, 80 + i * 64, 101, 1);
-    CImageManager::getIns()
-        .find("system_status_guage")
+    CImageManager::GetIns()
+        .Find("system_status_guage")
         ->Draw(360, 96 + i * 64, 103, 1);
-    CImageManager::getIns()
-        .find("system_status_guage")
+    CImageManager::GetIns()
+        .Find("system_status_guage")
         ->Draw(360, 96 + i * 64, 101, 3);
-    CImageManager::getIns()
-        .find("system_status_next_now")
+    CImageManager::GetIns()
+        .Find("system_status_next_now")
         ->Draw(344, 96 + i * 64, 101, 0);
-    CImageManager::getIns()
-        .find("system_status_guage")
+    CImageManager::GetIns()
+        .Find("system_status_guage")
         ->Draw(360, 64 + i * 64, 103, 0);
-    CImageManager::getIns()
-        .find("system_status_name")
+    CImageManager::GetIns()
+        .Find("system_status_name")
         ->Draw(360 + 80, 64 + i * 64, 103, i);
     switch (i) {
       case 0:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 *
-                    min(1.0, max(0.02, (player->costume->constants.FrictionCF -
-                                        minFric) /
-                                           max(0.0001, maxFric - minFric)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                    min(1.0, max(0.02, (player_->costume_->constants_.FrictionCF -
+                                        min_fric_) /
+                                           max(0.0001, max_fric_ - min_fric_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 * min(1.0, max(0.02,
-                                   ((*costumeNowFocusOn)->constants.FrictionCF -
-                                    minFric) /
-                                       max(0.0001, maxFric - minFric)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                                   ((*costume_now_focus_)->constants_.FrictionCF -
+                                    min_fric_) /
+                                       max(0.0001, max_fric_ - min_fric_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
       case 1:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 * min(1.0,
                           max(0.02,
-                              ((1.0 - player->costume->constants.WaterResCF) -
-                               minWaterRes) /
-                                  max(0.0001, maxWaterRes - minWaterRes)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                              ((1.0 - player_->costume_->constants_.WaterResCF) -
+                               min_water_res_) /
+                                  max(0.0001, max_water_res_ - min_water_res_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 *
                     min(1.0, max(0.02,
                                  ((1.0 -
-                                   (*costumeNowFocusOn)->constants.WaterResCF) -
-                                  minWaterRes) /
-                                     max(0.0001, maxWaterRes - minWaterRes)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                                   (*costume_now_focus_)->constants_.WaterResCF) -
+                                  min_water_res_) /
+                                     max(0.0001, max_water_res_ - min_water_res_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
       case 2:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 *
-                    min(1.0, max(0.02, (player->costume->constants.AirResCF -
-                                        minAirRes) /
-                                           max(0.0001, maxAirRes - minAirRes)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                    min(1.0, max(0.02, (player_->costume_->constants_.AirResCF -
+                                        min_air_res_) /
+                                           max(0.0001, max_air_res_ - min_air_res_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 * min(1.0,
-                          max(0.02, ((*costumeNowFocusOn)->constants.AirResCF -
-                                     minAirRes) /
-                                        max(0.0001, maxAirRes - minAirRes)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                          max(0.02, ((*costume_now_focus_)->constants_.AirResCF -
+                                     min_air_res_) /
+                                        max(0.0001, max_air_res_ - min_air_res_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
       case 3:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
-                int(240 * min(1.0, max(0.02, (player->costume->Mass - minMass) /
-                                             max(0.0001, maxMass - minMass)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                int(240 * min(1.0, max(0.02, (player_->costume_->mass_ - min_mass_) /
+                                             max(0.0001, max_mass_ - min_mass_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 *
-                    min(1.0, max(0.02, ((*costumeNowFocusOn)->Mass - minMass) /
-                                           max(0.0001, maxMass - minMass)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                    min(1.0, max(0.02, ((*costume_now_focus_)->mass_ - min_mass_) /
+                                           max(0.0001, max_mass_ - min_mass_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
       case 4:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 * min(1.0, max(0.02,
-                                   (player->costume->MaxSpeed - minVelocity) /
-                                       max(0.0001, maxVelocity - minVelocity)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                                   (player_->costume_->max_speed_ - min_velocity_) /
+                                       max(0.0001, max_velocity_ - min_velocity_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 * min(1.0,
                           max(0.02,
-                              ((*costumeNowFocusOn)->MaxSpeed - minVelocity) /
-                                  max(0.0001, maxVelocity - minVelocity)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                              ((*costume_now_focus_)->max_speed_ - min_velocity_) /
+                                  max(0.0001, max_velocity_ - min_velocity_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
       case 5:
-        CImageManager::getIns()
-            .find("system_status_guage")
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 * min(1.0,
-                          max(0.02, (player->costume->Accelaration - minAccel) /
-                                        max(0.0001, maxAccel - minAccel)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-        CImageManager::getIns()
-            .find("system_status_guage")
+                          max(0.02, (player_->costume_->accelaration_ - min_accel_) /
+                                        max(0.0001, max_accel_ - min_accel_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
+        CImageManager::GetIns()
+            .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                int(240 * min(1.0, max(0.02, ((*costumeNowFocusOn)->Accelaration -
-                                          minAccel) /
-                                             max(0.0001, maxAccel - minAccel)))),
-                16, 0xFFFFFF, CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
+                int(240 * min(1.0, max(0.02, ((*costume_now_focus_)->accelaration_ -
+                                          min_accel_) /
+                                             max(0.0001, max_accel_ - min_accel_)))),
+                16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         break;
     }
   }
@@ -456,154 +456,154 @@ void CGameMediator::RenderDresschangeMenu() const {
   for (int i = 0; i < 6; i++) {
     switch (i) {
       case 0:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.None > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.none_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.None < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.none_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
       case 1:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.Fire > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.fire_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.Fire < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.fire_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
       case 2:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.Aqua > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.aqua_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.Aqua < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.aqua_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
       case 3:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.Thunder > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.thunder_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.Thunder < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.thunder_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
       case 4:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.Flower > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.flower_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.Flower < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.flower_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
       case 5:
-        CImageManager::getIns()
-            .find("icon_attribute")
+        CImageManager::GetIns()
+            .Find("icon_attribute")
             ->Draw(icon_left + 32 * i + 0, 96, 101, i);
-        if ((*costumeNowFocusOn)->AttributeDEF.Ice > 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        if ((*costume_now_focus_)->attribute_def_.ice_ > 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 0);
-        } else if ((*costumeNowFocusOn)->AttributeDEF.Ice < 1.0) {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+        } else if ((*costume_now_focus_)->attribute_def_.ice_ < 1.0) {
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 1);
         } else {
-          CImageManager::getIns()
-              .find("icon_weak_or_strong")
+          CImageManager::GetIns()
+              .Find("icon_weak_or_strong")
               ->Draw(icon_left + 32 * i + 16, 96, 101, 2);
         }
         break;
     }
   }
-  CImageManager::getIns()
-      .find("system_dress_guage")
+  CImageManager::GetIns()
+      .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                          CImageManager::BLENDMODE::BM_NONE, 0, 101,
-                          (input.lock()->Select() > 0) ? 1 : 0);
-  CImageManager::getIns()
-      .find("system_dress_guage")
+                          CImageManager::BlendMode::kNone, 0, 101,
+                          (input_.lock()->Select() > 0) ? 1 : 0);
+  CImageManager::GetIns()
+      .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                          CImageManager::BLENDMODE::BM_NONE, 0, 102, 2);
-  CImageManager::getIns()
-      .find("system_dress_guage")
+                          CImageManager::BlendMode::kNone, 0, 102, 2);
+  CImageManager::GetIns()
+      .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32, 160, 32,
-                          HSV2RGB((float)(cnt % 60) / 60, 1.0, 1.0),
-                          CImageManager::BLENDMODE::BM_SUB, 0x7F, 103,
-                          (input.lock()->Select() > 0) ? 1 : 0);
-  CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
-  CAnchor::getIns().disableAbsolute();
-  CTextDrawer::getIns().RegisterForCostumeDetail((*costumeNowFocusOn)->detail);
+                          HSV2RGB((float)(cnt_ % 60) / 60, 1.0, 1.0),
+                          CImageManager::BlendMode::kSub, 0x7F, 103,
+                          (input_.lock()->Select() > 0) ? 1 : 0);
+  CImageManager::GetIns().Find("icon_return")->Draw(0, 0, 101);
+  CAnchor::GetIns().DisableAbsolute();
+  CTextDrawer::GetIns().RegisterForCostumeDetail((*costume_now_focus_)->detail_);
 }
 
 void CGameMediator::UpdateRetireMenu() {
-  if (input.lock()->Start() == 1) {
-    isRetire = false;
+  if (input_.lock()->Start() == 1) {
+    is_retire_ = false;
     return;
   }
-  if (input.lock()->Select() == 1) {
-    CSoundManager::getIns().find("bgm")->Stop();
-    scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_TITLE, true);
+  if (input_.lock()->Select() == 1) {
+    CSoundManager::GetIns().Find("bgm")->Stop();
+    scene_manager_->ChangeScene(Constant::SceneID::kSceneTitle, true);
     return;
   }
 }
 
 void CGameMediator::RenderRetireMenu() const {
-  CAnchor::getIns().enableAbsolute();
-  CImageManager::getIns().find("system_curtain")->Draw(0, 0, 100, 0);
-  CImageManager::getIns().find("system_curtain")->Draw(320, 0, 100, 1);
-  CImageManager::getIns().find("icon_return")->Draw(0, 0, 101);
-  for (auto& i : retireText) {
-    CTextDrawer::getIns().Register(i);
+  CAnchor::GetIns().EnableAbsolute();
+  CImageManager::GetIns().Find("system_curtain")->Draw(0, 0, 100, 0);
+  CImageManager::GetIns().Find("system_curtain")->Draw(320, 0, 100, 1);
+  CImageManager::GetIns().Find("icon_return")->Draw(0, 0, 101);
+  for (auto& i : retire_text_) {
+    CTextDrawer::GetIns().Register(i);
   }
-  CAnchor::getIns().disableAbsolute();
+  CAnchor::GetIns().DisableAbsolute();
 }

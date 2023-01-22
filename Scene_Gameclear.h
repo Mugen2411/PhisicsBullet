@@ -15,7 +15,7 @@ class Scene_Gameclear : public Scene_Abstract {
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CTextDrawer::Text text[4];
-  int cnt;
+  std::weak_ptr<CSTGInputManager> input_;
+  CTextDrawer::Text text_[4];
+  int cnt_;
 };

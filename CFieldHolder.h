@@ -12,45 +12,44 @@
 class CField;
 
 class CFieldHolder {
- protected:
-  std::vector<std::unique_ptr<CField>> walllist;
-  std::vector<std::unique_ptr<CField>> floorlist;
-  std::vector<std::vector<double>> g, dist;
-  std::vector<std::vector<int>> diff;
-  std::vector<std::vector<CVector>> pre;
-  unsigned int width, height;
-  std::string filePath;
-
  public:
   CFieldHolder(std::string filepath);
   ~CFieldHolder();
 
-  inline CField* getFloor(unsigned int x, unsigned int y) {
-    return floorlist[width * y + x].get();
+  inline CField* GetFloor(unsigned int x, unsigned int y) {
+    return floor_list_[width_ * y + x].get();
   }
-  inline CField* getWall(unsigned int x, unsigned int y) {
-    return walllist[width * y + x].get();
+  inline CField* GetWall(unsigned int x, unsigned int y) {
+    return wall_list_[width_ * y + x].get();
   }
 
-  void writefloor(CField* f, CVector pos);
-  void writewall(CField* f, CVector pos);
+  void WriteFloor(CField* f, CVector pos);
+  void WriteWall(CField* f, CVector pos);
 
-  inline int getWidth() { return width; }
-  inline int getHeight() { return height; }
+  inline int GetWidth() { return width_; }
+  inline int GetHeight() { return height_; }
   void Update();
   void Render() const;
 
-  void convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
+  void ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
                       CGameMediator* med, int level, CVector& playerPos);
-  void readDefine();
+  void ReadDefine();
 
-  std::list<CVector> Find_Route(CVector start, CVector goal, CAttribute attrDEF,
+  std::list<CVector> FindRoute(CVector start, CVector goal, CAttribute attrDEF,
                                 int distance);  //先頭が一番自分に近い！
-  std::vector<CVector> findTargetByDistance(
+  std::vector<CVector> FindTargetByDistance(
       CVector start,
       int distance);  //基準となる座標から一定の距離離れた点のベクトルを返す
-  inline int index(int x, int y) { return y * width + x; }
+  inline int Index(int x, int y) { return y * width_ + x; }
 
   void Save();
   int Load();  // 0:正常 1:異常(失敗)
+ protected:
+  std::vector<std::unique_ptr<CField>> wall_list_;
+  std::vector<std::unique_ptr<CField>> floor_list_;
+  std::vector<std::vector<double>> g_, dist_;
+  std::vector<std::vector<int>> diff_;
+  std::vector<std::vector<CVector>> pre_;
+  unsigned int width_, height_;
+  std::string filepath_;
 };

@@ -4,13 +4,13 @@
 
 CAttribute CAttribute::operator*(double a) {
   CAttribute ret(0.0);
-  ret.None = this->None * a;
-  ret.Fire = this->Fire * a;
-  ret.Aqua = this->Aqua * a;
-  ret.Thunder = this->Thunder * a;
-  ret.Flower = this->Flower * a;
-  ret.Ice = this->Ice * a;
-  ret.Wind = this->Wind * a;
+  ret.none_ = this->none_ * a;
+  ret.fire_ = this->fire_ * a;
+  ret.aqua_ = this->aqua_ * a;
+  ret.thunder_ = this->thunder_ * a;
+  ret.flower_ = this->flower_ * a;
+  ret.ice_ = this->ice_ * a;
+  ret.wind_ = this->wind_ * a;
   return ret;
 }
 
@@ -28,82 +28,82 @@ CAttribute CAttribute::operator/(double a) {
 }
 
 CAttribute::CAttribute(double init)
-    : None(init),
-      Fire(init),
-      Aqua(init),
-      Thunder(init),
-      Flower(init),
-      Ice(init),
-      Wind(init) {}
+    : none_(init),
+      fire_(init),
+      aqua_(init),
+      thunder_(init),
+      flower_(init),
+      ice_(init),
+      wind_(init) {}
 
-CAttribute CAttribute::NONE(double value) {
-  this->None = value;
+CAttribute CAttribute::None(double value) {
+  this->none_ = value;
   return *this;
 }
 
-CAttribute CAttribute::FIRE(double value) {
-  this->Fire = value;
+CAttribute CAttribute::Fire(double value) {
+  this->fire_ = value;
   return *this;
 }
 
-CAttribute CAttribute::AQUA(double value) {
-  this->Aqua = value;
+CAttribute CAttribute::Aqua(double value) {
+  this->aqua_ = value;
   return *this;
 }
 
-CAttribute CAttribute::THUNDER(double value) {
-  this->Thunder = value;
+CAttribute CAttribute::Thunder(double value) {
+  this->thunder_ = value;
   return *this;
 }
 
-CAttribute CAttribute::FLOWER(double value) {
-  this->Flower = value;
+CAttribute CAttribute::Flower(double value) {
+  this->flower_ = value;
   return *this;
 }
 
-CAttribute CAttribute::ICE(double value) {
-  this->Ice = value;
+CAttribute CAttribute::Ice(double value) {
+  this->ice_ = value;
   return *this;
 }
 
-CAttribute CAttribute::WIND(double value) {
-  this->Wind = value;
+CAttribute CAttribute::Wind(double value) {
+  this->wind_ = value;
   return *this;
 }
 
 CAttribute CAttribute::operator*(CAttribute a) {
   CAttribute ret(0.0);
-  ret.None = this->None * a.None;
-  ret.Fire = this->Fire * a.Fire;
-  ret.Aqua = this->Aqua * a.Aqua;
-  ret.Thunder = this->Thunder * a.Thunder;
-  ret.Flower = this->Flower * a.Flower;
-  ret.Ice = this->Ice * a.Ice;
-  ret.Wind = this->Wind * a.Wind;
+  ret.none_ = this->none_ * a.none_;
+  ret.fire_ = this->fire_ * a.fire_;
+  ret.aqua_ = this->aqua_ * a.aqua_;
+  ret.thunder_ = this->thunder_ * a.thunder_;
+  ret.flower_ = this->flower_ * a.flower_;
+  ret.ice_ = this->ice_ * a.ice_;
+  ret.wind_ = this->wind_ * a.wind_;
   return ret;
 }
 
 CAttribute CAttribute::operator/(CAttribute a) {
   CAttribute ret(0.0);
-  ret.None = this->None / a.None;
-  ret.Fire = this->Fire / a.Fire;
-  ret.Aqua = this->Aqua / a.Aqua;
-  ret.Thunder = this->Thunder / a.Thunder;
-  ret.Flower = this->Flower / a.Flower;
-  ret.Ice = this->Ice / a.Ice;
-  ret.Wind = this->Wind / a.Wind;
+  ret.none_ = this->none_ / a.none_;
+  ret.fire_ = this->fire_ / a.fire_;
+  ret.aqua_ = this->aqua_ / a.aqua_;
+  ret.thunder_ = this->thunder_ / a.thunder_;
+  ret.flower_ = this->flower_ / a.flower_;
+  ret.ice_ = this->ice_ / a.ice_;
+  ret.wind_ = this->wind_ / a.wind_;
   return ret;
 }
 
 CAttribute CAttribute::operator+(CAttribute a) {
   CAttribute ret(0.0);
-  ret.None = this->None + a.None;
-  ret.Fire = this->Fire + a.Fire;
-  ret.Aqua = this->Aqua + a.Aqua;
-  ret.Thunder = this->Thunder + a.Thunder;
-  ret.Flower = this->Flower + a.Flower;
-  ret.Ice = this->Ice + a.Ice;
-  ret.Wind = this->Wind + a.Wind;
+  ret.none_ = this->none_ + a.none_;
+  ret.fire_ = this->fire_ + a.fire_;
+  ret.aqua_ = this->aqua_ + a.aqua_;
+  ret.thunder_ = this->thunder_ + a.thunder_;
+  ret.flower_ = this->flower_ + a.flower_;
+  ret.ice_ = this->ice_ + a.ice_;
+  ret.wind_ = this->wind_ + a.wind_;
   return ret;
 }
 
@@ -115,8 +115,8 @@ CAttribute CAttribute::operator+=(CAttribute a) {
 
 CAttribute CAttribute::operator-(CAttribute a) { return *this + (a * -1.0); }
 
-bool CAttribute::isZero() { return Sum() < Constant::zero_border; }
+bool CAttribute::IsZero() { return Sum() < Constant::kZeroBorder; }
 
 double CAttribute::Sum() {
-  return None + Fire + Aqua + Thunder + Flower + Ice + Wind;
+  return none_ + fire_ + aqua_ + thunder_ + flower_ + ice_ + wind_;
 }

@@ -7,88 +7,88 @@
 
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level)
     : CMover_EnemyBase(20, Level, 0.5, 0.8,
-                       CAttribute(1.0).FIRE(0.4).FLOWER(2.0).AQUA(0.6), 10,
+                       CAttribute(1.0).Fire(0.4).Flower(2.0).Aqua(0.6), 10,
                        0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.06, 0.1)),
-      testDest(0.0, 0.0) {}
+      test_dest_(0.0, 0.0) {}
 
 int CMover_Enemy_Bud::Update() {
-  switch (state) {
+  switch (state_) {
     case 0:
-      if (cnt % 60 == 0) {
+      if (cnt_ % 60 == 0) {
         if (GetRand(5) == 0) {
-          findTargetByDistance(6);
-          state = 2;
-          cnt = 0;
+          FindTargetByDistance(6);
+          state_ = 2;
+          cnt_ = 0;
         } else
-          Find_Route(3);
+          FindRoute(3);
       }
-      if (!route.empty()) {
+      if (!route_.empty()) {
         Move_on_Route();
       } else {
-        CVector ppos = med->GetPlayerPosition();
-        med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
-            baseParams, Position, (ppos - Position).getAngle(), 4.0));
-        CSoundManager::getIns()
-            .find("pretty_throw")
-            ->Play(CSound::PLAYTYPE::PT_BACK);
-        cnt = 0;
-        state = 1;
+        CVector ppos = med_->GetPlayerPosition();
+        med_->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
+            base_params_, position_, (ppos - position_).GetAngle(), 4.0));
+        CSoundManager::GetIns()
+            .Find("pretty_throw")
+            ->Play(CSound::PlayType::kBack);
+        cnt_ = 0;
+        state_ = 1;
         break;
       }
-      cnt++;
-      animCount += 0.3;
-      if (animCount > 4) animCount = 0;
+      cnt_++;
+      animation_cnt_ += 0.3;
+      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
-      if (cnt > 30) {
-        state = 0;
-        cnt = 0;
+      if (cnt_ > 30) {
+        state_ = 0;
+        cnt_ = 0;
         break;
       }
-      cnt++;
+      cnt_++;
       break;
     case 2:
-      if (!route.empty()) {
+      if (!route_.empty()) {
         Move_on_Route();
       } else {
-        state = 0;
-        cnt = 0;
+        state_ = 0;
+        cnt_ = 0;
       }
-      if ((med->GetPlayerPosition() - Position).getLength2() >
+      if ((med_->GetPlayerPosition() - position_).GetLength2() >
               (32 * 6 * 32 * 6) &&
-          cnt % 90 == 0)
-        findTargetByDistance(6);
-      cnt++;
-      animCount += 0.3;
-      if (animCount > 4) animCount = 0;
+          cnt_ % 90 == 0)
+        FindTargetByDistance(6);
+      cnt_++;
+      animation_cnt_ += 0.3;
+      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case -1:
-      animCount += 0.1;
-      if (animCount > 4) {
-        state = 0;
-        Find_Route(3);
-        animCount = 0;
-        cnt = 0;
+      animation_cnt_ += 0.1;
+      if (animation_cnt_ > 4) {
+        state_ = 0;
+        FindRoute(3);
+        animation_cnt_ = 0;
+        cnt_ = 0;
       }
       break;
   }
-  return Status;
+  return status_;
 }
 
 void CMover_Enemy_Bud::Render() const {
-  if (state < 0) {
-    CImageManager::getIns()
-        .find("enemy_bud_intro")
-        ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                   (int)(animCount));
+  if (state_ < 0) {
+    CImageManager::GetIns()
+        .Find("enemy_bud_intro")
+        ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+                   (int)(animation_cnt_));
     return;
   }
-  CImageManager::getIns()
-      .find("enemy_bud")
-      ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                 Direction * 4 + (int)(animCount));
+  CImageManager::GetIns()
+      .Find("enemy_bud")
+      ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+                 direction_ * 4 + (int)(animation_cnt_));
 }
 
-CMover_EnemyBase* CMover_Enemy_Bud::Clone(CVector Position, int Level) {
-  return new CMover_Enemy_Bud(Position, Level);
+CMover_EnemyBase* CMover_Enemy_Bud::Clone(CVector position, int Level) {
+  return new CMover_Enemy_Bud(position, Level);
 }

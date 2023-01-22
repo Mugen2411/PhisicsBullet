@@ -2,14 +2,15 @@
 #include "CField.h"
 
 class CField_Dirt : public CField {
-  int state;
-
  public:
-  CField_Dirt(std::string gid, CVector position, int state);
+  CField_Dirt(std::string gid, CVector position_, int state_);
   void Update();
   void Render() const;
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
+
+ private:
+  int state_;
 
   void Save(std::ofstream& fout);
 };

@@ -1,96 +1,96 @@
 #include "CSTGInputManager.h"
 
 CSTGInputManager::CSTGInputManager()
-    : pushedFrame{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-      ConfDat{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-      clickedFrame{{0, 0}, {0, 0}, {0, 0}},
-      isMouseShown(true),
-      mx(320),
-      my(240) {}
+    : pushed_frame_{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      config_data_{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+      clicked_frame_{{0, 0}, {0, 0}, {0, 0}},
+      is_mouse_shown_(true),
+      mx_(320),
+      my_(240) {}
 
-int CSTGInputManager::Up() { return pushedFrame[SK_UP]; }
+int CSTGInputManager::Up() { return pushed_frame_[kUp]; }
 
-int CSTGInputManager::Down() { return pushedFrame[SK_DOWN]; }
+int CSTGInputManager::Down() { return pushed_frame_[kDown]; }
 
-int CSTGInputManager::Right() { return pushedFrame[SK_RIGHT]; }
+int CSTGInputManager::Right() { return pushed_frame_[kRight]; }
 
-int CSTGInputManager::Left() { return pushedFrame[SK_LEFT]; }
+int CSTGInputManager::Left() { return pushed_frame_[kLeft]; }
 
-int CSTGInputManager::A() { return pushedFrame[SK_A]; }
+int CSTGInputManager::A() { return pushed_frame_[kA]; }
 
-int CSTGInputManager::B() { return pushedFrame[SK_B]; }
+int CSTGInputManager::B() { return pushed_frame_[kB]; }
 
-int CSTGInputManager::C() { return pushedFrame[SK_C]; }
+int CSTGInputManager::C() { return pushed_frame_[kC]; }
 
-int CSTGInputManager::Slow() { return pushedFrame[SK_SLOW]; }
+int CSTGInputManager::Slow() { return pushed_frame_[kSlow]; }
 
-int CSTGInputManager::Start() { return pushedFrame[SK_START]; }
+int CSTGInputManager::Start() { return pushed_frame_[kStart]; }
 
-int CSTGInputManager::Select() { return pushedFrame[SK_SELECT]; }
+int CSTGInputManager::Select() { return pushed_frame_[kSelect]; }
 
-int CSTGInputManager::LClick(bool isPush) { return clickedFrame[0][isPush]; }
+int CSTGInputManager::LClick(bool isPush) { return clicked_frame_[0][isPush]; }
 
-int CSTGInputManager::RClick(bool isPush) { return clickedFrame[1][isPush]; }
+int CSTGInputManager::RClick(bool isPush) { return clicked_frame_[1][isPush]; }
 
-int CSTGInputManager::CClick(bool isPush) { return clickedFrame[2][isPush]; }
+int CSTGInputManager::CClick(bool isPush) { return clicked_frame_[2][isPush]; }
 
-int CSTGInputManager::MouseX() { return mx; }
+int CSTGInputManager::MouseX() { return mx_; }
 
-int CSTGInputManager::MouseY() { return my; }
+int CSTGInputManager::MouseY() { return my_; }
 
-CVector CSTGInputManager::getVector() {
+CVector CSTGInputManager::GetVector() {
   CVector tmp(0.0, 0.0);
-  if (pushedFrame[SK_UP] != 0) tmp -= CVector(0.0, 1.0);
-  if (pushedFrame[SK_DOWN] != 0) tmp += CVector(0.0, 1.0);
-  if (pushedFrame[SK_RIGHT] != 0) tmp += CVector(1.0, 0.0);
-  if (pushedFrame[SK_LEFT] != 0) tmp -= CVector(1.0, 0.0);
-  return tmp.getNorm();
+  if (pushed_frame_[kUp] != 0) tmp -= CVector(0.0, 1.0);
+  if (pushed_frame_[kDown] != 0) tmp += CVector(0.0, 1.0);
+  if (pushed_frame_[kRight] != 0) tmp += CVector(1.0, 0.0);
+  if (pushed_frame_[kLeft] != 0) tmp -= CVector(1.0, 0.0);
+  return tmp.GetNorm();
 }
 
-int CSTGInputManager::getDirection() {
-  if (pushedFrame[SK_UP] > 0) {
-    if (pushedFrame[SK_RIGHT] > pushedFrame[SK_UP])
-      return SK_RIGHT;
+int CSTGInputManager::GetDirection() {
+  if (pushed_frame_[kUp] > 0) {
+    if (pushed_frame_[kRight] > pushed_frame_[kUp])
+      return kRight;
     else
-      return SK_UP;
-    if (pushedFrame[SK_LEFT] > pushedFrame[SK_UP])
-      return SK_LEFT;
+      return kUp;
+    if (pushed_frame_[kLeft] > pushed_frame_[kUp])
+      return kLeft;
     else
-      return SK_UP;
+      return kUp;
   }
-  if (pushedFrame[SK_DOWN] > 0) {
-    if (pushedFrame[SK_RIGHT] > pushedFrame[SK_DOWN])
-      return SK_RIGHT;
+  if (pushed_frame_[kDown] > 0) {
+    if (pushed_frame_[kRight] > pushed_frame_[kDown])
+      return kRight;
     else
-      return SK_DOWN;
-    if (pushedFrame[SK_LEFT] > pushedFrame[SK_DOWN])
-      return SK_LEFT;
+      return kDown;
+    if (pushed_frame_[kLeft] > pushed_frame_[kDown])
+      return kLeft;
     else
-      return SK_DOWN;
+      return kDown;
   }
-  if (pushedFrame[SK_RIGHT] > 0) {
-    if (pushedFrame[SK_UP] > pushedFrame[SK_RIGHT])
-      return SK_UP;
+  if (pushed_frame_[kRight] > 0) {
+    if (pushed_frame_[kUp] > pushed_frame_[kRight])
+      return kUp;
     else
-      return SK_RIGHT;
-    if (pushedFrame[SK_DOWN] > pushedFrame[SK_RIGHT])
-      return SK_DOWN;
+      return kRight;
+    if (pushed_frame_[kDown] > pushed_frame_[kRight])
+      return kDown;
     else
-      return SK_RIGHT;
+      return kRight;
   }
-  if (pushedFrame[SK_LEFT] > 0) {
-    if (pushedFrame[SK_UP] > pushedFrame[SK_LEFT])
-      return SK_UP;
+  if (pushed_frame_[kLeft] > 0) {
+    if (pushed_frame_[kUp] > pushed_frame_[kLeft])
+      return kUp;
     else
-      return SK_LEFT;
-    if (pushedFrame[SK_DOWN] > pushedFrame[SK_LEFT])
-      return SK_DOWN;
+      return kLeft;
+    if (pushed_frame_[kDown] > pushed_frame_[kLeft])
+      return kDown;
     else
-      return SK_LEFT;
+      return kLeft;
   }
-  return NO_CONFIG;
+  return kNoConfig;
 }
 
-float CSTGInputManager::getMouseAngle(CVector p) {
-  return (float)atan2(my - p.y, mx - p.x);
+float CSTGInputManager::GetMouseAngle(CVector p) {
+  return (float)atan2(my_ - p.y, mx_ - p.x);
 }

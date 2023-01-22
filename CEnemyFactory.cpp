@@ -16,13 +16,13 @@ CEnemyFactory::CEnemyFactory() {
   Register("E_FlameSerpent", new CMover_Enemy_FlameSerpent(CVector(), 0));
 }
 
-std::shared_ptr<CMover_EnemyBase> CEnemyFactory::create(std::string key,
-                                                        CVector position,
+std::shared_ptr<CMover_EnemyBase> CEnemyFactory::Create(std::string key,
+                                                        CVector position_,
                                                         int level) {
   return std::shared_ptr<CMover_EnemyBase>(
-      enemy_prototypes[key]->Clone(position, level));
+      enemy_prototypes_[key]->Clone(position_, level));
 }
 
 void CEnemyFactory::Register(std::string key, CMover_EnemyBase* e) {
-  enemy_prototypes[key] = std::shared_ptr<CMover_EnemyBase>(e);
+  enemy_prototypes_[key] = std::shared_ptr<CMover_EnemyBase>(e);
 }

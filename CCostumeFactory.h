@@ -8,64 +8,65 @@
 class CMover_Player;
 
 class CCostumeFactory {
-  std::vector<std::shared_ptr<CCostumeBase>> list;
-  void Register(CCostumeBase* f);
-  int cx;
-  int cy;
-
  public:
   CCostumeFactory();
-  CCostumeBase* create(std::string);
-  CCostumeBase* create(int);
-  int getSize() { return (int)list.size(); }
-  void getMinMaxFriction(double& min, double& max) {
+  CCostumeBase* Create(std::string);
+  CCostumeBase* Create(int);
+  int GetSize() { return (int)list_.size(); }
+  void GetMinMaxFriction(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->constants.FrictionCF < min) min = i->constants.FrictionCF;
-      if (i->constants.FrictionCF > max) max = i->constants.FrictionCF;
+    for (auto& i : list_) {
+      if (i->constants_.FrictionCF < min) min = i->constants_.FrictionCF;
+      if (i->constants_.FrictionCF > max) max = i->constants_.FrictionCF;
     }
   }
-  void getMinMaxAirRes(double& min, double& max) {
+  void GetMinMaxAirRes(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->constants.AirResCF < min) min = i->constants.AirResCF;
-      if (i->constants.AirResCF > max) max = i->constants.AirResCF;
+    for (auto& i : list_) {
+      if (i->constants_.AirResCF < min) min = i->constants_.AirResCF;
+      if (i->constants_.AirResCF > max) max = i->constants_.AirResCF;
     }
   }
-  void getMinMaxWaterRes(double& min, double& max) {
+  void GetMinMaxWaterRes(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->constants.WaterResCF < min) min = i->constants.WaterResCF;
-      if (i->constants.WaterResCF > max) max = i->constants.WaterResCF;
+    for (auto& i : list_) {
+      if (i->constants_.WaterResCF < min) min = i->constants_.WaterResCF;
+      if (i->constants_.WaterResCF > max) max = i->constants_.WaterResCF;
     }
     min = 1.0 - max;
     max = 1.0 - min;
   }
-  void getMinMaxMass(double& min, double& max) {
+  void GetMinMaxMass(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->Mass < min) min = i->Mass;
-      if (i->Mass > max) max = i->Mass;
+    for (auto& i : list_) {
+      if (i->mass_ < min) min = i->mass_;
+      if (i->mass_ > max) max = i->mass_;
     }
   }
-  void getMinMaxVelocity(double& min, double& max) {
+  void GetMinMaxVelocity(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->MaxSpeed < min) min = i->MaxSpeed;
-      if (i->MaxSpeed > max) max = i->MaxSpeed;
+    for (auto& i : list_) {
+      if (i->max_speed_ < min) min = i->max_speed_;
+      if (i->max_speed_ > max) max = i->max_speed_;
     }
   }
-  void getMinMaxAccel(double& min, double& max) {
+  void GetMinMaxAccel(double& min, double& max) {
     min = 9999;
     max = 0;
-    for (auto& i : list) {
-      if (i->Accelaration < min) min = i->Accelaration;
-      if (i->Accelaration > max) max = i->Accelaration;
+    for (auto& i : list_) {
+      if (i->accelaration_ < min) min = i->accelaration_;
+      if (i->accelaration_ > max) max = i->accelaration_;
     }
   }
+
+ private:
+  std::vector<std::shared_ptr<CCostumeBase>> list_;
+  void Register(CCostumeBase* f);
+  int cx_;
+  int cy_;
 };

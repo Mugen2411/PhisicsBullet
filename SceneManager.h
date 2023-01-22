@@ -5,15 +5,15 @@
 class Scene_Abstract;
 
 class SceneManager {
- protected:
-  std::list<std::unique_ptr<Scene_Abstract>> _scene;
-
  public:
   SceneManager();
   virtual ~SceneManager();
 
   virtual void PopScene() = 0;
   virtual void ChangeScene(int Scene, bool isStackClear) = 0;
-  void update();
-  void render();
+  void Update();
+  void Render();
+
+ protected:
+  std::list<std::unique_ptr<Scene_Abstract>> scene_;
 };

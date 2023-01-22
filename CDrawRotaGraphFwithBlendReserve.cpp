@@ -11,16 +11,16 @@ CDrawRotaGraphFwithBlendReserve::CDrawRotaGraphFwithBlendReserve(
           GHandle, Priority, x, y,
           width * cos(angle) * extend + height * sin(angle) * extend,
           width * sin(angle) * extend + height * cos(angle) * extend),
-      angle(angle),
-      extend(extend),
-      Blendmode(Blendmode),
-      value(value),
-      Color(color) {}
+      angle_(angle),
+      extend_(extend),
+      blendmode_(Blendmode),
+      value_(value),
+      color_(color) {}
 
 void CDrawRotaGraphFwithBlendReserve::Render() const {
-  SetDrawBright((Color >> 16) & 0xFF, (Color >> 8) & 0xFF, (Color >> 0) & 0xFF);
-  SetDrawBlendMode(Blendmode, value);
-  DrawRotaGraphF(float(x), float(y), extend, angle, GHandle, TRUE);
+  SetDrawBright((color_ >> 16) & 0xFF, (color_ >> 8) & 0xFF, (color_ >> 0) & 0xFF);
+  SetDrawBlendMode(blendmode_, value_);
+  DrawRotaGraphF(float(x_), float(y_), extend_, angle_, graphic_handle_, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   SetDrawBright(0xFF, 0xFF, 0xFF);
 }

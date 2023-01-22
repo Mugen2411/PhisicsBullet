@@ -9,18 +9,18 @@ CDrawExtendWithBlendReserve::CDrawExtendWithBlendReserve(
     int color, int Blendmode, int value)
     : IRenderReserve(GHandle, Priority, x1, y1, std::abs(x1 - x2),
                      std::abs(y1 - y2)),
-      x1(x1),
-      y1(y1),
-      x2(x2),
-      y2(y2),
-      Blendmode(Blendmode),
-      value(value),
-      Color(color) {}
+      x1_(x1),
+      y1_(y1),
+      x2_(x2),
+      y2_(y2),
+      blendmode_(Blendmode),
+      value_(value),
+      color_(color) {}
 
 void CDrawExtendWithBlendReserve::Render() const {
-  SetDrawBright((Color >> 16) & 0xFF, (Color >> 8) & 0xFF, (Color >> 0) & 0xFF);
-  SetDrawBlendMode(Blendmode, value);
-  DrawExtendGraphF(float(x1), float(y1), float(x2), float(y2), GHandle, TRUE);
+  SetDrawBright((color_ >> 16) & 0xFF, (color_ >> 8) & 0xFF, (color_ >> 0) & 0xFF);
+  SetDrawBlendMode(blendmode_, value_);
+  DrawExtendGraphF(float(x1_), float(y1_), float(x2_), float(y2_), graphic_handle_, TRUE);
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
   SetDrawBright(0xFF, 0xFF, 0xFF);
 }

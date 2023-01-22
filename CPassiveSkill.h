@@ -9,77 +9,80 @@
 
 class CPassiveSkill : public Singleton<CPassiveSkill> {
  public:
-  CAttribute getATKmult();
-  CAttribute getDEFmult();
-  double getHealRatio() { return 0.01 * healPerLEVEL * has[HEAL]; }
-  double getMaxHPmult() { return 1.0 + 0.01 * maxHPperLEVEL * has[MAXHP]; }
-  double getMoneyMult() { return 1.0 + 0.01 * moneyPerLEVEL * has[MONEY]; }
-  double getChargeMult() { return 1.0 + 0.01 * chargePerLEVEL * has[CHARGE]; }
-  double getSpeedMult() { return 1.0 + 0.01 * speedPerLEVEL * has[SPEED]; }
+  CAttribute GetAtkMult();
+  CAttribute GetDefMult();
+  double GetHealRatio() { return 0.01 * heal_per_level_ * has_[kHeal]; }
+  double GetMaxHPmult() { return 1.0 + 0.01 * maxHP_per_level_ * has_[kMaxHP]; }
+  double GetMoneyMult() { return 1.0 + 0.01 * money_per_level_ * has_[kMoney]; }
+  double GetChargeMult() {
+    return 1.0 + 0.01 * charge_per_level_ * has_[kCharge];
+  }
+  double GetSpeedMult() { return 1.0 + 0.01 * speed_per_level_ * has_[kSpeed]; }
   void Reset() {
-    for (auto& i : has) {
+    for (auto& i : has_) {
       i = 0;
     }
   }
 
-  std::vector<int> getRandomList();
+  std::vector<int> GetRandomList();
 
-  std::vector<int> getGotSkillList() {
+  std::vector<int> GetGotSkillList() {
     std::vector<int> ret;
     for (int i = 0; i < 21; i++) {
-      if (has[i] != 0) ret.push_back(i);
+      if (has_[i] != 0) ret.push_back(i);
     }
     return ret;
   }
-  std::vector<int> getGotSkillLevelList() {
+  std::vector<int> GetGotSkillLevelList() {
     std::vector<int> ret;
     for (int i = 0; i < 21; i++) {
-      if (has[i] != 0) ret.push_back(has[i]);
+      if (has_[i] != 0) ret.push_back(has_[i]);
     }
     return ret;
   }
 
-  void add(int index) { has[index] = (std::min)(++has[index], 5); }
+  void Add(int index) { has_[index] = (std::min)(++has_[index], 5); }
 
-  CTextDrawer::Text getText(int index);
+  CTextDrawer::Text GetText(int index);
 
  protected:
-  int has[7 + 7 + 2 + 5];
+  int has_[7 + 7 + 2 + 5];
   enum {
-    ATK_NONE,
-    ATK_FIRE,
-    ATK_AQUA,
-    ATK_THUNDER,
-    ATK_FLOWER,
-    ATK_ICE,
-    ATK_WIND,
-    DEF_NONE,
-    DEF_FIRE,
-    DEF_AQUA,
-    DEF_THUNDER,
-    DEF_FLOWER,
-    DEF_ICE,
-    DEF_WIND,
-    ATK_ALL,
-    DEF_ALL,
-    HEAL,
-    MONEY,
-    CHARGE,
-    SPEED,
-    MAXHP
+    kAtkNone,
+    kAtkFire,
+    kAtkAqua,
+    kAtkThunder,
+    kAtkFlower,
+    kAtkIce,
+    kAtkWind,
+    kDefNone,
+    kDefFire,
+    kDefAqua,
+    kDefThunder,
+    kDefFlower,
+    kDefIce,
+    kDefWind,
+    kAtkAll,
+    kDefAll,
+    kHeal,
+    kMoney,
+    kCharge,
+    kSpeed,
+    kMaxHP
   };
-  const int attrATKperLEVEL = 15;
-  const int attrDEFperLEVEL = 15;
-  const int allATKperLEVEL = 6;
-  const int allDEFperLEVEL = 6;
-  const double healPerLEVEL = 0.5;
-  const int moneyPerLEVEL = 10;
-  const int chargePerLEVEL = 2;
-  const int speedPerLEVEL = 2;
-  const int maxHPperLEVEL = 10;
+  const int attr_atk_per_level_ = 15;
+  const int attr_def_per_level_ = 15;
+  const int all_atk_per_level_ = 6;
+  const int all_def_per_level_ = 6;
+  const double heal_per_level_ = 0.5;
+  const int money_per_level_ = 10;
+  const int charge_per_level_ = 2;
+  const int speed_per_level_ = 2;
+  const int maxHP_per_level_ = 10;
 
-  std::random_device rnd;
-  std::mt19937 engine;
+  std::random_device rnd_;
+  std::mt19937 engine_;
   CPassiveSkill();
+
   friend Singleton<CPassiveSkill>;
 };

@@ -2,17 +2,17 @@
 
 #include "CImageManager.h"
 
-CField_Error::CField_Error(std::string gid, CVector position)
-    : CField(gid, position, CVector(32, 32), COF(), 0, CAttribute(0.0)) {}
+CField_Error::CField_Error(std::string gid, CVector position_)
+    : CField(gid, position_, CVector(32, 32), COF(), 0, CAttribute(0.0)) {}
 
 void CField_Error::Update() {}
 
 void CField_Error::Render() const {
-  CImageManager::getIns()
-      .find("Field_Error")
-      ->DrawRota(Position, 0.0f, 1.0f, -1);
+  CImageManager::GetIns()
+      .Find("Field_Error")
+      ->DrawRota(position_, 0.0f, 1.0f, -1);
 }
 
-CField* CField_Error::Clone(CVector position) {
-  return new CField_Error(GID, position);
+CField* CField_Error::Clone(CVector position_) {
+  return new CField_Error(gid_, position_);
 }

@@ -8,38 +8,39 @@
 
 class CTextDrawer : public Singleton<CTextDrawer> {
  public:
-  struct Text {
-    std::string text;
-    CVector position;
-    int mainColor;
-    int edgeColor;
-    int fontID;
-
-    Text(std::string text, CVector position, int mainColor, int edgeColor,
+  class Text {
+   public:
+    Text(std::string text, CVector position_, int mainColor, int edgeColor,
          int fontID)
-        : text(text),
-          position(position),
-          mainColor(mainColor),
-          edgeColor(edgeColor),
-          fontID(fontID) {}
+        : text_(text),
+          position_(position_),
+          main_color_(mainColor),
+          edge_color_(edgeColor),
+          fontID_(fontID) {}
     Text() {}
+
+    std::string text_;
+    CVector position_;
+    int main_color_;
+    int edge_color_;
+    int fontID_;
   };
-  void setPriority(int p) { priority = p; }
+  void SetPriority(int p) { priority_ = p; }
   void Register(Text txt);
   void RegisterForCostumeDetail(Text txt);
   void Render() const;
   void Clear();
 
  private:
-  int priority;  //一番上のシーンからしか受け取らない！
-  std::vector<int> fontArray;
-  std::list<Text> textQueue;
-  std::list<Text> costumeDetailQueue;
-
-  std::string font_path;
-
   CTextDrawer();
   ~CTextDrawer();
+
+  int priority_;  //一番上のシーンからしか受け取らない！
+  std::vector<int> font_array_;
+  std::list<Text> text_queue_;
+  std::list<Text> costume_detail_queue_;
+
+  std::string font_path_;
 
   friend class Singleton<CTextDrawer>;
 };

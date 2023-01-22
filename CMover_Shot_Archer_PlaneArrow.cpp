@@ -5,18 +5,18 @@
 CMover_Shot_Archer_PlaneArrow::CMover_Shot_Archer_PlaneArrow(CAttribute baseATK,
                                                              CVector position,
                                                              double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).NONE(40), position, 24,
+    : CMover_ShotBase(baseATK, CAttribute(0.0).None(40), position, 24,
                       CVector(angle) * 24.0, 0.2, COF(0.0, 0.5, 0.15, 0.0),
                       0x7F7F7F) {}
 
 int CMover_Shot_Archer_PlaneArrow::Update() {
-  if (Velocity.getLength2() < Constant::zero_border) setStatus(STATUS::DEAD);
-  return Status;
+  if (velocity_.GetLength2() < Constant::kZeroBorder) SetStatus(Status::kDead);
+  return status_;
 }
 
 void CMover_Shot_Archer_PlaneArrow::Render() const {
-  CImageManager::getIns()
-      .find("shot_archer_arrow")
-      ->DrawRotaF(Position.x, Position.y, Velocity.getAngle(), 1.0,
-                  Constant::priority_shot, 0);
+  CImageManager::GetIns()
+      .Find("shot_archer_arrow")
+      ->DrawRota(position_, velocity_.GetAngle(), 1.0,
+                  Constant::kPriorityShot, 0);
 }

@@ -15,7 +15,7 @@ class Scene_Gameover : public Scene_Abstract {
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CTextDrawer::Text text[3];
-  int cnt;
+  std::weak_ptr<CSTGInputManager> input_;
+  CTextDrawer::Text text_[3];
+  int cnt_;
 };

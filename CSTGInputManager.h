@@ -2,39 +2,6 @@
 #include "CVector.h"
 
 class CSTGInputManager {
- protected:
-  enum STG_KEYCODE {
-    NO_CONFIG = -1,
-    SK_UP,
-    SK_DOWN,
-    SK_RIGHT,
-    SK_LEFT,
-    SK_A,
-    SK_B,
-    SK_C,
-    SK_SLOW,
-    SK_START,
-    SK_SELECT
-  };
-
-  int pushedFrame[10];
-  int mx, my;
-  int clickedFrame[3][2];
-  bool isMouseShown;
-
-  struct ConfigData {
-    int Up;
-    int Down;
-    int Right;
-    int Left;
-    int A;
-    int B;
-    int C;
-    int Slow;
-    int Start;
-    int Select;
-  } ConfDat;
-
  public:
   CSTGInputManager();
   virtual ~CSTGInputManager(){};
@@ -57,14 +24,47 @@ class CSTGInputManager {
   int MouseX();
   int MouseY();
 
-  CVector getVector();
-  int getDirection();
+  CVector GetVector();
+  int GetDirection();
 
-  float getMouseAngle(CVector p);
+  float GetMouseAngle(CVector p);
 
-  virtual int isChanged() = 0;
-  virtual int update() = 0;
+  virtual int IsChanged() = 0;
+  virtual int Update() = 0;
 
   virtual void SetMouseVisible() = 0;
   virtual void SetMouseInvisible() = 0;
+
+ protected:
+  struct ConfigData {
+    int up;
+    int down;
+    int right;
+    int left;
+    int a;
+    int b;
+    int c;
+    int slow;
+    int start;
+    int select;
+  } config_data_;
+
+  enum StgKeycode {
+    kNoConfig = -1,
+    kUp,
+    kDown,
+    kRight,
+    kLeft,
+    kA,
+    kB,
+    kC,
+    kSlow,
+    kStart,
+    kSelect
+  };
+
+  int pushed_frame_[10];
+  int mx_, my_;
+  int clicked_frame_[3][2];
+  bool is_mouse_shown_;
 };

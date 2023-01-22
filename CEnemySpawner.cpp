@@ -3,19 +3,19 @@
 #include "CGameMediator.h"
 
 CEnemySpawner::CEnemySpawner(CGameMediator* mp, CVector pos, int level,
-                             Spawner_Desc desc)
-    : mp(mp), pos(pos), desc(desc), level(level), CEF() {}
+                             SpawnerDesc desc)
+    : med_ptr_(mp), pos_(pos), desc_(desc), level_(level), enemy_factory_() {}
 
 int CEnemySpawner::Update() {
-  if (desc.timeToSpawn == 0) {
-    if ((rand() - (rand.min)()) / (double)(rand.max)() >
-        desc.spawnProbability * 0.01)
+  if (desc_.time_to_spawn_ == 0) {
+    if ((rand_() - (rand_.min)()) / (double)(rand_.max)() >
+        desc_.spawn_probability_ * 0.01)
       return 1;
-    for (int i = 0; i < desc.countOfSpawn; i++) {
-      mp->RegisterMover(CEF.create(desc.GID, pos, level + GetRand(2)));
+    for (int i = 0; i < desc_.count_of_spawn_; i++) {
+      med_ptr_->RegisterMover(enemy_factory_.Create(desc_.gid, pos_, level_ + GetRand(2)));
     }
     return 1;
   }
-  --desc.timeToSpawn;
+  --desc_.time_to_spawn_;
   return 0;
 }

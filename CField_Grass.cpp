@@ -4,72 +4,72 @@
 
 #include "CEffect_Bright.h"
 
-CField_Grass::CField_Grass(std::string gid, CVector position)
-    : CField(gid, position, CVector(32.0, 32.0), COF().setFrictionCF(0.7), 0),
-      animCount(0),
-      BurningTime(0),
-      state(0),
-      Fertile(0) {
+CField_Grass::CField_Grass(std::string gid, CVector position_)
+    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.7), 0),
+      animation_cnt_(0),
+      burning_time_(0),
+      state_(0),
+      fertile_(0) {
   if (GetRand(3) != 0)
-    decoration = 0;
+    decoration_ = 0;
   else {
     if (GetRand(1) == 0)
-      decoration = 1;
+      decoration_ = 1;
     else
-      decoration = 2;
+      decoration_ = 2;
   }
 }
 
 void CField_Grass::Update() {
-  switch (state) {
+  switch (state_) {
     case 0:
-      if (Temperature > 100.0) {
-        state = 1;
-        BurningTime = 600;
+      if (temperature_ > 100.0) {
+        state_ = 1;
+        burning_time_ = 600;
       }
       break;
     case 1:
-      Damage.FIRE(8.0);
-      animCount += 0.15;
-      animCount = std::fmod(animCount, 3);
-      BurningTime--;
-      if (BurningTime < 0 || Temperature < 0) {
-        state = 2;
+      damage_.Fire(8.0);
+      animation_cnt_ += 0.15;
+      animation_cnt_ = std::fmod(animation_cnt_, 3);
+      burning_time_--;
+      if (burning_time_ < 0 || temperature_ < 0) {
+        state_ = 2;
       }
       break;
     case 2:
-      Damage = CAttribute(0.0);
-      if (Fertile > 200.0) {
-        state = 0;
-        Temperature = 0;
+      damage_ = CAttribute(0.0);
+      if (fertile_ > 200.0) {
+        state_ = 0;
+        temperature_ = 0;
       }
       break;
   }
 }
 
 void CField_Grass::Render() const {
-  if (state == 0)
-    CImageManager::getIns()
-        .find("Field_Grass")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
-                   decoration);
+  if (state_ == 0)
+    CImageManager::GetIns()
+        .Find("Field_Grass")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
+                   decoration_);
   else
-    CImageManager::getIns()
-        .find("Field_Grass")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
+    CImageManager::GetIns()
+        .Find("Field_Grass")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
                    28);
 
-  if (state == 1) {
-    CEffect_Bright::getIns().Register(
-        CEffect_Bright::BrightDesc(Position, 128 - GetRand(16), 216));
-    CImageManager::getIns()
-        .find("effect_flame")
-        ->DrawRotaFwithBlend(Position.x, Position.y, GetRand(16) / 256.0f, 1.0,
-                             0xFFFFFF, CImageManager::BM_ADD, 216,
-                             Constant::priority_effect, (unsigned int)animCount);
+  if (state_ == 1) {
+    CEffect_Bright::GetIns().Register(
+        CEffect_Bright::BrightDesc(position_, 128 - GetRand(16), 216));
+    CImageManager::GetIns()
+        .Find("effect_flame")
+        ->DrawRotaFwithBlend(position_.x, position_.y, GetRand(16) / 256.0f, 1.0,
+                             0xFFFFFF, CImageManager::kAdd, 216,
+                             Constant::kPriorityEffect, (unsigned int)animation_cnt_);
   }
 }
 
-CField* CField_Grass::Clone(CVector position) {
-  return new CField_Grass(GID, position);
+CField* CField_Grass::Clone(CVector position_) {
+  return new CField_Grass(gid_, position_);
 }

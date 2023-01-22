@@ -8,17 +8,18 @@
 #include "IRenderReserve.h"
 
 class CRenderReserveList {
-  static std::list<IRenderReserve*> list;
-
  public:
   inline static void Add(IRenderReserve* v) {
-    if (v->x - v->w > Constant::ScreenW + 32 || v->x + v->w < -32 ||
-        v->y - v->h > Constant::ScreenH + 32 || v->y + v->h < -32) {
+    if (v->x_ - v->w_ > Constant::kScreenW + 32 || v->x_ + v->w_ < -32 ||
+        v->y_ - v->h_ > Constant::kScreenH + 32 || v->y_ + v->h_ < -32) {
       delete v;
       return;
     }
-    list.push_back(v);
+    list_.push_back(v);
   }
   static void Render();
+
+ private:
+  static std::list<IRenderReserve*> list_;
   friend IRenderReserve;
 };

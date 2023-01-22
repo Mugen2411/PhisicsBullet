@@ -4,36 +4,36 @@
 
 #include "CEffect_Bright.h"
 
-CField_Lava::CField_Lava(std::string gid, CVector position, double temperature)
-    : CField(gid, position, CVector(32.0, 32.0), COF().setFrictionCF(0.6),
+CField_Lava::CField_Lava(std::string gid, CVector position_, double temperature)
+    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.6),
              temperature, CAttribute(0.0)) {}
 
 void CField_Lava::Update() {
-  if (Temperature < 0) {
-    Cofs.setWaterResCF(0.0).setFrictionCF(0.6);
-    Damage = CAttribute(0.0);
+  if (temperature_ < 0) {
+    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.6);
+    damage_ = CAttribute(0.0);
   } else {
-    Cofs.setWaterResCF(0.9).setFrictionCF(0.1);
-    Damage = CAttribute(0.0).NONE(0.0).FIRE(15.0);
+    cofs_.SetWaterResCF(0.9).SetFrictionCF(0.1);
+    damage_ = CAttribute(0.0).None(0.0).Fire(15.0);
   }
 }
 
 void CField_Lava::Render() const {
-  if (Temperature < 0)
-    CImageManager::getIns()
-        .find("Field_Lava")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
+  if (temperature_ < 0)
+    CImageManager::GetIns()
+        .Find("Field_Lava")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
                    1);
   else {
-    CEffect_Bright::getIns().Register(
-        CEffect_Bright::BrightDesc(Position, 512 - GetRand(16), 64));
-    CImageManager::getIns()
-        .find("Field_Lava")
-        ->DrawRota(Position, 0.0, 1.0, Constant::priority_field,
+    CEffect_Bright::GetIns().Register(
+        CEffect_Bright::BrightDesc(position_, 512 - GetRand(16), 64));
+    CImageManager::GetIns()
+        .Find("Field_Lava")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityField,
                    0);
   }
 }
 
-CField* CField_Lava::Clone(CVector position) {
-  return new CField_Lava(GID, position, Temperature);
+CField* CField_Lava::Clone(CVector position_) {
+  return new CField_Lava(gid_, position_, temperature_);
 }

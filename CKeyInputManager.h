@@ -4,30 +4,30 @@
 #include "CSTGInputManager.h"
 
 class CKeyInputManager final : public CSTGInputManager {
- private:
-  int KeyConfig[10];
-  int changed;
-
  public:
   CKeyInputManager()
       : CSTGInputManager(),
-        KeyConfig{KEY_INPUT_W,      KEY_INPUT_S,     KEY_INPUT_D, KEY_INPUT_A,
+        key_config_{KEY_INPUT_W,      KEY_INPUT_S,     KEY_INPUT_D, KEY_INPUT_A,
                   KEY_INPUT_E,      KEY_INPUT_SPACE, KEY_INPUT_X, KEY_INPUT_C,
                   KEY_INPUT_ESCAPE, KEY_INPUT_SPACE},
-        changed(0) {
-    load();
+        changed_(0) {
+    Load();
   }
-  int isChanged();
-  int update();
-  void load();
+  int IsChanged();
+  int Update();
+  void Load();
 
   void SetMouseVisible() {
-    isMouseShown = true;
-    SetMouseDispFlag(isMouseShown);
+    is_mouse_shown_ = true;
+    SetMouseDispFlag(is_mouse_shown_);
   }
 
   void SetMouseInvisible() {
-    isMouseShown = false;
-    SetMouseDispFlag(isMouseShown);
+    is_mouse_shown_ = false;
+    SetMouseDispFlag(is_mouse_shown_);
   }
+
+  private:
+  int key_config_[10];
+  int changed_;
 };

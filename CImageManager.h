@@ -9,25 +9,27 @@
 #include "Singleton.h"
 
 class CImageManager : public Singleton<CImageManager> {
-  std::map<std::string, std::shared_ptr<CImage>, std::less<>> imgList;
-
  public:
-  void set(std::string key, std::shared_ptr<CImage> img);
-  void unload();
-  std::shared_ptr<CImage> find(std::string key);
 
-  enum BLENDMODE {
-    BM_NONE = DX_BLENDMODE_NOBLEND,
-    BM_ADD = DX_BLENDMODE_ADD,
-    BM_SUB = DX_BLENDMODE_SUB,
-    BM_ALPHA = DX_BLENDMODE_ALPHA,
-    BM_MUL = DX_BLENDMODE_MUL
+  enum BlendMode {
+    kNone = DX_BLENDMODE_NOBLEND,
+    kAdd = DX_BLENDMODE_ADD,
+    kSub = DX_BLENDMODE_SUB,
+    kAlpha = DX_BLENDMODE_ALPHA,
+    kMult = DX_BLENDMODE_MUL
   };
+
+  void Set(std::string key, std::shared_ptr<CImage> img);
+  void Unload();
+  std::shared_ptr<CImage> Find(std::string key);
 
   void Render() const;
 
  protected:
   CImageManager();
+
+  private:
+  std::map<std::string, std::shared_ptr<CImage>, std::less<>> image_list_;
 
   friend class Singleton<CImageManager>;
 };

@@ -2,33 +2,33 @@
 
 #include "CImageManager.h"
 
-CEffect_EnemyDelete::CEffect_EnemyDelete(CVector position, double size,
+CEffect_EnemyDelete::CEffect_EnemyDelete(CVector position_, double size,
                                          int color, int duration)
-    : CEffect(position),
-      Size(size),
-      Color(color),
-      cnt(0),
-      animCount(0.0),
-      duration(duration) {}
+    : CEffect(position_),
+      size_(size),
+      color_(color),
+      cnt_(0),
+      animation_cnt_(0.0),
+      duration_(duration) {}
 
 void CEffect_EnemyDelete::Update() {
-  animCount += 8.0 / duration;
-  cnt++;
-  if (cnt > duration - 1) Status = 1;
+  animation_cnt_ += 8.0 / duration_;
+  cnt_++;
+  if (cnt_ > duration_ - 1) status_ = 1;
 }
 
 void CEffect_EnemyDelete::Render() const {
-  CImageManager::getIns()
-      .find("effect_bulletdelete")
+  CImageManager::GetIns()
+      .Find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
-          Position.x, Position.y, 0,
-          float(Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0f, Color,
-          CImageManager::BM_NONE, 255, Constant::priority_effect, (uint32_t)animCount);
-  CImageManager::getIns()
-      .find("effect_bulletdelete")
+          position_.x, position_.y, 0,
+          float(size_ * (1 - std::powl(1 - (double)cnt_ / duration_, 2))) / 16.0f, color_,
+          CImageManager::kNone, 255, Constant::kPriorityEffect, (uint32_t)animation_cnt_);
+  CImageManager::GetIns()
+      .Find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
-          Position.x, Position.y, 0,
-          float(Size * (1 - std::powl(1 - (double)cnt / duration, 2))) / 16.0f,
-          0xFFFFFF, CImageManager::BM_ADD, 255, Constant::priority_effect + 1,
-          (uint32_t)animCount);
+          position_.x, position_.y, 0,
+          float(size_ * (1 - std::powl(1 - (double)cnt_ / duration_, 2))) / 16.0f,
+          0xFFFFFF, CImageManager::kAdd, 255, Constant::kPriorityEffect + 1,
+          (uint32_t)animation_cnt_);
 }

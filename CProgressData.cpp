@@ -6,61 +6,61 @@
 #include "CPassiveSkill.h"
 
 CProgressData::CProgressData()
-    : currentStage(0),
-      maxStage(11),
-      earnedMoney(0),
-      data{0, 0, 0},
-      isEndless(false),
-      beforeStage(0xFF),
-      dev(),
-      eng(dev()) {}
+    : current_stage_(0),
+      max_stage_(11),
+      earned_money_(0),
+      data_{0, 0, 0},
+      is_endless_(false),
+      before_stage_(0xFF),
+      dev_(),
+      eng_(dev_()) {}
 
-void CProgressData::save() {
+void CProgressData::Save() {
   FILE* fp;
   errno_t err = fopen_s(&fp, "media/save/0.sav", "wb");
   if (err != 0) {
     MessageBox(NULL, "セーブデータの作成に失敗しました", "MugenApp", MB_OK);
     return;
   }
-  fwrite(&data, sizeof(progressData), 1, fp);
+  fwrite(&data_, sizeof(ProgressData), 1, fp);
   fclose(fp);
 }
 
-void CProgressData::load() {
+void CProgressData::Load() {
   FILE* fp;
   errno_t err = fopen_s(&fp, "media/save/0.sav", "rb");
   if (err != 0) {
     MessageBox(NULL, "セーブデータを新しく作成します", "MugenApp", MB_OK);
-    save();
+    Save();
     return;
   }
-  fread(&data, sizeof(progressData), 1, fp);
+  fread(&data_, sizeof(ProgressData), 1, fp);
   fclose(fp);
 }
 
-void CProgressData::win(int money) {
-  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
-  stageMoney =
-      400 * (int)std::ceil((currentStage + 1) * CPassiveSkill::getIns().getMoneyMult());
-  data.Money += earnedMoney;
-  data.Money += stageMoney;
-  if (!isEndless)
-    data.lastStage = (std::min)(maxStage - 1,
-                                (std::max)(data.lastStage, (currentStage + 1)));
+void CProgressData::Win(int money) {
+  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  stage_money_ =
+      400 * (int)std::ceil((current_stage_ + 1) * CPassiveSkill::GetIns().GetMoneyMult());
+  data_.money += earned_money_;
+  data_.money += stage_money_;
+  if (!is_endless_)
+    data_.last_stage = (std::min)(max_stage_ - 1,
+                                (std::max)(data_.last_stage, (current_stage_ + 1)));
 }
 
-void CProgressData::lose(int money) {
-  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
-  data.Money += earnedMoney;
-  if (!isEndless)
-    data.lastStage =
-        (std::min)(maxStage - 1, (std::max)(data.lastStage, (currentStage)));
+void CProgressData::Lose(int money) {
+  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  data_.money += earned_money_;
+  if (!is_endless_)
+    data_.last_stage =
+        (std::min)(max_stage_ - 1, (std::max)(data_.last_stage, (current_stage_)));
 }
 
-void CProgressData::retire(int money) {
-  earnedMoney = (int)std::ceil(money * CPassiveSkill::getIns().getMoneyMult());
-  data.Money += earnedMoney;
-  if (!isEndless)
-    data.lastStage =
-        (std::min)(maxStage - 1, (std::max)(data.lastStage, (currentStage)));
+void CProgressData::Retire(int money) {
+  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  data_.money += earned_money_;
+  if (!is_endless_)
+    data_.last_stage =
+        (std::min)(max_stage_ - 1, (std::max)(data_.last_stage, (current_stage_)));
 }

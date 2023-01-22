@@ -1,17 +1,17 @@
 #pragma once
 #include "Singleton.h"
 class KeyManager : public Singleton<KeyManager> {
- protected:
-  char buf[256];
-  int key[256];
-  int keycode[8];
-
  public:
-  enum KEY_CODE { UP, DOWN, RIGHT, LEFT, ENTER, CANCEL, OTHER, OTHER2 };
+  enum KEY_CODE { kUp, kDown, kRight, kLeft, kEnter, kCancel, kOther, kOther2 };
   KeyManager();
   ~KeyManager();
 
-  void update();
-  int get(int ID);
+  void Update();
+  int Get(int ID);
   int Get(KEY_CODE ID);
+
+ protected:
+  char buf_[256];
+  int key_[256];
+  int keycode_[8];
 };

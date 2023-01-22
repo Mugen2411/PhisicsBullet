@@ -1,13 +1,14 @@
 #pragma once
 #include "CEffect.h"
 class CEffect_MoneyNumber : public CEffect {
-  int num;
-  double dy;
-  int cnt;
-
  public:
-  CEffect_MoneyNumber(CVector position, int num);
+  CEffect_MoneyNumber(CVector position_, int num);
 
   void Update();
   void Render() const;
+
+ private:
+  int num_;
+  double dy_;
+  int cnt_;
 };

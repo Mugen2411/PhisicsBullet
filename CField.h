@@ -16,49 +16,35 @@ class CMover_ShotBase;
 class CMover_BulletBase;
 
 class CField {
- private:
-  int DamageInterval;
-
- protected:
-  CVector Position;
-  CVector Size;
-  COF Cofs;
-  double Temperature;
-  CAttribute Damage;
-
-  std::string GID;
-
  public:
-  CField(std::string gid, CVector position, CVector size, COF cofs,
+  CField(std::string gid, CVector position_, CVector size, COF cofs,
          double temperature, CAttribute damage = CAttribute(0.0),
-         bool isWall = false);
+         bool is_wall_ = false);
   virtual ~CField(){};
 
-  bool isWall;
-
-  inline bool operator==(std::string gid) const { return (gid == GID); }
-  inline bool isInScreen() {
-    const int Size = 32;
-    auto p = CAnchor::getIns().getAnchoredPosition(Position);
-    if (p.x + Size > 0 && p.x - Size < Constant::ScreenW && p.y + Size > 0 &&
-        p.y - Size < Constant::ScreenH)
+  inline bool operator==(std::string gid) const { return (gid == gid_); }
+  inline bool IsInScreen() {
+    const int size_ = 32;
+    auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
+    if (p.x + size_ > 0 && p.x - size_ < Constant::kScreenW && p.y + size_ > 0 &&
+        p.y - size_ < Constant::kScreenH)
       return true;
     return false;
   }
-  inline std::string getGID() { return GID; }
-  inline CAttribute getDamage() { return Damage; }
-  inline CVector getPosition() { return Position; }
-  inline CVector getSize() { return Size; }
+  inline std::string GetGID() { return gid_; }
+  inline CAttribute GetDamage() { return damage_; }
+  inline CVector GetPosition() { return position_; }
+  inline CVector GetSize() { return size_; }
 
-  virtual void setFrictionForce(CMover* m);
-  void attributeEffect(CMover* m){};
-  void attributeEffect(CMover_ShotBase* m);
-  void attributeEffect(CMover_BulletBase* m);
+  virtual void SetFrictionForce(CMover* m);
+  void AttributeEffect(CMover* m){};
+  void AttributeEffect(CMover_ShotBase* m);
+  void AttributeEffect(CMover_BulletBase* m);
 
-  virtual void attributeReaction(CAttribute) {}
+  virtual void AttributeReaction(CAttribute) {}
 
-  inline void Move(CVector p) { Position = p; }
-  virtual CField* Clone(CVector position) = 0;
+  inline void Move(CVector p) { position_ = p; }
+  virtual CField* Clone(CVector position_) = 0;
 
   virtual bool Hit(CMover* m) {
     return false;
@@ -67,6 +53,20 @@ class CField {
   virtual void Render() const;
 
   void Save(std::ofstream& fout);
+
+  bool is_wall_;
+
+ protected:
+  CVector position_;
+  CVector size_;
+  COF cofs_;
+  double temperature_;
+  CAttribute damage_;
+
+  std::string gid_;
+
+ private:
+  int damage_interval_;
 
   friend CFieldHolder;
 };

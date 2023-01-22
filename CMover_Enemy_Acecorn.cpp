@@ -7,95 +7,95 @@
 
 CMover_Enemy_Acecorn::CMover_Enemy_Acecorn(CVector position, int Level)
     : CMover_EnemyBase(30, Level, 1.35, 3.2,
-                       CAttribute(1.0).FIRE(0.5).FLOWER(3.0).AQUA(0.8), 80,
+                       CAttribute(1.0).Fire(0.5).Flower(3.0).Aqua(0.8), 80,
                        0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
-      testDest(0.0, 0.0),
-      focus(0.0) {}
+      test_dest_(0.0, 0.0),
+      focus_(0.0) {}
 
 int CMover_Enemy_Acecorn::Update() {
-  switch (state) {
+  switch (state_) {
     case 0:
-      if (cnt % 60 == 0) {
+      if (cnt_ % 60 == 0) {
         if (GetRand(5) == 0) {
-          cnt = 0;
-          findTargetByDistance(8);
-          state = 2;
-          return Status;
+          cnt_ = 0;
+          FindTargetByDistance(8);
+          state_ = 2;
+          return status_;
         } else
-          Find_Route(3);
+          FindRoute(3);
       }
-      if (!route.empty()) {
+      if (!route_.empty()) {
         Move_on_Route();
       } else {
-        CVector ppos = med->GetPlayerPosition();
-        focus = (ppos - Position).getAngle();
-        cnt = 0;
-        state = 1;
+        CVector ppos = med_->GetPlayerPosition();
+        focus_ = (ppos - position_).GetAngle();
+        cnt_ = 0;
+        state_ = 1;
         break;
       }
-      cnt++;
-      animCount += 0.3;
-      if (animCount > 4) animCount = 0;
+      cnt_++;
+      animation_cnt_ += 0.3;
+      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
-      if (cnt == 10) {
-        med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
-            baseParams, Position, focus, 6.0));
-        CSoundManager::getIns()
-            .find("pretty_throw")
-            ->Play(CSound::PLAYTYPE::PT_BACK);
+      if (cnt_ == 10) {
+        med_->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
+            base_params_, position_, focus_, 6.0));
+        CSoundManager::GetIns()
+            .Find("pretty_throw")
+            ->Play(CSound::PlayType::kBack);
       }
-      if (cnt > 20) {
-        state = 0;
-        cnt = 0;
+      if (cnt_ > 20) {
+        state_ = 0;
+        cnt_ = 0;
         break;
       }
-      animCount += 0.3;
-      if (animCount > 4) animCount = 0;
-      cnt++;
+      animation_cnt_ += 0.3;
+      if (animation_cnt_ > 4) animation_cnt_ = 0;
+      cnt_++;
       break;
     case 2:
-      if (!route.empty()) {
+      if (!route_.empty()) {
         Move_on_Route();
       } else {
-        CVector ppos = med->GetPlayerPosition();
-        focus = (ppos - Position).getAngle();
+        CVector ppos = med_->GetPlayerPosition();
+        focus_ = (ppos - position_).GetAngle();
         for (int i = 0; i < 12; i++) {
-          med->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
-              baseParams, Position, focus + Constant::PI2 / 12 * i, 6.5));
+          med_->RegisterMover(std::make_shared<CMover_Bullet_Corn>(
+              base_params_, position_, focus_ + Constant::kPI2 / 12 * i, 6.5));
         }
-        cnt = 0;
-        state = 0;
+        cnt_ = 0;
+        state_ = 0;
       }
-      cnt++;
+      cnt_++;
       break;
     case -1:
-      animCount += 0.1;
-      if (animCount > 4) {
-        state = 0;
-        Find_Route(3);
-        animCount = 0;
-        cnt = 0;
+      animation_cnt_ += 0.1;
+      if (animation_cnt_ > 4) {
+        state_ = 0;
+        FindRoute(3);
+        animation_cnt_ = 0;
+        cnt_ = 0;
       }
       break;
   }
-  return Status;
+  return status_;
 }
 
 void CMover_Enemy_Acecorn::Render() const {
-  if (state < 0) {
-    CImageManager::getIns()
-        .find("enemy_bud_intro")
-        ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                   (int)(animCount));
+  if (state_ < 0) {
+    CImageManager::GetIns()
+        .Find("enemy_bud_intro")
+        ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+                   (int)(animation_cnt_));
     return;
   }
-  CImageManager::getIns()
-      .find("enemy_acecorn")
-      ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                 Direction * 4 + (int)(animCount));
+  CImageManager::GetIns()
+      .Find("enemy_acecorn")
+      ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+                 direction_ * 4 + (int)(animation_cnt_));
 }
 
-CMover_EnemyBase* CMover_Enemy_Acecorn::Clone(CVector Position, int Level) {
-  return new CMover_Enemy_Acecorn(Position, Level);
+CMover_EnemyBase* CMover_Enemy_Acecorn::Clone(CVector position, int Level) {
+  return new CMover_Enemy_Acecorn(position, Level);
 }

@@ -3,8 +3,6 @@
 
 #include "Constant.h"
 
-const double PI = 3.141592653589;
-
 class CVector {
  public:
   CVector();
@@ -58,24 +56,24 @@ class CVector {
     }
   }
   inline bool operator==(CVector v) const {
-    if (abs(x - v.x) < Constant::zero_border &&
-        abs(y - v.y) < Constant::zero_border)
+    if (abs(x - v.x) < Constant::kZeroBorder &&
+        abs(y - v.y) < Constant::kZeroBorder)
       return true;
     return false;
   }
 
-  inline double dot(CVector const v) const {
+  inline double Dot(CVector const v) const {
     return this->x * v.x + this->y * v.y;
   }
-  inline double cross(CVector const v) const { return v.x * y - v.y * x; }
-  inline double getLength2() const { return x * x + y * y; }
-  inline double getLength() const { return sqrt(getLength2()); }
-  inline float getAngle() const { return (float)atan2(y, x); }
-  int getDirection();
-  CVector getNorm() const;
+  inline double Cross(CVector const v) const { return v.x * y - v.y * x; }
+  inline double GetLength2() const { return x * x + y * y; }
+  inline double GetLength() const { return sqrt(GetLength2()); }
+  inline float GetAngle() const { return (float)atan2(y, x); }
+  int GetDirection();
+  CVector GetNorm() const;
 
-  inline void zero() {
-    if (getLength2() < Constant::zero_border) {
+  inline void Zero() {
+    if (GetLength2() < Constant::kZeroBorder) {
       x *= 0.0001;
       y *= 0.0001;
     }

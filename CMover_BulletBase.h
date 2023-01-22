@@ -9,12 +9,12 @@ class CField;
 
 class CMover_BulletBase : public CMover {
  protected:
-  CAttribute ATK;
-  CStatus baseParams;
-  int color;
+  CAttribute atk_;
+  CStatus base_params_;
+  int color_;
 
  public:
-  CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position,
+  CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position_,
                     double size, CVector velocity, double mass, COF cofs,
                     int color);
 
@@ -26,7 +26,7 @@ class CMover_BulletBase : public CMover {
   virtual void Dead();       //‘¼ŽE
   virtual void Disappear();  //Ž©ŽE
 
-  CAttribute getBaseAttribute() { return ATK; }
+  CAttribute GetBaseAttribute() { return atk_; }
   void Damage(CAttribute shotATK, int style);
   void RatioDamage(CAttribute shotATK, int style);
   CAttribute TestDamage(CAttribute shotATK) { return CAttribute(0.0); }

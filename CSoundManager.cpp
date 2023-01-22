@@ -3,54 +3,54 @@
 #include "CProgressData.h"
 
 CSoundManager::CSoundManager() {
-  sndList["player_dead"] =
+  sound_list_["player_dead"] =
       std::make_shared<CSound>("media/sound/se/player_dead.wav");
-  sndList["player_hit"] =
+  sound_list_["player_hit"] =
       std::make_shared<CSound>("media/sound/se/player_hit.wav");
-  sndList["enemy_kill"] =
+  sound_list_["enemy_kill"] =
       std::make_shared<CSound>("media/sound/se/enemy_kill.wav");
-  sndList["enemy_hit"] =
+  sound_list_["enemy_hit"] =
       std::make_shared<CSound>("media/sound/se/enemy_hit.wav");
-  sndList["shot_superball"] =
+  sound_list_["shot_superball"] =
       std::make_shared<CSound>("media/sound/se/superball.wav");
-  sndList["shot_cork"] = std::make_shared<CSound>("media/sound/se/cork.wav");
-  sndList["cursor"] = std::make_shared<CSound>("media/sound/se/cursor.wav");
-  sndList["money"] = std::make_shared<CSound>("media/sound/se/money.wav");
-  sndList["success"] = std::make_shared<CSound>("media/sound/se/success.wav");
-  sndList["bat_swing"] =
+  sound_list_["shot_cork"] = std::make_shared<CSound>("media/sound/se/cork.wav");
+  sound_list_["cursor"] = std::make_shared<CSound>("media/sound/se/cursor.wav");
+  sound_list_["money"] = std::make_shared<CSound>("media/sound/se/money.wav");
+  sound_list_["success"] = std::make_shared<CSound>("media/sound/se/success.wav");
+  sound_list_["bat_swing"] =
       std::make_shared<CSound>("media/sound/se/bat_swing.wav");
-  sndList["throw"] = std::make_shared<CSound>("media/sound/se/throw.wav");
-  sndList["glassBreak"] =
+  sound_list_["throw"] = std::make_shared<CSound>("media/sound/se/throw.wav");
+  sound_list_["glassBreak"] =
       std::make_shared<CSound>("media/sound/se/glassBreak.wav");
-  sndList["little_fire"] =
+  sound_list_["little_fire"] =
       std::make_shared<CSound>("media/sound/se/little_fire.wav");
-  sndList["little_magic"] =
+  sound_list_["little_magic"] =
       std::make_shared<CSound>("media/sound/se/little_magic.wav");
-  sndList["middle_magic"] =
+  sound_list_["middle_magic"] =
       std::make_shared<CSound>("media/sound/se/middle_magic.wav");
-  sndList["pretty_throw"] =
+  sound_list_["pretty_throw"] =
       std::make_shared<CSound>("media/sound/se/pretty_throw.wav");
-  sndList["splash"] = std::make_shared<CSound>("media/sound/se/splash.wav");
+  sound_list_["splash"] = std::make_shared<CSound>("media/sound/se/splash.wav");
 
-  sndList["bgm"] = std::make_shared<CSound>("media/sound/bgm/farm.ogg");
+  sound_list_["bgm"] = std::make_shared<CSound>("media/sound/bgm/farm.ogg");
 }
 
-void CSoundManager::unload() {
-  for (auto& i : sndList) {
+void CSoundManager::Unload() {
+  for (auto& i : sound_list_) {
     i.second->Release();
   }
 }
 
-std::shared_ptr<CSound> CSoundManager::find(std::string key) {
-  auto itr = sndList[key];
+std::shared_ptr<CSound> CSoundManager::Find(std::string key) {
+  auto itr = sound_list_[key];
   itr->Load();
   return itr;
 }
 
 void CSoundManager::LoadBGM(std::string path) {
-  if (CProgressData::getIns().getFMorPCM()) {
+  if (CProgressData::GetIns().GetFMorPCM()) {
     for (int i = 0; i < 4; i++) path.pop_back();
     path += "_FM.ogg";
   }
-  sndList["bgm"] = std::make_shared<CSound>(path);
+  sound_list_["bgm"] = std::make_shared<CSound>(path);
 }

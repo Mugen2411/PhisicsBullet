@@ -1,8 +1,8 @@
 #include "CPower.h"
 
 CPower::CPower(CVector position, double power, int duration)
-    : parent(nullptr),
-      Position(position),
-      Power(power),
-      duration(duration),
-      cnt(0) {}
+    : parent_(nullptr),
+      position_(position),
+      power_(power),
+      duration_(duration),
+      cnt_(0) {}

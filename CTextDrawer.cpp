@@ -3,41 +3,41 @@
 #include <DxLib.h>
 
 CTextDrawer::CTextDrawer()
-    : font_path("media/font/Nosutaru-dotMPlusH-10-Regular.ttf"), priority(0) {
-  AddFontResourceEx(font_path.c_str(), FR_PRIVATE, NULL);
-  fontArray.emplace_back(
+    : font_path_("media/font/Nosutaru-dotMPlusH-10-Regular.ttf"), priority_(0) {
+  AddFontResourceEx(font_path_.c_str(), FR_PRIVATE, NULL);
+  font_array_.emplace_back(
       CreateFontToHandle("ノスタルドット（M+）", 12, 1, DX_FONTTYPE_EDGE));
-  fontArray.emplace_back(
+  font_array_.emplace_back(
       CreateFontToHandle("ノスタルドット（M+）", 36, 1, DX_FONTTYPE_EDGE));
-  fontArray.emplace_back(
+  font_array_.emplace_back(
       CreateFontToHandle("ノスタルドット（M+）", 60, 1, DX_FONTTYPE_EDGE));
 }
 
 CTextDrawer::~CTextDrawer() {
-  RemoveFontResourceEx(font_path.c_str(), FR_PRIVATE, NULL);
+  RemoveFontResourceEx(font_path_.c_str(), FR_PRIVATE, NULL);
 }
 
 void CTextDrawer::Register(Text txt) {
-  if (priority != 0) return;
-  textQueue.push_back(txt);
+  if (priority_ != 0) return;
+  text_queue_.push_back(txt);
 }
 
 void CTextDrawer::RegisterForCostumeDetail(Text txt) {
-  costumeDetailQueue.push_back(txt);
+  costume_detail_queue_.push_back(txt);
 }
 
 void CTextDrawer::Render() const {
-  for (auto& i : textQueue) {
-    DrawStringToHandle((int)i.position.x, (int)i.position.y, i.text.c_str(), i.mainColor,
-                       fontArray[i.fontID], i.edgeColor);
+  for (auto& i : text_queue_) {
+    DrawStringToHandle((int)i.position_.x, (int)i.position_.y, i.text_.c_str(), i.main_color_,
+                       font_array_[i.fontID_], i.edge_color_);
   }
-  for (auto& i : costumeDetailQueue) {
-    DrawFormatStringToHandle((int)i.position.x, (int)i.position.y, i.mainColor,
-                             fontArray[i.fontID], i.text.c_str());
+  for (auto& i : costume_detail_queue_) {
+    DrawFormatStringToHandle((int)i.position_.x, (int)i.position_.y, i.main_color_,
+                             font_array_[i.fontID_], i.text_.c_str());
   }
 }
 
 void CTextDrawer::Clear() {
-  textQueue.clear();
-  costumeDetailQueue.clear();
+  text_queue_.clear();
+  costume_detail_queue_.clear();
 }

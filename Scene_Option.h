@@ -14,17 +14,17 @@ class Scene_Option : public Scene_Abstract {
     char n[256];
     GetModuleFileName(NULL, n, 256);
     ShellExecute(NULL, "open", n, NULL, NULL, SW_SHOW);
-    scn_mng->ChangeScene(Constant::SCENE_ID::SCENE_QUIT, NULL);
+    scene_manager_->ChangeScene(Constant::SceneID::kSceneQuit, NULL);
   }
 
   void Update();
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CTextDrawer::Text text[4];
-  std::string scalingOption[2];
-  std::string soundOption[2];
-  CMenuSelecter CMS;
-  int cnt;
+  std::weak_ptr<CSTGInputManager> input_;
+  CTextDrawer::Text text_[4];
+  std::string scaling_option_[2];
+  std::string sound_option_[2];
+  CMenuSelector menu_selector_;
+  int cnt_;
 };

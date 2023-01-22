@@ -2,13 +2,14 @@
 #include "CField_Wall.h"
 
 class CField_Wall_Vegetable : public CField_Wall {
-  int state;
-
  public:
-  CField_Wall_Vegetable(std::string gid, CVector position, int state);
+  CField_Wall_Vegetable(std::string gid, CVector position_, int state_);
 
   void Update();
   void Render() const;
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
+
+ private:
+  int state_;
 };

@@ -1,16 +1,17 @@
 #pragma once
 #include "CField_Wall.h"
 class CField_Wall_Log : public CField_Wall {
-  double animCount;
-  int state;
-  int BurningTime;
-
  public:
-  // state = 0:‘ 1:‰Šã’† 2:Å‚°
-  CField_Wall_Log(std::string gid, CVector position, int state);
+  // state_ = 0:‘ 1:‰Šã’† 2:Å‚°
+  CField_Wall_Log(std::string gid, CVector position_, int state_);
 
   void Update();
   void Render() const;
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
+
+ private:
+  double animation_cnt_;
+  int state_;
+  int burning_time_;
 };

@@ -10,22 +10,22 @@
 #include "CFieldFactory.h"
 #include "CSoundManager.h"
 
-CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath) {
+CFieldHolder::CFieldHolder(std::string filepath) : filepath_(filepath) {
   if (Load() == 0) {
-    dist = std::vector<std::vector<double>>(width);
-    for (auto& i : dist) {
-      i = std::vector<double>(height, Constant::dbl_INF);
+    dist_ = std::vector<std::vector<double>>(width_);
+    for (auto& i : dist_) {
+      i = std::vector<double>(height_, Constant::kDoubleInfinity);
     }
-    g = std::vector<std::vector<double>>(width);
-    for (auto& i : g) {
-      i = std::vector<double>(height, 0.0);
+    g_ = std::vector<std::vector<double>>(width_);
+    for (auto& i : g_) {
+      i = std::vector<double>(height_, 0.0);
     }
-    diff = std::vector<std::vector<int>>(width);
-    for (auto& i : diff) {
-      i = std::vector<int>(height, 0);
+    diff_ = std::vector<std::vector<int>>(width_);
+    for (auto& i : diff_) {
+      i = std::vector<int>(height_, 0);
     }
-    pre = std::vector<std::vector<CVector>>(
-        width, std::vector<CVector>(height, CVector(-1, -1)));
+    pre_ = std::vector<std::vector<CVector>>(
+        width_, std::vector<CVector>(height_, CVector(-1, -1)));
     return;
   } else {
     OutputDebugString("Stage Load Error");
@@ -35,51 +35,51 @@ CFieldHolder::CFieldHolder(std::string filepath) : filePath(filepath) {
 
 CFieldHolder::~CFieldHolder() {}
 
-void CFieldHolder::writefloor(CField* f, CVector pos) {
-  if (0 > pos.x || pos.x >= width || 0 > pos.y || pos.y >= height) return;
-  floorlist[(uint64_t)(width * pos.y + pos.x)].reset(f);
+void CFieldHolder::WriteFloor(CField* f, CVector pos) {
+  if (0 > pos.x || pos.x >= width_ || 0 > pos.y || pos.y >= height_) return;
+  floor_list_[(uint64_t)(width_ * pos.y + pos.x)].reset(f);
 }
 
-void CFieldHolder::writewall(CField* f, CVector pos) {
-  if (0 > pos.x || pos.x >= width || 0 > pos.y || pos.y >= height) return;
-  walllist[(uint64_t)(width * pos.y + pos.x)].reset(f);
+void CFieldHolder::WriteWall(CField* f, CVector pos) {
+  if (0 > pos.x || pos.x >= width_ || 0 > pos.y || pos.y >= height_) return;
+  wall_list_[(uint64_t)(width_ * pos.y + pos.x)].reset(f);
 }
 
 void CFieldHolder::Update() {
-  for (auto& i : walllist) {
+  for (auto& i : wall_list_) {
     i->Update();
   }
-  for (auto& i : floorlist) {
+  for (auto& i : floor_list_) {
     i->Update();
   }
 }
 
 void CFieldHolder::Render() const {
-  for (auto& i : walllist) {
+  for (auto& i : wall_list_) {
     i->Render();
   }
-  for (auto& i : floorlist) {
+  for (auto& i : floor_list_) {
     i->Render();
   }
 }
 
-void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
+void CFieldHolder::ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
                                   CGameMediator* med, int level,
                                   CVector& playerPos) {
-  std::string fn = filePath;
-  std::vector<Spawner_Desc> sdList;
+  std::string fn = filepath_;
+  std::vector<SpawnerDesc> sdList;
   for (int i = 0; i < 3; i++) fn.pop_back();
   fn += "spn";
   int fp = FileRead_open(fn.c_str());
   char buf[256];
   std::string tmp;
-  for (int i = 0; i < Constant::NumEnemySpawner; i++) {
+  for (int i = 0; i < Constant::kNumEnemySpawner; i++) {
     for (auto& b : buf) {
       b = '\0';
     }
     if (FileRead_gets(buf, 256, fp) == -1) break;
     int cnt = 0;
-    Spawner_Desc desc = Spawner_Desc();
+    SpawnerDesc desc = SpawnerDesc();
     std::stringstream stream(std::string(buf, 256), std::ios::in);
     while (std::getline(stream, tmp, ',')) {
       if (tmp.empty()) break;
@@ -87,16 +87,16 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
         case 0:
           break;
         case 1:
-          desc.GID = tmp;
+          desc.gid = tmp;
           break;
         case 2:
-          desc.timeToSpawn = std::stoi(tmp);
+          desc.time_to_spawn_ = std::stoi(tmp);
           break;
         case 3:
-          desc.countOfSpawn = std::stoi(tmp);
+          desc.count_of_spawn_ = std::stoi(tmp);
           break;
         case 4:
-          desc.spawnProbability = std::stoi(tmp);
+          desc.spawn_probability_ = std::stoi(tmp);
           break;
       }
       ++cnt;
@@ -104,33 +104,33 @@ void CFieldHolder::convertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
     sdList.emplace_back(desc);
   }
   FileRead_close(fp);
-  CFieldFactory CFF;
-  size_t end = walllist.size();
+  CFieldFactory field_factory_;
+  size_t end = wall_list_.size();
   for (int i = 0; i < end; i++) {
-    tmp = walllist[i]->getGID();
+    tmp = wall_list_[i]->GetGID();
     if (tmp[0] == 'E') {
       es.push_back(
-          std::make_unique<CEnemySpawner>(med, walllist[i]->Position, level,
+          std::make_unique<CEnemySpawner>(med, wall_list_[i]->position_, level,
                                           sdList[std::stoi(tmp.erase(0, 1))]));
-      walllist[i].reset(CFF.create(walllist[i]->Position, "W_Void"));
+      wall_list_[i].reset(field_factory_.create(wall_list_[i]->position_, "W_Void"));
     }
     if (tmp[0] == 'P') {
-      playerPos = walllist[i]->Position;
-      walllist[i].reset(CFF.create(walllist[i]->Position, "W_Void"));
+      playerPos = wall_list_[i]->position_;
+      wall_list_[i].reset(field_factory_.create(wall_list_[i]->position_, "W_Void"));
     }
   }
 }
 
-void CFieldHolder::readDefine() {
-  std::string fn = filePath;
-  std::vector<Spawner_Desc> sdList;
+void CFieldHolder::ReadDefine() {
+  std::string fn = filepath_;
+  std::vector<SpawnerDesc> sdList;
   for (int i = 0; i < 3; i++) fn.pop_back();
   fn += "def";
   int fp = FileRead_open(fn.c_str());
   char buf[256];
   std::string tmp;
-  CEffect_Bright::getIns().setBrightLevel(0);
-  for (int i = 0; i < Constant::NumEnemySpawner; i++) {
+  CEffect_Bright::GetIns().SetBrightLevel(0);
+  for (int i = 0; i < Constant::kNumEnemySpawner; i++) {
     for (auto& b : buf) {
       b = '\0';
     }
@@ -138,22 +138,22 @@ void CFieldHolder::readDefine() {
     std::stringstream stream(std::string(buf, 256), std::ios::in);
     switch (i) {
       case 0:
-        CSoundManager::getIns().LoadBGM(buf);
+        CSoundManager::GetIns().LoadBGM(buf);
         break;
       case 1:
-        CEffect_Bright::getIns().setBrightLevel(atof(buf));
+        CEffect_Bright::GetIns().SetBrightLevel(atof(buf));
         break;
     }
   }
   FileRead_close(fp);
 }
 
-std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal,
+std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
                                             CAttribute attrDEF, int distance) {
   int dx[4] = {0, 0, 1, -1};
   int dy[4] = {1, -1, 0, 0};
-  if (start.x < 0 || start.y < 0 || start.x > width * 32 ||
-      start.y > height * 32)
+  if (start.x < 0 || start.y < 0 || start.x > width_ * 32 ||
+      start.y > height_ * 32)
     return std::list<CVector>();
 
   CVector s((int)((start.x) / 32), (int)((start.y) / 32));
@@ -161,20 +161,20 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal,
   std::list<CVector> ret;
   using PP = std::pair<double, CVector>;
 
-  for (uint32_t x = 0; x < width; x++) {
-    for (uint32_t y = 0; y < height; y++) {
-      CAttribute dmg = floorlist[index(x, y)]->getDamage() +
-                       walllist[index(x, y)]->getDamage();
+  for (uint32_t x = 0; x < width_; x++) {
+    for (uint32_t y = 0; y < height_; y++) {
+      CAttribute dmg = floor_list_[Index(x, y)]->GetDamage() +
+                       wall_list_[Index(x, y)]->GetDamage();
       if ((dmg / attrDEF).Sum() > (dmg / CAttribute(1.0)).Sum())
-        g[x][y] = (dmg / attrDEF).Sum() * 24;
+        g_[x][y] = (dmg / attrDEF).Sum() * 24;
       else
-        g[x][y] = 0;
-      dist[x][y] = Constant::dbl_INF;
-      pre[x][y] = CVector(-1, -1);
+        g_[x][y] = 0;
+      dist_[x][y] = Constant::kDoubleInfinity;
+      pre_[x][y] = CVector(-1, -1);
     }
   }
   std::priority_queue<PP, std::vector<PP>, std::greater<PP>> pq;
-  dist[(int)(start.x / 32)][(int)(start.y / 32)] = 0;
+  dist_[(int)(start.x / 32)][(int)(start.y / 32)] = 0;
   pq.push(PP(0, s));
 
   while (!pq.empty()) {
@@ -188,19 +188,19 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal,
       uint32_t nx, ny;
       nx = vx + dx[i];
       ny = vy + dy[i];
-      if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
-      if (walllist[index(nx, ny)]->isWall) continue;
-      if (dist[nx][ny] <= g[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c)
+      if (nx < 0 || ny < 0 || nx >= width_ || ny >= height_) continue;
+      if (wall_list_[Index(nx, ny)]->is_wall_) continue;
+      if (dist_[nx][ny] <= g_[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c)
         continue;
-      dist[nx][ny] = g[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c;
-      pre[nx][ny] = CVector(vx, vy);
-      pq.push(PP(dist[nx][ny], CVector((int)nx, (int)ny)));
+      dist_[nx][ny] = g_[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c;
+      pre_[nx][ny] = CVector(vx, vy);
+      pq.push(PP(dist_[nx][ny], CVector((int)nx, (int)ny)));
     }
   }
 
   CVector v;
-  for (; t.x != -1 || t.y != -1; t.x = pre[(uint32_t)v.x][(uint32_t)v.y].x,
-                                 t.y = pre[(uint32_t)v.x][(uint32_t)v.y].y) {
+  for (; t.x != -1 || t.y != -1; t.x = pre_[(uint32_t)v.x][(uint32_t)v.y].x,
+                                 t.y = pre_[(uint32_t)v.x][(uint32_t)v.y].y) {
     ret.push_front(t);
     v = t;
   }
@@ -218,21 +218,21 @@ std::list<CVector> CFieldHolder::Find_Route(CVector start, CVector goal,
   return ret;
 }
 
-std::vector<CVector> CFieldHolder::findTargetByDistance(CVector start,
+std::vector<CVector> CFieldHolder::FindTargetByDistance(CVector start,
                                                         int distance) {
   int dx[4] = {0, 0, 1, -1};
   int dy[4] = {1, -1, 0, 0};
   std::vector<CVector> ret;
   CVector s((int)((start.x) / 32), (int)((start.y) / 32));
 
-  for (uint32_t x = 0; x < width; x++) {
-    for (uint32_t y = 0; y < height; y++) {
-      diff[x][y] = 9999999;
+  for (uint32_t x = 0; x < width_; x++) {
+    for (uint32_t y = 0; y < height_; y++) {
+      diff_[x][y] = 9999999;
     }
   }
   std::priority_queue<CVector> pq;
   pq.push(s);
-  diff[(uint32_t)s.x][(uint32_t)s.y] = 0;
+  diff_[(uint32_t)s.x][(uint32_t)s.y] = 0;
   while (!pq.empty()) {
     CVector now = pq.top();
     pq.pop();
@@ -241,11 +241,11 @@ std::vector<CVector> CFieldHolder::findTargetByDistance(CVector start,
     for (int i = 0; i < 4; i++) {
       int nx = vx + dx[i];
       int ny = vy + dy[i];
-      if (nx < 0 || ny < 0 || nx >= (int)width || ny >= (int)height) continue;
-      if (walllist[index(nx, ny)]->isWall) continue;
-      if (diff[nx][ny] <= diff[vx][vy] + 1) continue;
-      diff[nx][ny] = diff[vx][vy] + 1;
-      if (diff[nx][ny] == distance) ret.push_back(CVector(nx, ny));
+      if (nx < 0 || ny < 0 || nx >= (int)width_ || ny >= (int)height_) continue;
+      if (wall_list_[Index(nx, ny)]->is_wall_) continue;
+      if (diff_[nx][ny] <= diff_[vx][vy] + 1) continue;
+      diff_[nx][ny] = diff_[vx][vy] + 1;
+      if (diff_[nx][ny] == distance) ret.push_back(CVector(nx, ny));
       pq.push(CVector(nx, ny));
     }
   }
@@ -258,43 +258,43 @@ std::vector<CVector> CFieldHolder::findTargetByDistance(CVector start,
 
 void CFieldHolder::Save() {
   std::ofstream fout;
-  fout.open(filePath);
-  fout << width << "\n" << height << "\n";
-  for (auto& i : floorlist) {
+  fout.open(filepath_);
+  fout << width_ << "\n" << height_ << "\n";
+  for (auto& i : floor_list_) {
     i->Save(fout);
   }
-  for (auto& i : walllist) {
+  for (auto& i : wall_list_) {
     i->Save(fout);
   }
 }
 
 int CFieldHolder::Load() {
-  std::ifstream fin(filePath);
+  std::ifstream fin(filepath_);
   if (!fin) return 1;
 
-  fin >> width;
-  fin >> height;
-  if (width == 0 || height == 0) return 1;
+  fin >> width_;
+  fin >> height_;
+  if (width_ == 0 || height_ == 0) return 1;
 
-  floorlist.resize(height * width);
-  walllist.resize(height * width);
+  floor_list_.resize(height_ * width_);
+  wall_list_.resize(height_ * width_);
 
-  CAnchor::getIns().setScrollLimit(CVector((int)width, (int)height));
+  CAnchor::GetIns().SetScrollLimit(CVector((int)width_, (int)height_));
 
-  CFieldFactory CFF;
+  CFieldFactory field_factory_;
   std::string buf;
 
-  for (uint32_t y = 0; y < height; y++) {
-    for (uint32_t x = 0; x < width; x++) {
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
       fin >> buf;
-      this->writefloor(CFF.create(x, y, buf), CVector((int)x,(int)y));
+      this->WriteFloor(field_factory_.create(x, y, buf), CVector((int)x,(int)y));
     }
   }
 
-  for (uint32_t y = 0; y < height; y++) {
-    for (uint32_t x = 0; x < width; x++) {
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
       fin >> buf;
-      this->writewall(CFF.create(x, y, buf), CVector((int)x, (int)y));
+      this->WriteWall(field_factory_.create(x, y, buf), CVector((int)x, (int)y));
     }
   }
   return 0;

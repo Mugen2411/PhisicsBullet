@@ -2,25 +2,25 @@
 
 #include <DxLib.h>
 
-CEffect_DamageNumber::CEffect_DamageNumber(CVector position, double num,
+CEffect_DamageNumber::CEffect_DamageNumber(CVector position_, double num,
                                            int type, int Style)
-    : CEffect(position),
-      num(num),
-      type(type),
-      cnt(0),
-      style(Style),
-      dy(4.0),
-      CND() {}
+    : CEffect(position_),
+      num_(num),
+      type_(type),
+      cnt_(0),
+      style_(Style),
+      dy_(4.0),
+      number_drawer_() {}
 
 void CEffect_DamageNumber::Update() {
-  cnt++;
-  Position.y -= dy;
-  dy *= 0.83;
-  if (cnt > 30) Status = 1;
+  cnt_++;
+  position_.y -= dy_;
+  dy_ *= 0.83;
+  if (cnt_ > 30) status_ = 1;
 }
 
 void CEffect_DamageNumber::Render() const {
-  CND.Draw(
-      (int)Position.x, (int)Position.y, num, type, style,
-      style == 0 ? Constant::priority_number + 1 : Constant::priority_number);
+  number_drawer_.Draw(
+      (int)position_.x, (int)position_.y, num_, type_, style_,
+      style_ == 0 ? Constant::kPriorityNumber + 1 : Constant::kPriorityNumber);
 }

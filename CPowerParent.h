@@ -8,14 +8,14 @@
 class CPower;
 
 class CPowerParent {
- protected:
-  CGameMediator* med;
-  std::vector<std::shared_ptr<CPower>> powerList;
-
  public:
   CPowerParent(CGameMediator*);
   void Add(const std::shared_ptr<CPower>&);
   void ApplyForceToMover(CMover*);
   void Update();
   void Render();
+
+ protected:
+  CGameMediator* med_;
+  std::vector<std::shared_ptr<CPower>> power_list_;
 };

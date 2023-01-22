@@ -4,10 +4,10 @@
 
 class CCostume_Swimsuit : public CCostumeBase {
  public:
-  CCostume_Swimsuit(std::string GID);
+  CCostume_Swimsuit(std::string gid_);
 
-  void WeakShot(CAttribute baseATK, CVector position, float angle);
-  void ChargeShot(CAttribute baseATK, CVector position, float angle);
+  void WeakShot(CAttribute baseATK, CVector position_, float angle);
+  void ChargeShot(CAttribute baseATK, CVector position_, float angle);
 
-  CCostumeBase* Clone() { return new CCostume_Swimsuit(GID); }
+  CCostumeBase* Clone() { return new CCostume_Swimsuit(gid_); }
 };

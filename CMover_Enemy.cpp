@@ -14,130 +14,130 @@ CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF,
                                    double hpCF, CAttribute attrDEF,
                                    int baseMoney, int color, CVector position,
                                    double accel, double maxSpeed, COF cofs)
-    : CMover(MV_ENEMY, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0),
-      Accel(accel),
-      MaxSpeed(maxSpeed),
-      Direction(0),
-      animCount(0),
-      baseParams(Level, atkCF, hpCF),
-      attrDEF(attrDEF),
-      baseMoney(baseMoney),
-      Color(color),
-      seed(),
-      rand(seed()),
-      pushed(0) {}
+    : CMover(kEnemy, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0),
+      accel_(accel),
+      max_speed_(maxSpeed),
+      direction_(0),
+      animation_cnt_(0),
+      base_params_(Level, atkCF, hpCF),
+      attr_def_(attrDEF),
+      base_money_(baseMoney),
+      color_(color),
+      seed_(),
+      rand_(seed_()),
+      pushed_(0) {}
 
 void CMover_EnemyBase::Walk(CVector destination) {
-  CVector diff = (destination - Position).getNorm() * MaxSpeed;
-  CVector v = diff - Velocity;
-  Acceleration += v.getNorm() * min(v.getLength(), 1.0) * Accel *
-                  std::sqrtl(nowFricted * Cofs.FrictionCF) *
-                  std::sqrtl(1 - (nowWatered * Cofs.WaterResCF));
-  Direction = diff.getDirection();
+  CVector diff = (destination - position_).GetNorm() * max_speed_;
+  CVector v = diff - velocity_;
+  acceleration_ += v.GetNorm() * min(v.GetLength(), 1.0) * accel_ *
+                  std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
+                  std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+  direction_ = diff.GetDirection();
 }
 
 void CMover_EnemyBase::Move_on_Route() {
-  if (route.empty()) {
+  if (route_.empty()) {
     return;
   }
-  if ((Position - route.front()).getLength2() < 8 * 8) {
-    route.pop_front();
+  if ((position_ - route_.front()).GetLength2() < 8 * 8) {
+    route_.pop_front();
     return;
   }
-  Walk(route.front());
+  Walk(route_.front());
 }
 
-void CMover_EnemyBase::Find_Route(int distance) {
-  if (!med) return;
-  route = med->GetRoute(Position, med->GetPlayerPosition(), attrDEF, distance);
+void CMover_EnemyBase::FindRoute(int distance) {
+  if (!med_) return;
+  route_ = med_->GetRoute(position_, med_->GetPlayerPosition(), attr_def_, distance);
 }
 
-void CMover_EnemyBase::findTargetByDistance(int distance) {
-  if (!med) return;
+void CMover_EnemyBase::FindTargetByDistance(int distance) {
+  if (!med_) return;
   std::vector<CVector> dists =
-      med->GetTargetByDistance(med->GetPlayerPosition(), distance);
+      med_->GetTargetByDistance(med_->GetPlayerPosition(), distance);
   std::uniform_int_distribution<> r(0, (int)dists.size() - 1);
-  CVector target = dists[r(rand)];
-  route = med->GetRoute(Position, target, attrDEF, 0);
+  CVector target = dists[r(rand_)];
+  route_ = med_->GetRoute(position_, target, attr_def_, 0);
 }
 
-void CMover_EnemyBase::BaseUpdate() { pushed = 0; }
+void CMover_EnemyBase::BaseUpdate() { pushed_ = 0; }
 
 bool CMover_EnemyBase::BaseRender() const {
-  /*for (auto& i : route) {
-          CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0,
+  /*for (auto& i : route_) {
+          CImageManager::GetIns().Find("editor_cursor")->DrawRota(i.x_, i.y_, 0,
   1, 1.0);
   }*/
-  auto p = CAnchor::getIns().getAnchoredPosition(Position);
-  CAnchor::getIns().enableAbsolute();
-  if (p.x + Size < 0) {
-    if (p.y + Size < 0) {
-      CImageManager::getIns()
-          .find("enemy_marker")
-          ->DrawRota(8, 8, (p - CVector(0, 0)).getAngle(), 1.0,
-                     Constant::priority_marker);
-      CAnchor::getIns().disableAbsolute();
+  auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
+  CAnchor::GetIns().EnableAbsolute();
+  if (p.x + size_ < 0) {
+    if (p.y + size_ < 0) {
+      CImageManager::GetIns()
+          .Find("enemy_marker")
+          ->DrawRota(8, 8, (p - CVector(0, 0)).GetAngle(), 1.0,
+                     Constant::kPriorityMarker);
+      CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    if (p.y - Size > Constant::ScreenH) {
-      CImageManager::getIns()
-          .find("enemy_marker")
-          ->DrawRota(8, Constant::ScreenH - 8,
-                     (p - CVector(0, Constant::ScreenH)).getAngle(), 1.0,
-                     Constant::priority_marker);
-      CAnchor::getIns().disableAbsolute();
+    if (p.y - size_ > Constant::kScreenH) {
+      CImageManager::GetIns()
+          .Find("enemy_marker")
+          ->DrawRota(8, Constant::kScreenH - 8,
+                     (p - CVector(0, Constant::kScreenH)).GetAngle(), 1.0,
+                     Constant::kPriorityMarker);
+      CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    CImageManager::getIns()
-        .find("enemy_marker")
-        ->DrawRota(8, (int)p.y, (float)Constant::PI, 1.0f, Constant::priority_marker);
-    CAnchor::getIns().disableAbsolute();
+    CImageManager::GetIns()
+        .Find("enemy_marker")
+        ->DrawRota(8, (int)p.y, (float)Constant::kPI, 1.0f, Constant::kPriorityMarker);
+    CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.x - Size > Constant::ScreenW) {
-    if (p.y + Size < 0) {
-      CImageManager::getIns()
-          .find("enemy_marker")
-          ->DrawRota(Constant::ScreenW - 8, 8,
-                     (p - CVector(Constant::ScreenW, 0)).getAngle(), 1.0,
-                     Constant::priority_marker);
-      CAnchor::getIns().disableAbsolute();
+  if (p.x - size_ > Constant::kScreenW) {
+    if (p.y + size_ < 0) {
+      CImageManager::GetIns()
+          .Find("enemy_marker")
+          ->DrawRota(Constant::kScreenW - 8, 8,
+                     (p - CVector(Constant::kScreenW, 0)).GetAngle(), 1.0,
+                     Constant::kPriorityMarker);
+      CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    if (p.y - Size > Constant::ScreenH) {
-      CImageManager::getIns()
-          .find("enemy_marker")
+    if (p.y - size_ > Constant::kScreenH) {
+      CImageManager::GetIns()
+          .Find("enemy_marker")
           ->DrawRota(
-              Constant::ScreenW - 8, Constant::ScreenH - 8,
-              (p - CVector(Constant::ScreenW, Constant::ScreenH)).getAngle(),
-              1.0, Constant::priority_marker);
-      CAnchor::getIns().disableAbsolute();
+              Constant::kScreenW - 8, Constant::kScreenH - 8,
+              (p - CVector(Constant::kScreenW, Constant::kScreenH)).GetAngle(),
+              1.0, Constant::kPriorityMarker);
+      CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    CImageManager::getIns()
-        .find("enemy_marker")
-        ->DrawRota(Constant::ScreenW - 8, (int)p.y, (float)Constant::PI * 3, 1.0f,
-                   Constant::priority_marker);
-    CAnchor::getIns().disableAbsolute();
+    CImageManager::GetIns()
+        .Find("enemy_marker")
+        ->DrawRota(Constant::kScreenW - 8, (int)p.y, (float)Constant::kPI * 3, 1.0f,
+                   Constant::kPriorityMarker);
+    CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.y + Size < 0) {
-    CImageManager::getIns()
-        .find("enemy_marker")
-        ->DrawRota((int)p.x, 8, -(float)Constant::PI / 2, 1.0f,
-                   Constant::priority_marker);
-    CAnchor::getIns().disableAbsolute();
+  if (p.y + size_ < 0) {
+    CImageManager::GetIns()
+        .Find("enemy_marker")
+        ->DrawRota((int)p.x, 8, -(float)Constant::kPI / 2, 1.0f,
+                   Constant::kPriorityMarker);
+    CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.y - Size > Constant::ScreenH) {
-    CImageManager::getIns()
-        .find("enemy_marker")
-        ->DrawRota((int)p.x, Constant::ScreenH - 8, (float)Constant::PI / 2, 1.0f,
-                   Constant::priority_marker);
-    CAnchor::getIns().disableAbsolute();
+  if (p.y - size_ > Constant::kScreenH) {
+    CImageManager::GetIns()
+        .Find("enemy_marker")
+        ->DrawRota((int)p.x, Constant::kScreenH - 8, (float)Constant::kPI / 2, 1.0f,
+                   Constant::kPriorityMarker);
+    CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  CAnchor::getIns().disableAbsolute();
+  CAnchor::GetIns().DisableAbsolute();
   Render_HPGuage();
   return true;
 }
@@ -145,95 +145,95 @@ bool CMover_EnemyBase::BaseRender() const {
 void CMover_EnemyBase::Dead() {
   for (int i = 0; i < 5; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
-        Position + CVector(GetRand((int)Size * 3) - Size * 1.5,
-                           GetRand((int)Size * 3) - Size * 1.5),
-        Size * 0.5 + GetRand((int)(Size * 1.5)), Color, 30));
+        position_ + CVector(GetRand((int)size_ * 3) - size_ * 1.5,
+                           GetRand((int)size_ * 3) - size_ * 1.5),
+        size_ * 0.5 + GetRand((int)(size_ * 1.5)), color_, 30));
   for (int i = 0; i < 2; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
-        Position, Size * (4 + i * 1.0), Color, 12));
+        position_, size_ * (4 + i * 1.0), color_, 12));
 
-  CAnchor::getIns().Quake(15, 3.0);
-  CSoundManager::getIns().find("enemy_kill")->Play(CSound::PT_BACK);
+  CAnchor::GetIns().Quake(15, 3.0);
+  CSoundManager::GetIns().Find("enemy_kill")->Play(CSound::kBack);
 }
 
 void CMover_EnemyBase::Disappear() {}
 
 void CMover_EnemyBase::Render_HPGuage() const {
-  CImageManager::getIns()
-      .find("enemy_HPGuage")
-      ->DrawExtendWithBlend(Position.x - 16, Position.y - Size - 8,
-                            Position.x + 16, Position.y - Size - 4, 0xFFFFFF,
-                            DX_BLENDMODE_ALPHA, 108, Constant::priority_marker,
+  CImageManager::GetIns()
+      .Find("enemy_HPGuage")
+      ->DrawExtendWithBlend(position_.x - 16, position_.y - size_ - 8,
+                            position_.x + 16, position_.y - size_ - 4, 0xFFFFFF,
+                            DX_BLENDMODE_ALPHA, 108, Constant::kPriorityMarker,
                             1);
-  CImageManager::getIns()
-      .find("enemy_HPGuage")
+  CImageManager::GetIns()
+      .Find("enemy_HPGuage")
       ->DrawExtendWithBlend(
-          Position.x - 16, Position.y - Size - 8,
-          Position.x - 16 + 32 * (baseParams.HP / baseParams.MaxHP),
-          Position.y - Size - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160,
-          Constant::priority_marker, 0);
+          position_.x - 16, position_.y - size_ - 8,
+          position_.x - 16 + 32 * (base_params_.HP_ / base_params_.maxHP_),
+          position_.y - size_ - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160,
+          Constant::kPriorityMarker, 0);
 }
 
 void CMover_EnemyBase::Damage(CAttribute shotATK, int style) {
-  if (Status < 0) return;
-  double ret = (shotATK / attrDEF * 0.01).Sum();
+  if (status_ < 0) return;
+  double ret = (shotATK / attr_def_ * 0.01).Sum();
   // if (ret < Constant::zero_border && ret > -Constant::zero_border)return;
-  baseParams.HP -= ret;
-  baseParams.HP = min(baseParams.HP, baseParams.MaxHP);
+  base_params_.HP_ -= ret;
+  base_params_.HP_ = min(base_params_.HP_, base_params_.maxHP_);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(
-      Position - CVector(0.0, Size), (ret < 0) ? -ret : ret,
+      position_ - CVector(0.0, size_), (ret < 0) ? -ret : ret,
       DamageColor(shotATK), style));
-  CSoundManager::getIns().find("enemy_hit")->Play(CSound::PLAYTYPE::PT_BACK);
-  if (baseParams.HP < 0) {
-    setStatus(STATUS::DEAD);
+  CSoundManager::GetIns().Find("enemy_hit")->Play(CSound::PlayType::kBack);
+  if (base_params_.HP_ < 0) {
+    SetStatus(Status::kDead);
     Drop();
   }
 }
 
 void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
-  if (Status < 0) return;
-  double ret = ((shotATK * baseParams.MaxHP) / (attrDEF * 100)).Sum();
+  if (status_ < 0) return;
+  double ret = ((shotATK * base_params_.maxHP_) / (attr_def_ * 100)).Sum();
   // if (ret < Constant::zero_border && ret > -Constant::zero_border)return;
-  baseParams.HP -= ret;
-  baseParams.HP = min(baseParams.HP, baseParams.MaxHP);
+  base_params_.HP_ -= ret;
+  base_params_.HP_ = min(base_params_.HP_, base_params_.maxHP_);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_DamageNumber>(
-      Position - CVector(0.0, Size), (ret < 0) ? -ret : ret,
+      position_ - CVector(0.0, size_), (ret < 0) ? -ret : ret,
       DamageColor(shotATK), style));
-  if (baseParams.HP < 0) {
-    setStatus(STATUS::DEAD);
+  if (base_params_.HP_ < 0) {
+    SetStatus(Status::kDead);
     Drop();
   }
 }
 
 void CMover_EnemyBase::Drop() {
-  int val = (int)std::ceil((baseMoney + baseParams.Level) *
-                      (1.0 + (int)(baseParams.Level / 15.0) * 0.1) *
-                      CPassiveSkill::getIns().getMoneyMult());
-  if (auto r = med) r->getMoney(val);
+  int val = (int)std::ceil((base_money_ + base_params_.level_) *
+                      (1.0 + (int)(base_params_.level_ / 15.0) * 0.1) *
+                      CPassiveSkill::GetIns().GetMoneyMult());
+  if (auto r = med_) r->GetMoney(val);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
-      Position - CVector(0.0, Size), val));
+      position_ - CVector(0.0, size_), val));
 }
 
 int CMover_EnemyBase::DamageColor(CAttribute shotATK) {
-  auto real = shotATK * attrDEF;
+  auto real = shotATK * attr_def_;
   if (real.Sum() < 0.0) return 3;
-  if (real.Sum() - shotATK.Sum() > Constant::zero_border) return 2;
-  if (real.Sum() - shotATK.Sum() < -Constant::zero_border) return 1;
+  if (real.Sum() - shotATK.Sum() > Constant::kZeroBorder) return 2;
+  if (real.Sum() - shotATK.Sum() < -Constant::kZeroBorder) return 1;
   return 0;
 }
 
 void CMover_EnemyBase::Hit(CMover_EnemyBase* m) {
-  pushed++;
-  CVector diff = m->getPosition() - Position;
-  CVector delta = diff.getLength2() < Constant::zero_border
-                      ? CVector(Constant::PI2 / 64 * GetRand(64))
+  pushed_++;
+  CVector diff = m->GetPosition() - position_;
+  CVector delta = diff.GetLength2() < Constant::kZeroBorder
+                      ? CVector(Constant::kPI2 / 64 * GetRand(64))
                       : CVector(0.0, 0.0);
-  m->ApplyForce((diff + delta).getNorm() * Mass / pushed);
+  m->ApplyForce((diff + delta).GetNorm() * mass_ / pushed_);
 }
 
 void CMover_EnemyBase::Hit(CMover_Player* m) {
-  CVector diff = m->getPosition() - Position;
-  CVector delta = CVector(Constant::PI2 / 64 * GetRand(64));
-  m->ApplyForce((diff + delta).getNorm() * Mass);
-  m->ApplyForce(Velocity * Mass);
+  CVector diff = m->GetPosition() - position_;
+  CVector delta = CVector(Constant::kPI2 / 64 * GetRand(64));
+  m->ApplyForce((diff + delta).GetNorm() * mass_);
+  m->ApplyForce(velocity_ * mass_);
 }

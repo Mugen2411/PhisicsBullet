@@ -10,24 +10,24 @@
 #include "Scene_Abstract.h"
 
 class CMapEditor : public Scene_Abstract, public CMediator {
- protected:
-  CVector currentSelect;  //選択中のチップの座標
-  std::weak_ptr<CSTGInputManager> input;
-  void CreateParts();
-  std::shared_ptr<CFieldHolder> field;
-  int cur = 0;
-  std::string currentMapchip;
-  CFieldFactory CFF;
-
-  int state;     // 0:マップ,1:パレット
-  int category;  // 0:Floor,1:Wall
-
  public:
   CMapEditor(SceneManager *ScnMng);
   ~CMapEditor();
   void Update();
   void Render() const;
   void PartsChanged(CParts *p);
+
+ protected:
+  void CreateParts();
+  CVector current_select_;  //選択中のチップの座標
+  std::weak_ptr<CSTGInputManager> input_;
+  std::shared_ptr<CFieldHolder> field_;
+  int cur_ = 0;
+  std::string current_mapchip_;
+  CFieldFactory field_factory_;
+
+  int state_;    // 0:マップ,1:パレット
+  int category_;  // 0:Floor,1:Wall
 };
 
 int GetFileName(char *filename, int bufsize,

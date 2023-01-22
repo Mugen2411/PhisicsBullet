@@ -8,28 +8,28 @@
 CMover_Shot_Swimsuit_iPhone::CMover_Shot_Swimsuit_iPhone(CAttribute baseATK,
                                                          CVector position,
                                                          float angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).NONE(10).THUNDER(50), position,
+    : CMover_ShotBase(baseATK, CAttribute(0.0).None(10).Thunder(50), position,
                       24, CVector(angle) * 16.0, 2.0,
                       COF(0.02, 0.05, 0.05, 0.1), 0x7F7F7F),
-      renderAngle(0.0f) {}
+      render_angle_(0.0f) {}
 
 void CMover_Shot_Swimsuit_iPhone::Dead() {
   CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(
-      Position, Velocity, Size, effectColor));
-  CSoundManager::getIns().find("glassBreak")->Play(CSound::PLAYTYPE::PT_BACK);
+      position_, velocity_, size_, effect_color_));
+  CSoundManager::GetIns().Find("glassBreak")->Play(CSound::PlayType::kBack);
 }
 
 int CMover_Shot_Swimsuit_iPhone::Update() {
-  if (Velocity.getLength2() < 0.05) {
-    setStatus(STATUS::DEAD);
+  if (velocity_.GetLength2() < 0.05) {
+    SetStatus(Status::kDead);
   }
-  renderAngle += (float)(Constant::PI2 * Constant::perFrame * 1.5);
-  return Status;
+  render_angle_ += (float)(Constant::kPI2 * Constant::kPerFrame * 1.5);
+  return status_;
 }
 
 void CMover_Shot_Swimsuit_iPhone::Render() const {
-  CImageManager::getIns()
-      .find("shot_swimsuit_iphone")
-      ->DrawRota(Position, Velocity.getAngle() + renderAngle, 1,
-                  Constant::priority_shot);
+  CImageManager::GetIns()
+      .Find("shot_swimsuit_iphone")
+      ->DrawRota(position_, velocity_.GetAngle() + render_angle_, 1,
+                 Constant::kPriorityShot);
 }

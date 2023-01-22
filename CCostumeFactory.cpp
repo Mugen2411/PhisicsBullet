@@ -8,7 +8,7 @@
 #include "CCostume_Uniform.h"
 
 void CCostumeFactory::Register(CCostumeBase* f) {
-  list.push_back(std::shared_ptr<CCostumeBase>(f));
+  list_.push_back(std::shared_ptr<CCostumeBase>(f));
 }
 
 CCostumeFactory::CCostumeFactory() {
@@ -18,14 +18,14 @@ CCostumeFactory::CCostumeFactory() {
   Register(new CCostume_Swimsuit("C_Swimsuit"));
 }
 
-CCostumeBase* CCostumeFactory::create(std::string GID) {
+CCostumeBase* CCostumeFactory::Create(std::string gid_) {
   auto itr = std::find_if(
-      list.begin(), --list.end(),
-      [&](std::shared_ptr<CCostumeBase>& v) { return (*v).GID == GID; });
+      list_.begin(), --list_.end(),
+      [&](std::shared_ptr<CCostumeBase>& v) { return (*v).gid_ == gid_; });
   return (*itr)->Clone();
 }
 
-CCostumeBase* CCostumeFactory::create(int idx) {
-  auto itr = list[idx];
+CCostumeBase* CCostumeFactory::Create(int idx) {
+  auto itr = list_[idx];
   return itr->Clone();
 }

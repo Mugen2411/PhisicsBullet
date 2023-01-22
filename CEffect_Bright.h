@@ -7,37 +7,37 @@
 class CEffect_Bright : public Singleton<CEffect_Bright> {
  public:
   struct BrightDesc {
-    CVector position;
+    CVector position_;
     double radius;
     int power;
     BrightDesc(CVector pos, double radius, int power)
-        : position(pos), radius(radius), power(power) {}
+        : position_(pos), radius(radius), power(power) {}
   };
 
-  void Register(BrightDesc b) { list.emplace_back(b); }
-  void setBrightLevel(double l) { brightLevel = l; }
+  void Register(BrightDesc b) { list_.emplace_back(b); }
+  void SetBrightLevel(double l) { bright_level_ = l; }
   void Render() const;
-  void Clear() { list.clear(); }
+  void Clear() { list_.clear(); }
 
-  void setOffScreen(int screen) { offscreen = screen; }
+  void SetOffScreen(int screen) { offscreen_ = screen; }
 
-  void activate() { active = true; }
-  void inactivate() { active = false; }
+  void Activate() { active_ = true; }
+  void Inactivate() { active_ = false; }
 
  protected:
   CEffect_Bright();
 
-  bool active;
+  bool active_;
 
-  int offscreen;
-  int brightScreen;
-  int shadowScreen;
-  int brightBuffer;
-  int shadowBuffer;
-  double brightLevel;
-  int brightGraph;
+  int offscreen_;
+  int bright_screen_;
+  int shadow_screen_;
+  int bright_buffer_;
+  int shadow_buffer_;
+  double bright_level_;
+  int bright_graph_;
 
-  std::list<BrightDesc> list;
+  std::list<BrightDesc> list_;
 
   friend Singleton<CEffect_Bright>;
 };

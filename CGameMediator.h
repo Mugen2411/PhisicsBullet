@@ -20,51 +20,6 @@ class CCostumeBase;
 class CEnemySpawner;
 
 class CGameMediator : public Scene_Abstract {
- protected:
-  std::weak_ptr<CSTGInputManager> input;
-  std::unique_ptr<CMoverParent> moverParent;
-  std::unique_ptr<CPowerParent> powerParent;
-  std::shared_ptr<CMover_Player> player;
-  std::unique_ptr<CFieldParent> fieldParent;
-  std::list<std::unique_ptr<CEnemySpawner>> enemySpawner;
-
-  std::vector<int> skillList;
-  std::vector<int> skillLevelList;
-
-  bool isPause;
-  bool isRetire;
-  bool isCostumeSelecterEnd;
-  int pauseGuage;
-  int cnt;
-
-  bool isInitialized;
-
-  int reserveMoney = 0;  //‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
-
-  CTextDrawer::Text retireText[2];
-  CTextDrawer::Text waveNumber;
-
-  std::unique_ptr<CCostumeBase *> costumeNowFocusOn;
-  double minFric;
-  double maxFric;
-  double minAirRes;
-  double maxAirRes;
-  double minWaterRes;
-  double maxWaterRes;
-  double minMass;
-  double maxMass;
-  double minVelocity;
-  double maxVelocity;
-  double minAccel;
-  double maxAccel;
-  int costumeSelecterCNT;
-
-  int nowLevelOfStage;
-
-  CNumberDrawer CND;
-
-  void ProcessEnemySpawner();
-
  public:
   CGameMediator(SceneManager *ScnMng);
   virtual ~CGameMediator();
@@ -80,7 +35,7 @@ class CGameMediator : public Scene_Abstract {
                               int distance);
   std::vector<CVector> GetTargetByDistance(CVector start, int distance);
   std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
-  void getMoney(int value);
+  void GetMoney(int value);
 
   void UpdateDresschangeMenu();
   void RenderDresschangeMenu() const;
@@ -90,4 +45,49 @@ class CGameMediator : public Scene_Abstract {
 
   void Update();
   void Render() const;
+
+ protected:
+  void ProcessEnemySpawner();
+
+  std::weak_ptr<CSTGInputManager> input_;
+  std::unique_ptr<CMoverParent> mover_parent_;
+  std::unique_ptr<CPowerParent> power_parent_;
+  std::shared_ptr<CMover_Player> player_;
+  std::unique_ptr<CFieldParent> field_parent_;
+  std::list<std::unique_ptr<CEnemySpawner>> enemy_spawner_;
+
+  std::vector<int> skill_list_;
+  std::vector<int> skill_level_list_;
+
+  bool is_pause_;
+  bool is_retire_;
+  bool is_costume_selecter_end_;
+  int pause_guage_;
+  int cnt_;
+
+  bool is_initialized_;
+
+  int reserve_money_ = 0;  //‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
+
+  CTextDrawer::Text retire_text_[2];
+  CTextDrawer::Text wave_number_;
+
+  std::unique_ptr<CCostumeBase *> costume_now_focus_;
+  double min_fric_;
+  double max_fric_;
+  double min_air_res_;
+  double max_air_res_;
+  double min_water_res_;
+  double max_water_res_;
+  double min_mass_;
+  double max_mass_;
+  double min_velocity_;
+  double max_velocity_;
+  double min_accel_;
+  double max_accel_;
+  int costume_selecter_cnt_;
+
+  int now_level_of_stage_;
+
+  CNumberDrawer number_drawer_;
 };

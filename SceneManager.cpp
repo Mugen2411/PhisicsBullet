@@ -6,10 +6,10 @@ SceneManager::SceneManager() {}
 
 SceneManager::~SceneManager() {}
 
-void SceneManager::update() {
-  if (!_scene.empty()) (*_scene.begin())->Update();
+void SceneManager::Update() {
+  if (!scene_.empty()) (*scene_.begin())->Update();
 }
 
-void SceneManager::render() {
-  if (!_scene.empty()) (*_scene.begin())->Render();
+void SceneManager::Render() {
+  if (!scene_.empty()) (*scene_.begin())->Render();
 }

@@ -4,21 +4,22 @@
 #include "CMover_ShotBase.h"
 
 class CField_Decoration_Light : public CField_Wall {
-  int state;
-
  public:
-  CField_Decoration_Light(std::string gid, CVector position);
+  CField_Decoration_Light(std::string gid, CVector position_);
 
   void Update();
   void Render() const;
 
-  void attributeReaction(CAttribute a) {
-    auto f = a * CAttribute(0.0).THUNDER(1.0);
+  void AttributeReaction(CAttribute a) {
+    auto f = a * CAttribute(0.0).Thunder(1.0);
     if (f.Sum() > 0.0) {
-      state = 1;
+      state_ = 1;
     }
   };
-  virtual void attributeEffect(CMover_BulletBase* m){};
+  virtual void AttributeEffect(CMover_BulletBase* m){};
 
-  CField* Clone(CVector position);
+  private:
+  int state_;
+
+  CField* Clone(CVector position_);
 };

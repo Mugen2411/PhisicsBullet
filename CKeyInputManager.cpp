@@ -2,61 +2,61 @@
 
 #include "Constant.h"
 
-int CKeyInputManager::isChanged() { return changed; }
+int CKeyInputManager::IsChanged() { return changed_; }
 
-int CKeyInputManager::update() {
+int CKeyInputManager::Update() {
   int r = 0;
   for (int i = 0; i < 10; i++) {
-    if (CheckHitKey(KeyConfig[i])) {
-      pushedFrame[i]++;
-      if (SK_UP <= i && i <= SK_LEFT) r = 1;
+    if (CheckHitKey(key_config_[i])) {
+      pushed_frame_[i]++;
+      if (kUp <= i && i <= kLeft) r = 1;
     } else
-      pushedFrame[i] = 0;
+      pushed_frame_[i] = 0;
 #ifdef _DEBUG
-    printfDx("%d:%d\n", i, pushedFrame[i]);
+    printfDx("%d:%d\n", i, pushed_frame_[i]);
 #endif
   }
-  changed = r;
+  changed_ = r;
 
   int nx, ny;
   GetMousePoint(&nx, &ny);
-  mx += (nx - (Constant::ScreenW / 2)) / 2;
-  my += (ny - (Constant::ScreenH / 2)) / 2;
-  if (mx < 0) mx = 0;
-  if (mx > Constant::ScreenW) mx = Constant::ScreenW;
-  if (my < 0) my = 0;
-  if (my > Constant::ScreenH) my = Constant::ScreenH;
-  if (GetWindowActiveFlag() && !isMouseShown)
-    SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
+  mx_ += (nx - (Constant::kScreenW / 2)) / 2;
+  my_ += (ny - (Constant::kScreenH / 2)) / 2;
+  if (mx_ < 0) mx_ = 0;
+  if (mx_ > Constant::kScreenW) mx_ = Constant::kScreenW;
+  if (my_ < 0) my_ = 0;
+  if (my_ > Constant::kScreenH) my_ = Constant::kScreenH;
+  if (GetWindowActiveFlag() && !is_mouse_shown_)
+    SetMousePoint(Constant::kScreenW / 2, Constant::kScreenH / 2);
 
   int mi = GetMouseInput();
   if (mi & MOUSE_INPUT_LEFT) {
-    clickedFrame[0][1]++;
-    clickedFrame[0][0] = 0;
+    clicked_frame_[0][1]++;
+    clicked_frame_[0][0] = 0;
   } else {
-    clickedFrame[0][0]++;
-    clickedFrame[0][1] = 0;
+    clicked_frame_[0][0]++;
+    clicked_frame_[0][1] = 0;
   }
   if (mi & MOUSE_INPUT_RIGHT) {
-    clickedFrame[1][1]++;
-    clickedFrame[1][0] = 0;
+    clicked_frame_[1][1]++;
+    clicked_frame_[1][0] = 0;
   } else {
-    clickedFrame[1][0]++;
-    clickedFrame[1][1] = 0;
+    clicked_frame_[1][0]++;
+    clicked_frame_[1][1] = 0;
   }
   if (mi & MOUSE_INPUT_MIDDLE) {
-    clickedFrame[2][1]++;
-    clickedFrame[2][0] = 0;
+    clicked_frame_[2][1]++;
+    clicked_frame_[2][0] = 0;
   } else {
-    clickedFrame[2][0]++;
-    clickedFrame[2][1] = 0;
+    clicked_frame_[2][0]++;
+    clicked_frame_[2][1] = 0;
   }
 
   return r;
 }
 
-void CKeyInputManager::load() {
+void CKeyInputManager::Load() {
   if (GetActiveFlag())
-    SetMousePoint(Constant::ScreenW / 2, Constant::ScreenH / 2);
-  SetMouseDispFlag(isMouseShown);
+    SetMousePoint(Constant::kScreenW / 2, Constant::kScreenH / 2);
+  SetMouseDispFlag(is_mouse_shown_);
 }

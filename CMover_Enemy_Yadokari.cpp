@@ -8,76 +8,72 @@
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level)
     : CMover_EnemyBase(
           40, Level, 1.0, 1.35,
-          CAttribute(1.0).NONE(1.8).AQUA(4.0).THUNDER(0.3).FLOWER(0.4), 35,
+          CAttribute(1.0).None(1.8).Aqua(4.0).Thunder(0.3).Flower(0.4), 35,
           0xFF0000, position, 2.0, 1.5, COF(0.7, 0.2, 0.08, 0.1)),
-      testDest(0.0, 0.0),
-      focus(0.0) {}
+      test_dest_(0.0, 0.0),
+      focus_(0.0) {}
 
 int CMover_Enemy_Yadokari::Update() {
-  switch (state) {
+  switch (state_) {
     case 0:
-      if (cnt % 60 == 0) {
-        Find_Route(5);
+      if (cnt_ % 60 == 0) {
+        FindRoute(5);
       }
-      if (!route.empty())
+      if (!route_.empty())
         Move_on_Route();
       else {
-        CVector ppos = med->GetPlayerPosition();
-        focus = (ppos - Position).getAngle();
-        state = 1;
-        cnt = 0;
+        CVector ppos = med_->GetPlayerPosition();
+        focus_ = (ppos - position_).GetAngle();
+        state_ = 1;
+        cnt_ = 0;
         break;
       }
-      cnt++;
-      animCount += 0.3;
-      if (animCount > 4) animCount = 0;
+      cnt_++;
+      animation_cnt_ += 0.3;
+      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
-      if (cnt == 25) {
+      if (cnt_ == 25) {
         for (int i = 0; i < 3; i++) {
-          med->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(
-              baseParams, Position, focus, 6.0 + i * 3.6));
+          med_->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(
+              base_params_, position_, focus_, 6.0 + i * 3.6));
         }
-        CSoundManager::getIns().find("splash")->Play(CSound::PLAYTYPE::PT_BACK);
+        CSoundManager::GetIns().Find("splash")->Play(CSound::PlayType::kBack);
       }
-      if (cnt > 60) {
-        state = 0;
-        cnt = 0;
+      if (cnt_ > 60) {
+        state_ = 0;
+        cnt_ = 0;
         break;
       }
-      cnt++;
+      cnt_++;
       break;
     case -1:
-      animCount += 0.1;
-      if (animCount > 4) {
-        state = 0;
-        Find_Route(5);
-        animCount = 0;
-        cnt = 0;
+      animation_cnt_ += 0.1;
+      if (animation_cnt_ > 4) {
+        state_ = 0;
+        FindRoute(5);
+        animation_cnt_ = 0;
+        cnt_ = 0;
       }
       break;
   }
-  return Status;
+  return status_;
 }
 
 void CMover_Enemy_Yadokari::Render() const {
-  if (state < 0) {
-    CImageManager::getIns()
-        .find("enemy_yadokari_intro")
-        ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                   (int)(animCount));
+  if (state_ < 0) {
+    CImageManager::GetIns()
+        .Find("enemy_yadokari_intro")
+        ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityEnemy,
+                   (int)(animation_cnt_));
     return;
   }
-  CImageManager::getIns()
-      .find("enemy_yadokari")
-      ->DrawRotaF(Position.x, Position.y, 0.0, 1.0, Constant::priority_enemy,
-                 Direction * 4 + (int)(animCount));
-  /*for (auto& i : route) {
-          CImageManager::getIns().find("editor_cursor")->DrawRota(i.x, i.y, 0,
-  1, Constant::priority_enemy);
-  }*/
+  CImageManager::GetIns()
+      .Find("enemy_yadokari")
+      ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityEnemy,
+                 direction_ * 4 + (int)(animation_cnt_));
 }
 
-CMover_EnemyBase* CMover_Enemy_Yadokari::Clone(CVector Position, int Level) {
-  return new CMover_Enemy_Yadokari(Position, Level);
+CMover_EnemyBase* CMover_Enemy_Yadokari::Clone(CVector position, int Level) {
+  return new CMover_Enemy_Yadokari(position, Level);
 }

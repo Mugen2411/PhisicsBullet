@@ -5,11 +5,11 @@
 #include "Singleton.h"
 
 class CControllerFactory : public Singleton<CControllerFactory> {
- protected:
-  std::shared_ptr<CSTGInputManager> current;
-
  public:
   CControllerFactory();
-  std::weak_ptr<CSTGInputManager> getController();
-  void update();
+  std::weak_ptr<CSTGInputManager> GetController();
+  void Update();
+
+  protected:
+  std::shared_ptr<CSTGInputManager> current_;
 };

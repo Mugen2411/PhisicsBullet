@@ -4,36 +4,37 @@
 #include "CMover_ShotBase.h"
 
 class CField_Grass : public CField {
-  int decoration;
-  double animCount;
-
-  int state;
-  int BurningTime;
-  double Fertile;
-
  public:
-  CField_Grass(std::string gid, CVector position);
+  CField_Grass(std::string gid, CVector position_);
   void Update();
   void Render() const;
 
-  void attributeReaction(CAttribute a) {
-    switch (state) {
+  void AttributeReaction(CAttribute a) {
+    switch (state_) {
       case 0: {
-        auto f = a * CAttribute(0.0).FIRE(1.0);
-        Temperature += f.Sum();
+        auto f = a * CAttribute(0.0).Fire(1.0);
+        temperature_ += f.Sum();
       } break;
       case 1: {
-        auto aq_i = a * CAttribute(0.0).AQUA(1.0).ICE(1.5);
-        Temperature -= aq_i.Sum();
+        auto aq_i = a * CAttribute(0.0).Aqua(1.0).Ice(1.5);
+        temperature_ -= aq_i.Sum();
       } break;
       case 2: {
-        auto fl = a * CAttribute(0.0).FLOWER(1.0);
-        Fertile += fl.Sum();
+        auto fl = a * CAttribute(0.0).Flower(1.0);
+        fertile_ += fl.Sum();
       } break;
     }
   };
 
-  CField* Clone(CVector position);
+  CField* Clone(CVector position_);
+
+ private:
+  int decoration_;
+  double animation_cnt_;
+
+  int state_;
+  int burning_time_;
+  double fertile_;
 
   void Save(std::ofstream& fout);
 };

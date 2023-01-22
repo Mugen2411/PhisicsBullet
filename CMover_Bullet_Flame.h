@@ -8,6 +8,6 @@ class CMover_Bullet_Flame : public CMover_BulletBase {
   void Render() const;
 
  protected:
-  double animCount;
-  float baseAngle;
+  double animation_cnt_;
+  float base_angle_;
 };

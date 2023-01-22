@@ -5,21 +5,21 @@ class CAttribute {
  public:
   CAttribute(double init);
 
-  CAttribute NONE(double value);
-  CAttribute FIRE(double value);
-  CAttribute AQUA(double value);
-  CAttribute THUNDER(double value);
-  CAttribute FLOWER(double value);
-  CAttribute ICE(double value);
-  CAttribute WIND(double value);
+  CAttribute None(double value);
+  CAttribute Fire(double value);
+  CAttribute Aqua(double value);
+  CAttribute Thunder(double value);
+  CAttribute Flower(double value);
+  CAttribute Ice(double value);
+  CAttribute Wind(double value);
 
-  double None;
-  double Fire;
-  double Aqua;
-  double Thunder;
-  double Flower;
-  double Ice;
-  double Wind;
+  double none_;
+  double fire_;
+  double aqua_;
+  double thunder_;
+  double flower_;
+  double ice_;
+  double wind_;
 
   CAttribute operator*(CAttribute a);
   CAttribute operator*(double a);
@@ -29,6 +29,6 @@ class CAttribute {
   CAttribute operator+(CAttribute a);
   CAttribute operator+=(CAttribute a);
   CAttribute operator-(CAttribute a);
-  bool isZero();
+  bool IsZero();
   double Sum();
 };

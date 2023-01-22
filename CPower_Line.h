@@ -1,12 +1,6 @@
 #pragma once
 #include "CPower.h"
 class CPower_Line : public CPower {
- protected:
-  CVector Direction;       //角度・長さ
-  double Width;            //幅
-  CVector Corner[4];       //四隅
-  CVector ForceDirection;  //力をかける方向
-
  public:
   CPower_Line(CVector position, CVector direction, double width, double power,
               int duration);
@@ -14,4 +8,10 @@ class CPower_Line : public CPower {
   void ApplyForceToMover(CMover*);
   int Update();
   void Render() const;
+
+ protected:
+  CVector direction_;       //角度・長さ
+  double width_;            //幅
+  CVector corner_[4];       //四隅
+  CVector force_direction_;  //力をかける方向
 };

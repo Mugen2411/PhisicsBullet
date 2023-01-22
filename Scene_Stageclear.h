@@ -16,9 +16,9 @@ class Scene_Stageclear : public Scene_Abstract {
   void Render() const;
 
  private:
-  std::weak_ptr<CSTGInputManager> input;
-  CTextDrawer::Text text[5];
-  std::vector<int> skillList;
-  int cnt;
-  int cur;
+  std::weak_ptr<CSTGInputManager> input_;
+  CTextDrawer::Text text_[5];
+  std::vector<int> skill_list_;
+  int cnt_;
+  int cur_;
 };

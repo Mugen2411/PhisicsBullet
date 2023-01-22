@@ -7,15 +7,6 @@
 class CField;
 
 class CMover_ShotBase : public CMover {
- protected:
-  CAttribute atk_;
-  CAttribute base_atk_;
-
-  std::weak_ptr<CMover> target_;
-
-  int cnt_;
-  int effect_color_;
-
  public:
   CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position,
                   double size, CVector velocity, double mass, COF cofs,
@@ -41,4 +32,13 @@ class CMover_ShotBase : public CMover {
   virtual void FieldDispatch(CField* f);
 
   virtual void IfOnWall();
+
+ protected:
+  CAttribute atk_;
+  CAttribute base_atk_;
+
+  std::weak_ptr<CMover> target_;
+
+  int cnt_;
+  int effect_color_;
 };

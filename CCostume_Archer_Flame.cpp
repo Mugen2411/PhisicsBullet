@@ -16,19 +16,19 @@ CCostume_Archer_Flame::CCostume_Archer_Flame(std::string gid_)
       Constant::kCostumeDetailPosition, 0xFFFFFF, 0x000000, 0);
 }
 
-void CCostume_Archer_Flame::WeakShot(CAttribute baseATK, CVector position_,
+void CCostume_Archer_Flame::WeakShot(CAttribute baseATK, CVector position,
                                      float angle) {
   CSoundManager::GetIns().Find("throw")->Play(CSound::PlayType::kBack);
   RegisterShot(std::make_shared<CMover_Shot_Archer_PlaneArrow>(
-      baseATK, position_, angle));
+      baseATK, position, angle));
 }
 
-void CCostume_Archer_Flame::ChargeShot(CAttribute baseATK, CVector position_,
+void CCostume_Archer_Flame::ChargeShot(CAttribute baseATK, CVector position,
                                        float angle) {
   CSoundManager::GetIns().Find("throw")->Play(CSound::PlayType::kBack);
   CSoundManager::GetIns().Find("little_fire")->Play(CSound::PlayType::kBack);
   for (int i = -1; i < 2; i++) {
     RegisterShot(std::make_shared<CMover_Shot_Archer_FlameArrow>(
-        baseATK, position_, angle + i * Constant::kPI / 24));
+        baseATK, position, angle + i * Constant::kPI / 24));
   }
 }

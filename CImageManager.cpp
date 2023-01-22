@@ -112,6 +112,8 @@ CImageManager::CImageManager() {
       24);
   image_list_["shot_swimsuit_iphone"] = std::make_shared<CImage>(
       "media/graphic/character/komuk/costume/swimsuit/phone.png", 32, 32);
+  image_list_["shot_chinese_lantern"] = std::make_shared<CImage>(
+      "media/graphic/character/komuk/costume/chinese/lantern.png", 32, 32);
   image_list_["effect_bat"] = std::make_shared<CImage>(
       "media/graphic/character/komuk/costume/swimsuit/bat.png", 128, 32);
   image_list_["effect_bathead"] = std::make_shared<CImage>(

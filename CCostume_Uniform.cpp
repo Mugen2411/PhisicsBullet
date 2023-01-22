@@ -17,18 +17,18 @@ CCostume_Uniform::CCostume_Uniform(std::string gid_)
       Constant::kCostumeDetailPosition, 0xFFFFFF, 0x000000, 0);
 }
 
-void CCostume_Uniform::WeakShot(CAttribute baseATK, CVector position_,
+void CCostume_Uniform::WeakShot(CAttribute baseATK, CVector position,
                                 float angle) {
   CSoundManager::GetIns().Find("little_magic")->Play(CSound::PlayType::kBack);
   RegisterShot(
-      std::make_shared<CMover_Shot_Uniform_Homing>(baseATK, position_, angle));
+      std::make_shared<CMover_Shot_Uniform_Homing>(baseATK, position, angle));
   // p_player->RegisterPower(std::make_shared<CPower_Line>(position_ +
   // CVector(angle_) * 32, CVector(angle_, 128.0), 64, 30, 1));
 }
 
-void CCostume_Uniform::ChargeShot(CAttribute baseATK, CVector position_,
+void CCostume_Uniform::ChargeShot(CAttribute baseATK, CVector position,
                                   float angle) {
   CSoundManager::GetIns().Find("middle_magic")->Play(CSound::PlayType::kBack);
   RegisterShot(std::make_shared<CMover_Shot_Uniform_StrongMagic>(
-      baseATK, position_, angle));
+      baseATK, position, angle));
 }

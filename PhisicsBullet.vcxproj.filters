@@ -130,6 +130,12 @@
     <Filter Include="ソース ファイル\Mover\Shot\Swimsuit">
       <UniqueIdentifier>{3e8acd93-c569-444f-987f-860b7e7c14c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Chinese">
+      <UniqueIdentifier>{c12c3edc-85fc-4613-a87b-e8e22f5bbe73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Chinese">
+      <UniqueIdentifier>{958050af-02a1-4a58-b106-3770d54406e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -458,6 +464,12 @@
     </ClCompile>
     <ClCompile Include="CEffect_Wind.cpp">
       <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Chinese.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Chinese_Lantern.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Chinese</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -802,6 +814,12 @@
     </ClInclude>
     <ClInclude Include="CEffect_Wind.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Chinese.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Chinese_Lantern.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Chinese</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

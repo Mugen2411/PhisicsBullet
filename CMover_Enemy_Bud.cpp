@@ -8,7 +8,7 @@
 CMover_Enemy_Bud::CMover_Enemy_Bud(CVector position, int Level)
     : CMover_EnemyBase(20, Level, 0.5, 0.8,
                        CAttribute(1.0).Fire(0.4).Flower(2.0).Aqua(0.6), 10,
-                       0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.06, 0.1)),
+                       0xFFFF00, position, 2.7, 1.2, COF(0.8, 0.99, 0.2, 0.1)),
       test_dest_(0.0, 0.0) {}
 
 int CMover_Enemy_Bud::Update() {

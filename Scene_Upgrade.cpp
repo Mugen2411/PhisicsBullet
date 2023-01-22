@@ -58,11 +58,11 @@ void Scene_Upgrade::Update() {
       CProgressData::GetIns().Upgrade(
           CStatus::GetMoneyToUpgrade(CProgressData::GetIns().GetPlayerLevel()));
       has_enough_money_ = true;
-      CSoundManager::GetIns().Find("money")->Play(CSound::Playtype::kBack);
+      CSoundManager::GetIns().Find("money")->Play(CSound::PlayType::kBack);
     } else {
       CSoundManager::GetIns()
           .Find("player_hit")
-          ->Play(CSound::Playtype::kBack);
+          ->Play(CSound::PlayType::kBack);
       has_enough_money_ = false;
     }
   }

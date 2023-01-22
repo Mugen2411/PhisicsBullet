@@ -8,6 +8,8 @@ class CMover_Shot_Chinese_Lantern : public CMover_ShotBase {
   int Update();
   void Render() const;
 
+  void IfOnWall() {}
+
  private:
   int cnt_;
   CAttribute init_;

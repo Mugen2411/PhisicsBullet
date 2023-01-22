@@ -8,7 +8,7 @@ CMover_Shot_Chinese_Lantern::CMover_Shot_Chinese_Lantern(CAttribute baseATK,
                                                          double angle)
     : CMover_ShotBase(
           baseATK, CAttribute(0.0).None(10).Fire(5), position, 24,
-          CVector(angle + Constant::kPI2 / 6 * (GetRand(10) * 0.1 - 0.5)) * 16 *
+          CVector(angle + Constant::kPI2 / 6 * (GetRand(10) * 0.1 - 0.5)) * 8 *
               (GetRand(10) + 10) * 0.1,
           2, COF(0.001, 0.001, 0.2, 0.2), 0xFFCF00),
       init_(baseATK),
@@ -17,7 +17,7 @@ CMover_Shot_Chinese_Lantern::CMover_Shot_Chinese_Lantern(CAttribute baseATK,
 
 int CMover_Shot_Chinese_Lantern::Update() {
   cnt_++;
-  double cf = max(1.0, min(10.0, velocity_.GetLength() / 5.0f));
+  double cf = max(1.0, min(10.0, velocity_.GetLength() / 3.0f));
   base_atk_ = init_ * cf;
   base_y_ = sin(Constant::kPI2 * Constant::kPerFrame * cnt_);
   if (cnt_ > 480) SetStatus(kDead);

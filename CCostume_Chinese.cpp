@@ -20,7 +20,7 @@ void CCostume_Chinese::WeakShot(CAttribute baseATK, CVector position,
                                 float angle) {
   player_ptr_->RegisterPower(std::make_shared<CPower_Line>(
       position + CVector(angle) * 32, CVector(angle, 192.0), 64, 40,
-      CAttribute(0.0).Wind(10.0) * baseATK, 1));
+      CAttribute(0.0).Wind(5.0) * baseATK, 1));
 }
 
 void CCostume_Chinese::ChargeShot(CAttribute baseATK, CVector position,

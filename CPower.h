@@ -4,7 +4,7 @@
 
 class CPower {
  public:
-  CPower(CVector position, double power, int duration);
+  CPower(CVector position, double power, CAttribute damage, int duration);
   void SetParent(CPowerParent* p) { parent_ = p; }
 
   virtual void ApplyForceToMover(CMover*) = 0;
@@ -14,6 +14,7 @@ class CPower {
  protected:
   CPowerParent* parent_;
   CVector position_;
+  CAttribute damage_;
   double power_;
   int duration_;
   int cnt_;

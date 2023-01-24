@@ -68,7 +68,7 @@ void Scene_Option::Render() const {
   CImageManager::GetIns().Find("icon_return")->Draw(0, 0, 101);
   CImageManager::GetIns()
       .Find("enemy_marker")
-      ->Draw((int)text_[menu_selector_.Get() + 1].position_.x - 32,
-             (int)text_[menu_selector_.Get() + 1].position_.y, 101, 0);
+      ->Draw((int)text_[menu_selector_.Get() + 1].position_.x_ - 32,
+             (int)text_[menu_selector_.Get() + 1].position_.y_, 101, 0);
   CAnchor::GetIns().DisableAbsolute();
 }

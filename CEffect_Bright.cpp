@@ -32,8 +32,8 @@ void CEffect_Bright::Render() const {
   for (auto& i : list_) {
     if (i.power < 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, i.power);
-    DrawRotaGraph((int)(i.position_.x - CAnchor::GetIns().GetAnchorX()),
-                  (int)(i.position_.y - CAnchor::GetIns().GetAnchorY()),
+    DrawRotaGraph((int)(i.position_.x_ - CAnchor::GetIns().GetAnchorX()),
+                  (int)(i.position_.y_ - CAnchor::GetIns().GetAnchorY()),
                   i.radius / 256.0, 0, bright_graph_, TRUE);
   }
 
@@ -44,8 +44,8 @@ void CEffect_Bright::Render() const {
   for (auto& i : list_) {
     if (i.power > 0) continue;
     SetDrawBlendMode(DX_BLENDMODE_ADD, -i.power);
-    DrawRotaGraphF((float)(i.position_.x - CAnchor::GetIns().GetAnchorX()),
-                  (float)(i.position_.y - CAnchor::GetIns().GetAnchorY()),
+    DrawRotaGraphF((float)(i.position_.x_ - CAnchor::GetIns().GetAnchorX()),
+                  (float)(i.position_.y_ - CAnchor::GetIns().GetAnchorY()),
                   (float)i.radius / 256.0f, 0.0f, bright_graph_, TRUE);
   }
   SetDrawScreen(bright_screen_);

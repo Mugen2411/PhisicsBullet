@@ -34,7 +34,7 @@ void CField_Wall_Log::Render() const {
     case 1:
       CImageManager::GetIns()
           .Find("effect_flame")
-          ->DrawRotaFwithBlend(position_.x, position_.y, GetRand(16) / 256.0f,
+          ->DrawRotaFwithBlend(position_.x_, position_.y_, GetRand(16) / 256.0f,
                                1.0, 0xFFFFFF, CImageManager::kAdd, 216,
                                Constant::kPriorityEffect, (unsigned int)animation_cnt_);
       CImageManager::GetIns()

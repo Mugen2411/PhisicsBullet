@@ -80,14 +80,14 @@ class CMover {
     }
 
     if (!(is_locked_axis_ & 1)) {
-      position_.x += velocity_.x;
+      position_.x_ += velocity_.x_;
     }
     if (!((is_locked_axis_ >> 1) & 1)) {
-      position_.y += velocity_.y;
+      position_.y_ += velocity_.y_;
     }
     is_locked_axis_ = 0;
-    acceleration_.x = 0;
-    acceleration_.y = 0;
+    acceleration_.x_ = 0;
+    acceleration_.y_ = 0;
     friction_force_ = CVector(0.0, 0.0);
     water_force_ = CVector(0.0, 0.0);
     air_force_ = CVector(0.0, 0.0);
@@ -96,8 +96,8 @@ class CMover {
 
   void ResetPower() {
     is_locked_axis_ = 0;
-    acceleration_.x = 0;
-    acceleration_.y = 0;
+    acceleration_.x_ = 0;
+    acceleration_.y_ = 0;
     friction_force_ = CVector(0.0, 0.0);
     water_force_ = CVector(0.0, 0.0);
     air_force_ = CVector(0.0, 0.0);

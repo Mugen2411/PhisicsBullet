@@ -8,7 +8,7 @@
 CCostume_Firefighter::CCostume_Firefighter(std::string gid_)
     : CCostumeBase(
           "media/graphic/character/komuk/costume/firefighter/komuk.png", 0.1,
-          120, 2, 2, 3.0, 1.8, 30.0,
+          120, 2, 2, 2.2, 1.5, 30.0,
           CAttribute(1.0).Fire(3.0).Wind(0.5).Thunder(0.7),
           COF(0.8, 0.96, 0.05, 0.0), gid_) {
   detail_ = CTextDrawer::Text(
@@ -20,7 +20,9 @@ void CCostume_Firefighter::WeakShot(CAttribute baseATK, CVector position,
                                     float angle) {
   RegisterShot(std::make_shared<CMover_Shot_Firefigher_Water>(
       baseATK, position,
-      angle + Constant::kPI / 24 * (GetRand(10) * 0.1 - 0.5)));
+      angle + Constant::kPI / 20 * (GetRand(10) * 0.1 - 0.5)));
+  player_ptr_->ApplyForce(CVector(angle+Constant::kPI) * 60.0);
+  CSoundManager::GetIns().Find("splash")->Play(CSound::PlayType::kBack);
   player_ptr_->ReduceCharge(3.0);
 }
 

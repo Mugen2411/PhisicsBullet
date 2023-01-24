@@ -89,7 +89,7 @@ void Scene_Upgrade::Update() {
 }
 
 void Scene_Upgrade::Render() const {
-  assert(text_[0].position_.y < 40.0);
+  assert(text_[0].position_.y_ < 40.0);
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns().Find("system_curtain")->Draw(0, 0, 100, 0);
   CImageManager::GetIns().Find("system_curtain")->Draw(320, 0, 100, 1);

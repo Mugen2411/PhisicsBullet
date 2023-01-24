@@ -47,21 +47,21 @@ bool CMover_Player::BaseRender() const { return true; }
 
 int CMover_Player::Update() {
   auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
-  if (p.x < Constant::kScrollMargin)
-    CAnchor::GetIns().SetPosition(CVector(position_.x - Constant::kScrollMargin,
+  if (p.x_ < Constant::kScrollMargin)
+    CAnchor::GetIns().SetPosition(CVector(position_.x_ - Constant::kScrollMargin,
                                           CAnchor::GetIns().GetAnchorY()));
-  if (p.x > Constant::kScreenW - Constant::kScrollMargin)
+  if (p.x_ > Constant::kScreenW - Constant::kScrollMargin)
     CAnchor::GetIns().SetPosition(
-        CVector(position_.x - Constant::kScreenW + Constant::kScrollMargin,
+        CVector(position_.x_ - Constant::kScreenW + Constant::kScrollMargin,
                 CAnchor::GetIns().GetAnchorY()));
 
-  if (p.y < Constant::kScrollMargin)
+  if (p.y_ < Constant::kScrollMargin)
     CAnchor::GetIns().SetPosition(CVector(CAnchor::GetIns().GetAnchorX(),
-                                          position_.y - Constant::kScrollMargin));
-  if (p.y > Constant::kScreenH - Constant::kScrollMargin)
+                                          position_.y_ - Constant::kScrollMargin));
+  if (p.y_ > Constant::kScreenH - Constant::kScrollMargin)
     CAnchor::GetIns().SetPosition(
         CVector(CAnchor::GetIns().GetAnchorX(),
-                position_.y - Constant::kScreenH + Constant::kScrollMargin));
+                position_.y_ - Constant::kScreenH + Constant::kScrollMargin));
 
   if (state_ == 1) {
     wait_duration_--;
@@ -84,8 +84,8 @@ int CMover_Player::Update() {
   Walk();
 
 #ifdef _DEBUG
-  printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x, p.y, acceleration_.x,
-           acceleration_.y);
+  printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x_, p.y_, acceleration_.x_,
+           acceleration_.y_);
   printfDx("HP:%lf\n", base_params_.HP_);
 #endif
   return 0;

@@ -92,5 +92,5 @@ int CSTGInputManager::GetDirection() {
 }
 
 float CSTGInputManager::GetMouseAngle(CVector p) {
-  return (float)atan2(my_ - p.y, mx_ - p.x);
+  return (float)atan2(my_ - p.y_, mx_ - p.x_);
 }

@@ -14,13 +14,13 @@ CEffect_DamageNumber::CEffect_DamageNumber(CVector position_, double num,
 
 void CEffect_DamageNumber::Update() {
   cnt_++;
-  position_.y -= dy_;
+  position_.y_ -= dy_;
   dy_ *= 0.83;
   if (cnt_ > 30) status_ = 1;
 }
 
 void CEffect_DamageNumber::Render() const {
   number_drawer_.Draw(
-      (int)position_.x, (int)position_.y, num_, type_, style_,
+      (int)position_.x_, (int)position_.y_, num_, type_, style_,
       style_ == 0 ? Constant::kPriorityNumber + 1 : Constant::kPriorityNumber);
 }

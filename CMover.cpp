@@ -30,14 +30,14 @@ bool CMover::OnWall(CField* f, double WallReflectionCF) {
   CVector WallPosition = f->GetPosition();
   CVector WallSize = f->GetSize();
   CVector nextPosition = position_ + velocity_ + acceleration_;
-  double max = (position_.x + size_) - (WallPosition.x - WallSize.x / 2),
-         may = (position_.y + size_) - (WallPosition.y - WallSize.y / 2);
-  double nax = (WallPosition.x + WallSize.x / 2) - (position_.x - size_),
-         nay = (WallPosition.y + WallSize.y / 2) - (position_.y - size_);
-  double _max = (nextPosition.x + size_) - (WallPosition.x - WallSize.x / 2),
-         _may = (nextPosition.y + size_) - (WallPosition.y - WallSize.y / 2);
-  double _nax = (WallPosition.x + WallSize.x / 2) - (nextPosition.x - size_),
-         _nay = (WallPosition.y + WallSize.y / 2) - (nextPosition.y - size_);
+  double max = (position_.x_ + size_) - (WallPosition.x_ - WallSize.x_ / 2),
+         may = (position_.y_ + size_) - (WallPosition.y_ - WallSize.y_ / 2);
+  double nax = (WallPosition.x_ + WallSize.x_ / 2) - (position_.x_ - size_),
+         nay = (WallPosition.y_ + WallSize.y_ / 2) - (position_.y_ - size_);
+  double _max = (nextPosition.x_ + size_) - (WallPosition.x_ - WallSize.x_ / 2),
+         _may = (nextPosition.y_ + size_) - (WallPosition.y_ - WallSize.y_ / 2);
+  double _nax = (WallPosition.x_ + WallSize.x_ / 2) - (nextPosition.x_ - size_),
+         _nay = (WallPosition.y_ + WallSize.y_ / 2) - (nextPosition.y_ - size_);
   bool U = false, D = false, R = false, L = false;
 
   //カド同士の判定
@@ -80,64 +80,64 @@ bool CMover::OnWall(CField* f, double WallReflectionCF) {
 
   //上下左右の判定
   if (may > 0 && nay > 0) {
-    if (_nax > 0 && (position_.x - size_) > (WallPosition.x - WallSize.x / 2)) {
+    if (_nax > 0 && (position_.x_ - size_) > (WallPosition.x_ - WallSize.x_ / 2)) {
       //左にある
       L = true;
     }
-    if (_max > 0 && (WallPosition.x + WallSize.x / 2) > (position_.x + size_)) {
+    if (_max > 0 && (WallPosition.x_ + WallSize.x_ / 2) > (position_.x_ + size_)) {
       //右にある
       R = true;
     }
   }
   if (max > 0 && nax > 0) {
-    if (_nay > 0 && (position_.y - size_) > (WallPosition.y - WallSize.y / 2)) {
+    if (_nay > 0 && (position_.y_ - size_) > (WallPosition.y_ - WallSize.y_ / 2)) {
       //上にある
       U = true;
     }
-    if (_may > 0 && (WallPosition.y + WallSize.y / 2) > (position_.y + size_)) {
+    if (_may > 0 && (WallPosition.y_ + WallSize.y_ / 2) > (position_.y_ + size_)) {
       //下にある
       D = true;
     }
   }
   int add = 0;
   if (U) {
-    position_.y = WallPosition.y + WallSize.y / 2 + (size_ + 1.0);
-    velocity_.y *= -cofs_.ReflectCF * WallReflectionCF;
+    position_.y_ = WallPosition.y_ + WallSize.y_ / 2 + (size_ + 1.0);
+    velocity_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
     // acceleration_.y_ *= -Cofs.ReflectCF * WallReflectionCF;
-    acceleration_.y = 0;
-    air_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
-    water_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
-    friction_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
+    acceleration_.y_ = 0;
+    air_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
+    water_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
+    friction_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
     IfOnWall();
   }
   if (D) {
-    position_.y = WallPosition.y - WallSize.y / 2 - (size_ + 1.0);
-    velocity_.y *= -cofs_.ReflectCF * WallReflectionCF;
+    position_.y_ = WallPosition.y_ - WallSize.y_ / 2 - (size_ + 1.0);
+    velocity_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
     // acceleration_.y_ *= -Cofs.ReflectCF * WallReflectionCF;
-    acceleration_.y = 0;
-    air_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
-    water_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
-    friction_force_.y *= -cofs_.ReflectCF * WallReflectionCF;
+    acceleration_.y_ = 0;
+    air_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
+    water_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
+    friction_force_.y_ *= -cofs_.ReflectCF * WallReflectionCF;
     IfOnWall();
   }
   if (R) {
-    position_.x = WallPosition.x - WallSize.x / 2 - (size_ + 1.0);
-    velocity_.x *= -cofs_.ReflectCF * WallReflectionCF;
+    position_.x_ = WallPosition.x_ - WallSize.x_ / 2 - (size_ + 1.0);
+    velocity_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
     // acceleration_.x_ *= -Cofs.ReflectCF * WallReflectionCF;
-    acceleration_.x = 0;
-    air_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
-    water_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
-    friction_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
+    acceleration_.x_ = 0;
+    air_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
+    water_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
+    friction_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
     IfOnWall();
   }
   if (L) {
-    position_.x = WallPosition.x + WallSize.x / 2 + (size_ + 1.0);
-    velocity_.x *= -cofs_.ReflectCF * WallReflectionCF;
+    position_.x_ = WallPosition.x_ + WallSize.x_ / 2 + (size_ + 1.0);
+    velocity_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
     // acceleration_.x_ *= -Cofs.ReflectCF * WallReflectionCF;
-    acceleration_.x = 0;
-    air_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
-    water_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
-    friction_force_.x *= -cofs_.ReflectCF * WallReflectionCF;
+    acceleration_.x_ = 0;
+    air_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
+    water_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
+    friction_force_.x_ *= -cofs_.ReflectCF * WallReflectionCF;
     IfOnWall();
   }
   is_locked_axis_ = ((U | D) << 1) | (R | L);

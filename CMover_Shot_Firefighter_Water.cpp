@@ -5,7 +5,7 @@
 CMover_Shot_Firefigher_Water::CMover_Shot_Firefigher_Water(CAttribute baseATK,
                                                            CVector position,
                                                            double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).Aqua(15), position, 18,
+    : CMover_ShotBase(baseATK, CAttribute(0.0).Aqua(20), position, 18,
                       CVector(angle) * 12.0, 2.0, COF(0.0, 0.0, 0.03, 0.0),
                       0x00CFFF),
       cnt_(0),
@@ -26,6 +26,6 @@ int CMover_Shot_Firefigher_Water::Update() {
 void CMover_Shot_Firefigher_Water::Render() const {
   CImageManager::GetIns()
       .Find("shot_firefighter_water")
-      ->DrawRotaF(position_.x, position_.y, velocity_.GetAngle(), 1,
+      ->DrawRotaF(position_.x_, position_.y_, velocity_.GetAngle(), 1,
                   Constant::kPriorityShot);
 }

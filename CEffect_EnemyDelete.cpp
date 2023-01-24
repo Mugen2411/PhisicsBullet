@@ -21,13 +21,13 @@ void CEffect_EnemyDelete::Render() const {
   CImageManager::GetIns()
       .Find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
-          position_.x, position_.y, 0,
+          position_.x_, position_.y_, 0,
           float(size_ * (1 - std::powl(1 - (double)cnt_ / duration_, 2))) / 16.0f, color_,
           CImageManager::kNone, 255, Constant::kPriorityEffect, (uint32_t)animation_cnt_);
   CImageManager::GetIns()
       .Find("effect_bulletdelete")
       ->DrawRotaFwithBlend(
-          position_.x, position_.y, 0,
+          position_.x_, position_.y_, 0,
           float(size_ * (1 - std::powl(1 - (double)cnt_ / duration_, 2))) / 16.0f,
           0xFFFFFF, CImageManager::kAdd, 255, Constant::kPriorityEffect + 1,
           (uint32_t)animation_cnt_);

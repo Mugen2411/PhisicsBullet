@@ -19,13 +19,13 @@ void CEffect_BulletDelete::Update() {
 void CEffect_BulletDelete::Render() const {
   CImageManager::GetIns()
       .Find("effect_bulletdelete")
-      ->DrawRotaFwithBlend(position_.x, position_.y, velocity_.GetAngle(),
+      ->DrawRotaFwithBlend(position_.x_, position_.y_, velocity_.GetAngle(),
                            float(size_) / 16.0f, color_, CImageManager::kNone,
                            255, Constant::kPriorityEffect,
                            (uint32_t)(cnt_ / 2.0));
   CImageManager::GetIns()
       .Find("effect_bulletdelete")
-      ->DrawRotaFwithBlend(position_.x, position_.y, velocity_.GetAngle(),
+      ->DrawRotaFwithBlend(position_.x_, position_.y_, velocity_.GetAngle(),
                            float(size_) / 16.0f, 0xFFFFFF, CImageManager::kAdd,
                            255, Constant::kPriorityEffect + 1,
                            (uint32_t)(cnt_ / 2.0));

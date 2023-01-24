@@ -28,7 +28,7 @@ void CField_Decoration_Torch::Render() const {
         CEffect_Bright::BrightDesc(position_, 512 - GetRand(16), 216));
     CImageManager::GetIns()
         .Find("effect_bornfire")
-        ->DrawRotaFwithBlend(position_.x, position_.y, GetRand(16) / 256.0f, 1.0,
+        ->DrawRotaFwithBlend(position_.x_, position_.y_, GetRand(16) / 256.0f, 1.0,
                              0xFFFFFF, CImageManager::kAdd, 216,
                              Constant::kPriorityEffect, (uint32_t)animation_cnt_);
   }

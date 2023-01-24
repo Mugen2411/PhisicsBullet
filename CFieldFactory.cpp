@@ -110,10 +110,10 @@ CField* CFieldFactory::create(int x, int y, std::string name) {
 }
 
 CField* CFieldFactory::create(CVector pos, std::string name) {
-  pos.x *= 32;
-  pos.x += 16;
-  pos.y *= 32;
-  pos.y += 16;
+  pos.x_ *= 32;
+  pos.x_ += 16;
+  pos.y_ *= 32;
+  pos.y_ += 16;
   //ここに名前とパラメータを使ってCFieldを生成する処理をゴリゴリと書いていく
   if (name[0] == 'W' || name[0] == 'E' || name[0] == 'P') {
     auto itr =

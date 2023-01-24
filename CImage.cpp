@@ -58,8 +58,8 @@ void CImage::Draw(double x1, double y1, int priority, unsigned int num) {
 void CImage::Draw(CVector pos, int priority, unsigned int num) {
   if (num > array_size_) return;
   CRenderReserveList::Add(new CDrawGraphReserve(
-      graphic_handle_[num], (int)pos.x - (int)CAnchor::GetIns().GetAnchorX(),
-      (int)pos.y - (int)CAnchor::GetIns().GetAnchorY(), priority, width_, height_));
+      graphic_handle_[num], (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
+      (int)pos.y_ - (int)CAnchor::GetIns().GetAnchorY(), priority, width_, height_));
 }
 
 void CImage::DrawRota(int x1, int y1, float angle, float extend, int priority, unsigned int num) {
@@ -73,8 +73,8 @@ void CImage::DrawRota(CVector pos, float angle, float extend, int priority,
                       unsigned int num) {
   if (num > array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphReserve(
-      graphic_handle_[num], priority, (int)pos.x - (int)CAnchor::GetIns().GetAnchorX(),
-      (int)pos.y - (int)CAnchor::GetIns().GetAnchorY(), angle, extend, width_,
+      graphic_handle_[num], priority, (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
+      (int)pos.y_ - (int)CAnchor::GetIns().GetAnchorY(), angle, extend, width_,
       height_));
 }
 

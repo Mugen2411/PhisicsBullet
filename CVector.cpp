@@ -1,15 +1,15 @@
 #include "CVector.h"
 #include "Constant.h"
 
-CVector::CVector() : x(0.0), y(0.0) {}
+CVector::CVector() : x_(0.0), y_(0.0) {}
 
-CVector::CVector(double x, double y) : x(x), y(y) {}
+CVector::CVector(double x, double y) : x_(x), y_(y) {}
 
-CVector::CVector(double angle) : x(cos(angle)), y(sin(angle)) {}
+CVector::CVector(double angle) : x_(cos(angle)), y_(sin(angle)) {}
 
-CVector::CVector(int x, int y) : x(x), y(y) {}
+CVector::CVector(int x, int y) : x_(x), y_(y) {}
 
-CVector::CVector(bool v) : x(0), y(0) { is_valid = false; }
+CVector::CVector(bool v) : x_(0), y_(0) { is_valid_ = false; }
 
 int CVector::GetDirection() {
   double angle = GetAngle();

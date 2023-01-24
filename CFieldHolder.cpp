@@ -36,13 +36,13 @@ CFieldHolder::CFieldHolder(std::string filepath) : filepath_(filepath) {
 CFieldHolder::~CFieldHolder() {}
 
 void CFieldHolder::WriteFloor(CField* f, CVector pos) {
-  if (0 > pos.x || pos.x >= width_ || 0 > pos.y || pos.y >= height_) return;
-  floor_list_[(uint64_t)(width_ * pos.y + pos.x)].reset(f);
+  if (0 > pos.x_ || pos.x_ >= width_ || 0 > pos.y_ || pos.y_ >= height_) return;
+  floor_list_[(uint64_t)(width_ * pos.y_ + pos.x_)].reset(f);
 }
 
 void CFieldHolder::WriteWall(CField* f, CVector pos) {
-  if (0 > pos.x || pos.x >= width_ || 0 > pos.y || pos.y >= height_) return;
-  wall_list_[(uint64_t)(width_ * pos.y + pos.x)].reset(f);
+  if (0 > pos.x_ || pos.x_ >= width_ || 0 > pos.y_ || pos.y_ >= height_) return;
+  wall_list_[(uint64_t)(width_ * pos.y_ + pos.x_)].reset(f);
 }
 
 void CFieldHolder::Update() {
@@ -152,12 +152,12 @@ std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
                                             CAttribute attrDEF, int distance) {
   int dx[4] = {0, 0, 1, -1};
   int dy[4] = {1, -1, 0, 0};
-  if (start.x < 0 || start.y < 0 || start.x > width_ * 32 ||
-      start.y > height_ * 32)
+  if (start.x_ < 0 || start.y_ < 0 || start.x_ > width_ * 32 ||
+      start.y_ > height_ * 32)
     return std::list<CVector>();
 
-  CVector s((int)((start.x) / 32), (int)((start.y) / 32));
-  CVector t((int)((goal.x) / 32), (int)((goal.y) / 32));
+  CVector s((int)((start.x_) / 32), (int)((start.y_) / 32));
+  CVector t((int)((goal.x_) / 32), (int)((goal.y_) / 32));
   std::list<CVector> ret;
   using PP = std::pair<double, CVector>;
 
@@ -174,7 +174,7 @@ std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
     }
   }
   std::priority_queue<PP, std::vector<PP>, std::greater<PP>> pq;
-  dist_[(int)(start.x / 32)][(int)(start.y / 32)] = 0;
+  dist_[(int)(start.x_ / 32)][(int)(start.y_ / 32)] = 0;
   pq.push(PP(0, s));
 
   while (!pq.empty()) {
@@ -182,25 +182,25 @@ std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
     pq.pop();
     if (p.second == t) break;
     double c = p.first;
-    int vx = (int)p.second.x;
-    int vy = (int)p.second.y;
+    int vx = (int)p.second.x_;
+    int vy = (int)p.second.y_;
     for (int i = 0; i < 4; i++) {
       uint32_t nx, ny;
       nx = vx + dx[i];
       ny = vy + dy[i];
       if (nx < 0 || ny < 0 || nx >= width_ || ny >= height_) continue;
       if (wall_list_[Index(nx, ny)]->is_wall_) continue;
-      if (dist_[nx][ny] <= g_[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c)
+      if (dist_[nx][ny] <= g_[nx][ny] + abs(nx - t.x_) + abs(ny - t.y_) + c)
         continue;
-      dist_[nx][ny] = g_[nx][ny] + abs(nx - t.x) + abs(ny - t.y) + c;
+      dist_[nx][ny] = g_[nx][ny] + abs(nx - t.x_) + abs(ny - t.y_) + c;
       pre_[nx][ny] = CVector(vx, vy);
       pq.push(PP(dist_[nx][ny], CVector((int)nx, (int)ny)));
     }
   }
 
   CVector v;
-  for (; t.x != -1 || t.y != -1; t.x = pre_[(uint32_t)v.x][(uint32_t)v.y].x,
-                                 t.y = pre_[(uint32_t)v.x][(uint32_t)v.y].y) {
+  for (; t.x_ != -1 || t.y_ != -1; t.x_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].x_,
+                                 t.y_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].y_) {
     ret.push_front(t);
     v = t;
   }
@@ -223,7 +223,7 @@ std::vector<CVector> CFieldHolder::FindTargetByDistance(CVector start,
   int dx[4] = {0, 0, 1, -1};
   int dy[4] = {1, -1, 0, 0};
   std::vector<CVector> ret;
-  CVector s((int)((start.x) / 32), (int)((start.y) / 32));
+  CVector s((int)((start.x_) / 32), (int)((start.y_) / 32));
 
   for (uint32_t x = 0; x < width_; x++) {
     for (uint32_t y = 0; y < height_; y++) {
@@ -232,12 +232,12 @@ std::vector<CVector> CFieldHolder::FindTargetByDistance(CVector start,
   }
   std::priority_queue<CVector> pq;
   pq.push(s);
-  diff_[(uint32_t)s.x][(uint32_t)s.y] = 0;
+  diff_[(uint32_t)s.x_][(uint32_t)s.y_] = 0;
   while (!pq.empty()) {
     CVector now = pq.top();
     pq.pop();
-    int vx = (int)now.x;
-    int vy = (int)now.y;
+    int vx = (int)now.x_;
+    int vy = (int)now.y_;
     for (int i = 0; i < 4; i++) {
       int nx = vx + dx[i];
       int ny = vy + dy[i];

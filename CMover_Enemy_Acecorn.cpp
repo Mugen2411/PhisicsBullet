@@ -6,7 +6,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_Acecorn::CMover_Enemy_Acecorn(CVector position, int Level)
-    : CMover_EnemyBase(30, Level, 1.35, 3.2,
+    : CMover_EnemyBase(30, Level, 1.2, 2.5,
                        CAttribute(1.0).Fire(0.5).Flower(3.0).Aqua(0.8), 80,
                        0xFF7F00, position, 4.8, 2.4, COF(0.8, 0.95, 0.06, 0.1)),
       test_dest_(0.0, 0.0),
@@ -86,13 +86,13 @@ void CMover_Enemy_Acecorn::Render() const {
   if (state_ < 0) {
     CImageManager::GetIns()
         .Find("enemy_bud_intro")
-        ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+        ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0, Constant::kPriorityEnemy,
                    (int)(animation_cnt_));
     return;
   }
   CImageManager::GetIns()
       .Find("enemy_acecorn")
-      ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+      ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0, Constant::kPriorityEnemy,
                  direction_ * 4 + (int)(animation_cnt_));
 }
 

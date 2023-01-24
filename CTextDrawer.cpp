@@ -28,11 +28,11 @@ void CTextDrawer::RegisterForCostumeDetail(Text txt) {
 
 void CTextDrawer::Render() const {
   for (auto& i : text_queue_) {
-    DrawStringToHandle((int)i.position_.x, (int)i.position_.y, i.text_.c_str(), i.main_color_,
+    DrawStringToHandle((int)i.position_.x_, (int)i.position_.y_, i.text_.c_str(), i.main_color_,
                        font_array_[i.fontID_], i.edge_color_);
   }
   for (auto& i : costume_detail_queue_) {
-    DrawFormatStringToHandle((int)i.position_.x, (int)i.position_.y, i.main_color_,
+    DrawFormatStringToHandle((int)i.position_.x_, (int)i.position_.y_, i.main_color_,
                              font_array_[i.fontID_], i.text_.c_str());
   }
 }

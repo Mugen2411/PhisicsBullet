@@ -26,8 +26,8 @@ class CField {
   inline bool IsInScreen() {
     const int size_ = 32;
     auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
-    if (p.x + size_ > 0 && p.x - size_ < Constant::kScreenW && p.y + size_ > 0 &&
-        p.y - size_ < Constant::kScreenH)
+    if (p.x_ + size_ > 0 && p.x_ - size_ < Constant::kScreenW && p.y_ + size_ > 0 &&
+        p.y_ - size_ < Constant::kScreenH)
       return true;
     return false;
   }

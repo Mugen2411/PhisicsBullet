@@ -19,16 +19,16 @@ void CFieldParent::Update() { field_holder_->Update(); }
 
 void CFieldParent::ApplyForceToMover(CMover* m) {
   CVector p = m->GetPosition();
-  int x = (int)p.x / 32;
-  int y = (int)p.y / 32;
+  int x = (int)p.x_ / 32;
+  int y = (int)p.y_ / 32;
   if (x < 0) m->SetStatus(2);
   if (y < 0) m->SetStatus(2);
   if (x > field_holder_->GetWidth()) m->SetStatus(2);
   if (y > field_holder_->GetHeight()) m->SetStatus(2);
 
   p = m->GetPosition();
-  x = (int)(p.x / 32);
-  y = (int)(p.y / 32);
+  x = (int)(p.x_ / 32);
+  y = (int)(p.y_ / 32);
 
   field_holder_->GetWall(x, y)->SetFrictionForce(m);
   field_holder_->GetFloor(x, y)->SetFrictionForce(m);
@@ -37,8 +37,8 @@ void CFieldParent::ApplyForceToMover(CMover* m) {
 
 bool CFieldParent::HitToMover(CMover* m) {
   CVector p = m->GetPosition();
-  int x = (int)p.x / 32;
-  int y = (int)p.y / 32;
+  int x = (int)p.x_ / 32;
+  int y = (int)p.y_ / 32;
   int size =
       (int)((m->GetVelocity() + m->GetAcceleration()).GetLength2() / (16 * 16)) + 1;
 

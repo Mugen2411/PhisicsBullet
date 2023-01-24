@@ -10,21 +10,21 @@ CPower_Line::CPower_Line(CVector position, CVector direction, double width,
       direction_(direction),
       width_(width),
       damage_interval_(0) {
-  corner_[0].x = position_.x + cos(direction.x - Constant::kPI / 2) * width / 2;
-  corner_[0].y = position_.y + sin(direction.x - Constant::kPI / 2) * width / 2;
-  corner_[1].x = position_.x + cos(direction.x + Constant::kPI / 2) * width / 2;
-  corner_[1].y = position_.y + sin(direction.x + Constant::kPI / 2) * width / 2;
-  corner_[2].x = position_.x + cos(direction.x) * direction.y +
-                 cos(direction.x + Constant::kPI / 2) * width / 2;
-  corner_[2].y = position_.y + sin(direction.x) * direction.y +
-                 sin(direction.x + Constant::kPI / 2) * width / 2;
-  corner_[3].x = position_.x + cos(direction.x) * direction.y +
-                 cos(direction.x - Constant::kPI / 2) * width / 2;
-  corner_[3].y = position_.y + sin(direction.x) * direction.y +
-                 sin(direction.x - Constant::kPI / 2) * width / 2;
+  corner_[0].x_ = position_.x_ + cos(direction.x_ - Constant::kPI / 2) * width / 2;
+  corner_[0].y_ = position_.y_ + sin(direction.x_ - Constant::kPI / 2) * width / 2;
+  corner_[1].x_ = position_.x_ + cos(direction.x_ + Constant::kPI / 2) * width / 2;
+  corner_[1].y_ = position_.y_ + sin(direction.x_ + Constant::kPI / 2) * width / 2;
+  corner_[2].x_ = position_.x_ + cos(direction.x_) * direction.y_ +
+                 cos(direction.x_ + Constant::kPI / 2) * width / 2;
+  corner_[2].y_ = position_.y_ + sin(direction.x_) * direction.y_ +
+                 sin(direction.x_ + Constant::kPI / 2) * width / 2;
+  corner_[3].x_ = position_.x_ + cos(direction.x_) * direction.y_ +
+                 cos(direction.x_ - Constant::kPI / 2) * width / 2;
+  corner_[3].y_ = position_.y_ + sin(direction.x_) * direction.y_ +
+                 sin(direction.x_ - Constant::kPI / 2) * width / 2;
 
-  force_direction_.x = cos(direction.x);
-  force_direction_.y = sin(direction.x);
+  force_direction_.x_ = cos(direction.x_);
+  force_direction_.y_ = sin(direction.x_);
 }
 
 bool CPower_Line::isHit(CVector mPosition, double size) {
@@ -65,12 +65,12 @@ void CPower_Line::ApplyForceToMover(CMover* m) {
   if (isHit(m->GetPosition(), m->GetSize())) {
     m->ApplyAirForce(
         force_direction_ * power_ /
-        ((m->GetPosition() - position_).GetLength() / direction_.y));
+        ((m->GetPosition() - position_).GetLength() / direction_.y_));
     if (damage_interval_ == 0) {
       m->Damage(
           damage_ / 3 /
               max(0.05, min(1.0, ((m->GetPosition() - position_).GetLength() /
-                                 direction_.y))),
+                                 direction_.y_))),
           1);
     }
   }
@@ -87,6 +87,7 @@ int CPower_Line::Update() {
 void CPower_Line::Render() const {
   for (int i = 0; i < 3; i++) {
     CEffectParent::RegisterEffect(std::make_shared<CEffect_Wind>(
-        position_, power_, (float)direction_.x, width_, direction_.y));
+        power_ >= 0.0 ? position_ : position_ + CVector(direction_.x_)*direction_.y_, power_,
+        (float)direction_.x_, width_, direction_.y_));
   }
 }

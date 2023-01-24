@@ -17,6 +17,6 @@ int CMover_Bullet_Axe::Update() {
 void CMover_Bullet_Axe::Render() const {
   CImageManager::GetIns()
       .Find("bullet_axe")
-      ->DrawRotaF(position_.x, position_.y, velocity_.GetAngle() + base_angle_, 1.0,
+      ->DrawRotaF(position_.x_, position_.y_, velocity_.GetAngle() + base_angle_, 1.0,
                  Constant::kPriorityBullet);
 }

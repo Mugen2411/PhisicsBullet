@@ -20,7 +20,7 @@ int CMover_Bullet_Flame::Update() {
 void CMover_Bullet_Flame::Render() const {
   CImageManager::GetIns()
       .Find("effect_flame")
-      ->DrawRotaFwithBlend(position_.x, position_.y,
+      ->DrawRotaFwithBlend(position_.x_, position_.y_,
                            velocity_.GetAngle() + base_angle_, 1.0, 0xFFFFFF,
                            CImageManager::BlendMode::kAdd, 0xFF,
                            Constant::kPriorityBullet, (uint32_t)animation_cnt_);

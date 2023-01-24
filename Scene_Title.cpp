@@ -114,9 +114,9 @@ void Scene_Title::Update() {
   }
   for (int i = 0; i < 6; i++) {
     if (menu_selector_.Get() == i)
-      menu_text_[i].position_.x = 400;
+      menu_text_[i].position_.x_ = 400;
     else
-      menu_text_[i].position_.x = 420;
+      menu_text_[i].position_.x_ = 420;
   }
 }
 

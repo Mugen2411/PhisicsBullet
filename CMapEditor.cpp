@@ -31,6 +31,7 @@ void CMapEditor::Update() {
   current_select_ = CAnchor::GetIns().GetWorldPosition(
                       CVector(input_.lock()->MouseX(), input_.lock()->MouseY())) /
                   32;
+  current_select_.Floor();
   switch (state_) {
     case 0:
 
@@ -84,7 +85,7 @@ void CMapEditor::Update() {
       if (input_.lock()->LClick(true) == 1) {
         current_select_ =
             CVector(input_.lock()->MouseX(), input_.lock()->MouseY()) / 32;
-        cur_ = (int)(current_select_.x) + (int)(current_select_.y) * 20;
+        cur_ = (int)(current_select_.x_) + (int)(current_select_.y_) * 20;
         current_mapchip_ = field_factory_.getKey(&cur_, category_);
         state_ = 0;
         return;
@@ -101,7 +102,7 @@ void CMapEditor::Render() const {
   switch (state_) {
     case 0:
       printfDx("Cur:%d\nPos:%d,%d\nCurentMapChip:%s\n", cur_,
-               (int)current_select_.x, (int)current_select_.y,
+               (int)current_select_.x_, (int)current_select_.y_,
                current_mapchip_.c_str());
       field_->Render();
       break;
@@ -111,15 +112,15 @@ void CMapEditor::Render() const {
       CAnchor::GetIns().DisableAbsolute();
       break;
   }
-  CVector mousePos((int)(current_select_.x) * 32 + 16,
-                   (int)(current_select_.y) * 32 + 16);
-  printfDx("Mouse:%lf,%lf\n", mousePos.x, mousePos.y);
+  CVector mousePos((int)(current_select_.x_) * 32 + 16,
+                   (int)(current_select_.y_) * 32 + 16);
+  printfDx("Mouse:%lf,%lf\n", mousePos.x_, mousePos.y_);
   mousePos = CAnchor::GetIns().GetAnchoredPosition(mousePos);
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns()
       .Find("editor_cursor")
       ->DrawRota(mousePos, 0.0f, 1.0f, 100, 0);
-  printfDx("AbsMouse:%lf,%lf\n", mousePos.x, mousePos.y);
+  printfDx("AbsMouse:%lf,%lf\n", mousePos.x_, mousePos.y_);
   CAnchor::GetIns().DisableAbsolute();
 }
 

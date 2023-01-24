@@ -20,13 +20,13 @@ class CAnchor : public Singleton<CAnchor> {
   inline CVector GetWorldPosition(CVector pos) { return pos + position_; }
   inline double GetAnchorX() {
     if (is_absolute_) return 0.0;
-    if (!quake_queue_.empty()) return position_.x + diff_quake_.x;
-    return position_.x;
+    if (!quake_queue_.empty()) return position_.x_ + diff_quake_.x_;
+    return position_.x_;
   }
   inline double GetAnchorY() {
     if (is_absolute_) return 0.0;
-    if (!quake_queue_.empty()) return position_.y + diff_quake_.y;
-    return position_.y;
+    if (!quake_queue_.empty()) return position_.y_ + diff_quake_.y_;
+    return position_.y_;
   }
   inline void Move(CVector diff) { SetPosition(position_ + diff); }
   inline void Quake(int duration, float power = 4.0f) {

@@ -79,13 +79,13 @@ void CMover_Enemy_Bud::Render() const {
   if (state_ < 0) {
     CImageManager::GetIns()
         .Find("enemy_bud_intro")
-        ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+        ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0, Constant::kPriorityEnemy,
                    (int)(animation_cnt_));
     return;
   }
   CImageManager::GetIns()
       .Find("enemy_bud")
-      ->DrawRotaF(position_.x, position_.y, 0.0, 1.0, Constant::kPriorityEnemy,
+      ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0, Constant::kPriorityEnemy,
                  direction_ * 4 + (int)(animation_cnt_));
 }
 

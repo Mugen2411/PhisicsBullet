@@ -70,8 +70,8 @@ bool CMover_EnemyBase::BaseRender() const {
   }*/
   auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
   CAnchor::GetIns().EnableAbsolute();
-  if (p.x + size_ < 0) {
-    if (p.y + size_ < 0) {
+  if (p.x_ + size_ < 0) {
+    if (p.y_ + size_ < 0) {
       CImageManager::GetIns()
           .Find("enemy_marker")
           ->DrawRota(8, 8, (p - CVector(0, 0)).GetAngle(), 1.0,
@@ -79,7 +79,7 @@ bool CMover_EnemyBase::BaseRender() const {
       CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    if (p.y - size_ > Constant::kScreenH) {
+    if (p.y_ - size_ > Constant::kScreenH) {
       CImageManager::GetIns()
           .Find("enemy_marker")
           ->DrawRota(8, Constant::kScreenH - 8,
@@ -90,12 +90,12 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(8, (int)p.y, (float)Constant::kPI, 1.0f, Constant::kPriorityMarker);
+        ->DrawRota(8, (int)p.y_, (float)Constant::kPI, 1.0f, Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.x - size_ > Constant::kScreenW) {
-    if (p.y + size_ < 0) {
+  if (p.x_ - size_ > Constant::kScreenW) {
+    if (p.y_ + size_ < 0) {
       CImageManager::GetIns()
           .Find("enemy_marker")
           ->DrawRota(Constant::kScreenW - 8, 8,
@@ -104,7 +104,7 @@ bool CMover_EnemyBase::BaseRender() const {
       CAnchor::GetIns().DisableAbsolute();
       return false;
     }
-    if (p.y - size_ > Constant::kScreenH) {
+    if (p.y_ - size_ > Constant::kScreenH) {
       CImageManager::GetIns()
           .Find("enemy_marker")
           ->DrawRota(
@@ -116,23 +116,23 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(Constant::kScreenW - 8, (int)p.y, (float)Constant::kPI * 3, 1.0f,
+        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 3, 1.0f,
                    Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.y + size_ < 0) {
+  if (p.y_ + size_ < 0) {
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota((int)p.x, 8, -(float)Constant::kPI / 2, 1.0f,
+        ->DrawRota((int)p.x_, 8, -(float)Constant::kPI / 2, 1.0f,
                    Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
-  if (p.y - size_ > Constant::kScreenH) {
+  if (p.y_ - size_ > Constant::kScreenH) {
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota((int)p.x, Constant::kScreenH - 8, (float)Constant::kPI / 2, 1.0f,
+        ->DrawRota((int)p.x_, Constant::kScreenH - 8, (float)Constant::kPI / 2, 1.0f,
                    Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
@@ -161,16 +161,16 @@ void CMover_EnemyBase::Disappear() {}
 void CMover_EnemyBase::Render_HPGuage() const {
   CImageManager::GetIns()
       .Find("enemy_HPGuage")
-      ->DrawExtendWithBlend(position_.x - 16, position_.y - size_ - 8,
-                            position_.x + 16, position_.y - size_ - 4, 0xFFFFFF,
+      ->DrawExtendWithBlend(position_.x_ - 16, position_.y_ - size_ - 8,
+                            position_.x_ + 16, position_.y_ - size_ - 4, 0xFFFFFF,
                             DX_BLENDMODE_ALPHA, 108, Constant::kPriorityMarker,
                             1);
   CImageManager::GetIns()
       .Find("enemy_HPGuage")
       ->DrawExtendWithBlend(
-          position_.x - 16, position_.y - size_ - 8,
-          position_.x - 16 + 32 * (base_params_.HP_ / base_params_.maxHP_),
-          position_.y - size_ - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160,
+          position_.x_ - 16, position_.y_ - size_ - 8,
+          position_.x_ - 16 + 32 * (base_params_.HP_ / base_params_.maxHP_),
+          position_.y_ - size_ - 4, 0xFFFFFF, DX_BLENDMODE_ALPHA, 160,
           Constant::kPriorityMarker, 0);
 }
 

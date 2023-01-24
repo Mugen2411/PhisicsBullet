@@ -9,7 +9,7 @@ CField_Wall_EnemySpawner::CField_Wall_EnemySpawner(std::string gid,
 void CField_Wall_EnemySpawner::Update() {}
 
 void CField_Wall_EnemySpawner::Render() const {
-  number_drawer_.Draw((int)position_.x, (int)position_.y, index_, 0, 0, 7);
+  number_drawer_.Draw((int)position_.x_, (int)position_.y_, index_, 0, 0, 7);
 }
 
 CField* CField_Wall_EnemySpawner::Clone(CVector position_) {

@@ -8,7 +8,7 @@ CEffect_Wind::CEffect_Wind(CVector position_, double power, float angle,
                            double width, double length)
     : CEffect(position_),
       base_position_(position_),
-      duration_((int)(length / power / 0.25f)),
+      duration_((int)std::abs(length / power / 0.25f)),
       power_(power * 0.25f),
       width_(width),
       length_(length),
@@ -27,8 +27,8 @@ void CEffect_Wind::Update() {
   x_ = cosf(z_ + delta_) * (float)width_ * 0.5f;
   y_ = cnt_ * (float)power_;
   z_ = (sinf(z_ + delta_) + 1.0f) * 0.5f;
-  position_.x = cos(angle_) * y_ + cos(angle_ + Constant::kPI / 2) * x_;
-  position_.y = sin(angle_) * y_ + sin(angle_ + Constant::kPI / 2) * x_;
+  position_.x_ = cos(angle_) * y_ + cos(angle_ + Constant::kPI / 2) * x_;
+  position_.y_ = sin(angle_) * y_ + sin(angle_ + Constant::kPI / 2) * x_;
   position_ += base_position_;
   cnt_++;
 }
@@ -37,8 +37,11 @@ void CEffect_Wind::Render() const {
   CImageManager::GetIns()
       .Find("effect_wind")
       ->DrawRotaFwithBlend(
-          position_.x, position_.y, angle_,
-          ((float)(duration_ - cnt_) / duration_ * 0.5f + 0.5f) / 4.0f, 0xFFFFFF,
+          position_.x_, position_.y_, angle_,
+          power_ > 0
+              ? ((float)(duration_ - cnt_) / duration_ * 0.5f + 0.5f) / 4.0f
+              : ((float)(cnt_) / duration_ * 0.5f + 0.5f) / 4.0f,
+          0xFFFFFF,
           CImageManager::BlendMode::kAlpha, int(z_ * 0xFF),
           Constant::kPriorityEffect, 1);
 }

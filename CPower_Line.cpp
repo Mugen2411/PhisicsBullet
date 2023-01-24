@@ -69,7 +69,7 @@ void CPower_Line::ApplyForceToMover(CMover* m) {
     if (damage_interval_ == 0) {
       m->Damage(
           damage_ / 3 /
-              max(0.1, min(1.0, ((m->GetPosition() - position_).GetLength() /
+              max(0.05, min(1.0, ((m->GetPosition() - position_).GetLength() /
                                  direction_.y))),
           1);
     }

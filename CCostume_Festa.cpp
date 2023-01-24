@@ -21,6 +21,7 @@ void CCostume_Festa::WeakShot(CAttribute baseATK, CVector position,
   RegisterShot(
       std::make_shared<CMover_Shot_Festa_Cork>(baseATK, position, angle));
   CSoundManager::GetIns().Find("shot_cork")->Play(CSound::PlayType::kBack);
+  player_ptr_->ResetCharge();
 }
 
 void CCostume_Festa::ChargeShot(CAttribute baseATK, CVector position,
@@ -31,4 +32,5 @@ void CCostume_Festa::ChargeShot(CAttribute baseATK, CVector position,
         baseATK, position,
         angle + (GetRand(160) / 80.0 - 1.0) * Constant::kPI / 4));
   }
+  player_ptr_->ResetCharge();
 }

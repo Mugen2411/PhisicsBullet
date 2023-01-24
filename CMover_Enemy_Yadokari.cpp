@@ -36,7 +36,7 @@ int CMover_Enemy_Yadokari::Update() {
       if (cnt_ == 25) {
         for (int i = 0; i < 3; i++) {
           med_->RegisterMover(std::make_shared<CMover_Bullet_WaterSplash>(
-              base_params_, position_, focus_, 6.0 + i * 3.6));
+              base_params_, position_, focus_, 2.0 + i * 1.5));
         }
         CSoundManager::GetIns().Find("splash")->Play(CSound::PlayType::kBack);
       }

@@ -22,8 +22,7 @@ void CCostume_Uniform::WeakShot(CAttribute baseATK, CVector position,
   CSoundManager::GetIns().Find("little_magic")->Play(CSound::PlayType::kBack);
   RegisterShot(
       std::make_shared<CMover_Shot_Uniform_Homing>(baseATK, position, angle));
-  // p_player->RegisterPower(std::make_shared<CPower_Line>(position_ +
-  // CVector(angle_) * 32, CVector(angle_, 128.0), 64, 30, 1));
+  player_ptr_->ResetCharge();
 }
 
 void CCostume_Uniform::ChargeShot(CAttribute baseATK, CVector position,
@@ -31,4 +30,5 @@ void CCostume_Uniform::ChargeShot(CAttribute baseATK, CVector position,
   CSoundManager::GetIns().Find("middle_magic")->Play(CSound::PlayType::kBack);
   RegisterShot(std::make_shared<CMover_Shot_Uniform_StrongMagic>(
       baseATK, position, angle));
+  player_ptr_->ResetCharge();
 }

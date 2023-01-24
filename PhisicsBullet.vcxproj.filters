@@ -136,6 +136,12 @@
     <Filter Include="ヘッダー ファイル\Mover\Shot\Chinese">
       <UniqueIdentifier>{958050af-02a1-4a58-b106-3770d54406e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Firefighter">
+      <UniqueIdentifier>{a14629e5-8bb1-46b9-9d65-3761299cee11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Firefighter">
+      <UniqueIdentifier>{7af7c4fe-0eff-4f8a-a694-5852f828033e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -470,6 +476,12 @@
     </ClCompile>
     <ClCompile Include="CMover_Shot_Chinese_Lantern.cpp">
       <Filter>ソース ファイル\Mover\Shot\Chinese</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Firefighter.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Firefighter_Water.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Firefighter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -820,6 +832,12 @@
     </ClInclude>
     <ClInclude Include="CMover_Shot_Chinese_Lantern.h">
       <Filter>ヘッダー ファイル\Mover\Shot\Chinese</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Firefighter.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Firefighter_Water.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Firefighter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

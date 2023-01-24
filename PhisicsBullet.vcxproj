@@ -174,6 +174,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCostume_Chinese.cpp" />
+    <ClCompile Include="CCostume_Firefighter.cpp" />
     <ClCompile Include="CDrawModiGraphReserve.cpp" />
     <ClCompile Include="CEffect_Bright.cpp" />
     <ClCompile Include="CEffect_EnemyDelete.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="CMover_Enemy_FlameSerpent.cpp" />
     <ClCompile Include="CMover_Enemy_Goblin.cpp" />
     <ClCompile Include="CMover_Shot_Chinese_Lantern.cpp" />
+    <ClCompile Include="CMover_Shot_Firefighter_Water.cpp" />
     <ClCompile Include="CPassiveSkill.cpp" />
     <ClCompile Include="Scene_Option.cpp" />
     <ClCompile Include="CAnchor.cpp" />
@@ -293,6 +295,7 @@
     <ClInclude Include="CCostume_Archer_Flame.h" />
     <ClInclude Include="CCostume_Chinese.h" />
     <ClInclude Include="CCostume_Festa.h" />
+    <ClInclude Include="CCostume_Firefighter.h" />
     <ClInclude Include="CCostume_Swimsuit.h" />
     <ClInclude Include="CCostume_Uniform.h" />
     <ClInclude Include="CCosutumeBase.h" />
@@ -368,6 +371,7 @@
     <ClInclude Include="CMover_Shot_Chinese_Lantern.h" />
     <ClInclude Include="CMover_Shot_Festa_Cork.h" />
     <ClInclude Include="CMover_Shot_Festa_Superball.h" />
+    <ClInclude Include="CMover_Shot_Firefighter_Water.h" />
     <ClInclude Include="CMover_Shot_Swimsuit_Bat.h" />
     <ClInclude Include="CMover_Shot_Swimsuit_iPhone.h" />
     <ClInclude Include="CMover_Shot_Uniform_Homing.h" />

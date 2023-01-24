@@ -23,6 +23,7 @@ void CCostume_Swimsuit::WeakShot(CAttribute baseATK, CVector position,
   CSoundManager::GetIns().Find("throw")->Play(CSound::PlayType::kBack);
   player_ptr_->RegisterShot(
       std::make_shared<CMover_Shot_Swimsuit_iPhone>(baseATK, position, angle));
+  player_ptr_->ResetCharge();
 }
 
 void CCostume_Swimsuit::ChargeShot(CAttribute baseATK, CVector position,
@@ -32,6 +33,7 @@ void CCostume_Swimsuit::ChargeShot(CAttribute baseATK, CVector position,
     player_ptr_->RegisterShot(std::make_shared<CMover_Shot_Swimsuit_Bat>(
         baseATK, position, angle, i * 2));
   }
+  player_ptr_->ResetCharge();
   CEffectParent::RegisterEffect(
       std::make_shared<CEffect_Bat_Swing>(position, angle));
 }

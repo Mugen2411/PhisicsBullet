@@ -31,4 +31,5 @@ void CCostume_Archer_Flame::ChargeShot(CAttribute baseATK, CVector position,
     RegisterShot(std::make_shared<CMover_Shot_Archer_FlameArrow>(
         baseATK, position, angle + i * Constant::kPI / 24));
   }
+  player_ptr_->ResetCharge();
 }

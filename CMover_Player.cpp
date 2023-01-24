@@ -100,10 +100,10 @@ void CMover_Player::Shot() {
     charge_ = min(costume_->max_charge_, charge_);
     return;
   }
+  if (charge_ < 0) return;
   if (charge_ == costume_->max_charge_) {
     costume_->ChargeShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
                         position_, angle);
-    charge_ = 0;
     shot_wait_ = 0;
     Wait(costume_->strong_shot_duration_);
     return;
@@ -112,7 +112,6 @@ void CMover_Player::Shot() {
     shot_wait_ = 0;
     costume_->WeakShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
                       position_, angle);
-    charge_ = 0;
   }
   shot_wait_++;
 }

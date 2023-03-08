@@ -136,6 +136,69 @@ enemy{
     }
 }
 bullet{
+    B_Corn{
+        mass:1
+        size:16
+        atk{
+            base:0.0
+            none:50.0
+            flower:50.0
+        }
+        cof{
+            frc:0.005
+            wtr:0.2
+            air:0.03
+            ref:0.1
+        }
+        effc:0xFFFF00
+    }
+    B_WaterSplash{
+        mass:4
+        size:16
+        atk{
+            base:0.0
+            none:20.0
+            aqua:80.0
+        }
+        cof{
+            frc:0.05
+            wtr:0.02
+            air:0.002
+            ref:0.1
+        }
+        effc:0x00FFFF
+    }
+    B_Axe{
+        mass:4
+        size:16
+        atk{
+            base:0.0
+            none:100.0
+        }
+        cof{
+            frc:0.001
+            wtr:0.05
+            air:0.01
+            ref:0.98
+        }
+        effc:0xFFFFFF
+    }
+    B_Flame{
+        mass:1
+        size:16
+        atk{
+            base:0.0
+            none:2.0
+            fire:18.0
+        }
+        cof{
+            frc:0.005
+            wtr:0.005
+            air:0.04
+            ref:0.1
+        }
+        effc:0xFF0000
+    }
 }
 costume{
 }

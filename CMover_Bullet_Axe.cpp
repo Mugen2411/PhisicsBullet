@@ -2,9 +2,7 @@
 
 CMover_Bullet_Axe::CMover_Bullet_Axe(CStatus baseparams, CVector position,
                                      double angle, double speed)
-    : CMover_BulletBase(baseparams, CAttribute(0.0).None(100), position, 16,
-                        CVector(angle) * speed, 4.0,
-                        COF(0.001, 0.05, 0.01, 0.98), 0xFFFFFF),
+    : CMover_BulletBase("B_Axe", baseparams, position, CVector(angle) * speed),
       base_angle_(0.0) {}
 
 int CMover_Bullet_Axe::Update() {
@@ -17,6 +15,7 @@ int CMover_Bullet_Axe::Update() {
 void CMover_Bullet_Axe::Render() const {
   CImageManager::GetIns()
       .Find("bullet_axe")
-      ->DrawRotaF(position_.x_, position_.y_, velocity_.GetAngle() + base_angle_, 1.0,
-                 Constant::kPriorityBullet);
+      ->DrawRotaF(position_.x_, position_.y_,
+                  velocity_.GetAngle() + base_angle_, 1.0,
+                  Constant::kPriorityBullet);
 }

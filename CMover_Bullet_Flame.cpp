@@ -2,9 +2,7 @@
 
 CMover_Bullet_Flame::CMover_Bullet_Flame(CStatus baseparams, CVector position,
                                          double angle, double speed)
-    : CMover_BulletBase(baseparams, CAttribute(0.0).None(2).Fire(18), position,
-                        16, CVector(angle) * speed, 0.5,
-                        COF(0.005, 0.005, 0.04, 0.1), 0xFF0000),
+    : CMover_BulletBase("B_Flame", baseparams, position, CVector(angle) * speed),
       base_angle_(0.0),
       animation_cnt_(0.0) {}
 

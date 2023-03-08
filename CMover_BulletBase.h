@@ -14,9 +14,8 @@ class CMover_BulletBase : public CMover {
   int color_;
 
  public:
-  CMover_BulletBase(CStatus baseparams, CAttribute atk, CVector position_,
-                    double size, CVector velocity, double mass, COF cofs,
-                    int color);
+  CMover_BulletBase(std::string GID, CStatus baseparams, CVector position,
+                    CVector velocity);
 
   void BaseUpdate();
   bool BaseRender() const;
@@ -35,4 +34,6 @@ class CMover_BulletBase : public CMover {
   virtual void FieldDispatch(CField* f);
 
   void Hit(CMover_Player* m);
+
+  void LoadStatus(std::string GID);
 };

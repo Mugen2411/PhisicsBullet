@@ -1,6 +1,7 @@
 #include "CMover_Enemy.h"
 
 #include "CAnchor.h"
+#include "CDataLoader.h"
 #include "CEffectParent.h"
 #include "CEffect_DamageNumber.h"
 #include "CEffect_EnemyDelete.h"
@@ -10,29 +11,28 @@
 #include "CPassiveSkill.h"
 #include "CSoundManager.h"
 
-CMover_EnemyBase::CMover_EnemyBase(double Mass, int Level, double atkCF,
-                                   double hpCF, CAttribute attrDEF,
-                                   int baseMoney, int color, CVector position,
-                                   double accel, double maxSpeed, COF cofs)
-    : CMover(kEnemy, position, 24.0, CVector(0.0, 0.0), Mass, cofs, 0),
-      accel_(accel),
-      max_speed_(maxSpeed),
+CMover_EnemyBase::CMover_EnemyBase(std::string GID, int Level, CVector position)
+    : CMover(kEnemy, position, 24.0, CVector(0.0, 0.0), 0, COF(), 0),
+      accel_(0),
+      max_speed_(0),
       direction_(0),
       animation_cnt_(0),
-      base_params_(Level, atkCF, hpCF),
-      attr_def_(attrDEF),
-      base_money_(baseMoney),
-      color_(color),
+      base_params_(0, 0, 0),
+      attr_def_(0),
+      base_money_(0),
+      color_(0),
       seed_(),
       rand_(seed_()),
-      pushed_(0) {}
+      pushed_(0) {
+  LoadStatus(GID, Level);
+}
 
 void CMover_EnemyBase::Walk(CVector destination) {
   CVector diff = (destination - position_).GetNorm() * max_speed_;
   CVector v = diff - velocity_;
   acceleration_ += v.GetNorm() * min(v.GetLength(), 1.0) * accel_ *
-                  std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
-                  std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+                   std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
+                   std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
   direction_ = diff.GetDirection();
 }
 
@@ -49,7 +49,8 @@ void CMover_EnemyBase::Move_on_Route() {
 
 void CMover_EnemyBase::FindRoute(int distance) {
   if (!med_) return;
-  route_ = med_->GetRoute(position_, med_->GetPlayerPosition(), attr_def_, distance);
+  route_ =
+      med_->GetRoute(position_, med_->GetPlayerPosition(), attr_def_, distance);
 }
 
 void CMover_EnemyBase::FindTargetByDistance(int distance) {
@@ -90,7 +91,8 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(8, (int)p.y_, (float)Constant::kPI, 1.0f, Constant::kPriorityMarker);
+        ->DrawRota(8, (int)p.y_, (float)Constant::kPI, 1.0f,
+                   Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
@@ -116,8 +118,8 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 3, 1.0f,
-                   Constant::kPriorityMarker);
+        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 3,
+                   1.0f, Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
@@ -132,8 +134,8 @@ bool CMover_EnemyBase::BaseRender() const {
   if (p.y_ - size_ > Constant::kScreenH) {
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota((int)p.x_, Constant::kScreenH - 8, (float)Constant::kPI / 2, 1.0f,
-                   Constant::kPriorityMarker);
+        ->DrawRota((int)p.x_, Constant::kScreenH - 8, (float)Constant::kPI / 2,
+                   1.0f, Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
@@ -146,7 +148,7 @@ void CMover_EnemyBase::Dead() {
   for (int i = 0; i < 5; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
         position_ + CVector(GetRand((int)size_ * 3) - size_ * 1.5,
-                           GetRand((int)size_ * 3) - size_ * 1.5),
+                            GetRand((int)size_ * 3) - size_ * 1.5),
         size_ * 0.5 + GetRand((int)(size_ * 1.5)), color_, 30));
   for (int i = 0; i < 2; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
@@ -162,9 +164,9 @@ void CMover_EnemyBase::Render_HPGuage() const {
   CImageManager::GetIns()
       .Find("enemy_HPGuage")
       ->DrawExtendWithBlend(position_.x_ - 16, position_.y_ - size_ - 8,
-                            position_.x_ + 16, position_.y_ - size_ - 4, 0xFFFFFF,
-                            DX_BLENDMODE_ALPHA, 108, Constant::kPriorityMarker,
-                            1);
+                            position_.x_ + 16, position_.y_ - size_ - 4,
+                            0xFFFFFF, DX_BLENDMODE_ALPHA, 108,
+                            Constant::kPriorityMarker, 1);
   CImageManager::GetIns()
       .Find("enemy_HPGuage")
       ->DrawExtendWithBlend(
@@ -207,8 +209,8 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
 
 void CMover_EnemyBase::Drop() {
   int val = (int)std::ceil((base_money_ + base_params_.level_) *
-                      (1.0 + (int)(base_params_.level_ / 15.0) * 0.1) *
-                      CPassiveSkill::GetIns().GetMoneyMult());
+                           (1.0 + (int)(base_params_.level_ / 15.0) * 0.1) *
+                           CPassiveSkill::GetIns().GetMoneyMult());
   if (auto r = med_) r->GetMoney(val);
   CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
       position_ - CVector(0.0, size_), val));
@@ -236,4 +238,19 @@ void CMover_EnemyBase::Hit(CMover_Player* m) {
   CVector delta = CVector(Constant::kPI2 / 64 * GetRand(64));
   m->ApplyForce((diff + delta).GetNorm() * mass_);
   m->ApplyForce(velocity_ * mass_);
+}
+
+void CMover_EnemyBase::LoadStatus(std::string GID, int Level) {
+  auto d = CDataLoader::GetIns().Get();
+  auto e = d.lock()->GetChild("enemy")->GetChild(GID);
+  base_money_ = e->GetChild("mny")->getInt();
+  mass_ = e->GetChild("mass")->getInt();
+  base_params_ =
+      CStatus(Level, e->GetChild("base")->GetChild("atk")->getDouble(),
+              e->GetChild("base")->GetChild("hp")->getDouble());
+  max_speed_ = e->GetChild("spd")->getDouble();
+  accel_ = e->GetChild("acl")->getDouble();
+  attr_def_.Load(e->GetChild("atrd"));
+  cofs_.Load(e->GetChild("cof"));
+  color_ = e->GetChild("effc")->getInt();
 }

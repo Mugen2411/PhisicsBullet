@@ -1,4 +1,5 @@
 #pragma once
+#include "CDataNode.h"
 
 class CVector;
 
@@ -79,5 +80,11 @@ struct COF {
   COF SetReflectCF(double reflectCF) {
     ReflectCF = reflectCF;
     return *this;
+  }
+  void Load(const CDataNode* c) {
+    FrictionCF = c->GetChild("frc")->getDouble();
+    WaterResCF = c->GetChild("wtr")->getDouble();
+    AirResCF = c->GetChild("air")->getDouble();
+    ReflectCF = c->GetChild("ref")->getDouble();
   }
 };

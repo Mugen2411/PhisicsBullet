@@ -1,5 +1,6 @@
 #pragma once
 #include "Constant.h"
+#include "CDataNode.h"
 
 class CAttribute {
  public:
@@ -31,4 +32,5 @@ class CAttribute {
   CAttribute operator-(CAttribute a);
   bool IsZero();
   double Sum();
+  void Load(const CDataNode*);
 };

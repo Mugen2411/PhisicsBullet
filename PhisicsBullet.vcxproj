@@ -175,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="CCostume_Chinese.cpp" />
     <ClCompile Include="CCostume_Firefighter.cpp" />
+    <ClCompile Include="CDataLoader.cpp" />
     <ClCompile Include="CDrawModiGraphReserve.cpp" />
     <ClCompile Include="CEffect_Bright.cpp" />
     <ClCompile Include="CEffect_EnemyDelete.cpp" />
@@ -299,6 +300,8 @@
     <ClInclude Include="CCostume_Swimsuit.h" />
     <ClInclude Include="CCostume_Uniform.h" />
     <ClInclude Include="CCosutumeBase.h" />
+    <ClInclude Include="CDataLoader.h" />
+    <ClInclude Include="CDataNode.h" />
     <ClInclude Include="CDrawCircleGauge.h" />
     <ClInclude Include="CDrawGraphFReserve.h" />
     <ClInclude Include="CDrawGraphReserve.h" />

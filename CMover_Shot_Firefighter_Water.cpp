@@ -5,7 +5,7 @@
 CMover_Shot_Firefigher_Water::CMover_Shot_Firefigher_Water(CAttribute baseATK,
                                                            CVector position,
                                                            double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).Aqua(20), position, 18,
+    : CMover_ShotBase(baseATK, CAttribute(0.0).Aqua(30), position, 18,
                       CVector(angle) * 12.0, 2.0, COF(0.0, 0.0, 0.03, 0.0),
                       0x00CFFF),
       cnt_(0),

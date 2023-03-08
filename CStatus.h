@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <string>
+#include "CDataNode.h"
 
 class CStatus {
  public:
@@ -14,6 +15,8 @@ class CStatus {
   CStatus(int Level);
   CStatus(int Level, int ATK, int HP);
   CStatus(int Level, double atkCF, double hpCF);
+
+  void Load(const CDataNode* c);
 
   void Calculate();
   static int GetMoneyToUpgrade(int now) { return (int)std::ceil(500 * std::powl(1.1, now)); }

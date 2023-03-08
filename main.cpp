@@ -5,8 +5,11 @@
 #include "CProgressData.h"
 #include "CSoundManager.h"
 #include "Clooper.h"
+#include "CDataLoader.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
+  CDataLoader::GetIns().Load("media/status/params.mgs");
+  CDataLoader::GetIns().Output();
   ChangeWindowMode(TRUE);
   SetWindowText("Makeover trial");
   SetOutApplicationLogValidFlag(FALSE);

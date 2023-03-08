@@ -6,10 +6,7 @@
 #include "CSoundManager.h"
 
 CMover_Enemy_Yadokari::CMover_Enemy_Yadokari(CVector position, int Level)
-    : CMover_EnemyBase(
-          40, Level, 1.0, 1.35,
-          CAttribute(1.0).None(1.8).Aqua(4.0).Thunder(0.3).Flower(0.4), 35,
-          0xFF0000, position, 2.0, 1.5, COF(0.7, 0.2, 0.08, 0.1)),
+    : CMover_EnemyBase("E_Yadokari", Level, position),
       test_dest_(0.0, 0.0),
       focus_(0.0) {}
 

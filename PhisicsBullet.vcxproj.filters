@@ -142,6 +142,12 @@
     <Filter Include="ソース ファイル\Mover\Shot\Firefighter">
       <UniqueIdentifier>{7af7c4fe-0eff-4f8a-a694-5852f828033e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Data">
+      <UniqueIdentifier>{171b1c08-7c0c-4f69-bda4-663ad3160c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Data">
+      <UniqueIdentifier>{1b993c9f-374b-4323-a446-b9988d00925c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -482,6 +488,9 @@
     </ClCompile>
     <ClCompile Include="CMover_Shot_Firefighter_Water.cpp">
       <Filter>ソース ファイル\Mover\Shot\Firefighter</Filter>
+    </ClCompile>
+    <ClCompile Include="CDataLoader.cpp">
+      <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -838,6 +847,12 @@
     </ClInclude>
     <ClInclude Include="CMover_Shot_Firefighter_Water.h">
       <Filter>ヘッダー ファイル\Mover\Shot\Firefighter</Filter>
+    </ClInclude>
+    <ClInclude Include="CDataNode.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="CDataLoader.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

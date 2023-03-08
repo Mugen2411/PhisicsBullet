@@ -120,3 +120,43 @@ bool CAttribute::IsZero() { return Sum() < Constant::kZeroBorder; }
 double CAttribute::Sum() {
   return none_ + fire_ + aqua_ + thunder_ + flower_ + ice_ + wind_;
 }
+
+void CAttribute::Load(const CDataNode *c) {
+  double init = c->GetChild("base")->getDouble();
+  const CDataNode* cur = nullptr;
+  cur = c->GetChild("none");
+  if (cur == nullptr) {
+    none_ = init;
+  } else
+    none_ = cur->getDouble();
+  cur = c->GetChild("fire");
+  if (cur == nullptr) {
+    fire_ = init;
+  } else
+    fire_ = cur->getDouble();
+  cur = c->GetChild("aqua");
+  if (cur == nullptr) {
+    aqua_ = init;
+  } else
+    aqua_ = cur->getDouble();
+  cur = c->GetChild("thunder");
+  if (cur == nullptr) {
+    thunder_ = init;
+  } else
+    thunder_ = cur->getDouble();
+  cur = c->GetChild("flower");
+  if (cur == nullptr) {
+    flower_ = init;
+  } else
+    flower_ = cur->getDouble();
+  cur = c->GetChild("ice");
+  if (cur == nullptr) {
+    ice_ = init;
+  } else
+    ice_ = cur->getDouble();
+  cur = c->GetChild("wind");
+  if (cur == nullptr) {
+    wind_ = init;
+  } else
+    wind_ = cur->getDouble();
+}

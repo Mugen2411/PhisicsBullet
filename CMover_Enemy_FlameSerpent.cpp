@@ -7,9 +7,7 @@
 
 CMover_Enemy_FlameSerpent::CMover_Enemy_FlameSerpent(CVector position,
                                                      int Level)
-    : CMover_EnemyBase(20, Level, 0.5, 1.0,
-                       CAttribute(1.0).Fire(-1.0).Aqua(0.2).Ice(0.3), 15,
-                       0xFF3F00, position, 2.7, 1.2, COF(0.8, 0.2, 0.06, 0.1)),
+    : CMover_EnemyBase("E_FlameSerpent", Level, position),
       test_dest_(0.0, 0.0),
       focus_(0.0) {}
 

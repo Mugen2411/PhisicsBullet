@@ -9,12 +9,11 @@ class CField;
 
 class CMover_EnemyBase : public CMover {
  public:
-  CMover_EnemyBase(double Mass, int Level, double atkCF, double hpCF,
-                   CAttribute attrDEF, int baseMoney, int color,
-                   CVector position, double accel, double maxSpeed, COF cofs);
+  CMover_EnemyBase(std::string GID, int Level, CVector position);
   virtual ~CMover_EnemyBase() {}
 
-  int state_ = -1;  //-1:oŒ»’†, 0:–_—§‚¿, 1:ˆÚ“®, 2:‹¯‚İ, ‚»‚êˆÈ~‚Í“G‚²‚Æ‚É’è‹`
+  int state_ =
+      -1;  //-1:oŒ»’†, 0:–_—§‚¿, 1:ˆÚ“®, 2:‹¯‚İ, ‚»‚êˆÈ~‚Í“G‚²‚Æ‚É’è‹`
 
   double accel_;
   double max_speed_;
@@ -58,6 +57,8 @@ class CMover_EnemyBase : public CMover {
   inline void HitDispatch(std::shared_ptr<CMover> m) { m->Hit(this); }
   void Hit(CMover_EnemyBase*);
   void Hit(CMover_Player*);
+
+  void LoadStatus(std::string GID, int Level);
 
   virtual CMover_EnemyBase* Clone(CVector position, int Level) = 0;
 

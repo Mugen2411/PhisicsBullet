@@ -1,4 +1,5 @@
 #include "CDataLoader.h"
+#include <cstdlib>
 
 std::shared_ptr<CDataNode> CDataLoader::parseBlock(
     std::shared_ptr<CDataNode> parent, std::ifstream& ifstr) {
@@ -14,6 +15,12 @@ std::shared_ptr<CDataNode> CDataLoader::parseBlock(
       }
       std::string num;
       ch = ifstr.get();
+      if (ch == '\"') {
+        std::string tmp = GetString(ifstr);
+        parent->AddChild(key, std::make_shared<CDataNode>(tmp));
+        key.clear();
+        continue;
+      }
       bool isDbl = false;
       while (ch != ' ' && ch != '\n') {
         if (ch == '.') isDbl |= true;
@@ -27,7 +34,6 @@ std::shared_ptr<CDataNode> CDataLoader::parseBlock(
         int d = std::stoi(num, nullptr, 0);
         parent->AddChild(key, std::make_shared<CDataNode>(d));
       }
-      //OutputDebugString((key + '\n').c_str());
       key.clear();
       continue;
     }
@@ -39,7 +45,7 @@ std::shared_ptr<CDataNode> CDataLoader::parseBlock(
       std::shared_ptr<CDataNode> child = std::make_shared<CDataNode>();
       parseBlock(child, ifstr);
       parent->AddChild(key, child);
-      //OutputDebugString((key +'\n').c_str());
+      //OutputDebugString((std::string("Load block:") + key + '\n').c_str());
       key.clear();
       continue;
     }
@@ -50,4 +56,32 @@ std::shared_ptr<CDataNode> CDataLoader::parseBlock(
     key.push_back(ch);
   }
   return parent;
+}
+
+std::string CDataLoader::GetString(std::ifstream& ifstr) {
+  std::string ret;
+  int ch = 0;
+  bool isEscape = false;
+  bool isMultByte = false;
+  while (1) {
+    ch = ifstr.get();
+    if (ch == '\"') break;
+    if (isEscape) {
+      if (ch == 'n')
+        ret.push_back('\n');
+      else if (ch == 't')
+        ret.push_back('\t');
+      else if (ch == '\\')
+        ret.push_back('\\');
+      isEscape = false;
+      continue;
+    }
+    if (ch == '\n' || ch == '\t') continue;
+    if (ch == '\\') {
+      isEscape = true;
+      continue;
+    }
+    ret.push_back(ch);
+  }
+  return ret;
 }

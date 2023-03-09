@@ -339,7 +339,7 @@ void CGameMediator::RenderDresschangeMenu() const {
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 *
-                    min(1.0, max(0.02, (player_->costume_->constants_.FrictionCF -
+                    min(1.0, max(0.02, (player_->costume_->cofs_.FrictionCF -
                                         min_fric_) /
                                            max(0.0001, max_fric_ - min_fric_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -348,7 +348,7 @@ void CGameMediator::RenderDresschangeMenu() const {
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 * min(1.0, max(0.02,
-                                   ((*costume_now_focus_)->constants_.FrictionCF -
+                                   ((*costume_now_focus_)->cofs_.FrictionCF -
                                     min_fric_) /
                                        max(0.0001, max_fric_ - min_fric_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -360,7 +360,7 @@ void CGameMediator::RenderDresschangeMenu() const {
                 360, 80 + i * 64,
                 int(240 * min(1.0,
                           max(0.02,
-                              ((1.0 - player_->costume_->constants_.WaterResCF) -
+                              ((1.0 - player_->costume_->cofs_.WaterResCF) -
                                min_water_res_) /
                                   max(0.0001, max_water_res_ - min_water_res_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -371,7 +371,7 @@ void CGameMediator::RenderDresschangeMenu() const {
                 int(240 *
                     min(1.0, max(0.02,
                                  ((1.0 -
-                                   (*costume_now_focus_)->constants_.WaterResCF) -
+                                   (*costume_now_focus_)->cofs_.WaterResCF) -
                                   min_water_res_) /
                                      max(0.0001, max_water_res_ - min_water_res_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -382,7 +382,7 @@ void CGameMediator::RenderDresschangeMenu() const {
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 *
-                    min(1.0, max(0.02, (player_->costume_->constants_.AirResCF -
+                    min(1.0, max(0.02, (player_->costume_->cofs_.AirResCF -
                                         min_air_res_) /
                                            max(0.0001, max_air_res_ - min_air_res_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -391,7 +391,7 @@ void CGameMediator::RenderDresschangeMenu() const {
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
                 int(240 * min(1.0,
-                          max(0.02, ((*costume_now_focus_)->constants_.AirResCF -
+                          max(0.02, ((*costume_now_focus_)->cofs_.AirResCF -
                                      min_air_res_) /
                                         max(0.0001, max_air_res_ - min_air_res_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
@@ -438,14 +438,14 @@ void CGameMediator::RenderDresschangeMenu() const {
             ->DrawRectwithBlend(
                 360, 80 + i * 64,
                 int(240 * min(1.0,
-                          max(0.02, (player_->costume_->accelaration_ - min_accel_) /
+                          max(0.02, (player_->costume_->accel_ - min_accel_) /
                                         max(0.0001, max_accel_ - min_accel_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);
         CImageManager::GetIns()
             .Find("system_status_guage")
             ->DrawRectwithBlend(
                 360, 96 + i * 64,
-                int(240 * min(1.0, max(0.02, ((*costume_now_focus_)->accelaration_ -
+                int(240 * min(1.0, max(0.02, ((*costume_now_focus_)->accel_ -
                                           min_accel_) /
                                              max(0.0001, max_accel_ - min_accel_)))),
                 16, 0xFFFFFF, CImageManager::BlendMode::kNone, 0, 102, 2);

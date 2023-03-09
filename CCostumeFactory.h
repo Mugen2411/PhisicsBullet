@@ -17,24 +17,24 @@ class CCostumeFactory {
     min = 9999;
     max = 0;
     for (auto& i : list_) {
-      if (i->constants_.FrictionCF < min) min = i->constants_.FrictionCF;
-      if (i->constants_.FrictionCF > max) max = i->constants_.FrictionCF;
+      if (i->cofs_.FrictionCF < min) min = i->cofs_.FrictionCF;
+      if (i->cofs_.FrictionCF > max) max = i->cofs_.FrictionCF;
     }
   }
   void GetMinMaxAirRes(double& min, double& max) {
     min = 9999;
     max = 0;
     for (auto& i : list_) {
-      if (i->constants_.AirResCF < min) min = i->constants_.AirResCF;
-      if (i->constants_.AirResCF > max) max = i->constants_.AirResCF;
+      if (i->cofs_.AirResCF < min) min = i->cofs_.AirResCF;
+      if (i->cofs_.AirResCF > max) max = i->cofs_.AirResCF;
     }
   }
   void GetMinMaxWaterRes(double& min, double& max) {
     min = 9999;
     max = 0;
     for (auto& i : list_) {
-      if (i->constants_.WaterResCF < min) min = i->constants_.WaterResCF;
-      if (i->constants_.WaterResCF > max) max = i->constants_.WaterResCF;
+      if (i->cofs_.WaterResCF < min) min = i->cofs_.WaterResCF;
+      if (i->cofs_.WaterResCF > max) max = i->cofs_.WaterResCF;
     }
     min = 1.0 - max;
     max = 1.0 - min;
@@ -59,8 +59,8 @@ class CCostumeFactory {
     min = 9999;
     max = 0;
     for (auto& i : list_) {
-      if (i->accelaration_ < min) min = i->accelaration_;
-      if (i->accelaration_ > max) max = i->accelaration_;
+      if (i->accel_ < min) min = i->accel_;
+      if (i->accel_ > max) max = i->accel_;
     }
   }
 

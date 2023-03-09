@@ -8,6 +8,7 @@
 #include "CDataLoader.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
+  //setlocale(LC_CTYPE, "ja_JP.UTF-8");
   CDataLoader::GetIns().Load("media/status/params.mgs");
   CDataLoader::GetIns().Output();
   ChangeWindowMode(TRUE);

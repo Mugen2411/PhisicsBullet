@@ -15,7 +15,7 @@
 
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
     : CMover(kPlayer, position, 24.0, CVector(0.0, 0.0), costume->mass_,
-             costume->constants_, 0),
+             costume->cofs_, 0),
       animation_cnt_(0.0),
       input_(CControllerFactory::GetIns().GetController()),
       direction_(1),
@@ -35,7 +35,7 @@ void CMover_Player::Walk() {
   CVector v = input_.lock()->GetVector();
   CVector a =
       v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() - velocity_;
-  acceleration_ += a.GetNorm() * costume_->accelaration_ *
+  acceleration_ += a.GetNorm() * costume_->accel_ *
                   CPassiveSkill::GetIns().GetSpeedMult() *
                   std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
                   std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));

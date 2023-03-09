@@ -49,12 +49,12 @@ void CMover_BulletBase::Hit(CMover_Player* m) {
 
 void CMover_BulletBase::LoadStatus(std::string GID) {
   auto d = CDataLoader::GetIns().Get();
-  auto e = d.lock()->GetChild("bullet")->GetChild(GID);
-  mass_ = e->GetChild("mass")->getInt();
-  size_ = e->GetChild("size")->getInt();
+  auto e = d->GetChild("bullet")->GetChild(GID);
+  mass_ = e->GetChild("mass")->GetInt();
+  size_ = e->GetChild("size")->GetInt();
   atk_.Load(e->GetChild("atk"));
   cofs_.Load(e->GetChild("cof"));
-  color_ = e->GetChild("effc")->getInt();
+  color_ = e->GetChild("effc")->GetInt();
 }
 
 void CMover_BulletBase::FieldDispatch(CField* f) { f->AttributeEffect(this); }

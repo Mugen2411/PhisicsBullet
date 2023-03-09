@@ -39,7 +39,7 @@ class CMover_Player : public CMover {
   void ChangeCostume(CCostumeBase* c) {
     costume_.reset(c);
     costume_->SetPlayer(this);
-    cofs_ = costume_->constants_;
+    cofs_ = costume_->cofs_;
     mass_ = costume_->mass_;
   }
   void ResetCharge() { charge_ = 0.0; }

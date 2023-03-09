@@ -241,16 +241,20 @@ void CMover_EnemyBase::Hit(CMover_Player* m) {
 }
 
 void CMover_EnemyBase::LoadStatus(std::string GID, int Level) {
-  auto d = CDataLoader::GetIns().Get();
-  auto e = d.lock()->GetChild("enemy")->GetChild(GID);
-  base_money_ = e->GetChild("mny")->getInt();
-  mass_ = e->GetChild("mass")->getInt();
+  auto d = CDataLoader::GetIns().Get()->GetChild("enemy");
+  if (d == nullptr) {
+    MessageBox(NULL, "error at enemy params", "CDataNode", MB_OK);
+    abort();
+  }
+  auto e = d->GetChild(GID);
+  base_money_ = e->GetChild("mny")->GetInt();
+  mass_ = e->GetChild("mass")->GetInt();
   base_params_ =
-      CStatus(Level, e->GetChild("base")->GetChild("atk")->getDouble(),
-              e->GetChild("base")->GetChild("hp")->getDouble());
-  max_speed_ = e->GetChild("spd")->getDouble();
-  accel_ = e->GetChild("acl")->getDouble();
+      CStatus(Level, e->GetChild("base")->GetChild("atk")->GetDouble(),
+              e->GetChild("base")->GetChild("hp")->GetDouble());
+  max_speed_ = e->GetChild("spd")->GetDouble();
+  accel_ = e->GetChild("acl")->GetDouble();
   attr_def_.Load(e->GetChild("atrd"));
   cofs_.Load(e->GetChild("cof"));
-  color_ = e->GetChild("effc")->getInt();
+  color_ = e->GetChild("effc")->GetInt();
 }

@@ -5,15 +5,7 @@
 #include "CSoundManager.h"
 
 CCostume_Chinese::CCostume_Chinese(std::string gid_)
-    : CCostumeBase("media/graphic/character/komuk/costume/chinese/komuk.png",
-                   0.1, 60, 1, 20, 4.5, 2.8, 25.0,
-                   CAttribute(1.0).Aqua(2.0).Fire(0.4).Ice(0.4).Wind(3.0),
-                   COF(0.7, 0.7, 0.1, 0.0), gid_) {
-  detail_ = CTextDrawer::Text(
-      "格闘には強そうなチャイナドレス。\nしかし格闘は一切しない。\n"
-      "強射で複数の灯籠を浮かべ、\n連射の風で押し出す。\n"
-      "灯籠は移動する速度が速いほど\n大きいダメージになる。",
-      Constant::kCostumeDetailPosition, 0xFFFFFF, 0x000000, 0);
+    : CCostumeBase(gid_) {
 }
 
 void CCostume_Chinese::WeakShot(CAttribute baseATK, CVector position,

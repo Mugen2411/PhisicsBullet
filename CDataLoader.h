@@ -8,7 +8,13 @@
 
 class CDataLoader : public Singleton<CDataLoader> {
  public:
-  std::weak_ptr<CDataNode> Get() { return root_; }
+  const CDataNode* const Get() {
+    if (!root_) {
+      MessageBox(NULL, "Get before Load", "CDataLoader", MB_OK);
+      abort();
+    }
+    return root_.get();
+  }
 
   void Load(std::string path) {
     path_ = path;
@@ -17,16 +23,21 @@ class CDataLoader : public Singleton<CDataLoader> {
     parseBlock(root_, ifstr);
   }
 
-  void Output() { root_->Output(0); }
+  void Output() {
+    std::ofstream ofstr(path_ + ".log");
+    root_->Output(ofstr, 0);
+  }
 
  private:
-  CDataLoader(){}
+  CDataLoader() {}
 
   std::string path_;
   std::shared_ptr<CDataNode> root_;
 
   std::shared_ptr<CDataNode> parseBlock(std::shared_ptr<CDataNode> parent,
                                         std::ifstream& ifstr);
+
+  std::string GetString(std::ifstream& ifstr);
 
   friend Singleton<CDataLoader>;
 };

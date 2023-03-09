@@ -82,9 +82,9 @@ struct COF {
     return *this;
   }
   void Load(const CDataNode* c) {
-    FrictionCF = c->GetChild("frc")->getDouble();
-    WaterResCF = c->GetChild("wtr")->getDouble();
-    AirResCF = c->GetChild("air")->getDouble();
-    ReflectCF = c->GetChild("ref")->getDouble();
+    FrictionCF = c->GetChild("frc")->GetDouble();
+    WaterResCF = c->GetChild("wtr")->GetDouble();
+    AirResCF = c->GetChild("air")->GetDouble();
+    ReflectCF = c->GetChild("ref")->GetDouble();
   }
 };

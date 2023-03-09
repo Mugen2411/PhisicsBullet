@@ -2,27 +2,35 @@
 #include <Windows.h>
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
-#include <stdexcept>
+#include <fstream>
+
+class CDataLoader;
 
 class CDataNode {
  public:
   CDataNode() : contents(), childs_() {}
   CDataNode(int value) : contents(value) {}
   CDataNode(double value) : contents(value) {}
-  enum class Type { kParent, kInt, kDbl };
+  CDataNode(std::string value) : contents(value) {}
+  enum class Type { kParent, kInt, kDbl, kStr };
   struct Contents {
     Contents() : tag(Type::kParent) {}
-    Contents(int value) : tag(Type::kInt), data{.intData = value} {}
-    Contents(double value) : tag(Type::kDbl), data{.dblData = value} {}
+    Contents(int value) : tag(Type::kInt) { data.intData = value; }
+    Contents(double value) : tag(Type::kDbl) { data.dblData = value; }
+    Contents(std::string value) : tag(Type::kStr) {
+      strData = value;
+    }
     Type tag;
+    std::string strData;
     union data_t {
       int intData;
       double dblData;
     } data;
   };
-  const CDataNode* GetChild(std::string key) const{
+  const CDataNode* GetChild(std::string key) const {
     if (contents.tag != Type::kParent) {
       MessageBox(NULL, "operator[] used in not parent object.", "CDataNode",
                  MB_OK);
@@ -32,43 +40,52 @@ class CDataNode {
     if (ret == childs_.end()) return nullptr;
     return ret->second.get();
   }
-  int getInt() const {
+  int GetInt() const {
     if (contents.tag != Type::kInt) {
-      MessageBox(NULL, "getInt used in not int object.", "CDataNode", MB_OK);
+      MessageBox(NULL, "GetInt used in not int object.", "CDataNode", MB_OK);
       abort();
     }
     return contents.data.intData;
   }
-  double getDouble() const{
+  double GetDouble() const {
     if (contents.tag != Type::kDbl) {
-      MessageBox(NULL, "getDouble used in not double object.", "CDataNode",
+      MessageBox(NULL, "GetDouble used in not double object.", "CDataNode",
                  MB_OK);
       abort();
     }
     return contents.data.dblData;
+  }
+  std::string GetString() const {
+    if (contents.tag != Type::kStr) {
+      MessageBox(NULL, "GetString used in not string object.", "CDataNode",
+                 MB_OK);
+      abort();
+    }
+    return contents.strData;
   }
 
   void AddChild(std::string key, std::shared_ptr<CDataNode> node) {
     childs_.emplace(key, node);
   }
 
-  void Output(int depth) {
-    for (auto &i : childs_) {
-      for (int j = 0; j < depth; j++) OutputDebugString("  ");
-      OutputDebugString((i.first).c_str());
+  void Output(std::ofstream& ofstr, int depth) {
+    for (auto& i : childs_) {
+      for (int j = 0; j < depth; j++) ofstr << "  ";
+      ofstr << i.first;
       if (i.second->contents.tag == Type::kParent) {
-        OutputDebugString("{\n");
-        i.second->Output(depth + 1);
-        for (int j = 0; j < depth; j++) OutputDebugString("  ");
-        OutputDebugString("}\n");
+        ofstr << "{\n";
+        i.second->Output(ofstr, depth + 1);
+        for (int j = 0; j < depth; j++) ofstr << "  ";
+        ofstr << "}\n";
       } else {
-        OutputDebugString(":");
+        ofstr << ":";
         if (i.second->contents.tag == Type::kInt)
-          OutputDebugString(
-              (std::to_string(i.second->contents.data.intData) + '\n').c_str());
+          ofstr << std::to_string(i.second->contents.data.intData) << std::endl;
         if (i.second->contents.tag == Type::kDbl)
-          OutputDebugString(
-              (std::to_string(i.second->contents.data.dblData) + '\n').c_str());
+          ofstr << std::to_string(i.second->contents.data.dblData) << std::endl;
+        if (i.second->contents.tag == Type::kStr) {
+          ofstr << i.second->contents.strData << std::endl;
+        }
       }
     }
   }
@@ -76,4 +93,6 @@ class CDataNode {
  private:
   Contents contents;
   std::unordered_map<std::string, std::shared_ptr<CDataNode>> childs_;
+
+  friend CDataLoader;
 };

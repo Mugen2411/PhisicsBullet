@@ -3,14 +3,13 @@
 #include "CMover.h"
 #include "CMover_Enemy.h"
 #include "CStatus.h"
+#include "CDataLoader.h"
 
 class CField;
 
 class CMover_ShotBase : public CMover {
  public:
-  CMover_ShotBase(CAttribute baseATK, CAttribute atk, CVector position,
-                  double size, CVector velocity, double mass, COF cofs,
-                  int effectColor);
+  CMover_ShotBase(std::string GID, CAttribute baseATK, CVector position, CVector velocity);
 
   void BaseUpdate();
   bool BaseRender() const;
@@ -41,4 +40,8 @@ class CMover_ShotBase : public CMover {
 
   int cnt_;
   int effect_color_;
+
+  std::string gid_;
+
+  void LoadStatus();
 };

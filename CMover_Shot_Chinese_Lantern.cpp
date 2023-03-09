@@ -7,10 +7,9 @@ CMover_Shot_Chinese_Lantern::CMover_Shot_Chinese_Lantern(CAttribute baseATK,
                                                          CVector position,
                                                          double angle)
     : CMover_ShotBase(
-          baseATK, CAttribute(0.0).None(10).Fire(5), position, 24,
+          "S_Chinese_Lantern", baseATK, position,
           CVector(angle + Constant::kPI2 / 6 * (GetRand(10) * 0.1 - 0.5)) * 8 *
-              (GetRand(10) + 10) * 0.1,
-          2, COF(0.001, 0.001, 0.2, 0.2), 0xFFCF00),
+              (GetRand(10) + 10) * 0.1),
       init_(baseATK),
       cnt_(0),
       base_y_(0.0) {}

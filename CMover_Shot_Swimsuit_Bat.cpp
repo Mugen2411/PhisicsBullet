@@ -5,9 +5,7 @@
 CMover_Shot_Swimsuit_Bat::CMover_Shot_Swimsuit_Bat(CAttribute baseATK,
                                                    CVector position,
                                                    double angle, double speed)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).None(90), position, 24,
-                      CVector(angle) * speed, 64.0, COF(0.00, 0.0, 0.00, 0.0),
-                      0x7F7F00),
+    : CMover_ShotBase("S_Swimsuit_Bat", baseATK, position, CVector(angle) * speed),
       cnt_(0) {}
 
 int CMover_Shot_Swimsuit_Bat::Update() {

@@ -5,9 +5,7 @@
 
 CMover_Shot_Uniform_StrongMagic::CMover_Shot_Uniform_StrongMagic(
     CAttribute baseATK, CVector position, double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).None(200), position, 24,
-                      CVector(angle) * 6.0, 1.0, COF(0.0, 0.0, 0.0, 0.1),
-                      0x00FFFF) {}
+    : CMover_ShotBase("S_Uniform_Strong", baseATK, position, CVector(angle) * 6.0) {}
 
 int CMover_Shot_Uniform_StrongMagic::Update() { return status_; }
 

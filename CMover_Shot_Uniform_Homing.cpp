@@ -6,9 +6,7 @@
 CMover_Shot_Uniform_Homing::CMover_Shot_Uniform_Homing(CAttribute baseATK,
                                                        CVector position,
                                                        double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).None(40), position, 16,
-                      CVector(angle) * 3.0, 1, COF(0.0, 0.0, 0.0, 0.1),
-                      0x00FFFF),
+    : CMover_ShotBase("S_Unifom_Homing", baseATK, position, CVector(angle) * 3.0),
       cnt(0),
       pow(0.0) {}
 

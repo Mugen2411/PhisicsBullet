@@ -5,9 +5,7 @@
 CMover_Shot_Archer_FlameArrow::CMover_Shot_Archer_FlameArrow(CAttribute baseATK,
                                                              CVector position,
                                                              double angle)
-    : CMover_ShotBase(baseATK, CAttribute(0.0).None(30).Fire(30), position, 18,
-                      CVector(angle) * 32.0, 0.2, COF(0.0, 0.5, 0.15, 0.0),
-                      0xFF0000) {}
+    : CMover_ShotBase("S_Archer_FlameArrow", baseATK, position, CVector(angle) * 32.0) {}
 
 int CMover_Shot_Archer_FlameArrow::Update() {
   if (velocity_.GetLength2() < Constant::kZeroBorder) SetStatus(Status::kDead);

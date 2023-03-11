@@ -16,8 +16,8 @@ class CImage {
   inline void Load() {
     if (graphic_handle_.empty()) {
       graphic_handle_.resize(array_size_);
-      LoadDivGraph(filepath_.c_str(), array_size_, x_num_, y_num_, width_, height_,
-                   graphic_handle_.data());
+      LoadDivGraph(filepath_.c_str(), array_size_, x_num_, y_num_, width_,
+                   height_, graphic_handle_.data());
     }
   }
 
@@ -44,6 +44,8 @@ class CImage {
   void DrawModi(double x1, double y1, double x2, double y2, double x3,
                 double y3, double x4, double y4, int priority = 0.0,
                 unsigned int num = 0);
+
+  operator bool() { return graphic_handle_[0] != 0; }
 
  private:
   std::vector<int> graphic_handle_;

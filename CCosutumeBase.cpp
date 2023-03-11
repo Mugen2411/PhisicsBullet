@@ -24,8 +24,7 @@ void CCostumeBase::RegisterShot(std::shared_ptr<CMover_ShotBase> s) {
 }
 
 void CCostumeBase::LoadStatus() {
-  auto d = CDataLoader::GetIns().Get();
-  auto e = d->GetChild("costume")->GetChild(gid_);
+  auto e = CDataLoader::GetIns().Get("main")->GetChild("costume")->GetChild(gid_);
   graph_filepath_ =
       std::string("media/graphic/character/komuk/costume/") +
       e->GetChild("graph")->GetString();

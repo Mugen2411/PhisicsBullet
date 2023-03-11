@@ -1,16 +1,20 @@
 #include <DxLib.h>
 
+#include "CDataLoader.h"
 #include "CEffect_Bright.h"
 #include "CImageManager.h"
 #include "CProgressData.h"
 #include "CSoundManager.h"
 #include "Clooper.h"
-#include "CDataLoader.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
-  //setlocale(LC_CTYPE, "ja_JP.UTF-8");
-  CDataLoader::GetIns().Load("media/status/params.mgs");
-  //CDataLoader::GetIns().Output();
+  // setlocale(LC_CTYPE, "ja_JP.UTF-8");
+  CDataLoader::GetIns().Load("main", "media/status/params.mgs");
+  CDataLoader::GetIns().Load("resource", "media/status/resource.mgs");
+#ifdef _DEBUG
+  CDataLoader::GetIns().Output("main");
+  CDataLoader::GetIns().Output("resource");
+#endif
   ChangeWindowMode(TRUE);
   SetWindowText("Makeover trial");
   SetOutApplicationLogValidFlag(FALSE);

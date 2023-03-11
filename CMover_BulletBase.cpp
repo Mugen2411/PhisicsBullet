@@ -48,8 +48,7 @@ void CMover_BulletBase::Hit(CMover_Player* m) {
 }
 
 void CMover_BulletBase::LoadStatus(std::string GID) {
-  auto d = CDataLoader::GetIns().Get();
-  auto e = d->GetChild("bullet")->GetChild(GID);
+  auto e = CDataLoader::GetIns().Get("main")->GetChild("bullet")->GetChild(GID);
   mass_ = e->GetChild("mass")->GetInt();
   size_ = e->GetChild("size")->GetInt();
   atk_.Load(e->GetChild("atk"));

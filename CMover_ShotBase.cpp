@@ -61,7 +61,7 @@ void CMover_ShotBase::Hit(CMover_EnemyBase* m) {
 void CMover_ShotBase::IfOnWall() { SetStatus(Status::kDead); }
 
 void CMover_ShotBase::LoadStatus() {
-  auto c = CDataLoader::GetIns().Get()->GetChild("shot")->GetChild(gid_);
+  auto c = CDataLoader::GetIns().Get("main")->GetChild("shot")->GetChild(gid_);
   mass_ = c->GetChild("mass")->GetInt();
   cofs_.Load(c->GetChild("cof"));
   atk_.Load(c->GetChild("atk"));

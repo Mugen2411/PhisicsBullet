@@ -40,6 +40,22 @@ class CDataNode {
     if (ret == childs_.end()) return nullptr;
     return ret->second.get();
   }
+
+  //多分重いので毎フレーム呼び出すべきでは無さそう
+  const std::pair<std::string, std::shared_ptr<CDataNode>> GetChild(int order) const {
+    if (contents.tag != Type::kParent) {
+      MessageBox(NULL, "operator[] used in not parent object.", "CDataNode",
+                 MB_OK);
+      abort();
+    }
+    auto ret = childs_.begin();
+    for (int i = 0; i < order; i++) {
+      if (ret == childs_.end()) return {"__NULL__", nullptr};
+      ret++;
+    }
+    if (ret == childs_.end()) return {"__NULL__", nullptr};
+    return *ret;
+  }
   int GetInt() const {
     if (contents.tag != Type::kInt) {
       MessageBox(NULL, "GetInt used in not int object.", "CDataNode", MB_OK);

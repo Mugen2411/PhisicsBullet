@@ -241,7 +241,7 @@ void CMover_EnemyBase::Hit(CMover_Player* m) {
 }
 
 void CMover_EnemyBase::LoadStatus(std::string GID, int Level) {
-  auto d = CDataLoader::GetIns().Get()->GetChild("enemy");
+  auto d = CDataLoader::GetIns().Get("main")->GetChild("enemy");
   if (d == nullptr) {
     MessageBox(NULL, "error at enemy params", "CDataNode", MB_OK);
     abort();

@@ -110,6 +110,7 @@ void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color,
                                int Blendmode, int value, int priority,
                                unsigned int num) {
   if (num > array_size_) return;
+  if (graphic_handle_[num] == 0) abort();
   CRenderReserveList::Add(new CDrawRectGraphWithBlendReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), color, Blendmode, value, w1, h1));

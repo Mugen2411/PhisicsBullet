@@ -374,17 +374,17 @@ void CGameMediator::RenderDresschangeMenu() const {
   for (int i = 0; i < 6; i++) {
     drawStatusGuage(i, values[i], next_values[i], maxs[i], mins[i]);
   }
-  const int icon_left = 64;
-  auto drawCostumeInfo = [this](int i) {
+  const int icon_left = 48;
+  auto drawCostumeInfo = [this](int i, double attr) {
     CImageManager::GetIns()
         .Find("icon_attribute")
         ->Draw(icon_left + 32 * i + 0, 96, Constant::kPriorityCurtain + 1, i);
-    if ((*costume_now_focus_)->attribute_def_.none_ > 1.0) {
+    if (attr > 1.0) {
       CImageManager::GetIns()
           .Find("icon_weak_or_strong")
           ->Draw(icon_left + 32 * i + 16, 96, Constant::kPriorityCurtain + 1,
                  0);
-    } else if ((*costume_now_focus_)->attribute_def_.none_ < 1.0) {
+    } else if (attr < 1.0) {
       CImageManager::GetIns()
           .Find("icon_weak_or_strong")
           ->Draw(icon_left + 32 * i + 16, 96, Constant::kPriorityCurtain + 1,
@@ -396,14 +396,22 @@ void CGameMediator::RenderDresschangeMenu() const {
                  2);
     }
   };
-  for (int i = 0; i < 6; i++) {
-    drawCostumeInfo(i);
+  double attrs[7] = {(*costume_now_focus_)->attribute_def_.none_,
+                     (*costume_now_focus_)->attribute_def_.fire_,
+                     (*costume_now_focus_)->attribute_def_.aqua_,
+                     (*costume_now_focus_)->attribute_def_.thunder_,
+                     (*costume_now_focus_)->attribute_def_.flower_,
+                     (*costume_now_focus_)->attribute_def_.ice_,
+                     (*costume_now_focus_)->attribute_def_.wind_};
+  for (int i = 0; i < 7; i++) {
+    drawCostumeInfo(i, attrs[i]);
   }
   CImageManager::GetIns()
       .Find("system_dress_guage")
-      ->DrawRectwithBlend(
-          240, 480 - 32, 160, 32, 0xFFFFFF, CImageManager::BlendMode::kNone, 0,
-          Constant::kPriorityCurtain+1, (input_.lock()->Select() > 0) ? 1 : 0);
+      ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
+                          CImageManager::BlendMode::kNone, 0,
+                          Constant::kPriorityCurtain + 1,
+                          (input_.lock()->Select() > 0) ? 1 : 0);
   CImageManager::GetIns()
       .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,

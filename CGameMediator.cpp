@@ -207,20 +207,21 @@ void CGameMediator::Render() const {
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns()
       .Find("system_dress_guage")
-      ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                          CImageManager::BlendMode::kNone, 0, 7,
+      ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF, CImageManager::BlendMode::kNone, 0,
+          Constant::kPriorityUI + 7,
                           (input_.lock()->Select() > 0) ? 1 : 0);
   if (pause_guage_ == Constant::kMaxPause)
     CImageManager::GetIns()
         .Find("system_dress_guage")
         ->DrawRectwithBlend(240, 480 - 32, 160, 32, 0xFFFFFF,
-                            CImageManager::BlendMode::kNone, 0, 8, 2);
+                            CImageManager::BlendMode::kNone, 0,
+                            Constant::kPriorityUI + 8, 2);
   CImageManager::GetIns()
       .Find("system_dress_guage")
       ->DrawRectwithBlend(240, 480 - 32,
                           (int)(160 * (pause_guage_ / Constant::kMaxPause)), 32,
                           HSV2RGB((float)(cnt_ % 60) / 60, 1.0, 1.0),
-                          CImageManager::BlendMode::kSub, 0x7F, 9,
+          CImageManager::BlendMode::kSub, 0x7F, Constant::kPriorityUI + 9,
                           (input_.lock()->Select() > 0) ? 1 : 0);
   number_drawer_.Draw(16, 56, reserve_money_, 0, 3, Constant::kPriorityNumber);
   CImageManager::GetIns()

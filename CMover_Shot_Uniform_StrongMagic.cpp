@@ -14,6 +14,6 @@ void CMover_Shot_Uniform_StrongMagic::Render() const {
       CEffect_Bright::BrightDesc(position_, 72, 192));
   CImageManager::GetIns()
       .Find("shot_uniform_strongmagic")
-      ->DrawRotaF(position_.x_, position_.y_, velocity_.GetAngle(), 1,
+      ->DrawRotaF(position_, velocity_.GetAngle(), 1,
                   Constant::kPriorityShot);
 }

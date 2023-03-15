@@ -34,11 +34,12 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 void CMover_Player::Walk() {
   CVector v = input_.lock()->GetVector();
   CVector a =
-      v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() - velocity_;
+      v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() -
+      velocity_;
   acceleration_ += a.GetNorm() * costume_->accel_ *
-                  CPassiveSkill::GetIns().GetSpeedMult() *
-                  std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
-                  std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+                   CPassiveSkill::GetIns().GetSpeedMult() *
+                   std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
+                   std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
 }
 
 void CMover_Player::BaseUpdate() {}
@@ -48,16 +49,18 @@ bool CMover_Player::BaseRender() const { return true; }
 int CMover_Player::Update() {
   auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
   if (p.x_ < Constant::kScrollMargin)
-    CAnchor::GetIns().SetPosition(CVector(position_.x_ - Constant::kScrollMargin,
-                                          CAnchor::GetIns().GetAnchorY()));
+    CAnchor::GetIns().SetPosition(
+        CVector(position_.x_ - Constant::kScrollMargin,
+                CAnchor::GetIns().GetAnchorY()));
   if (p.x_ > Constant::kScreenW - Constant::kScrollMargin)
     CAnchor::GetIns().SetPosition(
         CVector(position_.x_ - Constant::kScreenW + Constant::kScrollMargin,
                 CAnchor::GetIns().GetAnchorY()));
 
   if (p.y_ < Constant::kScrollMargin)
-    CAnchor::GetIns().SetPosition(CVector(CAnchor::GetIns().GetAnchorX(),
-                                          position_.y_ - Constant::kScrollMargin));
+    CAnchor::GetIns().SetPosition(
+        CVector(CAnchor::GetIns().GetAnchorX(),
+                position_.y_ - Constant::kScrollMargin));
   if (p.y_ > Constant::kScreenH - Constant::kScrollMargin)
     CAnchor::GetIns().SetPosition(
         CVector(CAnchor::GetIns().GetAnchorX(),
@@ -102,8 +105,9 @@ void CMover_Player::Shot() {
   }
   if (charge_ < 0) return;
   if (charge_ == costume_->max_charge_) {
-    costume_->ChargeShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
-                        position_, angle);
+    costume_->ChargeShot(
+        CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_, position_,
+        angle);
     shot_wait_ = 0;
     Wait(costume_->strong_shot_duration_);
     return;
@@ -111,7 +115,7 @@ void CMover_Player::Shot() {
   if (shot_wait_ > costume_->shot_rate_) {
     shot_wait_ = 0;
     costume_->WeakShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
-                      position_, angle);
+                       position_, angle);
   }
   shot_wait_++;
 }
@@ -124,20 +128,22 @@ void CMover_Player::Render() const {
 
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(
-      16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108, 4, 2);
+      16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108,
+      Constant::kPriorityUI + 4, 2);
   CImageManager::GetIns().Find("HPGuage")->DrawRectwithBlend(
       16, 8, int(320 * (base_params_.HP_ / base_params_.maxHP_)), 32, 0xffffff,
-      DX_BLENDMODE_ALPHA, 192, 5, 1);
+      DX_BLENDMODE_ALPHA, 192, Constant::kPriorityUI + 5, 1);
   CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(
-      16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255, 6, 0);
-  number_drawer_.Draw(16 + 160, 16 + 8, base_params_.HP_, 0, 0, 7);
-  // number_drawer_.Draw(16 + 48 + 16 * digitHP_, 16 + 8, base_params_.maxHP_, 0, 0, 2.3);
+      16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 255,
+      Constant::kPriorityUI + 6, 0);
+  number_drawer_.Draw(16 + 160, 16 + 8, base_params_.HP_, 0, 0,
+                      Constant::kPriorityUI + 7);
   CImageManager::GetIns().Find("aim")->DrawCircleGauge(
       input_.lock()->MouseX(), input_.lock()->MouseY(),
-      (double)charge_ / costume_->max_charge_, 7, 2);
+      (double)charge_ / costume_->max_charge_, Constant::kPriorityUI + 7, 2);
   CImageManager::GetIns().Find("aim")->DrawRota(
-      input_.lock()->MouseX(), input_.lock()->MouseY(), 0.0, 1.0, 7,
-      (costume_->max_charge_ == charge_) ? 1 : 0);
+      input_.lock()->MouseX(), input_.lock()->MouseY(), 0.0, 1.0,
+      Constant::kPriorityUI + 7, (costume_->max_charge_ == charge_) ? 1 : 0);
   CAnchor::GetIns().DisableAbsolute();
 }
 

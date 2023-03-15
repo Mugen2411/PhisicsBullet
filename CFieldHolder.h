@@ -52,4 +52,6 @@ class CFieldHolder {
   std::vector<std::vector<CVector>> pre_;
   unsigned int width_, height_;
   std::string filepath_;
+
+  void CheckDirection(std::vector<std::string> &bufF, std::vector<std::string> &bufW);
 };

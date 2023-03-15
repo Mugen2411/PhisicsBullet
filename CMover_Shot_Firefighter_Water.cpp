@@ -25,6 +25,6 @@ int CMover_Shot_Firefigher_Water::Update() {
 void CMover_Shot_Firefigher_Water::Render() const {
   CImageManager::GetIns()
       .Find("shot_firefighter_water")
-      ->DrawRotaF(position_.x_, position_.y_, velocity_.GetAngle(), 1,
+      ->DrawRotaF(position_, velocity_.GetAngle(), 1,
                   Constant::kPriorityShot);
 }

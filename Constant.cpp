@@ -2,13 +2,13 @@
 
 #include "CVector.h"
 
-double Constant::kGravity = 0.98;
-double Constant::kFrame = 60.0;
-double Constant::kPerFrame = 1.0 / Constant::kFrame;
-double Constant::kZeroBorder = 0.01;
+float Constant::kGravity = 0.98f;
+float Constant::kFrame = 60.0f;
+float Constant::kPerFrame = 1.0f / Constant::kFrame;
+float Constant::kZeroBorder = 0.01f;
 
-double Constant::kPI = 3.1415926;
-double Constant::kPI2 = Constant::kPI * 2;
+float Constant::kPI = 3.1415926f;
+float Constant::kPI2 = Constant::kPI * 2;
 
 int Constant::kScreenW = 640;
 int Constant::kScreenH = 480;
@@ -17,15 +17,16 @@ int Constant::kScrollMargin = 240;
 
 double Constant::kDoubleInfinity = 1.0e200;
 
-int Constant::kPriorityDecoration = -1;
-int Constant::kPriorityField = -2;
-int Constant::kPriorityWall = 3;
-int Constant::kPriorityEffect = 4;
-int Constant::kPriorityBullet = 2;
-int Constant::kPriorityEnemy = 0;
-int Constant::kPriorityShot = 1;
-int Constant::kPriorityNumber = 7;
-int Constant::kPriorityMarker = 10;
+int Constant::kPriorityDecoration = -10;
+int Constant::kPriorityField = -20;
+int Constant::kPriorityWall = 30;
+int Constant::kPriorityEffect = 40;
+int Constant::kPriorityBullet = 20;
+int Constant::kPriorityEnemy = 00;
+int Constant::kPriorityShot = 10;
+int Constant::kPriorityNumber = 90;
+int Constant::kPriorityMarker = 100;
+int Constant::kPriorityUI = 80;
 
 double Constant::kBulletDeleteVelocity = 0.8;
 

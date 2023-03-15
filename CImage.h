@@ -30,6 +30,8 @@ class CImage {
                 unsigned int num = 0);
   void DrawRotaF(double x1, double y1, float angle, float extend,
                  int priority = 0.0, unsigned int num = 0);
+  void DrawRotaF(CVector pos, float angle, float extend, int priority = 0.0,
+                unsigned int num = 0);
   void DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
                           int color, int Blendmode, int value,
                           int priority = 0.0, unsigned int num = 0);

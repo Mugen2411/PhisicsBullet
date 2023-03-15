@@ -282,20 +282,59 @@ int CFieldHolder::Load() {
   CAnchor::GetIns().SetScrollLimit(CVector((int)width_, (int)height_));
 
   CFieldFactory field_factory_;
-  std::string buf;
+  std::vector<std::string> bufF(floor_list_.size());
+  std::vector<std::string> bufW(floor_list_.size());
 
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
-      fin >> buf;
-      this->WriteFloor(field_factory_.create(x, y, buf), CVector((int)x,(int)y));
+      fin >> bufF[(uint64_t)(width_ * y + x)];
+    }
+  }
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
+      fin >> bufW[(uint64_t)(width_ * y + x)];
     }
   }
 
+  CheckDirection(bufF, bufW);
+
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
-      fin >> buf;
-      this->WriteWall(field_factory_.create(x, y, buf), CVector((int)x, (int)y));
+      this->WriteFloor(
+          field_factory_.create(x, y, bufF[(uint64_t)(width_ * y + x)]),
+                       CVector((int)x, (int)y));
+    }
+  }
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
+      this->WriteWall(
+          field_factory_.create(x, y, bufW[(uint64_t)(width_ * y + x)]),
+          CVector((int)x, (int)y));
     }
   }
   return 0;
+}
+
+void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
+                                  std::vector<std::string>& bufW) {
+  auto aug = bufF;
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
+      {
+        std::string dir = "_";
+        if (aug[(uint64_t)(width_ * y + x)] == "F_Water") {
+          if (y > 1 && aug[(uint64_t)(width_ * (y - 1) + x)] != "F_Water")
+            dir.push_back('U');
+          if (x < width_-1 && aug[(uint64_t)(width_ * y + (x+1))] != "F_Water")
+            dir.push_back('R');
+          if (y < height_-1 && aug[(uint64_t)(width_ * (y + 1) + x)] != "F_Water")
+            dir.push_back('D');
+          if (x > 1 &&
+              aug[(uint64_t)(width_ * y + (x - 1))] != "F_Water")
+            dir.push_back('L');
+          if (dir != "_") bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
+        }
+      }
+    }
+  }
 }

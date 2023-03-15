@@ -5,13 +5,13 @@ class CVector;
 
 class Constant {
  public:
-  static double kGravity;
-  static double kFrame;
-  static double kPerFrame;
-  static double kZeroBorder;
+  static float kGravity;
+  static float kFrame;
+  static float kPerFrame;
+  static float kZeroBorder;
 
-  static double kPI;
-  static double kPI2;
+  static float kPI;
+  static float kPI2;
 
   static int kScreenW;
   static int kScreenH;
@@ -29,6 +29,7 @@ class Constant {
   static int kPriorityBullet;
   static int kPriorityNumber;
   static int kPriorityMarker;
+  static int kPriorityUI;
 
   static double kBulletDeleteVelocity;
 

@@ -9,9 +9,9 @@ image{
     }
     Field_IceFloor{
         path:"mapchip/ice.png"
-        num:3
-        xnum:3
-        ynum:1
+        num:32
+        xnum:8
+        ynum:8
         w:32
         h:32
     }

@@ -86,6 +86,16 @@ void CImage::DrawRotaF(double x1, double y1, float angle, float extend,
       y1 - CAnchor::GetIns().GetAnchorY(), angle, extend, width_, height_));
 }
 
+void CImage::DrawRotaF(CVector pos, float angle, float extend, int priority,
+                      unsigned int num) {
+  if (num > array_size_) return;
+  CRenderReserveList::Add(new CDrawRotaGraphFReserve(
+      graphic_handle_[num], priority,
+      (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
+      (int)pos.y_ - (int)CAnchor::GetIns().GetAnchorY(), angle, extend, width_,
+      height_));
+}
+
 void CImage::DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
                                 int color, int Blendmode, int value,
                                 int priority, unsigned int num) {

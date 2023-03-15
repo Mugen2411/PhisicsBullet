@@ -3,7 +3,7 @@
 
 class CField_IceFloor : public CField {
  public:
-  CField_IceFloor(std::string gid, CVector position_, double temperature);
+  CField_IceFloor(std::string gid, CVector position_, double temperature, int direction);
   void Update();
   void Render() const;
 
@@ -18,4 +18,9 @@ class CField_IceFloor : public CField {
   CField* Clone(CVector position_);
 
   void Save(std::ofstream& fout);
+
+ private:
+  int direction_;
+  int cnt_;
+  const int kAnimDur;
 };

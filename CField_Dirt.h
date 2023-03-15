@@ -11,6 +11,4 @@ class CField_Dirt : public CField {
 
  private:
   int state_;
-
-  void Save(std::ofstream& fout);
 };

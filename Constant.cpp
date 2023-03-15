@@ -27,6 +27,7 @@ int Constant::kPriorityShot = 10;
 int Constant::kPriorityNumber = 90;
 int Constant::kPriorityMarker = 100;
 int Constant::kPriorityUI = 80;
+int Constant::kPriorityCurtain = 200;
 
 double Constant::kBulletDeleteVelocity = 0.8;
 

@@ -30,6 +30,7 @@ class Constant {
   static int kPriorityNumber;
   static int kPriorityMarker;
   static int kPriorityUI;
+  static int kPriorityCurtain;
 
   static double kBulletDeleteVelocity;
 

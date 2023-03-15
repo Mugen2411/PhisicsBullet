@@ -16,6 +16,4 @@ class CField_Lava : public CField {
   };
 
   CField* Clone(CVector position_);
-
-  void Save(std::ofstream& fout);
 };

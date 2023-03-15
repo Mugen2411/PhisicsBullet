@@ -12,6 +12,4 @@ class CField_Cave : public CField {
  private:
   int decoration_;
   double animation_cnt_;
-
-  void Save(std::ofstream& fout);
 };

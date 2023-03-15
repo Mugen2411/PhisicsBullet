@@ -7,6 +7,4 @@ class CField_Error : public CField {
   void Render() const;
 
   CField* Clone(CVector position_);
-
-  void Save(std::ofstream& fout);
 };

@@ -52,7 +52,7 @@ class CField {
   virtual void Update();
   virtual void Render() const;
 
-  void Save(std::ofstream& fout);
+  virtual void Save(std::ofstream& fout);
 
   bool is_wall_;
 

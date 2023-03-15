@@ -72,3 +72,8 @@ void CField_IceFloor::Render() const {
 CField* CField_IceFloor::Clone(CVector position_) {
   return new CField_IceFloor(gid_, position_, temperature_, direction_);
 }
+
+void CField_IceFloor::Save(std::ofstream& fout) {
+  auto t = gid_.substr(0, 7);
+  fout << t << std::endl;
+}

@@ -35,6 +35,4 @@ class CField_Grass : public CField {
   int state_;
   int burning_time_;
   double fertile_;
-
-  void Save(std::ofstream& fout);
 };

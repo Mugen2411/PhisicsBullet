@@ -112,11 +112,13 @@ void CFieldHolder::ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
       es.push_back(
           std::make_unique<CEnemySpawner>(med, wall_list_[i]->position_, level,
                                           sdList[std::stoi(tmp.erase(0, 1))]));
-      wall_list_[i].reset(field_factory_.create(wall_list_[i]->position_, "W_Void"));
+      wall_list_[i].reset(
+          field_factory_.create(wall_list_[i]->position_, "W_Void"));
     }
     if (tmp[0] == 'P') {
       playerPos = wall_list_[i]->position_;
-      wall_list_[i].reset(field_factory_.create(wall_list_[i]->position_, "W_Void"));
+      wall_list_[i].reset(
+          field_factory_.create(wall_list_[i]->position_, "W_Void"));
     }
   }
 }
@@ -149,7 +151,7 @@ void CFieldHolder::ReadDefine() {
 }
 
 std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
-                                            CAttribute attrDEF, int distance) {
+                                           CAttribute attrDEF, int distance) {
   int dx[4] = {0, 0, 1, -1};
   int dy[4] = {1, -1, 0, 0};
   if (start.x_ < 0 || start.y_ < 0 || start.x_ > width_ * 32 ||
@@ -199,8 +201,9 @@ std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,
   }
 
   CVector v;
-  for (; t.x_ != -1 || t.y_ != -1; t.x_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].x_,
-                                 t.y_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].y_) {
+  for (; t.x_ != -1 || t.y_ != -1;
+       t.x_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].x_,
+       t.y_ = pre_[(uint32_t)v.x_][(uint32_t)v.y_].y_) {
     ret.push_front(t);
     v = t;
   }
@@ -302,7 +305,7 @@ int CFieldHolder::Load() {
     for (uint32_t x = 0; x < width_; x++) {
       this->WriteFloor(
           field_factory_.create(x, y, bufF[(uint64_t)(width_ * y + x)]),
-                       CVector((int)x, (int)y));
+          CVector((int)x, (int)y));
     }
   }
   for (uint32_t y = 0; y < height_; y++) {
@@ -321,18 +324,23 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
       {
+        std::string urdl = "URDL";
         std::string dir = "_";
+        int t = 0xF;
         if (aug[(uint64_t)(width_ * y + x)] == "F_Water") {
-          if (y > 1 && aug[(uint64_t)(width_ * (y - 1) + x)] != "F_Water")
-            dir.push_back('U');
-          if (x < width_-1 && aug[(uint64_t)(width_ * y + (x+1))] != "F_Water")
-            dir.push_back('R');
-          if (y < height_-1 && aug[(uint64_t)(width_ * (y + 1) + x)] != "F_Water")
-            dir.push_back('D');
-          if (x > 1 &&
-              aug[(uint64_t)(width_ * y + (x - 1))] != "F_Water")
-            dir.push_back('L');
-          if (dir != "_") bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
+          if (x > 1 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Water")
+            t &= 0b0111;
+          if (y < height_ - 1 &&
+              aug[(uint64_t)(width_ * (y + 1) + x)] == "F_Water")
+            t &= 0b1011;
+          if (x < width_ - 1 &&
+              aug[(uint64_t)(width_ * y + (x + 1))] == "F_Water")
+            t &= 0b1101;
+          if (y > 1 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Water")
+            t &= 0b1110;
+          for (int i = 0; i < 4; i++)
+            if (t & (1 << i)) dir.push_back(urdl[i]);
+          if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
         }
       }
     }

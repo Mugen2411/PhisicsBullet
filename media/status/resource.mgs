@@ -1,4 +1,12 @@
 image{
+    player_komuk{
+        path:"character/komuk/komuk.png"
+        num:16
+        xnum:4
+        ynum:4
+        w:32
+        h:32
+    }
     Field_Grass{
         path:"mapchip/grass.png"
         num:32

@@ -106,8 +106,8 @@ void CMover_Player::Shot() {
   if (charge_ < 0) return;
   if (charge_ == costume_->max_charge_) {
     costume_->ChargeShot(
-        CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_, position_,
-        angle);
+        CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
+        position_ + CVector(angle) * 16.0f, angle);
     shot_wait_ = 0;
     Wait(costume_->strong_shot_duration_);
     return;
@@ -115,7 +115,7 @@ void CMover_Player::Shot() {
   if (shot_wait_ > costume_->shot_rate_) {
     shot_wait_ = 0;
     costume_->WeakShot(CPassiveSkill::GetIns().GetAtkMult() * base_params_.atk_,
-                       position_, angle);
+                       position_ + CVector(angle) * 16.0f, angle);
   }
   shot_wait_++;
 }
@@ -150,8 +150,7 @@ void CMover_Player::Render() const {
     CImageManager::GetIns().Find("aim")->DrawRotaFwithBlend(
         (int)(anchored.x_ + diff.x_ * i), (int)(anchored.y_ + diff.y_ * i), 0.0,
         1.0, 0xFFFFFF, CImageManager::BlendMode::kAlpha, 0x7F,
-        Constant::kPriorityUI + 7,
-        (costume_->max_charge_ == charge_) ? 4 : 3);
+        Constant::kPriorityUI + 7, (costume_->max_charge_ == charge_) ? 4 : 3);
   }
   CAnchor::GetIns().DisableAbsolute();
 }

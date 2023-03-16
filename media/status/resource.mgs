@@ -53,11 +53,11 @@ image{
     }
     aim{
         path:"system/game/aim.png"
-        num:3
-        xnum:3
+        num:5
+        xnum:5
         ynum:1
-        w:32
-        h:32
+        w:36
+        h:36
     }
     HPGuage{
         path:"system/game/HPGuage.png"

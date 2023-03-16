@@ -125,7 +125,7 @@ void CMover_Player::Render() const {
       .Find(costume_->gid_)
       ->DrawRota(position_, 0.0f, 1.0f, 0,
                  direction_ * 4 + (uint32_t)std::round(animation_cnt_));
-
+  auto anchored = CAnchor::GetIns().GetAnchoredPosition(position_);
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(
       16 + 160, 16 + 8, 0, 1, 0xFFFFFF, DX_BLENDMODE_ALPHA, 108,
@@ -144,6 +144,15 @@ void CMover_Player::Render() const {
   CImageManager::GetIns().Find("aim")->DrawRota(
       input_.lock()->MouseX(), input_.lock()->MouseY(), 0.0, 1.0,
       Constant::kPriorityUI + 7, (costume_->max_charge_ == charge_) ? 1 : 0);
+  CVector diff = CVector((input_.lock()->MouseX() - anchored.x_) / 9.0,
+                         (input_.lock()->MouseY() - anchored.y_) / 9.0);
+  for (int i = 1; i < 9; i++) {
+    CImageManager::GetIns().Find("aim")->DrawRotaFwithBlend(
+        (int)(anchored.x_ + diff.x_ * i), (int)(anchored.y_ + diff.y_ * i), 0.0,
+        1.0, 0xFFFFFF, CImageManager::BlendMode::kAlpha, 0x7F,
+        Constant::kPriorityUI + 7,
+        (costume_->max_charge_ == charge_) ? 4 : 3);
+  }
   CAnchor::GetIns().DisableAbsolute();
 }
 

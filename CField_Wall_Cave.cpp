@@ -19,3 +19,8 @@ void CField_Wall_Cave::Render() const {
 CField* CField_Wall_Cave::Clone(CVector position_) {
   return new CField_Wall_Cave(gid_, position_, state_);
 }
+
+void CField_Wall_Cave::Save(std::ofstream& fout) {
+  auto t = gid_.substr(0, 6);
+  fout << t << std::endl;
+}

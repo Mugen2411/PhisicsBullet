@@ -9,6 +9,8 @@ class CField_Wall_Cave : public CField_Wall {
 
   CField* Clone(CVector position_);
 
+  void Save(std::ofstream& fout);
+
  private:
   int state_;
 };

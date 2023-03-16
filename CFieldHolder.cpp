@@ -328,7 +328,7 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
         std::string dir = "_";
         int t = 0xF;
         if (aug[(uint64_t)(width_ * y + x)] == "F_Water") {
-          if (x > 1 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Water")
+          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Water")
             t &= 0b0111;
           if (y < height_ - 1 &&
               aug[(uint64_t)(width_ * (y + 1) + x)] == "F_Water")
@@ -336,11 +336,38 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
           if (x < width_ - 1 &&
               aug[(uint64_t)(width_ * y + (x + 1))] == "F_Water")
             t &= 0b1101;
-          if (y > 1 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Water")
+          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Water")
             t &= 0b1110;
           for (int i = 0; i < 4; i++)
             if (t & (1 << i)) dir.push_back(urdl[i]);
           if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
+          continue;
+        }
+      }
+    }
+  }
+  aug = bufW;
+  for (uint32_t y = 0; y < height_; y++) {
+    for (uint32_t x = 0; x < width_; x++) {
+      {
+        std::string urdl = "URDL";
+        std::string dir = "_";
+        int t = 0xF;
+        if (aug[(uint64_t)(width_ * y + x)].substr(0,6) == "W_Cave") {
+          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "W_Cave")
+            t &= 0b0111;
+          if (y < height_ - 1 &&
+              aug[(uint64_t)(width_ * (y + 1) + x)] == "W_Cave")
+            t &= 0b1011;
+          if (x < width_ - 1 &&
+              aug[(uint64_t)(width_ * y + (x + 1))] == "W_Cave")
+            t &= 0b1101;
+          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "W_Cave")
+            t &= 0b1110;
+          for (int i = 0; i < 4; i++)
+            if (t & (1 << i)) dir.push_back(urdl[i]);
+          if (t != 0) bufW[(uint64_t)(width_ * y + x)] = "W_Cave" + dir;
+          continue;
         }
       }
     }

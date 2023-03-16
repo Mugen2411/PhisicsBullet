@@ -11,9 +11,11 @@ int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
   // setlocale(LC_CTYPE, "ja_JP.UTF-8");
   CDataLoader::GetIns().Load("main", "media/status/params.mgs");
   CDataLoader::GetIns().Load("resource", "media/status/resource.mgs");
+  CDataLoader::GetIns().Load("field", "media/status/field.mgs");
 #ifdef _DEBUG
   CDataLoader::GetIns().Output("main");
   CDataLoader::GetIns().Output("resource");
+  CDataLoader::GetIns().Output("field");
 #endif
   ChangeWindowMode(TRUE);
   SetWindowText("Makeover trial");

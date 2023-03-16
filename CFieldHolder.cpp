@@ -5,6 +5,7 @@
 #include <sstream>
 #include <strstream>
 
+#include "CDataLoader.h"
 #include "CEffect_Bright.h"
 #include "CField.h"
 #include "CFieldFactory.h"
@@ -321,44 +322,57 @@ int CFieldHolder::Load() {
 void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
                                   std::vector<std::string>& bufW) {
   auto aug = bufF;
+  auto f = CDataLoader::GetIns().Get("field")->GetChild("directional");
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
       {
+        auto c = f->GetChild(aug[(uint64_t)(width_ * y + x)]);
+        if (c == nullptr) continue;
         std::string urdl = "URDL";
         std::string dir = "_";
         int t = 0xF;
-        if (aug[(uint64_t)(width_ * y + x)] == "F_Water") {
-          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Water")
-            t &= 0b0111;
-          if (y < height_ - 1 &&
-              aug[(uint64_t)(width_ * (y + 1) + x)] == "F_Water")
-            t &= 0b1011;
-          if (x < width_ - 1 &&
-              aug[(uint64_t)(width_ * y + (x + 1))] == "F_Water")
-            t &= 0b1101;
-          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Water")
-            t &= 0b1110;
-          for (int i = 0; i < 4; i++)
-            if (t & (1 << i)) dir.push_back(urdl[i]);
-          if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
-          continue;
+        bool isHit = false;
+        for (int i = 0;; i++) {
+          if (x <= 0) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * y + (x - 1))] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
         }
-        if (aug[(uint64_t)(width_ * y + x)] == "F_Lava") {
-          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Lava")
-            t &= 0b0111;
-          if (y < height_ - 1 &&
-              aug[(uint64_t)(width_ * (y + 1) + x)] == "F_Lava")
-            t &= 0b1011;
-          if (x < width_ - 1 &&
-              aug[(uint64_t)(width_ * y + (x + 1))] == "F_Lava")
-            t &= 0b1101;
-          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Lava")
-            t &= 0b1110;
-          for (int i = 0; i < 4; i++)
-            if (t & (1 << i)) dir.push_back(urdl[i]);
-          if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Lava" + dir;
-          continue;
+        if (isHit) t &= 0b0111;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (y >= height_ - 1) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * (y + 1) + x)] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
         }
+        if (isHit) t &= 0b1011;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (x >= width_ - 1) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * y + (x + 1))] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
+        }
+        if (isHit) t &= 0b1101;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (y <= 0) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * (y - 1) + x)] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
+        }
+        if (isHit) t &= 0b1110;
+        isHit = false;
+        for (int i = 0; i < 4; i++)
+          if (t & (1 << i)) dir.push_back(urdl[i]);
+        if (t != 0)
+          bufF[(uint64_t)(width_ * y + x)] =
+              aug[(uint64_t)(width_ * y + x)] + dir;
       }
     }
   }
@@ -366,25 +380,53 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
       {
+        auto c = f->GetChild(aug[(uint64_t)(width_ * y + x)]);
+        if (c == nullptr) continue;
         std::string urdl = "URDL";
         std::string dir = "_";
         int t = 0xF;
-        if (aug[(uint64_t)(width_ * y + x)].substr(0,6) == "W_Cave") {
-          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "W_Cave")
-            t &= 0b0111;
-          if (y < height_ - 1 &&
-              aug[(uint64_t)(width_ * (y + 1) + x)] == "W_Cave")
-            t &= 0b1011;
-          if (x < width_ - 1 &&
-              aug[(uint64_t)(width_ * y + (x + 1))] == "W_Cave")
-            t &= 0b1101;
-          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "W_Cave")
-            t &= 0b1110;
-          for (int i = 0; i < 4; i++)
-            if (t & (1 << i)) dir.push_back(urdl[i]);
-          if (t != 0) bufW[(uint64_t)(width_ * y + x)] = "W_Cave" + dir;
-          continue;
+        bool isHit = false;
+        for (int i = 0;; i++) {
+          if (x <= 0) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * y + (x - 1))] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
         }
+        if (isHit) t &= 0b0111;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (y >= height_ - 1) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * (y + 1) + x)] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
+        }
+        if (isHit) t &= 0b1011;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (x >= width_ - 1) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * y + (x + 1))] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
+        }
+        if (isHit) t &= 0b1101;
+        isHit = false;
+        for (int i = 0;; i++) {
+          if (y <= 0) break;
+          if (c->GetChild(std::to_string(i)) == nullptr) break;
+          if (aug[(uint64_t)(width_ * (y - 1) + x)] ==
+              c->GetChild(std::to_string(i))->GetString())
+            isHit |= true;
+        }
+        if (isHit) t &= 0b1110;
+        isHit = false;
+        for (int i = 0; i < 4; i++)
+          if (t & (1 << i)) dir.push_back(urdl[i]);
+        if (t != 0)
+          bufW[(uint64_t)(width_ * y + x)] =
+              aug[(uint64_t)(width_ * y + x)] + dir;
       }
     }
   }

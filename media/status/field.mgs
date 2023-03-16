@@ -1,0 +1,21 @@
+directional{
+    F_Water{
+        0:"F_Water"
+        1:"F_IceFloor"
+    }
+    F_IceFloor{
+        0:"F_Water"
+        1:"F_IceFloor"
+    }
+    F_Lava{
+        0:"F_Lava"
+        1:"F_ColdLava"
+    }
+    F_ColdLava{
+        0:"F_Lava"
+        1:"F_ColdLava"
+    }
+    W_Cave{
+        0:"W_Cave"
+    }
+}

@@ -3,7 +3,7 @@
 
 class CField_Lava : public CField {
  public:
-  CField_Lava(std::string gid, CVector position_, double temperature);
+  CField_Lava(std::string gid, CVector position_, double temperature, int direction);
   void Update();
   void Render() const;
 
@@ -16,4 +16,9 @@ class CField_Lava : public CField {
   };
 
   CField* Clone(CVector position_);
+
+ private:
+  int cnt_;
+  int kAnimDur;
+  int direction_;
 };

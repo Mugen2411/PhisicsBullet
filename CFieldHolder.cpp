@@ -343,6 +343,22 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
           if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Water" + dir;
           continue;
         }
+        if (aug[(uint64_t)(width_ * y + x)] == "F_Lava") {
+          if (x > 0 && aug[(uint64_t)(width_ * y + (x - 1))] == "F_Lava")
+            t &= 0b0111;
+          if (y < height_ - 1 &&
+              aug[(uint64_t)(width_ * (y + 1) + x)] == "F_Lava")
+            t &= 0b1011;
+          if (x < width_ - 1 &&
+              aug[(uint64_t)(width_ * y + (x + 1))] == "F_Lava")
+            t &= 0b1101;
+          if (y > 0 && aug[(uint64_t)(width_ * (y - 1) + x)] == "F_Lava")
+            t &= 0b1110;
+          for (int i = 0; i < 4; i++)
+            if (t & (1 << i)) dir.push_back(urdl[i]);
+          if (t != 0) bufF[(uint64_t)(width_ * y + x)] = "F_Lava" + dir;
+          continue;
+        }
       }
     }
   }

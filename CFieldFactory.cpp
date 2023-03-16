@@ -56,8 +56,11 @@ CFieldFactory::CFieldFactory() {
   RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
   RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
   RegisterFloor(new CField_Cave("F_Cave", CVector()));
-  RegisterFloor(new CField_Lava("F_Lava", CVector(), 1000));
-  RegisterFloor(new CField_Lava("F_ColdLava", CVector(), -200));
+  for (int i = 0; i < 16; i++) {
+    RegisterFloor(
+        new CField_Lava("F_Lava" + direction[i], CVector(), 1000, i));
+  }
+  RegisterFloor(new CField_Lava("F_ColdLava", CVector(), -200, 0));
   RegisterFloor(new CField_Void("F_Void", CVector()));
 
   RegisterWall(new CField_Wall_Tree("W_Tree", CVector()));

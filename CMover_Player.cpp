@@ -33,13 +33,13 @@ CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
 
 void CMover_Player::Walk() {
   CVector v = input_.lock()->GetVector();
+  if (v.GetLength2() < Constant::kZeroBorder) return;
   CVector a =
-      v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() -
-      velocity_;
-  acceleration_ += a.GetNorm() * costume_->accel_ *
-                   CPassiveSkill::GetIns().GetSpeedMult() *
-                   std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
-                   std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+      v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() *
+      (now_fricted_ * cofs_.FrictionCF) *
+      (1 - (now_water_forced_ * cofs_.WaterResCF)) - velocity_;
+       acceleration_ += a.GetNorm() * costume_->accel_ *
+                   CPassiveSkill::GetIns().GetSpeedMult();
 }
 
 void CMover_Player::BaseUpdate() {}
@@ -85,12 +85,6 @@ int CMover_Player::Update() {
   }
   Shot();
   Walk();
-
-#ifdef _DEBUG
-  printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", p.x_, p.y_, acceleration_.x_,
-           acceleration_.y_);
-  printfDx("HP:%lf\n", base_params_.HP_);
-#endif
   return 0;
 }
 

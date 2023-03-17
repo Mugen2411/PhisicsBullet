@@ -65,8 +65,8 @@ void CFieldHolder::Render() const {
 }
 
 void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
-                                  CGameMediator* med, int level,
-                                  CVector& playerPos) {
+                                 CGameMediator* med, int level,
+                                 CVector& playerPos) {
   std::string fn = filepath_;
   for (int i = 0; i < 3; i++) fn.pop_back();
   fn += "spn";
@@ -76,7 +76,7 @@ void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
     MessageBox(NULL, "stage data not found", "CFieldHolder", MB_OK);
     abort();
   }
-  //read stage def
+  // read stage def
   auto d = c->GetChild("def");
   auto bgmPath = d->GetChild("bgm")->GetString();
   CSoundManager::GetIns().LoadBGM("media/sound/bgm/" + bgmPath);
@@ -87,7 +87,7 @@ void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
     CEffect_Bright::GetIns().SetBrightLevel(0);
   std::string tmp;
 
-  //convert enemy spawner
+  // convert enemy spawner
   std::vector<SpawnerDesc> sdList;
   d = c->GetChild("spawn");
   int i = 0;
@@ -345,9 +345,8 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
         isHit = false;
         for (int i = 0; i < 4; i++)
           if (t & (1 << i)) dir.push_back(urdl[i]);
-        if (t != 0)
-          bufF[(uint64_t)(width_ * y + x)] =
-              aug[(uint64_t)(width_ * y + x)] + dir;
+        bufF[(uint64_t)(width_ * y + x)] =
+            aug[(uint64_t)(width_ * y + x)] + dir;
       }
     }
   }
@@ -399,9 +398,8 @@ void CFieldHolder::CheckDirection(std::vector<std::string>& bufF,
         isHit = false;
         for (int i = 0; i < 4; i++)
           if (t & (1 << i)) dir.push_back(urdl[i]);
-        if (t != 0)
-          bufW[(uint64_t)(width_ * y + x)] =
-              aug[(uint64_t)(width_ * y + x)] + dir;
+        bufW[(uint64_t)(width_ * y + x)] =
+            aug[(uint64_t)(width_ * y + x)] + dir;
       }
     }
   }

@@ -4,7 +4,8 @@
 
 CField_IceFloor::CField_IceFloor(std::string gid, CVector position_,
                                  double temperature, int direction)
-    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.5),
+    : CField(gid, position_, CVector(32.0, 32.0),
+             COF().SetFrictionCF(0.5).SetAirResCF(0.9),
              temperature, CAttribute(0.0).Ice(2.0)),
       direction_(direction),
       cnt_(0),
@@ -13,10 +14,10 @@ CField_IceFloor::CField_IceFloor(std::string gid, CVector position_,
 void CField_IceFloor::Update() {
   cnt_++;
   if (temperature_ < 0) {
-    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.1);
+    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.001);
     damage_ = CAttribute(0.0).Ice(4.0);
   } else {
-    cofs_.SetWaterResCF(0.8).SetFrictionCF(0.2);
+    cofs_.SetWaterResCF(0.6).SetFrictionCF(0.3);
     damage_ = CAttribute(0.0).Aqua(4.0);
   }
 }
@@ -74,6 +75,10 @@ CField* CField_IceFloor::Clone(CVector position_) {
 }
 
 void CField_IceFloor::Save(std::ofstream& fout) {
-  auto t = gid_.substr(0, 7);
+  auto t = gid_;
+  do {
+    t.pop_back();
+  } while (t.back() != '_');
+  t.pop_back();
   fout << t << std::endl;
 }

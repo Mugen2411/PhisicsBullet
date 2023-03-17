@@ -17,6 +17,7 @@ CField::CField(std::string gid, CVector position_, CVector size, COF cofs,
 void CField::SetFrictionForce(CMover* m) {
   m->ApplyFrictionForce(cofs_.FrictionCF);
   m->ApplyWaterRegistance(cofs_.WaterResCF);
+  m->ApplyAirRegistance(cofs_.AirResCF);
   if (damage_interval_ == 0 || m->GetStatus() == CMover::Status::kDead) {
     m->FieldDispatch(this);
     CAttribute t = m->TestDamage(damage_);

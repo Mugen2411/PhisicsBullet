@@ -41,9 +41,9 @@ class CMover {
     double cons = cofs_.FrictionCF * FloorFrictionCF * Constant::kGravity;
     friction_force_ = (NormA * -cons);
   }
-  inline void ApplyAirRegistance() {
+  inline void ApplyAirRegistance(double FloorAirCF) {
     auto NormA = velocity_;
-    air_force_ = (-NormA * cofs_.AirResCF);
+    air_force_ = (-NormA * cofs_.AirResCF * FloorAirCF);
   }
   inline void ApplyAirForce(CVector F) { ApplyForce(F * cofs_.AirResCF); }
   inline void ApplyWaterRegistance(double waterResCF) {
@@ -53,10 +53,17 @@ class CMover {
   }
   inline void ApplyWaterForce(CVector F) { ApplyForce(F * cofs_.WaterResCF); }
   inline void Move() {
-    velocity_ += acceleration_;
+#ifdef _DEBUG
+    if (category_ == MoverID::kPlayer) {
+      printfDx("SP:%lf,%lf\nAP:%lf,%lf\n", velocity_.x_, velocity_.y_,
+               acceleration_.x_, acceleration_.y_);
+      printfDx("Fric:%lf\nWtr:%lf\nAir:%lf\n", friction_force_.GetLength(),
+               water_force_.GetLength2(), air_force_.GetLength());
+    }
+#endif
 
     //ñÄéCÇ∆êÖÇÃíÔçRÇ∆ãÛãCíÔçRÇ≈ê√é~Ç∑ÇÈ
-    CVector frictedVelocity = velocity_ + friction_force_;
+    /*CVector frictedVelocity = velocity_ + friction_force_;
     if (frictedVelocity.Dot(velocity_) < 0) frictedVelocity = CVector(0.0, 0.0);
 
     CVector wateredVelocity = velocity_ + water_force_;
@@ -69,11 +76,14 @@ class CMover {
         wateredVelocity.GetLength2() < Constant::kZeroBorder ||
         airedVelocity.GetLength2() < Constant::kZeroBorder) {
       velocity_ = CVector(0.0, 0.0);
-    } else {
-      velocity_ += friction_force_;
-      velocity_ += water_force_;
-      velocity_ += air_force_;
+    } else*/
+    {
+      acceleration_ += friction_force_;
+      acceleration_ += water_force_;
+      acceleration_ += air_force_;
     }
+
+    velocity_ += acceleration_ * sqrtl(Constant::kPerFrame);
 
     if (velocity_.GetLength2() > 32 * 32) {
       velocity_ = velocity_.GetNorm() * 32;
@@ -85,13 +95,7 @@ class CMover {
     if (!((is_locked_axis_ >> 1) & 1)) {
       position_.y_ += velocity_.y_;
     }
-    is_locked_axis_ = 0;
-    acceleration_.x_ = 0;
-    acceleration_.y_ = 0;
-    friction_force_ = CVector(0.0, 0.0);
-    water_force_ = CVector(0.0, 0.0);
-    air_force_ = CVector(0.0, 0.0);
-    velocity_.Zero();
+    ResetPower();
   }
 
   void ResetPower() {

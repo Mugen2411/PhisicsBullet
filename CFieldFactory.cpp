@@ -45,20 +45,23 @@ CFieldFactory::CFieldFactory() {
   wy_ = 0;
   fx_ = 0;
   fy_ = 0;
-  std::string direction[] = {"", "_U", "_R", "_UR", "_D", "_UD", "_RD", "_URD",
-                             "_L", "_UL", "_RL", "_URL", "_DL", "_UDL", "_RDL", "_URDL"};
+  std::string direction[] = {"_",    "_U",   "_R",   "_UR",  "_D",  "_UD",
+                             "_RD", "_URD", "_L",   "_UL",  "_RL", "_URL",
+                             "_DL", "_UDL", "_RDL", "_URDL"};
   RegisterFloor(new CField_Grass("F_Grass", CVector()));
   for (int i = 0; i < 16; i++) {
     RegisterFloor(
         new CField_IceFloor("F_Water" + direction[i], CVector(), 0, i));
   }
-  RegisterFloor(new CField_IceFloor("F_IceFloor", CVector(), -100, 0));
+  for (int i = 0; i < 16; i++) {
+    RegisterFloor(
+        new CField_IceFloor("F_IceFloor" + direction[i], CVector(), -100, i));
+  }
   RegisterFloor(new CField_Dirt("F_Dirt", CVector(), 0));
   RegisterFloor(new CField_Dirt("F_Sand", CVector(), 1));
   RegisterFloor(new CField_Cave("F_Cave", CVector()));
   for (int i = 0; i < 16; i++) {
-    RegisterFloor(
-        new CField_Lava("F_Lava" + direction[i], CVector(), 1000, i));
+    RegisterFloor(new CField_Lava("F_Lava" + direction[i], CVector(), 1000, i));
   }
   RegisterFloor(new CField_Lava("F_ColdLava", CVector(), -200, 0));
   RegisterFloor(new CField_Void("F_Void", CVector()));

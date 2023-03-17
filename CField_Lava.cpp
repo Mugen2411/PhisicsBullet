@@ -6,7 +6,8 @@
 
 CField_Lava::CField_Lava(std::string gid, CVector position_, double temperature,
                          int direction)
-    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.6),
+    : CField(gid, position_, CVector(32.0, 32.0),
+             COF().SetFrictionCF(0.6).SetAirResCF(0.9),
              temperature, CAttribute(0.0)),
       cnt_(0),
       kAnimDur(180),
@@ -18,7 +19,7 @@ void CField_Lava::Update() {
     cofs_.SetWaterResCF(0.0).SetFrictionCF(0.6);
     damage_ = CAttribute(0.0);
   } else {
-    cofs_.SetWaterResCF(0.9).SetFrictionCF(0.1);
+    cofs_.SetWaterResCF(0.9).SetFrictionCF(0.2);
     damage_ = CAttribute(0.0).None(0.0).Fire(15.0);
   }
 }

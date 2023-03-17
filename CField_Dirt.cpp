@@ -3,7 +3,8 @@
 #include <DxLib.h>
 
 CField_Dirt::CField_Dirt(std::string gid, CVector position_, int state_)
-    : CField(gid, position_, CVector(32.0, 32.0), COF().SetFrictionCF(0.9), 0.0),
+    : CField(gid, position_, CVector(32.0, 32.0),
+             COF().SetFrictionCF(0.9).SetAirResCF(0.9), 0.0),
       state_(state_) {
   if (state_ == 1) cofs_.SetFrictionCF(0.7);
 }

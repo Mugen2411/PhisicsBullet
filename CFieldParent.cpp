@@ -32,7 +32,6 @@ void CFieldParent::ApplyForceToMover(CMover* m) {
 
   field_holder_->GetWall(x, y)->SetFrictionForce(m);
   field_holder_->GetFloor(x, y)->SetFrictionForce(m);
-  m->ApplyAirRegistance();
 }
 
 bool CFieldParent::HitToMover(CMover* m) {

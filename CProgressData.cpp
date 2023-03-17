@@ -7,7 +7,7 @@
 
 CProgressData::CProgressData()
     : current_stage_(0),
-      max_stage_(12),
+      max_stage_(13),
       earned_money_(0),
       data_{11, 0, 30},
       is_endless_(false),

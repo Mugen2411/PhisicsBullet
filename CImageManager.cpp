@@ -21,10 +21,6 @@ CImageManager::CImageManager() {
               t.second->GetChild("path")->GetString(),
           t.second->GetChild("w")->GetInt(), t.second->GetChild("h")->GetInt());
     }
-    if (!image_list_[t.first]) {
-      MessageBox(NULL, (std::string("can't find image ") + t.first).c_str(),
-                 "CImageManager", MB_OK);
-    }
   }
 }
 

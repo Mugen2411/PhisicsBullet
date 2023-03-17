@@ -64,47 +64,49 @@ void CFieldHolder::Render() const {
   }
 }
 
-void CFieldHolder::ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
+void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
                                   CGameMediator* med, int level,
                                   CVector& playerPos) {
   std::string fn = filepath_;
-  std::vector<SpawnerDesc> sdList;
   for (int i = 0; i < 3; i++) fn.pop_back();
   fn += "spn";
-  int fp = FileRead_open(fn.c_str());
-  char buf[256];
-  std::string tmp;
-  for (int i = 0; i < Constant::kNumEnemySpawner; i++) {
-    for (auto& b : buf) {
-      b = '\0';
-    }
-    if (FileRead_gets(buf, 256, fp) == -1) break;
-    int cnt = 0;
-    SpawnerDesc desc = SpawnerDesc();
-    std::stringstream stream(std::string(buf, 256), std::ios::in);
-    while (std::getline(stream, tmp, ',')) {
-      if (tmp.empty()) break;
-      switch (cnt) {
-        case 0:
-          break;
-        case 1:
-          desc.gid = tmp;
-          break;
-        case 2:
-          desc.time_to_spawn_ = std::stoi(tmp);
-          break;
-        case 3:
-          desc.count_of_spawn_ = std::stoi(tmp);
-          break;
-        case 4:
-          desc.spawn_probability_ = std::stoi(tmp);
-          break;
-      }
-      ++cnt;
-    }
-    sdList.emplace_back(desc);
+  CDataLoader::GetIns().Load("stage", fn);
+  auto c = CDataLoader::GetIns().Get("stage");
+  if (c == nullptr) {
+    MessageBox(NULL, "stage data not found", "CFieldHolder", MB_OK);
+    abort();
   }
-  FileRead_close(fp);
+  //read stage def
+  auto d = c->GetChild("def");
+  auto bgmPath = d->GetChild("bgm")->GetString();
+  CSoundManager::GetIns().LoadBGM("media/sound/bgm/" + bgmPath);
+  auto br = d->GetChild("bright");
+  if (br != nullptr) {
+    CEffect_Bright::GetIns().SetBrightLevel(br->GetDouble());
+  } else
+    CEffect_Bright::GetIns().SetBrightLevel(0);
+  std::string tmp;
+
+  //convert enemy spawner
+  std::vector<SpawnerDesc> sdList;
+  d = c->GetChild("spawn");
+  int i = 0;
+  while (1) {
+    auto e = d->GetChild(std::to_string(i));
+    if (e == nullptr) break;
+    SpawnerDesc tmpSD;
+    tmpSD.gid = e->GetChild("gid")->GetString();
+    tmpSD.count_of_spawn_ = e->GetChild("amount")->GetInt();
+    tmpSD.time_to_spawn_ = e->GetChild("time")->GetInt();
+    auto f = e->GetChild("prob");
+    if (f != nullptr)
+      tmpSD.spawn_probability_ = f->GetInt();
+    else
+      tmpSD.spawn_probability_ = 100;
+
+    sdList.push_back(tmpSD);
+    i++;
+  }
   CFieldFactory field_factory_;
   size_t end = wall_list_.size();
   for (int i = 0; i < end; i++) {
@@ -122,33 +124,6 @@ void CFieldHolder::ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
           field_factory_.create(wall_list_[i]->position_, "W_Void"));
     }
   }
-}
-
-void CFieldHolder::ReadDefine() {
-  std::string fn = filepath_;
-  std::vector<SpawnerDesc> sdList;
-  for (int i = 0; i < 3; i++) fn.pop_back();
-  fn += "def";
-  int fp = FileRead_open(fn.c_str());
-  char buf[256];
-  std::string tmp;
-  CEffect_Bright::GetIns().SetBrightLevel(0);
-  for (int i = 0; i < Constant::kNumEnemySpawner; i++) {
-    for (auto& b : buf) {
-      b = '\0';
-    }
-    if (FileRead_gets(buf, 256, fp) == -1) break;
-    std::stringstream stream(std::string(buf, 256), std::ios::in);
-    switch (i) {
-      case 0:
-        CSoundManager::GetIns().LoadBGM(buf);
-        break;
-      case 1:
-        CEffect_Bright::GetIns().SetBrightLevel(atof(buf));
-        break;
-    }
-  }
-  FileRead_close(fp);
 }
 
 std::list<CVector> CFieldHolder::FindRoute(CVector start, CVector goal,

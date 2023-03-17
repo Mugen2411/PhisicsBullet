@@ -1,4 +1,26 @@
-0,E_Budcorn,60,5
-0,E_Budcorn,600,3
-0,E_Budcorn,1200,15
-0,E_Shimaenaga,300,1,2
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:5
+    }
+    1{
+        gid:"E_Budcorn"
+        time:600
+        amount:3
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1200
+        amount:15
+    }
+    3{
+        gid:"E_Shimaenaga"
+        time:300
+        amount:1
+        prob:2
+    }
+}

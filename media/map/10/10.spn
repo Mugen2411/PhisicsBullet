@@ -1,4 +1,26 @@
-0,E_Budcorn,60,5
-0,E_Budcorn,600,6
-0,E_Budcorn,1200,8
-0,E_FlameSerpent,2400,5
+def{
+    bgm:"cave.ogg"
+    bright:-0.6
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:5
+    }
+    1{
+        gid:"E_Budcorn"
+        time:600
+        amount:6
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1200
+        amount:8
+    }
+    3{
+        gid:"E_FlameSerpent"
+        time:2400
+        amount:5
+    }
+}

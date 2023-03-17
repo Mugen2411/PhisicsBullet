@@ -61,8 +61,7 @@ void CGameMediator::CreateParts() {
   power_parent_ = std::make_unique<CPowerParent>(this);
 
   CVector playerPos;
-  field_parent_->ConvertSpawner(enemy_spawner_, now_level_of_stage_, playerPos);
-  field_parent_->readDefine();
+  field_parent_->readStageData(enemy_spawner_, now_level_of_stage_, playerPos);
   CCostumeFactory CCF;
   CCF.GetMinMaxFriction(min_fric_, max_fric_);
   CCF.GetMinMaxWaterRes(min_water_res_, max_water_res_);

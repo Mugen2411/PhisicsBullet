@@ -1,11 +1,61 @@
-0,E_Budcorn,300,4
-0,E_Budcorn,700,4
-0,E_Budcorn,1200,2
-0,E_Budcorn,1800,2
-0,E_Budcorn,2500,4
-0,E_Budcorn,3600,5
-0,E_Budcorn,4800,8
-0,E_Goblin,2500,1
-0,E_Goblin,3600,1
-0,E_Yadokari,4800,2
-0,E_Goblin,4800,3
+def{
+    bgm:"cave.ogg"
+    bright:-0.7
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:300
+        amount:4
+    }
+    1{
+        gid:"E_Budcorn"
+        time:700
+        amount:4
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1200
+        amount:2
+    }
+    3{
+        gid:"E_Budcorn"
+        time:1800
+        amount:2
+    }
+    4{
+        gid:"E_Budcorn"
+        time:2500
+        amount:4
+    }
+    5{
+        gid:"E_Budcorn"
+        time:3600
+        amount:5
+    }
+    6{
+        gid:"E_Budcorn"
+        time:4800
+        amount:8
+    }
+    7{
+        gid:"E_Goblin"
+        time:2500
+        amount:1
+    }
+    8{
+        gid:"E_Goblin"
+        time:3600
+        amount:1
+    }
+    9{
+        gid:"E_Yadokari"
+        time:4800
+        amount:2
+    }
+    10{
+        gid:"E_Goblin"
+        time:4800
+        amount:3
+    }
+}

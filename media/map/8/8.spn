@@ -1,7 +1,41 @@
-0,E_Budcorn,60,25
-0,E_Budcorn,1200,20
-0,E_Yadokari,1800,3
-0,E_Yadokari,2400,3
-0,E_Budcorn,3600,15
-0,E_Budcorn,4000,20
-0,E_Yadokari,5400,5
+def{
+    bgm:"farm.ogg"
+    bright:-0.3
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:25
+    }
+    1{
+        gid:"E_Budcorn"
+        time:120
+        amount:20
+    }
+    2{
+        gid:"E_Yadokari"
+        time:1800
+        amount:3
+    }
+    3{
+        gid:"E_Yadokari"
+        time:2400
+        amount:3
+    }
+    4{
+        gid:"E_Budcorn"
+        time:3600
+        amount:15
+    }
+    5{
+        gid:"E_Budcorn"
+        time:4000
+        amount:20
+    }
+    6{
+        gid:"E_Yadokari"
+        time:5400
+        amount:5
+    }
+}

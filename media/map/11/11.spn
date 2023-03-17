@@ -1,8 +1,46 @@
-0,E_FlameSerpent,180,6
-0,E_FlameSerpent,800,8
-0,E_FlameSerpent,1600,10
-0,E_FlameSerpent,2400,12
-0,E_FlameSerpent,3200,15
-0,E_FlameSerpent,4000,18
-0,E_FlameSerpent,4800,20
-0,E_FlameSerpent,5600,24
+def{
+    bgm:"cave.ogg"
+    bright:-0.6
+}
+spawn{
+    0{
+        gid:"E_FlameSerpent"
+        time:180
+        amount:6
+    }
+    1{
+        gid:"E_FlameSerpent"
+        time:800
+        amount:8
+    }
+    2{
+        gid:"E_FlameSerpent"
+        time:1600
+        amount:10
+    }
+    3{
+        gid:"E_FlameSerpent"
+        time:2400
+        amount:12
+    }
+    4{
+        gid:"E_FlameSerpent"
+        time:3200
+        amount:15
+    }
+    5{
+        gid:"E_FlameSerpent"
+        time:4000
+        amount:18
+    }
+    6{
+        gid:"E_FlameSerpent"
+        time:4800
+        amount:20
+    }
+    7{
+        gid:"E_FlameSerpent"
+        time:5600
+        amount:24
+    }
+}

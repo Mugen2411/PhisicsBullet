@@ -287,9 +287,9 @@ image{
     }
     enemy_shimaenaga{
         path:"enemy/shimaenaga/shimaenaga.png"
-        num:16
+        num:4
         xnum:4
-        ynum:4
+        ynum:1
         w:32
         h:32
     }

@@ -20,11 +20,10 @@ class CFieldParent {
                               int distance);
   std::vector<CVector> GetTargetByDistance(CVector start, int distance);
   void Render() const;
-  void ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level,
+  void readStageData(std::list<std::unique_ptr<CEnemySpawner>>& sp, int level,
                       CVector& playerPos) {
-    field_holder_->ConvertSpawner(sp, med_, level, playerPos);
+    field_holder_->readStageData(sp, med_, level, playerPos);
   }
-  void readDefine() { field_holder_->ReadDefine(); }
 
  private:
   CGameMediator* med_;

@@ -16,8 +16,13 @@ class CImage {
   inline void Load() {
     if (graphic_handle_.empty()) {
       graphic_handle_.resize(array_size_);
-      LoadDivGraph(filepath_.c_str(), array_size_, x_num_, y_num_, width_,
+      int ret = LoadDivGraph(filepath_.c_str(), array_size_, x_num_, y_num_, width_,
                    height_, graphic_handle_.data());
+      if (ret != 0) {
+        MessageBox(NULL, (std::string("can't find image ") + filepath_).c_str(),
+                   "CImageManager", MB_OK);
+        abort();
+      }
     }
   }
 

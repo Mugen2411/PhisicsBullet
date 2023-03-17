@@ -1,8 +1,46 @@
-0,E_Budcorn,60,8
-0,E_Budcorn,600,9
-0,E_Budcorn,1200,10
-0,E_Budcorn,2000,12
-0,E_Budcorn,3200,15
-0,E_Budcorn,4800,18
-0,E_Acecorn,6000,1
-0,E_Acecorn,7200,2
+def{
+    bgm:"farm.ogg"
+    bright:-0.2
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:8
+    }
+    1{
+        gid:"E_Budcorn"
+        time:600
+        amount:9
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1200
+        amount:10
+    }
+    3{
+        gid:"E_Budcorn"
+        time:2000
+        amount:12
+    }
+    4{
+        gid:"E_Budcorn"
+        time:3200
+        amount:15
+    }
+    5{
+        gid:"E_Budcorn"
+        time:4800
+        amount:18
+    }
+    6{
+        gid:"E_Acecorn"
+        time:6000
+        amount:1
+    }
+    7{
+        gid:"E_Acecorn"
+        time:7200
+        amount:2
+    }
+}

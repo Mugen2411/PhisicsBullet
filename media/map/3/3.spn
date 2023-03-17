@@ -1,5 +1,30 @@
-0,E_Budcorn,60,5
-0,E_Yadokari,600,1
-0,E_Yadokari,900,2
-0,E_Yadokari,1500,2
-0,E_Yadokari,1500,3
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:5
+    }
+    1{
+        gid:"E_Yadokari"
+        time:600
+        amount:1
+    }
+    2{
+        gid:"E_Yadokari"
+        time:900
+        amount:2
+    }
+    3{
+        gid:"E_Yadokari"
+        time:1500
+        amount:2
+    }
+    4{
+        gid:"E_Yadokari"
+        time:1500
+        amount:3
+    }
+}

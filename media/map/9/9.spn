@@ -1,8 +1,46 @@
-0,E_Yadokari,60,6
-0,E_Yadokari,720,6
-0,E_Budcorn,1500,40
-0,E_Budcorn,2500,15
-0,E_Acecorn,2500,1
-0,E_Budcorn,4800,50
-0,E_Acecorn,4800,3
-0,E_Goblin,7200,4
+def{
+    bgm:"farm.ogg"
+    bright:-0.3
+}
+spawn{
+    0{
+        gid:"E_Yadokari"
+        time:60
+        amount:6
+    }
+    1{
+        gid:"E_Yadokari"
+        time:720
+        amount:6
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1500
+        amount:40
+    }
+    3{
+        gid:"E_Budcorn"
+        time:2500
+        amount:15
+    }
+    4{
+        gid:"E_Acecorn"
+        time:2500
+        amount:1
+    }
+    5{
+        gid:"E_Budcorn"
+        time:4800
+        amount:50
+    }
+    6{
+        gid:"E_Acecorn"
+        time:4800
+        amount:3
+    }
+    7{
+        gid:"E_Goblin"
+        time:7200
+        amount:4
+    }
+}

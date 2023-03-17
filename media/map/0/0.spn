@@ -1,4 +1,25 @@
-0,E_Budcorn,60,1
-0,E_Budcorn,300,3
-0,E_Budcorn,1200,6
-0,E_Budcorn,2400,8
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:1
+    }
+    1{
+        gid:"E_Budcorn"
+        time:300
+        amount:3
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1200
+        amount:6
+    }
+    3{
+        gid:"E_Budcorn"
+        time:2400
+        amount:8
+    }
+}

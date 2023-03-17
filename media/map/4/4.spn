@@ -1,7 +1,41 @@
-0,E_Budcorn,30,10
-0,E_Budcorn,60,10
-0,E_Yadokari,900,3
-0,E_Yadokari,1600,3
-0,E_Budcorn,2400,10
-0,E_Shimaenaga,1600,1,55
-0,E_Budcorn,3600,5
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:30
+        amount:10
+    }
+    1{
+        gid:"E_Budcorn"
+        time:60
+        amount:10
+    }
+    2{
+        gid:"E_Yadokari"
+        time:900
+        amount:3
+    }
+    3{
+        gid:"E_Yadokari"
+        time:1600
+        amount:3
+    }
+    4{
+        gid:"E_Budcorn"
+        time:2400
+        amount:10
+    }
+    5{
+        gid:"E_Shimaenaga"
+        time:1600
+        amount:1
+        prob:5
+    }
+    6{
+        gid:"E_Budcorn"
+        time:3600
+        amount:7
+    }
+}

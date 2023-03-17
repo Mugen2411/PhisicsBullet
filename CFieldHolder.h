@@ -31,9 +31,8 @@ class CFieldHolder {
   void Update();
   void Render() const;
 
-  void ConvertSpawner(std::list<std::unique_ptr<CEnemySpawner>>& es,
+  void readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
                       CGameMediator* med, int level, CVector& playerPos);
-  void ReadDefine();
 
   std::list<CVector> FindRoute(CVector start, CVector goal, CAttribute attrDEF,
                                 int distance);  //æ“ª‚ªˆê”Ô©•ª‚É‹ß‚¢I

@@ -20,7 +20,7 @@ enemy{
             wtr:0.99
             air:0.02
             ref:0.1
-            wnd:0.8
+            wnd:0.3
         }
     }
     E_Acecorn{
@@ -44,7 +44,7 @@ enemy{
             wtr:0.95
             air:0.06
             ref:0.1
-            wnd:0.6
+            wnd:0.2
         }
     }
     E_Yadokari{
@@ -68,7 +68,7 @@ enemy{
             wtr:0.05
             air:0.08
             ref:0.1
-            wnd:0.3
+            wnd:0.1
         }
     }
     E_Goblin{
@@ -92,7 +92,7 @@ enemy{
             wtr:0.2
             air:0.03
             ref:0.1
-            wnd:0.2
+            wnd:0.1
         }
     }
     E_FlameSerpent{
@@ -116,7 +116,7 @@ enemy{
             wtr:0.2
             air:0.06
             ref:0.1
-            wnd:0.5
+            wnd:0.3
         }
     }
     E_Shimaenaga{
@@ -492,11 +492,11 @@ shot{
             fire:5.0
         }
         cof{
-            frc:0.001
-            wtr:0.001
-            air:0.5
+            frc:0.000
+            wtr:0.000
+            air:0.2
             ref:0.2
-            wnd:0.9
+            wnd:0.8
         }
         effc:0xFFCF00
     }

@@ -8,7 +8,7 @@
 CMover_Shot_Swimsuit_iPhone::CMover_Shot_Swimsuit_iPhone(CAttribute baseATK,
                                                          CVector position,
                                                          float angle)
-    : CMover_ShotBase("S_Swimsuit_iPhone", baseATK, position, CVector(angle) * 16.0),
+    : CMover_ShotBase("S_Swimsuit_iPhone", baseATK, position, CVector(angle) * 20.0),
       render_angle_(0.0f) {}
 
 void CMover_Shot_Swimsuit_iPhone::Dead() {

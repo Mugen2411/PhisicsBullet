@@ -37,8 +37,14 @@ void CMover_Player::Walk() {
   CVector a =
       v * costume_->max_speed_ * CPassiveSkill::GetIns().GetSpeedMult() -
       velocity_;
-  acceleration_ += a * (now_fricted_ * cofs_.FrictionCF) *
-                   (1 - (now_water_forced_ * cofs_.WaterResCF));
+  if (a.GetLength() > costume_->accel_) a = a.GetNorm() * costume_->accel_;
+  if (velocity_.GetLength() < Constant::kDynamicBorder) {
+    acceleration_ += a * sqrtl(now_fricted_ * cofs_.FrictionCF) *
+                     sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+  } else {
+    acceleration_ += a * (now_fricted_ * cofs_.FrictionCF) *
+                     (1 - (now_water_forced_ * cofs_.WaterResCF));
+  }
 }
 
 void CMover_Player::BaseUpdate() {}

@@ -32,6 +32,7 @@ void CMover_EnemyBase::Walk(CVector destination) {
   CVector a =
       diff.GetNorm() * max_speed_ -
       velocity_;
+  if (a.GetLength() > accel_) a = a.GetNorm() * accel_;
   acceleration_ += a * (now_fricted_ * cofs_.FrictionCF) *
                    (1 - (now_water_forced_ * cofs_.WaterResCF));
   direction_ = diff.GetDirection();

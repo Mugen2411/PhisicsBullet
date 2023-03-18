@@ -7,7 +7,7 @@ CMover_Bullet_Axe::CMover_Bullet_Axe(CStatus baseparams, CVector position,
 
 int CMover_Bullet_Axe::Update() {
   base_angle_ += (float)(Constant::kPI2 * Constant::kPerFrame) * 0.8f;
-  if (velocity_.GetLength2() < Constant::kBulletDeleteVelocity)
+  if (velocity_.GetLength() < Constant::kDynamicBorder)
     SetStatus(Status::kDead);
   return status_;
 }

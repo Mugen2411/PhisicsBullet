@@ -5,7 +5,7 @@ CMover_Bullet_Corn::CMover_Bullet_Corn(CStatus baseparams, CVector position,
     : CMover_BulletBase("B_Corn", baseparams, position, CVector(angle) * speed) {}
 
 int CMover_Bullet_Corn::Update() {
-  if (velocity_.GetLength2() < Constant::kBulletDeleteVelocity)
+  if (velocity_.GetLength() < Constant::kDynamicBorder)
     SetStatus(Status::kDead);
   return status_;
 }

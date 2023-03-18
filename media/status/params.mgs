@@ -65,7 +65,7 @@ enemy{
         spd:1.5
         cof{
             frc:0.7
-            wtr:0.2
+            wtr:0.05
             air:0.08
             ref:0.1
             wnd:0.3
@@ -89,7 +89,7 @@ enemy{
         spd:1.2
         cof{
             frc:0.8
-            wtr:0.9
+            wtr:0.2
             air:0.03
             ref:0.1
             wnd:0.2
@@ -151,9 +151,9 @@ bullet{
             flower:50.0
         }
         cof{
-            frc:0.1
-            wtr:0.2
-            air:0.1
+            frc:0.04
+            wtr:0.1
+            air:0.02
             ref:0.1
             wnd:0.4
         }
@@ -168,9 +168,9 @@ bullet{
             aqua:80.0
         }
         cof{
-            frc:0.1
+            frc:0.01
             wtr:0.02
-            air:0.01
+            air:0.03
             ref:0.1
             wnd:0.1
         }
@@ -203,9 +203,9 @@ bullet{
         cof{
             frc:0.005
             wtr:0.005
-            air:0.04
+            air:0.09
             ref:0.1
-            wnd:0.4
+            wnd:0.6
         }
         effc:0xFF0000
     }
@@ -395,7 +395,7 @@ shot{
         cof{
             frc:0.001
             wtr:0.4
-            air:0.2
+            air:0.1
             ref:0.7
             wnd:0.7
         }
@@ -410,7 +410,7 @@ shot{
         }
         cof{
             frc:0.02
-            wtr:0.5
+            wtr:0.09
             air:0.01
             ref:1.0
             wnd:0.2
@@ -459,9 +459,9 @@ shot{
             thunder:50.0
         }
         cof{
-            frc:0.1
+            frc:0.01
             wtr:0.05
-            air:0.6
+            air:0.06
             ref:0.1
             wnd:0.1
         }
@@ -510,7 +510,7 @@ shot{
         cof{
             frc:0.01
             wtr:0.02
-            air:0.05
+            air:0.03
             ref:0.0
             wnd:0.1
         }

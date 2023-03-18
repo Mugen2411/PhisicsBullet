@@ -14,7 +14,7 @@ CField_IceFloor::CField_IceFloor(std::string gid, CVector position_,
 void CField_IceFloor::Update() {
   cnt_++;
   if (temperature_ < 0) {
-    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.035);
+    cofs_.SetWaterResCF(0.0).SetFrictionCF(0.03);
     damage_ = CAttribute(0.0).Ice(4.0);
   } else {
     cofs_.SetWaterResCF(0.6).SetFrictionCF(0.3);

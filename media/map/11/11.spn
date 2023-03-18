@@ -1,5 +1,5 @@
 def{
-    bgm:"cave.ogg"
+    bgm:"lava.ogg"
     bright:-0.6
 }
 spawn{

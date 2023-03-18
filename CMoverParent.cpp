@@ -33,11 +33,11 @@ void CMoverParent::Update() {
   for (auto itr = mover_list_.begin(); itr != mover_list_.end();) {
     (*itr)->BaseUpdate();
     r = (*itr)->Update();
-    med_->ApplyForceToMover(itr->get());
-    med_->HitToMover(itr->get());
-    (*itr)->Move();
     switch (r) {
       case CMover::Status::kAlive:
+        med_->ApplyForceToMover(itr->get());
+        med_->HitToMover(itr->get());
+        (*itr)->Move();
         break;
       case CMover::Status::kDead:
         (*itr)->Dead();

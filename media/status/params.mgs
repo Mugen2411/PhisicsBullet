@@ -409,9 +409,9 @@ shot{
             none:20.0
         }
         cof{
-            frc:0.02
-            wtr:0.09
-            air:0.01
+            frc:0.01
+            wtr:0.08
+            air:0.005
             ref:1.0
             wnd:0.2
         }

@@ -4,7 +4,7 @@
 
 CField_Cave::CField_Cave(std::string gid, CVector position_)
     : CField(gid, position_, CVector(32.0, 32.0),
-             COF().SetFrictionCF(0.8).SetAirResCF(0.9), 0),
+             COF().SetFrictionCF(0.8).SetAirResCF(0.2), 0),
       animation_cnt_(0) {
   if (GetRand(3) != 0)
     decoration_ = 0;

@@ -4,7 +4,7 @@
 
 CField_Wall_PlayerSpawner::CField_Wall_PlayerSpawner(std::string gid,
                                                      CVector position_)
-    : CField(gid, position_, CVector(32, 32), COF(0, 0, 0, 0), 0) {}
+    : CField(gid, position_, CVector(32, 32), COF(), 0) {}
 
 void CField_Wall_PlayerSpawner::Update() {}
 

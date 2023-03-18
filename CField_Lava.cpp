@@ -7,7 +7,7 @@
 CField_Lava::CField_Lava(std::string gid, CVector position_, double temperature,
                          int direction)
     : CField(gid, position_, CVector(32.0, 32.0),
-             COF().SetFrictionCF(0.6).SetAirResCF(0.9),
+             COF().SetFrictionCF(0.6).SetAirResCF(0.2),
              temperature, CAttribute(0.0)),
       cnt_(0),
       kAnimDur(180),

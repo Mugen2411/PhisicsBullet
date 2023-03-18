@@ -18,8 +18,9 @@ enemy{
         cof{
             frc:0.8
             wtr:0.99
-            air:0.2
+            air:0.02
             ref:0.1
+            wnd:0.8
         }
     }
     E_Acecorn{
@@ -43,6 +44,7 @@ enemy{
             wtr:0.95
             air:0.06
             ref:0.1
+            wnd:0.6
         }
     }
     E_Yadokari{
@@ -66,6 +68,7 @@ enemy{
             wtr:0.2
             air:0.08
             ref:0.1
+            wnd:0.3
         }
     }
     E_Goblin{
@@ -89,6 +92,7 @@ enemy{
             wtr:0.9
             air:0.03
             ref:0.1
+            wnd:0.2
         }
     }
     E_FlameSerpent{
@@ -112,6 +116,7 @@ enemy{
             wtr:0.2
             air:0.06
             ref:0.1
+            wnd:0.5
         }
     }
     E_Shimaenaga{
@@ -130,8 +135,9 @@ enemy{
         cof{
             frc:0.1
             wtr:0.8
-            air:0.8
+            air:0.08
             ref:0.0
+            wnd:0.4
         }
     }
 }
@@ -149,6 +155,7 @@ bullet{
             wtr:0.2
             air:0.1
             ref:0.1
+            wnd:0.4
         }
         effc:0xFFFF00
     }
@@ -165,6 +172,7 @@ bullet{
             wtr:0.02
             air:0.01
             ref:0.1
+            wnd:0.1
         }
         effc:0x00FFFF
     }
@@ -180,6 +188,7 @@ bullet{
             wtr:0.05
             air:0.01
             ref:0.98
+            wnd:0.01
         }
         effc:0xFFFFFF
     }
@@ -196,6 +205,7 @@ bullet{
             wtr:0.005
             air:0.04
             ref:0.1
+            wnd:0.4
         }
         effc:0xFF0000
     }
@@ -219,6 +229,7 @@ costume{
             wtr:0.8
             air:0.2
             ref:0.0
+            wnd:0.3
         }
         detail:"最初に来ていた制服。最も基本的な衣装であり、\n全ての耐性が平均的。\n連射は誘導魔法弾。\n最も近い敵を探して攻撃する。\nしかし壁に当たると消えてしまう。\n強射は高出力魔法弾。\n周囲の環境の影響を受けずに\nまっすぐ飛んで高めのダメージを与える。"
     }
@@ -241,6 +252,7 @@ costume{
             wtr:0.6
             air:0.2
             ref:0.0
+            wnd:0.2
         }
         detail:"縁日に着て行く浴衣。\nそもそも戦闘に向いていないので\n足が遅いが水の影響が少し少ない。\n連射は射的のコルク弾。\n扱いやすく連射が利く。\n強射はスーパーボール。\n広い範囲にたくさん投げるので狭い場所で有効。"
     }
@@ -261,8 +273,9 @@ costume{
         cof{
             frc:0.8
             wtr:0.9
-            air:0.2
+            air:0.01
             ref:0.0
+            wnd:0.3
         }
         detail:"火属性の弓を操るアーチャー衣装。\n戦闘に適しており足が速いが水にめっぽう弱い。\n連射は普通の弓。扱いやすい。\n強射は火属性を纏った弓を3つ放つ。\n火力がとても高い。"
     }
@@ -285,6 +298,7 @@ costume{
             wtr:0.15
             air:0.3
             ref:0.0
+            wnd:0.1
         }
         detail:"誰かさんの趣味で作られたスクール水着。\nどう見ても戦闘には適していないが\n高い水耐性を誇る。\n連射は型落ちのiPh〇ne。\n雷属性のダメージを含む。\n強射は棍棒。スイカの代わりに敵の頭をカチ割る。"
     }
@@ -309,6 +323,7 @@ costume{
             wtr:0.65
             air:0.2
             ref:0.0
+            wnd:0.2
         }
         detail:"格闘には強そうなチャイナドレス。\nしかし格闘は一切しない。\n強射で複数の灯籠を浮かべ、\n連射の風で押し出す。\n灯籠は移動する速度が速いほど\n大きいダメージになる。"
     }
@@ -332,6 +347,7 @@ costume{
             wtr:0.92
             air:0.2
             ref:0.0
+            wnd:0.4
         }
         detail:"耐火性に優れた消防士の制服。\nチャージした時間だけ連射することが出来る。\n水属性が弱点の敵に大ダメージだ。"
     }
@@ -349,6 +365,7 @@ shot{
             wtr:0.0
             air:0.0
             ref:0.0
+            wnd:0.0
         }
         effc:0x00FFFF
     }
@@ -364,6 +381,7 @@ shot{
             wtr:0.0
             air:0.0
             ref:0.1
+            wnd:0.0
         }
         effc:0x00FFFF
     }
@@ -377,8 +395,9 @@ shot{
         cof{
             frc:0.001
             wtr:0.4
-            air:0.8
+            air:0.2
             ref:0.7
+            wnd:0.7
         }
         effc:0xFF7F00
     }
@@ -390,10 +409,11 @@ shot{
             none:20.0
         }
         cof{
-            frc:0.05
+            frc:0.02
             wtr:0.5
-            air:0.15
+            air:0.01
             ref:1.0
+            wnd:0.2
         }
         effc:0x000000
     }
@@ -405,10 +425,11 @@ shot{
             none:40.0
         }
         cof{
-            frc:0.0
+            frc:0.01
             wtr:0.95
-            air:0.15
+            air:0.08
             ref:0.0
+            wnd:0.8
         }
         effc:0x7F7F7F
     }
@@ -421,10 +442,11 @@ shot{
             fire:30.0
         }
         cof{
-            frc:0.0
+            frc:0.01
             wtr:0.95
-            air:0.8
+            air:0.08
             ref:0.0
+            wnd:0.8
         }
         effc:0xFF0000
     }
@@ -439,8 +461,9 @@ shot{
         cof{
             frc:0.1
             wtr:0.05
-            air:0.7
+            air:0.6
             ref:0.1
+            wnd:0.1
         }
         effc:0x7F7F7F
     }
@@ -456,6 +479,7 @@ shot{
             wtr:0.0
             air:0.0
             ref:0.0
+            wnd:0.0
         }
         effc:0x7F7F00
     }
@@ -470,8 +494,9 @@ shot{
         cof{
             frc:0.001
             wtr:0.001
-            air:0.3
+            air:0.5
             ref:0.2
+            wnd:0.9
         }
         effc:0xFFCF00
     }
@@ -483,10 +508,11 @@ shot{
             aqua:30.0
         }
         cof{
-            frc:0.0
-            wtr:0.0
-            air:0.3
+            frc:0.01
+            wtr:0.02
+            air:0.05
             ref:0.0
+            wnd:0.1
         }
         effc:0x00CFFF
     }

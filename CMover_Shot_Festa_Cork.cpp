@@ -7,7 +7,7 @@ CMover_Shot_Festa_Cork::CMover_Shot_Festa_Cork(CAttribute baseATK,
     : CMover_ShotBase("S_Festa_Cork", baseATK, position, CVector(angle) * 16.0) {}
 
 int CMover_Shot_Festa_Cork::Update() {
-  if (velocity_.GetLength2() < Constant::kZeroBorder) SetStatus(Status::kDead);
+  if (velocity_.GetLength() < Constant::kDynamicBorder) SetStatus(Status::kDead);
   return status_;
 }
 

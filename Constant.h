@@ -9,6 +9,7 @@ class Constant {
   static float kFrame;
   static float kPerFrame;
   static float kZeroBorder;
+  static float kDynamicBorder;
 
   static float kPI;
   static float kPI2;
@@ -58,29 +59,39 @@ struct COF {
   double WaterResCF = 0.0;  //…‚Ì’ïRŒW”
   double AirResCF = 0.0;    //‹ó‹C’ïRŒW”
   double ReflectCF = 0.0;   //”½ŽËŒW”
+  double WindCF = 0.0;      //•—ˆ³‘Ï«
 
-  COF(double frictionCF, double waterResCF, double airResCF, double reflectCF)
+  COF(double frictionCF, double waterResCF, double airResCF, double reflectCF, double windCF)
       : FrictionCF(frictionCF),
         WaterResCF(waterResCF),
         AirResCF(airResCF),
-        ReflectCF(reflectCF) {}
+        ReflectCF(reflectCF),
+        WindCF(windCF) {}
 
-  COF() : FrictionCF(0.0), WaterResCF(0.0), AirResCF(0.0), ReflectCF(0.0) {}
+  COF()
+      : FrictionCF(0.0),
+        WaterResCF(0.0),
+        AirResCF(0.0),
+        ReflectCF(0.0),
+        WindCF(0.0) {}
 
-  COF SetFrictionCF(double frictionCF) {
+  COF& SetFrictionCF(double frictionCF) {
     FrictionCF = frictionCF;
     return *this;
   }
-  COF SetWaterResCF(double waterResCF) {
+  COF& SetWaterResCF(double waterResCF) {
     WaterResCF = waterResCF;
     return *this;
   }
-  COF SetAirResCF(double airResCF) {
+  COF& SetAirResCF(double airResCF) {
     AirResCF = airResCF;
     return *this;
   }
-  COF SetReflectCF(double reflectCF) {
+  COF& SetReflectCF(double reflectCF) {
     ReflectCF = reflectCF;
+    return *this;
+  }
+  COF& SetWindCF(double windCF) { WindCF = windCF;
     return *this;
   }
   void Load(const CDataNode* c) {
@@ -88,5 +99,6 @@ struct COF {
     WaterResCF = c->GetChild("wtr")->GetDouble();
     AirResCF = c->GetChild("air")->GetDouble();
     ReflectCF = c->GetChild("ref")->GetDouble();
+    WindCF = c->GetChild("wnd")->GetDouble();
   }
 };

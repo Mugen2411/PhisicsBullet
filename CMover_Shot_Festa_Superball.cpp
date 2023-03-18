@@ -16,7 +16,7 @@ CMover_Shot_Festa_Superball::CMover_Shot_Festa_Superball(CAttribute baseATK,
 int CMover_Shot_Festa_Superball::Update() {
   cnt_++;
   if (cnt_ > 300) SetStatus(Status::kDead);
-  if (velocity_.GetLength2() < Constant::kZeroBorder) SetStatus(Status::kDead);
+  if (velocity_.GetLength() < Constant::kDynamicBorder) SetStatus(Status::kDead);
   return status_;
 }
 

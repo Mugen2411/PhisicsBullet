@@ -18,7 +18,7 @@ void CMover_Shot_Swimsuit_iPhone::Dead() {
 }
 
 int CMover_Shot_Swimsuit_iPhone::Update() {
-  if (velocity_.GetLength2() < 0.05) {
+  if (velocity_.GetLength() < Constant::kDynamicBorder) {
     SetStatus(Status::kDead);
   }
   render_angle_ += (float)(Constant::kPI2 * Constant::kPerFrame * 1.5);

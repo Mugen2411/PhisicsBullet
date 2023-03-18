@@ -37,15 +37,22 @@ class CMover {
   }  //—Í‚ð‚©‚¯‚é
   inline void ApplyFrictionForce(double FloorFrictionCF) {
     now_fricted_ = FloorFrictionCF;
-    auto NormA = velocity_;
+    auto NormA = velocity_.GetNorm();
     double cons = cofs_.FrictionCF * FloorFrictionCF * Constant::kGravity;
-    friction_force_ = (NormA * -cons);
+    if (velocity_.GetLength() < Constant::kDynamicBorder)
+      friction_force_ = (NormA * -cons * velocity_.GetLength2());
+    else
+      friction_force_ = (NormA * -cons * velocity_.GetLength());
   }
   inline void ApplyAirRegistance(double FloorAirCF) {
     auto NormA = velocity_;
-    air_force_ = (-NormA * cofs_.AirResCF * FloorAirCF);
+    double cons = cofs_.AirResCF * FloorAirCF;
+    if (velocity_.GetLength() < Constant::kDynamicBorder)
+      air_force_ = (NormA * -cons * velocity_.GetLength2());
+    else
+      air_force_ = (NormA * -cons * velocity_.GetLength());
   }
-  inline void ApplyAirForce(CVector F) { ApplyForce(F * cofs_.AirResCF); }
+  inline void ApplyAirForce(CVector F) { ApplyForce(F * cofs_.WindCF); }
   inline void ApplyWaterRegistance(double waterResCF) {
     now_water_forced_ = waterResCF;
     auto NormA = velocity_;
@@ -76,14 +83,13 @@ class CMover {
         wateredVelocity.GetLength2() < Constant::kZeroBorder ||
         airedVelocity.GetLength2() < Constant::kZeroBorder) {
       velocity_ = CVector(0.0, 0.0);
-    } else*/
-    {
-      acceleration_ += friction_force_;
-      acceleration_ += water_force_;
-      acceleration_ += air_force_;
-    }
+    } else {*/
+    acceleration_ += friction_force_;
+    acceleration_ += water_force_;
+    acceleration_ += air_force_;
+    //}
 
-    velocity_ += acceleration_ * sqrtl(Constant::kPerFrame);
+    velocity_ += acceleration_;  // * sqrtl(Constant::kPerFrame);
 
     if (velocity_.GetLength2() > 32 * 32) {
       velocity_ = velocity_.GetNorm() * 32;

@@ -11,7 +11,7 @@ CMover_Shot_Firefigher_Water::CMover_Shot_Firefigher_Water(CAttribute baseATK,
       kEffectiveDuration_(16) {}
 
 int CMover_Shot_Firefigher_Water::Update() {
-  if (velocity_.GetLength2() < Constant::kZeroBorder) {
+  if (velocity_.GetLength() < Constant::kDynamicBorder) {
     SetStatus(kDead);
   }
   cnt_++;

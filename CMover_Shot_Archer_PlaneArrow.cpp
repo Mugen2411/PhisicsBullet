@@ -5,10 +5,11 @@
 CMover_Shot_Archer_PlaneArrow::CMover_Shot_Archer_PlaneArrow(CAttribute baseATK,
                                                              CVector position,
                                                              double angle)
-    : CMover_ShotBase("S_Archer_PlaneArrow", baseATK, position, CVector(angle) * 24.0) {}
+    : CMover_ShotBase("S_Archer_PlaneArrow", baseATK, position,
+                      CVector(angle) * (48.0)) {}
 
 int CMover_Shot_Archer_PlaneArrow::Update() {
-  if (velocity_.GetLength2() < Constant::kZeroBorder) SetStatus(Status::kDead);
+  if (velocity_.GetLength() < Constant::kDynamicBorder) SetStatus(Status::kDead);
   return status_;
 }
 

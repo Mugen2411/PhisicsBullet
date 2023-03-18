@@ -2,7 +2,7 @@
 
 CField_Wall_EnemySpawner::CField_Wall_EnemySpawner(std::string gid,
                                                    CVector position_, int index)
-    : CField(gid, position_, CVector(32, 32), COF(0, 0, 0, 0), 0),
+    : CField(gid, position_, CVector(32, 32), COF(), 0),
       index_(index),
       number_drawer_() {}
 

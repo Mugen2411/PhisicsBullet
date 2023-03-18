@@ -14,10 +14,9 @@ CAttribute CAttribute::operator*(double a) {
   return ret;
 }
 
-CAttribute CAttribute::operator*=(CAttribute a) {
-  CAttribute ret = *this * a;
-  *this = ret;
-  return ret;
+CAttribute& CAttribute::operator*=(CAttribute a) {
+  *this = *this * a;
+  return *this;
 }
 
 CAttribute CAttribute::operator/(double a) {
@@ -36,37 +35,37 @@ CAttribute::CAttribute(double init)
       ice_(init),
       wind_(init) {}
 
-CAttribute CAttribute::None(double value) {
+CAttribute& CAttribute::None(double value) {
   this->none_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Fire(double value) {
+CAttribute& CAttribute::Fire(double value) {
   this->fire_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Aqua(double value) {
+CAttribute& CAttribute::Aqua(double value) {
   this->aqua_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Thunder(double value) {
+CAttribute& CAttribute::Thunder(double value) {
   this->thunder_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Flower(double value) {
+CAttribute& CAttribute::Flower(double value) {
   this->flower_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Ice(double value) {
+CAttribute& CAttribute::Ice(double value) {
   this->ice_ = value;
   return *this;
 }
 
-CAttribute CAttribute::Wind(double value) {
+CAttribute& CAttribute::Wind(double value) {
   this->wind_ = value;
   return *this;
 }
@@ -107,10 +106,9 @@ CAttribute CAttribute::operator+(CAttribute a) {
   return ret;
 }
 
-CAttribute CAttribute::operator+=(CAttribute a) {
-  CAttribute ret = *this + a;
-  *this = ret;
-  return ret;
+CAttribute& CAttribute::operator+=(CAttribute a) {
+  *this = *this + a;
+  return *this;
 }
 
 CAttribute CAttribute::operator-(CAttribute a) { return *this + (a * -1.0); }

@@ -6,7 +6,7 @@
 
 CField_Grass::CField_Grass(std::string gid, CVector position_)
     : CField(gid, position_, CVector(32.0, 32.0),
-             COF().SetFrictionCF(0.95).SetAirResCF(0.9), 0),
+             COF().SetFrictionCF(0.95).SetAirResCF(0.2), 0),
       animation_cnt_(0),
       burning_time_(0),
       state_(0),

@@ -29,10 +29,11 @@ CMover_EnemyBase::CMover_EnemyBase(std::string GID, int Level, CVector position)
 
 void CMover_EnemyBase::Walk(CVector destination) {
   CVector diff = (destination - position_).GetNorm() * max_speed_;
-  CVector v = diff - velocity_;
-  acceleration_ += v.GetNorm() * min(v.GetLength(), 1.0) * accel_ *
-                   std::sqrtl(now_fricted_ * cofs_.FrictionCF) *
-                   std::sqrtl(1 - (now_water_forced_ * cofs_.WaterResCF));
+  CVector a =
+      diff.GetNorm() * max_speed_ -
+      velocity_;
+  acceleration_ += a * (now_fricted_ * cofs_.FrictionCF) *
+                   (1 - (now_water_forced_ * cofs_.WaterResCF));
   direction_ = diff.GetDirection();
 }
 

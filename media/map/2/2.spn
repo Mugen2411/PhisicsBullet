@@ -31,7 +31,7 @@ spawn{
         gid:"E_Shimaenaga"
         time:1600
         amount:1
-        prob:100
+        prob:2
     }
     6{
         gid:"E_Yadokari"

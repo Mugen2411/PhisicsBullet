@@ -403,7 +403,7 @@ shot{
     }
     S_Festa_Superball{
         mass:2
-        size:12
+        size:8
         atk{
             base:0.0
             none:20.0

@@ -10,6 +10,7 @@ class CSound {
   inline void Load() {
     if (sound_handle_ == 0) {
       sound_handle_ = LoadSoundMem(filepath_.c_str());
+      SetVolume(0.6);
     }
   }
   void Release();

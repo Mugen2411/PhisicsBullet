@@ -32,8 +32,6 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng)
   text_[6] =
       CTextDrawer::Text("ƒRƒCƒ“‚ª‘«‚è‚Ü‚¹‚ñI", CVector(320 - 5 * 36, 360),
                         0xFFFFFF, 0xFF0000, 1);
-  CSoundManager::GetIns().Find("money")->SetVolume(0.5);
-  CSoundManager::GetIns().Find("player_hit")->SetVolume(0.5);
 }
 
 void Scene_Upgrade::Update() {

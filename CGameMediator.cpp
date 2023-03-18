@@ -73,6 +73,7 @@ void CGameMediator::CreateParts() {
   RegisterMover(player_ = std::make_shared<CMover_Player>(
                     playerPos, CProgressData::GetIns().GetPlayerLevel(),
                     CCF.Create("C_Uniform")));
+  CSoundManager::GetIns().Find("bgm")->SetVolume(0.8);
   CSoundManager::GetIns().Find("bgm")->Play(CSound::kLoop);
   CEffectParent::Reset();
   CEffect_Bright::GetIns().Inactivate();

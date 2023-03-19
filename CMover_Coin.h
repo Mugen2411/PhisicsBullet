@@ -7,10 +7,10 @@
 
 class CMover_Coin : public CMover {
  public:
-  enum Type { kBronze1, kSilver10, kGold100 };
+  enum Type { kBronze1, kSilver10, kGold100, kPlatinum1000, kRainbow10000 };
   CMover_Coin(CVector position, Type type);
 
-  static const int kValue[4];
+  static const int kValue[6];
 
   int Update();
   void Render() const;
@@ -37,8 +37,8 @@ class CMover_Coin : public CMover {
   void FieldDispatch(CField* f) {}
 
  protected:
-  static const double kSize[3];
-  static const double kMass[3];
+  static const double kSize[5];
+  static const double kMass[5];
   Type type_;
   double animation_cnt_ = 0.0;
   double z;

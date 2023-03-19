@@ -21,15 +21,15 @@ void CMover_ShotBase::BaseUpdate() { cnt_++; }
 
 bool CMover_ShotBase::BaseRender() const {
   auto p = CAnchor::GetIns().GetAnchoredPosition(position_);
-  if (p.x_ + size_ > 0 && p.x_ - size_ < Constant::kScreenW && p.y_ + size_ > 0 &&
-      p.y_ - size_ < Constant::kScreenH)
+  if (p.x_ + size_ > 0 && p.x_ - size_ < Constant::kScreenW &&
+      p.y_ + size_ > 0 && p.y_ - size_ < Constant::kScreenH)
     return true;
   return false;
 }
 
 void CMover_ShotBase::Dead() {
   CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(
-      position_, velocity_, size_, effect_color_));
+      position_, velocity_, size_ * 2, effect_color_));
 }
 
 void CMover_ShotBase::Disappear() {}
@@ -47,7 +47,8 @@ CVector CMover_ShotBase::GetHomingAngle() {
     target_ = med_->GetNearestMover(CMover::MoverID::kEnemy, position_);
     return CVector(0.0, 0.0);
   }
-  auto diff = (target_.lock()->GetPosition() - (position_ + velocity_)).GetNorm();
+  auto diff =
+      (target_.lock()->GetPosition() - (position_ + velocity_)).GetNorm();
 
   return diff;
 }
@@ -66,7 +67,7 @@ void CMover_ShotBase::LoadStatus() {
   cofs_.Load(c->GetChild("cof"));
   atk_.Load(c->GetChild("atk"));
   effect_color_ = c->GetChild("effc")->GetInt();
-  size_ = c->GetChild("size")->GetInt();
+  size_ = ceil(c->GetChild("size")->GetInt() / 2);
 }
 
 void CMover_ShotBase::FieldDispatch(CField* f) { f->AttributeEffect(this); }

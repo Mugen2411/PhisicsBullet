@@ -1,11 +1,11 @@
 def{
     bgm:"cave.ogg"
-    bright:-0.6
+    bright:-0.4
 }
 spawn{
     0{
         gid:"E_Goblin"
-        time:7200
-        amount:5
+        time:120
+        amount:3
     }
 }

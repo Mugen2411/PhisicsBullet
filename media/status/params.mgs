@@ -35,7 +35,7 @@ enemy{
             flower:3.0
             aqua:0.8
         }
-        mny:80
+        mny:50
         effc:0xFF7F00
         acl:4.8
         spd:2.4
@@ -59,7 +59,7 @@ enemy{
             thunder:0.3
             flower:0.4
         }
-        mny:35
+        mny:15
         effc:0xFF0000
         acl:2.0
         spd:1.5
@@ -83,7 +83,7 @@ enemy{
             fire:2.5
             thunder:0.3
         }
-        mny:40
+        mny:18
         effc:0x00FF00
         acl:2.5
         spd:1.2
@@ -107,7 +107,7 @@ enemy{
             aqua:0.2
             ice:0.3
         }
-        mny:15
+        mny:12
         effc:0xFF3F00
         acl:2.7
         spd:1.2
@@ -144,7 +144,7 @@ enemy{
 bullet{
     B_Corn{
         mass:1
-        size:16
+        size:8
         atk{
             base:0.0
             none:50.0
@@ -161,7 +161,7 @@ bullet{
     }
     B_WaterSplash{
         mass:4
-        size:16
+        size:12
         atk{
             base:0.0
             none:20.0
@@ -178,7 +178,7 @@ bullet{
     }
     B_Axe{
         mass:4
-        size:16
+        size:12
         atk{
             base:0.0
             none:100.0
@@ -194,7 +194,7 @@ bullet{
     }
     B_Flame{
         mass:1
-        size:16
+        size:8
         atk{
             base:0.0
             none:2.0
@@ -355,7 +355,7 @@ costume{
 shot{
     S_Uniform_Homing{
         mass:2
-        size:16
+        size:8
         atk{
             base:0.0
             none:40.0
@@ -371,7 +371,7 @@ shot{
     }
     S_Uniform_Strong{
         mass:1
-        size:24
+        size:18
         atk{
             base:0.0
             none:200.0
@@ -387,7 +387,7 @@ shot{
     }
     S_Festa_Cork{
         mass:1
-        size:16
+        size:8
         atk{
             base:0.0
             none:30.0
@@ -403,7 +403,7 @@ shot{
     }
     S_Festa_Superball{
         mass:2
-        size:8
+        size:10
         atk{
             base:0.0
             none:20.0
@@ -419,7 +419,7 @@ shot{
     }
     S_Archer_PlaneArrow{
         mass:1
-        size:16
+        size:15
         atk{
             base:0.0
             none:40.0
@@ -435,7 +435,7 @@ shot{
     }
     S_Archer_FlameArrow{
         mass:1
-        size:16
+        size:15
         atk{
             base:0.0
             none:30.0
@@ -469,7 +469,7 @@ shot{
     }
     S_Swimsuit_Bat{
         mass:4
-        size:24
+        size:16
         atk{
             base:0.0
             none:90.0
@@ -485,7 +485,7 @@ shot{
     }
     S_Chinese_Lantern{
         mass:2
-        size:18
+        size:24
         atk{
             base:0.0
             none:10.0

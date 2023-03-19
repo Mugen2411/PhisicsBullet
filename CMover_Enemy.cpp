@@ -208,8 +208,7 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
 }
 
 void CMover_EnemyBase::Drop() {
-  int val = (int)std::ceil((base_money_ + base_params_.level_) *
-                           (1.0 + (int)(base_params_.level_ / 15.0) * 0.1) *
+  int val = (int)std::ceil((base_money_ * powl(1.025 , base_params_.level_)) *
                            CPassiveSkill::GetIns().GetMoneyMult());
   if (auto r = med_) {
     // r->GetMoney(val);

@@ -31,7 +31,7 @@ bool CMover_BulletBase::BaseRender() const {
 
 void CMover_BulletBase::Dead() {
   CEffectParent::RegisterEffect(std::make_shared<CEffect_BulletDelete>(
-      position_, velocity_, size_, color_));
+      position_, velocity_, size_ * 2, color_));
 }
 
 void CMover_BulletBase::Disappear() {}
@@ -50,7 +50,7 @@ void CMover_BulletBase::Hit(CMover_Player* m) {
 void CMover_BulletBase::LoadStatus(std::string GID) {
   auto e = CDataLoader::GetIns().Get("main")->GetChild("bullet")->GetChild(GID);
   mass_ = e->GetChild("mass")->GetInt();
-  size_ = e->GetChild("size")->GetInt();
+  size_ = ceil(e->GetChild("size")->GetInt() / 2);
   atk_.Load(e->GetChild("atk"));
   cofs_.Load(e->GetChild("cof"));
   color_ = e->GetChild("effc")->GetInt();

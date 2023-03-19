@@ -41,4 +41,6 @@ class CMover_Coin : public CMover {
   static const double kMass[3];
   Type type_;
   double animation_cnt_ = 0.0;
+  double z;
+  double dz;
 };

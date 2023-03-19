@@ -185,8 +185,8 @@ image{
     }
     system_coin{
         path:"system/game/coin.png"
-        num:16
-        xnum:4
+        num:20
+        xnum:5
         ynum:4
         w:16
         h:16

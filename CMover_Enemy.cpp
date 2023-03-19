@@ -204,7 +204,6 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
       DamageColor(shotATK), style));
   if (base_params_.HP_ < 0) {
     SetStatus(Status::kDead);
-    Drop();
   }
 }
 

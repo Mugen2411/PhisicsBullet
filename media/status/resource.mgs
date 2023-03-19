@@ -361,6 +361,28 @@ image{
         w:32
         h:32
     }
+    enemy_azarashi{
+        path:"enemy/azarashi/azarashi.png"
+        num:16
+        xnum:4
+        ynum:4
+        w:32
+        h:32
+    }
+    enemy_azarashi_intro{
+        path:"enemy/azarashi/intro.png"
+        num:4
+        xnum:4
+        ynum:1
+        w:32
+        h:32
+    }
+    bullet_ice{
+        path:"enemy/azarashi/ice.png"
+        num:1
+        w:32
+        h:32
+    }
     shot_uniform_homing{
         path:"character/komuk/costume/uniform/homing.png"
         num:1

@@ -12,6 +12,7 @@
 #include "CField_Wall_Cave.h"
 #include "CField_Wall_DeepWater.h"
 #include "CField_Wall_EnemySpawner.h"
+#include "CField_Wall_IceRock.h"
 #include "CField_Wall_Log.h"
 #include "CField_Wall_PlayerSpawner.h"
 #include "CField_Wall_Rock.h"
@@ -45,7 +46,7 @@ CFieldFactory::CFieldFactory() {
   wy_ = 0;
   fx_ = 0;
   fy_ = 0;
-  std::string direction[] = {"_",    "_U",   "_R",   "_UR",  "_D",  "_UD",
+  std::string direction[] = {"_",   "_U",   "_R",   "_UR",  "_D",  "_UD",
                              "_RD", "_URD", "_L",   "_UL",  "_RL", "_URL",
                              "_DL", "_UDL", "_RDL", "_URDL"};
   RegisterFloor(new CField_Grass("F_Grass", CVector()));
@@ -85,6 +86,7 @@ CFieldFactory::CFieldFactory() {
     RegisterWall(new CField_Wall_Cave("W_Cave" + direction[i], CVector(), i));
   }
   RegisterWall(new CField_Wall_Rock("W_Rock", CVector()));
+  RegisterWall(new CField_Wall_IceRock("W_IceRock", CVector()));
   RegisterWall(new CField_Decoration_Torch("W_Torch", CVector()));
   RegisterWall(new CField_Decoration_Light("W_Light", CVector()));
 

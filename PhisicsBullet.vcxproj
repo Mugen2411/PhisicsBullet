@@ -185,11 +185,14 @@
     <ClCompile Include="CField_Decoration_Torch.cpp" />
     <ClCompile Include="CField_Lava.cpp" />
     <ClCompile Include="CField_Wall_Cave.cpp" />
+    <ClCompile Include="CField_Wall_IceRock.cpp" />
     <ClCompile Include="CField_Wall_Rock.cpp" />
     <ClCompile Include="CMover_Bullet_Axe.cpp" />
     <ClCompile Include="CMover_Bullet_Flame.cpp" />
+    <ClCompile Include="CMover_Bullet_Ice.cpp" />
     <ClCompile Include="CMover_Coin.cpp" />
     <ClCompile Include="CMover_Enemy_Acecorn.cpp" />
+    <ClCompile Include="CMover_Enemy_Azarashi.cpp" />
     <ClCompile Include="CMover_Enemy_FlameSerpent.cpp" />
     <ClCompile Include="CMover_Enemy_Goblin.cpp" />
     <ClCompile Include="CMover_Shot_Chinese_Lantern.cpp" />
@@ -338,6 +341,7 @@
     <ClInclude Include="CField_Wall_Cave.h" />
     <ClInclude Include="CField_Wall_DeepWater.h" />
     <ClInclude Include="CField_Wall_EnemySpawner.h" />
+    <ClInclude Include="CField_Wall_IceRock.h" />
     <ClInclude Include="CField_Wall_Log.h" />
     <ClInclude Include="CField_Wall_PlayerSpawner.h" />
     <ClInclude Include="CField_Wall_Rock.h" />
@@ -356,6 +360,8 @@
     <ClInclude Include="CEnemySpawner.h" />
     <ClInclude Include="CMover.h" />
     <ClInclude Include="CMoverParent.h" />
+    <ClInclude Include="CMover_Bullet_Ice.h" />
+    <ClInclude Include="CMover_Enemy_Azarashi.h" />
     <ClInclude Include="CMover_Bullet_Axe.h" />
     <ClInclude Include="CMover_Bullet_Corn.h" />
     <ClInclude Include="CMover_Bullet_Flame.h" />

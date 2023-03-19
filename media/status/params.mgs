@@ -140,6 +140,31 @@ enemy{
             wnd:0.4
         }
     }
+    E_Azarashi{
+        mass:50
+        base{
+            atk:1.0
+            hp:2.0
+        }
+        atrd{
+            base:1.0
+            ice:4.0
+            aqua:2.0
+            fire:0.6
+            thunder:0.7
+        }
+        mny:13
+        effc:0xCFFFFF
+        acl:2.5
+        spd:1.2
+        cof{
+            frc:0.95
+            wtr:0.08
+            air:0.2
+            ref:0.0
+            wnd:0.05
+        }
+    }
 }
 bullet{
     B_Corn{
@@ -208,6 +233,23 @@ bullet{
             wnd:0.6
         }
         effc:0xFF0000
+    }
+    B_Ice{
+        mass:4
+        size:16
+        atk{
+            base:0.0
+            none:30.0
+            ice:30.0
+        }
+        cof{
+            frc:0.1
+            wtr:0.2
+            air:0.001
+            ref:0.6
+            wnd:0.001
+        }
+        effc:0x7FFFFF
     }
 }
 costume{
@@ -295,7 +337,7 @@ costume{
         }
         cof{
             frc:0.7
-            wtr:0.15
+            wtr:0.05
             air:0.3
             ref:0.0
             wnd:0.1

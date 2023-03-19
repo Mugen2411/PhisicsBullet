@@ -76,9 +76,9 @@ CField* CField_IceFloor::Clone(CVector position_) {
 
 void CField_IceFloor::Save(std::ofstream& fout) {
   auto t = gid_;
-  do {
+  while (t.back() != '_'){
     t.pop_back();
-  } while (t.back() != '_');
+  }
   t.pop_back();
   fout << t << std::endl;
 }

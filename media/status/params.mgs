@@ -260,7 +260,7 @@ costume{
         shotRt:12
         stDur:20
         spd:3.5
-        acl:2.2
+        acl:2.5
         mass:20
         atrd{
             base:1.0
@@ -269,9 +269,9 @@ costume{
         cof{
             frc:0.8
             wtr:0.8
-            air:0.2
+            air:0.05
             ref:0.0
-            wnd:0.3
+            wnd:0.2
         }
         detail:"最初に来ていた制服。最も基本的な衣装であり、\n全ての耐性が平均的。\n連射は誘導魔法弾。\n最も近い敵を探して攻撃する。\nしかし壁に当たると消えてしまう。\n強射は高出力魔法弾。\n周囲の環境の影響を受けずに\nまっすぐ飛んで高めのダメージを与える。"
     }
@@ -292,7 +292,7 @@ costume{
         cof{
             frc:0.8
             wtr:0.6
-            air:0.2
+            air:0.05
             ref:0.0
             wnd:0.2
         }
@@ -363,7 +363,7 @@ costume{
         cof{
             frc:0.8
             wtr:0.65
-            air:0.2
+            air:0.05
             ref:0.0
             wnd:0.2
         }
@@ -387,7 +387,7 @@ costume{
         cof{
             frc:0.7
             wtr:0.92
-            air:0.2
+            air:0.08
             ref:0.0
             wnd:0.4
         }

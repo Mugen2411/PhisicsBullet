@@ -64,6 +64,7 @@ class CGameMediator : public Scene_Abstract {
   bool is_costume_selecter_end_;
   int pause_guage_;
   int cnt_;
+  bool is_enemy_vanished;
 
   bool is_initialized_;
 
@@ -71,6 +72,7 @@ class CGameMediator : public Scene_Abstract {
 
   CTextDrawer::Text retire_text_[2];
   CTextDrawer::Text wave_number_;
+  CTextDrawer::Text wait_next_stage;
 
   std::unique_ptr<CCostumeBase *> costume_now_focus_;
   double min_fric_;

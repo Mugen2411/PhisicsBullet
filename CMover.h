@@ -17,7 +17,7 @@ class CMover {
   friend CMoverParent;
 
  public:
-  enum MoverID { kPlayer, kEnemy, kShot, kBullet };
+  enum MoverID { kPlayer, kEnemy, kShot, kBullet, kCoin };
   enum Status { kAlive = 0, kDead, kVanished };
 
   CMover(MoverID ID, CVector position, double size, CVector velocity,

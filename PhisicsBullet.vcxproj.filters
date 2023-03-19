@@ -492,6 +492,9 @@
     <ClCompile Include="CDataLoader.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Coin.cpp">
+      <Filter>ソース ファイル\Mover</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -853,6 +856,9 @@
     </ClInclude>
     <ClInclude Include="CDataLoader.h">
       <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Coin.h">
+      <Filter>ヘッダー ファイル\Mover</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

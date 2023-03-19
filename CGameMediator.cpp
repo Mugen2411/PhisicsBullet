@@ -30,6 +30,7 @@ CGameMediator::CGameMediator(SceneManager* ScnMng)
     : Scene_Abstract(ScnMng),
       is_pause_(true),
       is_retire_(false),
+      is_enemy_vanished(false),
       pause_guage_(0),
       cnt_(0),
       is_initialized_(false),
@@ -48,6 +49,9 @@ CGameMediator::CGameMediator(SceneManager* ScnMng)
       std::string("WAVE:") +
           std::to_string(CProgressData::GetIns().GetCurrentStage() + 1),
       CVector(320 + 88, 8), 0xFFFFFF, 0x000000, 1);
+  wait_next_stage =
+      CTextDrawer::Text("次のステージに進むまで 秒",
+                        CVector(320 - 24 * 13, 320), 0xFFFFFF, 0x000000, 1);
   skill_list_ = CPassiveSkill::GetIns().GetGotSkillList();
   skill_level_list_ = CPassiveSkill::GetIns().GetGotSkillLevelList();
 }
@@ -138,6 +142,26 @@ void CGameMediator::GetMoney(int value) { reserve_money_ += value; }
 void CGameMediator::Update() {
   if (!is_initialized_) return;
   cnt_++;
+  if (is_enemy_vanished) {
+    wait_next_stage.text_ = std::string("次のステージに進むまで ") +
+                            FloatToString((float)(300 - cnt_) / 60) +
+                            std::string(" 秒");
+    if (cnt_ > 300) {
+      CProgressData::GetIns().Win(reserve_money_);
+      CEffect_Bright::GetIns().Inactivate();
+      if (CProgressData::GetIns().GetCurrentStage() ==
+          CProgressData::GetIns().GetMaxStage() - 1) {
+        if (CProgressData::GetIns().GetEndless()) {
+          scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear,
+                                      false);
+        } else
+          scene_manager_->ChangeScene(Constant::SceneID::kSceneGameclear,
+                                      false);
+      } else {
+        scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear, false);
+      }
+    }
+  }
   if (is_retire_) {
     UpdateRetireMenu();
     return;
@@ -161,21 +185,13 @@ void CGameMediator::Update() {
     scene_manager_->ChangeScene(Constant::SceneID::kSceneGameover, false);
     return;
   }
-  if (mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0 &&
+  if (!is_enemy_vanished &&
+      mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0 &&
       enemy_spawner_.empty()) {
     CSoundManager::GetIns().Find("bgm")->Stop();
     CSoundManager::GetIns().Find("success")->Play(CSound::PlayType::kBack);
-    CProgressData::GetIns().Win(reserve_money_);
-    CEffect_Bright::GetIns().Inactivate();
-    if (CProgressData::GetIns().GetCurrentStage() ==
-        CProgressData::GetIns().GetMaxStage() - 1) {
-      if (CProgressData::GetIns().GetEndless()) {
-        scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear, false);
-      } else
-        scene_manager_->ChangeScene(Constant::SceneID::kSceneGameclear, false);
-    } else {
-      scene_manager_->ChangeScene(Constant::SceneID::kSceneStageclear, false);
-    }
+    is_enemy_vanished = true;
+    cnt_ = 0;
     return;
   }
   CEnemyFactory CEF;
@@ -205,6 +221,7 @@ void CGameMediator::Render() const {
   power_parent_->Render();
   CEffectParent::Render();
   CAnchor::GetIns().EnableAbsolute();
+  if (is_enemy_vanished) CTextDrawer::GetIns().Register(wait_next_stage);
   CImageManager::GetIns()
       .Find("system_dress_guage")
       ->DrawRectwithBlend(
@@ -219,7 +236,8 @@ void CGameMediator::Render() const {
   CImageManager::GetIns()
       .Find("system_dress_guage")
       ->DrawRectwithBlend(
-          240, 480 - 32, (int)(160 * ((double)pause_guage_ / Constant::kMaxPause)), 32,
+          240, 480 - 32,
+          (int)(160 * ((double)pause_guage_ / Constant::kMaxPause)), 32,
           HSV2RGB((float)(cnt_ % 60) / 60, 1.0, 1.0),
           CImageManager::BlendMode::kSub, 0x7F, Constant::kPriorityUI + 5,
           (input_.lock()->Select() > 0) ? 1 : 0);

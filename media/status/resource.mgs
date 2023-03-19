@@ -183,6 +183,14 @@ image{
         w:32
         h:16
     }
+    system_coin{
+        path:"system/game/coin.png"
+        num:16
+        xnum:4
+        ynum:4
+        w:16
+        h:16
+    }
 
     effect_bulletdelete{
         path:"system/game/bullet_delete.png"

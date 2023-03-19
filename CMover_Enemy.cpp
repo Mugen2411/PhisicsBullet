@@ -7,6 +7,7 @@
 #include "CEffect_EnemyDelete.h"
 #include "CEffect_MoneyNumber.h"
 #include "CImageManager.h"
+#include "CMover_Coin.h"
 #include "CMover_Player.h"
 #include "CPassiveSkill.h"
 #include "CSoundManager.h"
@@ -29,9 +30,7 @@ CMover_EnemyBase::CMover_EnemyBase(std::string GID, int Level, CVector position)
 
 void CMover_EnemyBase::Walk(CVector destination) {
   CVector diff = (destination - position_).GetNorm() * max_speed_;
-  CVector a =
-      diff.GetNorm() * max_speed_ -
-      velocity_;
+  CVector a = diff.GetNorm() * max_speed_ - velocity_;
   if (a.GetLength() > accel_) a = a.GetNorm() * accel_;
   acceleration_ += a * (now_fricted_ * cofs_.FrictionCF) *
                    (1 - (now_water_forced_ * cofs_.WaterResCF));
@@ -147,6 +146,7 @@ bool CMover_EnemyBase::BaseRender() const {
 }
 
 void CMover_EnemyBase::Dead() {
+  Drop();
   for (int i = 0; i < 5; i++)
     CEffectParent::RegisterEffect(std::make_shared<CEffect_EnemyDelete>(
         position_ + CVector(GetRand((int)size_ * 3) - size_ * 1.5,
@@ -190,7 +190,6 @@ void CMover_EnemyBase::Damage(CAttribute shotATK, int style) {
   CSoundManager::GetIns().Find("enemy_hit")->Play(CSound::PlayType::kBack);
   if (base_params_.HP_ < 0) {
     SetStatus(Status::kDead);
-    Drop();
   }
 }
 
@@ -213,9 +212,18 @@ void CMover_EnemyBase::Drop() {
   int val = (int)std::ceil((base_money_ + base_params_.level_) *
                            (1.0 + (int)(base_params_.level_ / 15.0) * 0.1) *
                            CPassiveSkill::GetIns().GetMoneyMult());
-  if (auto r = med_) r->GetMoney(val);
-  CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
-      position_ - CVector(0.0, size_), val));
+  if (auto r = med_) {
+    // r->GetMoney(val);
+    for (int v = 0; CMover_Coin::kValue[v] > 0; v++) {
+      while (val >= CMover_Coin::kValue[v]) {
+        val -= CMover_Coin::kValue[v];
+        med_->RegisterMover(
+            std::make_shared<CMover_Coin>(position_, (CMover_Coin::Type)v));
+      }
+    }
+  }
+  // CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
+  //     position_ - CVector(0.0, size_), val));
 }
 
 int CMover_EnemyBase::DamageColor(CAttribute shotATK) {

@@ -39,7 +39,7 @@ int CMover_Mother_Static::Update() {
       }
       break;
     case -1:
-      state_ = 0;
+      state_ = 1;
       break;
   }
   cnt_++;

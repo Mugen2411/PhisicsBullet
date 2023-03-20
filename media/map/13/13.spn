@@ -1,0 +1,17 @@
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"M_Static"
+        time:120
+        wait:720
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:12
+            }
+        }
+    }
+}

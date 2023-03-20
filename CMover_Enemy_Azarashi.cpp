@@ -14,11 +14,11 @@ int CMover_Enemy_Azarashi::Update() {
     case 0:
       if (cnt_ % 60 == 0) {
         if (GetRand(5) == 0) {
-          FindTargetByDistance(6);
+          FindTargetByDistance(8);
           state_ = 2;
           cnt_ = 0;
         } else
-          FindRoute(3);
+          FindRoute(5);
       }
       if (!route_.empty()) {
         Move_on_Route();
@@ -39,7 +39,7 @@ int CMover_Enemy_Azarashi::Update() {
       if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
-      if (cnt_ > 30) {
+      if (cnt_ > 50) {
         state_ = 0;
         cnt_ = 0;
         break;
@@ -65,7 +65,7 @@ int CMover_Enemy_Azarashi::Update() {
       animation_cnt_ += 0.1;
       if (animation_cnt_ > 4) {
         state_ = 0;
-        FindRoute(3);
+        FindRoute(5);
         animation_cnt_ = 0;
         cnt_ = 0;
       }

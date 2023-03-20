@@ -59,6 +59,11 @@ class CMover {
     water_force_ = (-NormA * cofs_.WaterResCF * waterResCF);
   }
   inline void ApplyWaterForce(CVector F) { ApplyForce(F * cofs_.WaterResCF); }
+  inline void CalcAcceleration() {
+    acceleration_ += friction_force_;
+    acceleration_ += water_force_;
+    acceleration_ += air_force_;
+  }
   inline void Move() {
 #ifdef _DEBUG
     if (category_ == MoverID::kPlayer) {
@@ -84,16 +89,14 @@ class CMover {
         airedVelocity.GetLength2() < Constant::kZeroBorder) {
       velocity_ = CVector(0.0, 0.0);
     } else {*/
-    acceleration_ += friction_force_;
-    acceleration_ += water_force_;
-    acceleration_ += air_force_;
+    
     //}
 
     velocity_ += acceleration_;  // * sqrtl(Constant::kPerFrame);
 
-    if (velocity_.GetLength2() > 32 * 32) {
-      velocity_ = velocity_.GetNorm() * 32;
-    }
+    // if (velocity_.GetLength2() > 32 * 32) {
+    //   velocity_ = velocity_.GetNorm() * 32;
+    // }
 
     if (!(is_locked_axis_ & 1)) {
       position_.x_ += velocity_.x_;

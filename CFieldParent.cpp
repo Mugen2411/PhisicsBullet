@@ -21,10 +21,11 @@ void CFieldParent::ApplyForceToMover(CMover* m) {
   CVector p = m->GetPosition();
   int x = (int)p.x_ / 32;
   int y = (int)p.y_ / 32;
-  if (x < 0) m->SetStatus(2);
-  if (y < 0) m->SetStatus(2);
-  if (x > field_holder_->GetWidth()) m->SetStatus(2);
-  if (y > field_holder_->GetHeight()) m->SetStatus(2);
+  if (x < 0) m->SetStatus(1);
+  if (y < 0) m->SetStatus(1);
+  if (x >= field_holder_->GetWidth()) m->SetStatus(1);
+  if (y >= field_holder_->GetHeight()) m->SetStatus(1);
+  if (m->GetStatus() != 0) return;
 
   p = m->GetPosition();
   x = (int)(p.x_ / 32);

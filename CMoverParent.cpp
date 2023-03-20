@@ -36,6 +36,7 @@ void CMoverParent::Update() {
     switch (r) {
       case CMover::Status::kAlive:
         med_->ApplyForceToMover(itr->get());
+        (*itr)->CalcAcceleration();
         med_->HitToMover(itr->get());
         (*itr)->Move();
         break;

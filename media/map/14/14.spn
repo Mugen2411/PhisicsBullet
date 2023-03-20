@@ -1,0 +1,54 @@
+def{
+    bgm:"cave.ogg"
+    bright:-0.7
+}
+spawn{
+    0{
+        gid:"M_Static"
+        time:120
+        wait:1440
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:5
+            }
+        }
+    }
+    1{
+        gid:"M_Static"
+        time:2880
+        wait:1680
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:8
+            }
+        }
+    }
+    2{
+        gid:"M_Static"
+        time:5400
+        wait:2160
+        amount:1
+        child{
+            0{
+                gid:"E_Goblin"
+                amount:3
+            }
+        }
+    }
+    3{
+        gid:"M_Static"
+        time:5400
+        wait:1260
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:12
+            }
+        }
+    }
+}

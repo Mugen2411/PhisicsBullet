@@ -165,6 +165,27 @@ enemy{
             wnd:0.05
         }
     }
+    M_Static{
+        mass:999999
+        base{
+            atk:0.0
+            hp:6.0
+        }
+        atrd{
+            base:1.0
+        }
+        mny:80
+        effc:0xFF7F00
+        acl:0.0
+        spd:0.0
+        cof{
+            frc:1.0
+            wtr:0.0
+            air:1.0
+            ref:0.0
+            wnd:0.0
+        }
+    }
 }
 bullet{
     B_Corn{

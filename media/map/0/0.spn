@@ -3,9 +3,17 @@ def{
 }
 spawn{
     0{
-        gid:"E_Budcorn"
+        gid:"M_Static"
         time:60
+        wait:120
         amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:5
+                max:20
+            }
+        }
     }
     1{
         gid:"E_Budcorn"

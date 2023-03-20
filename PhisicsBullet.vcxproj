@@ -195,6 +195,7 @@
     <ClCompile Include="CMover_Enemy_Azarashi.cpp" />
     <ClCompile Include="CMover_Enemy_FlameSerpent.cpp" />
     <ClCompile Include="CMover_Enemy_Goblin.cpp" />
+    <ClCompile Include="CMover_Mother_Static.cpp" />
     <ClCompile Include="CMover_Shot_Chinese_Lantern.cpp" />
     <ClCompile Include="CMover_Shot_Firefighter_Water.cpp" />
     <ClCompile Include="CPassiveSkill.cpp" />
@@ -374,6 +375,7 @@
     <ClInclude Include="CMover_Enemy_Goblin.h" />
     <ClInclude Include="CMover_Enemy_Shimaenaga.h" />
     <ClInclude Include="CMover_Enemy_Yadokari.h" />
+    <ClInclude Include="CMover_Mother_Static.h" />
     <ClInclude Include="CMover_Player.h" />
     <ClInclude Include="CMover_BulletBase.h" />
     <ClInclude Include="CMover_ShotBase.h" />
@@ -388,6 +390,7 @@
     <ClInclude Include="CMover_Shot_Uniform_Homing.h" />
     <ClInclude Include="CMover_Shot_Uniform_StrongMagic.h" />
     <ClInclude Include="CNumberDrawer.h" />
+    <ClInclude Include="colideRayToIntRegion2D.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CParts.h" />
     <ClInclude Include="CPassiveSkill.h" />

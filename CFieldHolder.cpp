@@ -98,6 +98,7 @@ void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
     tmpSD.gid = e->GetChild("gid")->GetString();
     tmpSD.count_of_spawn_ = e->GetChild("amount")->GetInt();
     tmpSD.time_to_spawn_ = e->GetChild("time")->GetInt();
+    tmpSD.index = i;
     auto f = e->GetChild("prob");
     if (f != nullptr)
       tmpSD.spawn_probability_ = f->GetInt();

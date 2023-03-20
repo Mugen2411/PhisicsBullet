@@ -42,6 +42,8 @@ bool CFieldParent::HitToMover(CMover* m) {
   int size =
       (int)((m->GetVelocity() + m->GetAcceleration()).GetLength2() / (16 * 16)) + 1;
 
+
+
   bool hitted = false;
   for (int ay = max(0, y - size);
        ay < min(field_holder_->GetHeight(), y + size + 1); ay++) {

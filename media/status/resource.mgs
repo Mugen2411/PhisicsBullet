@@ -377,6 +377,14 @@ image{
         w:32
         h:32
     }
+
+    mother_hole{
+        path:"mother/hole.png"
+        num:1
+        w:32
+        h:32
+    }
+
     bullet_ice{
         path:"enemy/azarashi/ice.png"
         num:1

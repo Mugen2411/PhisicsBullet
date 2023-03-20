@@ -148,6 +148,12 @@
     <Filter Include="ソース ファイル\Data">
       <UniqueIdentifier>{1b993c9f-374b-4323-a446-b9988d00925c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Enemy\Mother">
+      <UniqueIdentifier>{19082917-42e0-4239-a2af-9f10bdceebd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mover\Enemy\Mother">
+      <UniqueIdentifier>{9dcf4d09-d208-4a3e-95c3-44cadf23b581}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -503,6 +509,9 @@
     </ClCompile>
     <ClCompile Include="CField_Wall_IceRock.cpp">
       <Filter>ソース ファイル\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Mother_Static.cpp">
+      <Filter>ソース ファイル\Mover\Enemy\Mother</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -877,6 +886,12 @@
     </ClInclude>
     <ClInclude Include="CField_Wall_IceRock.h">
       <Filter>ヘッダー ファイル\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="colideRayToIntRegion2D.h">
+      <Filter>ヘッダー ファイル\Calculate</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Mother_Static.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy\Mother</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

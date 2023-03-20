@@ -39,7 +39,7 @@ void Scene_Stageclear::Update() {
     cur_ = (cur_ + (int)skill_list_.size() - 1) % (int)skill_list_.size();
   }
   if (input_.lock()->Select() == 1) {
-    CPassiveSkill::GetIns().Add(skill_list_[cur_]);
+    if(!skill_list_.empty())CPassiveSkill::GetIns().Add(skill_list_[cur_]);
     CProgressData::GetIns().NextCurrentStage();
     scene_manager_->ChangeScene(Constant::SceneID::kSceneMain, true);
     return;

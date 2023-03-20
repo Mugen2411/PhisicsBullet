@@ -141,6 +141,7 @@ void CGameMediator::GetMoney(int value) { reserve_money_ += value; }
 
 void CGameMediator::Update() {
   if (!is_initialized_) return;
+  CEffect_Bright::GetIns().Clear();
   cnt_++;
   if (is_enemy_vanished) {
     wait_next_stage.text_ = std::string("次のステージに進むまで ") +
@@ -208,7 +209,6 @@ void CGameMediator::Update() {
   if (mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0) {
     ProcessEnemySpawner();
   }
-  CEffect_Bright::GetIns().Clear();
   power_parent_->Update();
   mover_parent_->Update();
   field_parent_->Update();

@@ -43,6 +43,7 @@ int CMover_Mother_Static::Update() {
       break;
   }
   cnt_++;
+  acceleration_ = CVector(0.0, 0.0);
   return status_;
 }
 

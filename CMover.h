@@ -94,9 +94,9 @@ class CMover {
 
     velocity_ += acceleration_;  // * sqrtl(Constant::kPerFrame);
 
-    // if (velocity_.GetLength2() > 32 * 32) {
-    //   velocity_ = velocity_.GetNorm() * 32;
-    // }
+    if (velocity_.GetLength2() > 32 * 32) {
+    velocity_ = velocity_.GetNorm() * 32;
+    }
 
     if (!(is_locked_axis_ & 1)) {
       position_.x_ += velocity_.x_;

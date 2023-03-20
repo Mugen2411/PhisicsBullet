@@ -166,7 +166,7 @@ enemy{
         }
     }
     M_Static{
-        mass:999999
+        mass:100
         base{
             atk:0.0
             hp:6.0

@@ -5,13 +5,12 @@ spawn{
     0{
         gid:"M_Static"
         time:60
-        wait:120
+        wait:240
         amount:1
         child{
             0{
                 gid:"E_Budcorn"
-                amount:5
-                max:20
+                amount:50
             }
         }
     }

@@ -124,7 +124,7 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 3,
+        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 0.0f,
                    1.0f, Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;

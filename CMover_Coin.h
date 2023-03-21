@@ -4,6 +4,7 @@
 #include "CMover.h"
 #include "CMover_Player.h"
 #include "CSoundManager.h"
+#include "CEffect_CoinDelete.h"
 
 class CMover_Coin : public CMover {
  public:
@@ -21,6 +22,8 @@ class CMover_Coin : public CMover {
       CSoundManager::GetIns().Find("money")->Play(CSound::PlayType::kBack);
       CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
           position_ - CVector(0.0, size_), kValue[type_]));
+      CEffectParent::RegisterEffect(std::make_shared<CEffect_CoinDelete>(
+          position_, kSize[type_] / 32.0f, type_));
     }
   };
   void Disappear(){};

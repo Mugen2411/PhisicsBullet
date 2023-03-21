@@ -178,6 +178,7 @@
     <ClCompile Include="CDataLoader.cpp" />
     <ClCompile Include="CDrawModiGraphReserve.cpp" />
     <ClCompile Include="CEffect_Bright.cpp" />
+    <ClCompile Include="CEffect_CoinDelete.cpp" />
     <ClCompile Include="CEffect_EnemyDelete.cpp" />
     <ClCompile Include="CEffect_Wind.cpp" />
     <ClCompile Include="CField_Cave.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="CEffect_Bat_Swing.h" />
     <ClInclude Include="CEffect_Bright.h" />
     <ClInclude Include="CEffect_BulletDelete.h" />
+    <ClInclude Include="CEffect_CoinDelete.h" />
     <ClInclude Include="CEffect_DamageNumber.h" />
     <ClInclude Include="CEffect_EnemyDelete.h" />
     <ClInclude Include="CEffect_MoneyNumber.h" />

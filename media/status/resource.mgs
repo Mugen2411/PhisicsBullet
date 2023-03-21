@@ -157,9 +157,9 @@ image{
     }
     icon_passiveskill{
         path:"system/game/icon_passiveskill.png"
-        num:21
+        num:28
         xnum:7
-        ynum:3
+        ynum:4
         w:32
         h:32
     }
@@ -172,7 +172,7 @@ image{
     system_passive_frame{
         path:"system/game/passive_frame.png"
         num:1
-        w:162
+        w:226
         h:34
     }
     icon_passive_progress{

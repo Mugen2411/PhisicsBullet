@@ -31,14 +31,14 @@ CAttribute CPassiveSkill::GetDefMult() {
 std::vector<int> CPassiveSkill::GetRandomList() {
   std::set<int> ret;
   std::vector<int> smp;
-  int got[5];
+  int got[kMaxHasSkill];
   int p = 0;
-  for (int i = 0; i < 21; i++) {
+  for (int i = 0; i < kSkillNum; i++) {
     if (has_[i] != 0) p++;
   }
-  if (p < 5) {
-    for (int i = 0; i < 21; i++) {
-      for (int j = 0; j < 5 - has_[i]; j++) {
+  if (p < kMaxHasSkill) {
+    for (int i = 0; i < kSkillNum; i++) {
+      for (int j = 0; j < kMaxHasSkill - has_[i]; j++) {
         ret.insert(i);
       }
     }
@@ -46,19 +46,19 @@ std::vector<int> CPassiveSkill::GetRandomList() {
     return smp;
   }
   p = 0;
-  for (int i = 0; i < 21; i++) {
+  for (int i = 0; i < kSkillNum; i++) {
     if (has_[i] != 0) {
       got[p] = i;
       p++;
     }
   }
-  for (int i = 0; i < 21; i++) {
+  for (int i = 0; i < kSkillNum; i++) {
     p = 0;
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < kMaxHasSkill; j++) {
       p |= (got[j] == i);
     }
     if (!p) continue;
-    for (int j = 0; j < 5 - has_[i]; j++) {
+    for (int j = 0; j < kMaxHasSkill - has_[i]; j++) {
       ret.insert(i);
     }
   }
@@ -71,70 +71,89 @@ CTextDrawer::Text CPassiveSkill::GetText(int index) {
   std::string attr[7] = {"無", "炎", "水", "雷", "花", "氷", "風"};
   if (index <= kAtkWind) {
     ret.text_ = std::string("与える") + attr[index % 7] +
-               std::string("属性ダメージを") +
-               std::to_string(has_[index] * attr_atk_per_level_) +
-               std::string("%→") +
-               std::to_string((has_[index] + 1) * attr_atk_per_level_) +
-               std::string("%増加する。");
+                std::string("属性ダメージを") +
+                std::to_string(has_[index] * attr_atk_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * attr_atk_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   if (index <= kDefWind) {
     ret.text_ = std::string("受ける") + attr[index % 7] +
-               std::string("属性ダメージを") +
-               std::to_string(has_[index] * attr_def_per_level_) +
-               std::string("%→") +
-               std::to_string((has_[index] + 1) * attr_def_per_level_) +
-               std::string("%軽減する。");
+                std::string("属性ダメージを") +
+                std::to_string(has_[index] * attr_def_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * attr_def_per_level_) +
+                std::string("%軽減する。");
     return ret;
   }
   if (index == kAtkAll) {
     ret.text_ = std::string("与える") + std::string("全てのダメージを") +
-               std::to_string(has_[index] * all_atk_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * all_atk_per_level_) +
-               std::string("%増加する。");
+                std::to_string(has_[index] * all_atk_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * all_atk_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   if (index == kDefAll) {
     ret.text_ = std::string("受ける") + std::string("全てのダメージを") +
-               std::to_string(has_[index] * all_def_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * all_def_per_level_) +
-               std::string("%軽減する。");
+                std::to_string(has_[index] * all_def_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * all_def_per_level_) +
+                std::string("%軽減する。");
     return ret;
   }
   if (index == kHeal) {
-    ret.text_ = std::string("HPを毎秒") +
-               FloatToString(has_[index] * heal_per_level_) +
-               std::string("%→") +
-               FloatToString((has_[index] + 1) * heal_per_level_) +
-               std::string("%回復する。");
+    ret.text_ =
+        std::string("HPを毎秒") + FloatToString(has_[index] * heal_per_level_) +
+        std::string("%→") + FloatToString((has_[index] + 1) * heal_per_level_) +
+        std::string("%回復する。");
     return ret;
   }
   if (index == kMoney) {
     ret.text_ = std::string("獲得する全てのコインを") +
-               std::to_string(has_[index] * money_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * money_per_level_) +
-               std::string("%増加する。");
+                std::to_string(has_[index] * money_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * money_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   if (index == kCharge) {
     ret.text_ = std::string("射撃のチャージ速度を") +
-               std::to_string(has_[index] * charge_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * charge_per_level_) +
-               std::string("%増加する。");
+                std::to_string(has_[index] * charge_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * charge_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   if (index == kSpeed) {
     ret.text_ = std::string("自機の最高速度を") +
-               std::to_string(has_[index] * speed_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * speed_per_level_) +
-               std::string("%増加する。");
+                std::to_string(has_[index] * speed_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * speed_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   if (index == kMaxHP) {
     ret.text_ = std::string("自機のHP最大値を") +
-               std::to_string(has_[index] * maxHP_per_level_) + std::string("%→") +
-               std::to_string((has_[index] + 1) * maxHP_per_level_) +
-               std::string("%増加する。");
+                std::to_string(has_[index] * maxHP_per_level_) +
+                std::string("%→") +
+                std::to_string((has_[index] + 1) * maxHP_per_level_) +
+                std::string("%増加する。");
+    return ret;
+  }
+  if (index == kEnemyLevelUp) {
+    ret.text_ = std::string("敵のレベルを") + std::to_string(has_[index]) +
+                std::string("段階→") + std::to_string((has_[index] + 1)) +
+                std::string("段階増加する。");
+    return ret;
+  }
+  if (index == kEnemyAmountUp) {
+    ret.text_ = std::string("敵の出現数を約") +
+                std::to_string(has_[index] * enemyAmount_per_level_) +
+                std::string("%→約") +
+                std::to_string((has_[index] + 1) * enemyAmount_per_level_) +
+                std::string("%増加する。");
     return ret;
   }
   return ret;

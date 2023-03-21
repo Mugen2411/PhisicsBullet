@@ -18,6 +18,14 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     return 1.0 + 0.01 * charge_per_level_ * has_[kCharge];
   }
   double GetSpeedMult() { return 1.0 + 0.01 * speed_per_level_ * has_[kSpeed]; }
+  int GetEnemyLevelAdd() {
+    return has_[kEnemyLevelUp - 1] * (has_[kEnemyLevelUp]) / 2;
+  }
+  int GetEnemyAmount(int baseAmount) {
+    double mult = 1.0 + has_[kEnemyAmountUp] * enemyAmount_per_level_ * 0.01;
+    int add = (baseAmount == 1) ? 0 : has_[kEnemyAmountUp];
+    return (int)ceil(baseAmount * mult + add);
+  }
   void Reset() {
     for (auto& i : has_) {
       i = 0;
@@ -28,14 +36,14 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
 
   std::vector<int> GetGotSkillList() {
     std::vector<int> ret;
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < kSkillNum; i++) {
       if (has_[i] != 0) ret.push_back(i);
     }
     return ret;
   }
   std::vector<int> GetGotSkillLevelList() {
     std::vector<int> ret;
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < kSkillNum; i++) {
       if (has_[i] != 0) ret.push_back(has_[i]);
     }
     return ret;
@@ -44,9 +52,11 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   void Add(int index) { has_[index] = (std::min)(++has_[index], 5); }
 
   CTextDrawer::Text GetText(int index);
+  static const int kMaxHasSkill = 7;
 
  protected:
-  int has_[7 + 7 + 2 + 5];
+  static const int kSkillNum = 23;
+  int has_[7 + 7 + 2 + 5 + 2];
   enum {
     kAtkNone,
     kAtkFire,
@@ -68,7 +78,9 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     kMoney,
     kCharge,
     kSpeed,
-    kMaxHP
+    kMaxHP,
+    kEnemyLevelUp,
+    kEnemyAmountUp
   };
   const int attr_atk_per_level_ = 15;
   const int attr_def_per_level_ = 15;
@@ -79,6 +91,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   const int charge_per_level_ = 2;
   const int speed_per_level_ = 2;
   const int maxHP_per_level_ = 10;
+  const int enemyAmount_per_level_ = 10;
 
   std::random_device rnd_;
   std::mt19937 engine_;

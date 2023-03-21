@@ -245,7 +245,7 @@ void CGameMediator::Render() const {
   CImageManager::GetIns()
       .Find("system_passive_frame")
       ->Draw(320 + 24, 8, Constant::kPriorityNumber + 1);
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < CPassiveSkill::kMaxHasSkill; i++) {
     if (i < skill_list_.size()) {
       CImageManager::GetIns()
           .Find("icon_passiveskill")

@@ -1,7 +1,9 @@
 #include "CEnemySpawner.h"
-#include "CMover_Mother_Static.h"
-#include "CGameMediator.h"
+
 #include "CDataLoader.h"
+#include "CGameMediator.h"
+#include "CMover_Mother_Static.h"
+#include "CPassiveSkill.h"
 
 CEnemySpawner::CEnemySpawner(CGameMediator* mp, CVector pos, int level,
                              SpawnerDesc desc)
@@ -13,9 +15,11 @@ int CEnemySpawner::Update() {
         desc_.spawn_probability_ * 0.01)
       return 1;
     if (desc_.gid[0] == 'E') {
-      for (int i = 0; i < desc_.count_of_spawn_; i++) {
-        med_ptr_->RegisterMover(
-            enemy_factory_.Create(desc_.gid, pos_, level_ + GetRand(2)));
+      int am = CPassiveSkill::GetIns().GetEnemyAmount(desc_.count_of_spawn_);
+      for (int i = 0; i < am; i++) {
+        med_ptr_->RegisterMover(enemy_factory_.Create(
+            desc_.gid, pos_,
+            level_ + GetRand(2) + CPassiveSkill::GetIns().GetEnemyLevelAdd()));
       }
     } else {
       std::vector<CMover_Mother_Static::MotherDesc> mdList;
@@ -27,7 +31,7 @@ int CEnemySpawner::Update() {
         auto t = d->GetChild(std::to_string(i));
         if (t == nullptr) break;
         tmpMD.gid = t->GetChild("gid")->GetString();
-        tmpMD.amount = t->GetChild("amount")->GetInt();
+        tmpMD.amount = CPassiveSkill::GetIns().GetEnemyAmount(t->GetChild("amount")->GetInt());
         mdList.push_back(tmpMD);
         i++;
       }

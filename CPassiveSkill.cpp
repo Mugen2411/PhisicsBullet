@@ -38,7 +38,7 @@ std::vector<int> CPassiveSkill::GetRandomList() {
   }
   if (p < kMaxHasSkill) {
     for (int i = 0; i < kSkillNum; i++) {
-      for (int j = 0; j < kMaxHasSkill - has_[i]; j++) {
+      for (int j = 0; j < kMaxSkillLevel - has_[i]; j++) {
         ret.insert(i);
       }
     }
@@ -58,7 +58,7 @@ std::vector<int> CPassiveSkill::GetRandomList() {
       p |= (got[j] == i);
     }
     if (!p) continue;
-    for (int j = 0; j < kMaxHasSkill - has_[i]; j++) {
+    for (int j = 0; j < kMaxSkillLevel - has_[i]; j++) {
       ret.insert(i);
     }
   }
@@ -149,11 +149,11 @@ CTextDrawer::Text CPassiveSkill::GetText(int index) {
     return ret;
   }
   if (index == kEnemyAmountUp) {
-    ret.text_ = std::string("“G‚ÌoŒ»”‚ð–ñ") +
-                std::to_string(has_[index] * enemyAmount_per_level_) +
-                std::string("%¨–ñ") +
-                std::to_string((has_[index] + 1) * enemyAmount_per_level_) +
-                std::string("%‘‰Á‚·‚éB");
+    ret.text_ = std::string("“G‚ÌoŒ»”‚ð") +
+                std::to_string(has_[index]) +
+                std::string("’iŠK¨") +
+                std::to_string((has_[index] + 1)) +
+                std::string("’iŠK‘‰Á‚·‚éB");
     return ret;
   }
   return ret;

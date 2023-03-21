@@ -23,8 +23,8 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   }
   int GetEnemyAmount(int baseAmount) {
     double mult = 1.0 + has_[kEnemyAmountUp] * enemyAmount_per_level_ * 0.01;
-    int add = (baseAmount == 1) ? 0 : has_[kEnemyAmountUp];
-    return (int)ceil(baseAmount * mult + add);
+    int add = has_[kEnemyAmountUp];
+    return (int)floor(baseAmount * mult) + add;
   }
   void Reset() {
     for (auto& i : has_) {
@@ -53,6 +53,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
 
   CTextDrawer::Text GetText(int index);
   static const int kMaxHasSkill = 7;
+  static const int kMaxSkillLevel = 5;
 
  protected:
   static const int kSkillNum = 23;
@@ -91,7 +92,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   const int charge_per_level_ = 2;
   const int speed_per_level_ = 2;
   const int maxHP_per_level_ = 10;
-  const int enemyAmount_per_level_ = 10;
+  const int enemyAmount_per_level_ = 20;
 
   std::random_device rnd_;
   std::mt19937 engine_;

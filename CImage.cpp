@@ -42,28 +42,28 @@ void CImage::Release() {
 }
 
 void CImage::Draw(int x1, int y1, int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawGraphReserve(
       graphic_handle_[num], x1 - (int)CAnchor::GetIns().GetAnchorX(),
       y1 - (int)CAnchor::GetIns().GetAnchorY(), priority, width_, height_));
 }
 
 void CImage::Draw(double x1, double y1, int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawGraphFReserve(
       graphic_handle_[num], x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), priority, width_, height_));
 }
 
 void CImage::Draw(CVector pos, int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawGraphReserve(
       graphic_handle_[num], (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
       (int)pos.y_ - (int)CAnchor::GetIns().GetAnchorY(), priority, width_, height_));
 }
 
 void CImage::DrawRota(int x1, int y1, float angle, float extend, int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphReserve(
       graphic_handle_[num], priority, x1 - (int)CAnchor::GetIns().GetAnchorX(),
       y1 - (int)CAnchor::GetIns().GetAnchorY(), angle, extend, width_, height_));
@@ -71,7 +71,7 @@ void CImage::DrawRota(int x1, int y1, float angle, float extend, int priority, u
 
 void CImage::DrawRota(CVector pos, float angle, float extend, int priority,
                       unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphReserve(
       graphic_handle_[num], priority, (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
       (int)pos.y_ - (int)CAnchor::GetIns().GetAnchorY(), angle, extend, width_,
@@ -80,7 +80,7 @@ void CImage::DrawRota(CVector pos, float angle, float extend, int priority,
 
 void CImage::DrawRotaF(double x1, double y1, float angle, float extend,
                        int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphFReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), angle, extend, width_, height_));
@@ -88,7 +88,7 @@ void CImage::DrawRotaF(double x1, double y1, float angle, float extend,
 
 void CImage::DrawRotaF(CVector pos, float angle, float extend, int priority,
                       unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphFReserve(
       graphic_handle_[num], priority,
       (int)pos.x_ - (int)CAnchor::GetIns().GetAnchorX(),
@@ -99,7 +99,7 @@ void CImage::DrawRotaF(CVector pos, float angle, float extend, int priority,
 void CImage::DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
                                 int color, int Blendmode, int value,
                                 int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawRotaGraphFwithBlendReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), angle, extend, color, Blendmode,
@@ -109,7 +109,7 @@ void CImage::DrawRotaFwithBlend(double x1, double y1, float angle, float extend,
 void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color,
                                int Blendmode, int value, int priority,
                                unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   if (graphic_handle_[num] == 0) abort();
   CRenderReserveList::Add(new CDrawRectGraphWithBlendReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
@@ -119,7 +119,7 @@ void CImage::DrawRectwithBlend(int x1, int y1, int w1, int h1, int color,
 void CImage::DrawExtendWithBlend(double x1, double y1, double x2, double y2,
                                  int color, int Blendmode, int value,
                                  int priority, unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawExtendWithBlendReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), x2 - CAnchor::GetIns().GetAnchorX(),
@@ -128,7 +128,7 @@ void CImage::DrawExtendWithBlend(double x1, double y1, double x2, double y2,
 
 void CImage::DrawCircleGauge(int x, int y, double ratio, int priority,
                              unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawCircleGaugeReserve(
       graphic_handle_[num], priority, x - (int)CAnchor::GetIns().GetAnchorX(),
       y - (int)CAnchor::GetIns().GetAnchorY(), ratio, width_, height_));
@@ -137,7 +137,7 @@ void CImage::DrawCircleGauge(int x, int y, double ratio, int priority,
 void CImage::DrawModi(double x1, double y1, double x2, double y2, double x3,
                       double y3, double x4, double y4, int priority,
                       unsigned int num) {
-  if (num > array_size_) return;
+  if (num >= array_size_) return;
   CRenderReserveList::Add(new CDrawModiGraphReserve(
       graphic_handle_[num], priority, x1 - CAnchor::GetIns().GetAnchorX(),
       y1 - CAnchor::GetIns().GetAnchorY(), x2 - CAnchor::GetIns().GetAnchorX(),

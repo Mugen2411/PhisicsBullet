@@ -17,15 +17,15 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng)
       next_(CProgressData::GetIns().GetPlayerLevel() + 1) {
   input_ = CControllerFactory::GetIns().GetController();
   text_[0] = CTextDrawer::Text("アップグレード", CVector(320 - 3.5 * 60, 32.0),
-                              0xFFFFFF, 0x7F7F00, 2);
+                               0xFFFFFF, 0x7F7F00, 2);
   text_[1] = CTextDrawer::Text("所持コイン", CVector(320 - 36 * 5, 120),
-                              0xFFFFFF, 0xCFCF00, 1);
+                               0xFFFFFF, 0xCFCF00, 1);
   text_[2] = CTextDrawer::Text("必要コイン", CVector(320 - 36 * 5, 160),
-                              0xFFFFFF, 0xCFCF00, 1);
-  text_[3] = CTextDrawer::Text("現在のステータス", CVector(320 - 200, 240),
-                              0xFFFFFF, 0xCFCF00, 0);
-  text_[4] = CTextDrawer::Text("強化後ステータス", CVector(320 - 200, 270),
-                              0xFFFFFF, 0xCFCF00, 0);
+                               0xFFFFFF, 0xCFCF00, 1);
+  text_[3] = CTextDrawer::Text("現在のステータス", CVector(320 - 240, 240),
+                               0xFFFFFF, 0xCFCF00, 0);
+  text_[4] = CTextDrawer::Text("強化後ステータス", CVector(320 - 240, 270),
+                               0xFFFFFF, 0xCFCF00, 0);
   text_[5] =
       CTextDrawer::Text("SPACEキーを押すとコインを消費して強化します。",
                         CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);
@@ -38,16 +38,18 @@ void Scene_Upgrade::Update() {
   now_ = CStatus(CProgressData::GetIns().GetPlayerLevel());
   next_ = CStatus(CProgressData::GetIns().GetPlayerLevel() + 1);
   text_[1].text_ = std::string("所持コイン：") +
-                 std::to_string(CProgressData::GetIns().GetMoney());
+                   std::to_string(CProgressData::GetIns().GetMoney());
   text_[2].text_ = std::string("必要コイン：") +
-                 std::to_string(CStatus::GetMoneyToUpgrade(
-                     CProgressData::GetIns().GetPlayerLevel()));
-  text_[3].text_ = std::string("現在のステータス→") + std::string("HP:") +
-                 FloatToString(now_.maxHP_) + std::string(" ATK:") +
-                 FloatToString(now_.atk_);
-  text_[4].text_ = std::string("強化後ステータス→") + std::string("HP:") +
-                 FloatToString(next_.maxHP_) + std::string(" ATK:") +
-                 FloatToString(next_.atk_);
+                   std::to_string(CStatus::GetMoneyToUpgrade(
+                       CProgressData::GetIns().GetPlayerLevel()));
+  text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
+                   std::to_string(now_.level_) + std::string(" HP:") +
+                   FloatToString(now_.maxHP_) + std::string(" ATK:") +
+                   FloatToString(now_.atk_);
+  text_[4].text_ = std::string("強化後ステータス→") + std::string("Lv.") +
+                   std::to_string(next_.level_) + std::string(" HP:") +
+                   FloatToString(next_.maxHP_) + std::string(" ATK:") +
+                   FloatToString(next_.atk_);
 
 #ifndef _DEBUG
   if (input_.lock()->Select() == 1) {
@@ -58,9 +60,7 @@ void Scene_Upgrade::Update() {
       has_enough_money_ = true;
       CSoundManager::GetIns().Find("money")->Play(CSound::PlayType::kBack);
     } else {
-      CSoundManager::GetIns()
-          .Find("player_hit")
-          ->Play(CSound::PlayType::kBack);
+      CSoundManager::GetIns().Find("player_hit")->Play(CSound::PlayType::kBack);
       has_enough_money_ = false;
     }
   }

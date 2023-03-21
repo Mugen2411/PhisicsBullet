@@ -8,10 +8,10 @@ CEffect_CoinDelete::CEffect_CoinDelete(CVector position_, double size, int type)
       size_(size),
       cnt_(0.0f),
       type_(type),
-      color_{0, 0xFFFFFF, 0xFFFF00, 0x00FFFF, 0x7F2F00} {}
+      color_{0, 0xCFCFCF, 0xCFCF00, 0x007FCF, 0x7F2F00} {}
 
 void CEffect_CoinDelete::Update() {
-  color_[0] = HSV2RGB(cnt_ / 4.0f, 1.0, 1.0);
+  color_[0] = HSV2RGB(cnt_ / 4.0f, 1.0, 0.75);
   cnt_ += 0.25f;
   if (cnt_ > 4.0) status_ = 1;
 }

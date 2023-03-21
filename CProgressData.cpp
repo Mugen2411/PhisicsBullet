@@ -39,7 +39,7 @@ void CProgressData::Load() {
 }
 
 void CProgressData::Win(int money) {
-  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  earned_money_ = (int)std::ceil(money);
   stage_money_ =
       100 * (int)std::ceil((current_stage_ + 1) * CPassiveSkill::GetIns().GetMoneyMult());
   data_.money += earned_money_;
@@ -50,7 +50,7 @@ void CProgressData::Win(int money) {
 }
 
 void CProgressData::Lose(int money) {
-  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  earned_money_ = (int)std::ceil(money);
   data_.money += earned_money_;
   if (!is_endless_)
     data_.last_stage =
@@ -58,7 +58,7 @@ void CProgressData::Lose(int money) {
 }
 
 void CProgressData::Retire(int money) {
-  earned_money_ = (int)std::ceil(money * CPassiveSkill::GetIns().GetMoneyMult());
+  earned_money_ = (int)std::ceil(money);
   data_.money += earned_money_;
   if (!is_endless_)
     data_.last_stage =

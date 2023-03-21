@@ -287,9 +287,14 @@ int CFieldHolder::Load() {
   }
   for (uint32_t y = 0; y < height_; y++) {
     for (uint32_t x = 0; x < width_; x++) {
-      this->WriteWall(
-          field_factory_.create(x, y, bufW[(uint64_t)(width_ * y + x)]),
-          CVector((int)x, (int)y));
+      if (bufW[(uint64_t)(width_ * y + x)][0] == 'F') {
+        this->WriteWall(field_factory_.create(x, y, "F_Void"),
+                        CVector((int)x, (int)y));
+      } else {
+        this->WriteWall(
+            field_factory_.create(x, y, bufW[(uint64_t)(width_ * y + x)]),
+            CVector((int)x, (int)y));
+      }
     }
   }
   return 0;

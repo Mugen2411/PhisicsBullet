@@ -11,7 +11,7 @@ CCostume_Chinese::CCostume_Chinese(std::string gid_)
 void CCostume_Chinese::WeakShot(CAttribute baseATK, CVector position,
                                 float angle) {
   player_ptr_->RegisterPower(std::make_shared<CPower_Line>(
-      position + CVector(angle) * 32, CVector(angle, 192.0), 64, 32,
+      position + CVector(angle) * 16, CVector(angle, 192.0), 48, 8,
       CAttribute(0.0).Wind(2.0) * baseATK, 1));
   player_ptr_->ResetCharge();
 }

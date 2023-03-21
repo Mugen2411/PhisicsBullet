@@ -9,17 +9,17 @@ spawn{
     }
     1{
         gid:"E_Budcorn"
-        time:300
-        amount:3
+        time:360
+        amount:2
     }
     2{
         gid:"E_Budcorn"
-        time:1200
-        amount:6
+        time:1350
+        amount:3
     }
     3{
         gid:"E_Budcorn"
-        time:2400
-        amount:8
+        time:3600
+        amount:5
     }
 }

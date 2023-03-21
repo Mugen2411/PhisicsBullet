@@ -6,21 +6,21 @@ spawn{
     0{
         gid:"E_Budcorn"
         time:60
-        amount:5
+        amount:4
     }
     1{
         gid:"E_Budcorn"
         time:600
-        amount:6
+        amount:4
     }
     2{
         gid:"E_Budcorn"
         time:1200
-        amount:8
+        amount:6
     }
     3{
         gid:"E_FlameSerpent"
         time:2400
-        amount:5
+        amount:6
     }
 }

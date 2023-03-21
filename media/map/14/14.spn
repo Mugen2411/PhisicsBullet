@@ -11,7 +11,7 @@ spawn{
         child{
             0{
                 gid:"E_Budcorn"
-                amount:5
+                amount:4
             }
         }
     }
@@ -23,7 +23,7 @@ spawn{
         child{
             0{
                 gid:"E_Budcorn"
-                amount:8
+                amount:6
             }
         }
     }
@@ -33,9 +33,10 @@ spawn{
         wait:2160
         amount:1
         child{
-            0{
+ 
+             0{
                 gid:"E_Goblin"
-                amount:3
+                amount:2
             }
         }
     }
@@ -47,7 +48,7 @@ spawn{
         child{
             0{
                 gid:"E_Budcorn"
-                amount:12
+                amount:8
             }
         }
     }

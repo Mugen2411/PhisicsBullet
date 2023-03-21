@@ -10,7 +10,7 @@ spawn{
         child{
             0{
                 gid:"E_Budcorn"
-                amount:12
+                amount:8
             }
         }
     }

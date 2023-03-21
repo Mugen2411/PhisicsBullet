@@ -5,17 +5,17 @@ spawn{
     0{
         gid:"E_Budcorn"
         time:60
-        amount:5
+        amount:3
     }
     1{
         gid:"E_Budcorn"
-        time:600
+        time:900
         amount:3
     }
     2{
         gid:"E_Budcorn"
-        time:1200
-        amount:15
+        time:2400
+        amount:8
     }
     3{
         gid:"E_Shimaenaga"

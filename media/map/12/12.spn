@@ -11,16 +11,16 @@ spawn{
     1{
         gid:"E_Azarashi"
         time:720
-        amount:3
+        amount:1
     }
     2{
         gid:"E_Azarashi"
         time:1320
-        amount:4
+        amount:2
     }
     3{
         gid:"E_Azarashi"
         time:1920
-        amount:6
+        amount:4
     }
 }

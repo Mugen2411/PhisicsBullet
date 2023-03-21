@@ -6,36 +6,36 @@ spawn{
     0{
         gid:"E_Budcorn"
         time:60
-        amount:15
+        amount:9
     }
     1{
         gid:"E_Budcorn"
         time:120
-        amount:10
+        amount:7
     }
     2{
         gid:"E_Yadokari"
         time:1800
-        amount:3
+        amount:2
     }
     3{
         gid:"E_Yadokari"
         time:2400
-        amount:3
+        amount:2
     }
     4{
         gid:"E_Budcorn"
         time:3600
-        amount:9
+        amount:7
     }
     5{
         gid:"E_Budcorn"
         time:4000
-        amount:10
+        amount:9
     }
     6{
         gid:"E_Yadokari"
         time:5400
-        amount:5
+        amount:3
     }
 }

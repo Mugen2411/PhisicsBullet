@@ -9,23 +9,23 @@ spawn{
     }
     1{
         gid:"E_Budcorn"
-        time:300
-        amount:6
+        time:360
+        amount:4
     }
     2{
         gid:"E_Budcorn"
-        time:900
-        amount:8
+        time:1080
+        amount:6
     }
     3{
         gid:"E_Budcorn"
-        time:1600
-        amount:8
+        time:1800
+        amount:5
     }
     4{
         gid:"E_Budcorn"
-        time:2400
-        amount:5
+        time:2800
+        amount:3
     }
     5{
         gid:"E_Shimaenaga"
@@ -35,7 +35,7 @@ spawn{
     }
     6{
         gid:"E_Yadokari"
-        time:3600
+        time:4200
         amount:1
     }
 }

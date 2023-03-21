@@ -1,17 +1,26 @@
 def{
-    bgm:"farm.ogg"
+    bgm:"cave.ogg"
+    bright:-0.3
 }
 spawn{
     0{
-        gid:"M_Static"
+        gid:"E_Yadokari"
         time:120
-        wait:720
-        amount:1
-        child{
-            0{
-                gid:"E_Budcorn"
-                amount:8
-            }
-        }
+        amount:3
+    }
+    1{
+        gid:"E_Azarashi"
+        time:720
+        amount:2
+    }
+    2{
+        gid:"E_Azarashi"
+        time:1320
+        amount:3
+    }
+    3{
+        gid:"E_Yadokari"
+        time:1920
+        amount:3
     }
 }

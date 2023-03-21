@@ -208,6 +208,7 @@ void CGameMediator::Update() {
   ProcessEnemySpawner();
   if (mover_parent_->GetCountByCategory(CMover::MoverID::kEnemy) == 0) {
     ProcessEnemySpawner();
+    ProcessEnemySpawner();
   }
   power_parent_->Update();
   mover_parent_->Update();

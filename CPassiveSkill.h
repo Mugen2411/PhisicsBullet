@@ -87,7 +87,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   const int attr_def_per_level_ = 15;
   const int all_atk_per_level_ = 6;
   const int all_def_per_level_ = 6;
-  const double heal_per_level_ = 0.5;
+  const double heal_per_level_ = 0.4;
   const int money_per_level_ = 10;
   const int charge_per_level_ = 2;
   const int speed_per_level_ = 2;

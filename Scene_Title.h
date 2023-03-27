@@ -22,4 +22,7 @@ class Scene_Title : public Scene_Abstract {
   CTextDrawer::Text title_text_;
   CTextDrawer::Text under_text_[6];
   int current_stage_;
+  int current_level_endless_;
+  const int kTextLeftLine = 360;
+  const int kTextHighlightDiff = 20;
 };

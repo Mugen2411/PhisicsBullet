@@ -14,7 +14,10 @@ class CProgressData : public Singleton<CProgressData> {
   void Load();
 
   void SetCurrentStage(int stage) {  //次に入るステージ(Mediatorから設定)
-    current_stage_ = (std::min)(stage, max_stage_);
+    if (!is_endless_)
+      current_stage_ = (std::min)(stage, max_stage_);
+    else
+      current_stage_ = stage;
   }
   void NextCurrentStage() {  //次に入るステージ(Mediatorから設定)
     if (!is_endless_)
@@ -26,6 +29,7 @@ class CProgressData : public Singleton<CProgressData> {
   {
     return data_.last_stage;
   }
+  int GetEndlessLast() { return data_.endless_last; }
 
   int GetCurrentStage()  //次に入るステージ(Mediatorから参照)
   {
@@ -106,10 +110,11 @@ class CProgressData : public Singleton<CProgressData> {
   bool is_endless_;
 
   struct ProgressData {
-    int last_stage;  // 5をかけると始めるべきステージになる
+    int last_stage;  //
     int money;
     int player_level_;
     int is_option_flags;  //下位1bit:拡大率(0=x1_,1=x2_),2bit:音源(0=PCM, 1=FM)
+    int endless_last;  // 10をかけると始めるべきステージになる
   } data_;
 
   void ShuffleStage() {

@@ -47,7 +47,7 @@ int CMover_Enemy_Goblin::Update() {
       animation_cnt_ += 0.1;
       if (animation_cnt_ > 4) {
         state_ = 0;
-        FindRoute(6);
+        FindRoute(5);
         animation_cnt_ = 0;
         cnt_ = 0;
       }

@@ -1,0 +1,7 @@
+save{
+    money:0
+    level:0
+    last_stage:0
+    endless_last:0
+    option:0
+}

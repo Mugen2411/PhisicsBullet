@@ -29,6 +29,11 @@ class CDataLoader : public Singleton<CDataLoader> {
     root_[key]->Output(ofstr, 0);
   }
 
+  void Save(std::string key, std::string path) {
+    std::ofstream ofstr(path);
+    root_[key]->Output(ofstr, 0);
+  }
+
  private:
   CDataLoader() {}
 

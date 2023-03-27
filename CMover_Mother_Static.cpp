@@ -9,7 +9,9 @@ CMover_Mother_Static::CMover_Mother_Static(CVector position, int Level,
       descList_(md),
       stateList_(md.size()),
       cnt_(0),
-      wait_time_(wait_time) {}
+      wait_time_(wait_time) {
+  size_ = 16.0;
+}
 
 int CMover_Mother_Static::Update() {
   switch (state_) {

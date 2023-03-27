@@ -16,7 +16,7 @@ int CMover_Enemy_Acecorn::Update() {
       if (cnt_ % 60 == 0) {
         if (GetRand(5) == 0) {
           cnt_ = 0;
-          FindTargetByDistance(8);
+          FindTargetByDistance(6);
           state_ = 2;
           return status_;
         } else

@@ -57,7 +57,7 @@ int CMover_Enemy_Bud::Update() {
       if ((med_->GetPlayerPosition() - position_).GetLength2() >
               (32 * 6 * 32 * 6) &&
           cnt_ % 90 == 0)
-        FindTargetByDistance(6);
+        FindTargetByDistance(4);
       cnt_++;
       animation_cnt_ += 0.3;
       if (animation_cnt_ > 4) animation_cnt_ = 0;

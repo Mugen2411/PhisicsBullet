@@ -8,20 +8,23 @@
 #include "CSoundManager.h"
 
 Scene_Title::Scene_Title(SceneManager* ScnMng)
-    : Scene_Abstract(ScnMng), menu_selector_(6, 0), current_stage_(0) {
+    : Scene_Abstract(ScnMng),
+      menu_selector_(6, 0),
+      current_stage_(0),
+      current_level_endless_(0) {
   input_ = CControllerFactory::GetIns().GetController();
-  menu_text_[0] =
-      CTextDrawer::Text("Start", CVector(340, 200), 0xFFFFFF, 0x007F7F, 1);
-  menu_text_[1] =
-      CTextDrawer::Text("Endless", CVector(340, 240), 0xFFFFFF, 0x000000, 1);
-  menu_text_[2] =
-      CTextDrawer::Text("Upgrade", CVector(340, 280), 0xFFFFFF, 0x7F7F00, 1);
-  menu_text_[3] =
-      CTextDrawer::Text("Option", CVector(340, 320), 0xFFFFFF, 0x7F7F7F, 1);
-  menu_text_[4] =
-      CTextDrawer::Text("Manual", CVector(340, 360), 0xFFFFFF, 0x007F00, 1);
-  menu_text_[5] =
-      CTextDrawer::Text("Quit", CVector(340, 400), 0xFFFFFF, 0x7F0000, 1);
+  menu_text_[0] = CTextDrawer::Text("Start", CVector(kTextLeftLine, 200),
+                                    0xFFFFFF, 0x007F7F, 1);
+  menu_text_[1] = CTextDrawer::Text("Endless", CVector(kTextLeftLine, 240),
+                                    0xFFFFFF, 0x000000, 1);
+  menu_text_[2] = CTextDrawer::Text("Upgrade", CVector(kTextLeftLine, 280),
+                                    0xFFFFFF, 0x7F7F00, 1);
+  menu_text_[3] = CTextDrawer::Text("Option", CVector(kTextLeftLine, 320),
+                                    0xFFFFFF, 0x7F7F7F, 1);
+  menu_text_[4] = CTextDrawer::Text("Manual", CVector(kTextLeftLine, 360),
+                                    0xFFFFFF, 0x007F00, 1);
+  menu_text_[5] = CTextDrawer::Text("Quit", CVector(kTextLeftLine, 400),
+                                    0xFFFFFF, 0x7F0000, 1);
   under_text_[0] = CTextDrawer::Text(
       "ADキーでステージを選択しSPACEキーでゲームを開始します。",
       CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
@@ -38,8 +41,8 @@ Scene_Title::Scene_Title(SceneManager* ScnMng)
                         CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
   under_text_[5] = CTextDrawer::Text(
       "ゲームを終了します。", CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
-  title_text_ = CTextDrawer::Text("MAKEOVER trial", CVector(320 - 72 * 3.0, 32.0),
-                                0xFFFFFF, 0x0000FF, 2);
+  title_text_ = CTextDrawer::Text(
+      "MAKEOVER trial", CVector(320 - 72 * 3.0, 32.0), 0xFFFFFF, 0x0000FF, 2);
   CProgressData::GetIns().Load();
   input_.lock()->SetMouseInvisible();
 }
@@ -69,32 +72,52 @@ void Scene_Title::Update() {
           (current_stage_ + CProgressData::GetIns().GetMaxStage() - 1) %
           (CProgressData::GetIns().GetMaxStage());
   }
+  if (menu_selector_.Get() == 1) {
+    if (input_.lock()->Right() == 1)
+      current_level_endless_ = (current_level_endless_ + 1) %
+                               (CProgressData::GetIns().GetEndlessLast() + 1);
+    if (input_.lock()->Left() == 1)
+      current_level_endless_ =
+          (current_level_endless_ + CProgressData::GetIns().GetEndlessLast()) %
+          (CProgressData::GetIns().GetEndlessLast() + 1);
+  }
 #else
-  if (menu_selector_.Get() == 0 || menu_selector_.Get() == 1) {
+  if (menu_selector_.Get() == 0) {
     if (input_.lock()->Right() == 1)
       current_stage_ =
           (current_stage_ + 1) % (CProgressData::GetIns().GetLastStage() + 1);
     if (input_.lock()->Left() == 1)
-      current_stage_ = (current_stage_ + CProgressData::GetIns().GetLastStage()) %
-                     (CProgressData::GetIns().GetLastStage() + 1);
+      current_stage_ =
+          (current_stage_ + CProgressData::GetIns().GetLastStage()) %
+          (CProgressData::GetIns().GetLastStage() + 1);
+  }
+  if (menu_selector_.Get() == 1) {
+    if (input_.lock()->Right() == 1)
+      current_level_endless_ = (current_level_endless_ + 1) %
+                               (CProgressData::GetIns().GetEndlessLast() + 1);
+    if (input_.lock()->Left() == 1)
+      current_level_endless_ =
+          (current_level_endless_ + CProgressData::GetIns().GetEndlessLast()) %
+          (CProgressData::GetIns().GetEndlessLast() + 1);
   }
 #endif
-  menu_text_[0].text_ = std::string("Start→") + std::to_string(current_stage_ + 1);
-  // menu_text_[1].text_ = std::string("Endless Start→") +
-  // std::to_string(current_stage_ + 1);
+  menu_text_[0].text_ =
+      std::string("Start→") + std::to_string(current_stage_ + 1);
+  menu_text_[1].text_ =
+      std::string("Endless→") + std::to_string(current_level_endless_ * 10);
   if (input_.lock()->Select() == 1) {
     CSoundManager::GetIns().Find("success")->Play(CSound::PlayType::kBack);
     switch (menu_selector_.Get()) {
       case 0:
         CPassiveSkill::GetIns().Reset();
-        CProgressData::GetIns().SetCurrentStage(current_stage_);
         CProgressData::GetIns().SetEndless(false);
+        CProgressData::GetIns().SetCurrentStage(current_stage_);
         scene_manager_->ChangeScene(Constant::SceneID::kSceneMain, true);
         break;
       case 1:
         CPassiveSkill::GetIns().Reset();
-        CProgressData::GetIns().SetCurrentStage(0);
         CProgressData::GetIns().SetEndless(true);
+        CProgressData::GetIns().SetCurrentStage(current_level_endless_ * 10);
         scene_manager_->ChangeScene(Constant::SceneID::kSceneMain, true);
         break;
       case 2:
@@ -114,9 +137,9 @@ void Scene_Title::Update() {
   }
   for (int i = 0; i < 6; i++) {
     if (menu_selector_.Get() == i)
-      menu_text_[i].position_.x_ = 400;
+      menu_text_[i].position_.x_ = kTextLeftLine - kTextHighlightDiff;
     else
-      menu_text_[i].position_.x_ = 420;
+      menu_text_[i].position_.x_ = kTextLeftLine;
   }
 }
 

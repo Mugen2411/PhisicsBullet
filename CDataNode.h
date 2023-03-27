@@ -30,7 +30,7 @@ class CDataNode {
       double dblData;
     } data;
   };
-  const CDataNode* GetChild(std::string key) const {
+  CDataNode* const GetChild(std::string key) const {
     if (contents.tag != Type::kParent) {
       MessageBox(NULL, "operator[] used in not parent object.", "CDataNode",
                  MB_OK);
@@ -62,6 +62,13 @@ class CDataNode {
       abort();
     }
     return contents.data.intData;
+  }
+  void SetInt(int value){
+    if (contents.tag != Type::kInt) {
+      MessageBox(NULL, "GetInt used in not int object.", "CDataNode", MB_OK);
+      abort();
+    }
+    contents.data.intData = value;
   }
   double GetDouble() const {
     if (contents.tag != Type::kDbl) {

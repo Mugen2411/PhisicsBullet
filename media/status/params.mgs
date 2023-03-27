@@ -144,14 +144,14 @@ enemy{
         mass:50
         base{
             atk:1.0
-            hp:2.0
+            hp:1.5
         }
         atrd{
             base:1.0
             ice:4.0
             aqua:2.0
-            fire:0.6
-            thunder:0.7
+            fire:0.5
+            thunder:0.6
         }
         mny:13
         effc:0xCFFFFF
@@ -260,8 +260,8 @@ bullet{
         size:16
         atk{
             base:0.0
-            none:30.0
-            ice:30.0
+            none:20.0
+            ice:20.0
         }
         cof{
             frc:0.1

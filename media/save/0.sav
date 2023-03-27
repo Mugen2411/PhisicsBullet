@@ -1,7 +1,7 @@
 save{
-  money:166751
-  level:214
+  money:767
+  level:64
+  last_stage:16
+  endless_last:16
   option:1
-  endless_last:7
-  last_stage:0
 }

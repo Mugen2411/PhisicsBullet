@@ -516,6 +516,12 @@
     <ClCompile Include="CEffect_CoinDelete.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Shot_Archer_ThunderArrow.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Archer_Thunder.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -898,6 +904,12 @@
     </ClInclude>
     <ClInclude Include="CEffect_CoinDelete.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Archer_ThunderArrow.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Archer_Thunder.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

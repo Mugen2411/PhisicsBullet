@@ -342,6 +342,29 @@ costume{
         }
         detail:"火属性の弓を操るアーチャー衣装。\n戦闘に適しており足が速いが水にめっぽう弱い。\n連射は普通の弓。扱いやすい。\n強射は火属性を纏った弓を3つ放つ。\n火力がとても高い。"
     }
+    C_Archer_Thunder{
+        graph:"archer/thunder.png"
+        animSpd:0.15
+        maxChg:40
+        shotRt:24
+        stDur:10
+        spd:4.0
+        acl:3.5
+        mass:18
+        atrd{
+            base:1.0
+            thunder:1.5
+            ice:0.6
+        }
+        cof{
+            frc:0.8
+            wtr:0.9
+            air:0.01
+            ref:0.0
+            wnd:0.3
+        }
+        detail:"雷属性の弓を操るアーチャー衣装。\n戦闘に適しており足が速いが氷にめっぽう弱い。\n連射は普通の弓。扱いやすい。\n強射は雷属性を纏った弓を3つ放つ。\n火力がとても高い。"
+    }
     C_Swimsuit{
         graph:"swimsuit/komuk.png"
         animSpd:0.1
@@ -512,6 +535,23 @@ shot{
             wnd:0.8
         }
         effc:0xFF0000
+    }
+    S_Archer_ThunderArrow{
+        mass:1
+        size:15
+        atk{
+            base:0.0
+            none:30.0
+            thunder:30.0
+        }
+        cof{
+            frc:0.01
+            wtr:0.95
+            air:0.08
+            ref:0.0
+            wnd:0.8
+        }
+        effc:0xFFFF00
     }
     S_Swimsuit_iPhone{
         mass:4

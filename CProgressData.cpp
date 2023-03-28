@@ -63,7 +63,7 @@ void CProgressData::Win(int money) {
         max_stage_ - 1, (std::max)(data_.last_stage, (current_stage_ + 1)));
   else {
     data_.endless_last =
-        (std::max)(data_.last_stage, (current_stage_ + 1) / 10);
+        (std::max)(data_.endless_last, (current_stage_ + 1) / 10);
   }
 }
 
@@ -75,7 +75,7 @@ void CProgressData::Lose(int money) {
         max_stage_ - 1, (std::max)(data_.last_stage, (current_stage_)));
   else {
     data_.endless_last =
-        (std::max)(data_.last_stage, (current_stage_) / 10);
+        (std::max)(data_.endless_last, (current_stage_) / 10);
   }
 }
 
@@ -86,6 +86,6 @@ void CProgressData::Retire(int money) {
     data_.last_stage = (std::min)(
         max_stage_ - 1, (std::max)(data_.last_stage, (current_stage_)));
   else {
-    data_.endless_last = (std::max)(data_.last_stage, (current_stage_) / 10);
+    data_.endless_last = (std::max)(data_.endless_last, (current_stage_) / 10);
   }
 }

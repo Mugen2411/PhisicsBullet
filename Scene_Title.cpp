@@ -29,7 +29,7 @@ Scene_Title::Scene_Title(SceneManager* ScnMng)
       "ADキーでステージを選択しSPACEキーでゲームを開始します。",
       CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
   under_text_[1] =
-      CTextDrawer::Text("エンドレスモードでゲームを開始します。",
+      CTextDrawer::Text("ADキーでレベルを選択しSPACEキーでエンドレスモードを開始します。",
                         CVector(36, 480 - 22), 0xFFFFFF, 0x000000, 0);
   under_text_[2] =
       CTextDrawer::Text("ゲーム内通貨を使用して自機のレベルを上げます。",
@@ -104,7 +104,7 @@ void Scene_Title::Update() {
   menu_text_[0].text_ =
       std::string("Start→") + std::to_string(current_stage_ + 1);
   menu_text_[1].text_ =
-      std::string("Endless→") + std::to_string(current_level_endless_ * 10);
+      std::string("Endless→") + std::to_string(current_level_endless_ * 10 + 1);
   if (input_.lock()->Select() == 1) {
     CSoundManager::GetIns().Find("success")->Play(CSound::PlayType::kBack);
     switch (menu_selector_.Get()) {

@@ -1,5 +1,7 @@
 #include "Scene_Stageclear.h"
 
+#include <format>
+
 #include "CAnchor.h"
 #include "CControllerFactory.h"
 #include "CImageManager.h"
@@ -12,10 +14,19 @@ Scene_Stageclear::Scene_Stageclear(SceneManager* ScnMng)
   text_[0] = CTextDrawer::Text("STAGE CLEAR!!", CVector(320 - 6.5 * 30, 32.0),
                                0xFFFFFF, 0xFF0000, 2);
   text_[1] =
-      CTextDrawer::Text("", CVector(320 - 36 * 7, 140), 0xFFFFFF, 0xCFCF00, 1);
-  text_[1].text_ = std::string("コインを") +
-                   std::to_string(CProgressData::GetIns().GetEarnedMoney()) +
-                   std::string("枚獲得しました。");
+      CTextDrawer::Text("", CVector(320 - 36 * 8, 140), 0xFFFFFF, 0xCFCF00, 1);
+  if (log10(CProgressData::GetIns().GetEarnedMoney()) <= 8) {
+    text_[1].text_ =
+        std::string("コインを") +
+        std::format("{:.0f}", (CProgressData::GetIns().GetEarnedMoney())) +
+        std::string("枚獲得しました。");
+  } else {
+    text_[1].text_ =
+        std::string("コインを") +
+        std::format("{:4.3e}", (CProgressData::GetIns().GetEarnedMoney())) +
+        std::string("枚獲得しました。");
+  }
+  
   text_[2] =
       CTextDrawer::Text("", CVector(320 - 36 * 8, 180), 0xFFFFFF, 0xCFCF00, 1);
   text_[2].text_ = std::string("クリア報酬で") +
@@ -27,8 +38,9 @@ Scene_Stageclear::Scene_Stageclear(SceneManager* ScnMng)
   text_[4] =
       CTextDrawer::Text("ESCキーを押すとアップグレードが出来ます。",
                         CVector(320 - 10 * 12, 380), 0xFFFFFF, 0xCFCF00, 0);
-  text_[5] = CTextDrawer::Text("スキル フルチャージ！", CVector(320.0 - 8*21, 280.0),
-                               0xFFFFFF, 0x000000, 1);
+  text_[5] =
+      CTextDrawer::Text("スキル フルチャージ！", CVector(320.0 - 8 * 21, 280.0),
+                        0xFFFFFF, 0x000000, 1);
   skill_list_ = CPassiveSkill::GetIns().GetRandomList();
   if (skill_list_.empty())
     text_[3].text_ = "SPACEキーを押すと次のステージに進みます。";

@@ -1,6 +1,7 @@
 #include "Scene_Upgrade.h"
 
 #include <cassert>
+#include <format>
 
 #include "CAnchor.h"
 #include "CControllerFactory.h"
@@ -37,11 +38,28 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng)
 void Scene_Upgrade::Update() {
   now_ = CStatus(CProgressData::GetIns().GetPlayerLevel());
   next_ = CStatus(CProgressData::GetIns().GetPlayerLevel() + 1);
-  text_[1].text_ = std::string("所持コイン：") +
-                   std::to_string(CProgressData::GetIns().GetMoney());
-  text_[2].text_ = std::string("必要コイン：") +
-                   std::to_string(CStatus::GetMoneyToUpgrade(
-                       CProgressData::GetIns().GetPlayerLevel()));
+  if (log10(CProgressData::GetIns().GetMoney()) <= 8) {
+    text_[1].text_ =
+        std::string("所持コイン：") +
+        std::format("{:.0f}", (CProgressData::GetIns().GetMoney()));
+  } else {
+    text_[1].text_ =
+        std::string("所持コイン：") +
+        std::format("{:4.3e}", (CProgressData::GetIns().GetMoney()));
+  }
+  if (log10(CStatus::GetMoneyToUpgrade(
+          CProgressData::GetIns().GetPlayerLevel())) <= 8) {
+    text_[2].text_ =
+        std::string("必要コイン：") +
+        std::format("{:.0f}", CStatus::GetMoneyToUpgrade(
+                                  CProgressData::GetIns().GetPlayerLevel()));
+  } else {
+    text_[2].text_ =
+        std::string("必要コイン：") +
+        std::format("{:4.3e}", CStatus::GetMoneyToUpgrade(
+                                  CProgressData::GetIns().GetPlayerLevel()));
+  }
+    
   text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
                    std::to_string(now_.level_) + std::string(" HP:") +
                    FloatToString(now_.maxHP_) + std::string(" ATK:") +

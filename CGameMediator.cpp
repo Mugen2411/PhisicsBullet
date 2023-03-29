@@ -137,7 +137,7 @@ std::weak_ptr<CMover> CGameMediator::GetNearestMover(int ID, CVector p) {
   return cur;
 }
 
-void CGameMediator::GetMoney(int value) { reserve_money_ += value; }
+void CGameMediator::GetMoney(double value) { reserve_money_ += value; }
 
 void CGameMediator::Update() {
   if (!is_initialized_) return;

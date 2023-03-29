@@ -11,19 +11,33 @@ class CMover_Coin : public CMover {
   enum Type {
     kBronze1,
     kBronze5,
-    kSilver10,
-    kSilver50,
-    kGold100,
-    kGold500,
-    kPlatinum1000,
-    kPlatinum5000,
-    kRainbow10000,
-    kRainbow50000,
-    kBlack100000
+    kSilver1e1,
+    kSilver5e1,
+    kGold1e2,
+    kGold5e2,
+    kPlatinum1e3,
+    kPlatinum5e3,
+    kRed1e4,
+    kRed5e4,
+    kOrange1e5,
+    kOrange5e5,
+    kYellow1e6,
+    kYellow5e6,
+    kGreen1e7,
+    kGreen5e7,
+    kCyan1e8,
+    kCyan5e8,
+    kBlue1e9,
+    kBlue5e9,
+    kViolet1e10,
+    kViolet5e10,
+    kRainbow1e11,
+    kRainbow5e11,
+    kBlack1e12
   };
   CMover_Coin(CVector position, Type type);
 
-  static const int kValue[12];
+  static const double kValue[26];
 
   int Update();
   void Render() const;
@@ -35,7 +49,7 @@ class CMover_Coin : public CMover {
       CEffectParent::RegisterEffect(std::make_shared<CEffect_MoneyNumber>(
           position_ - CVector(0.0, size_), kValue[type_]));
       CEffectParent::RegisterEffect(std::make_shared<CEffect_CoinDelete>(
-          position_, kSize[type_] / 32.0f, type_));
+          position_, kSize[type_] / 12.0f, type_));
     }
   };
   void Disappear(){};
@@ -52,8 +66,8 @@ class CMover_Coin : public CMover {
   void FieldDispatch(CField* f) {}
 
  protected:
-  static const double kSize[11];
-  static const double kMass[11];
+  static const double kSize[25];
+  static const double kMass[25];
   Type type_;
   double animation_cnt_ = 0.0;
   double z;

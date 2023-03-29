@@ -11,5 +11,5 @@ class CEffect_CoinDelete : public CEffect {
   float cnt_ = 0.0;
   double size_;
   int type_;
-  int color_[11];
+  int color_[25];
 };

@@ -25,7 +25,7 @@ void CProgressData::Save() {
   }
   fclose(fp);
   auto c = CDataLoader::GetIns().Get("save")->GetChild("save");
-  c->GetChild("money")->SetInt(data_.money);
+  c->GetChild("money")->SetDouble(data_.money);
   c->GetChild("level")->SetInt(data_.player_level_);
   c->GetChild("last_stage")->SetInt(data_.last_stage);
   c->GetChild("endless_last")->SetInt(data_.endless_last);
@@ -45,15 +45,15 @@ void CProgressData::Load() {
   fclose(fp);
   CDataLoader::GetIns().Load("save", "media/save/0.sav");
   auto c = CDataLoader::GetIns().Get("save")->GetChild("save");
-  data_.money = c->GetChild("money")->GetInt();
+  data_.money = c->GetChild("money")->GetDouble();
   data_.last_stage = c->GetChild("last_stage")->GetInt();
   data_.is_option_flags = c->GetChild("option")->GetInt();
   data_.endless_last = c->GetChild("endless_last")->GetInt();
   data_.player_level_ = c->GetChild("level")->GetInt();
 }
 
-void CProgressData::Win(int money) {
-  earned_money_ = (int)std::ceil(money);
+void CProgressData::Win(double money) {
+  earned_money_ = std::ceil(money);
   stage_money_ = 100 * (int)std::ceil((current_stage_ + 1) *
                                       CPassiveSkill::GetIns().GetMoneyMult());
   data_.money += earned_money_;
@@ -67,8 +67,8 @@ void CProgressData::Win(int money) {
   }
 }
 
-void CProgressData::Lose(int money) {
-  earned_money_ = (int)std::ceil(money);
+void CProgressData::Lose(double money) {
+  earned_money_ = std::ceil(money);
   data_.money += earned_money_;
   if (!is_endless_)
     data_.last_stage = (std::min)(
@@ -79,8 +79,8 @@ void CProgressData::Lose(int money) {
   }
 }
 
-void CProgressData::Retire(int money) {
-  earned_money_ = (int)std::ceil(money);
+void CProgressData::Retire(double money) {
+  earned_money_ = std::ceil(money);
   data_.money += earned_money_;
   if (!is_endless_)
     data_.last_stage = (std::min)(

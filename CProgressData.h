@@ -56,7 +56,7 @@ class CProgressData : public Singleton<CProgressData> {
 
   int GetPlayerLevel() { return data_.player_level_; }
 
-  int GetMoney() { return data_.money; }
+  double GetMoney() { return data_.money; }
 
   void SetWindowX2(int v) {  // 0:Šg‘å–³‚µ 1:2”{Šg‘å
     if (v)
@@ -80,18 +80,18 @@ class CProgressData : public Singleton<CProgressData> {
 
   bool GetEndless() { return is_endless_; }
 
-  void Upgrade(int money) {
+  void Upgrade(double money) {
     data_.money -= money;
     data_.player_level_++;
   }
 
   void Degrade() { data_.player_level_--; }
 
-  void Win(int money);     //Ÿ‚Á‚½‚ÌŠl“¾ˆ—
-  void Lose(int money);    //•‰‚¯‚½‚ÌŠl“¾ˆ—
-  void Retire(int money);  //’ú‚ß‚½‚ÌŠl“¾ˆ—
+  void Win(double money);     //Ÿ‚Á‚½‚ÌŠl“¾ˆ—
+  void Lose(double money);    //•‰‚¯‚½‚ÌŠl“¾ˆ—
+  void Retire(double money);  //’ú‚ß‚½‚ÌŠl“¾ˆ—
 
-  int GetEarnedMoney() { return earned_money_; }
+  double GetEarnedMoney() { return earned_money_; }
   int GetStageMoney() { return stage_money_; }
 
  private:
@@ -99,7 +99,7 @@ class CProgressData : public Singleton<CProgressData> {
 
   int current_stage_;
   int max_stage_;
-  int earned_money_;
+  double earned_money_;
   int stage_money_;
   int before_stage_;
 
@@ -111,7 +111,7 @@ class CProgressData : public Singleton<CProgressData> {
 
   struct ProgressData {
     int last_stage;  //
-    int money;
+    double money;
     int player_level_;
     int is_option_flags;  //‰ºˆÊ1bit:Šg‘å—¦(0=x1_,1=x2_),2bit:‰¹Œ¹(0=PCM, 1=FM)
     int endless_last;  // 10‚ğ‚©‚¯‚é‚Æn‚ß‚é‚×‚«ƒXƒe[ƒW‚É‚È‚é

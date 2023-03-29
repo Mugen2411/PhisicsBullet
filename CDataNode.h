@@ -78,6 +78,13 @@ class CDataNode {
     }
     return contents.data.dblData;
   }
+  void SetDouble(double value) {
+    if (contents.tag != Type::kDbl) {
+      MessageBox(NULL, "GetInt used in not int object.", "CDataNode", MB_OK);
+      abort();
+    }
+    contents.data.dblData = value;
+  }
   std::string GetString() const {
     if (contents.tag != Type::kStr) {
       MessageBox(NULL, "GetString used in not string object.", "CDataNode",

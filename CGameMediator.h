@@ -35,7 +35,7 @@ class CGameMediator : public Scene_Abstract {
                               int distance);
   std::vector<CVector> GetTargetByDistance(CVector start, int distance);
   std::weak_ptr<CMover> GetNearestMover(int ID, CVector p);
-  void GetMoney(int value);
+  void GetMoney(double value);
 
   void UpdateDresschangeMenu();
   void RenderDresschangeMenu() const;
@@ -68,7 +68,7 @@ class CGameMediator : public Scene_Abstract {
 
   bool is_initialized_;
 
-  int reserve_money_ = 0;  //‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
+  double reserve_money_ = 0;  //‘Þ‹p‚Å“¾‚ç‚ê‚é—\’è‚Ì‹à
 
   CTextDrawer::Text retire_text_[2];
   CTextDrawer::Text wave_number_;

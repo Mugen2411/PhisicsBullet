@@ -1,5 +1,7 @@
 #include "Scene_Gameover.h"
 
+#include <format>
+
 #include "CAnchor.h"
 #include "CControllerFactory.h"
 #include "CImageManager.h"
@@ -9,12 +11,20 @@ Scene_Gameover::Scene_Gameover(SceneManager* ScnMng)
     : Scene_Abstract(ScnMng), cnt_(0) {
   input_ = CControllerFactory::GetIns().GetController();
   text_[0] = CTextDrawer::Text("GAME OVER ...", CVector(320 - 6.5 * 30, 32.0),
-                              0xFFFFFF, 0xFF0000, 2);
+                               0xFFFFFF, 0xFF0000, 2);
   text_[1] =
-      CTextDrawer::Text("", CVector(320 - 36 * 7, 180), 0xFFFFFF, 0xCFCF00, 1);
-  text_[1].text_ = std::string("コインを") +
-                 std::to_string(CProgressData::GetIns().GetEarnedMoney()) +
-                 std::string("枚獲得しました。");
+      CTextDrawer::Text("", CVector(320 - 36 * 8, 180), 0xFFFFFF, 0xCFCF00, 1);
+  if (log10(CProgressData::GetIns().GetEarnedMoney()) <= 8) {
+    text_[1].text_ =
+        std::string("コインを") +
+        std::format("{:.0f}", (CProgressData::GetIns().GetEarnedMoney())) +
+        std::string("枚獲得しました。");
+  } else {
+    text_[1].text_ =
+        std::string("コインを") +
+        std::format("{:4.3e}", (CProgressData::GetIns().GetEarnedMoney())) +
+        std::string("枚獲得しました。");
+  }
   text_[2] =
       CTextDrawer::Text("SPACEキーを押すとタイトル画面に戻ります。",
                         CVector(320 - 10 * 12, 320), 0xFFFFFF, 0x00CFCF, 0);

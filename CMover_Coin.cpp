@@ -10,7 +10,7 @@ const double CMover_Coin::kMass[11] = {36.0, 25.0, 25.0, 16.0, 16.0, 9.0, 9.0, 4
 CMover_Coin::CMover_Coin(CVector position, Type type)
     : CMover(
           kCoin, position, kSize[type],
-          CVector(Constant::kPI2 * GetRand(64) / 64) * (GetRand(40) + 1) * 0.1,
+          CVector(Constant::kPI2 * GetRand(128) / 128) * (GetRand(80) + 1) * 0.05,
           kMass[type], COF(0.08, 0.2, 0.05, 0.8, 0.1), 0),
       type_(type),
       z(0.0),

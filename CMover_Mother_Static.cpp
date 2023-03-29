@@ -23,7 +23,7 @@ int CMover_Mother_Static::Update() {
       }
       break;
     case 1:
-      if (cnt_ == 10) {
+      if (cnt_ == 5) {
         bool droped = false;
         for (int i = 0; i < descList_.size(); i++) {
           if (stateList_[i].amount > descList_[i].amount) continue;

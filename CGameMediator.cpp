@@ -178,7 +178,7 @@ void CGameMediator::Update() {
     return;
   }
 #endif
-  if (player_->GetHP() < 0) {
+  if (!is_enemy_vanished && player_->GetHP() < 0) {
     CSoundManager::GetIns().Find("bgm")->Stop();
     CSoundManager::GetIns().Find("player_dead")->Play(CSound::PlayType::kBack);
     CProgressData::GetIns().Lose(reserve_money_);

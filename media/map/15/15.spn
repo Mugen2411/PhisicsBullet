@@ -5,7 +5,7 @@ spawn{
     0{
         gid:"M_Static"
         time:120
-        wait:960
+        wait:1920
         amount:1
         child{
             0{
@@ -22,7 +22,7 @@ spawn{
     2{
         gid:"M_Static"
         time:1440
-        wait:1320
+        wait:1600
         amount:1
         child{
             0{
@@ -39,7 +39,7 @@ spawn{
     4{
         gid:"M_Static"
         time:2400
-        wait:1600
+        wait:1320
         amount:1
         child{
             0{
@@ -56,7 +56,7 @@ spawn{
     6{
         gid:"M_Static"
         time:3600
-        wait:1920
+        wait:960
         amount:1
         child{
             0{

@@ -185,11 +185,11 @@ image{
     }
     system_coin{
         path:"system/game/coin.png"
-        num:25
+        num:55
         xnum:5
-        ynum:5
-        w:24
-        h:24
+        ynum:11
+        w:32
+        h:32
     }
     effect_coindelete{
         path:"system/game/coin_delete.png"

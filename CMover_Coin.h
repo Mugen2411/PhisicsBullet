@@ -1,17 +1,29 @@
 #pragma once
 #include "CEffectParent.h"
+#include "CEffect_CoinDelete.h"
 #include "CEffect_MoneyNumber.h"
 #include "CMover.h"
 #include "CMover_Player.h"
 #include "CSoundManager.h"
-#include "CEffect_CoinDelete.h"
 
 class CMover_Coin : public CMover {
  public:
-  enum Type { kBronze1, kSilver10, kGold100, kPlatinum1000, kRainbow10000 };
+  enum Type {
+    kBronze1,
+    kBronze5,
+    kSilver10,
+    kSilver50,
+    kGold100,
+    kGold500,
+    kPlatinum1000,
+    kPlatinum5000,
+    kRainbow10000,
+    kRainbow50000,
+    kBlack100000
+  };
   CMover_Coin(CVector position, Type type);
 
-  static const int kValue[6];
+  static const int kValue[12];
 
   int Update();
   void Render() const;
@@ -40,8 +52,8 @@ class CMover_Coin : public CMover {
   void FieldDispatch(CField* f) {}
 
  protected:
-  static const double kSize[5];
-  static const double kMass[5];
+  static const double kSize[11];
+  static const double kMass[11];
   Type type_;
   double animation_cnt_ = 0.0;
   double z;

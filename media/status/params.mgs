@@ -372,7 +372,7 @@ costume{
         shotRt:24
         stDur:30
         spd:4.0
-        acl:2.4
+        acl:2.8
         mass:18
         atrd{
             base:0.9

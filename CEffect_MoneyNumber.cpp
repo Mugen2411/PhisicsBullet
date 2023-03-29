@@ -21,11 +21,17 @@ void CEffect_MoneyNumber::Render() const {
   for (int i = 0; i < l; i++) {
     CImageManager::GetIns()
         .Find("effect_number3")
-        ->DrawRota(x, (int)position_.y_, 0.0, 1.0, Constant::kPriorityNumber, n % 10);
+        ->DrawRotaFwithBlend(x, (int)position_.y_, 0.0, 1.0, 0xFFFFFF,
+                             CImageManager::BlendMode::kAlpha,
+                             0xFF - (int)max(0, (10 - cnt_) / 10.0f * 0xFF),
+                             Constant::kPriorityNumber, n % 10);
     x -= 10;
     n /= 10;
   }
   CImageManager::GetIns()
       .Find("effect_number3")
-      ->DrawRota(x, (int)position_.y_, 0.0, 1.0, Constant::kPriorityNumber, 10);
+      ->DrawRotaFwithBlend(x, (int)position_.y_, 0.0, 1.0, 0xFFFFFF,
+                           CImageManager::BlendMode::kAlpha,
+                           0xFF - (int)max(0, (10 - cnt_) / 10.0f * 0xFF),
+                           Constant::kPriorityNumber, 10);
 }

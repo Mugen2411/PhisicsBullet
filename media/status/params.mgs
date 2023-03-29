@@ -368,9 +368,9 @@ costume{
     C_Swimsuit{
         graph:"swimsuit/komuk.png"
         animSpd:0.1
-        maxChg:60
+        maxChg:50
         shotRt:24
-        stDur:30
+        stDur:25
         spd:4.0
         acl:2.8
         mass:18

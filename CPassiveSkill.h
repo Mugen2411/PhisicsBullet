@@ -92,7 +92,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   const int charge_per_level_ = 2;
   const int speed_per_level_ = 2;
   const int maxHP_per_level_ = 10;
-  const int enemyAmount_per_level_ = 20;
+  const int enemyAmount_per_level_ = 10;
 
   std::random_device rnd_;
   std::mt19937 engine_;

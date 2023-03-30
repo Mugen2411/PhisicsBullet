@@ -33,5 +33,5 @@ void CEffect_CoinDelete::Render() const {
                            0xFFFFFF, CImageManager::BlendMode::kAdd, 0xFF,
                            Constant::kPriorityEffect + 1, (uint32_t)(cnt_) + 4);
   CEffect_Bright::GetIns().Register(
-      CEffect_Bright::BrightDesc{position_, size_ * 32.0, 96});
+      CEffect_Bright::BrightDesc{position_, size_ * 32.0, 48});
 }

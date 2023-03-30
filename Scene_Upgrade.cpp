@@ -57,17 +57,27 @@ void Scene_Upgrade::Update() {
     text_[2].text_ =
         std::string("必要コイン：") +
         std::format("{:4.3e}", CStatus::GetMoneyToUpgrade(
-                                  CProgressData::GetIns().GetPlayerLevel()));
+                                   CProgressData::GetIns().GetPlayerLevel()));
   }
-    
-  text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
-                   std::to_string(now_.level_) + std::string(" HP:") +
-                   FloatToString(now_.maxHP_) + std::string(" ATK:") +
-                   FloatToString(now_.atk_);
-  text_[4].text_ = std::string("強化後ステータス→") + std::string("Lv.") +
-                   std::to_string(next_.level_) + std::string(" HP:") +
-                   FloatToString(next_.maxHP_) + std::string(" ATK:") +
-                   FloatToString(next_.atk_);
+  if (log10(now_.maxHP_) >= 8 || log10(now_.atk_) >= 8) {
+    text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
+                     std::to_string(now_.level_) + std::string(" HP:") +
+                     std::format("{:4.3e}", now_.maxHP_) +
+                     std::string(" ATK:") + std::format("{:4.3e}", now_.atk_);
+    text_[4].text_ = std::string("強化後ステータス→") + std::string("Lv.") +
+                     std::to_string(next_.level_) + std::string(" HP:") +
+                     std::format("{:4.3e}", next_.maxHP_) +
+                     std::string(" ATK:") + std::format("{:4.3e}", next_.atk_);
+  } else {
+    text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
+                     std::to_string(now_.level_) + std::string(" HP:") +
+                     FloatToString(now_.maxHP_) + std::string(" ATK:") +
+                     FloatToString(now_.atk_);
+    text_[4].text_ = std::string("強化後ステータス→") + std::string("Lv.") +
+                     std::to_string(next_.level_) + std::string(" HP:") +
+                     FloatToString(next_.maxHP_) + std::string(" ATK:") +
+                     FloatToString(next_.atk_);
+  }
 
 #ifndef _DEBUG
   if (input_.lock()->Select() == 1) {

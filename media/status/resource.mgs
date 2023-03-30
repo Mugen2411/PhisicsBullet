@@ -226,16 +226,16 @@ image{
     }
     effect_number3{
         path:"system/font/num3.png"
-        num:11
-        xnum:11
+        num:13
+        xnum:13
         ynum:1
         w:10
         h:10
     }
     effect_number4{
         path:"system/font/num4.png"
-        num:11
-        xnum:11
+        num:13
+        xnum:13
         ynum:1
         w:16
         h:32

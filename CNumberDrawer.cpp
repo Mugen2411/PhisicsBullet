@@ -41,7 +41,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
                                                x_num_ * type);
     if (style == 2 || style == 3) {
       x -= width;
-      CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 10);
+      CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 12);
     }
     return;
   }
@@ -65,7 +65,34 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
     return;
   }
   int l = (int)std::log10(num) + 1;
-  
+  if (l >= 8) {
+    num /= pow(10, l - 4);
+    int l2 = (int)std::log10(l) + 1;
+    x += (4 + 2 + l2) * margin;
+    --l;
+    for (int i = 0; i < l2; i++) {
+      CImageManager::GetIns().Find(id)->DrawRota(
+          x, y, 0, 1, priority, x_num_ * type + (int)(std::fmod(l, 10.0)));
+      x -= width;
+      l /= 10;
+    }
+    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0, 1, priority,
+                                               x_num_ * type + 11);
+    x -= width;
+    for (int i = 0; i < 4; i++) {
+      if (i == 3) {
+        CImageManager::GetIns().Find(id)->DrawRota(x, y, 0, 1, priority,
+                                                   x_num_ * type + 10);
+        x -= width;
+      }
+      CImageManager::GetIns().Find(id)->DrawRota(
+          x, y, 0, 1, priority, x_num_ * type + (int)(std::fmod(num, 10.0)));
+      x -= width;
+      num /= 10;
+    }
+    return;
+  }
+
   if (style != 2 && style != 3) {
     x += (l + 2) * margin;
     num *= 10;
@@ -77,7 +104,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
     x -= width;
     num /= 10;
   } else {
-    x += (l) * margin;
+    x += (l)*margin;
   }
   for (int i = 0; i < l; i++) {
     CImageManager::GetIns().Find(id)->DrawRota(
@@ -87,7 +114,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
     x -= width;
   }
   if (style == 2 || style == 3)
-    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 10);
+    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 12);
 }
 
 void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
@@ -125,11 +152,38 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
                                                x_num_ * type);
     if (style == 2 || style == 3) {
       x -= width;
-      CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 10);
+      CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 12);
     }
     return;
   }
   int l = (int)std::log10(num) + 1;
+  if (l >= 8) {
+    num /= (int)pow(10, l - 4);
+    int l2 = (int)std::log10(l) + 1;
+    x += (4 + 2 + l2) * margin;
+    --l;
+    for (int i = 0; i < l2; i++) {
+      CImageManager::GetIns().Find(id)->DrawRota(
+          x, y, 0, 1, priority, x_num_ * type + (int)(std::fmod(l, 10.0)));
+      x -= width;
+      l /= 10;
+    }
+    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0, 1, priority,
+                                               x_num_ * type + 11);
+    x -= width;
+    for (int i = 0; i < 4; i++) {
+      if (i == 3) {
+        CImageManager::GetIns().Find(id)->DrawRota(x, y, 0, 1, priority,
+                                                   x_num_ * type + 10);
+        x -= width;
+      }
+      CImageManager::GetIns().Find(id)->DrawRota(
+          x, y, 0, 1, priority, x_num_ * type + (int)(std::fmod(num, 10.0)));
+      x -= width;
+      num /= 10;
+    }
+    return;
+  }
   x += l * margin;
   for (int i = 0; i < l; i++) {
     CImageManager::GetIns().Find(id)->DrawRota(x, y, 0, 1, priority,
@@ -138,5 +192,5 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
     x -= width;
   }
   if (style == 2 || style == 3)
-    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 10);
+    CImageManager::GetIns().Find(id)->DrawRota(x, y, 0.0, 1.0, priority, 12);
 }

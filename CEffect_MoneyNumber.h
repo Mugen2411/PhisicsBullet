@@ -1,5 +1,7 @@
 #pragma once
 #include "CEffect.h"
+#include "CNumberDrawer.h"
+
 class CEffect_MoneyNumber : public CEffect {
  public:
   CEffect_MoneyNumber(CVector position_, double num);
@@ -11,4 +13,5 @@ class CEffect_MoneyNumber : public CEffect {
   double num_;
   double dy_;
   int cnt_;
+  CNumberDrawer cnd_;
 };

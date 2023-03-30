@@ -419,11 +419,12 @@ costume{
         maxChg:120
         shotRt:2
         stDur:2
-        spd:2.5
-        acl:1.5
+        spd:2.2
+        acl:1.2
         mass:30
         atrd{
             base:1.0
+            none:0.75
             fire:3.0
             thunder:0.7
             wind:0.5
@@ -436,6 +437,32 @@ costume{
             wnd:0.4
         }
         detail:"耐火性に優れた消防士の制服。\nチャージした時間だけ連射することが出来る。\n水属性が弱点の敵に大ダメージだ。"
+    }
+    C_Burner{
+        graph:"burner/komuk.png"
+        animSpd:0.1
+        maxChg:120
+        shotRt:2
+        stDur:2
+        spd:2.2
+        acl:1.2
+        mass:30
+        atrd{
+            base:1.0
+            none:0.75
+            fire:1.5
+            thunder:0.7
+            aqua:0.5
+            ice:2.0
+        }
+        cof{
+            frc:0.7
+            wtr:0.92
+            air:0.08
+            ref:0.0
+            wnd:0.4
+        }
+        detail:"火炎放射器を装備した破壊兵装。\nチャージした時間だけ連射することが出来る。\n炎属性が弱点の敵に大ダメージだ。"
     }
 }
 shot{
@@ -604,19 +631,35 @@ shot{
         effc:0xFFCF00
     }
     S_Firefighter_Water{
-        mass:3
+        mass:1
         size:16
         atk{
             base:0.0
-            aqua:30.0
+            aqua:25.0
         }
         cof{
             frc:0.01
             wtr:0.02
-            air:0.03
+            air:0.04
             ref:0.0
-            wnd:0.1
+            wnd:0.2
         }
         effc:0x00CFFF
+    }
+    S_Burner_Flame{
+        mass:1
+        size:16
+        atk{
+            base:0.0
+            fire:25.0
+        }
+        cof{
+            frc:0.01
+            wtr:0.02
+            air:0.04
+            ref:0.0
+            wnd:0.2
+        }
+        effc:0xFF7F00
     }
 }

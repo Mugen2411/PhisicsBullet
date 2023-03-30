@@ -1,4 +1,5 @@
 #include "CMover_Bullet_Flame.h"
+#include "CEffect_Bright.h"
 
 CMover_Bullet_Flame::CMover_Bullet_Flame(CStatus baseparams, CVector position,
                                          double angle, double speed)
@@ -22,4 +23,6 @@ void CMover_Bullet_Flame::Render() const {
                            velocity_.GetAngle() + base_angle_, 1.0, 0xFFFFFF,
                            CImageManager::BlendMode::kAdd, 0xFF,
                            Constant::kPriorityBullet, (uint32_t)animation_cnt_);
+  CEffect_Bright::GetIns().Register(
+      CEffect_Bright::BrightDesc(position_, 64.0, 96));
 }

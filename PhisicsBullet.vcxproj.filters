@@ -154,6 +154,12 @@
     <Filter Include="ソース ファイル\Mover\Enemy\Mother">
       <UniqueIdentifier>{9dcf4d09-d208-4a3e-95c3-44cadf23b581}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Shot\Burner">
+      <UniqueIdentifier>{fdf072ff-47a4-4365-a488-acb1236f7938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Shot\Burner">
+      <UniqueIdentifier>{cbacc7ad-3aa7-4991-947f-1071d7607b2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -520,6 +526,12 @@
       <Filter>ソース ファイル\Mover\Shot\Archer</Filter>
     </ClCompile>
     <ClCompile Include="CCostume_Archer_Thunder.cpp">
+      <Filter>ソース ファイル\Costume</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Shot_Burner_Flame.cpp">
+      <Filter>ソース ファイル\Mover\Shot\Burner</Filter>
+    </ClCompile>
+    <ClCompile Include="CCostume_Burner.cpp">
       <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
   </ItemGroup>
@@ -909,6 +921,12 @@
       <Filter>ヘッダー ファイル\Mover\Shot\Archer</Filter>
     </ClInclude>
     <ClInclude Include="CCostume_Archer_Thunder.h">
+      <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Shot_Burner_Flame.h">
+      <Filter>ヘッダー ファイル\Mover\Shot\Burner</Filter>
+    </ClInclude>
+    <ClInclude Include="CCostume_Burner.h">
       <Filter>ヘッダー ファイル\Costume</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "CCostume_Uniform.h"
 #include "CCostume_Chinese.h"
 #include "CCostume_Firefighter.h"
+#include "CCostume_Burner.h"
 
 void CCostumeFactory::Register(CCostumeBase* f) {
   list_.push_back(std::shared_ptr<CCostumeBase>(f));
@@ -22,6 +23,7 @@ CCostumeFactory::CCostumeFactory() {
   Register(new CCostume_Swimsuit("C_Swimsuit"));
   Register(new CCostume_Chinese("C_Chinese"));
   Register(new CCostume_Firefighter("C_Firefighter"));
+  Register(new CCostume_Burner("C_Burner"));
 }
 
 CCostumeBase* CCostumeFactory::Create(std::string gid_) {

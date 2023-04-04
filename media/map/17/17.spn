@@ -1,0 +1,56 @@
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:30
+        amount:6
+    }
+    1{
+        gid:"E_Budcorn"
+        time:480
+        amount:8
+    }
+    2{
+        gid:"M_Static"
+        time:960
+        wait:960
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:6
+            }
+        }
+    }
+    3{
+        gid:"E_Yadokari"
+        time:2500
+        amount:4
+    }
+    4{
+        gid:"M_Static"
+        time:4000
+        wait:1280
+        amount:1
+        child{
+            0{
+                gid:"E_Budcorn"
+                amount:4
+            }
+        }
+    }
+    5{
+        gid:"M_Static"
+        time:7500
+        wait:1920
+        amount:1
+        child{
+            0{
+                gid:"E_Yadokari"
+                amount:3
+            }
+        }
+    }
+}

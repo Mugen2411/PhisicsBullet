@@ -26,7 +26,7 @@ int CMover_Mother_Static::Update() {
       if (cnt_ == 5) {
         bool droped = false;
         for (int i = 0; i < descList_.size(); i++) {
-          if (stateList_[i].amount > descList_[i].amount) continue;
+          if (stateList_[i].amount >= descList_[i].amount) continue;
           stateList_[i].amount++;
           med_->RegisterMover(CEF_.Create(
               descList_[i].gid, position_ + CVector(Constant::kPI2 * GetRand(64) / 64.0) * 32.0,

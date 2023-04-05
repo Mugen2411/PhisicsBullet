@@ -84,7 +84,7 @@ int CMover_Enemy_FlameSerpent::Update() {
 void CMover_Enemy_FlameSerpent::Render() const {
   if (state_ < 0) {
     CImageManager::GetIns()
-        .Find("enemy_bud_intro")
+        .Find("enemy_flameserpent_intro")
         ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityEnemy,
                    (int)(animation_cnt_));
     return;

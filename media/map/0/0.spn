@@ -3,7 +3,7 @@ def{
 }
 spawn{
     0{
-        gid:"E_Budcorn"
+        gid:"E_BudcornFrost"
         time:60
         amount:1
     }

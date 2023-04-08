@@ -295,8 +295,22 @@ image{
         w:32
         h:32
     }
+    enemy_cornfrost{
+        path:"enemy/bud/frost.png"
+        num:16
+        xnum:4
+        ynum:4
+        w:32
+        h:32
+    }
     bullet_corn{
         path:"enemy/bud/corn.png"
+        num:1
+        w:16
+        h:16
+    }
+    bullet_cornfrost{
+        path:"enemy/bud/corn_frost.png"
         num:1
         w:16
         h:16

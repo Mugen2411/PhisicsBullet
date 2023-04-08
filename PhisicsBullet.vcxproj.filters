@@ -534,6 +534,12 @@
     <ClCompile Include="CCostume_Burner.cpp">
       <Filter>ソース ファイル\Costume</Filter>
     </ClCompile>
+    <ClCompile Include="CMover_Enemy_CornFrosty.cpp">
+      <Filter>ソース ファイル\Mover\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Bullet_CornFrost.cpp">
+      <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenuSelecter.h">
@@ -928,6 +934,12 @@
     </ClInclude>
     <ClInclude Include="CCostume_Burner.h">
       <Filter>ヘッダー ファイル\Costume</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Enemy_CornFrosty.h">
+      <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Bullet_CornFrost.h">
+      <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

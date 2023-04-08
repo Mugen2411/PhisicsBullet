@@ -34,5 +34,5 @@ void CMover_Shot_Burner_Flame::Render() const {
                            CImageManager::BlendMode::kAdd, 0xFF,
                            Constant::kPriorityShot, (uint32_t)animation_cnt_);
   CEffect_Bright::GetIns().Register(
-      CEffect_Bright::BrightDesc(position_, 64.0, 96));
+      CEffect_Bright::BrightDesc(position_, 128.0, 48));
 }

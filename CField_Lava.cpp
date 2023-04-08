@@ -20,7 +20,7 @@ void CField_Lava::Update() {
     damage_ = CAttribute(0.0);
   } else {
     cofs_.SetWaterResCF(0.9).SetFrictionCF(0.2);
-    damage_ = CAttribute(0.0).None(0.0).Fire(15.0);
+    damage_ = CAttribute(0.0).None(0.0).Fire(25.0);
   }
 }
 

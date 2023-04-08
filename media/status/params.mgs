@@ -7,9 +7,10 @@ enemy{
         }
         atrd{
             base:1.0
-            fire:0.4
+            fire:0.3
             flower:2.0
             aqua:0.6
+            ice:0.6
         }
         mny:10
         effc:0xFFFFFF
@@ -18,6 +19,29 @@ enemy{
         cof{
             frc:0.8
             wtr:0.99
+            air:0.02
+            ref:0.1
+            wnd:0.1
+        }
+    }
+    E_BudcornFrost{
+        mass:20
+        base{
+            atk:0.5
+            hp:0.8
+        }
+        atrd{
+            base:1.0
+            fire:0.4
+            ice:-0.8
+        }
+        mny:10
+        effc:0x00FFFF
+        acl:3.0
+        spd:1.4
+        cof{
+            frc:0.8
+            wtr:0.3
             air:0.02
             ref:0.1
             wnd:0.1
@@ -205,6 +229,23 @@ bullet{
         }
         effc:0xFFFF00
     }
+    B_CornFrost{
+        mass:1
+        size:8
+        atk{
+            base:0.0
+            none:50.0
+            ice:50.0
+        }
+        cof{
+            frc:0.06
+            wtr:0.1
+            air:0.03
+            ref:0.1
+            wnd:0.1
+        }
+        effc:0x00FFFF
+    }
     B_WaterSplash{
         mass:4
         size:12
@@ -285,7 +326,6 @@ costume{
         mass:20
         atrd{
             base:1.0
-            aqua:0.98
         }
         cof{
             frc:0.8

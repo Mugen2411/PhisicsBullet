@@ -22,8 +22,9 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     return has_[kEnemyLevelUp - 1] * (has_[kEnemyLevelUp]) / 2;
   }
   int GetEnemyAmount(int baseAmount) {
-    int add = has_[kEnemyAmountUp];
-    return baseAmount + add;
+    int add = has_[kEnemyAmountUp] == 5;
+    double mult = 1.0 + has_[kEnemyAmountUp] * kEnemyAmountUp * 0.01;
+    return (int)round(baseAmount*mult) + add;
   }
   void Reset() {
     for (auto& i : has_) {

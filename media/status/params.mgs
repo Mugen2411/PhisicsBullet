@@ -27,7 +27,7 @@ enemy{
     E_BudcornFrost{
         mass:20
         base{
-            atk:0.5
+            atk:0.6
             hp:0.8
         }
         atrd{
@@ -35,7 +35,7 @@ enemy{
             fire:0.4
             ice:-0.8
         }
-        mny:10
+        mny:12
         effc:0x00FFFF
         acl:3.0
         spd:1.4
@@ -238,9 +238,9 @@ bullet{
             ice:50.0
         }
         cof{
-            frc:0.06
+            frc:0.07
             wtr:0.1
-            air:0.03
+            air:0.04
             ref:0.1
             wnd:0.1
         }

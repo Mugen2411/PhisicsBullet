@@ -1,24 +1,24 @@
 def{
-    bgm:"farm.ogg"
+    bgm:"cave.ogg"
 }
 spawn{
     0{
-        gid:"E_BudcornFrost"
+        gid:"E_Budcorn"
         time:60
-        amount:1
+        amount:5
     }
     1{
-        gid:"E_Budcorn"
+        gid:"E_BudcornFrost"
         time:360
         amount:2
     }
     2{
-        gid:"E_Budcorn"
+        gid:"E_BudcornFrost"
         time:1350
         amount:3
     }
     3{
-        gid:"E_Budcorn"
+        gid:"E_BudcornFrost"
         time:3600
         amount:5
     }

@@ -1,0 +1,26 @@
+def{
+    bgm:"cave.ogg"
+    bright:-0.4
+}
+spawn{
+    0{
+        gid:"E_Azarashi"
+        time:120
+        amount:2
+    }
+    1{
+        gid:"E_Azarashi"
+        time:720
+        amount:1
+    }
+    2{
+        gid:"E_Azarashi"
+        time:1320
+        amount:2
+    }
+    3{
+        gid:"E_Azarashi"
+        time:1920
+        amount:4
+    }
+}

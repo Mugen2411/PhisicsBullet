@@ -50,8 +50,7 @@ class CProgressData : public Singleton<CProgressData> {
       before_stage_ = cur;
     }
     return std::string("media/map/") + std::to_string(cur % max_stage_) +
-           std::string("/") + std::to_string(cur % max_stage_) +
-           std::string(".map");
+           std::string("/map.mgm");
   }
 
   int GetPlayerLevel() { return data_.player_level_; }

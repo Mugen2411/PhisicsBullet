@@ -1,26 +1,26 @@
 def{
     bgm:"cave.ogg"
-    bright:-0.2
+    bright:-0.4
 }
 spawn{
     0{
-        gid:"E_Azarashi"
+        gid:"E_BudcornFrost"
         time:120
-        amount:2
+        amount:3
     }
     1{
-        gid:"E_Azarashi"
+        gid:"E_BudcornFrost"
         time:720
-        amount:1
+        amount:4
     }
     2{
-        gid:"E_Azarashi"
+        gid:"E_BudcornFrost"
         time:1320
-        amount:2
+        amount:5
     }
     3{
         gid:"E_Azarashi"
         time:1920
-        amount:4
+        amount:2
     }
 }

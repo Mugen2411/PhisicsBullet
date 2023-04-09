@@ -68,8 +68,8 @@ void CFieldHolder::readStageData(std::list<std::unique_ptr<CEnemySpawner>>& es,
                                  CGameMediator* med, int level,
                                  CVector& playerPos) {
   std::string fn = filepath_;
-  for (int i = 0; i < 3; i++) fn.pop_back();
-  fn += "spn";
+  for (int i = 0; i < 7; i++) fn.pop_back();
+  fn += "spn.mgs";
   CDataLoader::GetIns().Load("stage", fn);
   auto c = CDataLoader::GetIns().Get("stage");
   if (c == nullptr) {

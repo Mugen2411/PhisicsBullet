@@ -1,0 +1,25 @@
+def{
+    bgm:"farm.ogg"
+}
+spawn{
+    0{
+        gid:"E_Budcorn"
+        time:60
+        amount:1
+    }
+    1{
+        gid:"E_Budcorn"
+        time:360
+        amount:2
+    }
+    2{
+        gid:"E_Budcorn"
+        time:1350
+        amount:3
+    }
+    3{
+        gid:"E_Budcorn"
+        time:3600
+        amount:5
+    }
+}

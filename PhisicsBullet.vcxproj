@@ -173,6 +173,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CCoinParent.cpp" />
     <ClCompile Include="CCostume_Archer_Thunder.cpp" />
     <ClCompile Include="CCostume_Burner.cpp" />
     <ClCompile Include="CCostume_Chinese.cpp" />
@@ -303,6 +304,7 @@
   <ItemGroup>
     <ClInclude Include="CAnchor.h" />
     <ClInclude Include="CAttribute.h" />
+    <ClInclude Include="CCoinParent.h" />
     <ClInclude Include="CControllerFactory.h" />
     <ClInclude Include="CCostumeFactory.h" />
     <ClInclude Include="CCostume_Archer_Flame.h" />

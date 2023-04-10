@@ -220,7 +220,7 @@ void CMover_EnemyBase::Drop() {
     for (int v = 0; CMover_Coin::kValue[v] > 0; v++) {
       while (val >= CMover_Coin::kValue[v]) {
         val -= CMover_Coin::kValue[v];
-        med_->RegisterMover(
+        med_->RegisterCoin(
             std::make_shared<CMover_Coin>(position_, (CMover_Coin::Type)v));
       }
     }

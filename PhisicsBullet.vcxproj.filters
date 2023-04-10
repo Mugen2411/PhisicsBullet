@@ -160,6 +160,12 @@
     <Filter Include="ヘッダー ファイル\Mover\Shot\Burner">
       <UniqueIdentifier>{cbacc7ad-3aa7-4991-947f-1071d7607b2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Mover\Coin">
+      <UniqueIdentifier>{92763752-843f-4da2-b226-d7ead68403ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mover\Coin">
+      <UniqueIdentifier>{09401fd5-3685-43ea-a846-35da893fc500}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -504,9 +510,6 @@
     <ClCompile Include="CDataLoader.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
-    <ClCompile Include="CMover_Coin.cpp">
-      <Filter>ソース ファイル\Mover</Filter>
-    </ClCompile>
     <ClCompile Include="CMover_Enemy_Azarashi.cpp">
       <Filter>ソース ファイル\Mover\Enemy</Filter>
     </ClCompile>
@@ -539,6 +542,12 @@
     </ClCompile>
     <ClCompile Include="CMover_Bullet_CornFrost.cpp">
       <Filter>ソース ファイル\Mover\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CMover_Coin.cpp">
+      <Filter>ソース ファイル\Mover\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="CCoinParent.cpp">
+      <Filter>ソース ファイル\Mover\Coin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -902,9 +911,6 @@
     <ClInclude Include="CDataLoader.h">
       <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
-    <ClInclude Include="CMover_Coin.h">
-      <Filter>ヘッダー ファイル\Mover</Filter>
-    </ClInclude>
     <ClInclude Include="CMover_Enemy_Azarashi.h">
       <Filter>ヘッダー ファイル\Mover\Enemy</Filter>
     </ClInclude>
@@ -940,6 +946,12 @@
     </ClInclude>
     <ClInclude Include="CMover_Bullet_CornFrost.h">
       <Filter>ヘッダー ファイル\Mover\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CMover_Coin.h">
+      <Filter>ヘッダー ファイル\Mover\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="CCoinParent.h">
+      <Filter>ヘッダー ファイル\Mover\Coin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

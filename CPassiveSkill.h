@@ -30,6 +30,15 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     for (auto& i : has_) {
       i = 0;
     }
+    /* 
+    has_[kEnemyAmountUp] = 5;
+    has_[kMoney] = 5;
+    has_[kAtkAll] = 5;
+    has_[kAtkFire] = 5;
+    has_[kAtkThunder] = 5;
+    has_[kHeal] = 5;
+    has_[kMaxHP] = 5;
+    */
   }
 
   std::vector<int> GetRandomList();

@@ -11,6 +11,7 @@
 #include "Scene_Abstract.h"
 
 class CMoverParent;
+class CCoinParent;
 class CFieldParent;
 class CPowerParent;
 class CPower;
@@ -27,6 +28,7 @@ class CGameMediator : public Scene_Abstract {
   virtual void CreateParts();
 
   void RegisterMover(std::shared_ptr<CMover> m);
+  void RegisterCoin(std::shared_ptr<CMover> m);
   void RegisterPower(std::shared_ptr<CPower> p);
   void ApplyForceToMover(CMover *);
   bool HitToMover(CMover *);
@@ -51,6 +53,7 @@ class CGameMediator : public Scene_Abstract {
 
   std::weak_ptr<CSTGInputManager> input_;
   std::unique_ptr<CMoverParent> mover_parent_;
+  std::unique_ptr<CCoinParent> coin_parent_;
   std::unique_ptr<CPowerParent> power_parent_;
   std::shared_ptr<CMover_Player> player_;
   std::unique_ptr<CFieldParent> field_parent_;

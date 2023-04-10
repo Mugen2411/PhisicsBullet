@@ -15,6 +15,7 @@ class CField;
 
 class CMover {
   friend CMoverParent;
+  friend CCoinParent;
 
  public:
   enum MoverID { kPlayer, kEnemy, kShot, kBullet, kCoin };

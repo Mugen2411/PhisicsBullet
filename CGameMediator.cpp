@@ -1,6 +1,7 @@
 #include "CGameMediator.h"
 
 #include "CAnchor.h"
+#include "CCoinParent.h"
 #include "CCostumeFactory.h"
 #include "CEffectParent.h"
 #include "CEffect_Bright.h"
@@ -60,6 +61,7 @@ CGameMediator::~CGameMediator() {}
 
 void CGameMediator::CreateParts() {
   mover_parent_ = std::make_unique<CMoverParent>(this);
+  coin_parent_ = std::make_unique<CCoinParent>(this);
   field_parent_ = std::make_unique<CFieldParent>(
       this, CProgressData::GetIns().GetMapFilepath());
   power_parent_ = std::make_unique<CPowerParent>(this);
@@ -87,6 +89,11 @@ void CGameMediator::CreateParts() {
 void CGameMediator::RegisterMover(std::shared_ptr<CMover> m) {
   m->SetMediator(this);
   mover_parent_->RegisterMover(m);
+}
+
+void CGameMediator::RegisterCoin(std::shared_ptr<CMover> m) {
+  m->SetMediator(this);
+  coin_parent_->RegisterCoin(m);
 }
 
 void CGameMediator::RegisterPower(std::shared_ptr<CPower> p) {
@@ -212,6 +219,8 @@ void CGameMediator::Update() {
   }
   power_parent_->Update();
   mover_parent_->Update();
+  coin_parent_->Hit(player_);
+  coin_parent_->Update();
   field_parent_->Update();
   CEffectParent::Update();
 }
@@ -219,6 +228,7 @@ void CGameMediator::Update() {
 void CGameMediator::Render() const {
   field_parent_->Render();
   mover_parent_->Render();
+  coin_parent_->Render();
   power_parent_->Render();
   CEffectParent::Render();
   CAnchor::GetIns().EnableAbsolute();

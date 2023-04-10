@@ -65,7 +65,7 @@ void CNumberDrawer::Draw(int x, int y, double num, int type, int style,
     return;
   }
   int l = (int)std::log10(num) + 1;
-  if (l >= 8) {
+  if (l >= Constant::kExpoBorder) {
     num /= pow(10, l - 4);
     int l2 = (int)std::log10(l) + 1;
     x += (4 + 2 + l2) * margin;
@@ -157,7 +157,7 @@ void CNumberDrawer::Draw(int x, int y, int num, int type, int style,
     return;
   }
   int l = (int)std::log10(num) + 1;
-  if (l >= 8) {
+  if (l >= Constant::kExpoBorder) {
     num /= (int)pow(10, l - 4);
     int l2 = (int)std::log10(l) + 1;
     x += (4 + 2 + l2) * margin;

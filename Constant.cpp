@@ -7,6 +7,7 @@ float Constant::kFrame = 60.0f;
 float Constant::kPerFrame = 1.0f / Constant::kFrame;
 float Constant::kZeroBorder = 0.01f;
 float Constant::kDynamicBorder = 1.0f;
+int Constant::kExpoBorder = 7;
 
 float Constant::kPI = 3.1415926f;
 float Constant::kPI2 = Constant::kPI * 2;

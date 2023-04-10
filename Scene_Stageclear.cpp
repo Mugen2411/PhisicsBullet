@@ -15,7 +15,8 @@ Scene_Stageclear::Scene_Stageclear(SceneManager* ScnMng)
                                0xFFFFFF, 0xFF0000, 2);
   text_[1] =
       CTextDrawer::Text("", CVector(320 - 36 * 8, 140), 0xFFFFFF, 0xCFCF00, 1);
-  if (log10(CProgressData::GetIns().GetEarnedMoney()) <= 8) {
+  if (log10(CProgressData::GetIns().GetEarnedMoney()) <=
+      Constant::kExpoBorder) {
     text_[1].text_ =
         std::string("ƒRƒCƒ“‚ð") +
         std::format("{:.0f}", (CProgressData::GetIns().GetEarnedMoney())) +

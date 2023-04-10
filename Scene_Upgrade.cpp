@@ -38,7 +38,7 @@ Scene_Upgrade::Scene_Upgrade(SceneManager* ScnMng)
 void Scene_Upgrade::Update() {
   now_ = CStatus(CProgressData::GetIns().GetPlayerLevel());
   next_ = CStatus(CProgressData::GetIns().GetPlayerLevel() + 1);
-  if (log10(CProgressData::GetIns().GetMoney()) <= 8) {
+  if (log10(CProgressData::GetIns().GetMoney()) <= Constant::kExpoBorder) {
     text_[1].text_ =
         std::string("所持コイン：") +
         std::format("{:.0f}", (CProgressData::GetIns().GetMoney()));
@@ -48,7 +48,7 @@ void Scene_Upgrade::Update() {
         std::format("{:4.3e}", (CProgressData::GetIns().GetMoney()));
   }
   if (log10(CStatus::GetMoneyToUpgrade(
-          CProgressData::GetIns().GetPlayerLevel())) <= 8) {
+          CProgressData::GetIns().GetPlayerLevel())) <= Constant::kExpoBorder) {
     text_[2].text_ =
         std::string("必要コイン：") +
         std::format("{:.0f}", CStatus::GetMoneyToUpgrade(
@@ -59,7 +59,8 @@ void Scene_Upgrade::Update() {
         std::format("{:4.3e}", CStatus::GetMoneyToUpgrade(
                                    CProgressData::GetIns().GetPlayerLevel()));
   }
-  if (log10(now_.maxHP_) >= 8 || log10(now_.atk_) >= 8) {
+  if (log10(now_.maxHP_) >= Constant::kExpoBorder ||
+      log10(now_.atk_) >= Constant::kExpoBorder) {
     text_[3].text_ = std::string("現在のステータス→") + std::string("Lv.") +
                      std::to_string(now_.level_) + std::string(" HP:") +
                      std::format("{:4.3e}", now_.maxHP_) +

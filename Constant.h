@@ -10,6 +10,7 @@ class Constant {
   static float kPerFrame;
   static float kZeroBorder;
   static float kDynamicBorder;
+  static int kExpoBorder;
 
   static float kPI;
   static float kPI2;

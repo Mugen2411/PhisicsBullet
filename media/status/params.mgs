@@ -318,11 +318,11 @@ costume{
     C_Uniform{
         graph:"uniform/komuk.png"
         animSpd:0.1
-        maxChg:60
-        shotRt:12
+        maxChg:50
+        shotRt:10
         stDur:20
         spd:3.5
-        acl:2.5
+        acl:2.8
         mass:20
         atrd{
             base:1.0
@@ -339,8 +339,8 @@ costume{
     C_Festa{
         graph:"festa/komuk.png"
         animSpd:0.1
-        maxChg:80
-        shotRt:12
+        maxChg:72
+        shotRt:10
         stDur:10
         spd:3.0
         acl:2.5
@@ -408,7 +408,7 @@ costume{
     C_Swimsuit{
         graph:"swimsuit/komuk.png"
         animSpd:0.1
-        maxChg:50
+        maxChg:45
         shotRt:24
         stDur:25
         spd:4.0

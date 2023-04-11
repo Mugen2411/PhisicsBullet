@@ -30,7 +30,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     for (auto& i : has_) {
       i = 0;
     }
-    /* 
+    /*
     has_[kEnemyAmountUp] = 5;
     has_[kMoney] = 5;
     has_[kAtkAll] = 5;

@@ -41,11 +41,11 @@ void CMover_Coin::Render() const {
   CImageManager::GetIns()
       .Find("system_coin")
       ->DrawRota(position_ + CVector(0.0, z), 0.0f, 1.0f,
-                 Constant::kPriorityCoin, type_ * 5 + (int)animation_cnt_);
+                 Constant::kPriorityCoin-type_, type_ * 5 + (int)animation_cnt_);
   CImageManager::GetIns()
       .Find("system_coin")
       ->DrawRota(position_ + CVector(0.0, 1.0), 0.0f, 1.0f,
-                 Constant::kPriorityCoin - 1, type_ * 5 + 4);
+                 Constant::kPriorityCoin - 26, type_ * 5 + 4);
   CEffect_Bright::GetIns().Register(
-      CEffect_Bright::BrightDesc(position_, size_, 64));
+      CEffect_Bright::BrightDesc(position_, size_*2, 64));
 }

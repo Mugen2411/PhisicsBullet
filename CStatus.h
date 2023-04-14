@@ -19,7 +19,7 @@ class CStatus {
   void Load(const CDataNode* c);
 
   void Calculate();
-  static double GetMoneyToUpgrade(int now) { return std::ceil(200 * std::powl(1.03, now)); }
+  static double GetMoneyToUpgrade(int now) { return std::ceil(200 * std::powl(1.0502, now)); }
   CStatus Test(int TargetLevel);
   CStatus operator-(CStatus v);
 };

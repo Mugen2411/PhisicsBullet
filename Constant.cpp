@@ -19,8 +19,8 @@ int Constant::kScrollMargin = 240;
 
 double Constant::kDoubleInfinity = 1.0e200;
 
-int Constant::kPriorityDecoration = -10;
-int Constant::kPriorityField = -20;
+int Constant::kPriorityDecoration = -40;
+int Constant::kPriorityField = -50;
 int Constant::kPriorityWall = 30;
 int Constant::kPriorityEffect = 40;
 int Constant::kPriorityBullet = 20;

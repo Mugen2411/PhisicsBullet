@@ -17,7 +17,7 @@ CMover_EnemyBase::CMover_EnemyBase(std::string GID, int Level, CVector position)
       accel_(0),
       max_speed_(0),
       direction_(0),
-      animation_cnt_(0),
+      animCnt_(0.0, 0.0),
       base_params_(0, 0, 0),
       attr_def_(0),
       base_money_(0),
@@ -68,7 +68,10 @@ void CMover_EnemyBase::FindTargetByDistance(int distance) {
   route_ = med_->GetRoute(position_, target, attr_def_, 0);
 }
 
-void CMover_EnemyBase::BaseUpdate() { pushed_ = 0; }
+void CMover_EnemyBase::BaseUpdate() {
+  pushed_ = 0;
+  animCnt_.Update();
+}
 
 bool CMover_EnemyBase::BaseRender() const {
   /*for (auto& i : route_) {
@@ -266,6 +269,7 @@ void CMover_EnemyBase::LoadStatus(std::string GID, int Level) {
       CStatus(Level, e->GetChild("base")->GetChild("atk")->GetDouble(),
               e->GetChild("base")->GetChild("hp")->GetDouble());
   max_speed_ = e->GetChild("spd")->GetDouble();
+  animCnt_ = CAnimationCounter(4.0, e->GetChild("animSpd")->GetDouble());
   accel_ = e->GetChild("acl")->GetDouble();
   attr_def_.Load(e->GetChild("atrd"));
   cofs_.Load(e->GetChild("cof"));

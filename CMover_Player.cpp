@@ -16,7 +16,7 @@
 CMover_Player::CMover_Player(CVector position, int level, CCostumeBase* costume)
     : CMover(kPlayer, position, 24.0, CVector(0.0, 0.0), costume->mass_,
              costume->cofs_, 0),
-      animation_cnt_(0.0),
+      animCnt_(0.0, 0.0),
       input_(CControllerFactory::GetIns().GetController()),
       direction_(1),
       charge_(0),
@@ -78,10 +78,9 @@ int CMover_Player::Update() {
   }
   if (input_.lock()->IsChanged() > 0) {
     direction_ = input_.lock()->GetDirection();
-    animation_cnt_ += costume_->animation_speed_;
-    if (animation_cnt_ > 3.0) animation_cnt_ = 0.0;
+    animCnt_.Update();
   } else {
-    animation_cnt_ = 0.0;
+    animCnt_.Reset();
   }
   heal_wait_++;
   if (heal_wait_ == Constant::kFrame) {
@@ -123,7 +122,7 @@ void CMover_Player::Render() const {
   CImageManager::GetIns()
       .Find(costume_->gid_)
       ->DrawRota(position_, 0.0f, 1.0f, 0,
-                 direction_ * 4 + (uint32_t)std::round(animation_cnt_));
+                 direction_ * 4 + (uint32_t)std::floor(animCnt_.Get()));
   auto anchored = CAnchor::GetIns().GetAnchoredPosition(position_);
   CAnchor::GetIns().EnableAbsolute();
   CImageManager::GetIns().Find("HPGuage")->DrawRotaFwithBlend(

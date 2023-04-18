@@ -33,8 +33,6 @@ int CMover_Enemy_CornFrosty::Update() {
         break;
       }
       cnt_++;
-      animation_cnt_ += 0.3;
-      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
       if (cnt_ > 30) {
@@ -56,15 +54,11 @@ int CMover_Enemy_CornFrosty::Update() {
           cnt_ % 90 == 0)
         FindTargetByDistance(4);
       cnt_++;
-      animation_cnt_ += 0.3;
-      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case -1:
-      animation_cnt_ += 0.1;
-      if (animation_cnt_ > 4) {
+      if (animCnt_.Get() > 3.5) {
         state_ = 0;
         FindRoute(3);
-        animation_cnt_ = 0;
         cnt_ = 0;
       }
       break;
@@ -77,14 +71,14 @@ void CMover_Enemy_CornFrosty::Render() const {
     CImageManager::GetIns()
         .Find("enemy_bud_intro")
         ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0,
-                    Constant::kPriorityEnemy, (int)(animation_cnt_));
+                    Constant::kPriorityEnemy, (int)(animCnt_.Get()));
     return;
   }
   CImageManager::GetIns()
       .Find("enemy_cornfrost")
       ->DrawRotaF(position_.x_, position_.y_, 0.0, 1.0,
                   Constant::kPriorityEnemy,
-                  direction_ * 4 + (int)(animation_cnt_));
+                  direction_ * 4 + (int)(animCnt_.Get()));
 }
 
 CMover_EnemyBase* CMover_Enemy_CornFrosty::Clone(CVector position, int Level) {

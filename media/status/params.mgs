@@ -14,6 +14,7 @@ enemy{
         }
         mny:10
         effc:0xFFFFFF
+        animSpd:0.2
         acl:2.7
         spd:1.2
         cof{
@@ -37,6 +38,7 @@ enemy{
         }
         mny:12
         effc:0x00FFFF
+        animSpd:0.3
         acl:3.0
         spd:1.4
         cof{
@@ -61,6 +63,7 @@ enemy{
         }
         mny:50
         effc:0xFF7F00
+        animSpd:0.4
         acl:4.8
         spd:2.4
         cof{
@@ -85,6 +88,7 @@ enemy{
         }
         mny:15
         effc:0xFF0000
+        animSpd:0.25
         acl:2.0
         spd:1.5
         cof{
@@ -109,6 +113,7 @@ enemy{
         }
         mny:18
         effc:0x00FF00
+        animSpd:0.2
         acl:2.5
         spd:1.2
         cof{
@@ -133,6 +138,7 @@ enemy{
         }
         mny:12
         effc:0xFF3F00
+        animSpd:0.3
         acl:2.7
         spd:1.2
         cof{
@@ -154,6 +160,7 @@ enemy{
         }
         mny:300
         effc:0x7F7F7F
+        animSpd:0.15
         acl:0.0
         spd:0.0
         cof{
@@ -179,6 +186,7 @@ enemy{
         }
         mny:13
         effc:0xCFFFFF
+        animSpd:0.3
         acl:2.5
         spd:1.2
         cof{
@@ -200,6 +208,7 @@ enemy{
         }
         mny:80
         effc:0xFF7F00
+        animSpd:0.0
         acl:0.0
         spd:0.0
         cof{

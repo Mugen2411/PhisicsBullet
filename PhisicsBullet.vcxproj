@@ -303,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnchor.h" />
+    <ClInclude Include="CAnimationCounter.h" />
     <ClInclude Include="CAttribute.h" />
     <ClInclude Include="CCoinParent.h" />
     <ClInclude Include="CControllerFactory.h" />

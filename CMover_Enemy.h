@@ -4,6 +4,7 @@
 #include "CAttribute.h"
 #include "CMover.h"
 #include "CStatus.h"
+#include "CAnimationCounter.h"
 
 class CField;
 
@@ -22,7 +23,7 @@ class CMover_EnemyBase : public CMover {
   int pushed_;
 
   int direction_;
-  double animation_cnt_;
+  CAnimationCounter animCnt_;
 
   CStatus base_params_;  //基礎ステータス(HP・攻撃力・防御力)
   CAttribute attr_def_;  //属性耐性(なんかいっぱい)

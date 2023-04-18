@@ -7,6 +7,7 @@
 #include "CPassiveSkill.h"
 #include "CPowerParent.h"
 #include "CStatus.h"
+#include "CAnimationCounter.h"
 
 class CField;
 
@@ -41,6 +42,7 @@ class CMover_Player : public CMover {
     costume_->SetPlayer(this);
     cofs_ = costume_->cofs_;
     mass_ = costume_->mass_;
+    animCnt_ = CAnimationCounter(4.0, costume_->animation_speed_);
   }
   void ResetCharge() { charge_ = 0.0; }
   void ReduceCharge(double value) { charge_ -= value; }
@@ -56,7 +58,7 @@ class CMover_Player : public CMover {
   int state_;  // 0:‘€ì‰Â”\ 1:‘€ì•s”\
   uint32_t direction_;
   double charge_;  //Œ»İ‚Ì—­‚ßŠÔ(0…Charge…MaxCharge)
-  double animation_cnt_;
+  CAnimationCounter animCnt_;
   CStatus base_params_;
   int digitHP_;
   int wait_duration_;

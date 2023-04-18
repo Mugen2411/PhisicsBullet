@@ -27,8 +27,6 @@ int CMover_Enemy_Goblin::Update() {
         break;
       }
       cnt_++;
-      animation_cnt_ += 0.2;
-      if (animation_cnt_ > 4) animation_cnt_ = 0;
       break;
     case 1:
       if (cnt_ == 32) {
@@ -44,11 +42,9 @@ int CMover_Enemy_Goblin::Update() {
       cnt_++;
       break;
     case -1:
-      animation_cnt_ += 0.1;
-      if (animation_cnt_ > 4) {
+      if (animCnt_.Get() > 3.5) {
         state_ = 0;
         FindRoute(5);
-        animation_cnt_ = 0;
         cnt_ = 0;
       }
       break;
@@ -61,13 +57,13 @@ void CMover_Enemy_Goblin::Render() const {
     CImageManager::GetIns()
         .Find("enemy_goblin_intro")
         ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityEnemy,
-                   (int)(animation_cnt_));
+                   (int)(animCnt_.Get()));
     return;
   }
   CImageManager::GetIns()
       .Find("enemy_goblin")
       ->DrawRota(position_, 0.0, 1.0, Constant::kPriorityEnemy,
-                 direction_ * 4 + (int)(animation_cnt_));
+                 direction_ * 4 + (int)(animCnt_.Get()));
   CEffect_Bright::GetIns().Register(
       CEffect_Bright::BrightDesc(position_, 192, 192));
 }

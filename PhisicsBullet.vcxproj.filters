@@ -953,6 +953,9 @@
     <ClInclude Include="CCoinParent.h">
       <Filter>ヘッダー ファイル\Mover\Coin</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimationCounter.h">
+      <Filter>ヘッダー ファイル\Calculate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

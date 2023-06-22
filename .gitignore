@@ -339,3 +339,8 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /media/sound/bgm/farm.ogg.lwi
+
+#Mugen customize
+*.zip
+/build
+/DxLib_VC

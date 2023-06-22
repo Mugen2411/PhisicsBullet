@@ -1,0 +1,4 @@
+cmake_minimum_required(VERSION 3.11)
+add_library(Swimsuit STATIC
+ CMover_Shot_Swimsuit_Bat.h CMover_Shot_Swimsuit_Bat.cpp CMover_Shot_Swimsuit_iPhone.h CMover_Shot_Swimsuit_iPhone.cpp
+)

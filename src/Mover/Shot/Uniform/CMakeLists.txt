@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.11)
+add_library(Uniform STATIC
+ CMover_Shot_Uniform_Homing.h CMover_Shot_Uniform_Homing.cpp
+ CMover_Shot_Uniform_StrongMagic.h CMover_Shot_Uniform_StrongMagic.cpp
+)

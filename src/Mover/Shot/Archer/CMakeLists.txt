@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.11)
+add_library(Archer STATIC
+ CMover_Shot_Archer_FlameArrow.h CMover_Shot_Archer_FlameArrow.cpp
+ CMover_Shot_Archer_PlaneArrow.h CMover_Shot_Archer_PlaneArrow.cpp
+ CMover_Shot_Archer_ThunderArrow.h CMover_Shot_Archer_ThunderArrow.cpp
+)

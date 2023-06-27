@@ -26,3 +26,10 @@ link_directories(${DXLIB_DIR} )
 add_subdirectory(src)
 add_executable(Makeover WIN32 src/main.cpp Resource.rc)
 target_link_libraries(Makeover PUBLIC main)
+
+if(WIN32)
+  add_custom_command(TARGET Makeover
+    PRE_BUILD
+    COMMAND "${PROJECT_SOURCE_DIR}/ArchiveFileGenerator.exe" "media"
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
+endif()

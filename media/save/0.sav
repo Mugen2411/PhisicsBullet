@@ -1,7 +1,7 @@
 save{
   money:0.000000
   level:0
-  last_stage:0
-  endless_last:0
   option:0
+  endless_last:0
+  last_stage:0
 }

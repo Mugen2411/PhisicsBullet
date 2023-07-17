@@ -48,7 +48,8 @@ class Constant {
     kSceneStageclear,
     kSceneUpgrade,
     kSceneGameclear,
-    kSceneOption
+    kSceneOption,
+    kSceneGallery
   };
 
   static CVector kCostumeDetailPosition;

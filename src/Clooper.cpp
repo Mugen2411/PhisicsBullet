@@ -1,13 +1,14 @@
 #include "Clooper.h"
 
+#include "Calc/CProgressData.h"
 #include "Graphic/CAnchor.h"
+#include "Graphic/Draw/CRenderReserveList.h"
+#include "Graphic/Draw/CTextDrawer.h"
 #include "Input/CControllerFactory.h"
 #include "Scene/CGameMediator.h"
 #include "Scene/CMapEditor.h"
-#include "Calc/CProgressData.h"
-#include "Graphic/Draw/CRenderReserveList.h"
-#include "Graphic/Draw/CTextDrawer.h"
 #include "Scene/Scene_Abstract.h"
+#include "Scene/Scene_Gallery.h"
 #include "Scene/Scene_Gameclear.h"
 #include "Scene/Scene_Gameover.h"
 #include "Scene/Scene_Option.h"
@@ -27,7 +28,7 @@ void CGame::Run() {
   (*scene_.begin())->Update();
   if (scene_.empty()) return;
   fps_.Update();
-  int size = (int) scene_.size();
+  int size = (int)scene_.size();
   auto itr = scene_.begin();
   for (int i = 0; i < size; i++) {
     CTextDrawer::GetIns().SetPriority(i);
@@ -79,6 +80,9 @@ void CGame::ChangeScene(int Scene, bool isStackClear) {
       break;
     case Constant::SceneID::kSceneOption:
       scene_.push_front(std::make_unique<Scene_Option>(this));
+      break;
+    case Constant::SceneID::kSceneGallery:
+      scene_.push_front(std::make_unique<Scene_Gallery>(this));
       break;
   }
 }

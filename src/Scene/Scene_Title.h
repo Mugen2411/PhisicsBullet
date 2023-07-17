@@ -17,10 +17,11 @@ class Scene_Title : public Scene_Abstract {
 
  private:
   std::weak_ptr<CSTGInputManager> input_;
+  const int kTitleMenuNum = 7;
   CMenuSelector menu_selector_;
-  CTextDrawer::Text menu_text_[6];
+  CTextDrawer::Text menu_text_[7];
   CTextDrawer::Text title_text_;
-  CTextDrawer::Text under_text_[6];
+  CTextDrawer::Text under_text_[7];
   int current_stage_;
   int current_level_endless_;
   const int kTextLeftLine = 360;

@@ -8,7 +8,7 @@
 #include "Clooper.h"
 
 int WINAPI WinMain(HINSTANCE hI, HINSTANCE hP, LPSTR lpC, int nC) {
-  // setlocale(LC_CTYPE, "ja_JP.UTF-8");
+  //setlocale(LC_ALL, "ja_JP.SJIS");
   CDataLoader::GetIns().Load("main", "media/status/params.mgs");
   CDataLoader::GetIns().Load("resource", "media/status/resource.mgs");
   CDataLoader::GetIns().Load("field", "media/status/field.mgs");

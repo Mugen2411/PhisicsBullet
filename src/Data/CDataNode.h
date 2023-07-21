@@ -98,6 +98,10 @@ class CDataNode {
     childs_.emplace(key, node);
   }
 
+  int GetChildNum()const{
+    return childs_.size();
+  }
+
   void Output(std::ofstream& ofstr, int depth) {
     for (auto& i : childs_) {
       for (int j = 0; j < depth; j++) ofstr << "  ";

@@ -18,4 +18,8 @@ class Scene_Gallery : public Scene_Abstract {
  private:
   std::weak_ptr<CSTGInputManager> input_;
   CMenuSelector menu_selector_;
+  CTextDrawer::Text enemy_name_;
+  CTextDrawer::Text enemy_detail_;
+  std::string enemy_gid_;
+  double attr_[7];
 };

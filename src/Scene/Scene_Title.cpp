@@ -137,7 +137,7 @@ void Scene_Title::Update() {
         ShellExecute(NULL, "open", "readme.txt", NULL, NULL, SW_SHOW);
         break;
       case 5:
-        scene_manager_->ChangeScene(Constant::SceneID::kSceneGallery, false);
+        scene_manager_->ChangeScene(Constant::SceneID::kSceneGallery, true);
         break;
       case 6:
         scene_manager_->ChangeScene(Constant::SceneID::kSceneQuit, true);

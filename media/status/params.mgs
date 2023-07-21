@@ -26,6 +26,7 @@ enemy{
         }
         name:"バッドコーン"
         detail:"もっとも基本的な敵。\n近くに寄ってコーンを投げたり、どこかに離れてコーンを捨てたりしている。\n一匹一匹は非力だが、集団で襲い掛かってくるので効率よく撃破しよう。"
+        graph:"enemy_bud"
     }
     E_BudcornFrost{
         mass:20
@@ -52,6 +53,7 @@ enemy{
         }
         name:"コーンフロスティ"
         detail:"氷の上でもダメージを受けない。\n近くに寄ってコーンを投げたり、どこかに離れてコーンを捨てたりしている。\n一匹一匹は非力だが、集団で襲い掛かってくるので効率よく撃破しよう。"
+        graph:"enemy_cornfrost"
     }
     E_Acecorn{
         mass:30
@@ -79,6 +81,7 @@ enemy{
         }
         name:"エースコーン"
         detail:"コーン界のエース。足も速ければ火力も高い。\n全力で逃げながら炎属性の攻撃で素早く処理しよう。"
+        graph:"enemy_acecorn"
     }
     E_Yadokari{
         mass:40
@@ -106,6 +109,7 @@ enemy{
         }
         name:"やどかり"
         detail:"水圧の高い水を吹きかけて攻撃してくる。\n物理攻撃に対して強く、止まっていると一瞬で溶かされることになる。\n歩き回りながら雷属性の攻撃を与えるのが良い。"
+        graph:"enemy_yadokari"
     }
     E_Goblin{
         mass:40
@@ -133,6 +137,7 @@ enemy{
         }
         name:"ゴブリン"
         detail:"薄暗い洞窟などにいることが多い。\n投げた斧は壁で跳ね返るので狭いところでは脅威となる。\n意外と遠くまで斧が届くので注意が必要。"
+        graph:"enemy_goblin"
     }
     E_FlameSerpent{
         mass:20
@@ -160,6 +165,7 @@ enemy{
         }
         name:"フレイムサーペント"
         detail:"熱い溶岩洞などにいることが多い。\n炎を吐き出して攻撃してくる。\n水属性にめっぽう弱く、一瞬で溶けていく。"
+        graph:"enemy_flameserpent"
     }
     E_Shimaenaga{
         mass:40
@@ -184,6 +190,7 @@ enemy{
         }
         name:"シマエナガ"
         detail:"低確率で姿を現すレアな敵。\n特に攻撃はしてこないが体力は多い。\nお金を多く落とすので、見かけたらラッキー。"
+        graph:"enemy_shimaenaga"
     }
     E_Azarashi{
         mass:50
@@ -212,6 +219,7 @@ enemy{
         }
         name:"アザラシ"
         detail:"薄暗い洞窟などにいることが多い。\n氷の上を這いまわり、壁で跳ね返る氷を飛ばして来る。\n炎属性で攻撃するのが有効だが、足元の氷も溶けることに注意。"
+        graph:"enemy_azarashi"
     }
     M_Static{
         mass:100
@@ -236,6 +244,7 @@ enemy{
         }
         name:"巣穴"
         detail:"敵を吐き出す巣穴。\n一定時間ごとに大量の敵を吐き出すので、優先的に破壊するべし。\n十分に処理が間に合うなら金稼ぎにも使えるかも…？"
+        graph:"mother_hole"
     }
 }
 bullet{

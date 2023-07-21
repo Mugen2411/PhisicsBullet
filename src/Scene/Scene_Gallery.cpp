@@ -85,28 +85,33 @@ void Scene_Gallery::Render() const {
       .Find(enemy_gid_)
       ->DrawRotaF(Constant::kScreenW / 2, Constant::kScreenH / 2, 0.0, 1.0,
                   Constant::kPriorityEnemy, 0);
+  CImageManager::GetIns()
+      .Find("system_costume_frame")
+      ->DrawRota(Constant::kScreenW / 2, Constant::kScreenH / 2, 0.0f, 1.0f,
+                 Constant::kPriorityCurtain + 2);
 
-  constexpr int icon_left = 320-112;
+  constexpr int icon_left = 320 - 112;
   constexpr int icon_top = 280;
   auto drawCostumeInfo = [this](int i, double attr) {
     CImageManager::GetIns()
         .Find("icon_attribute")
-        ->Draw(icon_left + 32 * i + 0, icon_top, Constant::kPriorityCurtain + 1, i);
+        ->Draw(icon_left + 32 * i + 0, icon_top, Constant::kPriorityCurtain + 1,
+               i);
     if (attr > 1.0) {
       CImageManager::GetIns()
           .Find("icon_weak_or_strong")
-          ->Draw(icon_left + 32 * i + 16, icon_top, Constant::kPriorityCurtain + 1,
-                 0);
+          ->Draw(icon_left + 32 * i + 16, icon_top,
+                 Constant::kPriorityCurtain + 1, 0);
     } else if (attr < 1.0) {
       CImageManager::GetIns()
           .Find("icon_weak_or_strong")
-          ->Draw(icon_left + 32 * i + 16, icon_top, Constant::kPriorityCurtain + 1,
-                 1);
+          ->Draw(icon_left + 32 * i + 16, icon_top,
+                 Constant::kPriorityCurtain + 1, 1);
     } else {
       CImageManager::GetIns()
           .Find("icon_weak_or_strong")
-          ->Draw(icon_left + 32 * i + 16, icon_top, Constant::kPriorityCurtain + 1,
-                 2);
+          ->Draw(icon_left + 32 * i + 16, icon_top,
+                 Constant::kPriorityCurtain + 1, 2);
     }
   };
   for (int i = 0; i < 7; i++) {

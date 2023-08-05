@@ -156,6 +156,14 @@ CTextDrawer::Text CPassiveSkill::GetText(int index) {
                 std::string("’iŠK‘‰Á‚·‚éB");
     return ret;
   }
+  if (index == kEnemyValueUp) {
+    ret.text_ = std::string("“G‚Ì‰¿’l‚ğ") +
+                std::to_string(has_[index]) +
+                std::string("’iŠK¨") +
+                std::to_string((has_[index] + 1)) +
+                std::string("’iŠK‘‰Á‚·‚éB");
+    return ret;
+  }
   return ret;
 }
 

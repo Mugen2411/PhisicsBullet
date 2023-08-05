@@ -12,7 +12,7 @@ enemy{
             aqua:0.6
             ice:0.6
         }
-        mny:10
+        mny:8
         effc:0xFFFFFF
         animSpd:0.2
         acl:2.7
@@ -39,7 +39,7 @@ enemy{
             fire:0.4
             ice:-0.8
         }
-        mny:12
+        mny:9
         effc:0x00FFFF
         animSpd:0.3
         acl:3.0
@@ -58,8 +58,8 @@ enemy{
     E_Acecorn{
         mass:30
         base{
-            atk:1.2
-            hp:2.5
+            atk:1.1
+            hp:1.8
         }
         atrd{
             base:1.0
@@ -67,7 +67,7 @@ enemy{
             flower:3.0
             aqua:0.8
         }
-        mny:50
+        mny:15
         effc:0xFF7F00
         animSpd:0.4
         acl:4.8
@@ -95,7 +95,7 @@ enemy{
             thunder:0.3
             flower:0.4
         }
-        mny:15
+        mny:12
         effc:0xFF0000
         animSpd:0.25
         acl:2.0
@@ -123,7 +123,7 @@ enemy{
             fire:2.5
             thunder:0.3
         }
-        mny:18
+        mny:10
         effc:0x00FF00
         animSpd:0.2
         acl:2.5
@@ -151,7 +151,7 @@ enemy{
             aqua:0.2
             ice:0.3
         }
-        mny:12
+        mny:9
         effc:0xFF3F00
         animSpd:0.3
         acl:2.7
@@ -164,7 +164,7 @@ enemy{
             wnd:0.1
         }
         name:"ƒtƒŒƒCƒ€ƒT[ƒyƒ“ƒg"
-        detail:"”M‚¢—nŠâ“´‚È‚Ç‚É‚¢‚é‚±‚Æ‚ª‘½‚¢B\n‰Š‚ğ“f‚«o‚µ‚ÄUŒ‚‚µ‚Ä‚­‚éB\n…‘®«‚É‚ß‚Á‚Û‚¤ã‚­Aˆêu‚Å—n‚¯‚Ä‚¢‚­B"
+        detail:"”M‚¢—nŠâ“´‚È‚Ç‚É‚¢‚é‚±‚Æ‚ª‘½‚¢B\n‰Š‚ğ“f‚«o‚µ‚ÄUŒ‚‚µ‚Ä‚­‚éB\n…‘®«‚É‚ß‚Á‚Û‚¤ã‚­Aˆêu‚Å—n‚¯‚Ä‚¢‚­B\n‚µ‚©‚µA—nŠâ‚©‚ç”M‚ğ‹z‚Á‚Ä‘Ì—Í‚ğ‰ñ•œ‚·‚éB"
         graph:"enemy_flameserpent"
     }
     E_Shimaenaga{
@@ -176,7 +176,7 @@ enemy{
         atrd{
             base:0.5
         }
-        mny:300
+        mny:100
         effc:0x7F7F7F
         animSpd:0.15
         acl:0.0
@@ -196,16 +196,16 @@ enemy{
         mass:50
         base{
             atk:1.0
-            hp:1.5
+            hp:1.2
         }
         atrd{
             base:1.0
             ice:4.0
             aqua:2.0
-            fire:0.5
-            thunder:0.6
+            fire:0.4
+            thunder:0.5
         }
-        mny:13
+        mny:11
         effc:0xCFFFFF
         animSpd:0.3
         acl:2.5
@@ -230,7 +230,7 @@ enemy{
         atrd{
             base:1.0
         }
-        mny:80
+        mny:20
         effc:0xFF7F00
         animSpd:0.0
         acl:0.0
@@ -337,8 +337,8 @@ bullet{
         size:16
         atk{
             base:0.0
-            none:20.0
-            ice:20.0
+            none:10.0
+            ice:15.0
         }
         cof{
             frc:0.1

@@ -1,15 +1,15 @@
 #include "CMover_Enemy.h"
 
-#include "Graphic/CAnchor.h"
+#include "Calc/CPassiveSkill.h"
 #include "Data/CDataLoader.h"
 #include "Effect/CEffectParent.h"
 #include "Effect/CEffect_DamageNumber.h"
 #include "Effect/CEffect_EnemyDelete.h"
 #include "Effect/CEffect_MoneyNumber.h"
+#include "Graphic/CAnchor.h"
 #include "Graphic/Image/CImageManager.h"
-#include "Mover/Coin/CMover_Coin.h"
 #include "Mover/CMover_Player.h"
-#include "Calc/CPassiveSkill.h"
+#include "Mover/Coin/CMover_Coin.h"
 #include "Sound/CSoundManager.h"
 
 CMover_EnemyBase::CMover_EnemyBase(std::string GID, int Level, CVector position)
@@ -127,8 +127,9 @@ bool CMover_EnemyBase::BaseRender() const {
     }
     CImageManager::GetIns()
         .Find("enemy_marker")
-        ->DrawRota(Constant::kScreenW - 8, (int)p.y_, (float)Constant::kPI * 0.0f,
-                   1.0f, Constant::kPriorityMarker);
+        ->DrawRota(Constant::kScreenW - 8, (int)p.y_,
+                   (float)Constant::kPI * 0.0f, 1.0f,
+                   Constant::kPriorityMarker);
     CAnchor::GetIns().DisableAbsolute();
     return false;
   }
@@ -216,8 +217,12 @@ void CMover_EnemyBase::RatioDamage(CAttribute shotATK, int style) {
 }
 
 void CMover_EnemyBase::Drop() {
-  double val = std::ceil((base_money_ * powl(1.05 , base_params_.level_)) *
-                           CPassiveSkill::GetIns().GetMoneyMult());
+  double val = std::ceil(
+      ((base_money_ + CPassiveSkill::GetIns().GetEnemyValueAdd()) *
+                 powl(1.05, base_params_.level_) *
+                 std::pow(1.28, (int)(base_params_.level_ / 15)) *
+                 std::pow(1.72, (int)(base_params_.level_ / 60))) *
+      CPassiveSkill::GetIns().GetMoneyMult());
   if (auto r = med_) {
     // r->GetMoney(val);
     for (int v = 0; CMover_Coin::kValue[v] > 0; v++) {

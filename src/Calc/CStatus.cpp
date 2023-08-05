@@ -24,8 +24,10 @@ CStatus::CStatus(int Level, double atkCF, double hpCF)
 void CStatus::Load(const CDataNode* c) {}
 
 void CStatus::Calculate() {
-  atk_ = (100 * std::pow(1.03, level_) + 1 * level_) * atk_cf_;
-  maxHP_ = (500 * std::pow(1.03, level_) + 5 * level_) * hp_cf_;
+  atk_ = 100 * std::pow(1.02, level_) * std::pow(1.1, (int)(level_ / 15)) *
+         std::pow(1.3, (int)(level_ / 60)) * atk_cf_;
+  maxHP_ = 500 * std::pow(1.02, level_) * std::pow(1.1, (int)(level_ / 15)) *
+           std::pow(1.3, (int)(level_ / 60)) * hp_cf_;
   HP_ = maxHP_;
 }
 

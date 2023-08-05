@@ -19,12 +19,15 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   }
   double GetSpeedMult() { return 1.0 + 0.01 * speed_per_level_ * has_[kSpeed]; }
   int GetEnemyLevelAdd() {
-    return has_[kEnemyLevelUp - 1] * (has_[kEnemyLevelUp]) / 2;
+    return (has_[kEnemyLevelUp] + 1) * has_[kEnemyLevelUp] / 2;
   }
   int GetEnemyAmount(int baseAmount) {
     int add = has_[kEnemyAmountUp] == 5;
     double mult = 1.0 + has_[kEnemyAmountUp] * kEnemyAmountUp * 0.01;
-    return (int)round(baseAmount*mult) + add;
+    return (int)round(baseAmount * mult) + add;
+  }
+  int GetEnemyValueAdd() {
+    return (has_[kEnemyValueUp] + 1) * has_[kEnemyValueUp] / 2;
   }
   void Reset() {
     for (auto& i : has_) {
@@ -65,8 +68,8 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   static const int kMaxSkillLevel = 5;
 
  protected:
-  static const int kSkillNum = 23;
-  int has_[7 + 7 + 2 + 5 + 2];
+  static const int kSkillNum = 24;
+  int has_[24];
   enum {
     kAtkNone,
     kAtkFire,
@@ -90,7 +93,8 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
     kSpeed,
     kMaxHP,
     kEnemyLevelUp,
-    kEnemyAmountUp
+    kEnemyAmountUp,
+    kEnemyValueUp
   };
   const int attr_atk_per_level_ = 15;
   const int attr_def_per_level_ = 15;
@@ -102,6 +106,7 @@ class CPassiveSkill : public Singleton<CPassiveSkill> {
   const int speed_per_level_ = 2;
   const int maxHP_per_level_ = 10;
   const int enemyAmount_per_level_ = 10;
+  const int enemy_value_per_level_ = 1;
 
   std::random_device rnd_;
   std::mt19937 engine_;
